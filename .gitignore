@@ -1,0 +1,44 @@
+# Local Codex/app state
+.agents/
+.codex/
+
+# Upstream reference materials are kept read-only and local.
+/reference/
+
+# Raw or generated data should not be committed.
+/data/raw/*
+!/data/raw/README.md
+/data/interim/*
+!/data/interim/README.md
+/data/processed/*
+!/data/processed/README.md
+/data/model_inputs/*
+!/data/model_inputs/README.md
+
+# Reproducible outputs should be regenerated from code.
+/output/figures/*
+!/output/figures/README.md
+/output/tables/*
+!/output/tables/README.md
+/output/logs/*
+!/output/logs/README.md
+/output/memo/*
+!/output/memo/README.md
+
+# Large research-data formats and MATLAB/Stata temporaries.
+*.dta
+*.mat
+*.sas7bdat
+*.parquet
+*.feather
+*.rds
+*.RData
+*.xlsx
+*.xls
+*.log
+
+# OS/editor noise
+Thumbs.db
+.DS_Store
+*.tmp
+*.bak
