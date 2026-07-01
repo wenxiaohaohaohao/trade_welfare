@@ -4,6 +4,11 @@ This repository starts a JMP-oriented international trade project on connector e
 
 The project is built from an existing structural reference package but is not a replication project. The reference package gives the core trade + multinational production + input-output model. The new project asks a different question and needs new data, new country definitions, new connector measures, and a new empirical validation layer before the model can be used credibly.
 
+## Current Data Notes / 当前数据说明
+
+- BEA U.S. MNE MOFA country-industry tables have been checked for `Mexico x Transportation equipment`, 2020-2022. The verified cells are not suppressed and can be used to fill the post-2020 OECD Analytical AMNE gap for this North America production-side moment. See `data/bea_mne_mexico_transportation_equipment_2020_2022.md`.
+- 已核实 BEA U.S. MNE MOFA 的 `Mexico x Transportation equipment` 2020-2022 行业级数据。核心指标没有 `(D)` suppression，可用于补 OECD Analytical AMNE 2020 年之后的缺口，并作为 North America extension 中 MP relocation / affiliate expansion 的校准依据。详见 `data/bea_mne_mexico_transportation_equipment_2020_2022.md`。
+
 ## 1. Project In One Paragraph
 
 When direct trade and multinational production links between geopolitical blocs weaken, third countries can appear to "connect" the blocs. This can mean real production relocation, or it can mean trade rerouting and transshipment with little local value added. The project asks whether connector economies actually mitigate the welfare costs of geoeconomic fragmentation, or whether they mainly hide continued dependence through indirect routes. The empirical work will first identify connector countries and distinguish production relocation from gross trade rerouting. The structural work will then use a multi-country, multi-sector general-equilibrium model with trade, multinational production, and input-output linkages to quantify welfare effects.
