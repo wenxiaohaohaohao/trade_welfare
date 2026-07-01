@@ -103,3 +103,12 @@ BEA 的 2009-2023 country-by-industry Excel 不是把年份放在列中，而是
 2. 结构模型中若需要 post-2020 MP relocation moment，优先使用 assets stock，并用 employment、value added、PPE expenditures、sales 做一致性检查。
 3. 不应把这组 aggregate MOFA 数据解释为 firm-level relocation 证据。它能说明美国 MNE 在墨西哥该行业的 affiliate activity 扩张，但不能直接证明某一家企业把产能从中国迁到墨西哥。
 4. 做 sector concordance 时，应把 BEA `Transportation equipment` 明确映射到项目模型的 transportation equipment / motor vehicles 相关部门，并在代码或 mapping 表中保留这个口径说明。
+
+## 可重复归档与核查入口
+
+- 下载和抽取脚本：`code/data_build/download_extract_bea_mne_mofas.py`
+- 脚本依赖：`code/data_build/requirements-bea-mne.txt`
+- 本地原始 XLS 归档目录：`data/raw/bea_usdia_mofas_2025-08/`，该目录被 git 忽略。
+- 原始文件 checksum manifest：`data/bea_usdia_mofas_2025_08_archive_manifest.md`
+- Mexico 2020-2022 suppression audit summary：`data/bea_mne_mofas_mexico_suppression_audit_2020_2022.md`
+- 机器可读 audit CSV：`data/interim/bea_mne_mofas_mexico_suppression_audit_2020_2022.csv`，该文件被 git 忽略，可由脚本重建。
