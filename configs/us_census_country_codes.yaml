@@ -1,0 +1,46 @@
+country_codes:
+  CAN:
+    cty_code: "1220"
+    cty_name: CANADA
+  CHN:
+    cty_code: "5700"
+    cty_name: CHINA
+  IDN:
+    cty_code: "5600"
+    cty_name: INDONESIA
+  IND:
+    cty_code: "5330"
+    cty_name: INDIA
+  JPN:
+    cty_code: "5880"
+    cty_name: JAPAN
+  KOR:
+    cty_code: "5800"
+    cty_name: KOREA, SOUTH
+  MAR:
+    cty_code: "7140"
+    cty_name: MOROCCO
+  MEX:
+    cty_code: "2010"
+    cty_name: MEXICO
+  MYS:
+    cty_code: "5570"
+    cty_name: MALAYSIA
+  PHL:
+    cty_code: "5650"
+    cty_name: PHILIPPINES
+  POL:
+    cty_code: "4550"
+    cty_name: POLAND
+  THA:
+    cty_code: "5490"
+    cty_name: THAILAND
+  TUR:
+    cty_code: "4890"
+    cty_name: TURKEY
+  TWN:
+    cty_code: "5830"
+    cty_name: TAIWAN
+  VNM:
+    cty_code: "5520"
+    cty_name: VIETNAM

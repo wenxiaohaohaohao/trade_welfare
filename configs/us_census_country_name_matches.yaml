@@ -1,0 +1,48 @@
+country_name_matches:
+  CAN:
+    census_names:
+      - Canada
+  CHN:
+    census_names:
+      - China
+  IDN:
+    census_names:
+      - Indonesia
+  IND:
+    census_names:
+      - India
+  JPN:
+    census_names:
+      - Japan
+  KOR:
+    census_names:
+      - Korea, South
+      - South Korea
+  MAR:
+    census_names:
+      - Morocco
+  MEX:
+    census_names:
+      - Mexico
+  MYS:
+    census_names:
+      - Malaysia
+  PHL:
+    census_names:
+      - Philippines
+  POL:
+    census_names:
+      - Poland
+  THA:
+    census_names:
+      - Thailand
+  TUR:
+    census_names:
+      - Turkey
+      - Turkiye
+  TWN:
+    census_names:
+      - Taiwan
+  VNM:
+    census_names:
+      - Vietnam

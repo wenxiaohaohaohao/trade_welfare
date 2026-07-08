@@ -60,8 +60,43 @@ oecd_amne:
 
 us_census:
   source: U.S. Census USA Trade Online / International Trade API
+  api_base: https://api.census.gov/data/timeseries/intltrade/imports/hs
+  api_key_env: CENSUS_API_KEY
   raw_dir: data/raw/us_census/
-  status: pending_download
+  status: built_2014_2024_hs10_hs6_monthly
+  raw_subdirs:
+    hs10_monthly_imports: data/raw/us_census/hs10_monthly_imports/
+    hs6_monthly_imports: data/raw/us_census/hs6_monthly_imports/
+    metadata: data/raw/us_census/metadata/
+  api_fields:
+    YEAR: year
+    MONTH: month
+    CTY_CODE: origin_census_code
+    CTY_NAME: origin_name
+    I_COMMODITY: hts10_or_hs6
+    I_COMMODITY_SDESC: commodity_description
+    GEN_VAL_MO: import_value_usd
+    GEN_QY1_MO: quantity
+    UNIT_QY1: quantity_unit
+    CON_VAL_MO: customs_value
+    CAL_DUT_MO: duties
+    DUT_VAL_MO: dutiable_value_usd
+  coverage:
+    frequency: monthly
+    first_api_year: 2013
+    commodity_levels:
+      - HS10
+      - HS6
+  batch2_usage:
+    required_years:
+      start: 2014
+      end: 2024
+    output_dir: data/interim/trade/
+    outputs:
+      hs10_monthly: data/interim/trade/us_imports_hs10_monthly.parquet
+      hs6_monthly: data/interim/trade/us_imports_hs6_monthly.parquet
+    country_scope: source_bloc plus connector candidates and comparators from configs/country_groups.yaml
+    api_key_rule: Read from CENSUS_API_KEY; never write the API key to tracked files.
 
 ustr_section301:
   source: USTR Section 301 tariff lists
