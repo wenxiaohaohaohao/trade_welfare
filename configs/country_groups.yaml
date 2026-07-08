@@ -1,0 +1,33 @@
+source_bloc:
+  core:
+    - CHN
+  extended_east_asia:
+    - CHN
+    - KOR
+    - JPN
+    - TWN
+
+destination_bloc:
+  core:
+    - USA
+  extension:
+    - EU27
+
+core_connectors:
+  - VNM
+  - MEX
+  - CAN
+
+asian_comparators:
+  - IND
+  - IDN
+  - MYS
+  - PHL
+  - THA
+  - KOR
+  - TWN
+
+other_candidates:
+  - POL
+  - MAR
+  - TUR

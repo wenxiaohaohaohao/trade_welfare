@@ -1,0 +1,80 @@
+baci:
+  source: CEPII BACI
+  version: 202601
+  release_date: 2026-01-22
+  raw_dir: data/raw/BACI_HS12_V202601/
+  status: ready_for_batch1_raw_csv
+  csv_pattern: BACI_HS12_Y{year}_V202601.csv
+  country_metadata: country_codes_V202601.csv
+  product_metadata: product_codes_HS12_V202601.csv
+  readme: Readme.txt
+  coverage:
+    years:
+      start: 2012
+      end: 2024
+    products:
+      nomenclature: HS12
+      level: HS6
+      count: 5202
+    value_unit: thousand_usd
+    quantity_unit: metric_tons
+    raw_columns:
+      t: year
+      i: exporter_country_code
+      j: importer_country_code
+      k: hs6_product_code
+      v: value_thousand_usd
+      q: quantity_metric_tons
+  known_issue:
+    taiwan: BACI metadata does not contain TWN directly; code 490 is country_iso3 S19 and country_name Other Asia, nes.
+    quantity: q has missing values for some flows; value-based connector measures should not require q.
+  legacy_local_file:
+    raw_file: data/raw/baci.dta
+    version: local_stata_extract_unknown
+    status: not_sufficient_for_batch1
+    years:
+      start: 2000
+      end: 2014
+    rows: 134345413
+    known_issue: file has 16 trailing rows with missing year; downstream reads must filter nonmissing year, hs6, value, exporter, and importer.
+  batch1_usage:
+    use_raw_csv: true
+    required_years:
+      start: 2014
+      end: 2024
+    output_dir: data/interim/trade/
+    value_transform: trade_value_usd = v * 1000
+    hs6_transform: preserve k as a six-character string
+    country_transform: map numeric i and j through country_codes_V202601.csv to ISO3
+    source_file_transform: set source_file to the raw CSV filename
+
+oecd_icio:
+  source: OECD ICIO 2025 edition
+  raw_dir: data/raw/oecd_icio/
+  status: pending_download
+
+oecd_amne:
+  source: OECD Analytical AMNE
+  raw_dir: data/raw/oecd_amne/
+  status: pending_download
+
+us_census:
+  source: U.S. Census USA Trade Online / International Trade API
+  raw_dir: data/raw/us_census/
+  status: pending_download
+
+ustr_section301:
+  source: USTR Section 301 tariff lists
+  raw_dir: data/raw/ustr_section301/
+  status: pending_download
+
+bea_mne:
+  source: BEA Activities of U.S. MNEs
+  raw_dir: data/raw/bea_mne/
+  status: partially_archived
+  existing_local_dir: data/raw/bea_usdia_mofas_2025-08/
+
+bea_fdi:
+  source: BEA Direct Investment by Country and Industry
+  raw_dir: data/raw/bea_fdi/
+  status: pending_download

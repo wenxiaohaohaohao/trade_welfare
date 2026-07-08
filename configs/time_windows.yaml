@@ -1,0 +1,23 @@
+pre_period:
+  start: 2014
+  end: 2017
+
+shock_period:
+  start: 2018
+  end: 2019
+
+post_period:
+  start: 2020
+  end: 2024
+
+structural_baseline_candidates:
+  - 2017
+  - 2018
+  - 2019
+  - 2022
+
+fragmentation_shock:
+  name: Section 301
+  jurisdiction: USA
+  target: CHN
+  rationale: USTR Section 301 tariff process provides the natural first-version fragmentation shock, including List 1-4 trade actions.

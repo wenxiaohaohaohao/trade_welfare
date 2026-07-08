@@ -1,0 +1,7 @@
+country_code_overrides:
+  TWN:
+    baci_country_code: 490
+    baci_iso3: S19
+    baci_country_name: Other Asia, nes
+    proxy: true
+    reason: BACI 202601 does not list TWN directly; CEPII records Taiwan-related flows under Other Asia, nes.

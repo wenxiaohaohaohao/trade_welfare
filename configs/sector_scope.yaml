@@ -1,0 +1,15 @@
+priority_sectors:
+  - electronics
+  - electrical_equipment
+  - machinery
+  - autos
+  - medical_devices
+  - textiles_apparel
+
+exclude_first_round:
+  - crude_oil
+  - basic_commodities
+  - precious_metals
+  - agricultural_bulk_goods
+
+rationale: First-round analysis excludes broad commodities to avoid mixing commodity rerouting with real supply-chain reorganization.
