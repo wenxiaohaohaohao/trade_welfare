@@ -490,6 +490,58 @@ The key interpretation is therefore not "public data prove relocation." A more d
 
 The practical data bottleneck has changed. fDi Markets access is no longer the binding constraint. The two remaining constraints are: (i) OECD Analytical AMNE stops in 2020, so the nearshoring period must be bridged with BEA, Mexico FDI, and fDi Markets; and (ii) BEA country-industry cells must be checked sector by sector for suppression.
 
+### Batch 4: OECD Analytical AMNE Affiliate Activity And MP Shares
+
+Batch 4 converts the locally downloaded OECD Analytical AMNE files into two project-facing parquet outputs:
+
+| Output | Role | Row scope |
+|---|---|---|
+| data/interim/mne/oecd_amne_affiliate_activity.parquet | Positive foreign-affiliate activity panel for empirical validation and Scenario B hgamma discipline. | Foreign parent country, host country, OECD sector, and year cells with strictly positive affiliate output. |
+| data/interim/mne/oecd_amne_mp_shares.parquet | Model-facing MP-share panel. | Full foreign parent-host-sector-year universe, including zero-output links, so country-sector merges do not drop zero MP links. |
+
+The build script is code/data_build/build_oecd_amne.py. It reads aamne-bilateral-output.csv and aamne-mne-xvem.csv from data/raw/oecd_amne/analytical_amne/, writes outputs to data/interim/mne/, and leaves raw files unchanged. Regenerate the outputs with:
+
+    python code/data_build/build_oecd_amne.py --project-root . --overwrite
+
+Core construction:
+
+| Field | Construction |
+|---|---|
+| affiliate_output | Off-diagonal parent-host-sector output from aamne-bilateral-output.csv, in current million USD. Domestic diagonal cells are excluded. |
+| affiliate_value_added | Foreign-owned XVEM aggregate GVA allocated to parent countries by parent affiliate-output share within each host-sector-year. |
+| affiliate_exports | Foreign-owned XVEM aggregate EXGR allocated by parent affiliate-output share. |
+| affiliate_imports | Foreign-owned XVEM aggregate IMGR allocated by parent affiliate-output share; OECD describes this as intermediate-input imports by firms. |
+| affiliate_employment | Required column retained as null because these OECD Analytical AMNE files do not provide employment. Use BEA MNE, fDi Markets jobs, or national data for employment evidence. |
+| ownership_type | F, meaning foreign-owned firms. |
+
+The two model-facing variables are:
+
+    MPEexpansion_{c,s,t} = ForeignAffiliateOutput_{c,s,t} - ForeignAffiliateOutput_{c,s,t-1}
+    ForeignAffiliateShare_{c,s,t} = ForeignAffiliateOutput_{c,s,t} / GrossOutput_{c,s,t}
+
+In the parquet outputs, these are stored as mpe_expansion and foreign_affiliate_share. The file also keeps mp_output_share, the parent-specific affiliate output divided by host-sector gross output, and parent_affiliate_output_share, the weight used to allocate value added, exports, and imports across parent countries.
+
+The important limitation is that parent-country output is directly observed in aamne-bilateral-output.csv, but parent-country value added, exports, and imports are not. Those three fields are allocated from the host-sector foreign-owned aggregate in aamne-mne-xvem.csv. They are valid as documented Scenario B discipline variables, but should not be described as directly reported parent-country AMNE value added or trade cells.
+
+Current validation:
+
+| Check | Result |
+|---|---|
+| Years | 2008-2023 |
+| Host economies | 81 |
+| Parent economies | 81 |
+| Sectors in oecd_amne_mp_shares.parquet | 41 |
+| Positive-affiliate sectors in oecd_amne_affiliate_activity.parquet | 39; O84 and T97T98 have zero foreign-owned GO in the raw XVEM file. |
+| Rows in oecd_amne_affiliate_activity.parquet | 1,260,053 |
+| Rows in oecd_amne_mp_shares.parquet | 4,250,880 |
+| foreign_affiliate_share formula residual | 0 |
+| mpe_expansion year-over-year residual | 0 |
+| Allocated value added, exports, and imports summed back to XVEM foreign-owned aggregates | Floating-point precision residual only. |
+| Bilateral output versus XVEM foreign-owned GO | Maximum absolute difference is about 0.113 million USD, consistent with small rounding differences across OECD files. |
+
+Interpretation for the paper: the AMNE outputs support incumbent MP-intensive evidence and disciplined hgamma scenarios. They can show whether foreign-affiliate output and ownership-split activity expand in connector host countries and sectors. They do not prove firm-level relocation, plant entry, or new affiliate entry; those claims must stay in the model-external evidence layer and be combined with BEA, fDi Markets, FDI, or national production sources.
+
+
 ### 8.4 What Additional Data Would Make The Project More Mature
 
 For a JIE-level paper, the public-data version is feasible only if the research design is disciplined. The project should not overclaim firm-level relocation from aggregate evidence. The strongest version would add one or more of the following data layers:

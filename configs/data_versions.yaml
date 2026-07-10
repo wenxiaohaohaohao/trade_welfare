@@ -56,7 +56,30 @@ oecd_icio:
 oecd_amne:
   source: OECD Analytical AMNE
   raw_dir: data/raw/oecd_amne/
-  status: pending_download
+  status: built_affiliate_activity_mp_shares
+  raw_subdirs:
+    analytical_amne: data/raw/oecd_amne/analytical_amne/
+    metadata: data/raw/oecd_amne/metadata/
+  coverage:
+    activity_years:
+      start: 2008
+      end: 2023
+    bilateral_output_years:
+      start: 2000
+      end: 2024
+    countries_plus_row: 81
+    sectors: 41
+    unit: current million USD
+  batch4_usage:
+    output_dir: data/interim/mne/
+    outputs:
+      affiliate_activity: data/interim/mne/oecd_amne_affiliate_activity.parquet
+      mp_shares: data/interim/mne/oecd_amne_mp_shares.parquet
+    construction:
+      affiliate_output: off-diagonal parent-host-sector cells from aamne-bilateral-output.csv
+      foreign_affiliate_share: foreign affiliate output divided by total gross output by host-sector-year
+      mpe_expansion: year-over-year change in total foreign affiliate output by host-sector
+      employment: not available in downloaded OECD Analytical AMNE files; retained as null column
 
 us_census:
   source: U.S. Census USA Trade Online / International Trade API
