@@ -1,0 +1,6 @@
+pandas
+pyyaml
+pyarrow
+pypdf
+openpyxl
+xlrd

@@ -99,9 +99,37 @@ us_census:
     api_key_rule: Read from CENSUS_API_KEY; never write the API key to tracked files.
 
 ustr_section301:
-  source: USTR Section 301 tariff lists
+  source: USTR Section 301 China tariff actions and official exclusion/four-year review notices
   raw_dir: data/raw/ustr_section301/
-  status: pending_download
+  status: raw_archive_downloaded_with_failed_legacy_links; processing_blocked_until_official_code_table_and_full_origin_census
+  source_rule: official USTR, Federal Register/govinfo, and CBP sources only for the first version
+  source_pages:
+    master: https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions
+    list1: https://ustr.gov/issue-areas/enforcement/section-301-investigations/section-301-china/34-billion-trade-action
+    list2: https://ustr.gov/issue-areas/enforcement/section-301-investigations/section-301-china/16-billion-trade-action
+    list3: https://ustr.gov/issue-areas/enforcement/section-301-investigations/section-301-china/200-billion-trade-action
+    list4: https://ustr.gov/issue-areas/enforcement/section-301-investigations/section-301-china/300-billion-trade-action
+    four_year_review: https://ustr.gov/trade-topics/enforcement/section-301-investigations/section-301-china-technology-transfer/china-section-301-tariff-actions-and-exclusion-process/four-year-review
+    machinery_exclusions: https://ustr.gov/issue-areas/enforcement/section-301-investigations/section-301-china-technology-transfer/china-section-301-tariff-actions-and-exclusion-process/machinery-exclusions-process
+  raw_subdirs:
+    list1: data/raw/ustr_section301/list1/
+    list2: data/raw/ustr_section301/list2/
+    list3: data/raw/ustr_section301/list3/
+    list4: data/raw/ustr_section301/list4/
+    exclusions: data/raw/ustr_section301/exclusions/
+    machinery_exclusions: data/raw/ustr_section301/exclusions/machinery/
+    four_year_review: data/raw/ustr_section301/four_year_review/
+    metadata: data/raw/ustr_section301/metadata/
+  batch2_usage:
+    output_dir: data/interim/policy/
+    census_hs10_imports: data/interim/trade/us_imports_hs10_monthly.parquet
+    exposure_year: 2017
+    origin_iso3: CHN
+    destination_iso3: USA
+    outputs:
+      hts10_list_panel: data/interim/policy/section301_hts10_list_panel.parquet
+      hs6_exposure: data/interim/policy/section301_hs6_exposure.parquet
+    exposure_formula: tariff_exposure = china_import_share_2017 * tariff_rate
 
 bea_mne:
   source: BEA Activities of U.S. MNEs
