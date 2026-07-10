@@ -140,4 +140,41 @@ bea_mne:
 bea_fdi:
   source: BEA Direct Investment by Country and Industry
   raw_dir: data/raw/bea_fdi/
-  status: pending_download
+  status: built_batch6_direct_investment_country_industry
+  raw_subdirs:
+    direct_investment_country_industry: data/raw/bea_fdi/direct_investment_country_industry/
+    metadata: data/raw/bea_fdi/metadata/
+  coverage:
+    years:
+      start: 2020
+      end: 2024
+    directions:
+      - us_direct_investment_abroad
+      - foreign_direct_investment_in_us
+    geography: BEA country or area rows; filter bea_area_type for country-only use
+    industry: BEA selected country-by-industry columns
+    unit: millions of dollars
+  batch6_usage:
+    output_dir: data/interim/fdi/
+    output: data/interim/fdi/bea_direct_investment_country_industry.parquet
+    build_summary: data/interim/fdi/bea_direct_investment_country_industry_build_summary.json
+    metadata_manifest: data/raw/bea_fdi/metadata/bea_direct_investment_country_industry_manifest.json
+    minimum_fields:
+      - year
+      - direction
+      - country
+      - industry
+      - position
+      - flows
+      - income
+      - source_file
+    source_pages:
+      main: https://www.bea.gov/data/intl-trade-investment/direct-investment-country-and-industry
+      us_direct_investment_abroad: https://www.bea.gov/international/di1usdbal
+      foreign_direct_investment_in_us: https://www.bea.gov/international/di1fdibal
+    source_tables:
+      position: Direct investment position on a historical-cost basis
+      flows: Financial transactions without current-cost adjustment
+      income: Direct investment income without current-cost adjustment
+    suppression_rule: BEA (D) cells are missing, not zero; BEA (*) cells are stored as 0.0 with a small-value flag.
+    current_limit: Default output is restricted to 2020-2024 because all three minimum indicators are jointly available for both directions. BEA pages also list 2025 position files, but matching 2025 annual flows and income are not included in this batch. If the project later needs a longer window or earlier historical years, extend this through a separate BEA download and validation batch.
