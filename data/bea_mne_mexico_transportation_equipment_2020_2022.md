@@ -4,7 +4,7 @@
 
 BEA `Activities of U.S. Multinational Enterprises` 中的 `Majority-Owned Foreign Affiliates` country-by-industry 表可以直接用于核实 `Mexico x Transportation equipment` 的美国 MNE 子公司活动。2020、2021、2022 三年在核心指标上均为数值，未出现 `(D)` suppression。
 
-因此，`Mexico x Transportation equipment` 这条线可用于补 OECD Analytical AMNE 2020 年之后的缺口，并可作为校准关税冲击后 MP relocation / affiliate expansion 的 production-side moment。
+因此，`Mexico x Transportation equipment` 这条线可用于补 OECD Analytical AMNE 2020 年之后的缺口，并可作为校准关税冲击后 Scenario B incumbent MP-intensive reallocation 的 production-side moment；若与 fDi Markets、Mexico FDI 或其他生产扩张证据合并，也可支持 Scenario C total MP-adjustment upper-bound proxy。
 
 ## 核实日期与数据来源
 
@@ -100,7 +100,7 @@ BEA 的 2009-2023 country-by-industry Excel 不是把年份放在列中，而是
 ## 使用建议
 
 1. 在 `production-side validation table` 中，把 `Mexico x Transportation equipment` 作为 North America extension 的优先 production-side evidence。
-2. 结构模型中若需要 post-2020 MP relocation moment，优先使用 assets stock，并用 employment、value added、PPE expenditures、sales 做一致性检查。
+2. 结构模型中若需要 post-2020 Scenario B moment，优先使用 assets stock，并用 employment、value added、PPE expenditures、sales 做一致性检查；如果用于 Scenario C，必须同时说明它只是上界 proxy 的一个支持证据，不是 firm-level entry 证据。
 3. 不应把这组 aggregate MOFA 数据解释为 firm-level relocation 证据。它能说明美国 MNE 在墨西哥该行业的 affiliate activity 扩张，但不能直接证明某一家企业把产能从中国迁到墨西哥。
 4. 做 sector concordance 时，应把 BEA `Transportation equipment` 明确映射到项目模型的 transportation equipment / motor vehicles 相关部门，并在代码或 mapping 表中保留这个口径说明。
 

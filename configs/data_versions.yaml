@@ -157,8 +157,42 @@ ustr_section301:
 bea_mne:
   source: BEA Activities of U.S. MNEs
   raw_dir: data/raw/bea_mne/
-  status: partially_archived
+  status: built_batch5_affiliate_country_industry
   existing_local_dir: data/raw/bea_usdia_mofas_2025-08/
+  raw_subdirs:
+    activities_us_mnes: data/raw/bea_mne/activities_us_mnes/
+    metadata: data/raw/bea_mne/metadata/
+  coverage:
+    years:
+      start: 2017
+      end: 2023
+    ownership_scope: majority-owned foreign affiliates of U.S. MNEs
+    geography: BEA affiliate country or area rows; filter bea_area_type for country-only use
+    industry: BEA industry of affiliate country-by-industry tables
+  batch5_usage:
+    output_dir: data/interim/mne/
+    output: data/interim/mne/bea_us_mne_affiliate_country_industry.parquet
+    build_summary: data/interim/mne/bea_us_mne_affiliate_country_industry_build_summary.json
+    metadata_manifest: data/raw/bea_mne/metadata/bea_us_mne_activities_manifest.json
+    minimum_fields:
+      - year
+      - affiliate_country
+      - industry
+      - employment
+      - sales
+      - value_added
+      - capital_expenditures
+      - goods_exports_to_us
+      - goods_imports_from_us
+    source_tables:
+      employment: BEA Table II.G 1
+      sales: BEA Table II.D 3
+      value_added: BEA Table II.F 3
+      capital_expenditures: BEA Table II.C 4
+      goods_exports_to_us: BEA Table II.H 11, U.S. imports of goods shipped by affiliates
+      goods_imports_from_us: BEA Table II.H 3, U.S. exports of goods shipped to affiliates
+    suppression_rule: BEA (D) cells and employment size-range codes A/F/G/H/I/J/K/L/M are missing, not zero; (*) cells are rounded small values set to 0.0 with a flag.
+    current_limit: Full six-field C/D/F/G/H panel is built for 2017-2023; earlier years can be added later if needed after separately downloading and validating older BEA annual files.
 
 bea_fdi:
   source: BEA Direct Investment by Country and Industry

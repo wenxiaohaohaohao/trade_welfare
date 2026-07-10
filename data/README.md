@@ -7,9 +7,11 @@ This directory documents the data pipeline. Large raw and generated data files a
 | Source | Intended use | Status |
 |---|---|---|
 | OECD ICIO | Country-sector IO structure, final demand, value added, gross output | Not downloaded in this setup step. Source: https://www.oecd.org/sti/ind/inter-country-input-output-tables.htm |
-| OECD AMNE | Foreign affiliate activity and MP-related production relocation | Not downloaded in this setup step. Source: https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html |
-| BEA U.S. MNE MOFA country-industry tables | U.S. MNE affiliate activity by host country and affiliate industry | Archived locally under `data/raw/bea_usdia_mofas_2025-08/` (ignored by git). Mexico x Transportation equipment verified for 2020-2022; see `data/bea_mne_mexico_transportation_equipment_2020_2022.md`, `data/bea_usdia_mofas_2025_08_archive_manifest.md`, and `data/bea_mne_mofas_mexico_suppression_audit_2020_2022.md`. Source: https://www.bea.gov/international/di1usdop |
+| OECD AMNE | Foreign affiliate activity and Scenario B MP-intensive reallocation | Not downloaded in this setup step. Source: https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html |
+| BEA U.S. MNE MOFA country-industry tables | U.S. MNE affiliate activity by host country and affiliate industry; Scenario B bridge and Scenario C support when combined with broader production evidence | Archived locally under `data/raw/bea_usdia_mofas_2025-08/` (ignored by git). Mexico x Transportation equipment verified for 2020-2022; see `data/bea_mne_mexico_transportation_equipment_2020_2022.md`, `data/bea_usdia_mofas_2025_08_archive_manifest.md`, and `data/bea_mne_mofas_mexico_suppression_audit_2020_2022.md`. Source: https://www.bea.gov/international/di1usdop |
 | BEA Direct Investment by Country and Industry | FDI position, flows, and income by country and selected industry; connector-country investment validation and Scenario C / `hgamma` support | Batch 6 archives both `U.S. direct investment abroad` and `foreign direct investment in the U.S.` country-by-industry files under `data/raw/bea_fdi/direct_investment_country_industry/` and writes `data/interim/fdi/bea_direct_investment_country_industry.parquet`. Source: https://www.bea.gov/data/intl-trade-investment/direct-investment-country-and-industry |
+| fDi Markets | Model-external extensive-margin evidence and Scenario C upper-bound discipline | User has confirmed access; project-level exports still need to be saved with provenance. |
+| Mexico FDI data | Post-2020 FDI-flow validation and Scenario C support | Source and export version still pending. |
 | Comtrade or BACI | Bilateral trade rerouting and connector ranking | Source choice pending data-access comparison. |
 | Reference replication data | Conceptual model interface only | Kept under `reference/`, not copied here. |
 
@@ -23,6 +25,33 @@ python code\data_build\download_extract_bea_mne_mofas.py --overwrite
 ```
 
 The script downloads the five BEA country-industry XLS tables, writes raw files to `data/raw/bea_usdia_mofas_2025-08/`, writes the ignored machine-readable audit CSV to `data/interim/`, and refreshes the tracked Markdown manifest and audit summary in `data/`.
+
+## Batch 5: BEA U.S. MNE Affiliate Country-Industry Panel
+
+The full BEA U.S. MNE majority-owned foreign affiliate panel can be regenerated with:
+
+```powershell
+python -m pip install -r code\data_build\requirements-bea-mne.txt
+python code\data_build\build_bea_us_mne_affiliate_country_industry.py --overwrite
+```
+
+This build downloads BEA annual comprehensive tables for 2017-2023 from the Activities of U.S. MNEs pages, writes raw XLS files to `data/raw/bea_mne/activities_us_mnes/`, writes the raw-file manifest to `data/raw/bea_mne/metadata/bea_us_mne_activities_manifest.json`, and writes the ignored cleaned panel to `data/interim/mne/bea_us_mne_affiliate_country_industry.parquet`.
+
+Minimum panel fields:
+
+- `year`
+- `affiliate_country`
+- `industry`
+- `employment`
+- `sales`
+- `value_added`
+- `capital_expenditures`
+- `goods_exports_to_us`
+- `goods_imports_from_us`
+
+Direction convention: `goods_exports_to_us` comes from BEA Table II.H 11, U.S. imports of goods shipped by affiliates. `goods_imports_from_us` comes from BEA Table II.H 3, U.S. exports of goods shipped to affiliates. BEA `(D)` cells and employment size-range codes `A/F/G/H/I/J/K/L/M` are missing, not zero; BEA `(*)` cells are stored as `0.0` with a small-value flag.
+
+Current coverage limit: the full six-field panel is built for 2017-2023. If the project later needs years before 2017, download and validate those older BEA annual files as a separate extension rather than mixing them into this completed Batch 5 build.
 
 ## Batch 6: BEA Direct Investment Country-Industry Panel
 
@@ -73,6 +102,16 @@ Every raw data batch should be accompanied by a text or Markdown note with:
 - checksum when practical.
 
 Use `docs/data_source_log.md` as the running registry for these records.
+
+## Scenario-Mapping Rule
+
+Every model-facing data extract should state whether it supports:
+
+- Scenario A: trade-only connector lower bound;
+- Scenario B: incumbent MP-intensive baseline;
+- Scenario C: total MP-adjustment upper-bound proxy.
+
+Do not label fDi Markets or FDI-flow evidence as a structural entry equation. These sources can discipline Scenario C, but the Du-Wang model does not endogenize affiliate or plant entry.
 
 ## Non-Negotiable Rule
 

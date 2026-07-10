@@ -26,6 +26,8 @@
 !/output/memo/README.md
 
 # Large research-data formats and MATLAB/Stata temporaries.
+/tmp/
+__pycache__/
 *.dta
 *.mat
 *.sas7bdat

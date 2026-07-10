@@ -6,20 +6,63 @@ The project is built from an existing structural reference package but is not a 
 
 ## Current Data Notes / 当前数据说明
 
-- BEA U.S. MNE MOFA country-industry tables have been checked for `Mexico x Transportation equipment`, 2020-2022. The verified cells are not suppressed and can be used to fill the post-2020 OECD Analytical AMNE gap for this North America production-side moment. See `data/bea_mne_mexico_transportation_equipment_2020_2022.md`.
-- fDi Markets is available through the user's access. It should now be treated as the primary project-level source for the model-external extensive-margin evidence section, especially greenfield manufacturing projects in Mexico and other connector economies after 2018.
+- BEA U.S. MNE MOFA country-industry tables now have a Batch 5 country-industry panel for 2017-2023 at `data/interim/mne/bea_us_mne_affiliate_country_industry.parquet`, with raw files archived under `data/raw/bea_mne/activities_us_mnes/`. The earlier `Mexico x Transportation equipment` 2020-2022 suppression audit remains the sector-specific North America check; see `data/bea_mne_mexico_transportation_equipment_2020_2022.md`.
+- fDi Markets is available through the user's access. It should now be treated as the primary project-level source for the model-external extensive-margin evidence section and for disciplining Scenario C, the upper-bound proxy for total MP adjustment, especially greenfield manufacturing projects in Mexico and other connector economies after 2018.
 - The current data plan is: OECD ICIO Extended for IO and ownership-split baseline objects through 2022; OECD Analytical AMNE for ownership-split multinational-production moments through 2020; BEA U.S. MNE, Mexico FDI, and fDi Markets to bridge the 2021-2024 nearshoring period; BACI and Section 301 tariff files for product-level trade shocks.
-- 已核实 BEA U.S. MNE MOFA 的 `Mexico x Transportation equipment` 2020-2022 行业级数据。核心指标没有 `(D)` suppression，可用于补 OECD Analytical AMNE 2020 年之后的缺口，并作为 North America extension 中 MP relocation / affiliate expansion 的校准依据。详见 `data/bea_mne_mexico_transportation_equipment_2020_2022.md`。
-- fDi Markets 这里已经可得。它应作为模型外 extensive-margin evidence section 的核心项目级数据，重点整理 2018 年之后 Mexico 和其他 connector economies 的 greenfield manufacturing projects。
+- 已构建 BEA U.S. MNE MOFA 的 Batch 5 country-industry panel，覆盖 2017-2023，输出为 `data/interim/mne/bea_us_mne_affiliate_country_industry.parquet`，原始文件归档在 `data/raw/bea_mne/activities_us_mnes/`。此前 `Mexico x Transportation equipment` 2020-2022 suppression audit 仍作为 North America 的专项行业检查记录；详见 `data/bea_mne_mexico_transportation_equipment_2020_2022.md`。
+- fDi Markets 这里已经可得。它应作为模型外 extensive-margin evidence section 的核心项目级数据，也应直接服务于 Scenario C 的上界校准，重点整理 2018 年之后 Mexico 和其他 connector economies 的 greenfield manufacturing projects。
 - 当前数据策略是：用 OECD ICIO Extended 构造 2022 年以前的 IO 和 ownership-split 基准对象；用 OECD Analytical AMNE 构造 2020 年以前的 multinational-production ownership moments；用 BEA U.S. MNE、Mexico FDI 和 fDi Markets 补 2021-2024 年 nearshoring 证据；用 BACI 和 Section 301 tariff files 构造产品层面贸易冲击。
+
+### OECD ICIO Batch 3 Baseline Outputs / OECD ICIO 第三批基准输出
+
+The OECD ICIO 2025 edition raw archive is now present locally under `data/raw/oecd_icio/`. The regular ICIO files are complete for 1995-2022 in `data/raw/oecd_icio/2025_regular/`. The extended ICIO files are also complete for 1995-2022 in `data/raw/oecd_icio/2025_extended/`, including `2011-2015_EXT.zip`; these extended files are preserved for later China/Mexico ownership or firm-type split work. The current baseline build uses the regular ICIO because the first structural interface needs country-sector production, value added, final demand, bilateral absorption, and IO shares on the standard country-sector grid.
+
+本地已经保存 OECD ICIO 2025 edition 原始数据，位置是 `data/raw/oecd_icio/`。regular ICIO 在 `data/raw/oecd_icio/2025_regular/` 下完整覆盖 1995-2022；extended ICIO 在 `data/raw/oecd_icio/2025_extended/` 下也完整覆盖 1995-2022，包括后补的 `2011-2015_EXT.zip`。extended 文件暂时作为后续 China / Mexico ownership 或 firm-type split 的原始层保留。本轮结构模型基准使用 regular ICIO，因为第一版接口首先需要标准国家-部门网格上的 production、value added、final demand、bilateral absorption 和 IO shares。
+
+The reproducible build script is `code/data_build/build_oecd_icio_baseline.py`, with dependencies listed in `code/data_build/requirements-oecd-icio.txt`. It can be rerun with:
+
+```powershell
+python -m pip install -r code\data_build\requirements-oecd-icio.txt
+python code\data_build\build_oecd_icio_baseline.py --overwrite
+```
+
+The script reads the OECD ReadMe workbook to recover row and column labels, processes the 2017, 2018, and 2022 regular ICIO matrices from `2016-2022_SML.zip`, writes cleaned parquet outputs to `data/interim/production/`, and exports MATLAB-ready baseline CSVs to `data/model_inputs/icio_baseline_2017/`, `data/model_inputs/icio_baseline_2018/`, and `data/model_inputs/icio_baseline_2022/`.
+
+脚本会读取 OECD ReadMe workbook 中的 row / column labels，从 `2016-2022_SML.zip` 中处理 2017、2018、2022 三个 regular ICIO 年度矩阵，把清洗后的 parquet 输出写入 `data/interim/production/`，并把 MATLAB-ready baseline CSV 写入 `data/model_inputs/icio_baseline_2017/`、`data/model_inputs/icio_baseline_2018/` 和 `data/model_inputs/icio_baseline_2022/`。
+
+The main intermediate outputs are:
+
+| Output | Contents | Rows |
+|---|---|---:|
+| `data/interim/production/oecd_icio_output_va_fd.parquet` | Country-sector gross output, value added, final demand, intermediate inputs, exports, imports, and accounting support fields for 2017, 2018, and 2022. | 12,150 |
+| `data/interim/production/oecd_icio_io_shares.parquet` | Long-form source-country-sector to destination-country-sector intermediate input shares. | 29,583,977 |
+| `data/interim/production/oecd_icio_io_shares_2017.parquet` | 2017 long-form IO shares, kept for year-specific checks and model input manifests. | 9,672,450 |
+| `data/interim/production/oecd_icio_io_shares_2018.parquet` | 2018 long-form IO shares, kept for year-specific checks and model input manifests. | 9,740,932 |
+| `data/interim/production/oecd_icio_io_shares_2022.parquet` | 2022 long-form IO shares, kept for year-specific checks and model input manifests. | 10,170,595 |
+
+The model input directories contain:
+
+| File | Meaning |
+|---|---|
+| `X_baseline.csv` | Production-side gross output by `year`, `country_iso3`, and `sector_oecd`. |
+| `va_baseline.csv` | Value added by `year`, `country_iso3`, and `sector_oecd`. |
+| `IO_baseline.csv` | Wide matrix of intermediate-input shares; rows are source country-sector and columns are destination country-sector. |
+| `trshare_baseline.csv` | Trade or absorption shares by origin country, destination country, and OECD sector. |
+| `manifest.json` | File paths, schemas, units, and the corresponding long-form IO-share parquet file. |
+
+字段口径如下。`gross_output` 使用生产端 `OUT` row；`gross_output_sales` 保留销售端 `OUT` column，主要用于 row-balance 检查。`value_added` 来自 `VA` row。`final_demand` 是 `HFCE`、`NPISH`、`GGFC`、`GFCF`、`INVNT` 和 `DPABR` 的合计。`intermediate_inputs` 是 destination country-sector 的全球中间投入 column sum。`taxes_less_subsidies` 来自 `TLS` row，保留为单独字段，不混入 value added。`exports` 是某个 origin country-sector 被所有外国 destination countries 吸收的中间需求和最终需求合计；`imports` 是某个 destination country-sector 从所有外国 origin countries 吸收的同一 OECD sector 产品合计。
+
+Validation checks passed after the build. `oecd_icio_output_va_fd.parquet` has 12,150 rows, equal to 3 years times 81 country/ROW units times 50 sectors. The required fields `year`, `country_iso3`, `sector_oecd`, `gross_output`, `value_added`, `final_demand`, `intermediate_inputs`, `exports`, and `imports` are present. For `trshare_baseline.csv`, positive-absorption destination-country-sector groups sum to one up to numerical precision, with maximum error about `4.33e-15`. For the long-form IO shares, summing `input_share` by destination country-sector reconstructs `intermediate_inputs / gross_output` with maximum error about `3.33e-16`. OECD matrix accounting is not exactly balanced at every cell after rounding and statistical adjustments: the maximum production-side residual is about `82.032` million current USD, and the maximum sales-side residual is about `238.606` million current USD; these diagnostics are recorded in `data/interim/production/oecd_icio_build_summary.json`.
+
+构建后的验证已经通过。`oecd_icio_output_va_fd.parquet` 有 12,150 行，等于 3 个年份 × 81 个 country / ROW 单元 × 50 个部门。最低字段 `year`、`country_iso3`、`sector_oecd`、`gross_output`、`value_added`、`final_demand`、`intermediate_inputs`、`exports` 和 `imports` 都存在。`trshare_baseline.csv` 在正吸收的 destination-country-sector 组内加总为 1，最大数值误差约为 `4.33e-15`。long-form IO shares 按 destination country-sector 加总后，可以回推出 `intermediate_inputs / gross_output`，最大误差约为 `3.33e-16`。由于 OECD 矩阵本身存在 rounding 和 statistical adjustment，单元格层面的 accounting 并非完全零残差：生产端最大残差约为 `82.032` million current USD，销售端最大残差约为 `238.606` million current USD；这些诊断结果记录在 `data/interim/production/oecd_icio_build_summary.json`。
 
 ## 1. Project In One Paragraph
 
-When direct trade and multinational production links between geopolitical blocs weaken, third countries can appear to "connect" the blocs. Existing empirical work already shows that this can mean real production reallocation in some cases and trade rerouting or transshipment in others. This project asks the next question: conditional on these connector channels existing, how much do they mitigate the welfare costs of geoeconomic fragmentation? The empirical layer will be used for validation, calibration, country scope, and shock discipline. The core contribution should come from a multi-country, multi-sector general-equilibrium model with trade, multinational production, and input-output linkages.
+When direct trade and multinational production links between geopolitical blocs weaken, third countries can appear to "connect" the blocs. Existing empirical work already shows that this can mean real production reallocation in some cases and trade rerouting or transshipment in others. This project asks the next question: conditional on these connector channels existing, how much do they mitigate the welfare costs of geoeconomic fragmentation? The empirical layer will be used for validation, calibration, country scope, and shock discipline. The core contribution should come from a multi-country, multi-sector general-equilibrium model with trade, multinational production, and input-output linkages, reported as a scenario-bound exercise: Scenario A is trade-only connector access, Scenario B is the incumbent MP-intensive baseline, and Scenario C is an upper-bound proxy disciplined by total FDI and production-side expansion evidence.
 
 ## 2. Main Research Question
 
-How much do connector economies mitigate the welfare costs of geoeconomic fragmentation, and how much of that mitigation comes from trade rerouting, multinational production relocation, and input-output propagation?
+How much do connector economies mitigate the welfare costs of geoeconomic fragmentation, and how much of that mitigation comes from trade rerouting, incumbent multinational-production reallocation, upper-bound total MP adjustment, and input-output propagation?
 
 The core distinction is:
 
@@ -33,7 +76,8 @@ The project is not just about documenting trade diversion. After Schulze and Xin
 
 1. a structural welfare accounting framework for connector economies;
 2. a decomposition of connector mitigation into trade rerouting, multinational production relocation, and input-output propagation;
-3. a disciplined empirical validation and calibration layer that uses existing connector facts without treating them as the paper's main novelty.
+3. a disciplined empirical validation and calibration layer that uses existing connector facts without treating them as the paper's main novelty;
+4. a transparent A/B/C welfare-bound design rather than a single point estimate that overclaims what the model can identify.
 
 This matters for policy because friend-shoring and decoupling can look successful in gross trade data while still preserving hidden dependence or raising real resource costs. For a top-field international trade audience, the project must now show more than a new fact: it needs a credible counterfactual that quantifies the welfare value and residual cost of connector economies.
 
@@ -85,30 +129,40 @@ The implication for this project is:
 | Possible route | Assessment |
 |---|---|
 | Use Du-Wang with project-specific scenario/config refactoring | Recommended first version. It already has trade, MP, IO linkages, and welfare decomposition. |
-| Add a modest project-specific patch to discipline `hgamma` with AMNE, BEA MNE, FDI, or production-side moments | Needed. The size of MP-cost shocks must be disciplined by evidence rather than chosen arbitrarily. |
+| Add a project-specific scenario layer that disciplines `hgamma` with AMNE, BEA MNE, FDI, fDi Markets, or production-side moments | Needed. The size of MP-cost shocks must be disciplined by evidence rather than chosen arbitrarily. AMNE/affiliate evidence anchors Scenario B; total FDI and production expansion discipline Scenario C. |
 | Switch immediately to a BHLP/Bonadio-style framework with a new MP layer | Not recommended for the first version unless the project abandons the Du-Wang sufficient-statistics structure. It would increase model-building burden sharply. |
 | Build a Tintelnot-style fixed-cost entry model | Only appropriate if the paper's core question becomes affiliate entry or plant-count relocation, which requires stronger micro or firm-level evidence. |
 
-Therefore, Du-Wang is usable as the first structural backbone for connector welfare accounting, but only with a narrow interpretation: it can quantify welfare effects of trade-cost and MP-cost shocks. It cannot by itself prove that firms entered a connector country or that plants physically relocated there. Any claim about real production relocation must come from the empirical validation layer and then enter the model as a disciplined `hgamma` scenario.
+Therefore, Du-Wang is usable as the first structural backbone for connector welfare accounting, but only with a narrow interpretation: it can quantify welfare effects of trade-cost and MP-cost shocks. It cannot by itself prove that firms entered a connector country or that plants physically relocated there. Any claim about real production relocation must come from the empirical validation layer and then enter the model as disciplined `hgamma` scenarios. Scenario C should be described as an upper-bound proxy for total MP adjustment, not as a structural entry-margin estimate.
 
 ### 4.2 Model Boundary: Intensive Margin Versus New Entry
 
 The paper should not claim that the Du-Wang model explains new firms entering Mexico after Section 301. The main model should be positioned as **intensive-margin welfare accounting**. It can answer how welfare changes when trade costs and effective MP variable costs change across already represented country-sector links. It cannot endogenously explain a Chinese, U.S., Korean, Japanese, or European firm opening a new plant in Mexico.
 
-The two project mechanisms remain valid if they are stated carefully:
+The project mechanisms remain valid if they are stated carefully:
 
 | Mechanism | How the model can handle it | What remains outside the model |
 |---|---|---|
 | Trade rerouting / indirect sourcing | Changes in `htau`, sourcing shares, foreign intermediates, and IO propagation. | Product-level evidence that rerouting actually occurred. |
 | MP relocation / nearshoring | Changes in `hgamma` that shift production intensity toward connector locations already represented in the MP-share system. | New affiliate entry, new plant announcements, and plant-count changes. |
 
-This does not make the project nonviable. It changes the paper's contract with the reader. The structural model quantifies the welfare implications of connector access and effective MP-cost changes; the empirical section validates whether the nearshoring narrative has extensive-margin support.
+This does not make the project nonviable. It changes the paper's contract with the reader. The structural model quantifies the welfare implications of connector access and effective MP-cost changes; the empirical section validates whether the nearshoring narrative has extensive-margin support and disciplines a bounded set of counterfactuals.
 
-For a JIE-level paper, this boundary is acceptable only if the empirical and counterfactual discipline is strong. The first version should therefore add an explicit **extensive-margin evidence section outside the model**. That section should use fDi Markets, BEA MNE, AMNE, FDI, value added, employment, or investment data to show whether Mexico and other connector economies experienced new projects or affiliate expansion in the relevant sectors. The evidence should be used to motivate and discipline the `hgamma` scenarios, not to claim that Du-Wang endogenously generates entry.
+The first welfare table should therefore use three named connector scenarios:
+
+| Scenario | Calibration logic | Interpretation |
+|---|---|---|
+| **Scenario A: trade-only connector lower bound** | Connector-related `htau` remains open or improves, while `hgamma = 1` for the MP margin. | Lower bound for connector value when third countries only reroute trade and MP costs do not improve. |
+| **Scenario B: incumbent MP-intensive baseline** | `hgamma` is disciplined by AMNE, BEA MNE, or ownership/affiliate activity moments that mostly reflect already represented MP links. | Preferred baseline for intensive reallocation across existing MP links. |
+| **Scenario C: total MP-adjustment upper-bound proxy** | `hgamma` is disciplined by total FDI inflow, fDi Markets project evidence, affiliate expansion, and production-side expansion. | Upper-bound proxy that allows observed total production expansion to affect welfare accounting without claiming a fixed-cost entry model. |
+
+The B-to-C gap can be reported as an extensive-margin-related upper-bound increment. It should not be described as an identified entry-margin welfare contribution, because the model has no fixed-cost entry block.
+
+For a JIE-level paper, this boundary is acceptable only if the empirical and counterfactual discipline is strong. The first version should therefore add an explicit **extensive-margin evidence section outside the model**. That section should use fDi Markets, BEA MNE, AMNE, FDI, value added, employment, or investment data to show whether Mexico and other connector economies experienced new projects or affiliate expansion in the relevant sectors. The evidence should be used to motivate and discipline the `hgamma` scenarios, especially Scenario C, not to claim that Du-Wang endogenously generates entry.
 
 The recommended wording is:
 
-> The structural model captures intensive reallocation across existing MP links. It does not endogenize entry of new affiliates or plants. We therefore treat greenfield FDI and new project announcements as model-external evidence that validates the nearshoring mechanism and helps discipline MP-cost counterfactuals.
+> The structural model captures intensive reallocation across existing MP links. It does not endogenize entry of new affiliates or plants. We therefore treat greenfield FDI, new project announcements, and production-side expansion as model-external evidence that validates the nearshoring mechanism and disciplines a set of MP-cost counterfactuals. Scenario C is an upper-bound proxy for total MP adjustment, not a structural estimate of entry-margin welfare.
 
 Moving to a full Tintelnot-style fixed-cost foreign-investment model should be reserved for a different version of the paper where affiliate entry itself is the central research question. That path would require stronger firm-level or project-level data and a substantially new model block.
 
@@ -216,18 +270,18 @@ The specific reference counterfactuals are:
 | `main_cf_RUS_sanction2.m` | Both `htau` and `hgamma` are cut for Russia links, but links with a broader exempt group remain open: China, Brazil, Indonesia, India, Mexico, ROW, Turkey, and Taiwan in the reference country order. | Trade and MP isolation of Russia with a wider non-sanction or connector-like outside set. | `RUS_sanction_TRMP2.csv` |
 | `main_cf_RUS_sanction_notrade2.m` | Trade-only version of the broader-exempt-group scenario. | Trade-only isolation with outside links left open. | `RUS_sanction_TR2.csv` |
 
-For the new connector-economy project, these scripts should be treated as a scenario template rather than a literal policy design. The Russia index `38`, China index `8`, and the hard-coded exempt-country list must be replaced by external country-group configuration files. The natural project-level counterfactual matrix is:
+For the new connector-economy project, these scripts should be treated as a scenario template rather than a literal policy design. The Russia index `38`, China index `8`, and the hard-coded exempt-country list must be replaced by external country-group configuration files. The natural project-level counterfactual matrix should compare direct fragmentation with a disciplined A/B/C connector bound:
 
 | New scenario | Shock object | Purpose |
 |---|---|---|
 | Baseline | `htau = 1`, `hgamma = 1`, `tTar = baseline tariffs` | Coherent pre-shock model equilibrium. |
 | Direct fragmentation, no connectors | Increase `htau` and possibly `hgamma` on source-bloc to destination-bloc links. | Measures the welfare cost of direct decoupling. |
-| Trade-only connector access | Keep or reduce connector-related `htau` while direct bloc links remain costly; leave `hgamma` unchanged. | Isolates gross trade rerouting through third countries. |
-| MP relocation through connectors | Allow connector-related `hgamma` to remain open or improve, with matching trade access. | Measures real production relocation and foreign affiliate activity. |
-| Full connector mitigation | Combine trade rerouting and MP relocation channels. | Quantifies how much connectors reduce fragmentation losses. |
+| Scenario A: trade-only connector lower bound | Keep or reduce connector-related `htau` while direct bloc links remain costly; set connector MP margin to `hgamma = 1`. | Isolates gross trade rerouting through third countries and gives the lower bound for connector welfare value. |
+| Scenario B: incumbent MP-intensive baseline | Use AMNE, BEA MNE, and ownership/affiliate activity moments to discipline connector-related `hgamma`. | Preferred baseline for intensive reallocation across existing MP links. |
+| Scenario C: total MP-adjustment upper-bound proxy | Use total FDI inflow, fDi Markets project counts/capex/jobs, affiliate expansion, and production-side expansion to discipline a stronger connector-related `hgamma` adjustment. | Upper-bound proxy for total MP adjustment; approximates extensive-margin-related gains without claiming a structural entry model. |
 | No-connector stress test | Raise both direct-bloc and connector-bloc barriers. | Shows residual welfare cost when third-country adjustment is unavailable. |
 
-The first structural version should report welfare changes for each scenario and decompose them into direct fragmentation losses, connector mitigation, MP relocation, and input-output propagation. The reference package can already compute welfare decomposition after a shock; what it cannot do is define the connector countries or validate whether the connector channel is real rather than pure rerouting.
+The first structural version should report welfare changes for each scenario and decompose them into direct fragmentation losses, connector mitigation, MP-intensive reallocation, the Scenario C upper-bound increment, and input-output propagation. The reference package can already compute welfare decomposition after a shock; what it cannot do is define connector countries, validate whether the connector channel is real rather than pure rerouting, or structurally identify fixed-cost entry.
 
 ### 5.6 Welfare Decomposition
 
@@ -372,7 +426,7 @@ The required empirical questions are:
 - Do the patterns in the new data replicate or extend the existing IMF evidence?
 - Does Mexico or another North American connector display a pattern not covered by the Asian sample?
 - Which moments can discipline the size of trade-cost and MP-cost shocks in the structural model?
-- Is there production-side evidence strong enough to justify an MP relocation scenario?
+- Is there production-side evidence strong enough to justify Scenario B, Scenario C, or only Scenario A?
 
 The structural model should be used only after these validation and calibration facts are established.
 
@@ -407,7 +461,7 @@ For the main connector candidates, check whether trade growth is accompanied by:
 - gross output;
 - employment or investment if available.
 
-The purpose is to determine whether the structural model should include a trade-only connector scenario, an MP relocation scenario, or both.
+The purpose is to determine whether the structural model should report only Scenario A, add Scenario B, or also include Scenario C as an upper-bound proxy.
 
 ### 7.4 Small MATLAB-Ready Sample
 
@@ -422,7 +476,8 @@ Create a table that translates empirical facts into model moments:
 - observed increase in connector imports from the source bloc;
 - production-side expansion where available;
 - FDI or foreign-affiliate activity where available;
-- implied scenario choices for `htau` and `hgamma`.
+- implied scenario choices for `htau` and `hgamma`;
+- assignment of each moment to Scenario A, Scenario B, or Scenario C.
 
 This table is the bridge between the existing empirical literature and the new welfare counterfactual.
 
@@ -437,7 +492,7 @@ The table should include:
 - FDI, employment, value added, or investment indicators in the same sectors;
 - a flag for whether the evidence supports an MP-intensive scenario, a trade-only scenario, or only a narrative motivation.
 
-The model-facing output is not an entry equation. It is a documented choice of `hgamma` scenarios and sensitivity bounds.
+The model-facing output is not an entry equation. It is a documented choice of `hgamma` scenarios and sensitivity bounds. Scenario B should be tied to incumbent or already represented MP activity; Scenario C should use total FDI and production-side expansion as an upper-bound proxy and be labeled as such in every table.
 
 ## 8. Data Plan
 
@@ -462,8 +517,8 @@ The key interpretation is therefore not "public data prove relocation." A more d
 |---|---|---|
 | [OECD ICIO, including Extended ICIO](https://www.oecd.org/en/data/datasets/inter-country-input-output-tables.html) | Country-sector production and input-output structure | Build gross output, value added, final demand, intermediate-input linkages, and model baseline objects. The Extended ICIO is especially useful because it separately treats China and Mexico ownership/firm-type layers. |
 | [OECD TiVA](https://www.oecd.org/en/data/datasets/trade-in-value-added.html), where useful | Value-added trade interpretation | Check whether gross trade rerouting corresponds to value-added exposure. |
-| [OECD Analytical AMNE](https://www.oecd.org/en/data/datasets/multinational-enterprises-and-global-value-chains.html) / [AMNE](https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html) | Foreign-affiliate activity and multinational production | Validate whether connector countries show foreign-affiliate sales, employment, value added, or output expansion in relevant sectors. This is the main ownership-split source for disciplining `hgamma` through 2020. |
-| [fDi Markets](https://www.fdimarkets.com/) | Greenfield FDI project evidence; access confirmed by the user | Build the model-external extensive-margin evidence table: new projects, source countries, destination locations, sectors, business activity, announced capex, and expected jobs. |
+| [OECD Analytical AMNE](https://www.oecd.org/en/data/datasets/multinational-enterprises-and-global-value-chains.html) / [AMNE](https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html) | Foreign-affiliate activity and multinational production | Validate whether connector countries show foreign-affiliate sales, employment, value added, or output expansion in relevant sectors. This is the main ownership-split source for disciplining Scenario B through 2020. |
+| [fDi Markets](https://www.fdimarkets.com/) | Greenfield FDI project evidence; access confirmed by the user | Build the model-external extensive-margin evidence table and discipline Scenario C: new projects, source countries, destination locations, sectors, business activity, announced capex, and expected jobs. |
 | [BACI](https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37) | Product-level bilateral trade | Build connector rankings, rerouting figures, source-bloc imports, destination-bloc exports, and sector-level overlap measures. BACI is preferred over DOTS or aggregate trade data because HS6 products map more cleanly to autos, electronics, medical devices, machinery, and components. |
 | [UN Comtrade](https://comtradeplus.un.org/) | Product-level bilateral trade cross-check | Use as a robustness or cross-check source if BACI concordance or timing creates problems. |
 | [U.S. Census USA Trade Online](https://usatrade.census.gov/) | High-resolution U.S. import evidence | Use U.S.-destination product-level data, ideally at monthly or HS10 detail where accessible, to validate U.S.-China tariff exposure and import substitution. |
@@ -480,9 +535,9 @@ The key interpretation is therefore not "public data prove relocation." A more d
 | Data source | Availability | Coverage and current constraint | Project implication |
 |---|---|---|---|
 | OECD ICIO Extended | Free, direct download | Latest OECD release reaches 2022 and includes a China/Mexico split useful for ownership/firm-type heterogeneity | Very strong baseline source for IO and ownership-split production objects; 2023 nearshoring must be handled outside ICIO |
-| OECD Analytical AMNE | Free, direct download | Ownership-split AMNE/ICIO tables cover through 2020 | Most important structural source for `hgamma`, but it stops before the full 2021-2023 nearshoring wave |
-| BEA U.S. MNE Activity | Free, but selected detailed tables have discontinuities and some cells may be suppressed | BEA activity statistics can be queried through 2023 preliminary / 2022 revised releases; local check confirms Mexico x Transportation equipment, 2020-2022, is usable | Main post-2020 bridge for U.S.-MNE affiliate activity in Mexico; still need suppression checks for electronics and medical devices |
-| fDi Markets | Available through the user's access | Project-level greenfield FDI database since 2003 | Central source for extensive-margin evidence; use it to document new projects, not as an endogenous Du-Wang model outcome |
+| OECD Analytical AMNE | Free, direct download | Ownership-split AMNE/ICIO tables cover through 2020 | Most important structural source for Scenario B `hgamma`, but it stops before the full 2021-2023 nearshoring wave |
+| BEA U.S. MNE Activity | Free, but selected detailed tables have discontinuities and some cells may be suppressed | Batch 5 local panel covers 2017-2023 for majority-owned foreign affiliates by country and industry, with employment, sales, value added, capital expenditures, and affiliate-side goods trade fields | Main bridge for U.S.-MNE affiliate activity in Mexico, Canada, Vietnam, and other connector countries; use suppression flags before sector-level interpretation |
+| fDi Markets | Available through the user's access | Project-level greenfield FDI database since 2003 | Central source for extensive-margin evidence and Scenario C discipline; use it to document new projects and upper-bound total MP adjustment, not as an endogenous Du-Wang model outcome |
 | BACI | Free, direct download | HS6 bilateral annual trade; latest release currently listed through 2024 | Preferred trade source for rerouting, connector rankings, and sector-level exposure to Section 301 shocks |
 | Mexico Secretaria de Economia / DataMexico FDI | Free government data | Quarterly FDI flows by country and industry, user-provided target range 1999-2024 Q4 | Useful for validating the direction and magnitude of Mexico nearshoring, but not a direct activity or plant-level measure |
 | Section 301 tariff data | Free public data | USTR/USITC HS-level lists and effective tariff changes | Clean policy-shock layer for constructing `htau` inputs |
@@ -496,32 +551,36 @@ Batch 4 converts the locally downloaded OECD Analytical AMNE files into two proj
 
 | Output | Role | Row scope |
 |---|---|---|
-| data/interim/mne/oecd_amne_affiliate_activity.parquet | Positive foreign-affiliate activity panel for empirical validation and Scenario B hgamma discipline. | Foreign parent country, host country, OECD sector, and year cells with strictly positive affiliate output. |
-| data/interim/mne/oecd_amne_mp_shares.parquet | Model-facing MP-share panel. | Full foreign parent-host-sector-year universe, including zero-output links, so country-sector merges do not drop zero MP links. |
+| `data/interim/mne/oecd_amne_affiliate_activity.parquet` | Positive foreign-affiliate activity panel for empirical validation and Scenario B `hgamma` discipline. | Foreign parent country, host country, OECD sector, and year cells with strictly positive affiliate output. |
+| `data/interim/mne/oecd_amne_mp_shares.parquet` | Model-facing MP-share panel. | Full foreign parent-host-sector-year universe, including zero-output links, so country-sector merges do not drop zero MP links. |
 
-The build script is code/data_build/build_oecd_amne.py. It reads aamne-bilateral-output.csv and aamne-mne-xvem.csv from data/raw/oecd_amne/analytical_amne/, writes outputs to data/interim/mne/, and leaves raw files unchanged. Regenerate the outputs with:
+The build script is `code/data_build/build_oecd_amne.py`. It reads `aamne-bilateral-output.csv` and `aamne-mne-xvem.csv` from `data/raw/oecd_amne/analytical_amne/`, writes outputs to `data/interim/mne/`, and leaves raw files unchanged. Regenerate the outputs with:
 
-    python code/data_build/build_oecd_amne.py --project-root . --overwrite
+```powershell
+python code\data_build\build_oecd_amne.py --project-root . --overwrite
+```
 
 Core construction:
 
 | Field | Construction |
 |---|---|
-| affiliate_output | Off-diagonal parent-host-sector output from aamne-bilateral-output.csv, in current million USD. Domestic diagonal cells are excluded. |
-| affiliate_value_added | Foreign-owned XVEM aggregate GVA allocated to parent countries by parent affiliate-output share within each host-sector-year. |
-| affiliate_exports | Foreign-owned XVEM aggregate EXGR allocated by parent affiliate-output share. |
-| affiliate_imports | Foreign-owned XVEM aggregate IMGR allocated by parent affiliate-output share; OECD describes this as intermediate-input imports by firms. |
-| affiliate_employment | Required column retained as null because these OECD Analytical AMNE files do not provide employment. Use BEA MNE, fDi Markets jobs, or national data for employment evidence. |
-| ownership_type | F, meaning foreign-owned firms. |
+| `affiliate_output` | Off-diagonal parent-host-sector output from `aamne-bilateral-output.csv`, in current million USD. Domestic diagonal cells are excluded. |
+| `affiliate_value_added` | Foreign-owned XVEM aggregate `GVA` allocated to parent countries by parent affiliate-output share within each host-sector-year. |
+| `affiliate_exports` | Foreign-owned XVEM aggregate `EXGR` allocated by parent affiliate-output share. |
+| `affiliate_imports` | Foreign-owned XVEM aggregate `IMGR` allocated by parent affiliate-output share; OECD describes this as intermediate-input imports by firms. |
+| `affiliate_employment` | Required column retained as null because these OECD Analytical AMNE files do not provide employment. Use BEA MNE, fDi Markets jobs, or national data for employment evidence. |
+| `ownership_type` | `F`, meaning foreign-owned firms. |
 
 The two model-facing variables are:
 
-    MPEexpansion_{c,s,t} = ForeignAffiliateOutput_{c,s,t} - ForeignAffiliateOutput_{c,s,t-1}
-    ForeignAffiliateShare_{c,s,t} = ForeignAffiliateOutput_{c,s,t} / GrossOutput_{c,s,t}
+```text
+MPEexpansion_{c,s,t} = ForeignAffiliateOutput_{c,s,t} - ForeignAffiliateOutput_{c,s,t-1}
+ForeignAffiliateShare_{c,s,t} = ForeignAffiliateOutput_{c,s,t} / GrossOutput_{c,s,t}
+```
 
-In the parquet outputs, these are stored as mpe_expansion and foreign_affiliate_share. The file also keeps mp_output_share, the parent-specific affiliate output divided by host-sector gross output, and parent_affiliate_output_share, the weight used to allocate value added, exports, and imports across parent countries.
+In the parquet outputs, these are stored as `mpe_expansion` and `foreign_affiliate_share`. The file also keeps `mp_output_share`, the parent-specific affiliate output divided by host-sector gross output, and `parent_affiliate_output_share`, the weight used to allocate value added, exports, and imports across parent countries.
 
-The important limitation is that parent-country output is directly observed in aamne-bilateral-output.csv, but parent-country value added, exports, and imports are not. Those three fields are allocated from the host-sector foreign-owned aggregate in aamne-mne-xvem.csv. They are valid as documented Scenario B discipline variables, but should not be described as directly reported parent-country AMNE value added or trade cells.
+The important limitation is that parent-country output is directly observed in `aamne-bilateral-output.csv`, but parent-country value added, exports, and imports are not. Those three fields are allocated from the host-sector foreign-owned aggregate in `aamne-mne-xvem.csv`. They are valid as documented Scenario B discipline variables, but should not be described as directly reported parent-country AMNE value added or trade cells.
 
 Current validation:
 
@@ -530,17 +589,48 @@ Current validation:
 | Years | 2008-2023 |
 | Host economies | 81 |
 | Parent economies | 81 |
-| Sectors in oecd_amne_mp_shares.parquet | 41 |
-| Positive-affiliate sectors in oecd_amne_affiliate_activity.parquet | 39; O84 and T97T98 have zero foreign-owned GO in the raw XVEM file. |
-| Rows in oecd_amne_affiliate_activity.parquet | 1,260,053 |
-| Rows in oecd_amne_mp_shares.parquet | 4,250,880 |
-| foreign_affiliate_share formula residual | 0 |
-| mpe_expansion year-over-year residual | 0 |
+| Sectors in `oecd_amne_mp_shares.parquet` | 41 |
+| Positive-affiliate sectors in `oecd_amne_affiliate_activity.parquet` | 39; `O84` and `T97T98` have zero foreign-owned `GO` in the raw XVEM file. |
+| Rows in `oecd_amne_affiliate_activity.parquet` | 1,260,053 |
+| Rows in `oecd_amne_mp_shares.parquet` | 4,250,880 |
+| `foreign_affiliate_share` formula residual | 0 |
+| `mpe_expansion` year-over-year residual | 0 |
 | Allocated value added, exports, and imports summed back to XVEM foreign-owned aggregates | Floating-point precision residual only. |
-| Bilateral output versus XVEM foreign-owned GO | Maximum absolute difference is about 0.113 million USD, consistent with small rounding differences across OECD files. |
+| Bilateral output versus XVEM foreign-owned `GO` | Maximum absolute difference is about 0.113 million USD, consistent with small rounding differences across OECD files. |
 
-Interpretation for the paper: the AMNE outputs support incumbent MP-intensive evidence and disciplined hgamma scenarios. They can show whether foreign-affiliate output and ownership-split activity expand in connector host countries and sectors. They do not prove firm-level relocation, plant entry, or new affiliate entry; those claims must stay in the model-external evidence layer and be combined with BEA, fDi Markets, FDI, or national production sources.
+Interpretation for the paper: the AMNE outputs support incumbent MP-intensive evidence and disciplined `hgamma` scenarios. They can show whether foreign-affiliate output and ownership-split activity expand in connector host countries and sectors. They do not prove firm-level relocation, plant entry, or new affiliate entry; those claims must stay in the model-external evidence layer and be combined with BEA, fDi Markets, FDI, or national production sources.
 
+### 8.3.1 BEA U.S. MNE Batch 5: Affiliate Country-Industry Panel
+
+Batch 5 uses BEA **Activities of U.S. Multinational Enterprises**, specifically majority-owned foreign affiliates of U.S. MNEs. The release page is `https://www.bea.gov/news/2025/activities-us-multinational-enterprises-2023`; the downloadable comprehensive table path is `https://www.bea.gov/international/di1usdop`.
+
+The current local build covers **2017-2023**. This is the correct window for the current project because it gives a pre-Section-301 baseline, the tariff-war period, the COVID disruption years, and the 2021-2023 nearshoring period. If the project later needs years before 2017, those earlier BEA annual files should be downloaded and validated as a separate extension.
+
+Local files:
+
+| Item | Path |
+|---|---|
+| Build script | `code/data_build/build_bea_us_mne_affiliate_country_industry.py` |
+| Raw XLS archive | `data/raw/bea_mne/activities_us_mnes/` |
+| Raw-file manifest | `data/raw/bea_mne/metadata/bea_us_mne_activities_manifest.json` |
+| Clean panel | `data/interim/mne/bea_us_mne_affiliate_country_industry.parquet` |
+| Usage note | `data/bea_us_mne_affiliate_country_industry_usage_note.md` |
+
+Core variables:
+
+| Variable | BEA table | Unit | Meaning |
+|---|---|---|---|
+| `year` | All source tables | Calendar year | Observation year, currently 2017-2023. |
+| `affiliate_country` | All source tables | Text | BEA affiliate country or area row. Use `bea_area_type` to separate country rows from aggregate geography rows. |
+| `industry` | All source tables | Text | BEA industry of affiliate. |
+| `employment` | Table II.G 1 | Thousands of employees | Employment of majority-owned foreign affiliates. |
+| `sales` | Table II.D 3 | Millions of dollars | Sales by majority-owned foreign affiliates. |
+| `value_added` | Table II.F 3 | Millions of dollars | Value added of majority-owned foreign affiliates. |
+| `capital_expenditures` | Table II.C 4 | Millions of dollars | Expenditures for property, plant, and equipment by affiliates. |
+| `goods_exports_to_us` | Table II.H 11 | Millions of dollars | U.S. imports of goods shipped by affiliates; read from the affiliate side as goods exported to the United States. |
+| `goods_imports_from_us` | Table II.H 3 | Millions of dollars | U.S. exports of goods shipped to affiliates; read from the affiliate side as goods imported from the United States. |
+
+BEA suppression is handled explicitly. `(D)` cells are missing, not zero. Employment size-range codes `A/F/G/H/I/J/K/L/M` are also treated as suppressed numeric values. `(*)` is a rounded small value and is stored as `0.0` with a small-value flag. Each core variable has companion `*_raw_code`, `*_suppressed`, and `*_small_value` fields so sector-country moments can be checked before they are used to discipline `hgamma`.
 
 ### 8.4 What Additional Data Would Make The Project More Mature
 
@@ -596,7 +686,7 @@ This repository currently contains project documentation and setup files only. I
 - fDi Markets exported project-level data;
 - new Stata, Python, or MATLAB data-build scripts;
 - migrated model-core MATLAB functions;
-- executable counterfactual scenarios.
+- executable A/B/C counterfactual scenarios.
 
 This is intentional. The next task is to benchmark the existing empirical evidence, build a validation and calibration layer, and then migrate the structural model. The project should not spend its main effort reproducing an empirical contribution that Schulze and Xin (2025) already cover.
 
@@ -609,10 +699,10 @@ This is intentional. The next task is to benchmark the existing empirical eviden
 5. Check BEA suppression for Mexico x electronics/computers and Mexico x medical devices, matching the completed Mexico x transportation equipment check.
 6. Build transparent country and sector mappings, with separate flags for Asian connectors and North American connectors.
 7. Build an extensive-margin evidence table from fDi Markets, BEA MNE, AMNE, FDI, employment, investment, and value-added sources.
-8. Construct a structural moment table that links observed trade, value-added, FDI, and affiliate-activity changes to candidate `htau` and `hgamma` shocks.
+8. Construct a structural moment table that links observed trade, value-added, FDI, and affiliate-activity changes to candidate `htau` and `hgamma` shocks for Scenario A, Scenario B, and Scenario C.
 9. Build a small MATLAB-ready sample to test compatibility with the reference model interface.
 10. Migrate `eqm_iter.m`, `eqm_update.m`, `wel_decomp.m`, and related model-core functions into `code/model_core/`.
-11. Run the first welfare-counterfactual matrix: no connectors, trade-only connectors, MP intensive reallocation through connectors, and full connector mitigation.
+11. Run the first welfare-bound matrix comparing direct fragmentation, Scenario A, Scenario B, and Scenario C.
 
 ## 12. Decision Rule For Moving To Structural Counterfactuals
 
@@ -622,7 +712,7 @@ Move to full model migration only if the first-stage evidence shows:
 - connector rankings and value-added moments are stable enough to discipline model shocks;
 - direct bloc-to-bloc decline and third-country expansion are economically meaningful;
 - at least one production-side source supports real relocation for key connectors, or the model explicitly treats relocation as a scenario rather than a proven fact;
-- extensive-margin evidence is kept separate from model-implied outcomes and used only as validation or scenario discipline;
+- extensive-margin evidence is kept separate from model-implied outcomes and used only as validation or scenario discipline, with Scenario C labeled as an upper-bound proxy rather than an entry model;
 - country-sector concordances are transparent;
 - model inputs can be generated without hard-coded country indices;
 - welfare channels can be reported separately for direct fragmentation, connector mitigation, MP, and IO propagation.
@@ -639,7 +729,7 @@ If these conditions fail, the project should either narrow to a specific country
 
 ## 1. 项目一句话
 
-本项目研究 geoeconomic fragmentation 背景下 connector economies 的福利价值：当两个地缘政治集团之间的直接贸易和跨国生产联系变弱时，一些第三方国家可能成为新的中间人、出口平台或生产地点。已有实证文献已经研究了这些国家到底是真实生产转移，还是贸易绕行和转口。本项目现在应进一步问：这些 connector countries 到底在一般均衡中缓解了多少 fragmentation 的福利损失，这种缓解来自 trade rerouting、multinational production relocation，还是 input-output 网络传播？
+本项目研究 geoeconomic fragmentation 背景下 connector economies 的福利价值：当两个地缘政治集团之间的直接贸易和跨国生产联系变弱时，一些第三方国家可能成为新的中间人、出口平台或生产地点。已有实证文献已经研究了这些国家到底是真实生产转移，还是贸易绕行和转口。本项目现在应进一步问：这些 connector countries 到底在一般均衡中缓解了多少 fragmentation 的福利损失。福利结果应写成 A/B/C 情景区间：Scenario A 是 trade-only connector 下界，Scenario B 是 incumbent MP-intensive 基准，Scenario C 是由 total FDI 和生产侧扩张证据约束的 total MP-adjustment 上界 proxy。
 
 本项目不是对现有文献的简单复现。`reference/` 中的 Du and Wang (2022) 复现包提供了一个非常有用的结构模型框架：多国、多部门、同时包含 trade、multinational production 和 input-output linkages。但最新的 IMF Working Paper 已经覆盖了相当一部分 connector economies 的实证识别。因此，本项目不能把“区分生产转移和贸易绕行”作为主贡献，而应把它作为模型校准和验证的事实基础。
 
@@ -647,7 +737,7 @@ If these conditions fail, the project should either narrow to a specific country
 
 本项目的主问题是：
 
-> connector economies 在多大程度上缓解了 geoeconomic fragmentation 的福利成本？这种缓解分别来自 trade rerouting、multinational production relocation 和 input-output propagation 的哪一部分？
+> connector economies 在多大程度上缓解了 geoeconomic fragmentation 的福利成本？这种缓解分别来自 trade rerouting、incumbent MP intensive reallocation、total MP-adjustment upper-bound proxy 和 input-output propagation 的哪一部分？
 
 这里需要严格区分三种现象：
 
@@ -664,6 +754,7 @@ If these conditions fail, the project should either narrow to a specific country
 1. **结构福利核算**：量化 connector economies 到底降低了多少 fragmentation 的福利损失。
 2. **机制分解**：把 connector mitigation 分解为 trade rerouting、MP relocation 和 IO propagation。
 3. **经验校准与验证**：利用已有实证事实和新数据约束模型冲击，而不是把实证识别本身作为主贡献。
+4. **福利区间而非单点估计**：用 Scenario A/B/C 同时报告下界、基准和上界 proxy，避免把模型不能识别的 entry margin 写成结构结果。
 
 政策上，friend-shoring、near-shoring 和 decoupling 常常会根据 gross trade flows 判断是否成功。但即使我们知道第三国是真实生产转移还是贸易绕行，仍然不知道它在一般均衡中到底节省了多少福利成本。本项目的目标就是把这个 welfare value 讲清楚。
 
@@ -722,11 +813,11 @@ If these conditions fail, the project should either narrow to a specific country
 | 路线 | 判断 |
 |---|---|
 | 在 Du-Wang 上重构情景配置和数据接口 | 推荐作为第一版。它已经包含 trade、MP、IO linkages 和 welfare decomposition。 |
-| 用 AMNE、BEA MNE、FDI 或生产侧 moments 约束 `hgamma` | 必须做。MP-cost shock 的大小不能任意设定。 |
+| 用 AMNE、BEA MNE、FDI、fDi Markets 或生产侧 moments 约束 `hgamma` 情景 | 必须做。MP-cost shock 的大小不能任意设定。AMNE / affiliate activity 主要约束 Scenario B；total FDI 和 production expansion 主要约束 Scenario C。 |
 | 直接转向 BHLP / Bonadio 风格框架并自行加入 MP 层 | 第一版不推荐。除非放弃 Du-Wang 的 sufficient-statistics 结构，否则建模负担会明显上升。 |
 | 改成 Tintelnot 式 fixed-cost entry model | 只有当论文核心变成 affiliate entry 或 plant-count relocation 时才需要，而且需要更强的微观或企业层面证据。 |
 
-结论是：Du-Wang 可以作为 connector welfare accounting 的第一版结构骨架，但解释必须收窄。它能计算 trade-cost 和 MP-cost shock 的福利影响；它不能单独证明企业进入了 connector country，也不能证明工厂发生了物理迁移。真实 production relocation 的证据必须来自经验验证层，然后再作为有依据的 `hgamma` 情景进入模型。
+结论是：Du-Wang 可以作为 connector welfare accounting 的第一版结构骨架，但解释必须收窄。它能计算 trade-cost 和 MP-cost shock 的福利影响；它不能单独证明企业进入了 connector country，也不能证明工厂发生了物理迁移。真实 production relocation 的证据必须来自经验验证层，然后再作为有依据的 `hgamma` 情景进入模型。Scenario C 必须写成 total MP adjustment 的 upper-bound proxy，不能写成结构识别出来的 entry-margin welfare estimate。
 
 ### 4.2 模型边界：intensive margin 与新企业进入
 
@@ -739,13 +830,23 @@ If these conditions fail, the project should either narrow to a specific country
 | Trade rerouting / indirect sourcing | 通过 `htau`、sourcing shares、foreign intermediates 和 IO propagation 解释福利变化。 | 产品层面的贸易数据证明 rerouting 确实发生。 |
 | MP relocation / nearshoring | 通过 `hgamma` 下降解释已有或模型中已表示的 MP link 上生产强度向 connector location 调整。 | 新 affiliate、新工厂公告、plant count 或 firm entry 证据。 |
 
-这并不意味着项目不能达到 JIE 水平。它意味着论文必须和读者订清楚契约：结构模型量化 connector access 和 effective MP-cost changes 的福利含义；经验部分验证 nearshoring 是否有 extensive-margin 支持，并用这些证据约束 `hgamma` 情景。
+这并不意味着项目不能达到 JIE 水平。它意味着论文必须和读者订清楚契约：结构模型量化 connector access 和 effective MP-cost changes 的福利含义；经验部分验证 nearshoring 是否有 extensive-margin 支持，并用这些证据约束 `hgamma` 的情景区间。
 
-因此，第一版应增加一个模型外的 **extensive-margin evidence section**。这部分可以使用 fDi Markets、BEA MNE、AMNE、FDI、value added、employment 或 investment 数据，说明 Mexico 或其他 connector economies 是否在相关部门出现新项目、affiliate activity 或生产侧扩张。它的作用是验证故事、约束 `hgamma`、设定 sensitivity bounds，而不是把新进入当作 Du-Wang 模型的内生结果。
+第一组 welfare table 应使用三个命名情景：
+
+| Scenario | 校准逻辑 | 解释 |
+|---|---|---|
+| **Scenario A: trade-only connector lower bound** | connector 相关 `htau` 保持开放或下降，但 MP margin 保持 `hgamma = 1`。 | 只允许贸易绕行，给出 connector welfare value 的下界。 |
+| **Scenario B: incumbent MP-intensive baseline** | 用 AMNE、BEA MNE、ownership / affiliate activity moments 约束 connector 相关 `hgamma`。 | 基准情景，解释已有或模型中已表示的 MP links 上的 intensive reallocation。 |
+| **Scenario C: total MP-adjustment upper-bound proxy** | 用 total FDI inflow、fDi Markets 项目、affiliate expansion 和 production-side expansion 约束更强的 `hgamma` 调整。 | 上界 proxy，让观测到的总生产扩张进入福利核算，但不声称模型内生 fixed-cost entry。 |
+
+B 到 C 的差值可以报告为 extensive-margin-related upper-bound increment，但不能称为识别出来的 entry-margin welfare contribution，因为模型没有 fixed-cost entry block。
+
+因此，第一版应增加一个模型外的 **extensive-margin evidence section**。这部分可以使用 fDi Markets、BEA MNE、AMNE、FDI、value added、employment 或 investment 数据，说明 Mexico 或其他 connector economies 是否在相关部门出现新项目、affiliate activity 或生产侧扩张。它的作用是验证故事、约束 `hgamma`、设定 Scenario C 的 upper-bound proxy，而不是把新进入当作 Du-Wang 模型的内生结果。
 
 推荐表述是：
 
-> The structural model captures intensive reallocation across existing MP links. It does not endogenize entry of new affiliates or plants. We therefore treat greenfield FDI and new project announcements as model-external evidence that validates the nearshoring mechanism and helps discipline MP-cost counterfactuals.
+> The structural model captures intensive reallocation across existing MP links. It does not endogenize entry of new affiliates or plants. We therefore treat greenfield FDI, new project announcements, and production-side expansion as model-external evidence that validates the nearshoring mechanism and disciplines a set of MP-cost counterfactuals. Scenario C is an upper-bound proxy for total MP adjustment, not a structural estimate of entry-margin welfare.
 
 只有当论文核心问题改成 affiliate entry 或 plant-count relocation 时，才应转向 Tintelnot-style fixed-cost foreign-investment model。那条路线需要更强的企业、项目或工厂层面数据，也需要新增完整的 entry block，不应作为第一版默认路径。
 
@@ -855,18 +956,18 @@ If these conditions fail, the project should either narrow to a specific country
 | `main_cf_RUS_sanction2.m` | 同时切断 `htau` 和 `hgamma`，但保留 Russia 与一组更宽的外部国家联系：China、Brazil、Indonesia、India、Mexico、ROW、Turkey、Taiwan。 | Russia 被主要制裁集团隔离，但仍可通过一组未制裁或类似 connector 的国家保持 trade 和 MP 联系。 | `RUS_sanction_TRMP2.csv` |
 | `main_cf_RUS_sanction_notrade2.m` | 上一场景的 trade-only 版本，只切断 `htau`。 | 保留外部国家联系的贸易制裁场景。 | `RUS_sanction_TR2.csv` |
 
-这些脚本对本项目的价值不在 Russia 本身，而在于它们提供了一个可改造的 counterfactual 结构：直接切断、只切断 trade、同时切断 trade 和 MP、以及保留第三方国家通道。新项目应把这种结构改写为 connector economies 的情景矩阵：
+这些脚本对本项目的价值不在 Russia 本身，而在于它们提供了一个可改造的 counterfactual 结构：直接切断、只切断 trade、同时切断 trade 和 MP、以及保留第三方国家通道。新项目应把这种结构改写为 direct fragmentation 加 A/B/C connector bounds 的情景矩阵：
 
 | 新项目场景 | shock 对象 | 目的 |
 |---|---|---|
 | Baseline | `htau = 1`、`hgamma = 1`、`tTar = baseline tariffs` | 得到一致的冲击前均衡。 |
 | Direct fragmentation, no connectors | 提高 source bloc 与 destination bloc 之间的 `htau`，必要时同时提高 `hgamma`。 | 衡量直接脱钩的福利成本。 |
-| Trade-only connector access | 直接 bloc-to-bloc link 仍然变贵，但 connector 相关 `htau` 保持开放或成本较低，`hgamma` 不变。 | 单独识别 gross trade rerouting。 |
-| MP relocation through connectors | connector 相关 `hgamma` 保持开放或下降，并配合 trade access。 | 衡量真实 production relocation 和 foreign affiliate activity。 |
-| Full connector mitigation | 同时允许 trade rerouting 和 MP relocation。 | 衡量 connector economies 能缓解多少 fragmentation 损失。 |
+| Scenario A: trade-only connector lower bound | 直接 bloc-to-bloc link 仍然变贵，但 connector 相关 `htau` 保持开放或成本较低，connector MP margin 设为 `hgamma = 1`。 | 单独识别 gross trade rerouting，并给出 connector welfare value 的下界。 |
+| Scenario B: incumbent MP-intensive baseline | 用 AMNE、BEA MNE 和 ownership / affiliate activity moments 约束 connector 相关 `hgamma`。 | 基准情景，衡量已有 MP links 上的 intensive production reallocation。 |
+| Scenario C: total MP-adjustment upper-bound proxy | 用 total FDI inflow、fDi Markets 项目数量/capex/jobs、affiliate expansion 和 production-side expansion 约束更强的 connector `hgamma` 调整。 | total MP adjustment 的上界 proxy；近似反映 extensive-margin-related gains，但不声称有结构 entry model。 |
 | No-connector stress test | 同时提高 direct bloc links 和 connector links 的 trade/MP barriers。 | 衡量没有第三方调整时的剩余福利成本。 |
 
-因此，本项目后续的 counterfactual 不应再写成“Russia = 38、China = 8”。所有 source bloc、destination bloc、connector countries、sector list、shock intensity 和年份都应从 `configs/` 读取。结构模型输出也应明确分解为 direct fragmentation、connector mitigation、MP relocation 和 IO propagation。
+因此，本项目后续的 counterfactual 不应再写成“Russia = 38、China = 8”。所有 source bloc、destination bloc、connector countries、sector list、shock intensity 和年份都应从 `configs/` 读取。结构模型输出也应明确分解为 direct fragmentation、Scenario A trade-only mitigation、Scenario B incumbent MP-intensive reallocation、Scenario C upper-bound increment 和 IO propagation。
 
 ### 5.6 继承的 welfare decomposition
 
@@ -1003,7 +1104,7 @@ Schulze and Xin (2025) 已经做了相当完整的 connector economies 经验识
 - 新数据是否能复现或扩展 IMF paper 的核心事实？
 - Mexico 或其他 North American connector 是否存在该文没有覆盖的机制？
 - 哪些经验 moments 可以约束模型中的 `htau` 和 `hgamma` shock size？
-- 是否有足够生产侧证据支持 MP relocation scenario？
+- 是否有足够生产侧证据支持 Scenario B、Scenario C，还是只能支持 Scenario A？
 
 只有这些校准和验证事实成立，结构模型才值得迁移。
 
@@ -1020,7 +1121,7 @@ Schulze and Xin (2025) 已经做了相当完整的 connector economies 经验识
 5. **extensive-margin evidence table**：整理 fDi Markets、BEA MNE、AMNE、FDI 或其他生产侧资料中的新项目、新 affiliate、投资和就业证据，明确它们是模型外验证，不是 Du-Wang 的内生结果。
 6. **small MATLAB-ready sample**：构造一个小样本，测试新数据能否进入 reference 模型接口。
 
-此外，还需要增加一张 **structural moment table**，把经验事实转成模型输入：direct bloc-to-bloc trade decline、connector exports、connector imports、production-side expansion、FDI 或 foreign-affiliate activity，以及这些事实对应的 `htau` 和 `hgamma` 情景设定。如果这些 moments 不能清楚支持结构反事实，就不应急于迁移完整 MATLAB 模型。
+此外，还需要增加一张 **structural moment table**，把经验事实转成模型输入：direct bloc-to-bloc trade decline、connector exports、connector imports、production-side expansion、FDI 或 foreign-affiliate activity，以及这些事实对应的 Scenario A/B/C `htau` 和 `hgamma` 情景设定。如果这些 moments 不能清楚支持结构反事实，就不应急于迁移完整 MATLAB 模型。
 
 ## 8. 数据计划
 
@@ -1045,8 +1146,8 @@ Schulze and Xin (2025) 已经做了相当完整的 connector economies 经验识
 |---|---|---|
 | [OECD ICIO, including Extended ICIO](https://www.oecd.org/en/data/datasets/inter-country-input-output-tables.html) | 国家-部门生产和投入产出结构 | 构造 gross output、value added、final demand、中间投入联系和模型基准。Extended ICIO 对 China 和 Mexico 的 ownership / firm-type 层进行拆分，对本项目特别有用。 |
 | [OECD TiVA](https://www.oecd.org/en/data/datasets/trade-in-value-added.html) | 增加值贸易解释 | 检查 gross trade rerouting 是否对应真实 value-added exposure 的变化。 |
-| [OECD Analytical AMNE](https://www.oecd.org/en/data/datasets/multinational-enterprises-and-global-value-chains.html) / [AMNE](https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html) | 外资企业活动和跨国生产 | 验证 connector countries 是否在相关部门出现 foreign-affiliate sales、employment、value added 或 output 扩张。这是 2020 年以前约束 `hgamma` 的核心 ownership-split 数据。 |
-| [fDi Markets](https://www.fdimarkets.com/) | Greenfield FDI project evidence；使用者已确认可得 | 构造模型外 extensive-margin evidence table：新项目、来源国、目的地、行业、business activity、公告投资额和预期就业。 |
+| [OECD Analytical AMNE](https://www.oecd.org/en/data/datasets/multinational-enterprises-and-global-value-chains.html) / [AMNE](https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html) | 外资企业活动和跨国生产 | 验证 connector countries 是否在相关部门出现 foreign-affiliate sales、employment、value added 或 output 扩张。这是 2020 年以前约束 Scenario B `hgamma` 的核心 ownership-split 数据。 |
+| [fDi Markets](https://www.fdimarkets.com/) | Greenfield FDI project evidence；使用者已确认可得 | 构造模型外 extensive-margin evidence table，并约束 Scenario C：新项目、来源国、目的地、行业、business activity、公告投资额和预期就业。 |
 | [BACI](https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37) | 产品层面双边贸易 | 构造 connector rankings、rerouting figures、source-bloc imports、destination-bloc exports 和部门重叠指标。BACI 的 HS6 口径比 DOTS 或总量贸易数据更适合映射到汽车、电子、医疗器械、机械和零部件部门。 |
 | [UN Comtrade](https://comtradeplus.un.org/) | 产品层面双边贸易交叉核对 | 如果 BACI 的 concordance 或时点口径有问题，可作为 robustness 或 cross-check。 |
 | [美国 Census USA Trade Online](https://usatrade.census.gov/) | 高分辨率美国进口证据 | 用美国作为目的国，在月度或 HS10 层面验证中美关税冲击和进口替代。 |
@@ -1063,15 +1164,102 @@ Schulze and Xin (2025) 已经做了相当完整的 connector economies 经验识
 | 数据源 | 可得性 | 覆盖范围和当前约束 | 对项目的影响 |
 |---|---|---|---|
 | OECD ICIO Extended | 免费，直接下载 | 最新 OECD release 到 2022，并包含对 China / Mexico 有用的 ownership / firm-type 拆分 | 非常适合作为 IO 和 ownership-split production baseline；2023 nearshoring 需要用模型外数据补充 |
-| OECD Analytical AMNE | 免费，直接下载 | ownership-split AMNE / ICIO 表到 2020 | 是约束 `hgamma` 的最关键结构数据，但缺失 2021-2023 nearshoring 高峰 |
-| BEA U.S. MNE Activity | 免费，但部分细表停更且个别国家-行业单元可能 suppressed | BEA activity statistics 可查到 2023 preliminary / 2022 revised；本地已核实 Mexico x Transportation equipment, 2020-2022 可用 | 是 OECD Analytical AMNE 之后美国 MNE 在墨西哥活动的主要补充；还需检查 electronics 和 medical devices 是否 suppressed |
-| fDi Markets | 使用者已确认可得 | 2003 年以来的 greenfield FDI project-level database | extensive-margin evidence 的核心来源；用于说明新项目公告，而不是 Du-Wang 模型内生结果 |
+| OECD Analytical AMNE | 免费，直接下载 | ownership-split AMNE / ICIO 表到 2020 | 是约束 Scenario B `hgamma` 的最关键结构数据，但缺失 2021-2023 nearshoring 高峰 |
+| BEA U.S. MNE Activity | 免费，但部分细表停更且个别国家-行业单元可能 suppressed | Batch 5 本地面板覆盖 2017-2023，口径为 majority-owned foreign affiliates 的 country-industry activity，包括 employment、sales、value added、capital expenditures 和 affiliate-side goods trade | 是 Mexico、Canada、Vietnam 及其他 connector countries 的 U.S.-MNE affiliate activity 桥接数据；行业解释前必须查看 suppression flags |
+| fDi Markets | 使用者已确认可得 | 2003 年以来的 greenfield FDI project-level database | extensive-margin evidence 和 Scenario C 校准的核心来源；用于说明新项目公告和 total MP adjustment 上界 proxy，而不是 Du-Wang 模型内生结果 |
 | BACI | 免费，直接下载 | HS6 年度双边贸易，当前最新版本覆盖到 2024 | 贸易绕行、connector ranking 和 Section 301 暴露的首选贸易数据 |
 | Mexico Secretaria de Economia / DataMexico FDI | 免费政府数据 | 使用者提供的目标口径为 1999-2024 Q4 的季度 FDI flows | 可验证 2021-2024 Mexico nearshoring 的方向和数量级，但不是 activity 或 plant-level measure |
 | Section 301 tariff data | 免费公开 | USTR / USITC 的 HS-level tariff lists 和生效变化 | 最干净的 policy-shock 层，用于构造 `htau` |
 | USITC USMCA auto reports | 免费法定报告 | 汽车部门 rules-of-origin 证据；具体表格和定义引用前必须复核 | 对区分真实生产整合与 rerouting / shallow assembly 特别有用 |
 
 因此，实际数据瓶颈已经改变。fDi Markets 不再是约束条件。剩下两个关键约束是：第一，OECD Analytical AMNE 到 2020 为止，nearshoring 期必须用 BEA、Mexico FDI 和 fDi Markets 补；第二，BEA 国家-行业单元必须逐部门检查 suppression。
+
+### Batch 4：OECD Analytical AMNE affiliate activity 与 MP shares
+
+Batch 4 把本地下载的 OECD Analytical AMNE 文件转换成两个项目可直接使用的 parquet 输出：
+
+| 输出 | 作用 | 行口径 |
+|---|---|---|
+| `data/interim/mne/oecd_amne_affiliate_activity.parquet` | 正值 foreign-affiliate activity panel，用于经验验证和 Scenario B 的 `hgamma` 约束。 | parent country、host country、OECD sector、year 层面，且 `affiliate_output` 严格大于 0。 |
+| `data/interim/mne/oecd_amne_mp_shares.parquet` | 面向模型的 MP-share panel。 | 完整 foreign parent-host-sector-year universe，包括 zero-output links，避免后续 country-sector 合并时丢掉零 MP link。 |
+
+构建脚本是 `code/data_build/build_oecd_amne.py`。脚本读取 `data/raw/oecd_amne/analytical_amne/` 下的 `aamne-bilateral-output.csv` 和 `aamne-mne-xvem.csv`，输出到 `data/interim/mne/`，不修改 raw 文件。重新生成命令为：
+
+```powershell
+python code\data_build\build_oecd_amne.py --project-root . --overwrite
+```
+
+核心字段构造如下：
+
+| 字段 | 构造方式 |
+|---|---|
+| `affiliate_output` | 来自 `aamne-bilateral-output.csv` 的 off-diagonal parent-host-sector output，单位为 current million USD；domestic diagonal cells 被排除。 |
+| `affiliate_value_added` | `aamne-mne-xvem.csv` 中 foreign-owned aggregate `GVA`，按同一 host-sector-year 内 parent affiliate-output share 分摊到 parent country。 |
+| `affiliate_exports` | foreign-owned aggregate `EXGR`，按 parent affiliate-output share 分摊。 |
+| `affiliate_imports` | foreign-owned aggregate `IMGR`，按 parent affiliate-output share 分摊；OECD 说明该指标是 firms 的 intermediate-input imports。 |
+| `affiliate_employment` | 保留为必需字段，但本批 OECD Analytical AMNE 文件没有 employment，因此该列为空；employment 证据应来自 BEA MNE、fDi Markets jobs 或国家统计数据。 |
+| `ownership_type` | 固定为 `F`，表示 foreign-owned firms。 |
+
+两个模型变量的定义是：
+
+```text
+MPEexpansion_{c,s,t} = ForeignAffiliateOutput_{c,s,t} - ForeignAffiliateOutput_{c,s,t-1}
+ForeignAffiliateShare_{c,s,t} = ForeignAffiliateOutput_{c,s,t} / GrossOutput_{c,s,t}
+```
+
+在 parquet 中分别保存为 `mpe_expansion` 和 `foreign_affiliate_share`。同时保留 `mp_output_share`，即 parent-specific affiliate output 除以 host-sector gross output；也保留 `parent_affiliate_output_share`，即分摊 value added、exports、imports 时使用的 parent 权重。
+
+这个构造有一个必须说明的限制：`aamne-bilateral-output.csv` 直接给出 parent-country output，但不直接给出 parent-country value added、exports、imports。后三个字段来自 `aamne-mne-xvem.csv` 的 host-sector foreign-owned aggregate，并按 parent output share 分摊。因此它们可以作为有记录的 Scenario B 校准变量使用，但不能写成 OECD 直接报告的 parent-country AMNE value added 或 trade cells。
+
+当前本地构建的验证结果：
+
+| 检查项 | 结果 |
+|---|---|
+| 年份 | 2008-2023 |
+| host economies | 81 |
+| parent economies | 81 |
+| `oecd_amne_mp_shares.parquet` 覆盖的 sector | 41 |
+| `oecd_amne_affiliate_activity.parquet` 中有正值 affiliate output 的 sector | 39；`O84` 和 `T97T98` 在 raw XVEM 的 foreign-owned `GO` 中全为 0。 |
+| `oecd_amne_affiliate_activity.parquet` 行数 | 1,260,053 |
+| `oecd_amne_mp_shares.parquet` 行数 | 4,250,880 |
+| `foreign_affiliate_share` 公式残差 | 0 |
+| `mpe_expansion` 年度差分残差 | 0 |
+| 分摊后的 value added、exports、imports 加总回 XVEM foreign-owned aggregates | 只有浮点精度误差。 |
+| bilateral output 与 XVEM foreign-owned `GO` 的差异 | 最大绝对差约 0.113 million USD，符合 OECD 文件之间的小幅 rounding differences。 |
+
+论文解释上，这批 AMNE 输出支持 incumbent MP-intensive evidence 和有约束的 `hgamma` scenario。它能说明 connector host country-sector 是否出现 foreign-affiliate output 和 ownership-split activity 扩张。它不能单独证明 firm-level relocation、plant entry 或 new affiliate entry；这些 extensive-margin 结论必须保留在模型外证据层，并结合 BEA、fDi Markets、FDI 或国家生产统计数据。
+
+### 8.3.1 BEA U.S. MNE Batch 5：affiliate country-industry panel
+
+Batch 5 使用 BEA **Activities of U.S. Multinational Enterprises**，口径是美国跨国企业的 majority-owned foreign affiliates。发布页是 `https://www.bea.gov/news/2025/activities-us-multinational-enterprises-2023`，可下载 comprehensive tables 的入口是 `https://www.bea.gov/international/di1usdop`。
+
+当前本地面板覆盖 **2017-2023**。这个时间段足够覆盖 Section 301 前基准、贸易战阶段、COVID 冲击期，以及 2021-2023 年 nearshoring 高峰。若之后需要 2017 年以前的数据，应作为单独扩展继续下载并验证，不应直接混入当前已完成的 Batch 5。
+
+本地文件：
+
+| 项目 | 路径 |
+|---|---|
+| 构建脚本 | `code/data_build/build_bea_us_mne_affiliate_country_industry.py` |
+| 原始 XLS 归档 | `data/raw/bea_mne/activities_us_mnes/` |
+| 原始文件 manifest | `data/raw/bea_mne/metadata/bea_us_mne_activities_manifest.json` |
+| 清洗后面板 | `data/interim/mne/bea_us_mne_affiliate_country_industry.parquet` |
+| 使用说明 | `data/bea_us_mne_affiliate_country_industry_usage_note.md` |
+
+核心变量：
+
+| 变量 | BEA 表 | 单位 | 含义 |
+|---|---|---|---|
+| `year` | 所有来源表 | 年 | 当前覆盖 2017-2023。 |
+| `affiliate_country` | 所有来源表 | 文本 | BEA 的 affiliate country 或 area 行；使用 `bea_area_type` 区分国家行和区域汇总行。 |
+| `industry` | 所有来源表 | 文本 | BEA affiliate industry。 |
+| `employment` | Table II.G 1 | 千人 | majority-owned foreign affiliates 的就业。 |
+| `sales` | Table II.D 3 | 百万美元 | affiliates 的销售额。 |
+| `value_added` | Table II.F 3 | 百万美元 | affiliates 的增加值。 |
+| `capital_expenditures` | Table II.C 4 | 百万美元 | affiliates 的 property, plant, and equipment 支出，作为资本支出指标。 |
+| `goods_exports_to_us` | Table II.H 11 | 百万美元 | 美国从 affiliates 进口的 goods；从 affiliate 角度解释为对美国出口。 |
+| `goods_imports_from_us` | Table II.H 3 | 百万美元 | 美国出口给 affiliates 的 goods；从 affiliate 角度解释为从美国进口。 |
+
+BEA suppression 已显式处理。`(D)` 不是 0，而是缺失值；employment 表里的 `A/F/G/H/I/J/K/L/M` size-range codes 也被视为 suppressed numeric cells。`(*)` 表示小到四舍五入后低于报告单位的一半，数值字段记为 `0.0`，并用 small-value flag 标记。每个核心变量都有对应的 `*_raw_code`、`*_suppressed`、`*_small_value` 字段，使用这些 country-industry moments 约束 `hgamma` 前必须先检查 suppression。
 
 ### 8.4 想做到更成熟还需要什么数据
 
@@ -1110,7 +1298,7 @@ Schulze and Xin (2025) 已经做了相当完整的 connector economies 经验识
 - fDi Markets 项目级导出数据；
 - 新的 Stata / Python / MATLAB 数据构建脚本；
 - 已迁移的 MATLAB model core；
-- 可执行的 counterfactual scenarios。
+- 可执行的 A/B/C counterfactual scenarios。
 
 这是有意为之。下一步应先建立文献 benchmark、经验验证和模型校准层，而不是重复一篇已经存在的 connector economies 实证文章。
 
@@ -1124,9 +1312,9 @@ Schulze and Xin (2025) 已经做了相当完整的 connector economies 经验识
 6. 检查 BEA 中 Mexico x electronics/computers 和 Mexico x medical devices 是否存在 suppression，并与已完成的 Mexico x transportation equipment 检查保持同一口径。
 7. 建立 country mapping 和 sector mapping，并区分 Asian connectors 与 North American connectors。
 8. 构造 extensive-margin evidence table，把 fDi Markets 新项目公告、BEA MNE / AMNE affiliate activity、FDI、就业、投资和增加值证据单独列出，明确它们是模型外验证。
-9. 构造 structural moment table，把贸易、增加值、FDI 和 affiliate activity 事实转成 `htau` 与 `hgamma` 情景设定。
+9. 构造 structural moment table，把贸易、增加值、FDI 和 affiliate activity 事实转成 Scenario A/B/C 的 `htau` 与 `hgamma` 情景设定。
 10. 构造小型 MATLAB-ready sample，测试是否兼容 `reference` 的模型接口。
-11. 迁移 `eqm_iter.m`、`eqm_update.m`、`wel_decomp.m` 等模型核心函数，并运行第一组 welfare-counterfactual matrix。
+11. 迁移 `eqm_iter.m`、`eqm_update.m`、`wel_decomp.m` 等模型核心函数，并运行第一组 direct fragmentation + Scenario A/B/C welfare-bound matrix。
 
 ## 11. 进入结构模型的判断标准
 
@@ -1136,7 +1324,7 @@ Schulze and Xin (2025) 已经做了相当完整的 connector economies 经验识
 - connector rankings 和 value-added moments 足以约束模型 shock；
 - direct bloc-to-bloc decline 与 third-country expansion 具有经济意义；
 - 至少一个生产侧数据源支持关键 connector countries 存在真实 relocation，或者模型明确把 relocation 作为 scenario 而不是既定事实；
-- extensive-margin evidence 与模型内生结果保持分开，只用于验证 nearshoring 叙事和约束 `hgamma`；
+- extensive-margin evidence 与模型内生结果保持分开，只用于验证 nearshoring 叙事和约束 `hgamma`，其中 Scenario C 必须标为 upper-bound proxy，而不是 entry model；
 - country-sector concordance 透明且可复查；
 - 模型输入可以在不硬编码国家 index 的情况下生成；
 - welfare channels 可以区分 direct fragmentation、connector mitigation、MP channel 和 IO propagation。

@@ -48,4 +48,4 @@ Conclusion: `Mexico x Transportation equipment` is not suppressed in any of the 
 
 - `(D)` means BEA suppressed the cell to avoid disclosure of individual-company data; it should be treated as unavailable, not as zero.
 - `Transportation equipment` is a broad BEA affiliate-industry category. It is usable as the project-level automotive-chain proxy only if the sector concordance records this aggregation choice.
-- Aggregate MOFA data identify affiliate activity expansion, not firm-level relocation. Use these moments to discipline MP relocation scenarios rather than to claim direct plant movement.
+- Aggregate MOFA data identify affiliate activity expansion, not firm-level relocation. Use these moments to discipline Scenario B, and to support Scenario C only when combined with broader FDI or production-side expansion evidence.

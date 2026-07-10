@@ -40,8 +40,21 @@ Before any MATLAB model code is copied into `code/model_core/`, the new project 
 - country mapping table with stable IDs, ISO codes, and bloc membership;
 - sector mapping table from trade products to ICIO/AMNE sectors;
 - scenario configuration file defining blocked, connector, source, and destination countries;
+- explicit Scenario A/B/C fields for trade-only lower bound, incumbent MP-intensive baseline, and total MP-adjustment upper-bound proxy;
 - input validation that checks dimensions before solving the model;
 - output naming rules that include data vintage and scenario name.
+
+## Connector Scenario Bounds
+
+The first connector-economy welfare matrix should compare direct fragmentation with three bounded connector scenarios:
+
+| Scenario | Model object | Interpretation |
+|---|---|---|
+| Scenario A: trade-only connector lower bound | Connector-related `htau` remains open or improves; `hgamma = 1`. | Lower bound for connector value through gross trade rerouting only. |
+| Scenario B: incumbent MP-intensive baseline | Connector-related `hgamma` is disciplined by AMNE, BEA MNE, or ownership/affiliate activity moments. | Preferred intensive-margin baseline across already represented MP links. |
+| Scenario C: total MP-adjustment upper-bound proxy | Connector-related `hgamma` is disciplined by total FDI, fDi Markets project evidence, affiliate expansion, and production-side expansion. | Upper-bound proxy for total MP adjustment; not a structural fixed-cost entry model. |
+
+The B-to-C gap can be reported as an extensive-margin-related upper-bound increment. It should not be labeled as identified entry-margin welfare because the reference model has no affiliate-entry or plant-entry block.
 
 ## Welfare Decomposition Interpretation
 
@@ -54,4 +67,4 @@ The reference decomposition should be preserved:
 - `MS`: market size effect;
 - `PT`: profit and tariff revenue channel.
 
-For this project, the key reporting requirement is to decompose how much connector economies reduce direct fragmentation losses and how much welfare cost remains after accounting for indirect sourcing through connectors.
+For this project, the key reporting requirement is to decompose how much connector economies reduce direct fragmentation losses and how much welfare cost remains after accounting for indirect sourcing through connectors. Reports should separately show Scenario A trade-only mitigation, Scenario B incumbent MP-intensive reallocation, the Scenario C upper-bound increment, and the IO propagation channel.
