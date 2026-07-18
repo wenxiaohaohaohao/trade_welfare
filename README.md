@@ -7,11 +7,15 @@ The project is built from an existing structural reference package but is not a 
 ## Current Data Notes / 当前数据说明
 
 - BEA U.S. MNE MOFA country-industry tables now have a Batch 5 country-industry panel for 2017-2023 at `data/interim/mne/bea_us_mne_affiliate_country_industry.parquet`, with raw files archived under `data/raw/bea_mne/activities_us_mnes/`. The earlier `Mexico x Transportation equipment` 2020-2022 suppression audit remains the sector-specific North America check; see `data/bea_mne_mexico_transportation_equipment_2020_2022.md`.
-- fDi Markets is available through the user's access. It should now be treated as the primary project-level source for the model-external extensive-margin evidence section and for disciplining Scenario C, the upper-bound proxy for total MP adjustment, especially greenfield manufacturing projects in Mexico and other connector economies after 2018.
-- The current data plan is: OECD ICIO Extended for IO and ownership-split baseline objects through 2022; OECD Analytical AMNE for ownership-split multinational-production moments through 2020; BEA U.S. MNE, Mexico FDI, and fDi Markets to bridge the 2021-2024 nearshoring period; BACI and Section 301 tariff files for product-level trade shocks.
+- Official Mexico inward-FDI data are now archived and normalized. National quarterly totals and investment types cover 1999Q1-2024Q4; country/sector annual panels cover 1999-2024; detailed quarterly cross-tables cover 2006Q1-2024Q4. See `data/mexico_fdi_usage_note.md`.
+- The official Section 301 base lists now generate an HTS10 event panel and a 2014-2024 HS2017 gross statutory exposure panel. The exact September 2024 modern-HTS increases are stored separately to avoid an invalid nomenclature merge. See `data/section301_usage_note.md`.
+- fDi Markets is available through the user's access, but it is explicitly excluded from the current data batch. No fDi download or processing is part of the completion status below.
+- The current data plan is: OECD ICIO Extended for IO and ownership-split baseline objects through 2022; OECD Analytical AMNE and BEA U.S. MNE for multinational-production moments; official Mexico FDI for the 2021-2024 financial-flow bridge; and BACI plus Section 301 for product-level trade shocks. fDi Markets remains a later, separate project-level evidence source.
 - 已构建 BEA U.S. MNE MOFA 的 Batch 5 country-industry panel，覆盖 2017-2023，输出为 `data/interim/mne/bea_us_mne_affiliate_country_industry.parquet`，原始文件归档在 `data/raw/bea_mne/activities_us_mnes/`。此前 `Mexico x Transportation equipment` 2020-2022 suppression audit 仍作为 North America 的专项行业检查记录；详见 `data/bea_mne_mexico_transportation_equipment_2020_2022.md`。
-- fDi Markets 这里已经可得。它应作为模型外 extensive-margin evidence section 的核心项目级数据，也应直接服务于 Scenario C 的上界校准，重点整理 2018 年之后 Mexico 和其他 connector economies 的 greenfield manufacturing projects。
-- 当前数据策略是：用 OECD ICIO Extended 构造 2022 年以前的 IO 和 ownership-split 基准对象；用 OECD Analytical AMNE 构造 2020 年以前的 multinational-production ownership moments；用 BEA U.S. MNE、Mexico FDI 和 fDi Markets 补 2021-2024 年 nearshoring 证据；用 BACI 和 Section 301 tariff files 构造产品层面贸易冲击。
+- Mexico 官方 inward FDI 已完成归档和标准化：全国季度总额和投资类型覆盖 1999Q1-2024Q4，来源国/行业年度面板覆盖 1999-2024，季度交叉明细覆盖 2006Q1-2024Q4；详见 `data/mexico_fdi_usage_note.md`。
+- Section 301 官方初始清单已生成 HTS10 政策事件面板和 2014-2024 的 HS2017 gross statutory exposure 面板；2024 年 9 月的现代 HTS 精确调税表单独保存，避免错误跨版本合并；详见 `data/section301_usage_note.md`。
+- fDi Markets 虽然可得，但使用者明确要求本批不处理。本批完成状态不包含 fDi 下载或变量构造。
+- 当前数据策略是：用 OECD ICIO Extended 构造 2022 年以前的 IO 和 ownership-split 基准对象；用 OECD Analytical AMNE 与 BEA U.S. MNE 构造 multinational-production moments；用 Mexico 官方 FDI 衔接 2021-2024 年金融流量证据；用 BACI 和 Section 301 构造产品层面贸易冲击。fDi Markets 留作以后单独处理的项目级证据。
 
 ### OECD ICIO Batch 3 Baseline Outputs / OECD ICIO 第三批基准输出
 
@@ -539,11 +543,11 @@ The key interpretation is therefore not "public data prove relocation." A more d
 | BEA U.S. MNE Activity | Free, but selected detailed tables have discontinuities and some cells may be suppressed | Batch 5 local panel covers 2017-2023 for majority-owned foreign affiliates by country and industry, with employment, sales, value added, capital expenditures, and affiliate-side goods trade fields | Main bridge for U.S.-MNE affiliate activity in Mexico, Canada, Vietnam, and other connector countries; use suppression flags before sector-level interpretation |
 | fDi Markets | Available through the user's access | Project-level greenfield FDI database since 2003 | Central source for extensive-margin evidence and Scenario C discipline; use it to document new projects and upper-bound total MP adjustment, not as an endogenous Du-Wang model outcome |
 | BACI | Free, direct download | HS6 bilateral annual trade; latest release currently listed through 2024 | Preferred trade source for rerouting, connector rankings, and sector-level exposure to Section 301 shocks |
-| Mexico Secretaria de Economia / DataMexico FDI | Free government data | Quarterly FDI flows by country and industry, user-provided target range 1999-2024 Q4 | Useful for validating the direction and magnitude of Mexico nearshoring, but not a direct activity or plant-level measure |
-| Section 301 tariff data | Free public data | USTR/USITC HS-level lists and effective tariff changes | Clean policy-shock layer for constructing `htau` inputs |
+| Mexico Secretaria de Economia / DataMexico FDI | Free government data | National quarter/type panels cover 1999Q1-2024Q4; country/sector annual panels cover 1999-2024; detailed quarterly cross-tables cover 2006Q1-2024Q4 | Locally complete for the published vintage; confidential detail remains null and FDI is not an activity or plant-level measure |
+| Section 301 tariff data | Free public data | Official Lists 1/2/3/4A, 2014-2024 gross HS2017 exposure, and a separate exact September 2024 modern-HTS table | Clean gross policy-shock layer for `htau`; not a realized-duty measure after exclusions |
 | USITC USMCA auto reports | Free statutory reports | Auto-sector rules-of-origin evidence; exact table references must be verified before citation | Useful for the auto-sector distinction between genuine production integration and rerouting/shallow assembly |
 
-The practical data bottleneck has changed. fDi Markets access is no longer the binding constraint. The two remaining constraints are: (i) OECD Analytical AMNE stops in 2020, so the nearshoring period must be bridged with BEA, Mexico FDI, and fDi Markets; and (ii) BEA country-industry cells must be checked sector by sector for suppression.
+The practical data bottleneck has changed. Official Mexico FDI and the gross Section 301 policy layer are now locally usable. Remaining limits are substantive rather than download failures: OECD Analytical AMNE and BEA have different activity concepts and time coverage; BEA and Mexico FDI detail can be suppressed; and FDI financial flows do not prove plant entry or production relocation. fDi Markets is outside the current batch by user instruction.
 
 ### Batch 4: OECD Analytical AMNE Affiliate Activity And MP Shares
 
@@ -599,6 +603,14 @@ Current validation:
 | Bilateral output versus XVEM foreign-owned `GO` | Maximum absolute difference is about 0.113 million USD, consistent with small rounding differences across OECD files. |
 
 Interpretation for the paper: the AMNE outputs support incumbent MP-intensive evidence and disciplined `hgamma` scenarios. They can show whether foreign-affiliate output and ownership-split activity expand in connector host countries and sectors. They do not prove firm-level relocation, plant entry, or new affiliate entry; those claims must stay in the model-external evidence layer and be combined with BEA, fDi Markets, FDI, or national production sources.
+
+### Official Section 301 And Mexico FDI Batches
+
+The Section 301 batch uses 10,115 official base-list rows and action-date USITC HTS files to build `data/interim/policy/section301_hts10_list_panel.parquet` (32,357 unique event rows). It then combines China-origin 2017 Census HTS10 weights with a dedicated CEPII BACI HS2017 U.S.-import denominator to build `data/interim/policy/section301_hs6_exposure.parquet` (55,308 HS6-year rows for 2014-2024). The exposure is a gross statutory schedule: List 4B is excluded because it never took effect, while historical product exclusions are not applied as realized customs-duty adjustments. The September 2024 four-year-review rates are stored in the separate 367-row `data/interim/policy/section301_2024_review_codes.parquet` because those modern HTS codes cannot be safely merged to a 2017 denominator by truncating them to HS6. Complete commands, source hashes, formulas, code aliases, and interpretation limits are in `data/section301_usage_note.md`.
+
+Mexico official inward FDI is downloaded from Secretaría de Economía's datos.gob.mx files and Data México API. Nine parquet outputs under `data/interim/fdi/` cover national totals, investment types, source countries, SCIAN sectors, states, and their available cross-tables. National quarterly coverage is 1999Q1-2024Q4; detailed quarterly cross-tables begin in 2006. Official `C` cells remain null with `confidential_flag=true`, and `Total general` source-country rows are flagged to prevent double counting. The 2024 national total is USD 36,872.421 million. See `data/mexico_fdi_usage_note.md` for all paths, row counts, fields, and reconciliation gaps.
+
+Section 301 本批构造的是 gross statutory exposure，不是扣除历次 exclusions 后的实际缴税额。Mexico FDI 本批保留官方保密值为空，不能把 `C` 当作 0，也不能把 country/sector 明细强行加总到全国总额。fDi Markets 明确不在本批处理范围内。
 
 ### 8.3.1 BEA U.S. MNE Batch 5: Affiliate Country-Industry Panel
 
@@ -1168,11 +1180,11 @@ Schulze and Xin (2025) 已经做了相当完整的 connector economies 经验识
 | BEA U.S. MNE Activity | 免费，但部分细表停更且个别国家-行业单元可能 suppressed | Batch 5 本地面板覆盖 2017-2023，口径为 majority-owned foreign affiliates 的 country-industry activity，包括 employment、sales、value added、capital expenditures 和 affiliate-side goods trade | 是 Mexico、Canada、Vietnam 及其他 connector countries 的 U.S.-MNE affiliate activity 桥接数据；行业解释前必须查看 suppression flags |
 | fDi Markets | 使用者已确认可得 | 2003 年以来的 greenfield FDI project-level database | extensive-margin evidence 和 Scenario C 校准的核心来源；用于说明新项目公告和 total MP adjustment 上界 proxy，而不是 Du-Wang 模型内生结果 |
 | BACI | 免费，直接下载 | HS6 年度双边贸易，当前最新版本覆盖到 2024 | 贸易绕行、connector ranking 和 Section 301 暴露的首选贸易数据 |
-| Mexico Secretaria de Economia / DataMexico FDI | 免费政府数据 | 使用者提供的目标口径为 1999-2024 Q4 的季度 FDI flows | 可验证 2021-2024 Mexico nearshoring 的方向和数量级，但不是 activity 或 plant-level measure |
-| Section 301 tariff data | 免费公开 | USTR / USITC 的 HS-level tariff lists 和生效变化 | 最干净的 policy-shock 层，用于构造 `htau` |
+| Mexico Secretaria de Economia / DataMexico FDI | 免费政府数据 | 全国季度/投资类型覆盖 1999Q1-2024Q4，来源国/行业年度覆盖 1999-2024，季度交叉明细覆盖 2006Q1-2024Q4 | 当前官方 vintage 已完整保存；保密明细为空，且 FDI 不是 activity 或 plant-level measure |
+| Section 301 tariff data | 免费公开 | 官方 List 1/2/3/4A、2014-2024 gross HS2017 exposure，以及单独的 2024 年 9 月现代 HTS 精确调税表 | 用于构造 `htau` 的 gross policy-shock 层；不是扣除 exclusions 后的 realized-duty measure |
 | USITC USMCA auto reports | 免费法定报告 | 汽车部门 rules-of-origin 证据；具体表格和定义引用前必须复核 | 对区分真实生产整合与 rerouting / shallow assembly 特别有用 |
 
-因此，实际数据瓶颈已经改变。fDi Markets 不再是约束条件。剩下两个关键约束是：第一，OECD Analytical AMNE 到 2020 为止，nearshoring 期必须用 BEA、Mexico FDI 和 fDi Markets 补；第二，BEA 国家-行业单元必须逐部门检查 suppression。
+因此，实际数据瓶颈已经改变。Mexico 官方 FDI 与 Section 301 gross policy layer 已经可以本地使用。剩余限制主要是统计口径而不是下载失败：OECD AMNE 与 BEA 的 activity 概念和时间覆盖不同；BEA 与 Mexico FDI 明细存在 suppression；FDI 金融流量本身不能证明 plant entry 或 production relocation。fDi Markets 按使用者要求不在本批处理范围内。
 
 ### Batch 4：OECD Analytical AMNE affiliate activity 与 MP shares
 

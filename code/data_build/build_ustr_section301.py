@@ -173,6 +173,9 @@ DERIVED_EVENT_SPECS = [
         "effective_date": "2019-05-10",
         "additional_tariff_rate": 0.25,
         "source_notice": "List 3 Modification to Increase Duty from 10 Percent to 25 Percent",
+        "source_url": "https://www.govinfo.gov/content/pkg/FR-2019-05-09/pdf/2019-09681.pdf",
+        "source_file": "data/raw/ustr_section301/list3/list3_007_84_FR_20459.pdf",
+        "notice_date": "2019-05-09",
     },
     {
         "base_list_id": "list4a",
@@ -180,8 +183,31 @@ DERIVED_EVENT_SPECS = [
         "effective_date": "2020-02-14",
         "additional_tariff_rate": 0.075,
         "source_notice": "List 4A Phase One Reduction from 15 Percent to 7.5 Percent",
+        "source_url": "https://www.govinfo.gov/content/pkg/FR-2020-01-22/pdf/2020-00904.pdf",
+        "source_file": "data/raw/ustr_section301/list4/list4_006_Notice_of_Modification-January_2020.pdf",
+        "notice_date": "2020-01-22",
     },
 ]
+
+# BACI V202601 publishes petroleum heading 2710 as one HS6 aggregate. The wood
+# aliases implement the 38 successor subheadings in 83 FR 49153 at HS6 level.
+HS6_BACI_ALIASES = {
+    "271012": ["271000"],
+    "271019": ["271000"],
+    "271020": ["271000"],
+    "271091": ["271000"],
+    "271099": ["271000"],
+    "440110": ["440111", "440112"],
+    "440310": ["440311", "440312"],
+    "440320": ["440321", "440322", "440323", "440324", "440325", "440326"],
+    "440392": ["440393", "440394"],
+    "440399": ["440395", "440396", "440397", "440398", "440399"],
+    "440610": ["440611", "440612"],
+    "440690": ["440691", "440692"],
+    "440710": ["440711", "440712", "440719"],
+    "440799": ["440796", "440797", "440799"],
+    "441232": ["441233", "441234"],
+}
 
 
 class LinkCollector(HTMLParser):
@@ -484,7 +510,7 @@ def hts_digits(value: Any) -> str | None:
     if not text:
         return None
     digits = re.sub(r"\D", "", text)
-    if len(digits) in {8, 10} and not digits.startswith(("98", "99")):
+    if len(digits) in {6, 8, 10} and not digits.startswith(("98", "99")):
         return digits
     return None
 
@@ -680,10 +706,20 @@ def census_status_for_path(census_path: Path, exposure_year: int) -> dict[str, A
             table = pq.read_table(census_path, columns=["year", "origin_iso3"])
             df = table.to_pandas()
             year_df = df[df["year"] == exposure_year]
-            origin_count = int(year_df["origin_iso3"].nunique()) if not year_df.empty else 0
+            origins = set(year_df["origin_iso3"].dropna().astype(str))
+            origin_count = len(origins)
             status["rows_for_exposure_year"] = int(len(year_df))
             status["origin_count_for_exposure_year"] = origin_count
-            status["full_origin_ready"] = origin_count >= FULL_ORIGIN_MIN_ORIGINS
+            status["origin_codes_for_exposure_year"] = sorted(origins)
+            status["full_origin_mode"] = (
+                "world_total_plus_china"
+                if {"WLD", "CHN"}.issubset(origins)
+                else "country_detail"
+            )
+            status["full_origin_ready"] = (
+                {"WLD", "CHN"}.issubset(origins)
+                or origin_count >= FULL_ORIGIN_MIN_ORIGINS
+            )
     except Exception as exc:
         status["read_error"] = str(exc)
     return status
@@ -706,16 +742,21 @@ def load_census_year_imports(census_path: Path, exposure_year: int) -> pd.DataFr
 
 
 def require_full_origin_census(df: pd.DataFrame, census_path: Path, exposure_year: int, purpose: str) -> None:
-    origin_count = int(df["origin_iso3"].nunique())
-    if origin_count < FULL_ORIGIN_MIN_ORIGINS:
+    origins = set(df["origin_iso3"].dropna().astype(str))
+    origin_count = len(origins)
+    has_world_total = {"WLD", "CHN"}.issubset(origins)
+    if not has_world_total and origin_count < FULL_ORIGIN_MIN_ORIGINS:
         raise RuntimeError(
             f"{census_path} has only {origin_count} origins for {exposure_year}. "
-            f"{purpose} requires full-origin Census HS10 imports, not the project comparator subset."
+            f"{purpose} requires either WLD plus CHN annual totals or at least "
+            f"{FULL_ORIGIN_MIN_ORIGINS} country origins, not the project comparator subset."
         )
 
 
 def census_universe_from_imports(df: pd.DataFrame) -> pd.DataFrame:
-    universe = df[["hts10"]].drop_duplicates().copy()
+    world = df[df["origin_iso3"] == "WLD"]
+    source = world if not world.empty else df
+    universe = source[["hts10"]].drop_duplicates().copy()
     universe["hs6"] = universe["hts10"].str.slice(0, 6)
     universe["hts8"] = universe["hts10"].str.slice(0, 8)
     return universe
@@ -728,7 +769,12 @@ def load_census_universe(census_path: Path, exposure_year: int) -> pd.DataFrame:
 
 
 def census_stats_from_imports(df: pd.DataFrame) -> pd.DataFrame:
-    total = df.groupby("hts10", dropna=False)["import_value_usd"].sum().rename("total_import_value_2017")
+    world = df[df["origin_iso3"] == "WLD"]
+    if world.empty:
+        total = df.groupby("hts10", dropna=False)["import_value_usd"].sum()
+    else:
+        total = world.groupby("hts10", dropna=False)["import_value_usd"].sum()
+    total = total.rename("total_import_value_2017")
     china = (
         df[df["origin_iso3"] == "CHN"]
         .groupby("hts10", dropna=False)["import_value_usd"]
@@ -750,38 +796,123 @@ def load_census_stats(census_path: Path, exposure_year: int) -> pd.DataFrame:
     return census_stats_from_imports(df)
 
 
-def source_rows_need_census_universe(source_rows: list[dict[str, Any]]) -> bool:
-    return any(len(str(row.get("source_code", ""))) < 10 for row in source_rows)
+def load_census_china_hts10(census_path: Path, exposure_year: int) -> pd.DataFrame:
+    df = load_census_year_imports(census_path, exposure_year)
+    china = df[df["origin_iso3"] == "CHN"].copy()
+    if china.empty:
+        raise RuntimeError(f"{census_path} has no CHN rows for {exposure_year}.")
+    china = (
+        china.groupby("hts10", as_index=False, dropna=False)["import_value_usd"]
+        .sum()
+        .rename(columns={"import_value_usd": "census_china_import_value_2017"})
+    )
+    china["hs6"] = china["hts10"].str.slice(0, 6)
+    china = china[pd.to_numeric(china["hs6"].str.slice(0, 2), errors="coerce") < 98]
+    if (china["census_china_import_value_2017"] < 0).any():
+        raise ValueError(f"{census_path} contains negative CHN import values.")
+    return china
+
+
+def load_baci_us_hs6_imports(
+    baci_path: Path,
+    exposure_year: int,
+) -> pd.DataFrame:
+    if exposure_year != 2017:
+        raise ValueError("The configured compact BACI denominator is defined for 2017 only.")
+    if not baci_path.exists():
+        raise FileNotFoundError(f"Missing BACI HS2017 denominator: {baci_path}")
+    required = {
+        "hs6",
+        "baci_total_us_import_value_2017",
+        "baci_china_import_value_2017",
+        "china_import_share_2017",
+    }
+    stats = pq.read_table(baci_path, columns=sorted(required)).to_pandas()
+    missing = required - set(stats.columns)
+    if missing:
+        raise ValueError(f"{baci_path} is missing columns: {sorted(missing)}")
+    stats["hs6"] = stats["hs6"].astype("string").str.zfill(6)
+    if len(stats) < 5_000 or stats["hs6"].duplicated().any():
+        raise ValueError(f"{baci_path} is not a complete unique HS2017 product universe.")
+    invalid = (
+        (stats["baci_total_us_import_value_2017"] < 0)
+        | (stats["baci_china_import_value_2017"] < 0)
+        | ~stats["china_import_share_2017"].between(0, 1)
+    )
+    if invalid.any():
+        raise ValueError(f"{baci_path} produced invalid 2017 USA import shares.")
+    return stats
+
+
+def load_usitc_hts_universe(path: Path) -> pd.DataFrame:
+    if not path.exists():
+        raise FileNotFoundError(
+            f"Missing USITC HTS universe: {path}. Download the configured 2017 HTS CSV first."
+        )
+    frame = pd.read_csv(path, dtype="string")
+    if "HTS Number" not in frame.columns:
+        raise ValueError(f"{path} is missing the HTS Number column.")
+    raw_codes = frame["HTS Number"].fillna("").map(hts_digits)
+    ten_digit = {
+        code
+        for code in raw_codes
+        if isinstance(code, str) and len(code) == 10 and int(code[:2]) < 98
+    }
+    eight_digit = {
+        code
+        for code in raw_codes
+        if isinstance(code, str) and len(code) == 8 and int(code[:2]) < 98
+    }
+    # Some statistical lines terminate at HTS8 in the official schedule. Census
+    # represents those commodities in its 10-character field with trailing 00.
+    terminal_eight_digit = {
+        code for code in eight_digit if not any(item.startswith(code) for item in ten_digit)
+    }
+    codes = sorted(ten_digit | {f"{code}00" for code in terminal_eight_digit})
+    if len(codes) < 15_000:
+        raise ValueError(f"{path} has only {len(codes)} product-level HTS10 codes.")
+    universe = pd.DataFrame({"hts10": pd.Series(codes, dtype="string")})
+    universe["hs6"] = universe["hts10"].str.slice(0, 6)
+    return universe
+
+
+def load_usitc_hts_universes(paths: dict[str, list[Path]]) -> dict[str, pd.DataFrame]:
+    if not paths:
+        raise ValueError("No USITC HTS universes were configured.")
+    universes: dict[str, pd.DataFrame] = {}
+    for list_id, list_paths in paths.items():
+        frames = [load_usitc_hts_universe(path) for path in list_paths]
+        universes[list_id] = pd.concat(frames, ignore_index=True).drop_duplicates("hts10")
+    return universes
 
 
 def expand_to_hts10(
     source_rows: list[dict[str, Any]],
-    census_universe: pd.DataFrame | None,
+    hts_universes: dict[str, pd.DataFrame],
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
-    stats_by_hts8 = {} if census_universe is None else {
-        hts8: frame[["hts10", "hs6"]].drop_duplicates()
-        for hts8, frame in census_universe.groupby("hts8", dropna=False)
-    }
     expanded: list[dict[str, Any]] = []
     audit: list[dict[str, Any]] = []
     for row in source_rows:
         code = row["source_code"]
+        list_id = str(row["list_id"])
+        hts_universe = hts_universes.get(list_id)
+        if hts_universe is None:
+            hts_universe = hts_universes.get("default")
+        if hts_universe is None:
+            raise RuntimeError(f"No USITC HTS universe configured for {list_id}.")
         if len(code) == 10:
-            if census_universe is None:
-                matches = pd.DataFrame([{"hts10": code, "hs6": code[:6]}])
-            else:
-                matches = census_universe.loc[census_universe["hts10"] == code, ["hts10", "hs6"]].drop_duplicates()
+            matches = hts_universe.loc[
+                hts_universe["hts10"] == code, ["hts10", "hs6"]
+            ].drop_duplicates()
             if matches.empty:
-                audit.append({**row, "issue": "hts10_not_in_2017_census_universe"})
+                audit.append({**row, "issue": "hts10_not_in_configured_hts_universe"})
                 continue
         else:
-            if census_universe is None:
-                raise RuntimeError(
-                    "HTS8 source codes require a full-origin 2017 Census HS10 universe for expansion."
-                )
-            matches = stats_by_hts8.get(code)
-            if matches is None or matches.empty:
-                audit.append({**row, "issue": "hts8_not_expanded_in_2017_census_universe"})
+            matches = hts_universe.loc[
+                hts_universe["hts10"].str.startswith(code), ["hts10", "hs6"]
+            ].drop_duplicates()
+            if matches.empty:
+                audit.append({**row, "issue": "source_prefix_not_expanded_in_hts_universe"})
                 continue
         for match in matches.itertuples(index=False):
             expanded.append(
@@ -809,9 +940,9 @@ def add_derived_events(panel: pd.DataFrame) -> pd.DataFrame:
         base["effective_date"] = spec["effective_date"]
         base["additional_tariff_rate"] = spec["additional_tariff_rate"]
         base["source_notice"] = spec["source_notice"]
-        base["source_url"] = "policy_schedule"
-        base["source_file"] = "policy_schedule"
-        base["notice_date"] = pd.NA
+        base["source_url"] = spec["source_url"]
+        base["source_file"] = spec["source_file"]
+        base["notice_date"] = spec["notice_date"]
         base["rate_adjustment_applied"] = True
         frames.append(base)
     return pd.concat(frames, ignore_index=True)
@@ -858,6 +989,13 @@ def exposure_schema() -> pa.Schema:
 def validate_panel(panel: pd.DataFrame) -> None:
     if panel.empty:
         raise RuntimeError("No HTS10 tariff rows were generated from official sources.")
+    key = ["hts10", "list_id", "effective_date"]
+    if panel.duplicated(key).any():
+        sample = panel.loc[panel.duplicated(key, keep=False), key + ["source_code"]].head(20)
+        raise ValueError(
+            "section301_hts10_list_panel has duplicate hts10/list/date keys: "
+            f"{sample.to_dict('records')}"
+        )
     if set(panel["hts10"].astype("string").str.len().dropna().unique()) != {10}:
         raise ValueError("section301_hts10_list_panel has non-10-digit hts10 values.")
     if set(panel["hs6"].astype("string").str.len().dropna().unique()) != {6}:
@@ -914,19 +1052,66 @@ def annual_weighted_rate(events: pd.DataFrame, year: int) -> tuple[float, str]:
     return weighted, ";".join(active_lists)
 
 
-def build_exposure(panel: pd.DataFrame, census_stats: pd.DataFrame, years: list[int]) -> pd.DataFrame:
+def build_hts_year_rates(panel: pd.DataFrame, years: list[int]) -> pd.DataFrame:
     non_exclusions = panel[~panel["exclusion_flag"]].copy()
-    hts_rows: list[dict[str, Any]] = []
-    for hts10, group in non_exclusions.groupby("hts10", dropna=False):
-        for year in years:
-            rate, list_id = annual_weighted_rate(group, year)
-            hts_rows.append({"hts10": hts10, "year": year, "tariff_rate": rate, "list_id": list_id})
-    hts_year = pd.DataFrame(hts_rows)
+    non_exclusions["effective_date"] = pd.to_datetime(non_exclusions["effective_date"])
+    non_exclusions = non_exclusions.sort_values(["hts10", "effective_date"])
+    non_exclusions["next_effective_date"] = non_exclusions.groupby("hts10")[
+        "effective_date"
+    ].shift(-1)
+    universe = non_exclusions[["hts10", "hs6"]].drop_duplicates()
+    frames: list[pd.DataFrame] = []
+
+    for year in years:
+        year_start = pd.Timestamp(year=year, month=1, day=1)
+        year_end = pd.Timestamp(year=year + 1, month=1, day=1)
+        active = non_exclusions[
+            (non_exclusions["effective_date"] < year_end)
+            & (
+                non_exclusions["next_effective_date"].isna()
+                | (non_exclusions["next_effective_date"] > year_start)
+            )
+        ].copy()
+        active["interval_start"] = active["effective_date"].clip(lower=year_start)
+        active["interval_end"] = active["next_effective_date"].fillna(year_end).clip(
+            upper=year_end
+        )
+        active["active_days"] = (
+            active["interval_end"] - active["interval_start"]
+        ).dt.days.clip(lower=0)
+        active = active[active["active_days"] > 0]
+        active["rate_days"] = active["additional_tariff_rate"] * active["active_days"]
+        days_in_year = (year_end - year_start).days
+        rates = (
+            active.groupby("hts10", as_index=False)["rate_days"]
+            .sum()
+            .assign(tariff_rate=lambda frame: frame["rate_days"] / days_in_year)
+            .drop(columns="rate_days")
+        )
+        positive = active[active["additional_tariff_rate"] > 0]
+        list_ids = (
+            positive.groupby("hts10")["list_id"]
+            .agg(lambda values: ";".join(sorted(set(values.astype(str)))))
+            .rename("list_id")
+            .reset_index()
+        )
+        year_frame = universe.merge(rates, on="hts10", how="left").merge(
+            list_ids, on="hts10", how="left"
+        )
+        year_frame["tariff_rate"] = year_frame["tariff_rate"].fillna(0.0)
+        year_frame["list_id"] = year_frame["list_id"].fillna("")
+        year_frame["year"] = year
+        frames.append(year_frame)
+
+    return pd.concat(frames, ignore_index=True)
+
+
+def build_exposure(panel: pd.DataFrame, census_stats: pd.DataFrame, years: list[int]) -> pd.DataFrame:
+    hts_year = build_hts_year_rates(panel, years)
     hts_year = hts_year.merge(
         census_stats[
             [
                 "hts10",
-                "hs6",
                 "total_import_value_2017",
                 "china_import_share_2017",
             ]
@@ -968,14 +1153,153 @@ def build_exposure(panel: pd.DataFrame, census_stats: pd.DataFrame, years: list[
     return exposure
 
 
+def build_hybrid_exposure(
+    panel: pd.DataFrame,
+    census_china: pd.DataFrame,
+    baci_stats: pd.DataFrame,
+    years: list[int],
+) -> pd.DataFrame:
+    hts_year = build_hts_year_rates(panel, years)
+    hts_year["hs6_source"] = hts_year["hs6"]
+    hts_year["hs6"] = hts_year["hs6"].map(
+        lambda code: HS6_BACI_ALIASES.get(str(code), [str(code)])
+    )
+    hts_year = hts_year.explode("hs6", ignore_index=True)
+    census_china = census_china.copy()
+    panel_hs6 = sorted(hts_year["hs6"].unique())
+    rows: list[dict[str, Any]] = []
+
+    for year in years:
+        rates = hts_year[hts_year["year"] == year].copy()
+        china_rates = census_china.merge(
+            rates[["hts10", "hs6", "tariff_rate"]].rename(columns={"hs6": "policy_hs6"}),
+            on="hts10",
+            how="left",
+        )
+        china_rates["hs6"] = china_rates["policy_hs6"].fillna(china_rates["hs6"])
+        china_rates["tariff_rate"] = china_rates["tariff_rate"].fillna(0.0)
+        china_rates["weighted_rate_value"] = (
+            china_rates["census_china_import_value_2017"] * china_rates["tariff_rate"]
+        )
+        weighted = china_rates.groupby("hs6", as_index=False).agg(
+            census_china_import_value_2017=("census_china_import_value_2017", "sum"),
+            weighted_rate_value=("weighted_rate_value", "sum"),
+        )
+        weighted["tariff_rate"] = (
+            weighted["weighted_rate_value"]
+            / weighted["census_china_import_value_2017"]
+        )
+
+        legal = rates.groupby("hs6", as_index=False).agg(
+            legal_rate_mean=("tariff_rate", "mean"),
+            tariffed_product=("tariff_rate", lambda values: bool((values > 0).any())),
+            list_id=(
+                "list_id",
+                lambda values: ";".join(
+                    sorted({item for value in values for item in str(value).split(";") if item})
+                ),
+            ),
+        )
+        year_frame = pd.DataFrame({"hs6": panel_hs6}).merge(
+            legal, on="hs6", how="left"
+        )
+        year_frame = year_frame.merge(
+            weighted[["hs6", "census_china_import_value_2017", "tariff_rate"]],
+            on="hs6",
+            how="left",
+        )
+        no_china_detail = (
+            year_frame["census_china_import_value_2017"].isna()
+            | (year_frame["census_china_import_value_2017"] <= 0)
+        )
+        year_frame.loc[no_china_detail, "tariff_rate"] = year_frame.loc[
+            no_china_detail, "legal_rate_mean"
+        ]
+        year_frame = year_frame.merge(
+            baci_stats[["hs6", "china_import_share_2017"]],
+            on="hs6",
+            how="left",
+        )
+        missing_baci = year_frame["china_import_share_2017"].isna()
+        if missing_baci.any():
+            missing_codes = year_frame.loc[missing_baci, "hs6"].tolist()
+            raise ValueError(
+                "BACI HS2017 has no USA import denominator for Section 301 HS6 codes: "
+                f"{missing_codes[:20]}"
+            )
+        year_frame["year"] = year
+        year_frame["origin_iso3"] = "CHN"
+        year_frame["destination_iso3"] = "USA"
+        year_frame["tariff_exposure"] = (
+            year_frame["china_import_share_2017"] * year_frame["tariff_rate"]
+        )
+        rows.extend(year_frame[EXPOSURE_COLUMNS].to_dict("records"))
+
+    return pd.DataFrame(rows, columns=EXPOSURE_COLUMNS)
+
+
+def build_configured_exposure(
+    panel: pd.DataFrame,
+    years: list[int],
+    census_path: Path,
+    china_census_path: Path,
+    baci_path: Path,
+    exposure_year: int,
+) -> tuple[pd.DataFrame, str, dict[str, Any]]:
+    full_status = census_status_for_path(census_path, exposure_year)
+    if full_status.get("full_origin_ready"):
+        census_stats = load_census_stats(census_path, exposure_year)
+        return build_exposure(panel, census_stats, years), "full_census_hs10", full_status
+
+    census_china = load_census_china_hts10(china_census_path, exposure_year)
+    baci_stats = load_baci_us_hs6_imports(baci_path, exposure_year)
+    exposure = build_hybrid_exposure(panel, census_china, baci_stats, years)
+    details = {
+        "preferred_full_census": full_status,
+        "china_hs10_path": str(china_census_path),
+        "baci_hs6_path": str(baci_path),
+        "census_china_import_total_2017": float(
+            census_china["census_china_import_value_2017"].sum()
+        ),
+        "baci_china_import_total_2017": float(
+            baci_stats["baci_china_import_value_2017"].sum()
+        ),
+        "baci_total_us_imports_2017": float(
+            baci_stats["baci_total_us_import_value_2017"].sum()
+        ),
+        "hs6_baci_aliases": HS6_BACI_ALIASES,
+        "hs6_baci_alias_basis": (
+            "CEPII BACI 2710 aggregate plus the chapter 44 successor subheadings "
+            "specified in 83 FR 49153"
+        ),
+        "method": (
+            "BACI HS6 China/total-USA import share multiplied by a Census-China-HTS10-"
+            "import-weighted statutory tariff rate within HS6; all product codes use HS2017"
+        ),
+    }
+    return exposure, "baci_hs2017_with_census_china_hts10_weights", details
+
+
 def validate_exposure(exposure: pd.DataFrame) -> None:
     if exposure.empty:
         raise RuntimeError("No HS6 exposure rows were generated.")
-    if not (
-        exposure["tariffed_product"]
-        == (exposure["tariff_rate"].fillna(0) > 0)
-    ).all():
-        raise ValueError("tariffed_product must equal tariff_rate > 0.")
+    if exposure.duplicated(["hs6", "year"]).any():
+        raise ValueError("section301_hs6_exposure has duplicate hs6/year keys.")
+    if not exposure["china_import_share_2017"].between(0, 1).all():
+        raise ValueError("china_import_share_2017 must be in [0, 1].")
+    if not exposure["tariff_rate"].between(0, 1).all():
+        raise ValueError("tariff_rate must be in [0, 1].")
+    tariff_flag_mismatch = (~exposure["tariffed_product"]) & (
+        exposure["tariff_rate"].fillna(0) > 0
+    )
+    if tariff_flag_mismatch.any():
+        sample = exposure.loc[
+            tariff_flag_mismatch, ["year", "hs6", "tariffed_product", "tariff_rate"]
+        ].head(20)
+        raise ValueError(
+            "A positive tariff_rate requires tariffed_product=true. Sample mismatches: "
+            f"{sample.to_dict('records')}"
+        )
     computed = exposure["china_import_share_2017"] * exposure["tariff_rate"]
     mismatch = (computed - exposure["tariff_exposure"]).abs() > 1e-12
     if mismatch.fillna(False).any():
@@ -1014,6 +1338,40 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
     source_pages = source_pages_from_config(data_versions)
     years = configured_years(time_windows)
     census_path = (project_root / batch_usage.get("census_hs10_imports", "data/interim/trade/us_imports_hs10_monthly.parquet")).resolve()
+    china_census_path = (
+        project_root
+        / batch_usage.get(
+            "china_hs10_imports",
+            "data/interim/trade/us_imports_hs10_monthly.parquet",
+        )
+    ).resolve()
+    baci_path = (
+        project_root
+        / batch_usage.get(
+            "baci_hs6_imports",
+            "data/interim/trade/baci_hs17_us_imports_2017.parquet",
+        )
+    ).resolve()
+    configured_universes = batch_usage.get("hts10_universes")
+    if isinstance(configured_universes, dict) and configured_universes:
+        hts_universe_paths = {}
+        for list_id, configured_paths in configured_universes.items():
+            relative_paths = configured_paths if isinstance(configured_paths, list) else [configured_paths]
+            hts_universe_paths[str(list_id)] = [
+                (project_root / relative_path).resolve() for relative_path in relative_paths
+            ]
+    else:
+        hts_universe_paths = {
+            "default": [
+                (
+                    project_root
+                    / batch_usage.get(
+                        "hts10_universe",
+                        "data/raw/usitc_hts/2017/hts_2017_preliminary_csv.csv",
+                    )
+                ).resolve()
+            ]
+        }
     exposure_year = int(batch_usage.get("exposure_year", 2017))
 
     output_paths = {
@@ -1033,8 +1391,24 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "source_pages": source_pages,
             "years": years,
             "exposure_year": exposure_year,
+            "hts10_universes": {
+                list_id: [
+                    {"path": str(path), "exists": path.exists()} for path in paths
+                ]
+                for list_id, paths in hts_universe_paths.items()
+            },
             "outputs": {key: str(value) for key, value in output_paths.items()},
             "census_status": census_status,
+            "hybrid_exposure_inputs": {
+                "china_hs10_imports": {
+                    "path": str(china_census_path),
+                    "exists": china_census_path.exists(),
+                },
+                "baci_hs6_imports": {
+                    "path": str(baci_path),
+                    "exists": baci_path.exists(),
+                },
+            },
         }
         return summary
 
@@ -1045,8 +1419,14 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             )
         panel = pq.read_table(output_paths["hts10_list_panel"]).to_pandas()
         validate_panel(panel)
-        census_stats = load_census_stats(census_path, exposure_year)
-        exposure = build_exposure(panel, census_stats, years)
+        exposure, exposure_input_mode, exposure_input_details = build_configured_exposure(
+            panel,
+            years,
+            census_path,
+            china_census_path,
+            baci_path,
+            exposure_year,
+        )
         validate_exposure(exposure)
         output_dir.mkdir(parents=True, exist_ok=True)
         write_exposure(exposure, output_paths["hs6_exposure"], args.overwrite)
@@ -1056,8 +1436,15 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "mode": "exposure_only",
             "panel_rows": int(len(panel)),
             "exposure_rows": int(len(exposure)),
+            "exposure_input_mode": exposure_input_mode,
+            "exposure_input_details": exposure_input_details,
             "outputs": {key: str(value) for key, value in output_paths.items()},
             "census_status": census_status_for_path(census_path, exposure_year),
+            "schedule_scope": {
+                "gross_statutory_initial_actions": True,
+                "historical_exclusions_applied": False,
+                "review_2024_in_hs2017_exposure": False,
+            },
         }
         output_paths["summary"].write_text(json.dumps(summary, indent=2), encoding="utf-8")
         return summary
@@ -1103,8 +1490,8 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             f"{(raw_dirs['metadata'] / 'section301_notice_codes.csv').as_posix()} or inspect the downloaded notices."
         )
 
-    census_universe = load_census_universe(census_path, exposure_year) if source_rows_need_census_universe(source_rows) else None
-    expanded, expansion_audit = expand_to_hts10(source_rows, census_universe)
+    hts_universes = load_usitc_hts_universes(hts_universe_paths)
+    expanded, expansion_audit = expand_to_hts10(source_rows, hts_universes)
     output_dir.mkdir(parents=True, exist_ok=True)
     if not expansion_audit.empty:
         expansion_audit.to_csv(output_paths["audit"], index=False)
@@ -1121,9 +1508,17 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
 
     exposure = pd.DataFrame(columns=EXPOSURE_COLUMNS)
     exposure_status = "skipped_by_panel_only"
+    exposure_input_mode = "not_requested"
+    exposure_input_details: dict[str, Any] = {}
     if not args.panel_only:
-        census_stats = load_census_stats(census_path, exposure_year)
-        exposure = build_exposure(panel, census_stats, years)
+        exposure, exposure_input_mode, exposure_input_details = build_configured_exposure(
+            panel,
+            years,
+            census_path,
+            china_census_path,
+            baci_path,
+            exposure_year,
+        )
         validate_exposure(exposure)
         write_exposure(exposure, output_paths["hs6_exposure"], args.overwrite)
         exposure_status = "written"
@@ -1145,8 +1540,19 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
         "panel_rows": int(len(panel)),
         "exposure_rows": int(len(exposure)),
         "exposure_status": exposure_status,
+        "exposure_input_mode": exposure_input_mode,
+        "exposure_input_details": exposure_input_details,
+        "hts10_universes": {
+            list_id: [str(path) for path in paths]
+            for list_id, paths in hts_universe_paths.items()
+        },
         "outputs": {key: str(value) for key, value in output_paths.items()},
         "census_status": census_status_for_path(census_path, exposure_year),
+        "schedule_scope": {
+            "gross_statutory_initial_actions": True,
+            "historical_exclusions_applied": False,
+            "review_2024_in_hs2017_exposure": False,
+        },
     }
     if extraction_audit:
         summary["outputs"]["extraction_audit"] = str(extraction_audit_path)
@@ -1160,7 +1566,11 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--download-only", action="store_true", help="Archive official source files but do not write parquet outputs.")
     parser.add_argument("--process-only", action="store_true", help="Process existing raw archive without downloading.")
     parser.add_argument("--panel-only", action="store_true", help="Write only the HTS10 list panel and skip HS6 exposure.")
-    parser.add_argument("--exposure-only", action="store_true", help="Build HS6 exposure from an existing HTS10 panel and full-origin Census input.")
+    parser.add_argument(
+        "--exposure-only",
+        action="store_true",
+        help="Build HS6 exposure from an existing HTS10 panel and the configured Census/BACI inputs.",
+    )
     parser.add_argument("--overwrite", action="store_true", help="Replace generated interim outputs. Raw downloads are never overwritten.")
     parser.add_argument("--check-config", action="store_true", help="Print planned paths and source URLs without network or processing.")
     parser.add_argument(

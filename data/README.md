@@ -6,13 +6,14 @@ This directory documents the data pipeline. Large raw and generated data files a
 
 | Source | Intended use | Status |
 |---|---|---|
-| OECD ICIO | Country-sector IO structure, final demand, value added, gross output | Not downloaded in this setup step. Source: https://www.oecd.org/sti/ind/inter-country-input-output-tables.htm |
-| OECD AMNE | Foreign affiliate activity and Scenario B MP-intensive reallocation | Not downloaded in this setup step. Source: https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html |
+| OECD ICIO | Country-sector IO structure, final demand, value added, gross output | Regular and Extended 2025-edition raw archives are complete through 2022 under `data/raw/oecd_icio/`. Source: https://www.oecd.org/en/data/datasets/inter-country-input-output-tables.html |
+| OECD AMNE | Foreign affiliate activity and Scenario B MP-intensive reallocation | Raw Analytical AMNE files are archived under `data/raw/oecd_amne/`; the affiliate-activity and MP-share outputs are under `data/interim/mne/`. Source: https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html |
 | BEA U.S. MNE MOFA country-industry tables | U.S. MNE affiliate activity by host country and affiliate industry; Scenario B bridge and Scenario C support when combined with broader production evidence | Archived locally under `data/raw/bea_usdia_mofas_2025-08/` (ignored by git). Mexico x Transportation equipment verified for 2020-2022; see `data/bea_mne_mexico_transportation_equipment_2020_2022.md`, `data/bea_usdia_mofas_2025_08_archive_manifest.md`, and `data/bea_mne_mofas_mexico_suppression_audit_2020_2022.md`. Source: https://www.bea.gov/international/di1usdop |
 | BEA Direct Investment by Country and Industry | FDI position, flows, and income by country and selected industry; connector-country investment validation and Scenario C / `hgamma` support | Batch 6 archives both `U.S. direct investment abroad` and `foreign direct investment in the U.S.` country-by-industry files under `data/raw/bea_fdi/direct_investment_country_industry/` and writes `data/interim/fdi/bea_direct_investment_country_industry.parquet`. Source: https://www.bea.gov/data/intl-trade-investment/direct-investment-country-and-industry |
-| fDi Markets | Model-external extensive-margin evidence and Scenario C upper-bound discipline | User has confirmed access; project-level exports still need to be saved with provenance. |
-| Mexico FDI data | Post-2020 FDI-flow validation and Scenario C support | Source and export version still pending. |
-| Comtrade or BACI | Bilateral trade rerouting and connector ranking | Source choice pending data-access comparison. |
+| fDi Markets | Model-external extensive-margin evidence and Scenario C upper-bound discipline | Explicitly excluded from the current batch by user instruction; no download or processing was attempted. |
+| Mexico FDI data | Post-2020 FDI-flow validation and Scenario C support | Official Secretaría de Economía data are archived and normalized: national coverage is 1999Q1-2024Q4 and detailed cross-tables cover 2006Q1-2024Q4. See `data/mexico_fdi_usage_note.md`. |
+| BACI | Bilateral trade rerouting, connector ranking, and the Section 301 denominator | The main project HS2012 panel is retained; a separate CEPII BACI HS2017 V202601 archive and 2017 U.S.-import denominator were added for Section 301. |
+| USTR Section 301 | Gross statutory China tariff exposure and `htau` discipline | Official base-list HTS10 panel and 2014-2024 HS2017 exposure are built; exact September 2024 modern-HTS increases are stored separately. See `data/section301_usage_note.md`. |
 | Reference replication data | Conceptual model interface only | Kept under `reference/`, not copied here. |
 
 ## Reproducible BEA MOFA Check
@@ -102,6 +103,31 @@ Every raw data batch should be accompanied by a text or Markdown note with:
 - checksum when practical.
 
 Use `docs/data_source_log.md` as the running registry for these records.
+
+## Section 301 Policy Data
+
+Regenerate the official base-list code table, the dedicated BACI HS2017 denominator, the main exposure outputs, and the separate 2024 review table with:
+
+```powershell
+python code\data_build\build_ustr_section301_notice_codes.py --project-root . --overwrite
+python code\data_build\build_baci_hs17_us_imports_2017.py --project-root . --download --overwrite
+python code\data_build\build_ustr_section301.py --project-root . --process-only --overwrite
+python code\data_build\build_ustr_section301_2024_review_codes.py --project-root . --overwrite
+```
+
+The main output is a gross statutory exposure measure. It applies the four initial actions and the List 3/List 4A rate changes, but it does not claim to reconstruct duties collected after product exclusions. The September 2024 increases use modern HTS codes and remain in a separate exact-code table. Full sources, hashes, row counts, formula definitions, and limitations are in `data/section301_usage_note.md`.
+
+## Mexico Official FDI
+
+Regenerate the official Secretaría de Economía archive and nine normalized outputs with:
+
+```powershell
+python code\data_build\download_build_mexico_fdi.py --project-root . --overwrite
+```
+
+The national quarterly total and investment-type panels cover 1999Q1-2024Q4. Source-country and sector annual panels cover 1999-2024, while state/country/sector/type quarterly cross-tables cover 2006Q1-2024Q4. Official `C` cells remain null with `confidential_flag=true`; `Total general` rows are flagged to prevent double counting. See `data/mexico_fdi_usage_note.md` for fields, coverage, reconciliation gaps, and interpretation.
+
+`fDi Markets` is not part of this batch.
 
 ## Scenario-Mapping Rule
 

@@ -47,6 +47,15 @@ baci:
     hs6_transform: preserve k as a six-character string
     country_transform: map numeric i and j through country_codes_V202601.csv to ISO3
     source_file_transform: set source_file to the raw CSV filename
+  section301_denominator:
+    version: BACI_HS17_V202601
+    source_url: https://www.cepii.fr/DATA_DOWNLOAD/baci/data/BACI_HS17_V202601.zip
+    raw_dir: data/raw/BACI_HS17_V202601/
+    year: 2017
+    nomenclature: HS2017
+    output: data/interim/trade/baci_hs17_us_imports_2017.parquet
+    value_transform: trade_value_usd = v * 1000
+    purpose: China and total USA import shares on the same HS2017 basis as the Section 301 pre-policy tariff codes
 
 oecd_icio:
   source: OECD ICIO 2025 edition
@@ -124,7 +133,7 @@ us_census:
 ustr_section301:
   source: USTR Section 301 China tariff actions and official exclusion/four-year review notices
   raw_dir: data/raw/ustr_section301/
-  status: raw_archive_downloaded_with_failed_legacy_links; processing_blocked_until_official_code_table_and_full_origin_census
+  status: official_base_list_code_table_built; hts10_panel_ready; hs6_exposure_uses_baci_hs2017_and_census_china_weights; exact_2024_review_table_built_separately
   source_rule: official USTR, Federal Register/govinfo, and CBP sources only for the first version
   source_pages:
     master: https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions
@@ -145,14 +154,64 @@ ustr_section301:
     metadata: data/raw/ustr_section301/metadata/
   batch2_usage:
     output_dir: data/interim/policy/
-    census_hs10_imports: data/interim/trade/us_imports_hs10_monthly.parquet
+    notice_code_table: data/raw/ustr_section301/metadata/section301_notice_codes.csv
+    notice_code_audit: data/raw/ustr_section301/metadata/section301_notice_code_build_audit.json
+    hts10_universes:
+      list1: data/raw/usitc_hts/2018/hts_2018_revision_8.csv
+      list2: data/raw/usitc_hts/2018/hts_2018_revision_10_data.csv
+      # List 3 keeps a 2017 fallback only for the 14 Chapter 44 subheadings
+      # replaced on 2018-10-01; this preserves the pre-policy exposure basis.
+      list3:
+        - data/raw/usitc_hts/2018/hts_2018_revision_12_data.csv
+        - data/raw/usitc_hts/2017/hts_2017_preliminary_csv.csv
+      list4a: data/raw/usitc_hts/2019/hts_2019_revision_12_data.csv
+    census_hs10_imports: data/interim/trade/us_imports_hs10_2017_full_origin.parquet
+    china_hs10_imports: data/interim/trade/us_imports_hs10_monthly.parquet
+    baci_hs6_imports: data/interim/trade/baci_hs17_us_imports_2017.parquet
+    exposure_input_priority:
+      - full_census_hs10
+      - baci_hs2017_with_census_china_hts10_weights
     exposure_year: 2017
     origin_iso3: CHN
     destination_iso3: USA
     outputs:
       hts10_list_panel: data/interim/policy/section301_hts10_list_panel.parquet
       hs6_exposure: data/interim/policy/section301_hs6_exposure.parquet
+      review_2024_modern_hts: data/interim/policy/section301_2024_review_codes.parquet
+    review_2024_usage_rule: keep separate from the HS2017 exposure panel unless a scope-aware HS2022-to-HS2017 treatment is explicitly applied
     exposure_formula: tariff_exposure = china_import_share_2017 * tariff_rate
+
+mexico_fdi:
+  source: Secretaria de Economia, datos.gob.mx and Data Mexico
+  status: downloaded_normalized_validated
+  snapshot_date: "2026-07-18"
+  portal_dataset_page: https://www.datos.gob.mx/dataset/inversion_extranjera_directa
+  api_url: https://www.economia.gob.mx/datamexico/api/data
+  raw_dir: data/raw/mexico_fdi/
+  output_dir: data/interim/fdi/
+  coverage:
+    national_quarterly: 1999Q1-2024Q4
+    national_investment_type_quarterly: 1999Q1-2024Q4
+    parent_country_annual: 1999-2024
+    sector_annual: 1999-2024
+    detailed_cross_tables: 2006Q1-2024Q4
+  confidentiality_rule: C is retained as null with confidential_flag=true; disaggregated tables are not additive to national totals
+  aggregate_country_rule: exclude parent_country_total_flag=true before summing individual parent countries
+  outputs:
+    national_quarterly: data/interim/fdi/mexico_fdi_national_quarterly.parquet
+    national_investment_type_quarterly: data/interim/fdi/mexico_fdi_national_investment_type_quarterly.parquet
+    parent_country_annual: data/interim/fdi/mexico_fdi_parent_country_annual.parquet
+    sector_annual: data/interim/fdi/mexico_fdi_sector_annual.parquet
+    country_sector_quarterly: data/interim/fdi/mexico_fdi_country_sector_quarterly.parquet
+    country_investment_type_quarterly: data/interim/fdi/mexico_fdi_country_investment_type_quarterly.parquet
+    state_country_quarterly: data/interim/fdi/mexico_fdi_state_country_quarterly.parquet
+    state_sector_quarterly: data/interim/fdi/mexico_fdi_state_sector_quarterly.parquet
+    state_investment_type_quarterly: data/interim/fdi/mexico_fdi_state_investment_type_quarterly.parquet
+    summary: data/interim/fdi/mexico_fdi_build_summary.json
+
+fdi_markets:
+  status: excluded_from_current_batch_by_user_instruction
+  processing_rule: do_not_download_or_process_in_this_batch
 
 bea_mne:
   source: BEA Activities of U.S. MNEs

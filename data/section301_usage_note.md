@@ -1,195 +1,142 @@
 # USTR Section 301 Tariff Data Usage Note
 
-## Purpose
+## Purpose and status
 
-The Section 301 tariff layer is the policy-shock source for product-level tariff exposure, affected-product flags, and the direct `htau` shock discipline.
+This batch builds a reproducible **gross statutory Section 301 exposure** measure for the China-to-United States trade link. It is suitable for affected-product flags, product-level policy exposure, and first-version `htau` discipline.
 
-The first version uses official sources only:
+The build was completed and validated on 2026-07-18. It does not use PIIE/Bown or another cleaned third-party tariff file. Official USTR/Federal Register notices define the actions, official USITC HTS files define the action-date product universes, U.S. Census imports provide China HTS10 weights, and CEPII BACI HS2017 provides China/total-U.S. HS6 import shares.
 
-- USTR China Section 301 tariff action pages;
-- Federal Register or govinfo notices linked from USTR;
-- CBP guidance linked from USTR.
+This output is not a customs-entry reconstruction of duties collected. Historical product-description exclusions are archived but are not applied to the gross statutory exposure panel.
 
-PIIE/Bown or other cleaned third-party files are not used in the first version.
+## Policy scope
 
-## Local Raw Layout
+The main HS2017 panel includes:
 
-Raw source files are archived under:
+- List 1, effective 2018-07-06 at 25 percent;
+- List 2, effective 2018-08-23 at 25 percent;
+- List 3, effective 2018-09-24 at 10 percent and 25 percent from 2019-05-10;
+- List 4A, effective 2019-09-01 at 15 percent and 7.5 percent from 2020-02-14.
 
-```text
-data/raw/ustr_section301/
-  list1/
-  list2/
-  list3/
-  list4/
-  exclusions/
-    machinery/
-  four_year_review/
-  metadata/
-```
+List 4B is not treated as tariffed because its duty was suspended before its scheduled effective date. Exact-code and product-description exclusions remain in the official raw archive, but they are not used to zero whole HTS10 lines in this gross schedule.
 
-The generated raw-source manifest is:
+The September 2024 four-year-review changes use the modern HTS nomenclature and are stored separately:
 
 ```text
-data/raw/ustr_section301/metadata/section301_source_manifest.json
+data/interim/policy/section301_2024_review_codes.parquet
 ```
 
-Raw files and generated manifests remain ignored by git.
+That table contains 367 affected codes: 355 at 25 percent, two at 50 percent, and ten at 100 percent, effective 2024-09-27. Two rows have description-level exceptions and are flagged `whole_code_applicable=false`. Do not merge this table to the 2017 exposure panel by taking only the first six digits; doing so would incorrectly assign modern statistical breakouts to older HS2017 products.
 
-## Current Status
+## Official base-list construction
 
-As of 2026-07-10, the raw archive has been downloaded, but interim policy outputs have not been generated. The detailed pause record is:
-
-```text
-data/section301_status_2026_07_10.md
-```
-
-Processing is paused because the verified official code table is not complete and the available Census HS10 parquet is a 15-origin comparator subset rather than a full-origin 2017 denominator.
-
-## Build Commands
-
-Install dependencies:
+The deterministic official-code build is:
 
 ```powershell
-python -m pip install -r code\data_build\requirements-ustr-section301.txt
+python code\data_build\build_ustr_section301_notice_codes.py --project-root . --overwrite
 ```
 
-Check configuration without network calls:
-
-```powershell
-python code\data_build\build_ustr_section301.py --check-config
-```
-
-Download official source pages and linked official notices:
-
-```powershell
-python code\data_build\build_ustr_section301.py --download-only
-```
-
-After a production download, inspect the manifest status counts. A manifest with `download_failed` entries is auditable, but it is not a complete raw archive:
-
-```powershell
-$m = Get-Content -Raw -Encoding UTF8 data\raw\ustr_section301\metadata\section301_source_manifest.json | ConvertFrom-Json
-$m | Group-Object status | Select-Object Name,Count
-```
-
-Diagnostic capped downloads are allowed only to test connectivity and link parsing:
-
-```powershell
-python code\data_build\build_ustr_section301.py --download-only --max-links-per-page 3
-```
-
-Capped downloads write `section301_source_manifest_diagnostic.json`, not the production manifest. Do not use a diagnostic manifest as a data source.
-
-Process an existing raw archive:
-
-```powershell
-python code\data_build\build_ustr_section301.py --process-only --overwrite
-```
-
-The processing stage is intentionally split:
-
-```powershell
-python code\data_build\build_ustr_section301.py --process-only --panel-only --overwrite
-python code\data_build\build_ustr_section301.py --exposure-only --overwrite
-```
-
-`--panel-only` writes only `section301_hts10_list_panel.parquet`. It still requires a valid HTS10 source: exact HTS10 official codes can be used directly, but HTS8 codes require a full-origin 2017 Census HS10 universe for expansion.
-
-`--exposure-only` reads an existing HTS10 panel and builds `section301_hs6_exposure.parquet`. It always requires full-origin 2017 Census HS10 imports.
-
-## Census Dependency
-
-The HS6 exposure file requires a full-origin U.S. Census HS10 import file for 2017:
-
-```text
-data/interim/trade/us_imports_hs10_monthly.parquet
-```
-
-The file must contain all U.S. origins, not only the project comparator subset. The script checks this by requiring at least 100 origins in 2017. If this condition is not met, exposure construction stops with an explicit error.
-
-The current comparator-country Census file is useful for other project tasks, but it must not be used as the denominator for Section 301 exposure.
-
-## Optional Official Code Table
-
-Processing defaults to an official extracted code table at:
+It writes:
 
 ```text
 data/raw/ustr_section301/metadata/section301_notice_codes.csv
+data/raw/ustr_section301/metadata/section301_notice_code_build_audit.json
 ```
 
-Automatic text extraction from downloaded notices is disabled by default because regex-based HTS detection can be incomplete or can capture non-list codes. It can be enabled only for diagnostics with `--allow-text-extraction`; do not treat that output as final without manual review against the official notice.
+Verified source-row counts are:
 
-Required columns:
+| Action | Rows |
+|---|---:|
+| List 1 | 818 |
+| List 2 | 279 |
+| List 3 | 5,775 |
+| List 4A | 3,243 |
+| Total | 10,115 |
+
+Partial HTS8 descriptions in List 3 and List 4A are expanded only to the explicitly covered HTS10 lines. The two subheadings removed by 83 FR 49153, `03048110` and `03048150`, are excluded. The same notice replaced 12 obsolete Chapter 44 subheadings with 38 successors; the HS6 exposure build records that successor mapping explicitly.
+
+The List 1 PDF text layer truncates its final `9033.00.90` entry to `9033.00`. The build restores `90330090` using the product-description table in the same official notice and then asserts uniqueness at `hts10 x list_id x effective_date`. Treating the truncated text as a whole HS6 would duplicate `9033002000` and `9033003000`.
+
+Configured official HTS universes are:
+
+| Action | USITC HTS file |
+|---|---|
+| List 1 | 2018 Revision 8 |
+| List 2 | 2018 Revision 10 |
+| List 3 | 2018 Revision 12, with the 2017 schedule retained only for superseded Chapter 44 codes |
+| List 4A | 2019 Revision 12 |
+
+The exact 2024 review table is regenerated with:
+
+```powershell
+python code\data_build\build_ustr_section301_2024_review_codes.py --project-root . --overwrite
+```
+
+## BACI HS2017 denominator
+
+The Section 301 denominator uses CEPII BACI HS2017 V202601, not the project's general HS2012 panel. Regenerate it with resumable download and ZIP CRC validation:
+
+```powershell
+python code\data_build\build_baci_hs17_us_imports_2017.py --project-root . --download --overwrite
+```
+
+If an intercepting proxy prevents certificate validation, add `--insecure`; that choice is recorded in the run context. The raw archive and compact denominator are:
+
+```text
+data/raw/BACI_HS17_V202601/BACI_HS17_V202601.zip
+data/interim/trade/baci_hs17_us_imports_2017.parquet
+```
+
+Validated BACI facts:
+
+| Check | Result |
+|---|---:|
+| ZIP size | 794,583,540 bytes |
+| ZIP SHA256 | `16aaa22d3b000cc87744c2c28ac97ce44394c3adf315ec259451d5bb4fcae609` |
+| ZIP CRC test | Passed |
+| 2017 source rows | 9,948,845 |
+| 2017 U.S. import rows | 187,990 |
+| HS2017 output rows | 5,384 |
+| Total U.S. imports | USD 2,274,243,094,334 |
+| Imports from China | USD 492,682,263,643 |
+
+BACI publishes the petroleum heading 2710 as `271000`. The build maps the five detailed policy HS6 codes under that heading to this documented BACI aggregate. The Chapter 44 aliases follow the successor codes in 83 FR 49153.
+
+## Main build and outputs
+
+Run the full existing-archive build with:
+
+```powershell
+python code\data_build\build_ustr_section301.py --project-root . --process-only --overwrite
+```
+
+Outputs:
+
+| File | Rows | Purpose |
+|---|---:|---|
+| `data/interim/policy/section301_hts10_list_panel.parquet` | 32,357 | Unique HTS10 policy-event panel, including the List 3 and List 4A rate changes. |
+| `data/interim/policy/section301_hs6_exposure.parquet` | 55,308 | Balanced affected-HS6 panel for 2014-2024. |
+| `data/interim/policy/section301_build_summary.json` | n/a | Paths, source mode, totals, aliases, and validation context. |
+| `data/interim/policy/section301_2024_review_codes.parquet` | 367 | Exact modern-HTS four-year-review rates, kept separate from HS2017. |
+
+The HS6 exposure fields are:
 
 | Field | Meaning |
 |---|---|
-| `source_code` | Official HTS8 or HTS10 code, with or without dots |
-| `list_id` | `list1`, `list2`, `list3`, `list4a`, `list4b`, or a later official review label |
-| `effective_date` | ISO date for rate effectiveness |
-| `additional_tariff_rate` | Decimal rate, e.g. `0.25` for 25 percent |
-| `source_notice` | Official notice title |
+| `year` | Calendar year, 2014-2024. |
+| `hs6` | HS2017 product code, including documented BACI aggregates/successors. |
+| `origin_iso3`, `destination_iso3` | `CHN` and `USA`. |
+| `tariffed_product` | True when any covered HTS10 line in the HS6 has a positive statutory rate. |
+| `list_id` | Semicolon-separated contributing Section 301 actions. |
+| `tariff_rate` | Calendar-day annual rate, weighted across China-origin Census HTS10 imports within HS6; a legally covered HS6 can have zero if its 2017 China imports occur only in uncovered HTS10 lines. |
+| `china_import_share_2017` | BACI 2017 imports from China divided by total U.S. imports for the HS6. |
+| `tariff_exposure` | `tariff_rate * china_import_share_2017`. |
 
-Recommended columns:
+The Census China HTS10 total used for within-HS6 weights is USD 498,987,736,788. The BACI China import total is USD 492,682,263,643; the difference is about 1.3 percent and reflects source/processing differences rather than a forced reconciliation.
 
-- `source_url`
-- `source_file`
-- `notice_date`
-- `exclusion_flag`
-- `exclusion_start`
-- `exclusion_end`
+## Interpretation limits
 
-List 4 should use this table unless a parser can distinguish List 4A from List 4B in the official annex text. This avoids treating postponed List 4B products as tariffed.
+Use `section301_hs6_exposure.parquet` as a gross policy-shock measure. Do not describe it as the tariff actually paid after exclusions, refunds, avoidance, de minimis treatment, or customs rulings.
 
-## Outputs
+Use `section301_2024_review_codes.parquet` when the analysis explicitly needs the September 2024 targeted increases. It requires a modern HTS trade denominator or a scope-aware concordance before aggregation to the HS2017 exposure panel.
 
-The script writes:
-
-```text
-data/interim/policy/section301_hts10_list_panel.parquet
-data/interim/policy/section301_hs6_exposure.parquet
-data/interim/policy/section301_build_summary.json
-```
-
-The HTS10 panel includes:
-
-| Field | Meaning |
-|---|---|
-| `hts10` | Expanded 10-digit HTS code |
-| `hs6` | First six digits of `hts10` |
-| `list_id` | Section 301 list or review identifier |
-| `effective_date` | Date on which the additional rate applies |
-| `additional_tariff_rate` | Decimal additional tariff rate |
-| `exclusion_flag` | Whether the row reflects an official exclusion |
-| `exclusion_start`, `exclusion_end` | Exclusion interval if known |
-| `source_notice` | Official notice label |
-| `source_url`, `source_file` | Audit source |
-| `notice_date` | Notice date if provided |
-| `source_code`, `source_code_level` | Original official code and its level |
-| `rate_adjustment_applied` | Whether the row changes the rate used in exposure |
-
-The HS6 exposure file includes:
-
-```text
-hs6
-year
-origin_iso3
-destination_iso3
-tariffed_product
-list_id
-tariff_rate
-china_import_share_2017
-tariff_exposure
-```
-
-The exposure formula is:
-
-```text
-tariff_exposure = china_import_share_2017 * tariff_rate
-```
-
-`tariff_rate` is a calendar-day weighted annual rate, then aggregated from HTS10 to HS6 using 2017 total U.S. import value weights.
-
-## Conservative Exclusion Rule
-
-Whole-code or exact HTS10 exclusions can change the rate. Description-only exclusions are archived and auditable, but they should not zero out an entire HTS10 product line unless the official text clearly defines the full code as excluded.
+The raw archive remains under `data/raw/ustr_section301/` and is never overwritten by the processing scripts.

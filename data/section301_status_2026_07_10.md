@@ -1,5 +1,7 @@
 # Section 301 Tariff Pipeline Status, 2026-07-10
 
+> Historical pause record. Superseded by the completed 2026-07-18 build documented in `data/section301_usage_note.md`. Do not use this file as the current status.
+
 ## Current Result
 
 The Section 301 raw-source archive has been created, but no interim policy output has been generated.
