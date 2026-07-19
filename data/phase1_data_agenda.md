@@ -8,6 +8,36 @@
 
 五个任务全部完成并打勾后，第一阶段 data 工作即结束。除非另有明确决定，不继续扩展新任务。
 
+## Download Stage Status (2026-07-19)
+
+当前范围内的核心公开数据下载已经结束。这里的“下载完成”只表示原始文件已经取得、没有明显半下载文件，并且已有相应 manifest、validation 或 build summary；不表示跨数据库合并、变量构造或经验分析已经完成。
+
+### Core Public Data
+
+- [x] CEPII BACI HS2012 Version 202601，覆盖至 2024 年；另有 BACI HS2017 作为 Section 301 的 2017 年进口基准。
+- [x] U.S. Census HS10/HS6 月度进口数据，覆盖 2014-2024 年和 15 个已配置来源经济体。该批次不是全来源国数据库。
+- [x] Section 301 Lists 1-4A、exclusions、four-year review 和 2024 review 官方材料。历史 exclusions 尚未应用属于后续处理事项，不是下载缺口。
+- [x] OECD ICIO 2025 edition Regular 与 Extended 全部年度归档，覆盖 1995-2022 年。
+- [x] OECD Analytical AMNE 当前本地 2026 release 原始数据。旧规划中的 2000-2019、76 国描述不再作为当前版本口径。
+- [x] BEA Activities of U.S. MNEs 当前批次，覆盖 2017-2023 年。
+- [x] BEA Direct Investment by Country and Industry 当前批次，覆盖 2020-2024 年。
+- [x] Mexico 官方 inward FDI 数据，主要系列覆盖至 2024 年。
+
+### Supplementary Data
+
+- [ ] Mexico INEGI 制造业产出、就业和投资数据。后续按经验结果决定是否补充。
+- [ ] Vietnam GSO 制造业产出和就业数据。后续按经验结果决定是否补充。
+- [ ] Statistics Canada 行业生产数据。后续按经验结果决定是否补充。
+- [x] fDi Markets 已按使用者指示排除，不属于当前下载完成条件。
+- [x] Orbis 和 shipment-level commercial databases 属于可选增强数据，不属于当前下载完成条件。
+
+### Read-Only Completeness Check
+
+- [x] `data/raw/` 共检查 4,299 个文件，总计 15,680,088,500 bytes。
+- [x] 未发现 `.part`、`.partial`、`.crdownload`、`.download`、`.tmp` 或 `.lock` 下载残留。
+- [x] 未发现零字节原始文件。
+- [x] 下载阶段结束后停止；本清单不启动新的数据处理、变量构造或模型工作。
+
 ## Phase 1 Checklist
 
 - [ ] 1. 构造 connector ranking：判断哪些国家-部门最像 connector。
