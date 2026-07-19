@@ -70,7 +70,7 @@ Named countries use ISO3 codes. The official long Spanish names for China, South
 
 The national quarterly total and the sum of the three investment types agree to within USD 885, which is only API floating-point precision. The validated 2024 national total is USD 36,872.421 million.
 
-Country and industry downloads exclude confidential observations, so they do not add exactly to the national total. The maximum annual gaps in the current snapshot are:
+Published confidential amounts are suppressed. Rows coded `C` are retained with null values and `confidential_flag=true`; therefore the disclosed country and industry detail does not add exactly to the national total. The maximum annual gaps in the current snapshot are:
 
 | Detail table | Maximum gap to national annual total |
 |---|---:|

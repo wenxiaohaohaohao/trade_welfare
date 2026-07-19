@@ -2,19 +2,37 @@
 
 This directory documents the data pipeline. Large raw and generated data files are ignored by git.
 
+For the collaborator-facing inventory, interpretation boundaries, and next-stage plan, see `docs/data_and_project_progress_2026_07_19.md`.
+
 ## Data Sources
 
 | Source | Intended use | Status |
 |---|---|---|
-| OECD ICIO | Country-sector IO structure, final demand, value added, gross output | Regular and Extended 2025-edition raw archives are complete through 2022 under `data/raw/oecd_icio/`. Source: https://www.oecd.org/en/data/datasets/inter-country-input-output-tables.html |
+| OECD ICIO | Country-sector IO structure, final demand, value added, gross output | Regular ICIO baselines are built and validated for 2017, 2018, and 2022. Extended archives are preserved for a later ownership-split build; no Extended-derived output exists yet. Source: https://www.oecd.org/en/data/datasets/inter-country-input-output-tables.html |
 | OECD AMNE | Foreign affiliate activity and Scenario B MP-intensive reallocation | Raw Analytical AMNE files are archived under `data/raw/oecd_amne/`; the affiliate-activity and MP-share outputs are under `data/interim/mne/`. Source: https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html |
-| BEA U.S. MNE MOFA country-industry tables | U.S. MNE affiliate activity by host country and affiliate industry; Scenario B bridge and Scenario C support when combined with broader production evidence | Archived locally under `data/raw/bea_usdia_mofas_2025-08/` (ignored by git). Mexico x Transportation equipment verified for 2020-2022; see `data/bea_mne_mexico_transportation_equipment_2020_2022.md`, `data/bea_usdia_mofas_2025_08_archive_manifest.md`, and `data/bea_mne_mofas_mexico_suppression_audit_2020_2022.md`. Source: https://www.bea.gov/international/di1usdop |
+| BEA U.S. MNE MOFA country-industry tables | U.S. MNE affiliate activity by host country and affiliate industry; Scenario B bridge and Scenario C support when combined with broader production evidence | Batch 5 output covers 2017-2023 at `data/interim/mne/bea_us_mne_affiliate_country_industry.parquet`. The earlier Mexico x Transportation equipment audit remains a sector-specific suppression check. Source: https://www.bea.gov/international/di1usdop |
 | BEA Direct Investment by Country and Industry | FDI position, flows, and income by country and selected industry; connector-country investment validation and Scenario C / `hgamma` support | Batch 6 archives both `U.S. direct investment abroad` and `foreign direct investment in the U.S.` country-by-industry files under `data/raw/bea_fdi/direct_investment_country_industry/` and writes `data/interim/fdi/bea_direct_investment_country_industry.parquet`. Source: https://www.bea.gov/data/intl-trade-investment/direct-investment-country-and-industry |
 | fDi Markets | Model-external extensive-margin evidence and Scenario C upper-bound discipline | Explicitly excluded from the current batch by user instruction; no download or processing was attempted. |
 | Mexico FDI data | Post-2020 FDI-flow validation and Scenario C support | Official Secretaría de Economía data are archived and normalized: national coverage is 1999Q1-2024Q4 and detailed cross-tables cover 2006Q1-2024Q4. See `data/mexico_fdi_usage_note.md`. |
 | BACI | Bilateral trade rerouting, connector ranking, and the Section 301 denominator | The main project HS2012 panel is retained; a separate CEPII BACI HS2017 V202601 archive and 2017 U.S.-import denominator were added for Section 301. |
+| U.S. Census imports | Monthly U.S.-destination HS10/HS6 evidence and China HTS10 weights | Configured-origin panel covers 15 origins in 2014-2024. It is not a full-origin U.S.-import denominator. |
 | USTR Section 301 | Gross statutory China tariff exposure and `htau` discipline | Official base-list HTS10 panel and 2014-2024 HS2017 exposure are built; exact September 2024 modern-HTS increases are stored separately. See `data/section301_usage_note.md`. |
 | Reference replication data | Conceptual model interface only | Kept under `reference/`, not copied here. |
+
+## Validated Output Snapshot (2026-07-19)
+
+| Data layer | Coverage | Main output | Rows / scale | Important boundary |
+|---|---|---|---:|---|
+| BACI HS2012 | 2014-2024, annual bilateral HS6 | `data/interim/trade/baci_hs6_panel.parquet` | 123,313,077 | The configured TWN series uses BACI `S19/Other Asia, nes` as a documented proxy, not a direct Taiwan ISO3 observation; quantity can be missing. |
+| U.S. Census imports | 2014-2024, monthly, 15 origins | `data/interim/trade/us_imports_hs10_monthly.parquet` | 12,132,098 | Configured-origin sample, not all U.S. origins. |
+| Section 301 | 2014-2024 annual HS6 exposure | `data/interim/policy/section301_hs6_exposure.parquet` | 55,308 | Gross statutory schedule, not realized duties after exclusions. |
+| OECD ICIO | 2017, 2018, 2022; 81 economies/ROW x 50 sectors | `data/interim/production/oecd_icio_output_va_fd.parquet` | 12,150 | Current baseline uses regular ICIO; rounding/accounting residuals remain documented. |
+| OECD Analytical AMNE | 2008-2023 usable intersection | `data/interim/mne/oecd_amne_affiliate_activity.parquet` | 1,260,053 | Employment is null; parent-level VA/exports/imports are allocated. |
+| BEA U.S. MNE | 2017-2023; majority-owned foreign affiliates | `data/interim/mne/bea_us_mne_affiliate_country_industry.parquet` | 8,256 | Suppressed cells are missing, not zero; aggregate geography rows require filtering. |
+| BEA direct investment | 2020-2024; inward and outward directions | `data/interim/fdi/bea_direct_investment_country_industry.parquet` | 11,610 | Financial-account measure, not affiliate output or plant activity. |
+| Mexico official FDI | 1999Q1-2024Q4 national; 2006Q1-2024Q4 detailed cross-tables | nine `data/interim/fdi/mexico_fdi_*.parquet` files | 1,329,095 total | Confidential `C` is null; detail is not additive to national totals. |
+
+`data/processed/` is currently empty apart from its README. The available ICIO model baselines are under `data/model_inputs/icio_baseline_2017/`, `icio_baseline_2018/`, and `icio_baseline_2022/`. The next data stage is cross-source harmonization and structural-moment construction, not another download pass.
 
 ## Reproducible BEA MOFA Check
 

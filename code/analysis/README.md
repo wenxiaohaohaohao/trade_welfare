@@ -1,6 +1,8 @@
 # Analysis Code
 
-Future scripts in this folder should produce:
+The empirical analysis pipeline is still pending. The current `build_project_intro_pdf.py` is a project-document utility, not the connector-economy estimation pipeline.
+
+Analysis scripts to be added here should produce:
 
 - connector-country ranking tables;
 - rerouting descriptive figures;

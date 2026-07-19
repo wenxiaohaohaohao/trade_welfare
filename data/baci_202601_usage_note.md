@@ -62,13 +62,15 @@ Do not silently map `TWN` to `S19`. If Taiwan is used in the first-round compara
 
 ## Batch 1 Outputs
 
-The first processing pass should create:
+The completed Batch 1 processing pass created:
 
 ```text
 data/interim/trade/baci_hs6_panel.parquet
 data/interim/trade/baci_connector_flows.parquet
 data/interim/trade/baci_country_product_year_flags.parquet
 ```
+
+The build summary is `data/interim/trade/baci_batch1_build_summary.json`. It records 123,313,077 main-panel rows, 1,031,244 connector-flow rows, and 629,146 country-product-year flag rows for 2014-2024.
 
 Recommended construction:
 

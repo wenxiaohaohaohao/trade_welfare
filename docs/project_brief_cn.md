@@ -8,9 +8,9 @@
 
 这个项目不能再被写成一篇单纯的 connector-country 事实论文。Schulze and Xin (2025) 已经系统区分了 trade reallocation 和 trade rerouting，并且对亚洲样本中的越南给出了比较强的生产侧证据。因此，本文的主贡献应从“识别 connector economies”转向“计算 connector economies 的 welfare value”。
 
-更具体地说，本文应回答三个问题。第一，当直接中美或 bloc-to-bloc 联系变贵时，第三国贸易通道能缓解多少福利损失。第二，如果已有或模型中已表示的跨国生产能够向墨西哥、越南等 connector locations 做 intensive reallocation，福利缓冲是否明显大于单纯贸易绕行。第三，如果把 fDi Markets、BEA、Mexico FDI 和 production-side expansion 记录到的 total MP adjustment 作为 Scenario C 上界输入，福利区间会扩大多少。
+更具体地说，本文应回答三个问题。第一，当直接中美或 bloc-to-bloc 联系变贵时，第三国贸易通道能缓解多少福利损失。第二，如果已有或模型中已表示的跨国生产能够向墨西哥、越南等 connector locations 做 intensive reallocation，福利缓冲是否明显大于单纯贸易绕行。第三，如果把 BEA、Mexico FDI、AMNE 和 production-side expansion 记录到的 total MP adjustment 作为 Scenario C 上界输入，福利区间会扩大多少。fDi Markets 只保留为以后可选的项目级扩展。
 
-因此，论文的合同应写得很清楚：经验部分负责验证事实、选择国家、约束 shock size；结构模型负责 welfare accounting；fDi Markets、BEA MNE、AMNE、FDI、就业、投资和 value added 证据负责支持 nearshoring 叙事，并约束 Scenario B 和 Scenario C 的 `hgamma` 区间，但不等同于模型内生 entry。
+因此，论文的合同应写得很清楚：经验部分负责验证事实、选择国家、约束 shock size；结构模型负责 welfare accounting；当前用 BEA MNE、AMNE、FDI、就业、投资和 value added 证据支持 nearshoring 叙事，并约束 Scenario B 和 Scenario C 的 `hgamma` 区间，但不等同于模型内生 entry。fDi Markets 本批不处理。
 
 ## 二、文献地图和本文位置
 
@@ -22,19 +22,19 @@
 
 第三层是 multinational production margin 文献。Ramondo and Rodriguez-Clare 类型模型把 MP cost 作为 iceberg cost 进入生产和销售成本，适合解释既有 MP links 上的生产强度调整。Tintelnot (2017) 则是 fixed-cost foreign investment / export-platform 结构，更适合解释企业是否进入某个国家、是否开设 affiliate、是否形成新的 plant location。这个区分直接决定本项目能不能用 Du-Wang：Du-Wang 的 `hgamma` 属于前者，不属于 Tintelnot 式 fixed-cost entry。
 
-第四层是 nearshoring 和 extensive-margin evidence。fDi Markets、BEA U.S. MNE Activity、OECD Analytical AMNE、Mexico FDI、USITC USMCA rules-of-origin reports 和 production-side statistics 不只是数据来源，也是在论文中约束机制的证据层。它们应该回答“墨西哥是否真的有新项目、外资企业活动、就业、投资或 value added 扩张”，但这些事实应放在模型外 evidence section，而不是被塞进 Du-Wang 模型作为内生 entry。
+第四层是 nearshoring 和 extensive-margin evidence。当前证据层由 BEA U.S. MNE Activity、OECD Analytical AMNE、Mexico FDI、USITC USMCA rules-of-origin reports 和 production-side statistics 构成。它们应该回答“墨西哥是否出现外资企业活动、就业、投资或 value added 扩张”，但这些事实应放在模型外 evidence section，而不是被塞进 Du-Wang 模型作为内生 entry。fDi Markets 如以后单独处理，只作为项目级补充。
 
 ## 三、核心研究问题
 
 本文的主问题是：connector economies 在多大程度上缓解 geoeconomic fragmentation 的福利成本，这种缓解分别来自 trade rerouting、MP intensive reallocation、total MP-adjustment upper-bound proxy 和 IO propagation 的哪一部分。
 
-这里至少要区分三种机制。第一，trade rerouting：美国或欧盟从中国进口下降，但从墨西哥、越南或其他第三国进口上升，同时第三国从中国或东亚进口相关中间品上升。第二，MP nearshoring：已有或模型中已表示的 multinational-production links 上，企业把更多生产强度配置到 connector locations，表现为 `hgamma` 下降或保持低成本。第三，extensive-margin entry：企业新进入墨西哥或新设工厂，这一点 Du-Wang 不能内生解释，只能由 fDi Markets、BEA、AMNE 和 FDI 数据在模型外验证，并作为 Scenario C 的上界校准依据。
+这里至少要区分三种机制。第一，trade rerouting：美国或欧盟从中国进口下降，但从墨西哥、越南或其他第三国进口上升，同时第三国从中国或东亚进口相关中间品上升。第二，MP nearshoring：已有或模型中已表示的 multinational-production links 上，企业把更多生产强度配置到 connector locations，表现为 `hgamma` 下降或保持低成本。第三，extensive-margin entry：企业新进入墨西哥或新设工厂，这一点 Du-Wang 不能内生解释。当前只能用 BEA、AMNE、FDI 和生产侧数据在模型外提供间接验证，并作为 Scenario C 上界校准依据；fDi Markets 以后如单独处理，可增加项目级证据。
 
 如果只研究第一种机制，论文会接近贸易绕行事实；如果能同时量化第二种机制，才有结构福利贡献；如果把第三种机制作为 Scenario C 的上界输入，则 reduced-form evidence 不再只是旁证，而是直接约束福利区间。必须注意：这仍然不是 fixed-cost entry model；如果要把第三种机制做成模型核心，就必须转向 Tintelnot-style fixed-cost entry model，工作量和数据要求都会明显上升。
 
 ## 四、国家、部门和叙事边界
 
-核心国家应是越南和墨西哥。越南是文献 benchmark：Schulze and Xin (2025) 已经给出较强的亚洲样本证据，因此它适合作为 sanity check，而不是本文的主要新增事实。墨西哥是本文更有潜力的 North America extension：Section 301、USMCA、汽车和电子产业链、美国 MNE activity、Mexico FDI 和 fDi Markets 项目公告共同构成了更贴近 nearshoring 叙事的案例。
+核心国家应是越南和墨西哥。越南是文献 benchmark：Schulze and Xin (2025) 已经给出较强的亚洲样本证据，因此它适合作为 sanity check，而不是本文的主要新增事实。墨西哥是本文更有潜力的 North America extension：Section 301、USMCA、汽车和电子产业链、美国 MNE activity 与 Mexico FDI 已经构成更贴近 nearshoring 叙事的公开数据案例；fDi Markets 项目公告只保留为以后可选补充。
 
 加拿大可以作为 North American connector 或 rules-of-origin 对照，但不应与墨西哥混为一类。印度、土耳其、波兰、摩洛哥、印尼、韩国、台湾地区等可以作为扩展或对照样本，但要按机制区分：有些更像 China-plus-one 替代生产，有些更像区域平台，有些是高技术中间品供应者，不一定都是同一种 connector。
 
@@ -48,13 +48,13 @@
 
 这意味着，Du-Wang 可以回答的是：在既有国家-部门 MP links 上，如果有效 MP cost 改变，生产份额、贸易份额、中间品价格和福利如何变化。它不能回答的是：中国企业、美国企业或其他 MNE 是否因为 Section 301 在墨西哥新设工厂。
 
-推荐方案是使用 Du-Wang 作为第一版结构模型，同时在模型外增加 extensive-margin evidence section，并把这些 evidence 直接服务于 A/B/C 情景校准。这样论文可以保持诚实边界：模型做 intensive-margin welfare accounting，fDi Markets 和其他生产侧数据说明 nearshoring 中确实存在新项目或 affiliate expansion，并用于设定 `hgamma` 情景。Scenario C 应写成 total MP-adjustment upper-bound proxy，不能写成 entry-margin welfare estimate。
+推荐方案是使用 Du-Wang 作为第一版结构模型，同时在模型外增加 extensive-margin evidence section，并把这些 evidence 直接服务于 A/B/C 情景校准。这样论文可以保持诚实边界：模型做 intensive-margin welfare accounting，当前用 BEA、AMNE、FDI 和生产侧数据检验 affiliate expansion 并设定 `hgamma` 情景；fDi Markets 以后如单独处理，只作为项目级补充。Scenario C 应写成 total MP-adjustment upper-bound proxy，不能写成 entry-margin welfare estimate。
 
 第一组福利反事实应使用三个 connector scenarios。Scenario A 是 trade-only connector lower bound：connector 相关 `htau` 保持开放或下降，MP margin 设为 `hgamma = 1`，只允许贸易绕行，给出 connector welfare value 的下界。
 
 Scenario B 是 incumbent MP-intensive baseline：用 AMNE、BEA MNE、ownership / affiliate activity moments 反推或约束 connector 相关 `hgamma`，衡量已有 MP links 上的 intensive production reallocation。这是本文第一版的基准情景。
 
-Scenario C 是 total MP-adjustment upper-bound proxy：用 total FDI inflow、fDi Markets 项目、affiliate expansion 和 production-side expansion 约束更强的 `hgamma` 调整，让观测到的总生产扩张进入福利核算，但不声称模型内生 fixed-cost entry。
+Scenario C 是 total MP-adjustment upper-bound proxy：当前用 total FDI inflow、affiliate expansion 和 production-side expansion 约束更强的 `hgamma` 调整，让观测到的总生产扩张进入福利核算，但不声称模型内生 fixed-cost entry。fDi Markets 保留为以后单独加入的项目级证据，本批不处理。
 
 B 到 C 的差值可以报告为 extensive-margin-related upper-bound increment，但不能写成识别出来的 entry-margin welfare contribution。
 
@@ -62,15 +62,15 @@ B 到 C 的差值可以报告为 extensive-margin-related upper-bound increment�
 
 ## 六、数据策略和可得性
 
-当前数据条件已经可以支持第一版结构福利论文，因为 fDi Markets 已经可得。数据层应按功能分工，而不是混在一起。
+当前公开数据条件已经可以支持第一版结构福利论文的数据准备和 scenario-bound 设计。数据层应按功能分工，而不是混在一起；fDi Markets 不计入本批已完成资产。
 
 1. OECD ICIO / Extended ICIO：免费，直接下载。它提供 IO、gross output、value added、final demand 和中间投入结构。Extended ICIO 对 China 和 Mexico 的 ownership / firm-type 拆分对本项目很有价值。限制是最新年份到 2022，不能覆盖完整 2023 nearshoring 高峰。
 
-2. OECD Analytical AMNE / MNE-GVC：免费，直接下载。它提供 domestic-owned 和 foreign-owned firms 的 output、value added、trade 和 ownership-split ICIO 表，覆盖到 2020。这是 Scenario B `hgamma` ownership moments 的核心来源，但 2021-2023 缺口必须由 BEA、Mexico FDI 和 fDi Markets 补。
+2. OECD Analytical AMNE / MNE-GVC：免费，直接下载。当前本地 2026 release 构建的可用交集覆盖 2008-2023，bilateral output 原始覆盖到 2024。这是 Scenario B `hgamma` ownership moments 的核心来源。需要注意：employment 不可得，parent-level value added、exports 和 imports 是按 affiliate-output share 分配的，不是直接报告的 bilateral cells。
 
 3. BEA U.S. MNE Activity：公开免费，但部分国家-行业单元可能 suppressed。我们已经核实 Mexico x Transportation equipment 在 2020-2022 年核心指标没有 `(D)` suppression。下一步要检查 electronics/computers 和 medical devices。
 
-4. fDi Markets：使用者已确认可得。这是 extensive-margin evidence 和 Scenario C 校准的核心数据，可以看到 greenfield FDI project 的母公司、来源国、目的地、行业、business activity、公告投资额、预期就业和原始公告来源。限制是公告不等于实际投产，所以需要和 BEA、Mexico FDI、value added、employment、investment 交叉验证。
+4. fDi Markets：当前批次明确不处理，也没有下载或变量构造。以后如单独开启，可作为 greenfield project-level extensive-margin evidence；公告仍不等于实际投产，必须和 BEA、Mexico FDI、value added、employment、investment 交叉验证。
 
 5. BACI：免费，直接下载。它提供 HS6 产品层面的双边年度贸易数据，适合构造 connector ranking、rerouting measure、Section 301 exposure 和行业层面的 `htau` shock。限制是没有 ownership 或 firm-level 信息，需要 HS-to-sector concordance。
 
@@ -90,7 +90,7 @@ B 到 C 的差值可以报告为 extensive-margin-related upper-bound increment�
 
 第三，North America extension figure：重点看 Mexico 和 Canada 是否在亚洲样本之外表现出 connector 机制，尤其是汽车、电子、机械和医疗器械。
 
-第四，extensive-margin evidence table：用 fDi Markets、BEA MNE、OECD AMNE、Mexico FDI、就业、投资和 value added 证据，单独列出新项目和生产侧扩张。这个表是模型外验证，不是 Du-Wang 的内生结果。
+第四，extensive-margin evidence table：当前用 BEA MNE、OECD AMNE、Mexico FDI、就业、投资和 value added 证据，单独列出 affiliate activity 和生产侧扩张。这个表是模型外验证，不是 Du-Wang 的内生结果；fDi Markets 本批不进入该表。
 
 第五，structural moment table：把贸易、value added、FDI 和 affiliate activity 事实转化为 Scenario A/B/C 中 `htau` 与 `hgamma` 的情景依据。
 
@@ -102,11 +102,11 @@ B 到 C 的差值可以报告为 extensive-margin-related upper-bound increment�
 
 本文最有潜力的贡献不是“第一次证明 nearshoring 存在”，而是把 connector economies 的作用分解为 trade-only rerouting、incumbent MP intensive reallocation、total MP-adjustment upper-bound proxy 和 IO propagation，并给出一个可以比较 direct fragmentation、Scenario A、Scenario B 和 Scenario C 的 welfare-bound matrix。
 
-如果生产侧证据弱，论文应把相应国家写成 Scenario A: trade-only connector lower bound。如果 AMNE / BEA MNE 支持已有 MP links 上的生产强度调整，才可以设定 Scenario B。如果 fDi Markets、BEA、Mexico FDI、AMNE 和生产侧数据共同支持墨西哥相关行业扩张，才可以设定 Scenario C。即使如此，也应说是 `hgamma` upper-bound proxy，而不是模型内生的新企业进入。
+如果生产侧证据弱，论文应把相应国家写成 Scenario A: trade-only connector lower bound。如果 AMNE / BEA MNE 支持已有 MP links 上的生产强度调整，才可以设定 Scenario B。如果 BEA、Mexico FDI、AMNE 和生产侧数据共同支持墨西哥相关行业扩张，才可以设定 Scenario C。即使如此，也应说是 `hgamma` upper-bound proxy，而不是模型内生的新企业进入。fDi Markets 不属于当前判定条件。
 
 ## 九、近期下一步
 
-第一，先从 fDi Markets 导出 2017-2024 年 Mexico 和对照 connector economies 的项目级记录，字段至少包括 sector、business activity、母公司和来源国、目的地、capex、jobs 和公告来源。
+第一，先建立 HS6/HTS10、OECD sectors、BEA industries 和 Mexico SCIAN 的统一 concordance，再用现有 BACI、Census、AMNE、BEA 和 Mexico FDI 构造 connector ranking 与 production-side validation。fDi Markets 暂不处理。
 
 第二，建立 literature benchmark table，把 Schulze and Xin (2025)、Du and Wang (2022)、Ramondo and Rodriguez-Clare、Tintelnot (2017)、Bonadio-Huo-Levchenko-Pandalai-Nayar 这一组文献的作用分清楚：哪些是事实 benchmark，哪些是模型骨架，哪些是替代模型路线。
 

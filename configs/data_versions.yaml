@@ -3,7 +3,7 @@ baci:
   version: 202601
   release_date: 2026-01-22
   raw_dir: data/raw/BACI_HS12_V202601/
-  status: ready_for_batch1_raw_csv
+  status: built_batch1_2014_2024_and_section301_hs2017_denominator
   csv_pattern: BACI_HS12_Y{year}_V202601.csv
   country_metadata: country_codes_V202601.csv
   product_metadata: product_codes_HS12_V202601.csv
@@ -47,6 +47,11 @@ baci:
     hs6_transform: preserve k as a six-character string
     country_transform: map numeric i and j through country_codes_V202601.csv to ISO3
     source_file_transform: set source_file to the raw CSV filename
+    outputs:
+      annual_panel: data/interim/trade/baci_hs6_panel.parquet
+      connector_flows: data/interim/trade/baci_connector_flows.parquet
+      country_product_year_flags: data/interim/trade/baci_country_product_year_flags.parquet
+      build_summary: data/interim/trade/baci_batch1_build_summary.json
   section301_denominator:
     version: BACI_HS17_V202601
     source_url: https://www.cepii.fr/DATA_DOWNLOAD/baci/data/BACI_HS17_V202601.zip
@@ -60,10 +65,32 @@ baci:
 oecd_icio:
   source: OECD ICIO 2025 edition
   raw_dir: data/raw/oecd_icio/
-  status: pending_download
+  status: regular_baselines_built_extended_archives_not_yet_processed
+  coverage:
+    raw_years:
+      start: 1995
+      end: 2022
+    built_baseline_years:
+      - 2017
+      - 2018
+      - 2022
+    countries_plus_row: 81
+    sectors: 50
+    unit: current million USD
+  baseline_usage:
+    output_dir: data/interim/production/
+    outputs:
+      output_va_fd: data/interim/production/oecd_icio_output_va_fd.parquet
+      io_shares: data/interim/production/oecd_icio_io_shares.parquet
+      build_summary: data/interim/production/oecd_icio_build_summary.json
+    model_input_dirs:
+      - data/model_inputs/icio_baseline_2017/
+      - data/model_inputs/icio_baseline_2018/
+      - data/model_inputs/icio_baseline_2022/
 
 oecd_amne:
   source: OECD Analytical AMNE
+  release: 2026
   raw_dir: data/raw/oecd_amne/
   status: built_affiliate_activity_mp_shares
   raw_subdirs:
@@ -84,7 +111,9 @@ oecd_amne:
     outputs:
       affiliate_activity: data/interim/mne/oecd_amne_affiliate_activity.parquet
       mp_shares: data/interim/mne/oecd_amne_mp_shares.parquet
+      build_summary: data/interim/mne/oecd_amne_build_summary.json
     construction:
+      output_year_rule: intersection of bilateral output and XVEM activity coverage, 2008-2023
       affiliate_output: off-diagonal parent-host-sector cells from aamne-bilateral-output.csv
       foreign_affiliate_share: foreign affiliate output divided by total gross output by host-sector-year
       mpe_expansion: year-over-year change in total foreign affiliate output by host-sector

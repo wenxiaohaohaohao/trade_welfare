@@ -10,18 +10,30 @@ The project is built from an existing structural reference package but is not a 
 - Official Mexico inward-FDI data are now archived and normalized. National quarterly totals and investment types cover 1999Q1-2024Q4; country/sector annual panels cover 1999-2024; detailed quarterly cross-tables cover 2006Q1-2024Q4. See `data/mexico_fdi_usage_note.md`.
 - The official Section 301 base lists now generate an HTS10 event panel and a 2014-2024 HS2017 gross statutory exposure panel. The exact September 2024 modern-HTS increases are stored separately to avoid an invalid nomenclature merge. See `data/section301_usage_note.md`.
 - fDi Markets is available through the user's access, but it is explicitly excluded from the current data batch. No fDi download or processing is part of the completion status below.
-- The current data plan is: OECD ICIO Extended for IO and ownership-split baseline objects through 2022; OECD Analytical AMNE and BEA U.S. MNE for multinational-production moments; official Mexico FDI for the 2021-2024 financial-flow bridge; and BACI plus Section 301 for product-level trade shocks. fDi Markets remains a later, separate project-level evidence source.
+- The current data plan is: validated regular OECD ICIO baselines for IO objects; preserved Extended ICIO archives for a later China/Mexico ownership-split build; OECD Analytical AMNE and BEA U.S. MNE for multinational-production moments; official Mexico FDI for the 2021-2024 financial-flow bridge; and BACI plus Section 301 for product-level trade shocks. fDi Markets remains a later, separate project-level evidence source.
 - 已构建 BEA U.S. MNE MOFA 的 Batch 5 country-industry panel，覆盖 2017-2023，输出为 `data/interim/mne/bea_us_mne_affiliate_country_industry.parquet`，原始文件归档在 `data/raw/bea_mne/activities_us_mnes/`。此前 `Mexico x Transportation equipment` 2020-2022 suppression audit 仍作为 North America 的专项行业检查记录；详见 `data/bea_mne_mexico_transportation_equipment_2020_2022.md`。
 - Mexico 官方 inward FDI 已完成归档和标准化：全国季度总额和投资类型覆盖 1999Q1-2024Q4，来源国/行业年度面板覆盖 1999-2024，季度交叉明细覆盖 2006Q1-2024Q4；详见 `data/mexico_fdi_usage_note.md`。
 - Section 301 官方初始清单已生成 HTS10 政策事件面板和 2014-2024 的 HS2017 gross statutory exposure 面板；2024 年 9 月的现代 HTS 精确调税表单独保存，避免错误跨版本合并；详见 `data/section301_usage_note.md`。
 - fDi Markets 虽然可得，但使用者明确要求本批不处理。本批完成状态不包含 fDi 下载或变量构造。
-- 当前数据策略是：用 OECD ICIO Extended 构造 2022 年以前的 IO 和 ownership-split 基准对象；用 OECD Analytical AMNE 与 BEA U.S. MNE 构造 multinational-production moments；用 Mexico 官方 FDI 衔接 2021-2024 年金融流量证据；用 BACI 和 Section 301 构造产品层面贸易冲击。fDi Markets 留作以后单独处理的项目级证据。
+- 当前数据策略是：已用 regular OECD ICIO 构造并验证 IO 基准，Extended ICIO 归档留待后续 China/Mexico ownership-split 构建；用 OECD Analytical AMNE 与 BEA U.S. MNE 构造 multinational-production moments；用 Mexico 官方 FDI 衔接 2021-2024 年金融流量证据；用 BACI 和 Section 301 构造产品层面贸易冲击。fDi Markets 留作以后单独处理的项目级证据。
+
+## Current Project Progress / 当前项目进度（2026-07-19）
+
+| Workstream | Status | Current result / next gate |
+|---|---|---|
+| Public-data archive and source-specific builds | Complete for the current scope | BACI, U.S. Census imports, Section 301, OECD ICIO, OECD Analytical AMNE, BEA MNE, BEA direct investment, and Mexico official FDI have reproducible interim outputs and build summaries. fDi Markets is excluded from the current scope. |
+| OECD ICIO model baselines | Complete for 2017, 2018, and 2022 | MATLAB-ready baseline CSVs exist under `data/model_inputs/icio_baseline_*/`. |
+| Cross-source harmonization | Pending | A common country-sector-product concordance is still needed across HS, OECD, BEA, and SCIAN classifications. |
+| Empirical connector and relocation evidence | Pending | The data needed for trade rerouting and production-side validation exist, but connector rankings and the combined relocation test have not yet been estimated. |
+| Structural moments and counterfactual model | Pending | Scenario A/B/C `htau` and `hgamma` moment tables, migrated MATLAB model functions, and welfare counterfactuals are not yet built. |
+
+The detailed collaborator-facing data and project update is in `docs/data_and_project_progress_2026_07_19.md`.
 
 ### OECD ICIO Batch 3 Baseline Outputs / OECD ICIO 第三批基准输出
 
-The OECD ICIO 2025 edition raw archive is now present locally under `data/raw/oecd_icio/`. The regular ICIO files are complete for 1995-2022 in `data/raw/oecd_icio/2025_regular/`. The extended ICIO files are also complete for 1995-2022 in `data/raw/oecd_icio/2025_extended/`, including `2011-2015_EXT.zip`; these extended files are preserved for later China/Mexico ownership or firm-type split work. The current baseline build uses the regular ICIO because the first structural interface needs country-sector production, value added, final demand, bilateral absorption, and IO shares on the standard country-sector grid.
+The OECD ICIO 2025 edition raw archive is present locally under `data/raw/oecd_icio/`. The current validated build uses the 2017, 2018, and 2022 regular ICIO matrices because the first structural interface needs country-sector production, value added, final demand, bilateral absorption, and IO shares on the standard country-sector grid. Extended ICIO archives are preserved for later China/Mexico ownership or firm-type split work, but no Extended-derived ownership-split output has been built yet.
 
-本地已经保存 OECD ICIO 2025 edition 原始数据，位置是 `data/raw/oecd_icio/`。regular ICIO 在 `data/raw/oecd_icio/2025_regular/` 下完整覆盖 1995-2022；extended ICIO 在 `data/raw/oecd_icio/2025_extended/` 下也完整覆盖 1995-2022，包括后补的 `2011-2015_EXT.zip`。extended 文件暂时作为后续 China / Mexico ownership 或 firm-type split 的原始层保留。本轮结构模型基准使用 regular ICIO，因为第一版接口首先需要标准国家-部门网格上的 production、value added、final demand、bilateral absorption 和 IO shares。
+本地已经保存 OECD ICIO 2025 edition 原始数据，位置是 `data/raw/oecd_icio/`。当前完成验证的是 regular ICIO 的 2017、2018、2022 三个年度基准，因为第一版接口首先需要标准国家-部门网格上的 production、value added、final demand、bilateral absorption 和 IO shares。Extended ICIO 归档保留供后续 China / Mexico ownership 或 firm-type split 构建，但目前尚未生成 Extended-derived ownership-split 输出。
 
 The reproducible build script is `code/data_build/build_oecd_icio_baseline.py`, with dependencies listed in `code/data_build/requirements-oecd-icio.txt`. It can be rerun with:
 
@@ -133,7 +145,7 @@ The implication for this project is:
 | Possible route | Assessment |
 |---|---|
 | Use Du-Wang with project-specific scenario/config refactoring | Recommended first version. It already has trade, MP, IO linkages, and welfare decomposition. |
-| Add a project-specific scenario layer that disciplines `hgamma` with AMNE, BEA MNE, FDI, fDi Markets, or production-side moments | Needed. The size of MP-cost shocks must be disciplined by evidence rather than chosen arbitrarily. AMNE/affiliate evidence anchors Scenario B; total FDI and production expansion discipline Scenario C. |
+| Add a project-specific scenario layer that disciplines `hgamma` with AMNE, BEA MNE, FDI, and production-side moments | Needed. The size of MP-cost shocks must be disciplined by evidence rather than chosen arbitrarily. AMNE/affiliate evidence anchors Scenario B; total FDI and production expansion discipline Scenario C. fDi Markets is an optional later extension. |
 | Switch immediately to a BHLP/Bonadio-style framework with a new MP layer | Not recommended for the first version unless the project abandons the Du-Wang sufficient-statistics structure. It would increase model-building burden sharply. |
 | Build a Tintelnot-style fixed-cost entry model | Only appropriate if the paper's core question becomes affiliate entry or plant-count relocation, which requires stronger micro or firm-level evidence. |
 
@@ -158,11 +170,11 @@ The first welfare table should therefore use three named connector scenarios:
 |---|---|---|
 | **Scenario A: trade-only connector lower bound** | Connector-related `htau` remains open or improves, while `hgamma = 1` for the MP margin. | Lower bound for connector value when third countries only reroute trade and MP costs do not improve. |
 | **Scenario B: incumbent MP-intensive baseline** | `hgamma` is disciplined by AMNE, BEA MNE, or ownership/affiliate activity moments that mostly reflect already represented MP links. | Preferred baseline for intensive reallocation across existing MP links. |
-| **Scenario C: total MP-adjustment upper-bound proxy** | `hgamma` is disciplined by total FDI inflow, fDi Markets project evidence, affiliate expansion, and production-side expansion. | Upper-bound proxy that allows observed total production expansion to affect welfare accounting without claiming a fixed-cost entry model. |
+| **Scenario C: total MP-adjustment upper-bound proxy** | `hgamma` is currently disciplined by total FDI inflow, affiliate expansion, and production-side expansion; fDi Markets may be added only in a separate later batch. | Upper-bound proxy that allows observed total production expansion to affect welfare accounting without claiming a fixed-cost entry model. |
 
 The B-to-C gap can be reported as an extensive-margin-related upper-bound increment. It should not be described as an identified entry-margin welfare contribution, because the model has no fixed-cost entry block.
 
-For a JIE-level paper, this boundary is acceptable only if the empirical and counterfactual discipline is strong. The first version should therefore add an explicit **extensive-margin evidence section outside the model**. That section should use fDi Markets, BEA MNE, AMNE, FDI, value added, employment, or investment data to show whether Mexico and other connector economies experienced new projects or affiliate expansion in the relevant sectors. The evidence should be used to motivate and discipline the `hgamma` scenarios, especially Scenario C, not to claim that Du-Wang endogenously generates entry.
+For a JIE-level paper, this boundary is acceptable only if the empirical and counterfactual discipline is strong. The first version should therefore add an explicit **extensive-margin evidence section outside the model**. The current section should use BEA MNE, AMNE, FDI, value added, employment, and investment data to show whether Mexico and other connector economies experienced affiliate or production expansion in the relevant sectors. fDi Markets can be added later as separate project-level evidence. These data should motivate and discipline the `hgamma` scenarios, especially Scenario C, not imply that Du-Wang endogenously generates entry.
 
 The recommended wording is:
 
@@ -282,7 +294,7 @@ For the new connector-economy project, these scripts should be treated as a scen
 | Direct fragmentation, no connectors | Increase `htau` and possibly `hgamma` on source-bloc to destination-bloc links. | Measures the welfare cost of direct decoupling. |
 | Scenario A: trade-only connector lower bound | Keep or reduce connector-related `htau` while direct bloc links remain costly; set connector MP margin to `hgamma = 1`. | Isolates gross trade rerouting through third countries and gives the lower bound for connector welfare value. |
 | Scenario B: incumbent MP-intensive baseline | Use AMNE, BEA MNE, and ownership/affiliate activity moments to discipline connector-related `hgamma`. | Preferred baseline for intensive reallocation across existing MP links. |
-| Scenario C: total MP-adjustment upper-bound proxy | Use total FDI inflow, fDi Markets project counts/capex/jobs, affiliate expansion, and production-side expansion to discipline a stronger connector-related `hgamma` adjustment. | Upper-bound proxy for total MP adjustment; approximates extensive-margin-related gains without claiming a structural entry model. |
+| Scenario C: total MP-adjustment upper-bound proxy | Use total FDI inflow, affiliate expansion, and production-side expansion to discipline a stronger connector-related `hgamma` adjustment. Treat fDi Markets as an optional later extension. | Upper-bound proxy for total MP adjustment; approximates extensive-margin-related gains without claiming a structural entry model. |
 | No-connector stress test | Raise both direct-bloc and connector-bloc barriers. | Shows residual welfare cost when third-country adjustment is unavailable. |
 
 The first structural version should report welfare changes for each scenario and decompose them into direct fragmentation losses, connector mitigation, MP-intensive reallocation, the Scenario C upper-bound increment, and input-output propagation. The reference package can already compute welfare decomposition after a shock; what it cannot do is define connector countries, validate whether the connector channel is real rather than pure rerouting, or structurally identify fixed-cost entry.
@@ -521,8 +533,8 @@ The key interpretation is therefore not "public data prove relocation." A more d
 |---|---|---|
 | [OECD ICIO, including Extended ICIO](https://www.oecd.org/en/data/datasets/inter-country-input-output-tables.html) | Country-sector production and input-output structure | Build gross output, value added, final demand, intermediate-input linkages, and model baseline objects. The Extended ICIO is especially useful because it separately treats China and Mexico ownership/firm-type layers. |
 | [OECD TiVA](https://www.oecd.org/en/data/datasets/trade-in-value-added.html), where useful | Value-added trade interpretation | Check whether gross trade rerouting corresponds to value-added exposure. |
-| [OECD Analytical AMNE](https://www.oecd.org/en/data/datasets/multinational-enterprises-and-global-value-chains.html) / [AMNE](https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html) | Foreign-affiliate activity and multinational production | Validate whether connector countries show foreign-affiliate sales, employment, value added, or output expansion in relevant sectors. This is the main ownership-split source for disciplining Scenario B through 2020. |
-| [fDi Markets](https://www.fdimarkets.com/) | Greenfield FDI project evidence; access confirmed by the user | Build the model-external extensive-margin evidence table and discipline Scenario C: new projects, source countries, destination locations, sectors, business activity, announced capex, and expected jobs. |
+| [OECD Analytical AMNE](https://www.oecd.org/en/data/datasets/multinational-enterprises-and-global-value-chains.html) / [AMNE](https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html) | Foreign-affiliate activity and multinational production | The current local build covers the 2008-2023 intersection and is the main ownership-split source for Scenario B. Affiliate employment is unavailable, and parent-country value added, exports, and imports are allocated using bilateral affiliate-output shares. |
+| [fDi Markets](https://www.fdimarkets.com/) | Optional future greenfield FDI project evidence | Deferred by user instruction. If opened as a separate later batch, it may add project-level source/destination, sector, capex, and expected-jobs evidence for Scenario C. |
 | [BACI](https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37) | Product-level bilateral trade | Build connector rankings, rerouting figures, source-bloc imports, destination-bloc exports, and sector-level overlap measures. BACI is preferred over DOTS or aggregate trade data because HS6 products map more cleanly to autos, electronics, medical devices, machinery, and components. |
 | [UN Comtrade](https://comtradeplus.un.org/) | Product-level bilateral trade cross-check | Use as a robustness or cross-check source if BACI concordance or timing creates problems. |
 | [U.S. Census USA Trade Online](https://usatrade.census.gov/) | High-resolution U.S. import evidence | Use U.S.-destination product-level data, ideally at monthly or HS10 detail where accessible, to validate U.S.-China tariff exposure and import substitution. |
@@ -538,10 +550,10 @@ The key interpretation is therefore not "public data prove relocation." A more d
 
 | Data source | Availability | Coverage and current constraint | Project implication |
 |---|---|---|---|
-| OECD ICIO Extended | Free, direct download | Latest OECD release reaches 2022 and includes a China/Mexico split useful for ownership/firm-type heterogeneity | Very strong baseline source for IO and ownership-split production objects; 2023 nearshoring must be handled outside ICIO |
-| OECD Analytical AMNE | Free, direct download | Ownership-split AMNE/ICIO tables cover through 2020 | Most important structural source for Scenario B `hgamma`, but it stops before the full 2021-2023 nearshoring wave |
+| OECD ICIO regular and Extended | Free, direct download | Regular ICIO baselines are built and validated for 2017, 2018, and 2022; Extended archives are preserved but not yet processed into ownership-split outputs | Regular tables provide the current IO baseline; Extended-derived China/Mexico ownership splits remain a separate future build |
+| OECD Analytical AMNE | Free, direct download | Current local 2026-release build covers the 2008-2023 usable intersection, with bilateral-output raw coverage through 2024 | Most important structural source for Scenario B `hgamma`; employment is unavailable, and parent-level value added/trade fields are allocated rather than directly observed bilateral cells |
 | BEA U.S. MNE Activity | Free, but selected detailed tables have discontinuities and some cells may be suppressed | Batch 5 local panel covers 2017-2023 for majority-owned foreign affiliates by country and industry, with employment, sales, value added, capital expenditures, and affiliate-side goods trade fields | Main bridge for U.S.-MNE affiliate activity in Mexico, Canada, Vietnam, and other connector countries; use suppression flags before sector-level interpretation |
-| fDi Markets | Available through the user's access | Project-level greenfield FDI database since 2003 | Central source for extensive-margin evidence and Scenario C discipline; use it to document new projects and upper-bound total MP adjustment, not as an endogenous Du-Wang model outcome |
+| fDi Markets | Deferred by user instruction | No local export or constructed variables in the current batch | Optional later project-level evidence for Scenario C; it is not a current input or completed asset |
 | BACI | Free, direct download | HS6 bilateral annual trade; latest release currently listed through 2024 | Preferred trade source for rerouting, connector rankings, and sector-level exposure to Section 301 shocks |
 | Mexico Secretaria de Economia / DataMexico FDI | Free government data | National quarter/type panels cover 1999Q1-2024Q4; country/sector annual panels cover 1999-2024; detailed quarterly cross-tables cover 2006Q1-2024Q4 | Locally complete for the published vintage; confidential detail remains null and FDI is not an activity or plant-level measure |
 | Section 301 tariff data | Free public data | Official Lists 1/2/3/4A, 2014-2024 gross HS2017 exposure, and a separate exact September 2024 modern-HTS table | Clean gross policy-shock layer for `htau`; not a realized-duty measure after exclusions |
@@ -572,7 +584,7 @@ Core construction:
 | `affiliate_value_added` | Foreign-owned XVEM aggregate `GVA` allocated to parent countries by parent affiliate-output share within each host-sector-year. |
 | `affiliate_exports` | Foreign-owned XVEM aggregate `EXGR` allocated by parent affiliate-output share. |
 | `affiliate_imports` | Foreign-owned XVEM aggregate `IMGR` allocated by parent affiliate-output share; OECD describes this as intermediate-input imports by firms. |
-| `affiliate_employment` | Required column retained as null because these OECD Analytical AMNE files do not provide employment. Use BEA MNE, fDi Markets jobs, or national data for employment evidence. |
+| `affiliate_employment` | Required column retained as null because these OECD Analytical AMNE files do not provide employment. Use BEA MNE or national data for current employment evidence; fDi Markets jobs would require a separate future batch. |
 | `ownership_type` | `F`, meaning foreign-owned firms. |
 
 The two model-facing variables are:
@@ -602,7 +614,7 @@ Current validation:
 | Allocated value added, exports, and imports summed back to XVEM foreign-owned aggregates | Floating-point precision residual only. |
 | Bilateral output versus XVEM foreign-owned `GO` | Maximum absolute difference is about 0.113 million USD, consistent with small rounding differences across OECD files. |
 
-Interpretation for the paper: the AMNE outputs support incumbent MP-intensive evidence and disciplined `hgamma` scenarios. They can show whether foreign-affiliate output and ownership-split activity expand in connector host countries and sectors. They do not prove firm-level relocation, plant entry, or new affiliate entry; those claims must stay in the model-external evidence layer and be combined with BEA, fDi Markets, FDI, or national production sources.
+Interpretation for the paper: the AMNE outputs support incumbent MP-intensive evidence and disciplined `hgamma` scenarios. They can show whether foreign-affiliate output and ownership-split activity expand in connector host countries and sectors. They do not prove firm-level relocation, plant entry, or new affiliate entry; those claims must stay in the model-external evidence layer and be combined with BEA, FDI, or national production sources. fDi Markets can be considered only in a separate future batch.
 
 ### Official Section 301 And Mexico FDI Batches
 
@@ -653,7 +665,7 @@ For a JIE-level paper, the public-data version is feasible only if the research 
 | Firm-level data such as Orbis, local business registries, or customs-linked firm data | Directly identifies firms, ownership, subsidiaries, industry, location, employment, revenue, and possibly entry or expansion in connector countries. |
 | Plant-level or establishment-level manufacturing data | Separates genuine capacity expansion from simple trading-company activity. |
 | Shipment-level data such as Panjiva, Datamyne, or ImportGenius | Tracks supplier-consignee links and can show whether Chinese suppliers ship to connector-country exporters that then ship to U.S. buyers. |
-| Greenfield investment data beyond the available fDi Markets export, if needed | Improves validation of realized projects, cancellations, and follow-up operation status. |
+| Greenfield investment project data, if a separate batch is later opened | Improves validation of announced projects, cancellations, and follow-up operation status. |
 | Special economic zone or export-processing-zone statistics | Useful for Vietnam, Mexico, and other connector candidates because relocation may concentrate in export platforms. |
 | Product-level rules-of-origin or customs enforcement data | Helps distinguish genuine local production from transshipment or minimal processing. |
 
@@ -681,9 +693,9 @@ The project should not copy reference data into the new pipeline as final data. 
 | `docs/reference_model_map.md` | Detailed map from reference code to future model-core code. |
 | `docs/data_source_log.md` | Data-source registry and download log. |
 | `docs/phase1_feasibility_memo_template.md` | Template for deciding whether the project has enough first-stage signal. |
-| `configs/` | Future country group, connector definition, sector mapping, and scenario files. |
-| `code/data_build/` | Future scripts for ICIO, AMNE, and trade data construction. |
-| `code/analysis/` | Future scripts for connector rankings, figures, and descriptive validation. |
+| `configs/` | Active country, sector, time-window, source-version, and Census mapping definitions; executable scenario files remain pending. |
+| `code/data_build/` | Reproducible builders for the current trade, policy, production, MNE, and FDI data layers. |
+| `code/analysis/` | Project-document utility plus the future location for connector rankings, figures, and production-side validation. |
 | `code/model_core/` | Future MATLAB model code migrated from the reference package. |
 | `data/` | Data documentation and ignored data folders. |
 | `output/` | Regenerable tables, figures, logs, and memos. |
@@ -691,30 +703,19 @@ The project should not copy reference data into the new pipeline as final data. 
 
 ## 10. Current Status
 
-This repository currently contains project documentation and setup files only. It does not yet include:
+The current public-data engineering stage is substantially complete. Reproducible Python builders and validated interim outputs now exist for BACI, U.S. Census imports, Section 301, OECD ICIO, OECD Analytical AMNE, BEA U.S. MNE activity, BEA direct investment, and Mexico official FDI. OECD ICIO baseline CSVs are available for 2017, 2018, and 2022.
 
-- downloaded OECD ICIO or AMNE data;
-- Comtrade or BACI data;
-- fDi Markets exported project-level data;
-- new Stata, Python, or MATLAB data-build scripts;
-- migrated model-core MATLAB functions;
-- executable A/B/C counterfactual scenarios.
-
-This is intentional. The next task is to benchmark the existing empirical evidence, build a validation and calibration layer, and then migrate the structural model. The project should not spend its main effort reproducing an empirical contribution that Schulze and Xin (2025) already cover.
+The project has not yet completed the empirical or structural stages. `data/processed/` has no harmonized analysis-ready panel; connector rankings and production-side relocation tests have not been estimated; Scenario A/B/C shock files and structural moments do not yet exist; and the MATLAB equilibrium and welfare-decomposition code has not been migrated. fDi Markets is explicitly outside the current batch.
 
 ## 11. Immediate Next Steps
 
-1. Add Schulze and Xin (2025) to the literature map as the closest empirical benchmark.
-2. Reproduce only the minimum facts needed for validation: connector rankings, Vietnam-style value-added moments, and a North America/Mexico extension.
-3. Export fDi Markets project-level records for Mexico and comparison connector economies, 2017-2024, with sector, business activity, parent/source country, capex, jobs, and announcement source.
-4. Download and document OECD ICIO Extended, OECD Analytical AMNE/MNE-GVC, BACI, Section 301 tariff lists, Mexico FDI, and BEA MNE data in `docs/data_source_log.md`.
-5. Check BEA suppression for Mexico x electronics/computers and Mexico x medical devices, matching the completed Mexico x transportation equipment check.
-6. Build transparent country and sector mappings, with separate flags for Asian connectors and North American connectors.
-7. Build an extensive-margin evidence table from fDi Markets, BEA MNE, AMNE, FDI, employment, investment, and value-added sources.
-8. Construct a structural moment table that links observed trade, value-added, FDI, and affiliate-activity changes to candidate `htau` and `hgamma` shocks for Scenario A, Scenario B, and Scenario C.
-9. Build a small MATLAB-ready sample to test compatibility with the reference model interface.
-10. Migrate `eqm_iter.m`, `eqm_update.m`, `wel_decomp.m`, and related model-core functions into `code/model_core/`.
-11. Run the first welfare-bound matrix comparing direct fragmentation, Scenario A, Scenario B, and Scenario C.
+1. Build one auditable country-sector-product concordance across HS6/HS10, OECD sectors, BEA industries, and Mexico SCIAN sectors.
+2. Generate connector rankings and two-leg rerouting facts from BACI and Census, starting with Mexico, Vietnam, and Canada in autos, electronics, machinery, and medical devices.
+3. Combine OECD AMNE, BEA MNE, Mexico FDI, BEA direct investment, and ICIO production measures into a production-side validation table.
+4. Check BEA suppression for Mexico x electronics/computers and Mexico x medical devices and verify the USITC USMCA automotive statistic before manuscript use.
+5. Construct the structural moment table linking observed trade, value added, affiliate activity, and investment changes to Scenario A/B/C `htau` and `hgamma` inputs.
+6. Build a small MATLAB-ready scenario sample, verify country-sector ordering, and then migrate `eqm_iter.m`, `eqm_update.m`, `wel_decomp.m`, and related model functions.
+7. Run the first welfare-bound matrix comparing direct fragmentation, Scenario A, Scenario B, and Scenario C. Keep fDi Markets outside this work until a separate batch is explicitly opened.
 
 ## 12. Decision Rule For Moving To Structural Counterfactuals
 
@@ -825,7 +826,7 @@ If these conditions fail, the project should either narrow to a specific country
 | 路线 | 判断 |
 |---|---|
 | 在 Du-Wang 上重构情景配置和数据接口 | 推荐作为第一版。它已经包含 trade、MP、IO linkages 和 welfare decomposition。 |
-| 用 AMNE、BEA MNE、FDI、fDi Markets 或生产侧 moments 约束 `hgamma` 情景 | 必须做。MP-cost shock 的大小不能任意设定。AMNE / affiliate activity 主要约束 Scenario B；total FDI 和 production expansion 主要约束 Scenario C。 |
+| 用 AMNE、BEA MNE、FDI 和生产侧 moments 约束 `hgamma` 情景 | 必须做。MP-cost shock 的大小不能任意设定。AMNE / affiliate activity 主要约束 Scenario B；total FDI 和 production expansion 主要约束 Scenario C。fDi Markets 是以后可选扩展。 |
 | 直接转向 BHLP / Bonadio 风格框架并自行加入 MP 层 | 第一版不推荐。除非放弃 Du-Wang 的 sufficient-statistics 结构，否则建模负担会明显上升。 |
 | 改成 Tintelnot 式 fixed-cost entry model | 只有当论文核心变成 affiliate entry 或 plant-count relocation 时才需要，而且需要更强的微观或企业层面证据。 |
 
@@ -850,11 +851,11 @@ If these conditions fail, the project should either narrow to a specific country
 |---|---|---|
 | **Scenario A: trade-only connector lower bound** | connector 相关 `htau` 保持开放或下降，但 MP margin 保持 `hgamma = 1`。 | 只允许贸易绕行，给出 connector welfare value 的下界。 |
 | **Scenario B: incumbent MP-intensive baseline** | 用 AMNE、BEA MNE、ownership / affiliate activity moments 约束 connector 相关 `hgamma`。 | 基准情景，解释已有或模型中已表示的 MP links 上的 intensive reallocation。 |
-| **Scenario C: total MP-adjustment upper-bound proxy** | 用 total FDI inflow、fDi Markets 项目、affiliate expansion 和 production-side expansion 约束更强的 `hgamma` 调整。 | 上界 proxy，让观测到的总生产扩张进入福利核算，但不声称模型内生 fixed-cost entry。 |
+| **Scenario C: total MP-adjustment upper-bound proxy** | 当前用 total FDI inflow、affiliate expansion 和 production-side expansion 约束更强的 `hgamma` 调整；fDi Markets 只能以后另开批次。 | 上界 proxy，让观测到的总生产扩张进入福利核算，但不声称模型内生 fixed-cost entry。 |
 
 B 到 C 的差值可以报告为 extensive-margin-related upper-bound increment，但不能称为识别出来的 entry-margin welfare contribution，因为模型没有 fixed-cost entry block。
 
-因此，第一版应增加一个模型外的 **extensive-margin evidence section**。这部分可以使用 fDi Markets、BEA MNE、AMNE、FDI、value added、employment 或 investment 数据，说明 Mexico 或其他 connector economies 是否在相关部门出现新项目、affiliate activity 或生产侧扩张。它的作用是验证故事、约束 `hgamma`、设定 Scenario C 的 upper-bound proxy，而不是把新进入当作 Du-Wang 模型的内生结果。
+因此，第一版应增加一个模型外的 **extensive-margin evidence section**。当前使用 BEA MNE、AMNE、FDI、value added、employment 和 investment 数据，说明 Mexico 或其他 connector economies 是否在相关部门出现 affiliate activity 或生产侧扩张；fDi Markets 留作以后单独增加的项目级证据。它的作用是验证故事、约束 `hgamma`、设定 Scenario C 的 upper-bound proxy，而不是把新进入当作 Du-Wang 模型的内生结果。
 
 推荐表述是：
 
@@ -976,7 +977,7 @@ B 到 C 的差值可以报告为 extensive-margin-related upper-bound increment�
 | Direct fragmentation, no connectors | 提高 source bloc 与 destination bloc 之间的 `htau`，必要时同时提高 `hgamma`。 | 衡量直接脱钩的福利成本。 |
 | Scenario A: trade-only connector lower bound | 直接 bloc-to-bloc link 仍然变贵，但 connector 相关 `htau` 保持开放或成本较低，connector MP margin 设为 `hgamma = 1`。 | 单独识别 gross trade rerouting，并给出 connector welfare value 的下界。 |
 | Scenario B: incumbent MP-intensive baseline | 用 AMNE、BEA MNE 和 ownership / affiliate activity moments 约束 connector 相关 `hgamma`。 | 基准情景，衡量已有 MP links 上的 intensive production reallocation。 |
-| Scenario C: total MP-adjustment upper-bound proxy | 用 total FDI inflow、fDi Markets 项目数量/capex/jobs、affiliate expansion 和 production-side expansion 约束更强的 connector `hgamma` 调整。 | total MP adjustment 的上界 proxy；近似反映 extensive-margin-related gains，但不声称有结构 entry model。 |
+| Scenario C: total MP-adjustment upper-bound proxy | 用 total FDI inflow、affiliate expansion 和 production-side expansion 约束更强的 connector `hgamma` 调整；fDi Markets 留作以后可选扩展。 | total MP adjustment 的上界 proxy；近似反映 extensive-margin-related gains，但不声称有结构 entry model。 |
 | No-connector stress test | 同时提高 direct bloc links 和 connector links 的 trade/MP barriers。 | 衡量没有第三方调整时的剩余福利成本。 |
 
 因此，本项目后续的 counterfactual 不应再写成“Russia = 38、China = 8”。所有 source bloc、destination bloc、connector countries、sector list、shock intensity 和年份都应从 `configs/` 读取。结构模型输出也应明确分解为 direct fragmentation、Scenario A trade-only mitigation、Scenario B incumbent MP-intensive reallocation、Scenario C upper-bound increment 和 IO propagation。
@@ -1130,7 +1131,7 @@ Schulze and Xin (2025) 已经做了相当完整的 connector economies 经验识
 2. **connector ranking table**：按国家和部门识别 connector candidates，并与 IMF paper 的亚洲样本结果对照。
 3. **North America extension figure**：重点检查 Mexico 和 Canada 是否存在与亚洲样本不同的 connector 机制。
 4. **production-side validation table**：检查贸易增长是否伴随 AMNE、value added、gross output、FDI 或其他生产侧指标增长。
-5. **extensive-margin evidence table**：整理 fDi Markets、BEA MNE、AMNE、FDI 或其他生产侧资料中的新项目、新 affiliate、投资和就业证据，明确它们是模型外验证，不是 Du-Wang 的内生结果。
+5. **extensive-margin evidence table**：当前整理 BEA MNE、AMNE、FDI 或其他生产侧资料中的 affiliate、投资和就业证据，明确它们是模型外验证，不是 Du-Wang 的内生结果。fDi Markets 本批不进入该表。
 6. **small MATLAB-ready sample**：构造一个小样本，测试新数据能否进入 reference 模型接口。
 
 此外，还需要增加一张 **structural moment table**，把经验事实转成模型输入：direct bloc-to-bloc trade decline、connector exports、connector imports、production-side expansion、FDI 或 foreign-affiliate activity，以及这些事实对应的 Scenario A/B/C `htau` 和 `hgamma` 情景设定。如果这些 moments 不能清楚支持结构反事实，就不应急于迁移完整 MATLAB 模型。
@@ -1158,8 +1159,8 @@ Schulze and Xin (2025) 已经做了相当完整的 connector economies 经验识
 |---|---|---|
 | [OECD ICIO, including Extended ICIO](https://www.oecd.org/en/data/datasets/inter-country-input-output-tables.html) | 国家-部门生产和投入产出结构 | 构造 gross output、value added、final demand、中间投入联系和模型基准。Extended ICIO 对 China 和 Mexico 的 ownership / firm-type 层进行拆分，对本项目特别有用。 |
 | [OECD TiVA](https://www.oecd.org/en/data/datasets/trade-in-value-added.html) | 增加值贸易解释 | 检查 gross trade rerouting 是否对应真实 value-added exposure 的变化。 |
-| [OECD Analytical AMNE](https://www.oecd.org/en/data/datasets/multinational-enterprises-and-global-value-chains.html) / [AMNE](https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html) | 外资企业活动和跨国生产 | 验证 connector countries 是否在相关部门出现 foreign-affiliate sales、employment、value added 或 output 扩张。这是 2020 年以前约束 Scenario B `hgamma` 的核心 ownership-split 数据。 |
-| [fDi Markets](https://www.fdimarkets.com/) | Greenfield FDI project evidence；使用者已确认可得 | 构造模型外 extensive-margin evidence table，并约束 Scenario C：新项目、来源国、目的地、行业、business activity、公告投资额和预期就业。 |
+| [OECD Analytical AMNE](https://www.oecd.org/en/data/datasets/multinational-enterprises-and-global-value-chains.html) / [AMNE](https://www.oecd.org/en/data/datasets/activity-of-multinational-enterprises.html) | 外资企业活动和跨国生产 | 当前本地可用交集覆盖 2008-2023，是约束 Scenario B `hgamma` 的核心 ownership-split 数据。affiliate employment 不可得，parent-country 的 value added、exports 和 imports 按 bilateral affiliate-output share 分配。 |
+| [fDi Markets](https://www.fdimarkets.com/) | 以后可选的 greenfield FDI project evidence | 按使用者要求暂缓。以后如单独开启新批次，可补充 Scenario C 所需的项目来源地、目的地、行业、capex 和预期就业证据。 |
 | [BACI](https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37) | 产品层面双边贸易 | 构造 connector rankings、rerouting figures、source-bloc imports、destination-bloc exports 和部门重叠指标。BACI 的 HS6 口径比 DOTS 或总量贸易数据更适合映射到汽车、电子、医疗器械、机械和零部件部门。 |
 | [UN Comtrade](https://comtradeplus.un.org/) | 产品层面双边贸易交叉核对 | 如果 BACI 的 concordance 或时点口径有问题，可作为 robustness 或 cross-check。 |
 | [美国 Census USA Trade Online](https://usatrade.census.gov/) | 高分辨率美国进口证据 | 用美国作为目的国，在月度或 HS10 层面验证中美关税冲击和进口替代。 |
@@ -1175,10 +1176,10 @@ Schulze and Xin (2025) 已经做了相当完整的 connector economies 经验识
 
 | 数据源 | 可得性 | 覆盖范围和当前约束 | 对项目的影响 |
 |---|---|---|---|
-| OECD ICIO Extended | 免费，直接下载 | 最新 OECD release 到 2022，并包含对 China / Mexico 有用的 ownership / firm-type 拆分 | 非常适合作为 IO 和 ownership-split production baseline；2023 nearshoring 需要用模型外数据补充 |
-| OECD Analytical AMNE | 免费，直接下载 | ownership-split AMNE / ICIO 表到 2020 | 是约束 Scenario B `hgamma` 的最关键结构数据，但缺失 2021-2023 nearshoring 高峰 |
+| OECD ICIO regular 和 Extended | 免费，直接下载 | regular ICIO 已完成 2017、2018、2022 基准构建和验证；Extended 归档已保留，但尚未生成 ownership-split 输出 | regular tables 是当前 IO baseline；China/Mexico Extended ownership split 仍是后续独立构建任务 |
+| OECD Analytical AMNE | 免费，直接下载 | 当前本地 2026 release 构建的可用交集为 2008-2023，bilateral output 原始覆盖到 2024 | 是约束 Scenario B `hgamma` 的最关键结构数据；employment 不可得，parent-level value added 和 trade 是分配值而非直接报告的 bilateral cells |
 | BEA U.S. MNE Activity | 免费，但部分细表停更且个别国家-行业单元可能 suppressed | Batch 5 本地面板覆盖 2017-2023，口径为 majority-owned foreign affiliates 的 country-industry activity，包括 employment、sales、value added、capital expenditures 和 affiliate-side goods trade | 是 Mexico、Canada、Vietnam 及其他 connector countries 的 U.S.-MNE affiliate activity 桥接数据；行业解释前必须查看 suppression flags |
-| fDi Markets | 使用者已确认可得 | 2003 年以来的 greenfield FDI project-level database | extensive-margin evidence 和 Scenario C 校准的核心来源；用于说明新项目公告和 total MP adjustment 上界 proxy，而不是 Du-Wang 模型内生结果 |
+| fDi Markets | 按使用者要求暂缓 | 当前没有本地导出或构造变量 | 以后可作为 Scenario C 的项目级补充证据；不是当前输入或已完成资产 |
 | BACI | 免费，直接下载 | HS6 年度双边贸易，当前最新版本覆盖到 2024 | 贸易绕行、connector ranking 和 Section 301 暴露的首选贸易数据 |
 | Mexico Secretaria de Economia / DataMexico FDI | 免费政府数据 | 全国季度/投资类型覆盖 1999Q1-2024Q4，来源国/行业年度覆盖 1999-2024，季度交叉明细覆盖 2006Q1-2024Q4 | 当前官方 vintage 已完整保存；保密明细为空，且 FDI 不是 activity 或 plant-level measure |
 | Section 301 tariff data | 免费公开 | 官方 List 1/2/3/4A、2014-2024 gross HS2017 exposure，以及单独的 2024 年 9 月现代 HTS 精确调税表 | 用于构造 `htau` 的 gross policy-shock 层；不是扣除 exclusions 后的 realized-duty measure |
@@ -1209,7 +1210,7 @@ python code\data_build\build_oecd_amne.py --project-root . --overwrite
 | `affiliate_value_added` | `aamne-mne-xvem.csv` 中 foreign-owned aggregate `GVA`，按同一 host-sector-year 内 parent affiliate-output share 分摊到 parent country。 |
 | `affiliate_exports` | foreign-owned aggregate `EXGR`，按 parent affiliate-output share 分摊。 |
 | `affiliate_imports` | foreign-owned aggregate `IMGR`，按 parent affiliate-output share 分摊；OECD 说明该指标是 firms 的 intermediate-input imports。 |
-| `affiliate_employment` | 保留为必需字段，但本批 OECD Analytical AMNE 文件没有 employment，因此该列为空；employment 证据应来自 BEA MNE、fDi Markets jobs 或国家统计数据。 |
+| `affiliate_employment` | 保留为必需字段，但本批 OECD Analytical AMNE 文件没有 employment，因此该列为空；当前 employment 证据应来自 BEA MNE 或国家统计数据。fDi Markets jobs 需要以后单独开批次。 |
 | `ownership_type` | 固定为 `F`，表示 foreign-owned firms。 |
 
 两个模型变量的定义是：
@@ -1239,7 +1240,7 @@ ForeignAffiliateShare_{c,s,t} = ForeignAffiliateOutput_{c,s,t} / GrossOutput_{c,
 | 分摊后的 value added、exports、imports 加总回 XVEM foreign-owned aggregates | 只有浮点精度误差。 |
 | bilateral output 与 XVEM foreign-owned `GO` 的差异 | 最大绝对差约 0.113 million USD，符合 OECD 文件之间的小幅 rounding differences。 |
 
-论文解释上，这批 AMNE 输出支持 incumbent MP-intensive evidence 和有约束的 `hgamma` scenario。它能说明 connector host country-sector 是否出现 foreign-affiliate output 和 ownership-split activity 扩张。它不能单独证明 firm-level relocation、plant entry 或 new affiliate entry；这些 extensive-margin 结论必须保留在模型外证据层，并结合 BEA、fDi Markets、FDI 或国家生产统计数据。
+论文解释上，这批 AMNE 输出支持 incumbent MP-intensive evidence 和有约束的 `hgamma` scenario。它能说明 connector host country-sector 是否出现 foreign-affiliate output 和 ownership-split activity 扩张。它不能单独证明 firm-level relocation、plant entry 或 new affiliate entry；这些 extensive-margin 结论必须保留在模型外证据层，并结合 BEA、FDI 或国家生产统计数据。fDi Markets 只能在以后单独开启的新批次中考虑。
 
 ### 8.3.1 BEA U.S. MNE Batch 5：affiliate country-industry panel
 
@@ -1282,7 +1283,7 @@ BEA suppression 已显式处理。`(D)` 不是 0，而是缺失值；employment 
 | Orbis、本地企业注册数据或海关-企业匹配数据 | 直接识别企业、母公司、子公司、行业、所在地、就业、收入，以及企业是否在 connector countries 新进入或扩张。 |
 | 工厂或 establishment-level 制造业数据 | 区分真实产能扩张和单纯贸易公司活动。 |
 | Panjiva、Datamyne、ImportGenius 等 shipment-level 数据 | 追踪 supplier-consignee links，判断中国供应商是否先发货给 connector-country exporter，再由其发往美国买家。 |
-| fDi Markets export 之外的 greenfield investment 后续验证数据，如能取得 | 用于核对已公告项目是否实际投产、取消或延后。 |
+| Greenfield investment project data，如以后单独开启批次 | 用于核对已公告项目是否实际投产、取消或延后。 |
 | 出口加工区或特殊经济区统计 | 越南、墨西哥等 connector candidates 的生产转移可能集中在出口平台，这类数据有助于验证机制。 |
 | rules-of-origin 或海关执法数据 | 帮助区分真实本地生产、最小加工和转口。 |
 
@@ -1303,30 +1304,19 @@ BEA suppression 已显式处理。`(D)` 不是 0，而是缺失值；employment 
 
 ## 9. 当前项目状态
 
-目前仓库只有项目文档和目录骨架。尚未包含：
+当前公开数据工程阶段已经基本完成。BACI、U.S. Census imports、Section 301、OECD ICIO、OECD Analytical AMNE、BEA U.S. MNE、BEA direct investment 和 Mexico 官方 FDI 都已有可重复运行的 Python 构建脚本、interim 输出和 build summary。OECD ICIO 还已经生成 2017、2018、2022 三套 MATLAB-ready baseline CSV。
 
-- OECD ICIO 或 AMNE 下载数据；
-- Comtrade 或 BACI 数据；
-- fDi Markets 项目级导出数据；
-- 新的 Stata / Python / MATLAB 数据构建脚本；
-- 已迁移的 MATLAB model core；
-- 可执行的 A/B/C counterfactual scenarios。
-
-这是有意为之。下一步应先建立文献 benchmark、经验验证和模型校准层，而不是重复一篇已经存在的 connector economies 实证文章。
+尚未完成的是跨数据库统一和正式研究结果。`data/processed/` 目前没有 harmonized analysis-ready panel；connector ranking、trade rerouting 与 production relocation 的联合检验还未估计；Scenario A/B/C 的 structural moment 和 shock files 尚未构造；MATLAB equilibrium / welfare decomposition model core 尚未迁移。fDi Markets 明确不在当前批次范围内。
 
 ## 10. 近期下一步
 
-1. 把 Schulze and Xin (2025) 写入 literature map，作为最直接的 empirical benchmark。
-2. 只复现模型需要的最低限度事实：connector ranking、value-added moments，以及 Vietnam 结果的可比口径。
-3. 做 North America extension，重点检查 Mexico 和可能的 Canada 是否存在亚洲样本之外的 connector 机制。
-4. 从 fDi Markets 导出 2017-2024 年 Mexico 和对照 connector economies 的项目级记录，字段至少包括 sector、business activity、母公司和来源国、目的地、capex、jobs 和公告来源。
-5. 下载并记录 OECD ICIO Extended、OECD Analytical AMNE / MNE-GVC、BACI、Section 301 tariff lists、Mexico FDI 和 BEA MNE 数据来源、版本和年份覆盖。
-6. 检查 BEA 中 Mexico x electronics/computers 和 Mexico x medical devices 是否存在 suppression，并与已完成的 Mexico x transportation equipment 检查保持同一口径。
-7. 建立 country mapping 和 sector mapping，并区分 Asian connectors 与 North American connectors。
-8. 构造 extensive-margin evidence table，把 fDi Markets 新项目公告、BEA MNE / AMNE affiliate activity、FDI、就业、投资和增加值证据单独列出，明确它们是模型外验证。
-9. 构造 structural moment table，把贸易、增加值、FDI 和 affiliate activity 事实转成 Scenario A/B/C 的 `htau` 与 `hgamma` 情景设定。
-10. 构造小型 MATLAB-ready sample，测试是否兼容 `reference` 的模型接口。
-11. 迁移 `eqm_iter.m`、`eqm_update.m`、`wel_decomp.m` 等模型核心函数，并运行第一组 direct fragmentation + Scenario A/B/C welfare-bound matrix。
+1. 建立可审计的 country-sector-product concordance，统一 HS6/HS10、OECD sectors、BEA industries 和 Mexico SCIAN sectors。
+2. 用 BACI 和 Census 生成 connector ranking 与两段式 rerouting facts，优先检查 Mexico、Vietnam、Canada 以及汽车、电子、机械、医疗器械。
+3. 合并 OECD AMNE、BEA MNE、Mexico FDI、BEA direct investment 和 ICIO production 指标，构造 production-side validation table。
+4. 补查 BEA Mexico x electronics/computers 与 medical devices suppression，并在论文引用前核实 USITC USMCA automotive statistic。
+5. 构造 structural moment table，把贸易、增加值、affiliate activity 和 investment 变化映射到 Scenario A/B/C 的 `htau` 与 `hgamma`。
+6. 构造小型 MATLAB-ready scenario sample，核对 country-sector ordering 后再迁移 `eqm_iter.m`、`eqm_update.m`、`wel_decomp.m` 等模型核心函数。
+7. 运行 direct fragmentation 与 Scenario A/B/C 的第一组 welfare-bound matrix。fDi Markets 继续不处理，除非以后单独开启新的数据批次。
 
 ## 11. 进入结构模型的判断标准
 
