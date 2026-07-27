@@ -1,0 +1,104 @@
+{
+  "validation_status": "PASS",
+  "failure_count": 0,
+  "failures": [],
+  "input_hash_check_pass": true,
+  "output_row_count": 367,
+  "duplicate_hts_code_count": 0,
+  "row_count_check_pass": true,
+  "whole_code_row_count": 365,
+  "description_scoped_row_count": 2,
+  "scope_count_check_pass": true,
+  "hts_code_length_check_pass": true,
+  "rate_counts": {
+    "0.25": 355,
+    "0.5": 2,
+    "1.0": 10
+  },
+  "rate_count_check_pass": true,
+  "effective_date_check_pass": true,
+  "separate_extension_flags_check_pass": true,
+  "analysis_hs6_column_present": false,
+  "validation_version": 1,
+  "generated_at_utc": "2026-07-19T12:52:53.906173+00:00",
+  "output_path": "data/processed/policy/section301_2024_review_exact_hts.parquet",
+  "output_sha256": "bc34c2bda7b3866bd0cc5cdafd67ef068d7f52406df99ea4c45813e06478ec2f",
+  "extension_version": "section301_2024_review_rules_v1",
+  "schema": [
+    {
+      "name": "hts_code",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "hts_code_level",
+      "type": "int8",
+      "nullable": true
+    },
+    {
+      "name": "section301_rate",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "effective_date",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "timing_year",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "whole_code_applicable",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "scope_note",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "product_description",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_notice",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_page",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "source_url",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "integration_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "historical_hs6_panel_merged",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "requires_modern_hts_concordance",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "extension_version",
+      "type": "large_string",
+      "nullable": true
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # Connector Economies 项目数据与研究进度
 
+> 状态说明：本文保留为 2026-07-19 source-specific build 完成时的历史进度快照。此后 M0-M2 已完成；当前 authoritative processing status、规则、输出 hashes 和后续更新协议见 `docs/data_processing_audit_trail.md` 及 `output/pdf/data_processing_audit_trail.pdf`。
+
 更新日期：2026-07-19
 对应分支：`data`
 本轮首个远程基准提交：`cfa0a17`（`Complete public Section 301 and Mexico FDI pipelines`）
@@ -36,7 +38,7 @@
 | OECD Analytical AMNE | 2008-2023 usable intersection | parent-host-sector-year | 1,260,053 activity rows；4,250,880 MP-share rows | foreign-affiliate output、MP shares、Scenario B `hgamma` |
 | BEA U.S. MNE | 2017-2023 | affiliate country/area-industry-year | 8,256 rows | affiliate employment、sales、VA、capex 和 goods trade |
 | BEA direct investment | 2020-2024 | direction-country/area-industry-year | 11,610 rows | outward/inward position、flows、income；Scenario C 外部约束 |
-| Mexico official FDI | 1999Q1-2024Q4 national；2006Q1-2024Q4 detail | quarter-country-sector-state-investment type | 9 files，1,329,095 rows | Mexico nearshoring 的官方 FDI-flow 验证 |
+| Mexico official FDI | 1999Q1-2024Q4 national；2006Q1-2024Q2 detailed quarterly tables | quarter-country-sector-state-investment type | 9 files，1,329,095 rows | Mexico nearshoring 的官方 FDI-flow 验证；2024 detail 仅 H1 |
 
 ## 三、数据文件详细说明
 
@@ -190,11 +192,11 @@ foreign_affiliate_share[c,s,t]
 | `mexico_fdi_national_investment_type_quarterly.parquet` | 1999Q1-2024Q4 | 312 |
 | `mexico_fdi_parent_country_annual.parquet` | 1999-2024 | 1,191 |
 | `mexico_fdi_sector_annual.parquet` | 1999-2024 | 520 |
-| `mexico_fdi_state_country_quarterly.parquet` | 2006Q1-2024Q4 | 96,200 |
-| `mexico_fdi_state_sector_quarterly.parquet` | 2006Q1-2024Q4 | 616,420 |
-| `mexico_fdi_state_investment_type_quarterly.parquet` | 2006Q1-2024Q4 | 7,104 |
-| `mexico_fdi_country_sector_quarterly.parquet` | 2006Q1-2024Q4 | 596,366 |
-| `mexico_fdi_country_investment_type_quarterly.parquet` | 2006Q1-2024Q4 | 10,878 |
+| `mexico_fdi_state_country_quarterly.parquet` | 2006Q1-2024Q2 | 96,200 |
+| `mexico_fdi_state_sector_quarterly.parquet` | 2006Q1-2024Q2 | 616,420 |
+| `mexico_fdi_state_investment_type_quarterly.parquet` | 2006Q1-2024Q2 | 7,104 |
+| `mexico_fdi_country_sector_quarterly.parquet` | 2006Q1-2024Q2 | 596,366 |
+| `mexico_fdi_country_investment_type_quarterly.parquet` | 2006Q1-2024Q2 | 10,878 |
 
 2024 年全国 inward FDI 为 USD 36,872.421 million。national quarter total 与 investment-type sum 的最大差异为 0.000885 million USD。
 

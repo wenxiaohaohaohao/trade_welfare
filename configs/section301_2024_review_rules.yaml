@@ -1,0 +1,25 @@
+version: section301_2024_review_rules_v1
+status: frozen_for_m2_extension
+frozen_date: 2026-07-19
+
+input:
+  path: data/interim/policy/section301_2024_review_codes.parquet
+  sha256: c791da5be2b43292b94fc463b7b1c41c341a3e198861bd6893cf77fdc22ec668
+  source_summary: data/interim/policy/section301_2024_review_codes_summary.json
+
+output:
+  natural_key: [hts_code]
+  integration_status: separate_exact_hts_extension
+  historical_hs6_panel_merged: false
+  requires_modern_hts_concordance: true
+
+validation:
+  expected_rows: 367
+  expected_whole_code_rows: 365
+  expected_description_scoped_rows: 2
+  expected_effective_date: "2024-09-27"
+  expected_rate_counts:
+    "0.25": 355
+    "0.5": 2
+    "1.0": 10
+  prohibition: Do not truncate HTS8/HTS10 to six digits or merge it into the historical HS2017 treatment panel without a validated modern-HTS concordance and scope rule.

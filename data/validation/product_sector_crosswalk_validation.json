@@ -1,0 +1,266 @@
+{
+  "validation_status": "PASS",
+  "failure_count": 0,
+  "failures": [],
+  "source_sha256_check_pass": true,
+  "official_workbook_row_count": 5205,
+  "official_duplicate_hs6_count": 0,
+  "output_row_count": 5202,
+  "duplicate_analysis_hs6_count": 0,
+  "invalid_analysis_hs6_count": 0,
+  "missing_baci_codes": [],
+  "extra_output_codes": [],
+  "source_universe_difference_check_pass": true,
+  "product_mapping_status_counts": {
+    "cepii_collapsed_official_codes": 1,
+    "official_exact": 5200,
+    "residual_product": 1
+  },
+  "sector_status_counts": {
+    "first_round_excluded": 910,
+    "other_manufacturing": 2422,
+    "outside_manufacturing": 54,
+    "priority_sector": 1815,
+    "residual_product": 1
+  },
+  "analysis_sector_counts": {
+    "autos": 64,
+    "electrical_equipment": 177,
+    "electronics": 252,
+    "machinery": 467,
+    "medical_devices": 32,
+    "other_manufacturing": 2422,
+    "textiles_apparel": 823,
+    "<NA>": 965
+  },
+  "first_round_exclusion_counts": {
+    "agricultural_bulk_goods": 382,
+    "basic_commodities": 474,
+    "crude_oil": 1,
+    "precious_metals": 53,
+    "<NA>": 4292
+  },
+  "priority_sector_set_check_pass": true,
+  "eligibility_flag_check_pass": true,
+  "sector_mapping_weight_check_pass": true,
+  "bec_mapping_status_counts": {
+    "cepii_collapse_multi_label_no_weights": 1,
+    "official_multi_label_no_weights": 348,
+    "official_not_applicable": 2,
+    "official_single_label": 4850,
+    "residual_not_mapped": 1
+  },
+  "bec_end_use_count_distribution": {
+    "0": 3,
+    "1": 4850,
+    "2": 349
+  },
+  "ambiguous_bec_numeric_weight_count": 0,
+  "single_bec_weight_check_pass": true,
+  "bec_not_applicable_code_check_pass": true,
+  "cepii_271000_collapse_check_pass": true,
+  "residual_product_rule_check_pass": true,
+  "baci_total_trade_value_usd": 214845184107687.0,
+  "explicit_status_value_coverage_rate": 1.0,
+  "official_isic_value_coverage_rate": 1.0,
+  "official_bec_value_coverage_rate": 1.0,
+  "analysis_sector_eligible_value_share": 0.729505662661555,
+  "coverage_thresholds_pass": true,
+  "validation_version": 1,
+  "generated_at_utc": "2026-07-19T12:16:01.320538+00:00",
+  "output_path": "data/processed/concordances/product_sector_crosswalk.parquet",
+  "output_sha256": "201c1d47ee861fe300db1574b6e80288bbeaec17e19fe4d368205b6d84995c09",
+  "mapping_version": "product_sector_rules_v1",
+  "schema": [
+    {
+      "name": "analysis_revision",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "hs2",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "hs4",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "product_description",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "official_hs2012_codes",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "official_hs2012_code_count",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "product_mapping_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "isic_rev4_codes",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "isic_rev4_divisions",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "isic_rev4_descriptions",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_sector",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "sector_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "sector_rule",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "first_round_exclusion",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "is_analysis_sector_eligible",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "sector_mapping_weight",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "bec5_code_primary",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bec5_code_secondary",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bec5_codes_all",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bec5_categories_all",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bec5_end_use_official",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bec5_end_use_labels",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bec5_end_use_count",
+      "type": "int8",
+      "nullable": true
+    },
+    {
+      "name": "bec_is_intermediate",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "bec_is_capital",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "bec_is_consumption",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "bec_end_use_ambiguous",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "bec_allocation_weight",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "bec_mapping_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bec5_processing_all",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bec5_specification_all",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bec5_durability_all",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bec4_codes_all",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bec4_end_use_all",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_source",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_sha256",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_version",
+      "type": "large_string",
+      "nullable": true
+    }
+  ]
+}

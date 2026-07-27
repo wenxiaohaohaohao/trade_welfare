@@ -1,0 +1,70 @@
+version: product_sector_rules_v1
+status: frozen_for_m1
+frozen_date: 2026-07-19
+analysis_revision: HS2012_CEPII
+sector_scope_config: configs/sector_scope.yaml
+
+official_source:
+  provider: United Nations Statistics Division
+  path: data/reference/hs_revision_bridge/source/unsd_hs2012_hs2017_bec5.xlsx
+  sheet: HS12BEC5
+  sha256: a442ff475429a7a3bc908541c480bc511de5706166f746042cc1b67db064b37f
+  url: https://unstats.un.org/unsd/classifications/Econ/tables/HS2012-17-BEC5_08_Nov_2018.xlsx
+  fields_used: [HS4, HS4Desc, HS6, HS6Desc, BEC5Code1, BEC5Code2, BEC5Category, BEC5EndUse, BEC5Processing, BEC5Specification, BEC5Durability, i4, i4Desc, BEC4Code, BEC4ENDUSE]
+
+product_universe:
+  reference_path: data/raw/BACI_HS12_V202601/product_codes_HS12_V202601.csv
+  reference_revision: HS2012_CEPII
+  expected_code_count: 5202
+  residual_codes:
+    "999999":
+      status: residual_product
+      interpretation: Commodities not specified according to kind; retain as an explicit residual and never assign a guessed sector or BEC use.
+
+analysis_code_collapses:
+  "271000":
+    official_hs2012_codes: ["271012", "271019", "271020", "271091", "271099"]
+    sector_rule: require_same_isic_and_analysis_sector
+    bec_rule: retain_all_labels_without_allocation_weights
+    interpretation: CEPII combines five official HS2012 refined-petroleum codes. Their ISIC sector is common, but their BEC end uses differ, so the aggregate cannot receive a guessed single end use.
+
+classification_precedence:
+  - residual_product
+  - crude_oil
+  - precious_metals
+  - agricultural_bulk_goods
+  - basic_commodities
+  - medical_devices
+  - electronics
+  - electrical_equipment
+  - machinery
+  - autos
+  - textiles_apparel
+  - other_manufacturing
+  - outside_manufacturing
+
+product_rules:
+  crude_oil:
+    hs4: ["2709"]
+  precious_metals:
+    hs2: ["71"]
+  agricultural_bulk_goods:
+    isic_rev4_divisions: ["01", "02", "03"]
+  basic_commodities:
+    isic_rev4_divisions: ["05", "06", "07", "08", "09", "19", "24"]
+    interpretation: Extractive industries, coke and refined petroleum products, and basic metals; crude petroleum is labeled separately by the higher-precedence HS4 rule.
+  medical_devices:
+    hs4_start: "9018"
+    hs4_end: "9022"
+
+bec_rules:
+  allowed_end_uses: [INT, CAP, CONS]
+  composite_separator: "/"
+  ambiguous_weight: null
+  prohibition: Composite or CEPII-collapsed BEC uses must not receive equal or guessed allocation weights.
+  expected_official_not_applicable_hs2012: ["710820", "711890"]
+
+validation_thresholds:
+  explicit_status_code_coverage: 1.0
+  official_isic_value_coverage_minimum: 0.95
+  official_bec_value_coverage_minimum: 0.95

@@ -1,0 +1,47 @@
+version: product_treatment_rules_v1
+status: frozen_for_m2
+frozen_date: 2026-07-19
+analysis_product_universe: HS2012_CEPII
+years: {start: 2014, end: 2024}
+origin_iso3: CHN
+destination_iso3: USA
+
+inputs:
+  section301_exposure:
+    path: data/interim/policy/section301_hs6_exposure.parquet
+    revision: HS2017
+    sha256: 22863ef3e034bc560d40fcbbc0945678ccd2e07bb3829ba630a36f4dfe6ca299
+  baci_hs17_import_weights:
+    path: data/interim/trade/baci_hs17_us_imports_2017.parquet
+    revision: HS2017
+    sha256: 5fb31383daec944470ef322af2fa3642d680e4d0111d0624e72d420551d9230a
+  hs_conversion:
+    path: data/processed/concordances/hs_to_hs2012_conversion.parquet
+    revision: HS2017
+    sha256: 1793d5baba30a135efa240f264e95f7ac5dc73cbea5d02e2d1999fc2a97577f9
+  product_crosswalk:
+    path: data/processed/concordances/product_sector_crosswalk.parquet
+    sha256: 201c1d47ee861fe300db1574b6e80288bbeaec17e19fe4d368205b6d84995c09
+
+aggregation:
+  china_import_share_2017: Sum China imports across source HS2017 codes divided by summed total U.S. imports.
+  tariff_rate: China-import-value-weighted mean across source HS2017 codes; if China imports are zero, use the total-import-weighted rate; if the total import denominator is also zero, retain the maximum legal source rate.
+  tariff_exposure: Sum China-import-value times source tariff rate, divided by summed total U.S. imports.
+  tariffed_product: Any mapped source HS2017 code has a positive statutory tariff rate in the year.
+  list_id: Sorted union of all source list identifiers.
+  missing_policy_source_code: A HS2017 code present in the complete BACI weight universe but absent from the legal exposure panel is treated as not listed, with rate zero and an explicit source-observed flag.
+  missing_import_denominator: Keep share and exposure missing; do not interpret an absent 2017 import denominator as a zero share.
+
+interpretation:
+  treatment_concept: gross_statutory_initial_actions
+  historical_exclusions_applied: false
+  four_year_review_2024_included: false
+  review_2024_treatment: separate_extension
+  prohibition: Do not interpret tariff_exposure as realized duties and do not silently apply historical exclusions or 2024 review changes.
+
+validation:
+  require_unique_analysis_hs6_year: true
+  require_full_product_year_grid: true
+  require_weighted_numerator_reconciliation: true
+  tolerance_usd: 0.01
+  tolerance_rate: 1.0e-12

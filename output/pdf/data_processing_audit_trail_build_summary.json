@@ -1,0 +1,19 @@
+{
+  "validation_status": "PASS",
+  "generated_at_utc": "2026-07-27T14:05:44.718379+00:00",
+  "source_path": "F:/working_paper_wenxiao/trade_welfare/docs/data_processing_audit_trail.md",
+  "source_sha256": "465f25cce364c254981bc40e654000ba6ff73ee189d6bba3a8bba678a8a2f002",
+  "source_character_count": 44420,
+  "output_path": "F:/working_paper_wenxiao/trade_welfare/output/pdf/data_processing_audit_trail.pdf",
+  "output_sha256": "a24abde06cfad3daae2d3b48b875e36b6b6834a59e821a2b370f64ba0726c806",
+  "output_size_bytes": 503800,
+  "page_count": 22,
+  "extracted_character_count": 52595,
+  "title_check_pass": true,
+  "reportlab_version": "4.5.1",
+  "font_regular": "C:\\Windows\\Fonts\\msyh.ttc",
+  "font_bold": "C:\\Windows\\Fonts\\msyhbd.ttc",
+  "rendering_review_status": "PASS_ALL_PAGES_RENDERED_AND_INSPECTED",
+  "rendered_page_count": 22,
+  "visual_defect_count": 0
+}

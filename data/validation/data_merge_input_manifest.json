@@ -1,0 +1,1058 @@
+{
+  "manifest_version": 1,
+  "generated_at_utc": "2026-07-19T13:22:01.869268+00:00",
+  "project_root": "F:\\working_paper_wenxiao\\trade_welfare",
+  "git": {
+    "branch": "data-processing-variables",
+    "commit": "2df0a0628343c9abca6b3e26d893db351ec22b94"
+  },
+  "scope": "M0.3 frozen inputs for data merge and variable construction",
+  "input_count": 8,
+  "total_file_size_bytes": 1512110467,
+  "validation_status": "PASS",
+  "inputs": [
+    {
+      "input_id": "baci_hs6_panel",
+      "path": "data/interim/trade/baci_hs6_panel.parquet",
+      "source": "CEPII BACI",
+      "release": "HS2012 Version 202601",
+      "natural_grain": "exporter-importer-HS6-year",
+      "natural_key": [
+        "year",
+        "exporter_iso3",
+        "importer_iso3",
+        "hs6"
+      ],
+      "builder": "code/data_build/build_baci_batch1.py",
+      "build_summary": "data/interim/trade/baci_batch1_build_summary.json",
+      "file_size_bytes": 1179013952,
+      "sha256": "23ab6734c70503b3a0a7c6c7ec015cc4bf75ee334242dce6cf43ec68cfef46a4",
+      "parquet_rows": 123313077,
+      "parquet_row_groups": 129,
+      "year_coverage": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "schema": [
+        {
+          "name": "year",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "exporter_iso3",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "importer_iso3",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "hs6",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "trade_value_usd",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "quantity",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "unit",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_file",
+          "type": "string",
+          "nullable": true
+        }
+      ],
+      "checks": {
+        "file_exists": true,
+        "builder_exists": true,
+        "build_summary_exists": true,
+        "natural_key_fields_present": true,
+        "expected_row_count_matches": true,
+        "expected_year_coverage_matches": true
+      }
+    },
+    {
+      "input_id": "us_census_hs6_monthly",
+      "path": "data/interim/trade/us_imports_hs6_monthly.parquet",
+      "source": "U.S. Census International Trade API",
+      "release": "validated configured-origin batch",
+      "natural_grain": "origin-HS6-month",
+      "natural_key": [
+        "year",
+        "month",
+        "origin_iso3",
+        "hs6"
+      ],
+      "builder": "code/data_build/download_us_census_imports.py",
+      "build_summary": "data/interim/trade/us_census_imports_build_summary.json",
+      "file_size_bytes": 263763588,
+      "sha256": "65746c64f8e72a215fa55506f9d1eded5b13bf3e035fbb830a8407237299a205",
+      "parquet_rows": 5017364,
+      "parquet_row_groups": 1980,
+      "year_coverage": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "schema": [
+        {
+          "name": "year",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "month",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "origin_iso3",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "origin_census_code",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "origin_name",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "hts10",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "hs6",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "import_value_usd",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "quantity",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "quantity_unit",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "customs_value",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "duties",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "dutiable_value_usd",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "commodity_description",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_file",
+          "type": "string",
+          "nullable": true
+        }
+      ],
+      "checks": {
+        "file_exists": true,
+        "builder_exists": true,
+        "build_summary_exists": true,
+        "natural_key_fields_present": true,
+        "expected_row_count_matches": true,
+        "expected_year_coverage_matches": true
+      }
+    },
+    {
+      "input_id": "section301_hs6_exposure",
+      "path": "data/interim/policy/section301_hs6_exposure.parquet",
+      "source": "USTR Section 301 public notices with BACI/Census weights",
+      "release": "validated base-list exposure batch",
+      "natural_grain": "HS2017 product-year",
+      "natural_key": [
+        "hs6",
+        "year"
+      ],
+      "builder": "code/data_build/build_ustr_section301.py",
+      "build_summary": "data/interim/policy/section301_build_summary.json",
+      "file_size_bytes": 348420,
+      "sha256": "22863ef3e034bc560d40fcbbc0945678ccd2e07bb3829ba630a36f4dfe6ca299",
+      "parquet_rows": 55308,
+      "parquet_row_groups": 1,
+      "year_coverage": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "schema": [
+        {
+          "name": "hs6",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "year",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "origin_iso3",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "destination_iso3",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "list_id",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "tariff_rate",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_import_share_2017",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariff_exposure",
+          "type": "double",
+          "nullable": true
+        }
+      ],
+      "checks": {
+        "file_exists": true,
+        "builder_exists": true,
+        "build_summary_exists": true,
+        "natural_key_fields_present": true,
+        "expected_row_count_matches": true,
+        "expected_year_coverage_matches": true
+      }
+    },
+    {
+      "input_id": "oecd_icio_output_va_fd",
+      "path": "data/interim/production/oecd_icio_output_va_fd.parquet",
+      "source": "OECD Inter-Country Input-Output tables",
+      "release": "ICIO 2025 edition regular tables",
+      "natural_grain": "country-OECD-sector-year",
+      "natural_key": [
+        "year",
+        "country_iso3",
+        "sector_oecd"
+      ],
+      "builder": "code/data_build/build_oecd_icio_baseline.py",
+      "build_summary": "data/interim/production/oecd_icio_build_summary.json",
+      "file_size_bytes": 1096583,
+      "sha256": "4c3c5b1a11d344e7b13b727a7036230d053312c137871525cb1fb412a4679643",
+      "parquet_rows": 12150,
+      "parquet_row_groups": 3,
+      "year_coverage": [
+        2017,
+        2018,
+        2022
+      ],
+      "schema": [
+        {
+          "name": "year",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "country_iso3",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "sector_oecd",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "gross_output",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "gross_output_sales",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "value_added",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "final_demand",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "intermediate_inputs",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "taxes_less_subsidies",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "exports",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "imports",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "intermediate_sales",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "domestic_absorption",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "source_file",
+          "type": "string",
+          "nullable": true
+        }
+      ],
+      "checks": {
+        "file_exists": true,
+        "builder_exists": true,
+        "build_summary_exists": true,
+        "natural_key_fields_present": true,
+        "expected_row_count_matches": true,
+        "expected_year_coverage_matches": true
+      }
+    },
+    {
+      "input_id": "oecd_amne_affiliate_activity",
+      "path": "data/interim/mne/oecd_amne_affiliate_activity.parquet",
+      "source": "OECD Analytical AMNE",
+      "release": "2026 release",
+      "natural_grain": "parent-host-OECD-sector-year",
+      "natural_key": [
+        "year",
+        "host_country_iso3",
+        "parent_country_iso3",
+        "sector_oecd"
+      ],
+      "builder": "code/data_build/build_oecd_amne.py",
+      "build_summary": "data/interim/mne/oecd_amne_build_summary.json",
+      "file_size_bytes": 65440219,
+      "sha256": "ae5f859573e95773274928d0f27a90fe974fca2bd95f22fa78a849d8a2d8f856",
+      "parquet_rows": 1260053,
+      "parquet_row_groups": 16,
+      "year_coverage": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "schema": [
+        {
+          "name": "year",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "host_country_iso3",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "parent_country_iso3",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "sector_oecd",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "affiliate_output",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "affiliate_value_added",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "affiliate_employment",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "affiliate_exports",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "affiliate_imports",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "ownership_type",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "foreign_affiliate_output_total",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "gross_output",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "parent_affiliate_output_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "allocation_method",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_file",
+          "type": "string",
+          "nullable": true
+        }
+      ],
+      "checks": {
+        "file_exists": true,
+        "builder_exists": true,
+        "build_summary_exists": true,
+        "natural_key_fields_present": true,
+        "expected_row_count_matches": true,
+        "expected_year_coverage_matches": true
+      }
+    },
+    {
+      "input_id": "bea_us_mne_affiliate_country_industry",
+      "path": "data/interim/mne/bea_us_mne_affiliate_country_industry.parquet",
+      "source": "BEA Activities of U.S. Multinational Enterprises",
+      "release": "2017-2023 comprehensive country-industry batch",
+      "natural_grain": "affiliate-country-industry-year",
+      "natural_key": [
+        "year",
+        "affiliate_country",
+        "industry"
+      ],
+      "builder": "code/data_build/build_bea_us_mne_affiliate_country_industry.py",
+      "build_summary": "data/interim/mne/bea_us_mne_affiliate_country_industry_build_summary.json",
+      "file_size_bytes": 314517,
+      "sha256": "ab2e064459cc9dac8c13eebd7e399e91047133a93e8f35b9821520add7f219e8",
+      "parquet_rows": 8256,
+      "parquet_row_groups": 1,
+      "year_coverage": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "schema": [
+        {
+          "name": "year",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "affiliate_country",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "industry",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "employment",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sales",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "value_added",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "capital_expenditures",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "goods_exports_to_us",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "goods_imports_from_us",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "bea_area_type",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "bea_parent_area",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "capital_expenditures_raw_code",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "capital_expenditures_suppressed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "capital_expenditures_small_value",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "capital_expenditures_source_file",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "sales_raw_code",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "sales_suppressed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "sales_small_value",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "sales_source_file",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "value_added_raw_code",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "value_added_suppressed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "value_added_small_value",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "value_added_source_file",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "employment_raw_code",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "employment_suppressed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "employment_small_value",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "employment_source_file",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "goods_imports_from_us_raw_code",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "goods_imports_from_us_suppressed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "goods_imports_from_us_small_value",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "goods_imports_from_us_source_file",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "goods_exports_to_us_raw_code",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "goods_exports_to_us_suppressed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "goods_exports_to_us_small_value",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "goods_exports_to_us_source_file",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "release_vintage",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "download_date",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_page",
+          "type": "string",
+          "nullable": true
+        }
+      ],
+      "checks": {
+        "file_exists": true,
+        "builder_exists": true,
+        "build_summary_exists": true,
+        "natural_key_fields_present": true,
+        "expected_row_count_matches": true,
+        "expected_year_coverage_matches": true
+      }
+    },
+    {
+      "input_id": "bea_direct_investment_country_industry",
+      "path": "data/interim/fdi/bea_direct_investment_country_industry.parquet",
+      "source": "BEA Direct Investment by Country and Industry",
+      "release": "2020-2024 two-direction batch",
+      "natural_grain": "direction-country-industry-year",
+      "natural_key": [
+        "year",
+        "direction",
+        "country",
+        "industry"
+      ],
+      "builder": "code/data_build/build_bea_direct_investment_country_industry.py",
+      "build_summary": "data/interim/fdi/bea_direct_investment_country_industry_build_summary.json",
+      "file_size_bytes": 248802,
+      "sha256": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba",
+      "parquet_rows": 11610,
+      "parquet_row_groups": 1,
+      "year_coverage": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "schema": [
+        {
+          "name": "year",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "country",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "industry",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "position",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "flows",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "income",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "source_file",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "bea_area_type",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "bea_parent_area",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "flows_raw_code",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "flows_suppressed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "flows_small_value",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "flows_source_file",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "flows_source_url",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "income_raw_code",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "income_suppressed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "income_small_value",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "income_source_file",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "income_source_url",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "position_raw_code",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "position_suppressed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "position_small_value",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "position_source_file",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "position_source_url",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "release_vintage",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "download_date",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_page",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "unit",
+          "type": "string",
+          "nullable": true
+        }
+      ],
+      "checks": {
+        "file_exists": true,
+        "builder_exists": true,
+        "build_summary_exists": true,
+        "natural_key_fields_present": true,
+        "expected_row_count_matches": true,
+        "expected_year_coverage_matches": true
+      }
+    },
+    {
+      "input_id": "mexico_fdi_country_sector_quarterly",
+      "path": "data/interim/fdi/mexico_fdi_country_sector_quarterly.parquet",
+      "source": "Mexico Secretaria de Economia official FDI tables",
+      "release": "national release through 2024Q4; country-sector quarterly input observed through 2024Q2",
+      "natural_grain": "parent-country-SCIAN-sector-quarter",
+      "natural_key": [
+        "year",
+        "quarter",
+        "parent_country_name",
+        "sector_level",
+        "sector_code"
+      ],
+      "builder": "code/data_build/download_build_mexico_fdi.py",
+      "build_summary": "data/interim/fdi/mexico_fdi_build_summary.json",
+      "file_size_bytes": 1884386,
+      "sha256": "fce725b009dc96ae825bd3fed2d2b02ba5cc13501c5a6657bcdf3a09a022261a",
+      "parquet_rows": 596366,
+      "parquet_row_groups": 1,
+      "year_coverage": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "schema": [
+        {
+          "name": "year",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "quarter",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "period",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "date",
+          "type": "timestamp[us]",
+          "nullable": true
+        },
+        {
+          "name": "parent_country_iso3",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "parent_country_name",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "parent_country_total_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "parent_country_residual_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "sector_level",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "sector_code",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "sector_name",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "fdi_million_usd",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "fdi_usd",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "confidential_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "source_file",
+          "type": "large_string",
+          "nullable": true
+        }
+      ],
+      "checks": {
+        "file_exists": true,
+        "builder_exists": true,
+        "build_summary_exists": true,
+        "natural_key_fields_present": true,
+        "expected_row_count_matches": true,
+        "expected_year_coverage_matches": true
+      }
+    }
+  ]
+}

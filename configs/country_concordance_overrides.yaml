@@ -1,0 +1,27 @@
+version: country_concordance_overrides_v1
+
+canonical_name_overrides:
+  PRI: Puerto Rico
+  TWN: Taiwan
+
+bea_name_to_iso3:
+  Curacao: CUW
+  Czech Republic: CZE
+  Dominican Republic: DOM
+  Hong Kong: HKG
+  Korea, Republic of: KOR
+  Russia: RUS
+  South Korea: KOR
+  Taiwan: TWN
+  Turkey: TUR
+  Vietnam: VNM
+
+bea_force_aggregate_labels:
+  - European Union 2
+  - South and Central America
+  - United Kingdom Islands, Caribbean
+  - United Kingdom Islands, Caribbean 1
+
+notes:
+  - BEA country_or_area is not sufficient by itself because several addendum or regional labels are not single countries.
+  - BACI S19 is handled separately as a project proxy for TWN and is never treated as a direct Taiwan-only observation.

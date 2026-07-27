@@ -1,0 +1,237 @@
+{
+  "validation_status": "PASS",
+  "failure_count": 0,
+  "failures": [],
+  "input_hash_checks": {
+    "baci_hs6_panel": true,
+    "country_crosswalk": true,
+    "product_crosswalk": true,
+    "analysis_sample": true
+  },
+  "connector_count": 13,
+  "connectors": [
+    "VNM",
+    "MEX",
+    "CAN",
+    "IND",
+    "IDN",
+    "MYS",
+    "PHL",
+    "THA",
+    "KOR",
+    "TWN",
+    "POL",
+    "MAR",
+    "TUR"
+  ],
+  "product_count": 5202,
+  "year_count": 11,
+  "output_row_count": 743886,
+  "expected_output_row_count": 743886,
+  "duplicate_natural_key_count": 0,
+  "full_grid_check_pass": true,
+  "negative_value_counts": {
+    "china_to_usa_value_usd": 0,
+    "china_to_connector_value_usd": 0,
+    "east_asia_to_connector_value_usd": 0,
+    "connector_to_usa_value_usd": 0
+  },
+  "leg_reconciliation": {
+    "china_to_connector": {
+      "source_total": 8021758704297.0,
+      "output_total": 8021758704297.0,
+      "gap": 0.0
+    },
+    "east_asia_to_connector": {
+      "source_total": 13242306197894.0,
+      "output_total": 13242306197894.0,
+      "gap": 0.0
+    },
+    "connector_to_usa": {
+      "source_total": 12370620858085.0,
+      "output_total": 12370620858085.0,
+      "gap": 0.0
+    }
+  },
+  "china_to_usa_source_total": 5343362625418.0,
+  "china_to_usa_repeated_total_by_connector": {
+    "CAN": 5343362625418.0,
+    "IDN": 5343362625418.0,
+    "IND": 5343362625418.0,
+    "KOR": 5343362625418.0,
+    "MAR": 5343362625418.0,
+    "MEX": 5343362625418.0,
+    "MYS": 5343362625418.0,
+    "PHL": 5343362625418.0,
+    "POL": 5343362625418.0,
+    "THA": 5343362625418.0,
+    "TUR": 5343362625418.0,
+    "TWN": 5343362625418.0,
+    "VNM": 5343362625418.0
+  },
+  "china_to_usa_repetition_gaps": {
+    "CAN": 0.0,
+    "IDN": 0.0,
+    "IND": 0.0,
+    "KOR": 0.0,
+    "MAR": 0.0,
+    "MEX": 0.0,
+    "MYS": 0.0,
+    "PHL": 0.0,
+    "POL": 0.0,
+    "THA": 0.0,
+    "TUR": 0.0,
+    "TWN": 0.0,
+    "VNM": 0.0
+  },
+  "china_to_usa_repetition_check_pass": true,
+  "east_asia_value_at_least_china_value_check_pass": true,
+  "twn_s19_proxy_check_pass": true,
+  "east_asia_self_trade_flags_check_pass": true,
+  "product_mapping_provenance_missing_count": 0,
+  "leg_nonzero_key_counts": {
+    "china_to_usa": 50137,
+    "china_to_connector": 592400,
+    "east_asia_to_connector": 626837,
+    "connector_to_usa": 438844
+  },
+  "quantity_omitted_due_source_missingness": true,
+  "common_benchmark_must_not_be_summed_across_connectors": true,
+  "validation_version": 1,
+  "generated_at_utc": "2026-07-19T12:43:15.948031+00:00",
+  "output_path": "data/processed/harmonized/connector_trade_legs_hs6_year.parquet",
+  "output_sha256": "9f0817d1192c372109e68c205749d0933550c62d847bae2a30b86039d2dbd149",
+  "trade_panel_version": "connector_trade_rules_v1",
+  "schema": [
+    {
+      "name": "connector_iso3",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "year",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "analysis_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "product_description",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_sector",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "sector_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "first_round_exclusion",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "is_analysis_sector_eligible",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "product_mapping_version",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "china_to_connector_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "china_to_connector_value_usd_row_count",
+      "type": "int32",
+      "nullable": true
+    },
+    {
+      "name": "east_asia_to_connector_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "east_asia_to_connector_value_usd_row_count",
+      "type": "int32",
+      "nullable": true
+    },
+    {
+      "name": "connector_to_usa_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "connector_to_usa_value_usd_row_count",
+      "type": "int32",
+      "nullable": true
+    },
+    {
+      "name": "china_to_usa_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "china_to_usa_value_usd_row_count",
+      "type": "int32",
+      "nullable": true
+    },
+    {
+      "name": "connector_group",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "connector_baci_code",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "connector_is_proxy",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "east_asia_self_trade_excluded",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "baci_absence_treated_as_zero",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "china_to_usa_common_benchmark",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "trade_value_unit",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "quantity_included",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "trade_panel_version",
+      "type": "large_string",
+      "nullable": true
+    }
+  ]
+}

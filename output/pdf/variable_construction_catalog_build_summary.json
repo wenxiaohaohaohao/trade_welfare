@@ -1,0 +1,19 @@
+{
+  "validation_status": "PASS",
+  "generated_at_utc": "2026-07-27T14:09:15.923009+00:00",
+  "source_path": "F:/working_paper_wenxiao/trade_welfare/docs/variable_construction_catalog.md",
+  "source_sha256": "4fa042dfee1b18f4a6ed1de4e465f2487b284bad87806270e82f4218550ad007",
+  "source_character_count": 33665,
+  "output_path": "F:/working_paper_wenxiao/trade_welfare/output/pdf/variable_construction_catalog.pdf",
+  "output_sha256": "418de4d7e576f686dd1f32f49000ee3d8862496d5feff6e8de9ee328358968e3",
+  "output_size_bytes": 382312,
+  "page_count": 18,
+  "extracted_character_count": 36397,
+  "title_check_pass": true,
+  "reportlab_version": "4.5.1",
+  "font_regular": "C:\\Windows\\Fonts\\msyh.ttc",
+  "font_bold": "C:\\Windows\\Fonts\\msyhbd.ttc",
+  "rendering_review_status": "PASS_ALL_PAGES_RENDERED_AND_INSPECTED",
+  "rendered_page_count": 18,
+  "visual_defect_count": 0
+}

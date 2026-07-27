@@ -1,0 +1,137 @@
+version: analysis_sample_v1
+status: frozen_for_m1_concordance
+frozen_date: 2026-07-19
+purpose: First-stage data merge, connector ranking, rerouting facts, and production-side validation.
+
+source_configs:
+  country_groups: configs/country_groups.yaml
+  sector_scope: configs/sector_scope.yaml
+  time_windows: configs/time_windows.yaml
+  time_aggregation_rules: configs/time_aggregation_rules.yaml
+  hs_revision_rules: configs/hs_revision_rules.yaml
+  product_sector_rules: configs/product_sector_rules.yaml
+  source_sector_rules: configs/source_sector_rules.yaml
+  census_country_codes: configs/us_census_country_codes.yaml
+  country_code_overrides: configs/country_code_overrides.yaml
+
+countries:
+  source_core:
+    - CHN
+  source_extended_east_asia:
+    - CHN
+    - KOR
+    - JPN
+    - TWN
+  destination_core:
+    - USA
+  core_connectors:
+    - VNM
+    - MEX
+    - CAN
+  asian_comparators:
+    - IND
+    - IDN
+    - MYS
+    - PHL
+    - THA
+    - KOR
+    - TWN
+  other_candidates:
+    - POL
+    - MAR
+    - TUR
+  census_validation_origins:
+    - CAN
+    - CHN
+    - IDN
+    - IND
+    - JPN
+    - KOR
+    - MAR
+    - MEX
+    - MYS
+    - PHL
+    - POL
+    - THA
+    - TUR
+    - TWN
+    - VNM
+  baci_country_overrides:
+    TWN:
+      baci_iso3: S19
+      proxy: true
+      interpretation: Other Asia, nes is a documented proxy and not a direct Taiwan-only observation.
+
+sectors:
+  priority:
+    - electronics
+    - electrical_equipment
+    - machinery
+    - autos
+    - medical_devices
+    - textiles_apparel
+  first_round_exclusions:
+    - crude_oil
+    - basic_commodities
+    - precious_metals
+    - agricultural_bulk_goods
+  catch_all:
+    - other_manufacturing
+  mapping_status: m1_country_time_product_and_source_sector_concordances_completed
+  product_mapping_version: product_sector_rules_v1
+  source_sector_mapping_version: source_sector_rules_v1
+
+time:
+  annual_trade_panel:
+    start: 2014
+    end: 2024
+  pre_period:
+    start: 2014
+    end: 2017
+  shock_period:
+    start: 2018
+    end: 2019
+  post_period:
+    start: 2020
+    end: 2024
+  production_validation_windows:
+    trade_amne_overlap:
+      start: 2014
+      end: 2023
+    bea_mne_overlap:
+      start: 2017
+      end: 2023
+    fdi_extension:
+      start: 2020
+      end: 2024
+      full_calendar_year_end: 2023
+      partial_year_2024: Q1-Q2_only
+  structural_baselines:
+    primary_pre_shock: 2017
+    shock_onset_interface: 2018
+    post_shock_robustness: 2022
+    excluded_candidate:
+      year: 2019
+      reason: No validated 2019 OECD ICIO model baseline exists in the current processed inputs.
+
+frequency_rules:
+  census_monthly_values: Sum flow variables to annual totals; retain the monthly interface for event-study work.
+  mexico_quarterly_fdi: Sum only complete four-quarter nonconfidential flows to annual totals; 2024 is Q1-Q2 only and is not full-year comparable; do not treat confidential cells as zero.
+  bea_direct_investment_position: Retain annual position as a stock; do not sum positions across time.
+  icio_missing_years: Do not interpolate or impute unobserved ICIO years.
+
+scope_exclusions:
+  - fDi Markets
+  - Orbis
+  - Panjiva
+  - Datamyne
+  - ImportGenius
+
+stata_handoff:
+  canonical_format: parquet
+  collaborator_format: dta
+  iso3_storage: str3
+  hs6_storage: str6
+  require_isid_check: true
+  require_variable_dictionary: true
+  require_batch_validation_do: true

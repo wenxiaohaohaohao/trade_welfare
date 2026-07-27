@@ -33,13 +33,13 @@ datos.gob.mx detailed CSV outputs:
 
 | Output | Dimensions | Coverage | Rows | Confidential cells |
 |---|---|---|---:|---:|
-| `mexico_fdi_state_country_quarterly.parquet` | State x source country x quarter | 2006Q1-2024Q4 | 96,200 | 0 |
-| `mexico_fdi_state_sector_quarterly.parquet` | State x SCIAN level x quarter | 2006Q1-2024Q4 | 616,420 | 126,221 |
-| `mexico_fdi_state_investment_type_quarterly.parquet` | State x type x quarter | 2006Q1-2024Q4 | 7,104 | 79 |
-| `mexico_fdi_country_sector_quarterly.parquet` | Source country x SCIAN level x quarter | 2006Q1-2024Q4 | 596,366 | 86,123 |
-| `mexico_fdi_country_investment_type_quarterly.parquet` | Source country x type x quarter | 2006Q1-2024Q4 | 10,878 | 2,368 |
+| `mexico_fdi_state_country_quarterly.parquet` | State x source country x quarter | 2006Q1-2024Q2 | 96,200 | 0 |
+| `mexico_fdi_state_sector_quarterly.parquet` | State x SCIAN level x quarter | 2006Q1-2024Q2 | 616,420 | 126,221 |
+| `mexico_fdi_state_investment_type_quarterly.parquet` | State x type x quarter | 2006Q1-2024Q2 | 7,104 | 79 |
+| `mexico_fdi_country_sector_quarterly.parquet` | Source country x SCIAN level x quarter | 2006Q1-2024Q2 | 596,366 | 86,123 |
+| `mexico_fdi_country_investment_type_quarterly.parquet` | Source country x type x quarter | 2006Q1-2024Q2 | 10,878 | 2,368 |
 
-All output paths are under `data/interim/fdi/`. Raw CSV and API JSON snapshots are under `data/raw/mexico_fdi/`. The complete hash and query record is `data/interim/fdi/mexico_fdi_build_summary.json`.
+All output paths are under `data/interim/fdi/`. Raw CSV and API JSON snapshots are under `data/raw/mexico_fdi/`. The complete hash and query record is `data/interim/fdi/mexico_fdi_build_summary.json`. The national API panels include all four quarters of 2024, while the five detailed quarterly cross-tables currently contain only Q1-Q2; use 2024 detail only quarterly or H1-to-H1, not as a full calendar year.
 
 ## Variables
 

@@ -1,0 +1,125 @@
+version: time_aggregation_rules_v1
+status: frozen_for_m1
+frozen_date: 2026-07-19
+
+rules:
+  - input_id: baci_hs6_panel
+    input_path: data/interim/trade/baci_hs6_panel.parquet
+    input_frequency: annual
+    metrics: [trade_value_usd, quantity]
+    temporal_semantics: annual_flow_or_quantity
+    annual_operator: identity
+    missing_rule: preserve_source_missing
+    prohibited_operation: do_not_sum_across_years
+
+  - input_id: us_census_hs6_monthly
+    input_path: data/interim/trade/us_imports_hs6_monthly.parquet
+    input_frequency: monthly
+    metrics: [import_value_usd, customs_value, duties, dutiable_value_usd]
+    temporal_semantics: monthly_flow
+    annual_operator: sum_reported_monthly_flows
+    expected_periods_per_year: 12
+    missing_rule: sum_reported_rows_and_retain_months_with_records; an_absent_origin_hs6_month_is_no_reported_flow_not_an_observed_zero
+    retain_native_frequency: true
+    prohibited_operation: do_not_use_as_all_origin_us_import_denominator
+
+  - input_id: us_census_hs6_monthly
+    input_path: data/interim/trade/us_imports_hs6_monthly.parquet
+    input_frequency: monthly
+    metrics: [quantity]
+    temporal_semantics: unavailable_measure
+    annual_operator: not_available
+    expected_periods_per_year: 12
+    missing_rule: current_zero_values_with_unit_dash_are_structural_unavailability_not_true_zero
+    retain_native_frequency: true
+    prohibited_operation: do_not_construct_quantity_levels_or_growth
+
+  - input_id: section301_hs6_exposure
+    input_path: data/interim/policy/section301_hs6_exposure.parquet
+    input_frequency: annual
+    metrics: [tariff_rate, china_import_share_2017, tariff_exposure]
+    temporal_semantics: annual_policy_state_or_fixed_baseline_exposure
+    annual_operator: identity
+    missing_rule: preserve_source_missing
+    prohibited_operation: do_not_sum_rates_or_exposure_across_years
+
+  - input_id: oecd_icio_output_va_fd
+    input_path: data/interim/production/oecd_icio_output_va_fd.parquet
+    input_frequency: selected_annual_benchmarks
+    metrics: [gross_output, gross_output_sales, value_added, final_demand, intermediate_inputs, taxes_less_subsidies, exports, imports, intermediate_sales, domestic_absorption]
+    temporal_semantics: annual_accounting_measure
+    annual_operator: identity
+    allowed_years: [2017, 2018, 2022]
+    missing_rule: do_not_interpolate_unobserved_years
+    prohibited_operation: do_not_create_synthetic_2019_or_other_missing_benchmarks
+
+  - input_id: oecd_amne_affiliate_activity
+    input_path: data/interim/mne/oecd_amne_affiliate_activity.parquet
+    input_frequency: annual
+    metrics: [affiliate_output, affiliate_value_added, affiliate_exports, affiliate_imports, foreign_affiliate_output_total, gross_output, parent_affiliate_output_share]
+    temporal_semantics: annual_activity_or_share
+    annual_operator: identity
+    missing_rule: preserve_source_missing_and_allocation_method
+    prohibited_operation: do_not_sum_shares_or_activity_across_years
+
+  - input_id: oecd_amne_affiliate_activity
+    input_path: data/interim/mne/oecd_amne_affiliate_activity.parquet
+    input_frequency: annual
+    metrics: [affiliate_employment]
+    temporal_semantics: unavailable_measure
+    annual_operator: not_available
+    missing_rule: all_current_values_are_missing
+    prohibited_operation: do_not_impute_employment_from_other_metrics
+
+  - input_id: bea_us_mne_affiliate_country_industry
+    input_path: data/interim/mne/bea_us_mne_affiliate_country_industry.parquet
+    input_frequency: annual
+    metrics: [employment, sales, value_added, capital_expenditures, goods_exports_to_us, goods_imports_from_us]
+    temporal_semantics: annual_activity_measure
+    annual_operator: identity
+    missing_rule: preserve_suppressed_cells_as_missing
+    prohibited_operation: do_not_sum_across_years
+
+  - input_id: bea_direct_investment_country_industry
+    input_path: data/interim/fdi/bea_direct_investment_country_industry.parquet
+    input_frequency: annual
+    metrics: [position]
+    temporal_semantics: end_period_stock
+    annual_operator: identity
+    missing_rule: preserve_suppressed_cells_as_missing
+    prohibited_operation: never_sum_positions_across_time
+
+  - input_id: bea_direct_investment_country_industry
+    input_path: data/interim/fdi/bea_direct_investment_country_industry.parquet
+    input_frequency: annual
+    metrics: [flows, income]
+    temporal_semantics: annual_flow
+    annual_operator: identity
+    missing_rule: preserve_suppressed_cells_as_missing
+    prohibited_operation: do_not_sum_across_years
+
+  - input_id: mexico_fdi_country_sector_quarterly
+    input_path: data/interim/fdi/mexico_fdi_country_sector_quarterly.parquet
+    input_frequency: quarterly
+    metrics: [fdi_million_usd, fdi_usd]
+    temporal_semantics: quarterly_flow
+    annual_operator: sum_complete_nonconfidential_calendar_periods
+    expected_periods_per_year: 4
+    complete_calendar_years:
+      start: 2006
+      end: 2023
+    partial_calendar_years:
+      2024:
+        observed_quarters: [1, 2]
+        annual_comparable: false
+    missing_rule: annual_value_is_missing_if_any_quarter_is_confidential_or_any_required_quarter_is_absent
+    retain_native_frequency: true
+    prohibited_operation: do_not_treat_2024_h1_as_a_full_calendar_year
+
+analysis_periods:
+  annual_trade_panel: {start: 2014, end: 2024}
+  pre_period: {start: 2014, end: 2017}
+  shock_period: {start: 2018, end: 2019}
+  post_period: {start: 2020, end: 2024}
+  mexico_full_calendar_year_comparison_end: 2023
+  mexico_2024_rule: retain_quarterly_or_compare_H1_to_H1_only

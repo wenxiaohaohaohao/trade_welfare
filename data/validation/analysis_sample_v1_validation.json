@@ -1,0 +1,130 @@
+{
+  "validation_version": 1,
+  "generated_at_utc": "2026-07-19T12:30:05.345713+00:00",
+  "sample_version": "analysis_sample_v1",
+  "status": "PASS",
+  "failure_count": 0,
+  "failures": [],
+  "checks": {
+    "country_contract.source_core": true,
+    "country_contract.source_extended_east_asia": true,
+    "country_contract.destination_core": true,
+    "country_contract.core_connectors": true,
+    "country_contract.asian_comparators": true,
+    "country_contract.other_candidates": true,
+    "connector_groups_disjoint": true,
+    "census_origin_config_matches_frozen_sample": true,
+    "census_origin_data_matches_frozen_sample": true,
+    "twn_baci_proxy_matches": true,
+    "priority_sectors_match": true,
+    "excluded_sectors_match": true,
+    "product_sector_config_reference_matches": true,
+    "product_sector_mapping_version_matches": true,
+    "product_sector_mapping_validation_passed": true,
+    "source_sector_config_reference_matches": true,
+    "source_sector_mapping_version_matches": true,
+    "source_sector_mapping_validation_passed": true,
+    "time_contract.pre_period": true,
+    "time_contract.shock_period": true,
+    "time_contract.post_period": true,
+    "time_windows_disjoint": true,
+    "time_windows_cover_trade_panel": true,
+    "coverage.baci_hs6_panel.trade_panel": true,
+    "coverage.us_census_hs6_monthly.trade_panel": true,
+    "coverage.section301_hs6_exposure.trade_panel": true,
+    "coverage.oecd_amne_affiliate_activity": true,
+    "coverage.bea_us_mne_affiliate_country_industry": true,
+    "coverage.bea_direct_investment_country_industry": true,
+    "coverage.mexico_fdi_country_sector_quarterly": true,
+    "selected_structural_baselines_available": true,
+    "primary_baseline_is_pre_shock_2017": true,
+    "unsupported_2019_excluded": true,
+    "fdi_markets_excluded": true,
+    "upstream_quality_audit_passed": true
+  },
+  "frozen_summary": {
+    "core_connectors": [
+      "VNM",
+      "MEX",
+      "CAN"
+    ],
+    "asian_comparators": [
+      "IND",
+      "IDN",
+      "MYS",
+      "PHL",
+      "THA",
+      "KOR",
+      "TWN"
+    ],
+    "other_candidates": [
+      "POL",
+      "MAR",
+      "TUR"
+    ],
+    "priority_sectors": [
+      "electronics",
+      "electrical_equipment",
+      "machinery",
+      "autos",
+      "medical_devices",
+      "textiles_apparel"
+    ],
+    "trade_years": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "pre_years": [
+      2014,
+      2015,
+      2016,
+      2017
+    ],
+    "shock_years": [
+      2018,
+      2019
+    ],
+    "post_years": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "selected_structural_baselines": [
+      2017,
+      2018,
+      2022
+    ],
+    "excluded_structural_candidate": {
+      "year": 2019,
+      "reason": "No validated 2019 OECD ICIO model baseline exists in the current processed inputs."
+    },
+    "census_validation_origins": [
+      "CAN",
+      "CHN",
+      "IDN",
+      "IND",
+      "JPN",
+      "KOR",
+      "MAR",
+      "MEX",
+      "MYS",
+      "PHL",
+      "POL",
+      "THA",
+      "TUR",
+      "TWN",
+      "VNM"
+    ]
+  }
+}

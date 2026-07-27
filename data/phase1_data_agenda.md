@@ -40,6 +40,8 @@
 
 ## Phase 1 Checklist
 
+数据合并、变量构造、逐项验收和勾选规则见 `data/data_merge_checklist.md`。该清单按 M0-M7 顺序执行；未通过对应 completion gate 的任务不得提前打勾。
+
 - [ ] 1. 构造 connector ranking：判断哪些国家-部门最像 connector。
 - [ ] 2. 构造 rerouting facts：判断中国 -> connector 与 connector -> 美国是否同步上升。
 - [ ] 3. 构造 production-side validation：判断 connector 是否有增加值、产出、FDI、MNE 活动增长。

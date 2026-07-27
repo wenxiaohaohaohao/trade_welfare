@@ -1,0 +1,338 @@
+{
+  "validation_status": "PASS",
+  "failure_count": 0,
+  "failures": [],
+  "input_hash_checks": {
+    "connector_trade_legs": true,
+    "product_treatment": true
+  },
+  "trade_input_row_count": 743886,
+  "treatment_input_row_count": 57222,
+  "output_row_count": 743886,
+  "trade_duplicate_key_count": 0,
+  "treatment_duplicate_key_count": 0,
+  "output_duplicate_key_count": 0,
+  "unmatched_trade_row_count": 0,
+  "product_field_mismatch_counts": {
+    "product_description": 0,
+    "analysis_sector": 0,
+    "sector_status": 0,
+    "first_round_exclusion": 0,
+    "is_analysis_sector_eligible": 0,
+    "product_mapping_version": 0
+  },
+  "trade_value_reconciliation": {
+    "china_to_usa_value_usd": {
+      "input_total": 69463714130434.0,
+      "output_total": 69463714130434.0,
+      "gap": 0.0
+    },
+    "china_to_connector_value_usd": {
+      "input_total": 8021758704297.0,
+      "output_total": 8021758704297.0,
+      "gap": 0.0
+    },
+    "east_asia_to_connector_value_usd": {
+      "input_total": 13242306197894.0,
+      "output_total": 13242306197894.0,
+      "gap": 0.0
+    },
+    "connector_to_usa_value_usd": {
+      "input_total": 12370620858085.0,
+      "output_total": 12370620858085.0,
+      "gap": 0.0
+    }
+  },
+  "connector_count": 13,
+  "inconsistent_treatment_product_year_count": 0,
+  "incomplete_treatment_replication_count": 0,
+  "treatment_provenance_missing_count": 0,
+  "common_benchmarks_not_additive_across_connectors": true,
+  "validation_version": 1,
+  "generated_at_utc": "2026-07-19T12:45:10.660430+00:00",
+  "output_path": "data/processed/harmonized/connector_trade_hs6_year.parquet",
+  "output_sha256": "01fbbe43a8e067ed165d21f72d3b733fe240ec098957e99085fff67b16571fdb",
+  "merge_version": "trade_treatment_merge_rules_v1",
+  "schema": [
+    {
+      "name": "connector_iso3",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "year",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "analysis_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "product_description",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_sector",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "sector_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "first_round_exclusion",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "is_analysis_sector_eligible",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "product_mapping_version",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "china_to_connector_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "china_to_connector_value_usd_row_count",
+      "type": "int32",
+      "nullable": true
+    },
+    {
+      "name": "east_asia_to_connector_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "east_asia_to_connector_value_usd_row_count",
+      "type": "int32",
+      "nullable": true
+    },
+    {
+      "name": "connector_to_usa_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "connector_to_usa_value_usd_row_count",
+      "type": "int32",
+      "nullable": true
+    },
+    {
+      "name": "china_to_usa_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "china_to_usa_value_usd_row_count",
+      "type": "int32",
+      "nullable": true
+    },
+    {
+      "name": "connector_group",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "connector_baci_code",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "connector_is_proxy",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "east_asia_self_trade_excluded",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "baci_absence_treated_as_zero",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "china_to_usa_common_benchmark",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "trade_value_unit",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "quantity_included",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "trade_panel_version",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "total_us_import_value_2017",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "china_import_value_2017",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "source_hs17_code_count",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "policy_source_observed_count",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "source_tariffed_hs17_count",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "source_zero_import_hs17_count",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "tariff_rate_max_source",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "source_hs17_codes",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_list_ids",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "hs_mapping_methods",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_mapping_methods",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "hs_bridge_version",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "china_import_share_2017",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "tariff_rate_china_weighted",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "tariff_rate_total_import_weighted",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "tariff_rate",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "tariff_exposure",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "tariffed_product",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "policy_mapping_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "origin_iso3",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "destination_iso3",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "treatment_concept",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "historical_exclusions_applied",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "four_year_review_2024_included",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "review_2024_treatment",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "treatment_version",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "trade_treatment_join_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "trade_treatment_merge_version",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "treatment_repeated_across_connectors",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "common_benchmarks_not_additive_across_connectors",
+      "type": "bool",
+      "nullable": true
+    }
+  ]
+}

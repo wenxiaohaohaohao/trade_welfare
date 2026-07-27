@@ -1,0 +1,30 @@
+version: trade_treatment_merge_rules_v1
+status: frozen_for_m2
+frozen_date: 2026-07-19
+
+inputs:
+  connector_trade_legs:
+    path: data/processed/harmonized/connector_trade_legs_hs6_year.parquet
+    sha256: 9f0817d1192c372109e68c205749d0933550c62d847bae2a30b86039d2dbd149
+    natural_key: [connector_iso3, analysis_hs6, year]
+  product_treatment:
+    path: data/processed/harmonized/product_treatment_hs6_year.parquet
+    sha256: 498454e124c1b04913ebe2aeb2baa8aaaa54dca548db52d5d59d9785eda72455
+    natural_key: [analysis_hs6, year]
+
+join:
+  type: left
+  cardinality: many_to_one
+  keys: [analysis_hs6, year]
+  require_all_trade_rows_matched: true
+  require_product_fields_identical: true
+  duplicated_treatment_across_connectors: true
+  prohibition: Treatment rates, exposure, and China-to-USA benchmark repeat across connectors and must not be summed across connector rows.
+
+reconciliation:
+  trade_value_fields:
+    - china_to_usa_value_usd
+    - china_to_connector_value_usd
+    - east_asia_to_connector_value_usd
+    - connector_to_usa_value_usd
+  tolerance_usd: 0.01

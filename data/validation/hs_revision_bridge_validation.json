@@ -1,0 +1,435 @@
+{
+  "validation_status": "PASS",
+  "failure_count": 0,
+  "failures": [],
+  "source_hash_checks": {
+    "unsd_hs2017_to_hs2012": true,
+    "unsd_hs2022_to_hs2012": true,
+    "wco_hs2017_to_hs2012_table_i": true,
+    "wco_hs2012_to_hs2017_table_ii": true,
+    "wco_corrigendum_1": true,
+    "wco_corrigendum_2": true
+  },
+  "conversion_row_count": 16209,
+  "conversion_source_counts": {
+    "HS2012": 5207,
+    "HS2017": 5389,
+    "HS2022": 5613
+  },
+  "conversion_duplicate_source_keys": 0,
+  "conversion_weights_all_one": true,
+  "correlation_row_count": 27726,
+  "correlation_duplicate_source_target_keys": 0,
+  "relationship_counts_by_revision": {
+    "HS2017": {
+      "1:1": 4744,
+      "1:n": 44,
+      "n:1": 578,
+      "n:n": 775
+    },
+    "HS2022": {
+      "1:1": 3714,
+      "1:n": 70,
+      "n:1": 1718,
+      "n:n": 10875
+    }
+  },
+  "relationship_counts_match_inspected_workbooks": true,
+  "invalid_hs6_count": 0,
+  "official_conversion_pair_missing_count": 0,
+  "wco_corrigenda_checks_pass": true,
+  "hs2012_reference_fully_covered": true,
+  "unvalidated_multi_target_weight_count": 0,
+  "observed_input_coverage": [
+    {
+      "input_id": "baci_hs17_us_imports_2017",
+      "source_revision": "HS2017",
+      "row_count": 5384,
+      "unique_code_count": 5384,
+      "mapped_unique_code_count": 5384,
+      "unmapped_unique_code_count": 0,
+      "code_coverage_rate": 1.0,
+      "row_coverage_rate": 1.0,
+      "total_value": 2274243094334.0,
+      "mapped_value": 2274243094334.0,
+      "value_coverage_rate": 1.0,
+      "unmapped_codes": [],
+      "top_unmapped_by_value": []
+    },
+    {
+      "input_id": "section301_hs6_exposure",
+      "source_revision": "HS2017",
+      "row_count": 55308,
+      "unique_code_count": 5028,
+      "mapped_unique_code_count": 5028,
+      "unmapped_unique_code_count": 0,
+      "code_coverage_rate": 1.0,
+      "row_coverage_rate": 1.0,
+      "total_value": 1063.0175834205468,
+      "mapped_value": 1063.0175834205468,
+      "value_coverage_rate": 1.0,
+      "unmapped_codes": [],
+      "top_unmapped_by_value": []
+    },
+    {
+      "input_id": "us_census_hs6_monthly_2014_2016",
+      "source_revision": "HS2012",
+      "row_count": 1302374,
+      "unique_code_count": 5133,
+      "mapped_unique_code_count": 5120,
+      "unmapped_unique_code_count": 13,
+      "excluded_special_code_count": 8,
+      "code_coverage_rate": 0.9974673680109098,
+      "row_coverage_rate": 0.9972358170540874,
+      "total_value": 4518453447847.0,
+      "mapped_value": 4398156646580.0,
+      "excluded_special_value": 120197489514.0,
+      "value_coverage_rate": 0.9733765540232975,
+      "eligible_value_coverage_rate": 0.9999774201970189,
+      "unmapped_codes": [
+        "291800",
+        "370291",
+        "370293",
+        "370294",
+        "370295"
+      ],
+      "top_unmapped_by_value": [
+        {
+          "hs6": "291800",
+          "value": 96867115.0
+        },
+        {
+          "hs6": "370295",
+          "value": 1809501.0
+        },
+        {
+          "hs6": "370294",
+          "value": 410937.0
+        },
+        {
+          "hs6": "370293",
+          "value": 198669.0
+        },
+        {
+          "hs6": "370291",
+          "value": 25531.0
+        }
+      ]
+    },
+    {
+      "input_id": "us_census_hs6_monthly_2017_2021",
+      "source_revision": "HS2017",
+      "row_count": 2260622,
+      "unique_code_count": 5326,
+      "mapped_unique_code_count": 5316,
+      "unmapped_unique_code_count": 10,
+      "excluded_special_code_count": 9,
+      "code_coverage_rate": 0.9981224183251971,
+      "row_coverage_rate": 0.9975838508162798,
+      "total_value": 8365701063102.0,
+      "mapped_value": 8130813320557.0,
+      "excluded_special_value": 234709012907.0,
+      "value_coverage_rate": 0.9719225273801615,
+      "eligible_value_coverage_rate": 0.9999780187169172,
+      "unmapped_codes": [
+        "291800"
+      ],
+      "top_unmapped_by_value": [
+        {
+          "hs6": "291800",
+          "value": 178729638.0
+        }
+      ]
+    },
+    {
+      "input_id": "us_census_hs6_monthly_2022_2024",
+      "source_revision": "HS2022",
+      "row_count": 1454368,
+      "unique_code_count": 5496,
+      "mapped_unique_code_count": 5487,
+      "unmapped_unique_code_count": 9,
+      "excluded_special_code_count": 8,
+      "code_coverage_rate": 0.9983624454148472,
+      "row_coverage_rate": 0.9977866674734318,
+      "total_value": 6392327810159.0,
+      "mapped_value": 6224417175889.0,
+      "excluded_special_value": 167679404608.0,
+      "value_coverage_rate": 0.9737324744198588,
+      "eligible_value_coverage_rate": 0.999962852574646,
+      "unmapped_codes": [
+        "291800"
+      ],
+      "top_unmapped_by_value": [
+        {
+          "hs6": "291800",
+          "value": 231229662.0
+        }
+      ]
+    }
+  ],
+  "minimum_observed_value_coverage_rate": 0.9719225273801615,
+  "minimum_eligible_value_coverage_rate": 0.999962852574646,
+  "coverage_threshold_95pct_pass": true,
+  "census_crosswalk_row_count": 57347,
+  "census_crosswalk_duplicate_keys": 0,
+  "census_mapping_status_counts": {
+    "excluded_national_special_code": 87,
+    "mapped_assigned_revision": 57226,
+    "mapped_exact_hs2012_fallback": 17,
+    "unresolved_nonstandard_code": 17
+  },
+  "validation_version": 1,
+  "generated_at_utc": "2026-07-19T11:53:34.346455+00:00",
+  "conversion_output_path": "data/processed/concordances/hs_to_hs2012_conversion.parquet",
+  "conversion_output_sha256": "1793d5baba30a135efa240f264e95f7ac5dc73cbea5d02e2d1999fc2a97577f9",
+  "correlation_output_path": "data/processed/concordances/hs_revision_correlations.parquet",
+  "correlation_output_sha256": "92a498abfc28eb3e5f943c80ea4b98b87331526db430b68b5891d666ca14094a",
+  "census_output_path": "data/processed/concordances/census_hs6_year_to_hs2012.parquet",
+  "census_output_sha256": "d0be24214c1c83b31afc4fc55bf7d15ff677594c3e0accee12410021f88b7e1d",
+  "conversion_schema": [
+    {
+      "name": "source_revision",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "target_revision",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "target_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_method",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_weight",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "analysis_revision",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_mapping_method",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_description",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "target_description",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_description",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bridge_version",
+      "type": "large_string",
+      "nullable": true
+    }
+  ],
+  "correlation_schema": [
+    {
+      "name": "source_revision",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "target_revision",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "target_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_method",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "relationship",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "partial_scope_flag",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "analysis_revision",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_mapping_method",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "is_official_conversion_pair",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "target_count_per_source",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "source_count_per_target",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "mapping_weight",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "weight_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_description",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "target_description",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_description",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bridge_version",
+      "type": "large_string",
+      "nullable": true
+    }
+  ],
+  "census_schema": [
+    {
+      "name": "year",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "source_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_row_count",
+      "type": "int32",
+      "nullable": true
+    },
+    {
+      "name": "source_import_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "source_revision",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "target_revision",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "target_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_revision",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_method",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_mapping_method",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_weight",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "mapping_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "is_analysis_eligible",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "hts10_rule",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "bridge_version",
+      "type": "large_string",
+      "nullable": true
+    }
+  ]
+}

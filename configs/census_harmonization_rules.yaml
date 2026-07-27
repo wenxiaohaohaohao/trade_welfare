@@ -1,0 +1,55 @@
+version: census_harmonization_rules_v1
+status: frozen_for_m2
+frozen_date: 2026-07-19
+analysis_sample_config: configs/analysis_sample_v1.yaml
+
+inputs:
+  census_monthly:
+    path: data/interim/trade/us_imports_hs6_monthly.parquet
+    sha256: 65746c64f8e72a215fa55506f9d1eded5b13bf3e035fbb830a8407237299a205
+    natural_key: [year, month, origin_iso3, hs6]
+  census_year_hs_bridge:
+    path: data/processed/concordances/census_hs6_year_to_hs2012.parquet
+    sha256: d0be24214c1c83b31afc4fc55bf7d15ff677594c3e0accee12410021f88b7e1d
+    natural_key: [year, source_hs6]
+  product_crosswalk:
+    path: data/processed/concordances/product_sector_crosswalk.parquet
+    sha256: 201c1d47ee861fe300db1574b6e80288bbeaec17e19fe4d368205b6d84995c09
+
+flow_fields:
+  - import_value_usd
+  - customs_value
+  - duties
+  - dutiable_value_usd
+
+monthly_output:
+  natural_key: [origin_iso3, analysis_hs6, year, month]
+  sparse: true
+  purpose: Event-study and timing validation interface.
+
+annual_output:
+  natural_key: [origin_iso3, analysis_hs6, year]
+  complete_grid: true
+  missing_sparse_row_treatment: zero_recorded_import
+
+scope:
+  configured_origins: 15
+  all_origin_denominator: false
+  prohibition: Do not use this configured-origin batch as total U.S. all-origin imports.
+
+quantity:
+  usable: false
+  observed_raw_values: all_zero
+  observed_unit: "-"
+  interpretation: Census HS6 quantity is structurally unavailable in this batch; raw zeros are placeholders and never enter quantity analysis.
+
+mapping:
+  excluded_national_special_codes: Retain in coverage audit but exclude from the internationally comparable analysis_hs6 output.
+  unresolved_nonstandard_codes: Retain in coverage audit and do not force a product match.
+  eligible_mapping: Aggregate additive flow fields after the validated year-specific HS bridge.
+
+validation:
+  require_12_source_months_per_origin_year: true
+  require_value_reconciliation: true
+  tolerance_usd: 0.01
+  minimum_eligible_value_coverage: 0.95

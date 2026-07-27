@@ -9,8 +9,19 @@ This directory contains the tracked definitions used by the data pipeline:
 | `sector_scope.yaml` | Priority sectors and sector-scope definitions. |
 | `time_windows.yaml` | Baseline, policy, and post-policy time windows. |
 | `us_census_country_codes.yaml` | Census country-code mappings used by the import pipeline. |
+| `analysis_sample_v1.yaml` | Frozen first-stage country, sector, time, frequency, structural-baseline, and Stata-handoff scope used by the data-merge pipeline. |
+| `country_concordance_overrides.yaml` | Auditable country-name exceptions, canonical-name overrides, and BEA labels that must be treated as aggregates despite source area-type labels. |
+| `time_aggregation_rules.yaml` | Metric-level temporal semantics, valid annual operators, missing-period rules, and the partial-year treatment for Mexico FDI in 2024. |
+| `hs_revision_rules.yaml` | Dataset/year-specific HS editions, official UNSD/WCO bridge sources, the canonical HS2012 conversion rule, and restrictions on unweighted many-to-many correlations. |
+| `product_sector_rules.yaml` | Official UNSD HS-BEC-ISIC source, HS-to-`analysis_sector` precedence, first-round exclusions, CEPII `271000` treatment, and BEC ambiguity rules. |
+| `source_sector_rules.yaml` | OECD ICIO/AMNE, BEA MNE/FDI, and Mexico SCIAN mappings to `analysis_sector`, including aggregate-level exclusions and mixed-sector limitations. |
+| `product_treatment_rules.yaml` | Section 301 HS2017-to-analysis-product aggregation, 2017 import weights, gross statutory interpretation, and 2024-review separation. |
+| `connector_trade_rules.yaml` | BACI China-to-USA, source-to-connector, and connector-to-USA flow definitions, connector groups, Taiwan proxy, and self-trade rules. |
+| `trade_treatment_merge_rules.yaml` | Many-to-one product-year treatment merge into connector-product-year trade and trade-total reconciliation rules. |
+| `census_harmonization_rules.yaml` | Year-specific Census HS mapping, additive flow fields, 15-origin scope, quantity unavailability, and monthly/annual outputs. |
+| `section301_2024_review_rules.yaml` | Exact HTS8/HTS10 2024 review extension kept separate from the historical HS6 panel. |
 
-Country groups and data versions are active inputs. Executable counterfactual scenario files and a final cross-source sector concordance are still pending.
+Country groups and data versions are active inputs. M1 country, time, product, and source-sector concordances are complete. Executable counterfactual scenario files remain pending.
 
 The model implementation must avoid hard-coded country indices in MATLAB. Scenario files should define:
 

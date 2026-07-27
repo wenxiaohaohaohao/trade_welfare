@@ -6,6 +6,28 @@ priority_sectors:
   - medical_devices
   - textiles_apparel
 
+catch_all_sector: other_manufacturing
+
+canonical_isic_rev4_rules:
+  electronics:
+    divisions: ["26"]
+    interpretation: Computer, electronic and optical products; HS medical-device headings are assigned first through a documented product override.
+  electrical_equipment:
+    divisions: ["27"]
+  machinery:
+    divisions: ["28"]
+  autos:
+    divisions: ["29"]
+  textiles_apparel:
+    divisions: ["13", "14", "15"]
+  other_manufacturing:
+    division_range: ["10", "33"]
+    interpretation: Manufacturing products not assigned to a priority sector or a first-round exclusion.
+
+cross_source_limitations:
+  medical_devices: Product-level HS headings can be separated, but coarser production sources may only support their broader source industry; unsupported fine splits must remain explicit in M1.6.
+  other_manufacturing: This is a first-stage empirical catch-all, not a structural-model sector.
+
 exclude_first_round:
   - crude_oil
   - basic_commodities

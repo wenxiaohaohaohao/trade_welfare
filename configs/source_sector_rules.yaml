@@ -1,0 +1,128 @@
+version: source_sector_rules_v1
+status: frozen_for_m1
+frozen_date: 2026-07-19
+sector_scope_config: configs/sector_scope.yaml
+
+sources:
+  oecd_icio:
+    source_name: oecd_icio
+    path: data/interim/production/oecd_icio_output_va_fd.parquet
+    sector_code_field: sector_oecd
+    sector_level: oecd_icio_sector
+    code_family: OECD_ICIO_2025
+    value_fields: [gross_output, value_added, exports, imports]
+  oecd_amne:
+    source_name: oecd_amne
+    path: data/interim/mne/oecd_amne_affiliate_activity.parquet
+    sector_code_field: sector_oecd
+    sector_level: oecd_amne_sector
+    code_family: OECD_AMNE_2026
+    value_fields: [affiliate_output, affiliate_value_added, affiliate_employment, affiliate_exports, affiliate_imports]
+  bea_mne:
+    source_name: bea_mne
+    path: data/interim/mne/bea_us_mne_affiliate_country_industry.parquet
+    sector_code_field: industry
+    sector_level: bea_published_industry
+    code_family: BEA_MOFA
+    value_fields: [sales, value_added, employment, capital_expenditures]
+  bea_fdi:
+    source_name: bea_fdi
+    path: data/interim/fdi/bea_direct_investment_country_industry.parquet
+    sector_code_field: industry
+    sector_level: bea_published_industry
+    code_family: BEA_DIRECT_INVESTMENT
+    value_fields: [position, flows, income]
+  mexico_fdi:
+    source_name: mexico_fdi
+    path: data/interim/fdi/mexico_fdi_country_sector_quarterly.parquet
+    sector_code_field: sector_code
+    sector_label_field: sector_name
+    sector_level_field: sector_level
+    code_family: MEXICO_SCIAN
+    value_fields: [fdi_usd]
+    canonical_join_level: industry_group
+    aggregate_levels: [sector, subsector]
+
+oecd_rules:
+  priority_exact:
+    C13T15: textiles_apparel
+    C26: electronics
+    C27: electrical_equipment
+    C28: machinery
+    C29: autos
+  excluded_prefixes:
+    A: agricultural_bulk_goods
+    B: basic_commodities
+  excluded_exact:
+    C19: basic_commodities
+    C24: basic_commodities
+    C24A: basic_commodities
+    C24B: basic_commodities
+  other_manufacturing_prefix: C
+  medical_device_container_codes: [C26, C31T33]
+  interpretation: OECD sectors do not isolate medical devices from computer/electronic/optical products and other manufacturing; no standalone medical_devices row is fabricated.
+
+bea_rules:
+  priority_exact:
+    Computers and electronic products: electronics
+    Electrical equipment, appliances, and components: electrical_equipment
+    Machinery: machinery
+  other_manufacturing_exact:
+    - Chemicals
+    - Food
+    - Other manufacturing
+  first_round_excluded_exact:
+    Mining: basic_commodities
+    Primary and fabricated metals: basic_commodities
+  aggregate_or_residual_exact:
+    - All industries
+    - Manufacturing total
+    - Other industries
+  ambiguous_exact:
+    Transportation equipment:
+      proxy_analysis_sector: autos
+      interpretation: BEA combines motor vehicles with aerospace, rail, ships, and other transportation equipment; it is not a defensible one-to-one autos mapping.
+  outside_manufacturing_default: true
+  medical_device_limitation: BEA published country-industry tables do not isolate medical devices.
+
+mexico_rules:
+  priority_prefixes:
+    "313": textiles_apparel
+    "314": textiles_apparel
+    "315": textiles_apparel
+    "316": textiles_apparel
+    "333": machinery
+    "335": electrical_equipment
+  priority_exact:
+    "3341": electronics
+    "3342": electronics
+    "3343": electronics
+    "3344": electronics
+    "3346": electronics
+    "3361": autos
+    "3362": autos
+    "3363": autos
+    "3391": medical_devices
+  ambiguous_exact:
+    "3345":
+      interpretation: SCIAN 3345 combines measuring, control, navigation, and electronic medical equipment; it cannot be split without establishment-level weights.
+  first_round_excluded_exact:
+    "2111": crude_oil
+    "3241": basic_commodities
+  first_round_excluded_prefixes:
+    "11": agricultural_bulk_goods
+    "21": basic_commodities
+    "331": basic_commodities
+  other_manufacturing_prefixes: ["31", "32", "33"]
+  interpretation: Only industry_group rows are eligible for the main Mexico join. Sector and subsector rows coexist as aggregates and must not be summed with industry groups.
+
+validation_rules:
+  explicit_code_status_coverage: 1.0
+  eligible_mapping_weight: 1.0
+  ambiguous_mapping_weight: null
+  required_priority_support:
+    oecd_icio: [electronics, electrical_equipment, machinery, autos, textiles_apparel]
+    oecd_amne: [electronics, electrical_equipment, machinery, autos, textiles_apparel]
+    bea_mne: [electronics, electrical_equipment, machinery]
+    bea_fdi: [electronics, electrical_equipment, machinery]
+    mexico_fdi: [electronics, electrical_equipment, machinery, autos, medical_devices, textiles_apparel]

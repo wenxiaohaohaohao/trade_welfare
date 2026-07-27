@@ -1,0 +1,87 @@
+version: hs_revision_rules_v1
+status: frozen_for_m1
+frozen_date: 2026-07-19
+analysis_revision: HS2012
+
+source_revision_rules:
+  baci_hs6_panel:
+    revision: HS2012
+    code_field: hs6
+  baci_hs17_us_imports_2017:
+    revision: HS2017
+    code_field: hs6
+  section301_hs6_exposure:
+    revision: HS2017
+    code_field: hs6
+  us_census_hs6_monthly:
+    code_field: hs6
+    retain_fields: [year, month, hts10]
+    year_bands:
+      - {start: 2014, end: 2016, revision: HS2012}
+      - {start: 2017, end: 2021, revision: HS2017}
+      - {start: 2022, end: 2024, revision: HS2022}
+    interpretation: The first six HTS digits follow the HS edition in force for that year; HTS10 remains a year-specific U.S. national code and is never treated as a stable international product identifier.
+  section301_2024_review_hts10:
+    revision: HTS2024
+    code_field: hts10
+    treatment: separate_extension
+    interpretation: Keep exact 2024 HTS10 review lines separate until a validated HTS10-to-HS6 bridge is explicitly applied.
+
+official_sources:
+  unsd_hs2017_to_hs2012:
+    path: data/reference/hs_revision_bridge/source/unsd_hs2017_to_hs2012_conversion_correlation.xlsx
+    sha256: 795b14a664a1a46e24bf72b45fae5128a05209c91f5f581ae419e57028497fac
+    url: https://unstats.un.org/unsd/classifications/Econ/tables/HS2017toHS2012ConversionAndCorrelationTables.xlsx
+  unsd_hs2022_to_hs2012:
+    path: data/reference/hs_revision_bridge/source/unsd_hs2022_to_hs2012_conversion_correlation.xlsx
+    sha256: 169a0f5e5fc66f6195964f0516ec177b864a09a8cd3514ccc2642d2d298ad453
+    url: https://unstats.un.org/unsd/classifications/Econ/tables/HS2022toHS2012ConversionAndCorrelationTables.xlsx
+  wco_hs2017_to_hs2012_table_i:
+    path: data/reference/hs_revision_bridge/source/wco_hs2017_to_hs2012_table_i_rev1.pdf
+    sha256: 0c143ddcd4f670f6d2310afe16cdc4d324bec4c735ca3a016c29e9cda53c0f6a
+    url: https://www.wcoomd.org/-/media/wco/public/global/pdf/topics/nomenclature/instruments-and-tools/hs-nomenclature-2017/2016/table_i_trp1712_en_rev1.pdf?db=web
+  wco_hs2012_to_hs2017_table_ii:
+    path: data/reference/hs_revision_bridge/source/wco_hs2012_to_hs2017_table_ii_rev1.pdf
+    sha256: 00e04d7c307ec9211e3c994ad54cb8326365af830009d462a73ce5c1fdb98fa4
+    url: https://www.wcoomd.org/-/media/wco/public/global/pdf/topics/nomenclature/instruments-and-tools/hs-nomenclature-2017/2016/table_ii_trp1217_en_rev1.pdf?db=web
+  wco_corrigendum_1:
+    path: data/reference/hs_revision_bridge/source/wco_hs2012_hs2017_corrigendum_1.pdf
+    sha256: bea74bdd86da02646144bc3f8263f1a715ad4c5fa610f604699f906d162c39cc
+    url: https://www.wcoomd.org/-/media/wco/public/global/pdf/topics/nomenclature/instruments-and-tools/hs-nomenclature-2017/2016/corrigendum_1_en.pdf?db=web
+  wco_corrigendum_2:
+    path: data/reference/hs_revision_bridge/source/wco_hs2012_hs2017_corrigendum_2.pdf
+    sha256: 0962cf45038a27218fa5d23be68f0fcbff1b754d2f596d901e852a3bf567b6c5
+    url: https://www.wcoomd.org/-/media/wco/public/global/pdf/topics/nomenclature/instruments-and-tools/hs-nomenclature-2017/2016/corrigendum-2-to-the-correlation-tables-hs-2012-2017.pdf?db=web
+
+mapping_rules:
+  canonical_conversion:
+    method: official_unsd_conversion
+    weight: 1.0
+    purpose: Main no-expansion mapping from each source-revision HS6 to one HS2012 code.
+  full_correlation:
+    method: official_unsd_correlation
+    purpose: Audit and robustness only.
+    multi_target_weight: null
+    prohibition: Do not aggregate values through multi-target correlations until a value-based weighting rule is built and validated.
+
+analysis_hs2012_overrides:
+  271012: 271000
+  271019: 271000
+  271020: 271000
+  271091: 271000
+  271099: 271000
+  note: CEPII BACI uses the documented aggregate 271000 in place of the five official HS2012 petroleum-oil subheadings; this is a many-to-one analysis-code collapse, not an equal split.
+
+source_code_overrides:
+  HS2017:
+    271000:
+      target_hs2012: 271000
+      method: configured_cepii_aggregate_identity
+      reason: CEPII BACI HS2017 and the project Section 301 universe contain the CEPII aggregate code 271000 although it is not an official HS2017 subheading.
+
+census_unmatched_rules:
+  exact_hs2012_fallback: true
+  fallback_reason: U.S. HTS implementation retains some prior-revision six-digit codes in particular years; use an exact HS2012 identity only when the same code exists in the official/local HS2012 universe.
+  excluded_prefixes: ["98", "99"]
+  excluded_reason: U.S. national special-classification and low-value estimate codes are outside the internationally comparable HS product universe.
+  unresolved_rule: Retain the code and value with unresolved_nonstandard_code status; do not force a false HS6 match.

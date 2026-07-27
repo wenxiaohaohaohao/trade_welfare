@@ -1,0 +1,56 @@
+version: connector_trade_rules_v1
+status: frozen_for_m2
+frozen_date: 2026-07-19
+analysis_sample_config: configs/analysis_sample_v1.yaml
+
+inputs:
+  baci_hs6_panel:
+    path: data/interim/trade/baci_hs6_panel.parquet
+    sha256: 23ab6734c70503b3a0a7c6c7ec015cc4bf75ee334242dce6cf43ec68cfef46a4
+  country_crosswalk:
+    path: data/processed/concordances/country_crosswalk.parquet
+    sha256: 29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6
+  product_crosswalk:
+    path: data/processed/concordances/product_sector_crosswalk.parquet
+    sha256: 201c1d47ee861fe300db1574b6e80288bbeaec17e19fe4d368205b6d84995c09
+  analysis_sample:
+    path: configs/analysis_sample_v1.yaml
+    sha256: bd30ba2338897b857390972c5da7294e82de93664751fe22c1a8544a9fd7fee2
+
+flows:
+  china_to_usa:
+    exporter_group: source_core
+    importer_group: destination_core
+    output_field: china_to_usa_value_usd
+    interpretation: Common product-year benchmark repeated for each connector; never sum this field across connectors.
+  china_to_connector:
+    exporter_group: source_core
+    importer_group: connector_candidates
+    output_field: china_to_connector_value_usd
+  east_asia_to_connector:
+    exporter_group: source_extended_east_asia
+    importer_group: connector_candidates
+    output_field: east_asia_to_connector_value_usd
+    self_trade_rule: Exclude rows where canonical exporter ISO3 equals connector ISO3, relevant for KOR and TWN connector candidates.
+  connector_to_usa:
+    exporter_group: connector_candidates
+    importer_group: destination_core
+    output_field: connector_to_usa_value_usd
+
+product_rule:
+  revision: HS2012_CEPII
+  no_revision_conversion_required: true
+  missing_baci_row: Recorded as zero trade value and zero source-row count on the completed connector-product-year grid.
+  quantity_treatment: Omitted from M2.2 because BACI quantity has source missingness; value-based trade is the canonical measure.
+
+output_rule:
+  natural_key: [connector_iso3, analysis_hs6, year]
+  currency: current_USD
+  common_benchmark_repeated: true
+  prohibition: Do not sum china_to_usa_value_usd across connector rows.
+
+validation:
+  require_full_grid: true
+  require_nonnegative_trade_values: true
+  require_leg_total_reconciliation: true
+  tolerance_usd: 0.01

@@ -1,0 +1,170 @@
+{
+  "validation_status": "PASS",
+  "failure_count": 0,
+  "failures": [],
+  "row_count": 611,
+  "source_count": 8,
+  "duplicate_source_keys": 0,
+  "unresolved_count": 0,
+  "unresolved_rows": [],
+  "invalid_iso3_count": 0,
+  "country_without_iso3_count": 0,
+  "invalid_classification_count": 0,
+  "aggregate_rows": 39,
+  "residual_rows": 1,
+  "proxy_rows": 1,
+  "mapped_country_rows": 570,
+  "status_counts_by_source": {
+    "baci": {
+      "mapped_country": 225,
+      "proxy": 1
+    },
+    "bea_fdi": {
+      "aggregate": 20,
+      "mapped_country": 60
+    },
+    "bea_mne": {
+      "aggregate": 17,
+      "mapped_country": 58
+    },
+    "mexico_fdi": {
+      "mapped_country": 50,
+      "residual": 1
+    },
+    "oecd_amne": {
+      "aggregate": 1,
+      "mapped_country": 80
+    },
+    "oecd_icio": {
+      "aggregate": 1,
+      "mapped_country": 80
+    },
+    "section301": {
+      "mapped_country": 2
+    },
+    "us_census": {
+      "mapped_country": 15
+    }
+  },
+  "analysis_country_count": 13,
+  "analysis_countries_all_present": true,
+  "missing_analysis_countries": [],
+  "baci_s19_proxy_ok": true,
+  "forced_bea_aggregates_ok": true,
+  "validation_version": 1,
+  "generated_at_utc": "2026-07-19T11:19:23.175596+00:00",
+  "output_path": "data/processed/concordances/country_crosswalk.parquet",
+  "output_sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+  "schema": [
+    {
+      "name": "source_name",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_country_id",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_country_name",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_roles",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_area_type",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_parent_areas",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "country_iso3",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "country_iso2",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "canonical_country_name",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_method",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "is_country",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "is_aggregate",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "is_residual",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "is_proxy",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "notes",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "is_source_core",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "is_source_extended",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "is_destination_core",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "is_core_connector",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "is_asian_comparator",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "is_other_candidate",
+      "type": "bool",
+      "nullable": true
+    }
+  ]
+}

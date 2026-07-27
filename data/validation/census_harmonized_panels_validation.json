@@ -1,0 +1,364 @@
+{
+  "validation_status": "PASS",
+  "failure_count": 0,
+  "failures": [],
+  "input_hash_checks": {
+    "census_monthly": true,
+    "census_year_hs_bridge": true,
+    "product_crosswalk": true
+  },
+  "input_row_count": 5017364,
+  "input_duplicate_key_count": 0,
+  "bridge_duplicate_key_count": 0,
+  "unmatched_bridge_row_count": 0,
+  "mapping_status_summary": [
+    {
+      "mapping_status": "excluded_national_special_code",
+      "row_count": 12002,
+      "import_value_usd": 522585907029.0
+    },
+    {
+      "mapping_status": "mapped_assigned_revision",
+      "row_count": 5004323,
+      "import_value_usd": 18741196062495.0
+    },
+    {
+      "mapping_status": "mapped_exact_hs2012_fallback",
+      "row_count": 760,
+      "import_value_usd": 12191080531.0
+    },
+    {
+      "mapping_status": "unresolved_nonstandard_code",
+      "row_count": 279,
+      "import_value_usd": 509271053.0
+    }
+  ],
+  "total_import_value_usd": 19276482321108.0,
+  "eligible_import_value_usd": 18753387143026.0,
+  "excluded_national_special_import_value_usd": 522585907029.0,
+  "unresolved_nonstandard_import_value_usd": 509271053.0,
+  "gross_value_coverage_rate": 0.9728635562563609,
+  "eligible_value_coverage_rate": 0.9999728445203196,
+  "monthly_output_row_count": 4906643,
+  "monthly_duplicate_key_count": 0,
+  "annual_output_row_count": 858330,
+  "expected_annual_output_row_count": 858330,
+  "annual_duplicate_key_count": 0,
+  "annual_full_grid_check_pass": true,
+  "flow_reconciliation": {
+    "import_value_usd": {
+      "eligible_input_total": 18753387143026.0,
+      "monthly_output_total": 18753387143026.0,
+      "annual_output_total": 18753387143026.0,
+      "monthly_minus_input_gap": 0.0,
+      "annual_minus_monthly_gap": 0.0
+    },
+    "customs_value": {
+      "eligible_input_total": 18690555782881.0,
+      "monthly_output_total": 18690555782881.0,
+      "annual_output_total": 18690555782881.0,
+      "monthly_minus_input_gap": 0.0,
+      "annual_minus_monthly_gap": 0.0
+    },
+    "duties": {
+      "eligible_input_total": 510620797089.0,
+      "monthly_output_total": 510620797089.0,
+      "annual_output_total": 510620797089.0,
+      "monthly_minus_input_gap": 0.0,
+      "annual_minus_monthly_gap": 0.0
+    },
+    "dutiable_value_usd": {
+      "eligible_input_total": 5851081711633.0,
+      "monthly_output_total": 5851081711633.0,
+      "annual_output_total": 5851081711633.0,
+      "monthly_minus_input_gap": 0.0,
+      "annual_minus_monthly_gap": 0.0
+    }
+  },
+  "origin_count": 15,
+  "origin_scope_matches_config": true,
+  "calendar_12_month_check_pass": true,
+  "source_file_count": 1980,
+  "quantity_raw_all_zero": true,
+  "quantity_unit_all_dash": true,
+  "quantity_marked_unusable": true,
+  "hts10_all_missing_in_hs6_batch": true,
+  "product_mapping_provenance_missing_count": 0,
+  "all_origin_denominator_prohibited": true,
+  "validation_version": 1,
+  "generated_at_utc": "2026-07-19T12:50:15.033547+00:00",
+  "monthly_output_path": "data/processed/harmonized/census_imports_hs6_monthly_harmonized.parquet",
+  "monthly_output_sha256": "2ed0c595a0b25363151ea429fc0d1cee748318432ddf3f032f482ca68ddda14a",
+  "annual_output_path": "data/processed/harmonized/census_imports_hs6_annual.parquet",
+  "annual_output_sha256": "1d06eebc2df07304ecbc1fb7d0bd1617eab63c522f9d0168c0020d5a19d4b0b1",
+  "census_panel_version": "census_harmonization_rules_v1",
+  "monthly_schema": [
+    {
+      "name": "origin_iso3",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "year",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "month",
+      "type": "int8",
+      "nullable": true
+    },
+    {
+      "name": "import_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "customs_value",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "duties",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "dutiable_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "source_row_count",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "source_hs6_count",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "source_revision_count",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "mapping_status_count",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "mapping_method_count",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "source_file_count",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "source_hs6_summary",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_revision_summary",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_status_summary",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_method_summary",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "product_description",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_sector",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "sector_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "first_round_exclusion",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "is_analysis_sector_eligible",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "product_mapping_version",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "quantity_usable",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "quantity_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "census_origin_scope",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "is_all_origin_denominator",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "monthly_event_study_interface",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "census_panel_version",
+      "type": "large_string",
+      "nullable": true
+    }
+  ],
+  "annual_schema": [
+    {
+      "name": "origin_iso3",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "year",
+      "type": "int16",
+      "nullable": true
+    },
+    {
+      "name": "analysis_hs6",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "product_description",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_sector",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "sector_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "first_round_exclusion",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "is_analysis_sector_eligible",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "product_mapping_version",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "import_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "customs_value",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "duties",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "dutiable_value_usd",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "observed_month_count",
+      "type": "int32",
+      "nullable": true
+    },
+    {
+      "name": "source_row_count",
+      "type": "int32",
+      "nullable": true
+    },
+    {
+      "name": "source_file_count",
+      "type": "int32",
+      "nullable": true
+    },
+    {
+      "name": "calendar_source_months_complete",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "sparse_row_absence_treated_as_zero_import",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "quantity_usable",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "quantity_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "census_origin_scope",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "is_all_origin_denominator",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "census_panel_version",
+      "type": "large_string",
+      "nullable": true
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 This directory documents the data pipeline. Large raw and generated data files are ignored by git.
 
-For the collaborator-facing inventory, interpretation boundaries, and next-stage plan, see `docs/data_and_project_progress_2026_07_19.md`.
+For the current collaborator-facing audit and variable definitions, see `docs/data_processing_audit_trail.md` and `docs/variable_construction_catalog.md`. `docs/data_and_project_progress_2026_07_19.md` is a dated historical snapshot.
 
 ## Data Sources
 
@@ -13,7 +13,7 @@ For the collaborator-facing inventory, interpretation boundaries, and next-stage
 | BEA U.S. MNE MOFA country-industry tables | U.S. MNE affiliate activity by host country and affiliate industry; Scenario B bridge and Scenario C support when combined with broader production evidence | Batch 5 output covers 2017-2023 at `data/interim/mne/bea_us_mne_affiliate_country_industry.parquet`. The earlier Mexico x Transportation equipment audit remains a sector-specific suppression check. Source: https://www.bea.gov/international/di1usdop |
 | BEA Direct Investment by Country and Industry | FDI position, flows, and income by country and selected industry; connector-country investment validation and Scenario C / `hgamma` support | Batch 6 archives both `U.S. direct investment abroad` and `foreign direct investment in the U.S.` country-by-industry files under `data/raw/bea_fdi/direct_investment_country_industry/` and writes `data/interim/fdi/bea_direct_investment_country_industry.parquet`. Source: https://www.bea.gov/data/intl-trade-investment/direct-investment-country-and-industry |
 | fDi Markets | Model-external extensive-margin evidence and Scenario C upper-bound discipline | Explicitly excluded from the current batch by user instruction; no download or processing was attempted. |
-| Mexico FDI data | Post-2020 FDI-flow validation and Scenario C support | Official Secretaría de Economía data are archived and normalized: national coverage is 1999Q1-2024Q4 and detailed cross-tables cover 2006Q1-2024Q4. See `data/mexico_fdi_usage_note.md`. |
+| Mexico FDI data | Post-2020 FDI-flow validation and Scenario C support | Official Secretaría de Economía data are archived and normalized: national coverage is 1999Q1-2024Q4 and detailed quarterly cross-tables cover 2006Q1-2024Q2. See `data/mexico_fdi_usage_note.md`. |
 | BACI | Bilateral trade rerouting, connector ranking, and the Section 301 denominator | The main project HS2012 panel is retained; a separate CEPII BACI HS2017 V202601 archive and 2017 U.S.-import denominator were added for Section 301. |
 | U.S. Census imports | Monthly U.S.-destination HS10/HS6 evidence and China HTS10 weights | Configured-origin panel covers 15 origins in 2014-2024. It is not a full-origin U.S.-import denominator. |
 | USTR Section 301 | Gross statutory China tariff exposure and `htau` discipline | Official base-list HTS10 panel and 2014-2024 HS2017 exposure are built; exact September 2024 modern-HTS increases are stored separately. See `data/section301_usage_note.md`. |
@@ -30,9 +30,9 @@ For the collaborator-facing inventory, interpretation boundaries, and next-stage
 | OECD Analytical AMNE | 2008-2023 usable intersection | `data/interim/mne/oecd_amne_affiliate_activity.parquet` | 1,260,053 | Employment is null; parent-level VA/exports/imports are allocated. |
 | BEA U.S. MNE | 2017-2023; majority-owned foreign affiliates | `data/interim/mne/bea_us_mne_affiliate_country_industry.parquet` | 8,256 | Suppressed cells are missing, not zero; aggregate geography rows require filtering. |
 | BEA direct investment | 2020-2024; inward and outward directions | `data/interim/fdi/bea_direct_investment_country_industry.parquet` | 11,610 | Financial-account measure, not affiliate output or plant activity. |
-| Mexico official FDI | 1999Q1-2024Q4 national; 2006Q1-2024Q4 detailed cross-tables | nine `data/interim/fdi/mexico_fdi_*.parquet` files | 1,329,095 total | Confidential `C` is null; detail is not additive to national totals. |
+| Mexico official FDI | 1999Q1-2024Q4 national; 2006Q1-2024Q2 detailed quarterly cross-tables | nine `data/interim/fdi/mexico_fdi_*.parquet` files | 1,329,095 total | Confidential `C` is null; detail is not additive to national totals; 2024 detail is H1 only. |
 
-`data/processed/` is currently empty apart from its README. The available ICIO model baselines are under `data/model_inputs/icio_baseline_2017/`, `icio_baseline_2018/`, and `icio_baseline_2022/`. The next data stage is cross-source harmonization and structural-moment construction, not another download pass.
+`data/processed/` now contains the completed M1 concordances and M2 product-treatment/trade/Census interfaces documented in `data/processed/README.md`. The available ICIO model baselines remain under `data/model_inputs/icio_baseline_2017/`, `icio_baseline_2018/`, and `icio_baseline_2022/`. The next data stage is M3.1 sector aggregation, not another general download pass. The living internal audit and variable contract are `docs/data_processing_audit_trail.md` and `docs/variable_construction_catalog.md`; their collaborator PDFs are under `output/pdf/`.
 
 ## Reproducible BEA MOFA Check
 
@@ -143,7 +143,7 @@ Regenerate the official Secretaría de Economía archive and nine normalized out
 python code\data_build\download_build_mexico_fdi.py --project-root . --overwrite
 ```
 
-The national quarterly total and investment-type panels cover 1999Q1-2024Q4. Source-country and sector annual panels cover 1999-2024, while state/country/sector/type quarterly cross-tables cover 2006Q1-2024Q4. Official `C` cells remain null with `confidential_flag=true`; `Total general` rows are flagged to prevent double counting. See `data/mexico_fdi_usage_note.md` for fields, coverage, reconciliation gaps, and interpretation.
+The national quarterly total and investment-type panels cover 1999Q1-2024Q4. Source-country and sector annual panels cover 1999-2024, while state/country/sector/type quarterly cross-tables cover 2006Q1-2024Q2. Official `C` cells remain null with `confidential_flag=true`; `Total general` rows are flagged to prevent double counting. The detailed 2024 data are H1 only and cannot be used as a full-year observation. See `data/mexico_fdi_usage_note.md` for fields, coverage, reconciliation gaps, and interpretation.
 
 `fDi Markets` is not part of this batch.
 

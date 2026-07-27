@@ -1,0 +1,195 @@
+{
+  "validation_status": "PASS",
+  "failure_count": 0,
+  "failures": [],
+  "output_row_count": 517,
+  "duplicate_natural_key_count": 0,
+  "missing_explicit_status_count": 0,
+  "mapping_weight_rules_pass": true,
+  "eligibility_rules_pass": true,
+  "ambiguous_numeric_weight_count": 0,
+  "source_row_counts": {
+    "bea_fdi": 20,
+    "bea_mne": 16,
+    "mexico_fdi": 392,
+    "oecd_amne": 39,
+    "oecd_icio": 50
+  },
+  "expected_source_row_counts": {
+    "oecd_icio": 50,
+    "oecd_amne": 39,
+    "bea_mne": 16,
+    "bea_fdi": 20,
+    "mexico_fdi": 392
+  },
+  "source_code_coverage": {
+    "oecd_icio": {
+      "observed_code_count": 50,
+      "crosswalk_code_count": 50,
+      "missing_codes": [],
+      "extra_codes": [],
+      "explicit_status_code_coverage_rate": 1.0
+    },
+    "oecd_amne": {
+      "observed_code_count": 39,
+      "crosswalk_code_count": 39,
+      "missing_codes": [],
+      "extra_codes": [],
+      "explicit_status_code_coverage_rate": 1.0
+    },
+    "bea_mne": {
+      "observed_code_count": 16,
+      "crosswalk_code_count": 16,
+      "missing_codes": [],
+      "extra_codes": [],
+      "explicit_status_code_coverage_rate": 1.0
+    },
+    "bea_fdi": {
+      "observed_code_count": 20,
+      "crosswalk_code_count": 20,
+      "missing_codes": [],
+      "extra_codes": [],
+      "explicit_status_code_coverage_rate": 1.0
+    },
+    "mexico_fdi": {
+      "observed_code_count": 392,
+      "crosswalk_code_count": 392,
+      "missing_codes": [],
+      "extra_codes": [],
+      "explicit_status_code_coverage_rate": 1.0
+    }
+  },
+  "mapping_status_counts": {
+    "aggregate_or_residual_not_join_eligible": 6,
+    "aggregate_sector_not_join_eligible": 109,
+    "ambiguous_mixed_sector_no_weight": 3,
+    "first_round_excluded": 47,
+    "mapped_other_manufacturing": 73,
+    "mapped_priority_sector": 47,
+    "outside_manufacturing": 232
+  },
+  "analysis_sector_counts": {
+    "autos": 5,
+    "electrical_equipment": 8,
+    "electronics": 9,
+    "machinery": 11,
+    "medical_devices": 1,
+    "other_manufacturing": 73,
+    "textiles_apparel": 13,
+    "<NA>": 397
+  },
+  "priority_support_matrix": {
+    "oecd_icio": {
+      "electronics": true,
+      "electrical_equipment": true,
+      "machinery": true,
+      "autos": true,
+      "textiles_apparel": true
+    },
+    "oecd_amne": {
+      "electronics": true,
+      "electrical_equipment": true,
+      "machinery": true,
+      "autos": true,
+      "textiles_apparel": true
+    },
+    "bea_mne": {
+      "electronics": true,
+      "electrical_equipment": true,
+      "machinery": true
+    },
+    "bea_fdi": {
+      "electronics": true,
+      "electrical_equipment": true,
+      "machinery": true
+    },
+    "mexico_fdi": {
+      "electronics": true,
+      "electrical_equipment": true,
+      "machinery": true,
+      "autos": true,
+      "medical_devices": true,
+      "textiles_apparel": true
+    }
+  },
+  "mexico_aggregate_levels_not_join_eligible": true,
+  "bea_transportation_equipment_proxy_safe": true,
+  "mexico_3345_ambiguity_safe": true,
+  "validation_version": 1,
+  "generated_at_utc": "2026-07-19T12:28:09.395676+00:00",
+  "output_path": "data/processed/concordances/source_sector_crosswalk.parquet",
+  "output_sha256": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+  "mapping_version": "source_sector_rules_v1",
+  "schema": [
+    {
+      "name": "source_name",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_sector_level",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_sector_code",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_sector_label",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "analysis_sector",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_status",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_rule",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "first_round_exclusion",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "proxy_analysis_sector",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "is_main_join_eligible",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "mapping_weight",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "source_granularity_note",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "source_code_family",
+      "type": "large_string",
+      "nullable": true
+    },
+    {
+      "name": "mapping_version",
+      "type": "large_string",
+      "nullable": true
+    }
+  ]
+}
