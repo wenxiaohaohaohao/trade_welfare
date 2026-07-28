@@ -4,10 +4,10 @@
 
 - Origin Skill: `stata-latex-research`
 - Origin Date: `2026-07-27`
-- Verification Status: `VERIFIED_THROUGH_M3.4`
-- Version Label: `variable_catalog_v0.5.0`
-- Current Data Stage: `M0-M3.4 completed`
-- Next Construction Stage: `M3.5 not started`
+- Verification Status: `VERIFIED_THROUGH_M3.5`
+- Version Label: `variable_catalog_v0.6.0`
+- Current Data Stage: `M0-M3.5 completed`
+- Next Construction Stage: `M3.6 not started`
 - Canonical Format: Parquet
 - Collaborator Format: Stata `.dta`
 
@@ -24,7 +24,7 @@
 
 本目录同时包含三类变量：
 
-- `EXISTING_VALIDATED`：M2、M3.1、M3.2、M3.3 或 M3.4 已存在且 validation PASS；
+- `EXISTING_VALIDATED`：M2、M3.1、M3.2、M3.3、M3.4 或 M3.5 已存在且 validation PASS；
 - `PLANNED_M3` 至 `PLANNED_M6`：已经定义但尚未构造，必须在对应阶段完成后补充实际 output hash 和 validation；
 - `STRUCTURAL_TARGET_ONLY`：只能作为模型校准目标或输入候选，不能直接解释为已经识别的结构参数。
 
@@ -39,7 +39,7 @@
 | 状态 | 含义 |
 |---|---|
 | `EXISTING_VALIDATED` | 已在 processed Parquet 中存在，主键和 validation 已通过 |
-| `PLANNED_M3` | M3.5-M3.6 的 comparison-panel 和 sensitivity inputs 尚未构造 |
+| `PLANNED_M3` | M3.6 的 sensitivity inputs 尚未构造 |
 | `PLANNED_M4` | production-side standardized long table 时构造 |
 | `PLANNED_M5` | trade 和 production evidence 合并时构造 |
 | `PLANNED_M6` | ranking、rerouting、validation 和 structural moments 时构造 |
@@ -60,6 +60,7 @@
 | `G_CONN_PRODUCT_WINDOW` | `connector_iso3, analysis_hs6` | M3.4 产品窗口变化、policy exposure 和共变底表 |
 | `G_CONN_SECTOR_REORG` | `connector_iso3, analysis_sector` | M3.4 replacement、source-input、exposure-overlap 核心指标 |
 | `G_CONN_SECTOR_COMOVE` | `connector_iso3, analysis_sector` | M3.4 HS6 产品共变与 rerouting diagnostics |
+| `G_CONN_SECTOR_COMMON` | `connector_iso3, analysis_sector` | M3.5 完整 13-connector × 7-sector 共同面板；不含结果筛选或排名 |
 | `G_PROD_LONG` | `country_iso3, analysis_sector, year, source_name, metric_name`，必要时增加 direction/parent | M4 production long |
 | `G_EVIDENCE` | `connector_iso3, analysis_sector, year` | M5 integrated evidence |
 | `G_RANK` | `connector_iso3, analysis_sector, ranking_spec` | M6 ranking |
@@ -532,7 +533,7 @@ growth_winsorized = min(max(growth_raw, p5_flow), p95_flow)
 
 M3.3 只确定样本诊断与敏感性接口；它没有构造 replacement ratio、ranking、production evidence、structural moments 或 counterfactual inputs。
 
-## 7. M3.4 贸易重组指标与 M3.5-M3.6 后续输入
+## 7. M3.4-M3.5 贸易重组与共同面板，以及 M3.6 后续输入
 
 M3.4 已完成并通过 validation。使用三个自然粒度输出，避免把产品字段、部门指标和部门相关系数机械重复到同一张超级宽表：
 
@@ -608,7 +609,49 @@ eligible-product share、active-product share 和 positive-export-gain share 使
 
 产品 exposure 使用 post 五年 tariff exposure 的平均值；tariffed flag 使用 post tariff-status mean > 0。28 个 eligible products 的 exposure 缺失保持 missing，其中 14 个 tariffed，不能当作 exposure=0。Exposure-weighted分母只含 observed-exposure products，同时输出覆盖率。两套 high-exposure 定义均已冻结并报告：`exposure > 0`，以及 analysis-sector 内 positive observed exposure 的 linear/type-7 p75。Tariffed、positive exposure 和 top-quartile exposure 是不同概念，不得互相替代。China→USA 和 policy 产品字段在 connectors 间重复，只作比较，明确 non-additive。
 
-### 7.5 稳定性和规模
+### 7.5 M3.5 完整 connector/comparator 共同面板
+
+M3.5 已完成并通过 validation。输出为：
+
+| Output | Rows × columns | Natural key | SHA256 |
+|---|---:|---|---|
+| `connector_trade_sector_common_panel.parquet` | 91 × 152 | `connector_iso3, analysis_sector` | `36c58c229f3f43e86f7ff7570fc6a1ffe08ccb8fd3259bb5853abece3171f682` |
+
+冻结 config 为 `configs/connector_trade_sector_common_panel_rules.yaml`，SHA256 为 `374a1a18c756f38054ae3ecf077f1e2f148c53da9a07cc5b1338c01d92b44d40`。Builder 为 `code/data_processing/build_connector_trade_sector_common_panel.py`；validation 为 `data/validation/connector_trade_sector_common_panel_validation.json/.md`，状态 PASS。
+
+共同面板只合并相同自然粒度的两张 M3.4 表：以 91 × 92 的 sector-reorganization 表为 master，将 91 × 49 的 product-comovement 表按 `connector_iso3, analysis_sector` one-to-one 合并。91 个 keys 在两边全部匹配；9 个共同内容字段逐值 mismatch 为 0；两张输入各自的 schema version 分开登记；37 个 co-movement 专属字段未经变换加入。M3.5 不把 connector-product 表与 sector 表横向拼接，因此没有产品层金额的机械重复。
+
+样本顺序和角色固定为：
+
+| Group | Connectors | Connector count | Panel rows |
+|---|---|---:|---:|
+| `core_connectors` | VNM, MEX, CAN | 3 | 21 |
+| `asian_comparators` | IND, IDN, MYS, PHL, THA, KOR, TWN | 7 | 49 |
+| `other_candidates` | POL, MAR, TUR | 3 | 21 |
+
+每个 connector 恰有 7 个 analysis sectors，每个 sector 恰有 13 个 connectors。这个 13 × 7 网格不依赖 replacement ratio 是否定义、增长方向、exposure overlap、co-movement、未来排名或 production data availability。
+
+| Canonical name | Stata name | 定义/用途 | 状态 |
+|---|---|---|---|
+| `core_connector_flag` | `core_conn` | VNM/MEX/CAN 角色 | `EXISTING_VALIDATED` |
+| `asian_comparator_flag` | `asia_comp` | 7 个 Asian comparators | `EXISTING_VALIDATED` |
+| `other_candidate_flag` | `other_cand` | POL/MAR/TUR | `EXISTING_VALIDATED` |
+| `comparison_sample_included` | `sample_in` | 共同面板保留状态；当前 91/91 为 true | `EXISTING_VALIDATED` |
+| `connector_group_order` | `conn_grp_ord` | core/Asian/other 的稳定排序 1/2/3 | `EXISTING_VALIDATED` |
+| `connector_order_within_group` | `conn_ord` | 冻结配置中的组内顺序 | `EXISTING_VALIDATED` |
+| `analysis_sector_order` | `sec_ord` | 7 个 sectors 的稳定顺序 | `EXISTING_VALIDATED` |
+| `m3_sector_source_row_matched` | `sec_src_ok` | M3.4 sector master row matched | `EXISTING_VALIDATED` |
+| `m3_comovement_source_row_matched` | `comov_src_ok` | M3.4 co-movement row matched | `EXISTING_VALIDATED` |
+| `outcome_based_selection_applied` | `outcome_sel` | 当前全部 false | `EXISTING_VALIDATED` |
+| `top_rank_filter_applied` | `toprank_sel` | 当前全部 false | `EXISTING_VALIDATED` |
+| `complete_case_filter_applied` | `ccase_sel` | 当前全部 false | `EXISTING_VALIDATED` |
+| `ranking_variables_constructed` | `rank_built` | 当前全部 false；ranking 留到 M6 | `EXISTING_VALIDATED` |
+| `production_variables_included` | `prod_incl` | 当前全部 false；production 留到 M4-M5 | `EXISTING_VALIDATED` |
+| `sensitivity_variables_constructed` | `sens_built` | 当前全部 false；M3.6 尚未执行 | `EXISTING_VALIDATED` |
+
+M3.4 的数值和缺失状态全部保留：26 个 `replacement_ratio` defined、65 个 missing、22 个正 connector-gain candidates；四套 China/East Asia 普通/weighted correlations 均为 91/91 defined，low-n 均为 0；TWN 7 行继续标记 proxy。共同面板有 152 个完整、唯一、不超过 Stata 32 字符的 aliases，实际最长 14 字符。它是后续 sensitivity 和 ranking 的共同样本接口，不是已完成 ranking，也不是“胜出 connector”样本；不能据此作因果 rerouting、production relocation 或 structural welfare 解释。
+
+### 7.6 稳定性和规模（M3.6 planned）
 
 | Canonical name | Stata name | 用途 |
 |---|---|---|
@@ -1037,8 +1080,8 @@ Reviewer/date:
 3. M3.2 已构造 complete-window annual means、coverage/policy summaries、post-pre change、DH/log growth 和 mechanical zero/defined flags；
 4. M3.3 已固定并构造 zero/small-base、异常增长和 winsorized sensitivity diagnostics，raw levels/growth 全部保留；
 5. M3.4 已构造 replacement、source input、exposure overlap 和 HS6 co-movement，三张自然粒度输出 validation PASS；
-6. 下一步 M3.5 在共同面板中保留所有 connectors/comparators；
-7. M3.6 生成窗口、source bloc 和 exposure sensitivity；
+6. M3.5 已在共同面板中保留全部 13 个 connectors/comparators × 7 sectors，并明确不做 outcome/top-rank/complete-case 筛选；
+7. 下一步 M3.6 生成窗口、source bloc 和 exposure sensitivity；
 8. M4 逐来源建立 production long；
 9. M5 逐来源 left join 和 coverage；
 10. M6 先 trade ranking，再 production grade，最后 structural moments；
@@ -1054,5 +1097,6 @@ Reviewer/date:
 | v0.3.0 | 2026-07-28 | 完成 M3.2 变量合同：登记 273 × 79 long window 和 91 × 142 comparison 两表接口、complete 4/2/5-year annual means、ratio-of-sums coverage、policy summaries、post-pre change/DH/log growth、zero/defined flags、17/11 denominator 异常、79/142 个 Stata aliases、两张确定性输出 hash 和 M3.3 边界。 |
 | v0.4.0 | 2026-07-28 | 完成 M3.3 变量合同：登记 364 × 64 flow-level diagnostics、USD 25 million absolute threshold、sector-flow nearest-rank p10、China→USA relative-threshold exception、robust-z/MAD 与 mechanical extreme flags、flow-level p5/p95 winsorized sensitivity、64 个 Stata aliases、异常计数和确定性 output hash。 |
 | v0.5.0 | 2026-07-28 | 完成 M3.4 变量合同：登记 55,081 × 56 产品窗口、91 × 92 部门重组指标和 91 × 49 产品共变三表接口；固定 USD 25 million replacement denominator、signed numerator、China/East Asia source ratios、28 个 exposure missing、positive/p75 exposure overlap、产品正增量分母、Pearson/weighted correlations、56/92/49 aliases 和三个确定性 hashes。 |
+| v0.6.0 | 2026-07-28 | 完成 M3.5 变量合同：登记 91 × 152 共同面板、M3.4 两张同粒度表的 one-to-one join、完整 13 × 7 网格、21/49/21 组别行数、角色/稳定排序/source-match/no-selection flags、26/65 replacement defined/missing 状态、152 aliases 和确定性 output hash。 |
 
-下一次强制更新：M3.5 完成时，补齐共同 connector/comparator panel 的实际输出、样本保留规则、validation、hash 和 Stata 接口；同时更新审计档案并重建两份 PDF。
+下一次强制更新：M3.6 完成时，补齐 exposure definition、China-only/extended-East-Asia source bloc 和 alternative time-window sensitivity 的实际输出、公式、validation、hash 和 Stata 接口；同时更新审计档案并重建两份 PDF。

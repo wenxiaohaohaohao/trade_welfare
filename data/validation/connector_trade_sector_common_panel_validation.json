@@ -1,0 +1,1127 @@
+{
+  "validation_status": "PASS",
+  "failures": [],
+  "input_contracts": {
+    "sector_reorganization": {
+      "path": "data/processed/harmonized/connector_trade_sector_reorganization_indicators.parquet",
+      "observed_sha256": "f13c5f8aa0c4402d0b467a06a6b99ba8ddc8389d47ede9ba8c8036275c1d74f2",
+      "expected_sha256": "f13c5f8aa0c4402d0b467a06a6b99ba8ddc8389d47ede9ba8c8036275c1d74f2",
+      "hash_match": true,
+      "observed_rows": 91,
+      "expected_rows": 91,
+      "observed_columns": 92,
+      "expected_columns": 92,
+      "observed_arrow_schema_signature_sha256": "39d667379123fe2993105251ea8909cc9062fd7397780150df357c6109055259",
+      "expected_arrow_schema_signature_sha256": "39d667379123fe2993105251ea8909cc9062fd7397780150df357c6109055259",
+      "duplicate_key_count": 0,
+      "observed_schema_versions": [
+        "connector_trade_sector_reorganization_indicators_v1"
+      ],
+      "expected_schema_version": "connector_trade_sector_reorganization_indicators_v1",
+      "observed_construction_versions": [
+        "connector_trade_reorganization_indicator_rules_v1"
+      ],
+      "expected_construction_version": "connector_trade_reorganization_indicator_rules_v1"
+    },
+    "product_comovement": {
+      "path": "data/processed/harmonized/connector_trade_sector_product_comovement.parquet",
+      "observed_sha256": "3095cd39a7355ce6968e0e5c29956841fd9e40bc72238d06aafe8d3ef0c3b0f1",
+      "expected_sha256": "3095cd39a7355ce6968e0e5c29956841fd9e40bc72238d06aafe8d3ef0c3b0f1",
+      "hash_match": true,
+      "observed_rows": 91,
+      "expected_rows": 91,
+      "observed_columns": 49,
+      "expected_columns": 49,
+      "observed_arrow_schema_signature_sha256": "511633aa04b1d5ac8db7c10cbd7813aa987d438ac5832ee91cf7a6530b4c7be8",
+      "expected_arrow_schema_signature_sha256": "511633aa04b1d5ac8db7c10cbd7813aa987d438ac5832ee91cf7a6530b4c7be8",
+      "duplicate_key_count": 0,
+      "observed_schema_versions": [
+        "connector_trade_sector_product_comovement_v1"
+      ],
+      "expected_schema_version": "connector_trade_sector_product_comovement_v1",
+      "observed_construction_versions": [
+        "connector_trade_reorganization_indicator_rules_v1"
+      ],
+      "expected_construction_version": "connector_trade_reorganization_indicator_rules_v1"
+    }
+  },
+  "config_input_contracts": {
+    "analysis_sample": {
+      "path": "configs/analysis_sample_v1.yaml",
+      "observed_sha256": "bd30ba2338897b857390972c5da7294e82de93664751fe22c1a8544a9fd7fee2",
+      "expected_sha256": "bd30ba2338897b857390972c5da7294e82de93664751fe22c1a8544a9fd7fee2",
+      "hash_match": true
+    },
+    "country_groups": {
+      "path": "configs/country_groups.yaml",
+      "observed_sha256": "5ff425458023bb9540a4239e2d01973ef467309e0f8a8286661feb5c0a7f8db3",
+      "expected_sha256": "5ff425458023bb9540a4239e2d01973ef467309e0f8a8286661feb5c0a7f8db3",
+      "hash_match": true
+    },
+    "m3_reorganization_rules": {
+      "path": "configs/connector_trade_reorganization_indicator_rules.yaml",
+      "observed_sha256": "0305b9a2a0904f9eac9953a89f977565a644fc25167e4be7b04dad9a44a7fe4d",
+      "expected_sha256": "0305b9a2a0904f9eac9953a89f977565a644fc25167e4be7b04dad9a44a7fe4d",
+      "hash_match": true
+    }
+  },
+  "sample_yaml_checks": {
+    "analysis_sample_version_match": true,
+    "analysis_sample_group_checks": {
+      "core_connectors": true,
+      "asian_comparators": true,
+      "other_candidates": true
+    },
+    "country_group_checks": {
+      "core_connectors": true,
+      "asian_comparators": true,
+      "other_candidates": true
+    }
+  },
+  "join_checks": {
+    "cardinality": "one_to_one",
+    "join_status_counts": {
+      "both": 91,
+      "left_only": 0,
+      "right_only": 0
+    },
+    "overlap_mismatch_counts": {
+      "connector_group": 0,
+      "connector_baci_code": 0,
+      "connector_is_proxy": 0,
+      "trade_value_unit": 0,
+      "sector_eligible_product_count": 0,
+      "product_mapping_version": 0,
+      "trade_treatment_merge_version": 0,
+      "m3_reorganization_indicator_version": 0,
+      "rules_config_sha256": 0
+    },
+    "unique_comovement_field_count": 37
+  },
+  "output_row_count": 91,
+  "output_column_count": 152,
+  "output_duplicate_key_count": 0,
+  "connector_universe_in_output_order": [
+    "VNM",
+    "MEX",
+    "CAN",
+    "IND",
+    "IDN",
+    "MYS",
+    "PHL",
+    "THA",
+    "KOR",
+    "TWN",
+    "POL",
+    "MAR",
+    "TUR"
+  ],
+  "sector_universe_in_output_order": [
+    "autos",
+    "electrical_equipment",
+    "electronics",
+    "machinery",
+    "medical_devices",
+    "other_manufacturing",
+    "textiles_apparel"
+  ],
+  "complete_connector_sector_grid": true,
+  "group_row_counts": {
+    "asian_comparators": 49,
+    "core_connectors": 21,
+    "other_candidates": 21
+  },
+  "connector_counts_by_group": {
+    "asian_comparators": 7,
+    "core_connectors": 3,
+    "other_candidates": 3
+  },
+  "role_flag_checks": {
+    "exactly_one_role_per_row": true,
+    "core_matches_group": true,
+    "asian_matches_group": true,
+    "other_matches_group": true
+  },
+  "selection_checks": {
+    "outcome_based_selection_applied": {
+      "true_count": 0,
+      "all_false": true
+    },
+    "top_rank_filter_applied": {
+      "true_count": 0,
+      "all_false": true
+    },
+    "complete_case_filter_applied": {
+      "true_count": 0,
+      "all_false": true
+    },
+    "ranking_variables_constructed": {
+      "true_count": 0,
+      "all_false": true
+    },
+    "production_variables_included": {
+      "true_count": 0,
+      "all_false": true
+    },
+    "sensitivity_variables_constructed": {
+      "true_count": 0,
+      "all_false": true
+    }
+  },
+  "retention_and_match_checks": {
+    "comparison_sample_included_all_true": true,
+    "sector_source_all_matched": true,
+    "comovement_source_all_matched": true
+  },
+  "sector_source_preservation_mismatch_counts": {
+    "connector_group": 0,
+    "connector_baci_code": 0,
+    "connector_is_proxy": 0,
+    "trade_value_unit": 0,
+    "sector_eligible_product_count": 0,
+    "treatment_concept": 0,
+    "historical_exclusions_applied": 0,
+    "four_year_review_2024_included": 0,
+    "product_mapping_version": 0,
+    "m3_window_construction_version": 0,
+    "china_us_value_usd_pre": 0,
+    "china_us_value_usd_post": 0,
+    "connector_us_value_usd_pre": 0,
+    "connector_us_value_usd_post": 0,
+    "china_input_value_usd_pre": 0,
+    "china_input_value_usd_post": 0,
+    "east_asia_input_value_usd_pre": 0,
+    "east_asia_input_value_usd_post": 0,
+    "china_us_decline_usd": 0,
+    "replacement_denominator_threshold_usd": 0,
+    "replacement_ratio_defined": 0,
+    "connector_us_gain_usd": 0,
+    "connector_us_positive_gain_usd": 0,
+    "replacement_ratio": 0,
+    "import_replacement_candidate_flag": 0,
+    "china_input_gain_usd": 0,
+    "east_asia_input_gain_usd": 0,
+    "connector_export_dh_growth_raw": 0,
+    "connector_export_log_growth_raw": 0,
+    "connector_export_small_base_flag": 0,
+    "connector_export_dh_primary_eligible": 0,
+    "connector_export_abnormal_growth_flag": 0,
+    "china_input_dh_growth_raw": 0,
+    "china_input_log_growth_raw": 0,
+    "china_input_small_base_flag": 0,
+    "china_input_dh_primary_eligible": 0,
+    "china_input_abnormal_growth_flag": 0,
+    "east_asia_input_dh_growth_raw": 0,
+    "east_asia_input_log_growth_raw": 0,
+    "east_asia_input_small_base_flag": 0,
+    "east_asia_input_dh_primary_eligible": 0,
+    "east_asia_input_abnormal_growth_flag": 0,
+    "china_input_to_export_ratio_pre_defined": 0,
+    "china_input_to_export_ratio_pre": 0,
+    "china_input_to_export_ratio_post_defined": 0,
+    "china_input_to_export_ratio_post": 0,
+    "china_input_to_export_ratio_change": 0,
+    "east_asia_input_to_export_ratio_pre_defined": 0,
+    "east_asia_input_to_export_ratio_pre": 0,
+    "east_asia_input_to_export_ratio_post_defined": 0,
+    "east_asia_input_to_export_ratio_post": 0,
+    "east_asia_input_to_export_ratio_change": 0,
+    "post_tariffed_product_count": 0,
+    "post_tariffed_product_share": 0,
+    "post_exposure_observed_product_count": 0,
+    "post_exposure_missing_product_count": 0,
+    "post_exposure_missing_product_share": 0,
+    "positive_exposure_product_count": 0,
+    "positive_exposure_product_share": 0,
+    "top_quartile_positive_exposure_product_count": 0,
+    "top_quartile_positive_exposure_product_share": 0,
+    "sector_positive_exposure_p75_cutoff": 0,
+    "connector_export_tariffed_value_usd_pre": 0,
+    "connector_export_tariffed_value_usd_post": 0,
+    "connector_export_tariff_overlap_pre": 0,
+    "connector_export_tariff_overlap_post": 0,
+    "exposure_observed_export_value_usd_pre": 0,
+    "exposure_observed_export_value_usd_post": 0,
+    "connector_export_exposure_observed_value_share_pre": 0,
+    "connector_export_exposure_observed_value_share_post": 0,
+    "connector_export_exposure_numerator_usd_pre": 0,
+    "connector_export_exposure_numerator_usd_post": 0,
+    "connector_export_exposure_weighted_pre": 0,
+    "connector_export_exposure_weighted_post": 0,
+    "connector_export_positive_gain_exposure_observed_usd": 0,
+    "connector_export_positive_gain_exposure_observed_share": 0,
+    "connector_export_positive_gain_in_positive_exposure_usd": 0,
+    "gain_in_positive_exposure_products_share": 0,
+    "connector_export_positive_gain_in_top_quartile_exposure_usd": 0,
+    "gain_in_top_quartile_exposure_products_share": 0,
+    "connector_export_tariff_overlap_change": 0,
+    "connector_export_exposure_weighted_change": 0,
+    "china_us_benchmark_repeated_across_connectors": 0,
+    "policy_product_counts_repeated_across_connectors": 0,
+    "common_fields_not_additive_across_connectors": 0,
+    "trade_treatment_merge_version": 0,
+    "m3_growth_diagnostic_version": 0,
+    "m3_reorganization_indicator_version": 0,
+    "rules_config_sha256": 0,
+    "schema_version": 0,
+    "_unmatched_rows": 0
+  },
+  "comovement_source_preservation_mismatch_counts": {
+    "connector_export_positive_gain_product_count": 0,
+    "connector_export_positive_gain_usd": 0,
+    "china_us_decline_product_count": 0,
+    "china_us_decline_product_share": 0,
+    "china_decline_connector_gain_product_count": 0,
+    "china_decline_connector_gain_product_share": 0,
+    "china_decline_connector_gain_export_gain_share": 0,
+    "china_active_product_count": 0,
+    "china_positive_weight_product_count": 0,
+    "china_correlation_low_n_flag": 0,
+    "china_weighted_correlation_low_n_flag": 0,
+    "china_product_change_correlation": 0,
+    "china_weighted_product_change_correlation": 0,
+    "china_both_legs_positive_product_count": 0,
+    "china_both_legs_positive_product_share": 0,
+    "china_both_legs_positive_active_share": 0,
+    "china_both_legs_positive_export_gain_share": 0,
+    "china_triple_condition_product_count": 0,
+    "china_triple_condition_product_share": 0,
+    "china_triple_condition_active_share": 0,
+    "china_triple_condition_export_gain_share": 0,
+    "east_asia_active_product_count": 0,
+    "east_asia_positive_weight_product_count": 0,
+    "east_asia_correlation_low_n_flag": 0,
+    "east_asia_weighted_correlation_low_n_flag": 0,
+    "east_asia_product_change_correlation": 0,
+    "east_asia_weighted_product_change_correlation": 0,
+    "east_asia_both_legs_positive_product_count": 0,
+    "east_asia_both_legs_positive_product_share": 0,
+    "east_asia_both_legs_positive_active_share": 0,
+    "east_asia_both_legs_positive_export_gain_share": 0,
+    "east_asia_triple_condition_product_count": 0,
+    "east_asia_triple_condition_product_share": 0,
+    "east_asia_triple_condition_active_share": 0,
+    "east_asia_triple_condition_export_gain_share": 0,
+    "product_comovement_minimum_count": 0,
+    "product_comovement_value_share_denominator": 0,
+    "schema_version": 0,
+    "_unmatched_rows": 0
+  },
+  "replacement_state_counts": {
+    "replacement_ratio_defined": 26,
+    "replacement_ratio_missing": 65,
+    "import_replacement_candidate": 22
+  },
+  "correlation_defined_counts": {
+    "china_product_change_correlation": 91,
+    "china_weighted_product_change_correlation": 91,
+    "east_asia_product_change_correlation": 91,
+    "east_asia_weighted_product_change_correlation": 91
+  },
+  "correlation_low_n_counts": {
+    "china_correlation_low_n_flag": 0,
+    "china_weighted_correlation_low_n_flag": 0,
+    "east_asia_correlation_low_n_flag": 0,
+    "east_asia_weighted_correlation_low_n_flag": 0
+  },
+  "twn_checks": {
+    "rows": 7,
+    "proxy_all_true": true
+  },
+  "stata_alias_validation": {
+    "pass": true,
+    "alias_count": 152,
+    "maximum_alias_length": 14,
+    "missing_fields": [],
+    "extra_fields": [],
+    "duplicate_aliases": [],
+    "over_32_characters": {},
+    "invalid_aliases": {}
+  },
+  "metadata_checks": {
+    "m3_common_panel_version": true,
+    "rules_config_sha256": true,
+    "schema_version": true
+  },
+  "infinite_numeric_count": 0,
+  "determinism_check": {
+    "config_sha256": "374a1a18c756f38054ae3ecf077f1e2f148c53da9a07cc5b1338c01d92b44d40",
+    "candidate_sha256": "36c58c229f3f43e86f7ff7570fc6a1ffe08ccb8fd3259bb5853abece3171f682",
+    "second_build_sha256": "36c58c229f3f43e86f7ff7570fc6a1ffe08ccb8fd3259bb5853abece3171f682",
+    "sha256_match": true,
+    "temporary_output_cleaned": true
+  },
+  "validation_version": 1,
+  "generated_at_utc": "2026-07-28T15:35:07.067100+00:00",
+  "config_path": "configs/connector_trade_sector_common_panel_rules.yaml",
+  "config_sha256": "374a1a18c756f38054ae3ecf077f1e2f148c53da9a07cc5b1338c01d92b44d40",
+  "construction_version": "connector_trade_sector_common_panel_rules_v1",
+  "output": {
+    "path": "data/processed/harmonized/connector_trade_sector_common_panel.parquet",
+    "sha256": "36c58c229f3f43e86f7ff7570fc6a1ffe08ccb8fd3259bb5853abece3171f682",
+    "schema": [
+      {
+        "name": "connector_iso3",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "analysis_sector",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "connector_group",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "connector_baci_code",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "connector_is_proxy",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "trade_value_unit",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "sector_eligible_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "treatment_concept",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "historical_exclusions_applied",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "four_year_review_2024_included",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "product_mapping_version",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "m3_window_construction_version",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "china_us_value_usd_pre",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_us_value_usd_post",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_us_value_usd_pre",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_us_value_usd_post",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_input_value_usd_pre",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_input_value_usd_post",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_value_usd_pre",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_value_usd_post",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_us_decline_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "replacement_denominator_threshold_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "replacement_ratio_defined",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "connector_us_gain_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_us_positive_gain_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "replacement_ratio",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "import_replacement_candidate_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "china_input_gain_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_gain_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_dh_growth_raw",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_log_growth_raw",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_small_base_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_dh_primary_eligible",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_abnormal_growth_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "china_input_dh_growth_raw",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_input_log_growth_raw",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_input_small_base_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "china_input_dh_primary_eligible",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "china_input_abnormal_growth_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_dh_growth_raw",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_log_growth_raw",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_small_base_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_dh_primary_eligible",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_abnormal_growth_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "china_input_to_export_ratio_pre_defined",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "china_input_to_export_ratio_pre",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_input_to_export_ratio_post_defined",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "china_input_to_export_ratio_post",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_input_to_export_ratio_change",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_to_export_ratio_pre_defined",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_to_export_ratio_pre",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_to_export_ratio_post_defined",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_to_export_ratio_post",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_input_to_export_ratio_change",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "post_tariffed_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "post_tariffed_product_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "post_exposure_observed_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "post_exposure_missing_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "post_exposure_missing_product_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "positive_exposure_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "positive_exposure_product_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "top_quartile_positive_exposure_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "top_quartile_positive_exposure_product_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "sector_positive_exposure_p75_cutoff",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_tariffed_value_usd_pre",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_tariffed_value_usd_post",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_tariff_overlap_pre",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_tariff_overlap_post",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "exposure_observed_export_value_usd_pre",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "exposure_observed_export_value_usd_post",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_exposure_observed_value_share_pre",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_exposure_observed_value_share_post",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_exposure_numerator_usd_pre",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_exposure_numerator_usd_post",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_exposure_weighted_pre",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_exposure_weighted_post",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_positive_gain_exposure_observed_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_positive_gain_exposure_observed_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_positive_gain_in_positive_exposure_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "gain_in_positive_exposure_products_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_positive_gain_in_top_quartile_exposure_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "gain_in_top_quartile_exposure_products_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_tariff_overlap_change",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_exposure_weighted_change",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_us_benchmark_repeated_across_connectors",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "policy_product_counts_repeated_across_connectors",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "common_fields_not_additive_across_connectors",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "trade_treatment_merge_version",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "m3_growth_diagnostic_version",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "m3_reorganization_indicator_version",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "m3_reorganization_rules_config_sha256",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "m3_reorganization_sector_schema_version",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_positive_gain_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "connector_export_positive_gain_usd",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_us_decline_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "china_us_decline_product_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_decline_connector_gain_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "china_decline_connector_gain_product_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_decline_connector_gain_export_gain_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_active_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "china_positive_weight_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "china_correlation_low_n_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "china_weighted_correlation_low_n_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "china_product_change_correlation",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_weighted_product_change_correlation",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_both_legs_positive_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "china_both_legs_positive_product_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_both_legs_positive_active_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_both_legs_positive_export_gain_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_triple_condition_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "china_triple_condition_product_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_triple_condition_active_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "china_triple_condition_export_gain_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_active_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_positive_weight_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_correlation_low_n_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_weighted_correlation_low_n_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_product_change_correlation",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_weighted_product_change_correlation",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_both_legs_positive_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_both_legs_positive_product_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_both_legs_positive_active_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_both_legs_positive_export_gain_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_triple_condition_product_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_triple_condition_product_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_triple_condition_active_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "east_asia_triple_condition_export_gain_share",
+        "type": "double",
+        "nullable": true
+      },
+      {
+        "name": "product_comovement_minimum_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "product_comovement_value_share_denominator",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "m3_comovement_schema_version",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "core_connector_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "asian_comparator_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "other_candidate_flag",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "comparison_sample_included",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "connector_group_order",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "connector_order_within_group",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "analysis_sector_order",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "comparison_sample_connector_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "comparison_sample_sector_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "connector_group_connector_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "connector_sector_cell_count",
+        "type": "int32",
+        "nullable": true
+      },
+      {
+        "name": "m3_sector_source_row_matched",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "m3_comovement_source_row_matched",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "outcome_based_selection_applied",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "top_rank_filter_applied",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "complete_case_filter_applied",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "ranking_variables_constructed",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "production_variables_included",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "sensitivity_variables_constructed",
+        "type": "bool",
+        "nullable": true
+      },
+      {
+        "name": "m3_common_panel_version",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "rules_config_sha256",
+        "type": "large_string",
+        "nullable": true
+      },
+      {
+        "name": "schema_version",
+        "type": "large_string",
+        "nullable": true
+      }
+    ]
+  },
+  "candidate_temp_directory": "tmp/m3_5_candidates",
+  "candidate_temporary_output_cleaned": true
+}

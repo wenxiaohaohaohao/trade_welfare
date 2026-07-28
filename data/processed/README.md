@@ -1,6 +1,6 @@
 # Processed Data
 
-This directory contains reproducible harmonized outputs built from the validated source-specific files in `data/interim/`. It now contains completed M1 concordances, M2 product-level treatment/trade interfaces, the M3.1 annual connector-sector panel, the M3.2 complete-window/growth interfaces, the M3.3 flow-level growth diagnostics, and the M3.4 trade-reorganization interfaces. It does not yet contain M3.5-M3.6 comparison/sensitivity inputs, connector rankings, or production-integration panels.
+This directory contains reproducible harmonized outputs built from the validated source-specific files in `data/interim/`. It now contains completed M1 concordances, M2 product-level treatment/trade interfaces, the M3.1 annual connector-sector panel, the M3.2 complete-window/growth interfaces, the M3.3 flow-level growth diagnostics, the M3.4 trade-reorganization interfaces, and the M3.5 complete connector/comparator panel. It does not yet contain M3.6 sensitivity inputs, connector rankings, or production-integration panels.
 
 The complete collaborator audit is `docs/data_processing_audit_trail.md`; the variable-level construction contract is `docs/variable_construction_catalog.md`. Their fixed PDF versions are `output/pdf/data_processing_audit_trail.pdf` and `output/pdf/variable_construction_catalog.pdf`. Starting with M3.1, every completed processed-data step must update both Markdown sources and both PDFs before its checklist item is marked complete.
 
@@ -99,6 +99,12 @@ M2 builders and validation:
 - Builder/config: `code/data_processing/build_connector_trade_reorganization_indicators.py` and `configs/connector_trade_reorganization_indicator_rules.yaml`.
 - Validation: `data/validation/connector_trade_reorganization_indicators_validation.json` and `.md`, status PASS. All three natural keys are unique, 28 exposure-missing products remain missing, 56/92/49 aliases pass, and deterministic SHA256 values are `1c83dc1070656c903d625b2e85c82ea6e7afa18535105351ccef24a405ed2c34`, `f13c5f8aa0c4402d0b467a06a6b99ba8ddc8389d47ede9ba8c8036275c1d74f2`, and `3095cd39a7355ce6968e0e5c29956841fd9e40bc72238d06aafe8d3ef0c3b0f1`.
 
-The next build stage is M3.5's common connector/comparator panel. Production sources must later use the validated source-sector join eligibility rather than directly matching source labels.
+## Completed M3.5 harmonized output
+
+- `harmonized/connector_trade_sector_common_panel.parquet`: 91 rows and 152 columns at `connector_iso3, analysis_sector`. It one-to-one combines the M3.4 sector indicators and unique product co-movement fields; retains all 13 connectors/comparators across all 7 sectors; adds mutually exclusive sample-role flags, deterministic group/connector/sector order, source-match flags, and explicit no-selection/no-ranking/no-production flags.
+- Builder/config: `code/data_processing/build_connector_trade_sector_common_panel.py` and `configs/connector_trade_sector_common_panel_rules.yaml`.
+- Validation: `data/validation/connector_trade_sector_common_panel_validation.json` and `.md`, status PASS. All 91 cells match both inputs, group rows are 21/49/21, 26 defined and 65 missing replacement ratios remain unchanged, 152 aliases pass, and the deterministic SHA256 is `36c58c229f3f43e86f7ff7570fc6a1ffe08ccb8fd3259bb5853abece3171f682`.
+
+The next build stage is M3.6 sensitivity construction. Production sources must later use the validated source-sector join eligibility rather than directly matching source labels.
 
 Every processed output must be reproducible from `data/interim/`, documented by a build script, and retain source/provenance fields needed to audit aggregation and suppression.

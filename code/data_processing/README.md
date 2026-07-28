@@ -4,7 +4,7 @@ This directory contains reproducible `data/interim/` to `data/processed/` pipeli
 
 ## Current stage
 
-M0, M1, M2, M3.1, M3.2, M3.3, and M3.4 in `data/data_merge_checklist.md` are complete. The next task is M3.5. M3.4 adds separate product-window, sector-indicator, and sector-product-comovement interfaces for descriptive replacement, source-input/export, exposure-overlap, and HS6 co-movement measures. It does not contain connector rankings or production-side evidence.
+M0, M1, M2, M3.1, M3.2, M3.3, M3.4, and M3.5 in `data/data_merge_checklist.md` are complete. The next task is M3.6. M3.5 combines the two same-grain M3.4 sector interfaces into a complete 13-connector × 7-sector comparison panel while retaining every connector-sector cell and explicitly recording that no outcome, top-rank, or complete-case selection was applied. It does not contain sensitivity rankings or production-side evidence.
 
 ## Living collaborator audit and variable contract
 
@@ -221,6 +221,24 @@ Registered files:
 The outputs are 55,081 × 56 at `connector_iso3 × analysis_hs6`, 91 × 92 at `connector_iso3 × analysis_sector`, and 91 × 49 at `connector_iso3 × analysis_sector`. Replacement ratios use a signed connector-export gain and are defined only for a China-to-USA decline strictly above USD 25 million. China and extended East Asia input/export ratios remain separate. Product exposure missingness is preserved, and exposure-weighted measures report observed-value coverage. Product correlations and condition shares use explicit active-product and sum-positive-product-gain denominators.
 
 Validation status is PASS. All three keys are unique; 28 exposure-missing products remain missing; replacement, source-ratio, exposure, and co-movement formulas pass independent checks; and 56/92/49 Stata aliases are complete and at most 14 characters. Second-build SHA256 values match `1c83dc1070656c903d625b2e85c82ea6e7afa18535105351ccef24a405ed2c34`, `f13c5f8aa0c4402d0b467a06a6b99ba8ddc8389d47ede9ba8c8036275c1d74f2`, and `3095cd39a7355ce6968e0e5c29956841fd9e40bc72238d06aafe8d3ef0c3b0f1`. Candidate and determinism directories were removed. `.dta` export remains an M7 task.
+
+## M3.5 complete connector-sector comparison panel
+
+Run the validated single-module builder from the project root:
+
+```powershell
+python code\data_processing\build_connector_trade_sector_common_panel.py --project-root . --overwrite
+```
+
+Registered files:
+
+- config: `configs/connector_trade_sector_common_panel_rules.yaml`;
+- output: `data/processed/harmonized/connector_trade_sector_common_panel.parquet`;
+- validation: `data/validation/connector_trade_sector_common_panel_validation.json` and `.md`.
+
+The output is 91 × 152 at `connector_iso3 × analysis_sector`. It performs a one-to-one join of the 91-row M3.4 sector indicator and product co-movement tables, validates all common fields, retains all 3 core connectors, 7 Asian comparators, and 3 other candidates over all 7 sectors, and adds explicit sample-role, ordering, source-match, and no-selection fields. It does not construct a score or delete low-ranked, missing-ratio, or otherwise inconvenient observations.
+
+Validation status is PASS. All 91 keys match on both inputs; the group row counts are 21/49/21; all 13 × 7 cells are retained; 26 defined and 65 missing replacement ratios remain unchanged; all four product correlations remain defined for 91 cells; TWN retains seven proxy rows; and all 152 Stata aliases are unique and at most 14 characters. The canonical and second-build SHA256 are both `36c58c229f3f43e86f7ff7570fc6a1ffe08ccb8fd3259bb5853abece3171f682`. Candidate and determinism directories were removed. `.dta` export remains an M7 task.
 
 ## Stata handoff contract
 

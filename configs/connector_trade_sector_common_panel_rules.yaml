@@ -1,0 +1,273 @@
+version: connector_trade_sector_common_panel_rules_v1
+status: frozen_for_m3_5
+frozen_date: 2026-07-28
+schema_version: connector_trade_sector_common_panel_v1
+
+inputs:
+  sector_reorganization:
+    path: data/processed/harmonized/connector_trade_sector_reorganization_indicators.parquet
+    sha256: f13c5f8aa0c4402d0b467a06a6b99ba8ddc8389d47ede9ba8c8036275c1d74f2
+    expected_rows: 91
+    expected_columns: 92
+    arrow_schema_signature_sha256: 39d667379123fe2993105251ea8909cc9062fd7397780150df357c6109055259
+    natural_key: [connector_iso3, analysis_sector]
+    expected_schema_version: connector_trade_sector_reorganization_indicators_v1
+    expected_construction_version: connector_trade_reorganization_indicator_rules_v1
+  product_comovement:
+    path: data/processed/harmonized/connector_trade_sector_product_comovement.parquet
+    sha256: 3095cd39a7355ce6968e0e5c29956841fd9e40bc72238d06aafe8d3ef0c3b0f1
+    expected_rows: 91
+    expected_columns: 49
+    arrow_schema_signature_sha256: 511633aa04b1d5ac8db7c10cbd7813aa987d438ac5832ee91cf7a6530b4c7be8
+    natural_key: [connector_iso3, analysis_sector]
+    expected_schema_version: connector_trade_sector_product_comovement_v1
+    expected_construction_version: connector_trade_reorganization_indicator_rules_v1
+  analysis_sample:
+    path: configs/analysis_sample_v1.yaml
+    sha256: bd30ba2338897b857390972c5da7294e82de93664751fe22c1a8544a9fd7fee2
+    expected_version: analysis_sample_v1
+  country_groups:
+    path: configs/country_groups.yaml
+    sha256: 5ff425458023bb9540a4239e2d01973ef467309e0f8a8286661feb5c0a7f8db3
+  m3_reorganization_rules:
+    path: configs/connector_trade_reorganization_indicator_rules.yaml
+    sha256: 0305b9a2a0904f9eac9953a89f977565a644fc25167e4be7b04dad9a44a7fe4d
+
+join:
+  natural_key: [connector_iso3, analysis_sector]
+  cardinality: one_to_one
+  master: sector_reorganization
+  require_all_master_rows_matched: true
+  require_all_using_rows_matched: true
+  overlapping_fields:
+    - connector_iso3
+    - analysis_sector
+    - connector_group
+    - connector_baci_code
+    - connector_is_proxy
+    - trade_value_unit
+    - sector_eligible_product_count
+    - product_mapping_version
+    - trade_treatment_merge_version
+    - m3_reorganization_indicator_version
+    - rules_config_sha256
+  source_specific_overlapping_fields:
+    - schema_version
+  require_exact_overlap_equality: true
+  output_renames:
+    rules_config_sha256: m3_reorganization_rules_config_sha256
+    schema_version: m3_reorganization_sector_schema_version
+  comovement_schema_output_field: m3_comovement_schema_version
+
+sample:
+  groups:
+    core_connectors:
+      order: 1
+      connectors: [VNM, MEX, CAN]
+    asian_comparators:
+      order: 2
+      connectors: [IND, IDN, MYS, PHL, THA, KOR, TWN]
+    other_candidates:
+      order: 3
+      connectors: [POL, MAR, TUR]
+  sectors:
+    - autos
+    - electrical_equipment
+    - electronics
+    - machinery
+    - medical_devices
+    - other_manufacturing
+    - textiles_apparel
+  expected_connector_count: 13
+  expected_sector_count: 7
+  expected_rows: 91
+  expected_rows_by_group:
+    core_connectors: 21
+    asian_comparators: 49
+    other_candidates: 21
+  expected_connectors_by_group:
+    core_connectors: 3
+    asian_comparators: 7
+    other_candidates: 3
+  keep_all_connector_sector_cells: true
+  outcome_based_selection_applied: false
+  top_rank_filter_applied: false
+  complete_case_filter_applied: false
+  ranking_variables_constructed: false
+  production_variables_included: false
+  sensitivity_variables_constructed: false
+
+output:
+  path: data/processed/harmonized/connector_trade_sector_common_panel.parquet
+  natural_key: [connector_iso3, analysis_sector]
+  expected_rows: 91
+  expected_columns: 152
+  schema_version: connector_trade_sector_common_panel_v1
+  stata_aliases:
+    connector_iso3: conn_iso3
+    analysis_sector: ana_sector
+    connector_group: conn_group
+    connector_baci_code: conn_baci
+    connector_is_proxy: is_proxy
+    trade_value_unit: val_unit
+    sector_eligible_product_count: sec_elig_n
+    china_us_value_usd_pre: cnus_pre
+    china_us_value_usd_post: cnus_post
+    china_us_decline_usd: cnus_drop
+    replacement_denominator_threshold_usd: repl_den_cut
+    replacement_ratio_defined: repl_ok
+    connector_us_value_usd_pre: connus_pre
+    connector_us_value_usd_post: connus_post
+    connector_us_gain_usd: conn_gain
+    connector_us_positive_gain_usd: conn_pgain
+    connector_export_dh_growth_raw: gdh_conn
+    connector_export_log_growth_raw: gln_conn
+    connector_export_small_base_flag: conn_small
+    connector_export_dh_primary_eligible: conn_dh_ok
+    connector_export_abnormal_growth_flag: conn_abn
+    replacement_ratio: repl_ratio
+    import_replacement_candidate_flag: repl_cand
+    china_input_value_usd_pre: cnin_pre
+    china_input_value_usd_post: cnin_post
+    china_input_gain_usd: cnin_gain
+    china_input_dh_growth_raw: gdh_cnin
+    china_input_log_growth_raw: gln_cnin
+    china_input_small_base_flag: cnin_small
+    china_input_dh_primary_eligible: cnin_dh_ok
+    china_input_abnormal_growth_flag: cnin_abn
+    east_asia_input_value_usd_pre: eain_pre
+    east_asia_input_value_usd_post: eain_post
+    east_asia_input_gain_usd: eain_gain
+    east_asia_input_dh_growth_raw: gdh_eain
+    east_asia_input_log_growth_raw: gln_eain
+    east_asia_input_small_base_flag: eain_small
+    east_asia_input_dh_primary_eligible: eain_dh_ok
+    east_asia_input_abnormal_growth_flag: eain_abn
+    china_input_to_export_ratio_pre: srcx_cnpre
+    china_input_to_export_ratio_post: srcx_cnpost
+    china_input_to_export_ratio_change: d_srcx_cn
+    china_input_to_export_ratio_pre_defined: srcx_cnpok
+    china_input_to_export_ratio_post_defined: srcx_cnxok
+    east_asia_input_to_export_ratio_pre: srcx_eapre
+    east_asia_input_to_export_ratio_post: srcx_eapost
+    east_asia_input_to_export_ratio_change: d_srcx_ea
+    east_asia_input_to_export_ratio_pre_defined: srcx_eapok
+    east_asia_input_to_export_ratio_post_defined: srcx_eaxok
+    post_tariffed_product_count: trt_prod_n
+    post_tariffed_product_share: trt_prod_sh
+    post_exposure_observed_product_count: expo_obs_n
+    post_exposure_missing_product_count: expo_miss_n
+    post_exposure_missing_product_share: expo_miss_sh
+    positive_exposure_product_count: expo_pos_n
+    positive_exposure_product_share: expo_pos_sh
+    top_quartile_positive_exposure_product_count: expo_top_n
+    top_quartile_positive_exposure_product_share: expo_top_sh
+    sector_positive_exposure_p75_cutoff: expo_p75
+    connector_export_tariffed_value_usd_pre: trt_x_pre
+    connector_export_tariffed_value_usd_post: trt_x_post
+    connector_export_tariff_overlap_pre: ovlp_pre
+    connector_export_tariff_overlap_post: ovlp_post
+    connector_export_tariff_overlap_change: d_ovlp
+    exposure_observed_export_value_usd_pre: expo_xobs_pre
+    exposure_observed_export_value_usd_post: expo_xobs_post
+    connector_export_exposure_observed_value_share_pre: expo_cov_pre
+    connector_export_exposure_observed_value_share_post: expo_cov_post
+    connector_export_exposure_numerator_usd_pre: expo_num_pre
+    connector_export_exposure_numerator_usd_post: expo_num_post
+    connector_export_exposure_weighted_pre: expo_w_pre
+    connector_export_exposure_weighted_post: expo_w_post
+    connector_export_exposure_weighted_change: d_expo_w
+    connector_export_positive_gain_exposure_observed_usd: gain_obs
+    connector_export_positive_gain_exposure_observed_share: gain_cov
+    connector_export_positive_gain_in_positive_exposure_usd: gain_pos
+    gain_in_positive_exposure_products_share: gain_pos_sh
+    connector_export_positive_gain_in_top_quartile_exposure_usd: gain_top
+    gain_in_top_quartile_exposure_products_share: gain_top_sh
+    treatment_concept: trt_concept
+    historical_exclusions_applied: hist_excl
+    four_year_review_2024_included: rev24_in
+    china_us_benchmark_repeated_across_connectors: cnus_repeat
+    policy_product_counts_repeated_across_connectors: pol_repeat
+    common_fields_not_additive_across_connectors: common_nonadd
+    product_mapping_version: prod_mapver
+    trade_treatment_merge_version: trd_mrgver
+    m3_window_construction_version: m3_winver
+    m3_growth_diagnostic_version: m3_diagver
+    m3_reorganization_indicator_version: m3_reorgver
+    m3_reorganization_rules_config_sha256: m3_reorg_hash
+    m3_reorganization_sector_schema_version: m3_reorg_sch
+    connector_export_positive_gain_product_count: xgain_prod_n
+    connector_export_positive_gain_usd: xgain_usd
+    china_us_decline_product_count: cndrop_prod_n
+    china_us_decline_product_share: cndrop_psh
+    china_decline_connector_gain_product_count: rerout_prod_n
+    china_decline_connector_gain_product_share: rerout_psh
+    china_decline_connector_gain_export_gain_share: rerout_gsh
+    china_active_product_count: cn_act_n
+    china_positive_weight_product_count: cn_wgt_n
+    china_correlation_low_n_flag: cn_cor_lown
+    china_weighted_correlation_low_n_flag: cn_wcor_lown
+    china_product_change_correlation: cn_prod_cor
+    china_weighted_product_change_correlation: cn_wprod_cor
+    china_both_legs_positive_product_count: cn_both_n
+    china_both_legs_positive_product_share: cn_both_psh
+    china_both_legs_positive_active_share: cn_both_ash
+    china_both_legs_positive_export_gain_share: cn_both_gsh
+    china_triple_condition_product_count: cn_triple_n
+    china_triple_condition_product_share: cn_triple_psh
+    china_triple_condition_active_share: cn_triple_ash
+    china_triple_condition_export_gain_share: cn_triple_gsh
+    east_asia_active_product_count: ea_act_n
+    east_asia_positive_weight_product_count: ea_wgt_n
+    east_asia_correlation_low_n_flag: ea_cor_lown
+    east_asia_weighted_correlation_low_n_flag: ea_wcor_lown
+    east_asia_product_change_correlation: ea_prod_cor
+    east_asia_weighted_product_change_correlation: ea_wprod_cor
+    east_asia_both_legs_positive_product_count: ea_both_n
+    east_asia_both_legs_positive_product_share: ea_both_psh
+    east_asia_both_legs_positive_active_share: ea_both_ash
+    east_asia_both_legs_positive_export_gain_share: ea_both_gsh
+    east_asia_triple_condition_product_count: ea_triple_n
+    east_asia_triple_condition_product_share: ea_triple_psh
+    east_asia_triple_condition_active_share: ea_triple_ash
+    east_asia_triple_condition_export_gain_share: ea_triple_gsh
+    product_comovement_minimum_count: corr_min_n
+    product_comovement_value_share_denominator: gain_den
+    m3_comovement_schema_version: m3_comov_sch
+    core_connector_flag: core_conn
+    asian_comparator_flag: asia_comp
+    other_candidate_flag: other_cand
+    comparison_sample_included: sample_in
+    connector_group_order: conn_grp_ord
+    connector_order_within_group: conn_ord
+    analysis_sector_order: sec_ord
+    comparison_sample_connector_count: sample_conn_n
+    comparison_sample_sector_count: sample_sec_n
+    connector_group_connector_count: grp_conn_n
+    connector_sector_cell_count: conn_sec_n
+    m3_sector_source_row_matched: sec_src_ok
+    m3_comovement_source_row_matched: comov_src_ok
+    outcome_based_selection_applied: outcome_sel
+    top_rank_filter_applied: toprank_sel
+    complete_case_filter_applied: ccase_sel
+    ranking_variables_constructed: rank_built
+    production_variables_included: prod_incl
+    sensitivity_variables_constructed: sens_built
+    m3_common_panel_version: m3_commpver
+    rules_config_sha256: rules_hash
+    schema_version: schema_ver
+
+validation_outputs:
+  json: data/validation/connector_trade_sector_common_panel_validation.json
+  markdown: data/validation/connector_trade_sector_common_panel_validation.md
+
+validation:
+  require_deterministic_parquet_sha256: true
+  candidate_temp_directory: tmp/m3_5_candidates
+  determinism_temp_directory: tmp/m3_5_determinism
+  expected_replacement_ratio_defined_count: 26
+  expected_replacement_ratio_missing_count: 65
+  expected_import_replacement_candidate_count: 22
+  expected_twn_rows: 7
+  expected_defined_correlation_count_per_field: 91
+  expected_low_n_flag_count_per_field: 0
