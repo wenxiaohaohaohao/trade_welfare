@@ -4,7 +4,7 @@ This directory contains reproducible `data/interim/` to `data/processed/` pipeli
 
 ## Current stage
 
-M0, M1, and M2 in `data/data_merge_checklist.md` are complete. The next active task is M3.1: aggregate the validated connector-product-year trade and treatment panel to `connector_iso3 × analysis_sector × year`.
+M0, M1, M2, and M3.1 in `data/data_merge_checklist.md` are complete. The next task is M3.2. It has not started; no window, growth, replacement, or ranking variables are present in the M3.1 output.
 
 ## Living collaborator audit and variable contract
 
@@ -137,6 +137,24 @@ python code\data_processing\build_section301_2024_review_extension.py --project-
 ```
 
 The pure BACI trade-leg output is `connector_trade_legs_hs6_year.parquet`; the merged treatment output is `connector_trade_hs6_year.parquet`. The separate base prevents an in-place merge from obscuring trade-value reconciliation. The Census monthly output remains sparse for event-study use, while the annual output is a complete 15-origin product-year grid. The 2024 review output preserves exact HTS8/HTS10 and has no `analysis_hs6` field.
+
+## M3.1 annual connector-sector aggregation
+
+Run the validated single-module builder from the project root:
+
+```powershell
+python code\data_processing\build_connector_trade_sector_panel.py --project-root . --overwrite
+```
+
+Registered files:
+
+- config: `configs/connector_trade_sector_rules.yaml`;
+- canonical output: `data/processed/harmonized/connector_trade_sector_year.parquet`;
+- validation: `data/validation/connector_trade_sector_panel_validation.json` and `.md`.
+
+The output has 1,001 rows at `connector_iso3 × analysis_sector × year`. It sums only the 4,237 canonical eligible products with sector weight 1, reconciles four trade flows to product-level eligible totals, reports the 965 non-eligible products through flow-specific connector-year coverage fields, and recalculates sector policy numerators, denominators, rates, and shares. China-to-USA and policy fields are repeated across connectors; coverage fields are repeated across sectors; explicit flags prohibit treating either as additive. The builder also performs a second build in `tmp/m3_1_determinism/`, requires an identical Parquet SHA256, and removes that project-local temporary output.
+
+M3.1 output SHA256: `95e547267892c4bc883788542f0e59ba284441b42f4ce1d379aea71a2f978c8c`. The 70 frozen Stata aliases pass completeness, uniqueness, and 32-character checks, but `.dta` export remains an M7 task.
 
 ## Stata handoff contract
 

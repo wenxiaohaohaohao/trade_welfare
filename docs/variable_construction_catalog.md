@@ -4,10 +4,10 @@
 
 - Origin Skill: `stata-latex-research`
 - Origin Date: `2026-07-27`
-- Verification Status: `DESIGN_REVIEWED`
-- Version Label: `variable_catalog_v0.1.1`
-- Current Data Stage: `M0-M2 completed`
-- First Construction Stage: `M3.1 not started`
+- Verification Status: `VERIFIED_THROUGH_M3.1`
+- Version Label: `variable_catalog_v0.2.0`
+- Current Data Stage: `M0-M3.1 completed`
+- Next Construction Stage: `M3.2 not started`
 - Canonical Format: Parquet
 - Collaborator Format: Stata `.dta`
 
@@ -24,7 +24,7 @@
 
 本目录同时包含三类变量：
 
-- `EXISTING_VALIDATED`：M2 已存在且 validation PASS；
+- `EXISTING_VALIDATED`：M2 或 M3.1 已存在且 validation PASS；
 - `PLANNED_M3` 至 `PLANNED_M6`：已经定义但尚未构造，必须在对应阶段完成后补充实际 output hash 和 validation；
 - `STRUCTURAL_TARGET_ONLY`：只能作为模型校准目标或输入候选，不能直接解释为已经识别的结构参数。
 
@@ -39,7 +39,7 @@
 | 状态 | 含义 |
 |---|---|
 | `EXISTING_VALIDATED` | 已在 processed Parquet 中存在，主键和 validation 已通过 |
-| `PLANNED_M3` | connector-product-year 聚合到 connector-sector-year 时构造 |
+| `PLANNED_M3` | M3.2-M3.6 的窗口、增长、replacement 和 ranking inputs 尚未构造 |
 | `PLANNED_M4` | production-side standardized long table 时构造 |
 | `PLANNED_M5` | trade 和 production evidence 合并时构造 |
 | `PLANNED_M6` | ranking、rerouting、validation 和 structural moments 时构造 |
@@ -171,40 +171,124 @@ Stata 中所有逻辑变量使用 numeric byte 0/1，并附 value label。不能
 
 ## 5. M3.1 connector-sector-year 基础聚合变量
 
-目标文件：`data/processed/harmonized/connector_trade_sector_year.parquet`。粒度 `G_CONN_SECTOR_YEAR`。
+状态：`EXISTING_VALIDATED`。
+
+正式文件：`data/processed/harmonized/connector_trade_sector_year.parquet`。粒度 `G_CONN_SECTOR_YEAR`，唯一键为 `connector_iso3, analysis_sector, year`。
+
+构建证据：
+
+- builder：`code/data_processing/build_connector_trade_sector_panel.py`；
+- 冻结配置：`configs/connector_trade_sector_rules.yaml`；
+- 输入：743,886 行 `connector_trade_hs6_year.parquet` 与 5,202 行 `product_sector_crosswalk.parquet`；
+- 输出：1,001 行、70 列，13 connectors × 7 sectors × 2014-2024；
+- 输出 SHA256：`95e547267892c4bc883788542f0e59ba284441b42f4ce1d379aea71a2f978c8c`；
+- validation：`data/validation/connector_trade_sector_panel_validation.json` 与 `.md`，状态 `PASS`；
+- 配置 SHA256：`6a313c01d9bfad6e6e6a2cb508bd787f35bdb0eddeb6e4f491a86d61bdd9ee9d`；
+- 确定性检查：项目 F 盘临时目录第二次构建的 Parquet SHA256 与正式输出完全一致，临时目录已清除；
+- Stata 接口：70 个 alias 全部登记、互不重复、最长 14 个字符，均不超过 Stata 的 32 字符限制。本阶段不提前生成 `.dta`。
 
 ### 5.1 金额和覆盖
 
-对 `is_analysis_sector_eligible=true` 且 product-sector weight=1 的产品，在 `connector_iso3, analysis_sector, year` 内求和。
+先用 `analysis_hs6` 把 M2 panel many-to-one 连接到 canonical product-sector crosswalk。只有 canonical `is_analysis_sector_eligible=true` 且 `sector_mapping_weight=1` 的产品，才在 `connector_iso3, analysis_sector, year` 内求和。M2 内嵌 sector 字段只用于一致性检查，不能取代 canonical crosswalk。
 
 | Canonical name | Stata name | 公式 | 可加总性 | 用途 | 状态 |
 |---|---|---|---|---|---|
-| `china_to_usa_value_usd` | `cn_us_val` | `sum_hs6(cn_us_val)`，但每个 connector 重复 | nonadditive across connector | China decline benchmark | planned M3 |
-| `china_to_connector_value_usd` | `cn_conn_val` | `sum_hs6(cn_conn_val)` | flow | China input growth | planned M3 |
-| `east_asia_to_connector_value_usd` | `ea_conn_val` | `sum_hs6(ea_conn_val)` | flow | broader source input growth | planned M3 |
-| `connector_to_usa_value_usd` | `conn_us_val` | `sum_hs6(conn_us_val)` | flow | connector export growth | planned M3 |
-| `included_product_count` | `prod_n` | eligible HS6 count | count | sector composition | planned M3 |
-| `positive_trade_product_count` | `posprod_n` | amount > 0 的 HS6 count | count | extensive product margin | planned M3 |
-| `excluded_value_usd` | `excl_val` | 同 connector-year 中 excluded/outside/residual products value | flow | 披露样本缩窄 | planned M3 |
-| `included_value_share` | `incl_share` | included / (included + excluded) | nonadditive share | sector coverage | planned M3 |
+| `china_to_usa_value_usd` | `cn_us_val` | `sum_h eligible china_to_usa_value_usd` | `NONADDITIVE_REPEAT` across connector | China decline benchmark | `EXISTING_VALIDATED` |
+| `china_to_connector_value_usd` | `cn_conn_val` | `sum_h eligible china_to_connector_value_usd` | `FLOW` | China input leg | `EXISTING_VALIDATED` |
+| `east_asia_to_connector_value_usd` | `ea_conn_val` | `sum_h eligible east_asia_to_connector_value_usd` | `FLOW` | broader source input leg | `EXISTING_VALIDATED` |
+| `connector_to_usa_value_usd` | `conn_us_val` | `sum_h eligible connector_to_usa_value_usd` | `FLOW` | connector export leg | `EXISTING_VALIDATED` |
+| `sector_eligible_product_count` | `sec_elig_n` | sector 内 distinct eligible HS6 | count | sector composition 与 denominator | `EXISTING_VALIDATED` |
 
-每条金额字段分别计算 `source_row_count`。不能只保留金额而丢失 source-row diagnostics。
+四条流各有独立 diagnostics；`<flow>` 分别是 `china_to_connector`、`east_asia_to_connector`、`connector_to_usa` 和 `china_to_usa`：
+
+| Canonical pattern | Stata aliases | 公式和含义 | 状态 |
+|---|---|---|---|
+| `<flow>_value_usd_row_count` | `cn_conn_src_n`, `ea_conn_src_n`, `conn_us_src_n`, `cn_us_src_n` | eligible products 的 M2 source-row count 之和 | `EXISTING_VALIDATED` |
+| `<flow>_positive_product_count` | `cn_conn_pos_n`, `ea_conn_pos_n`, `conn_us_pos_n`, `cn_us_pos_n` | sector 内 `<flow>_value_usd > 0` 的 eligible HS6 数 | `EXISTING_VALIDATED` |
+| `<flow>_zero_source_product_count` | `cn_conn_zsrc_n`, `ea_conn_zsrc_n`, `conn_us_zsrc_n`, `cn_us_zsrc_n` | sector 内 M2 `<flow>_row_count = 0` 的 eligible HS6 数；保留 source absence，不等同 observed zero | `EXISTING_VALIDATED` |
+
+excluded、outside-manufacturing 和 residual products 没有可用于 sector sums 的有效 sector weight，因此 coverage 在 `connector_iso3, year` 粒度计算后跨 7 个 sector 重复。所有 coverage 字段都带 `coverage_repeated_across_sectors=true`，不能跨 sector 求和。
+
+| Canonical name | Stata name | 公式 | 可加总性 | 状态 |
+|---|---|---|---|---|
+| `excluded_product_count` | `excl_prod_n` | connector-year 内 965 个非 eligible 产品的 distinct count | `NONADDITIVE_REPEAT` across sector | `EXISTING_VALIDATED` |
+| `china_to_connector_excluded_value_usd` | `cn_conn_excl` | 非 eligible 产品的 China→connector value sum | `NONADDITIVE_REPEAT` across sector | `EXISTING_VALIDATED` |
+| `china_to_connector_included_value_share` | `cn_conn_inclsh` | eligible / full-universe China→connector value | `NONADDITIVE_RATE` | `EXISTING_VALIDATED` |
+| `east_asia_to_connector_excluded_value_usd` | `ea_conn_excl` | 非 eligible 产品的 East Asia→connector value sum | `NONADDITIVE_REPEAT` across sector | `EXISTING_VALIDATED` |
+| `east_asia_to_connector_included_value_share` | `ea_conn_inclsh` | eligible / full-universe East Asia→connector value | `NONADDITIVE_RATE` | `EXISTING_VALIDATED` |
+| `connector_to_usa_excluded_value_usd` | `conn_us_excl` | 非 eligible 产品的 connector→USA value sum | `NONADDITIVE_REPEAT` across sector | `EXISTING_VALIDATED` |
+| `connector_to_usa_included_value_share` | `conn_us_inclsh` | eligible / full-universe connector→USA value | `NONADDITIVE_RATE` | `EXISTING_VALIDATED` |
+| `china_to_usa_excluded_value_usd` | `cn_us_excl` | 非 eligible 产品的 China→USA value sum；同时跨 connector 重复 | `NONADDITIVE_REPEAT` | `EXISTING_VALIDATED` |
+| `china_to_usa_included_value_share` | `cn_us_inclsh` | eligible / full-universe China→USA value；同时跨 connector 重复 | `NONADDITIVE_RATE` | `EXISTING_VALIDATED` |
 
 ### 5.2 sector-level treatment
 
-Policy rate/exposure 不能按产品直接求和。推荐保留多个定义：
+先对 `analysis_hs6, year` 去除 connector 复制，再在 sector-year 重算分子和分母。Policy rate/exposure 不能按产品 rate 直接求和。
 
 | Canonical name | Stata name | 公式 | 用途 | 状态 |
 |---|---|---|---|---|
-| `sector_tariff_rate_china_weighted` | `sec_trf_cw` | `sum_h(chnimp17_h × rate_h,t)/sum_h(chnimp17_h)` | 法定 rate intensity | planned M3 |
-| `sector_tariff_exposure` | `sec_expo` | `sum_h(chnimp17_h × rate_h,t)/sum_h(usimp17_h)` | 主 policy exposure | planned M3 |
-| `sector_china_import_share_2017` | `sec_cnshr` | `sum_h(chnimp17_h)/sum_h(usimp17_h)` | baseline China dependence | planned M3 |
-| `tariffed_product_share_count` | `trf_psh_n` | tariffed HS6 / eligible HS6 | breadth | planned M3 |
-| `tariffed_product_share_china_value` | `trf_psh_c` | tariffed China imports / sector China imports | treatment mass | planned M3 |
-| `tariffed_product_share_us_value` | `trf_psh_u` | tariffed total imports / sector total imports | denominator exposure breadth | planned M3 |
-| `treatment_missing_denominator_share` | `trf_miss` | no-denominator products 的 baseline/value share | audit | planned M3 |
+| `sector_total_us_import_value_2017` | `sec_usimp17` | `sum_h usimp17_h` | transparent denominator | `EXISTING_VALIDATED` |
+| `sector_china_import_value_2017` | `sec_cnimp17` | `sum_h chnimp17_h` | China weight denominator | `EXISTING_VALIDATED` |
+| `sector_tariff_exposure_numerator_usd` | `sec_trf_num` | `sum_h(chnimp17_h × rate_h,t)` | common transparent numerator | `EXISTING_VALIDATED` |
+| `sector_tariff_rate_china_weighted` | `sec_trf_cw` | `sec_trf_num / sec_cnimp17` | 法定 rate intensity | `EXISTING_VALIDATED` |
+| `sector_tariff_exposure` | `sec_expo` | `sec_trf_num / sec_usimp17` | 主 gross policy exposure | `EXISTING_VALIDATED` |
+| `sector_china_import_share_2017` | `sec_cnshr17` | `sec_cnimp17 / sec_usimp17` | baseline China dependence | `EXISTING_VALIDATED` |
+| `sector_treatment_product_count` | `sec_trt_n` | distinct eligible HS6 | policy count denominator | `EXISTING_VALIDATED` |
+| `policy_denominator_observed_product_count` | `pol_denobs_n` | `usimp17_h > 0` 且非缺失的 eligible HS6 数 | denominator audit | `EXISTING_VALIDATED` |
+| `tariffed_product_count` | `trf_prod_n` | `tariffed_product=true` 的 eligible HS6 数 | breadth numerator | `EXISTING_VALIDATED` |
+| `tariffed_china_import_value_2017` | `trf_cnimp17` | tariffed eligible HS6 的 China imports sum | China treatment mass | `EXISTING_VALIDATED` |
+| `tariffed_total_us_import_value_2017` | `trf_usimp17` | tariffed eligible HS6 的 total U.S. imports sum | total-import treatment mass | `EXISTING_VALIDATED` |
+| `tariffed_product_share_count` | `trf_psh_n` | `trf_prod_n / sec_trt_n` | breadth | `EXISTING_VALIDATED` |
+| `tariffed_product_share_china_value` | `trf_psh_c` | `trf_cnimp17 / sec_cnimp17` | China treatment mass share | `EXISTING_VALIDATED` |
+| `tariffed_product_share_us_value` | `trf_psh_u` | `trf_usimp17 / sec_usimp17` | total-import treatment mass share | `EXISTING_VALIDATED` |
+
+缺少 denominator 或 HS2017 mapping 的产品不静默转成普通零 denominator：
+
+| Canonical name | Stata name | 公式/含义 | 状态 |
+|---|---|---|---|
+| `treatment_missing_denominator_product_count` | `trt_missden_n` | `usimp17_h` 缺失或不大于 0 的 eligible HS6 数 | `EXISTING_VALIDATED` |
+| `treatment_zero_denominator_product_count` | `trt_zeroden_n` | `policy_mapping_status=mapped_hs17_no_2017_import_denominator` 的 HS6 数；全样本 17 个 distinct products | `EXISTING_VALIDATED` |
+| `treatment_no_hs17_mapping_product_count` | `trt_nohs17_n` | `policy_mapping_status=no_hs17_baci_weight_mapping` 的 HS6 数；全样本 11 个 distinct products | `EXISTING_VALIDATED` |
+| `treatment_missing_denominator_product_share` | `trt_miss_sh` | missing denominator count / `sec_trt_n` | `EXISTING_VALIDATED` |
+| `treatment_zero_denominator_product_share` | `trt_zero_sh` | zero denominator count / `sec_trt_n` | `EXISTING_VALIDATED` |
+| `treatment_no_hs17_mapping_product_share` | `trt_nohs17_sh` | no-HS2017-mapping count / `sec_trt_n` | `EXISTING_VALIDATED` |
 
 主回归/排名应优先使用 `sector_tariff_exposure`，同时把 weighted rate 和 tariffed shares 作为 robustness，不把它们互相替代。
+
+### 5.3 标签、版本和不可加总 flags
+
+| Canonical name | Stata name | 内容/规则 | 状态 |
+|---|---|---|---|
+| `connector_group` | `conn_group` | core/comparator 分组 | `EXISTING_VALIDATED` |
+| `connector_baci_code` | `conn_baci` | BACI reporter/partner code | `EXISTING_VALIDATED` |
+| `connector_is_proxy` | `is_proxy` | TWN 使用 BACI S19 proxy；TWN 的 77 行全部为 1 | `EXISTING_VALIDATED` |
+| `analysis_sector_status` | `sec_status` | canonical sector status | `EXISTING_VALIDATED` |
+| `trade_value_unit` | `val_unit` | current USD | `EXISTING_VALIDATED` |
+| `treatment_concept` | `trt_concept` | gross statutory initial actions | `EXISTING_VALIDATED` |
+| `historical_exclusions_applied` | `hist_excl` | 恒为 0 | `EXISTING_VALIDATED` |
+| `four_year_review_2024_included` | `rev24_in` | 恒为 0 | `EXISTING_VALIDATED` |
+| `review_2024_treatment` | `rev24_trt` | separate exact-HTS extension | `EXISTING_VALIDATED` |
+| `treatment_version` | `trt_ver` | M2 treatment version | `EXISTING_VALIDATED` |
+| `is_analysis_sector_eligible` | `ana_ok` | 本输出恒为 1 | `EXISTING_VALIDATED` |
+| `sector_mapping_weight` | `sec_wt` | 本输出恒为 1 | `EXISTING_VALIDATED` |
+| `baci_absence_treated_as_zero` | `baci_zrule` | complete-grid BACI absence rule | `EXISTING_VALIDATED` |
+| `quantity_included` | `qty_in` | 恒为 0；本输出不含 quantity | `EXISTING_VALIDATED` |
+| `china_to_usa_common_benchmark` | `cnus_common` | China→USA benchmark 跨 connector 重复 | `EXISTING_VALIDATED` |
+| `treatment_repeated_across_connectors` | `trt_repeat` | sector treatment 跨 connector 重复 | `EXISTING_VALIDATED` |
+| `coverage_repeated_across_sectors` | `cov_repeat` | connector-year coverage 跨 sector 重复 | `EXISTING_VALIDATED` |
+| `common_benchmarks_not_additive_across_connectors` | `bm_nonadd` | 禁止跨 connector 求和共同 benchmark | `EXISTING_VALIDATED` |
+| `product_mapping_version` | `prod_mapver` | canonical product-sector mapping version | `EXISTING_VALIDATED` |
+| `m3_sector_aggregation_version` | `m3_aggver` | `connector_trade_sector_rules_v1` | `EXISTING_VALIDATED` |
+| `schema_version` | `schema_ver` | `connector_trade_sector_year_v1` | `EXISTING_VALIDATED` |
+
+### 5.4 M3.1 验证结论和解释边界
+
+- 两个输入 SHA256 与冻结配置一致；输入、crosswalk 和输出主键重复均为 0；全部 HS6 成功匹配，M2 内嵌 sector 字段与 canonical crosswalk 不一致数为 0。
+- eligible HS6 数固定为 autos 64、electrical equipment 177、electronics 252、machinery 467、medical devices 32、other manufacturing 2,422、textiles/apparel 823。
+- 四条 flow 的 product-level eligible totals 与 sector totals 差额均为 USD 0；`eligible + excluded = full universe` 的 connector-year 最大差额均为 USD 0。
+- 九个 policy rate/share 字段独立公式复算最大绝对误差均为 0，小于 `1e-12`。
+- China→USA benchmark、policy 和 coverage 的重复一致性不一致数均为 0。
+- 当前输出只含年度 level、coverage 和 sector treatment。它不含 pre/shock/post window、growth、small-base、replacement ratio、ranking、production-side 或 structural moments。
 
 ## 6. M3.2 时间窗口变量
 
@@ -736,9 +820,9 @@ Reviewer/date:
 
 ## 17. 当前施工顺序
 
-1. M3.1 先只构造 connector-sector-year levels、coverage 和 sector treatment；
-2. 验证 product-to-sector value reconciliation；
-3. M3.2 再构造 window annual means；
+1. M3.1 已构造 connector-sector-year levels、coverage 和 sector treatment；
+2. M3.1 product-to-sector value reconciliation 与确定性检查已通过；
+3. 下一步 M3.2 构造 window annual means；
 4. M3.3 固定 zero/small-base/growth rules；
 5. M3.4 构造 replacement、source input、exposure overlap 和 co-movement；
 6. M3.5 保留所有 connectors/comparators；
@@ -754,5 +838,6 @@ Reviewer/date:
 |---|---|---|
 | v0.1.0 | 2026-07-27 | 建立 M2 已验证变量、M3-M6 planned variables、公式、用途、缺失规则、排名方案、structural moment 边界和 Stata handoff 合同。 |
 | v0.1.1 | 2026-07-27 | 与完整数据处理审计档案建立双向合同；规定 M3-M7 每步必须同步登记实际输出、validation、hash 和 Stata 接口。 |
+| v0.2.0 | 2026-07-28 | 完成 M3.1 变量合同：登记 1,001 行 connector-sector-year 输出、70 个 canonical/Stata aliases、实际公式、flow-specific coverage、17/11 个 treatment denominator 异常、non-additive flags、validation 和确定性输出 hash；M3.2-M3.6 保持 planned。 |
 
-下一次强制更新：M3.1 完成时，把本目录中本阶段涉及的 `PLANNED_M3` 变量更新为已构造状态，并补齐实际 output、hash、validation 和最终 Stata name；同时更新审计档案并重建两份 PDF。
+下一次强制更新：M3.2 完成时，补齐窗口年度均值、窗口覆盖、缺失规则和实际 output/validation/hash；同时更新审计档案并重建两份 PDF。

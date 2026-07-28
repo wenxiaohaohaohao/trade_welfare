@@ -32,7 +32,7 @@ For the current collaborator-facing audit and variable definitions, see `docs/da
 | BEA direct investment | 2020-2024; inward and outward directions | `data/interim/fdi/bea_direct_investment_country_industry.parquet` | 11,610 | Financial-account measure, not affiliate output or plant activity. |
 | Mexico official FDI | 1999Q1-2024Q4 national; 2006Q1-2024Q2 detailed quarterly cross-tables | nine `data/interim/fdi/mexico_fdi_*.parquet` files | 1,329,095 total | Confidential `C` is null; detail is not additive to national totals; 2024 detail is H1 only. |
 
-`data/processed/` now contains the completed M1 concordances and M2 product-treatment/trade/Census interfaces documented in `data/processed/README.md`. The available ICIO model baselines remain under `data/model_inputs/icio_baseline_2017/`, `icio_baseline_2018/`, and `icio_baseline_2022/`. The next data stage is M3.1 sector aggregation, not another general download pass. The living internal audit and variable contract are `docs/data_processing_audit_trail.md` and `docs/variable_construction_catalog.md`; their collaborator PDFs are under `output/pdf/`.
+`data/processed/` now contains the completed M1 concordances, M2 product-treatment/trade/Census interfaces, and M3.1 annual connector-sector panel documented in `data/processed/README.md`. The available ICIO model baselines remain under `data/model_inputs/icio_baseline_2017/`, `icio_baseline_2018/`, and `icio_baseline_2022/`. The next data stage is M3.2 window aggregation, not another general download pass. The living internal audit and variable contract are `docs/data_processing_audit_trail.md` and `docs/variable_construction_catalog.md`; their collaborator PDFs are under `output/pdf/`.
 
 ## Reproducible BEA MOFA Check
 

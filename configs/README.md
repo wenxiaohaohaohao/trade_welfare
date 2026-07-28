@@ -20,8 +20,9 @@ This directory contains the tracked definitions used by the data pipeline:
 | `trade_treatment_merge_rules.yaml` | Many-to-one product-year treatment merge into connector-product-year trade and trade-total reconciliation rules. |
 | `census_harmonization_rules.yaml` | Year-specific Census HS mapping, additive flow fields, 15-origin scope, quantity unavailability, and monthly/annual outputs. |
 | `section301_2024_review_rules.yaml` | Exact HTS8/HTS10 2024 review extension kept separate from the historical HS6 panel. |
+| `connector_trade_sector_rules.yaml` | Frozen M3.1 input hashes, keys, eligible sectors, four-flow aggregation/coverage fields, policy formulas, validation tolerances, deterministic rebuild path, and 70 Stata aliases. |
 
-Country groups and data versions are active inputs. M1 country, time, product, and source-sector concordances are complete. Executable counterfactual scenario files remain pending.
+Country groups and data versions are active inputs. M1 country, time, product, and source-sector concordances and the M3.1 annual connector-sector aggregation are complete. M3.2 window variables and executable counterfactual scenario files remain pending.
 
 The model implementation must avoid hard-coded country indices in MATLAB. Scenario files should define:
 

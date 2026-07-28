@@ -5,7 +5,7 @@
 - Origin Skill: `academic-research-suite/experiment-agent`
 - Origin Mode: `plan`
 - Origin Date: `2026-07-19`
-- Verification Status: `ANALYZED`（M0-M2 validation 均为 PASS；M3-M7 待执行）
+- Verification Status: `ANALYZED`（M0-M3.1 validation 均为 PASS；M3.2-M7 待执行）
 - Version Label: `data_merge_plan_v1`
 - Working Branch: `data-processing-variables`
 
@@ -13,7 +13,7 @@
 
 目标是把已经验证的 source-specific `data/interim/` 数据，转化为可审计、可重复生成的 `data/processed/` 合并数据，并在此基础上构造 connector ranking、rerouting facts、production-side validation 和 structural moments。
 
-当前阶段：`M0-M2 已完成并验证；M3.1 尚未开始`。
+当前阶段：`M0-M3.1 已完成并验证；M3.2 尚未开始`。
 
 勾选规则：只有代码、输出、validation 和说明文件同时完成，任务才从 `[ ]` 改为 `[x]`。部分完成、仅生成文件、仅跑通代码或仍有未解释的 many-to-many join，都不能打勾。
 
@@ -109,14 +109,14 @@
 
 ### M3. 聚合到 connector-country-sector-year 贸易面板
 
-- [ ] M3.1 使用带权 product-sector concordance 将产品流量聚合到 `analysis_sector`。
+- [x] M3.1 使用带权 product-sector concordance 将产品流量聚合到 `analysis_sector`。
 - [ ] M3.2 构造 pre `2014–2017`、shock `2018–2019`、post `2020–2024` 的 levels、changes、growth 和 shares。
 - [ ] M3.3 对极小基期、零贸易和异常增长率建立统一规则；同时保留 level change，避免只靠百分比增长排名。
 - [ ] M3.4 构造四类基础指标：U.S. import replacement、connector export growth、source-to-connector input growth、Section 301 exposure overlap。
 - [ ] M3.5 对 MEX、VNM、CAN 与 comparators 生成共同面板，不只保留排名靠前的观察。
 - [ ] M3.6 验证不同暴露定义、source bloc 和时间窗口下的结果敏感性。
 
-完成门槛：生成 `connector_trade_sector_year.parquet`；每个 key 唯一；所有排名变量有公式、单位、样本和缺失处理说明。
+M3.1 门槛已满足：`connector_trade_sector_year.parquet` 为 1,001 行，`connector_iso3, analysis_sector, year` 唯一；四条流的 eligible/full-universe reconciliation、policy 公式复算、17/11 个 denominator 异常、TWN/repeated flags、70 个 Stata aliases 和确定性 Parquet SHA256 均通过。整个 M3 的剩余门槛仍包括 M3.2-M3.6 的窗口、增长、replacement、ranking 公式、单位、样本和缺失处理说明。
 
 ### M4. 构造 production-side 标准化长表
 
@@ -175,4 +175,4 @@
 
 ## 下一项工作
 
-下一项唯一在做任务是 `M3.1：把 product-level trade/treatment 聚合到 analysis_sector`。M2 已全部完成：product treatment 为 57,222 行，connector trade 为 743,886 行，所有自然键重复为 0，贸易腿及 treatment merge 前后总额差均为 0；Census 月度/年度四个金额字段核对差为 0，排除 98/99 后可比进口值覆盖率为 99.997284%；2024 review 的 367 条 HTS8/HTS10 记录保持独立且无 `analysis_hs6`。M3.1 完成并验证前不构造 ranking。
+下一项唯一任务是 `M3.2：在年度 connector-sector panel 上构造 pre/shock/post window summaries`，尚未开始。M3.1 已生成 1,001 × 70 的年度 panel，输出 SHA256 为 `95e547267892c4bc883788542f0e59ba284441b42f4ce1d379aea71a2f978c8c`，validation 与确定性重建均 PASS。当前不构造 growth、small-base、replacement ratio 或 ranking，等待单独确认后再开始 M3.2。

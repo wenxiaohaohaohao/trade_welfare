@@ -6,12 +6,12 @@
 - Origin Mode: `validate`
 - Origin Date: `2026-07-27`
 - Verification Status: `ANALYZED`
-- Version Label: `data_processing_audit_v0.1.1`
+- Version Label: `data_processing_audit_v0.2.0`
 - Working Branch: `data-processing-variables`
 - Frozen Upstream Commit Recorded by M0: `2df0a0628343c9abca6b3e26d893db351ec22b94`
 - M0-M2 Evidence Snapshot Date: `2026-07-19`
-- Current Completed Processing Stage: `M0-M2`
-- Next Stage: `M3.1`，尚未开始
+- Current Completed Processing Stage: `M0-M3.1`
+- Next Stage: `M3.2`，尚未开始
 - Audience: 项目合作者和内部复核人员
 - Publication Status: 内部严格审查材料，不是投稿附件
 
@@ -22,23 +22,24 @@
 本版记录两层流程：
 
 1. `source -> raw -> interim`：主要公开数据的下载、归档、单库清洗和标准化；
-2. `interim -> processed`：M0 输入冻结、M1 concordance、M2 产品冲击与贸易底表。
+2. `interim -> processed`：M0 输入冻结、M1 concordance、M2 产品冲击与贸易底表，以及 M3.1 connector-sector-year 年度聚合。
 
-M3-M7 尚未执行。本档案已为这些阶段预留固定结构。以后每完成一个 checklist 项目，必须在同一工作批次内更新本档案和 PDF，才允许打勾。仅有代码、仅有输出、仅有口头说明或尚未解释的 many-to-many join，都不构成完成。
+M3.1 已执行并在冻结的 M2/crosswalk 输入上完成确定性重建；M3.2-M7 尚未执行。本档案已为后续阶段预留固定结构。以后每完成一个 checklist 项目，必须在同一工作批次内更新本档案和 PDF，才允许打勾。仅有代码、仅有输出、仅有口头说明或尚未解释的 many-to-many join，都不构成完成。
 
 本档案与 `docs/variable_construction_catalog.md` 配套使用。前者回答“数据经历了什么处理、凭什么相信处理正确”，后者回答“每个变量怎样构造、用于什么、允许怎样解释以及如何交给 Stata”。两份材料必须使用同一阶段状态和同一输出证据；若不一致，以实际数据、validation 和 build summary 为准，并在当次工作中修正文档。
 
 ### 0.1 本版能够证明什么
 
-- 能证明当前 M0-M2 的输入身份、处理规则、输出文件、主键、行数和已执行 validation 均有本地证据。
+- 能证明当前 M0-M3.1 的输入身份、处理规则、输出文件、主键、行数和已执行 validation 均有本地证据。
 - 能证明当前 processed 输出的 SHA256 与对应 validation JSON 记录一致。
 - 能证明已知的 missing、suppressed、confidential、aggregate、allocated、proxy 和 non-additive 字段没有在 M0-M2 中被静默改成普通零值或普通国家记录。
 - 能证明 Section 301 的口径是 gross statutory initial-action exposure，而不是 realized duties。
+- 能证明 M3.1 的 1,001 行 connector-sector-year 输出在两个冻结输入上可确定性重建，四条流总量守恒、policy 公式复算和 Stata alias 合同均通过。
 
 ### 0.2 本版不能证明什么
 
-- 本次文档整理没有从 raw 端完整重跑所有大型 builder，因此 Material Passport 使用 `ANALYZED`，不是重新运行意义上的 `VERIFIED`。
-- M3-M7 尚未完成，不能据此声称 connector ranking、production relocation、structural moments 或 welfare counterfactual 已经得到。
+- 本次没有从 raw 端完整重跑所有 M0-M2 大型 builder，因此整份 Material Passport 继续使用 `ANALYZED`；M3.1 本身是在冻结输入上两次构建并比较输出 SHA256，单模块 validation 为 `VERIFIED`。
+- M3.2-M7 尚未完成，不能据此声称时间窗口增长、replacement ratio、connector ranking、production relocation、structural moments 或 welfare counterfactual 已经得到。
 - FDI 只能作为 financial-flow/position evidence，不能单独证明 plant entry 或 production relocation。
 - BACI 和 Census 的贸易模式不能单独证明 connector 本地生产增加。
 
@@ -89,7 +90,8 @@ M3-M7 尚未执行。本档案已为这些阶段预留固定结构。以后每�
     -> M0 input freeze + quality audit + sample freeze
     -> M1 country/time/product/sector concordances
     -> M2 product treatment + connector trade + Census timing interface
-    -> M3 sector aggregation和connector变量              [未开始]
+    -> M3.1 connector-sector-year年度聚合                [已完成]
+    -> M3.2-M3.6窗口、增长、replacement和ranking inputs [未开始]
     -> M4 production-side long table                    [未开始]
     -> M5 trade-production evidence merge               [未开始]
     -> M6 ranking/rerouting/moments/model decision       [未开始]
@@ -102,7 +104,8 @@ M3-M7 尚未执行。本档案已为这些阶段预留固定结构。以后每�
 | M0 | 已完成 | input manifest、quality audit、analysis sample v1 | 八个输入冻结，硬性失败 0 |
 | M1 | 已完成 | country/time/HS/product-sector/source-sector concordances | 所有 source code 有显式状态 |
 | M2 | 已完成 | treatment、trade legs、merged trade、Census 月/年表、2024 exact HTS extension | 所有自然键无重复；金额守恒 |
-| M3 | 未开始 | connector-sector-year trade panel | 下一步为 M3.1 |
+| M3.1 | 已完成 | 1,001 行 connector-sector-year annual trade/treatment panel | validation PASS；确定性 hash 一致 |
+| M3.2-M3.6 | 未开始 | windows、growth、replacement、ranking inputs | 下一步仅为 M3.2 |
 | M4-M6 | 未开始 | production long、integrated evidence、ranking/moments | 不得提前声称结果 |
 | M7 | 未开始 | full rebuild、release、Stata package | 最终交付门槛 |
 
@@ -589,7 +592,7 @@ M2 不是在一张表上原地连续覆盖，而是保留纯 trade legs、独立
 | source sector -> analysis sector | one source code to one status；ambiguous 不拆分 | key 唯一；aggregate level 排除 |
 | HS2017 policy -> analysis product-year | many source codes to one analysis product | import-weighted aggregation；numerator reconciliation |
 | treatment -> connector trade | many connector rows to one product-year treatment row | all trade rows match；trade totals不变 |
-| product -> sector in M3 | many products to one connector-sector-year | 只使用 eligible weight；聚合前后 value 守恒 |
+| product -> sector in M3.1 | many products to one connector-sector-year | 以 `analysis_hs6` many-to-one 连接 canonical crosswalk；只使用 eligible weight=1；全部匹配；内嵌 sector 字段一致；聚合前后 value 守恒 |
 
 任何实际出现的 many-to-many join 都必须停止，先建立显式权重并证明 source-code 内权重和为 1。不能依赖 pandas/SQL 默认行为接受 row multiplication。
 
@@ -611,10 +614,11 @@ M2 不是在一张表上原地连续覆盖，而是保留纯 trade legs、独立
 | `trade_treatment_merge_validation` | PASS | unmatched 0，trade totals gap 0 |
 | `census_harmonized_panels_validation` | PASS | 4 monetary fields monthly/annual gap 0 |
 | `section301_2024_review_extension_validation` | PASS | 367 exact HTS rows，与历史面板隔离 |
+| `connector_trade_sector_panel_validation` | PASS | 1,001 rows、duplicate 0、4 flows eligible/full-universe gaps 0、policy formula gaps 0、deterministic SHA256 match、70 Stata aliases valid |
 
 ## 10. 当前 processed 输出注册表
 
-以下 SHA256 来自 2026-07-19 M0-M2 validation snapshot，并在 2026-07-27 整理本档案时再次读取本地文件核对；它们与 validation JSON 一致。
+M0-M2 SHA256 来自 2026-07-19 validation snapshot，并在 2026-07-27 整理本档案时再次读取本地文件核对。M3.1 SHA256 来自 2026-07-28 正式构建和第二次确定性构建；全部与各自 validation JSON 一致。
 
 | Output | Rows | Natural key | SHA256 |
 |---|---:|---|---|
@@ -631,6 +635,7 @@ M2 不是在一张表上原地连续覆盖，而是保留纯 trade legs、独立
 | `census_imports_hs6_monthly_harmonized.parquet` | 4,906,643 | origin_iso3, analysis_hs6, year, month | `2ed0c595a0b25363151ea429fc0d1cee748318432ddf3f032f482ca68ddda14a` |
 | `census_imports_hs6_annual.parquet` | 858,330 | origin_iso3, analysis_hs6, year | `1d06eebc2df07304ecbc1fb7d0bd1617eab63c522f9d0168c0020d5a19d4b0b1` |
 | `section301_2024_review_exact_hts.parquet` | 367 | hts_code | `bc34c2bda7b3866bd0cc5cdafd67ef068d7f52406df99ea4c45813e06478ec2f` |
+| `connector_trade_sector_year.parquet` | 1,001 | connector_iso3, analysis_sector, year | `95e547267892c4bc883788542f0e59ba284441b42f4ce1d379aea71a2f978c8c` |
 
 ## 11. 复现入口和执行顺序
 
@@ -657,11 +662,19 @@ python code\data_processing\merge_trade_treatment_panel.py --project-root . --ov
 python code\data_processing\build_census_harmonized_panels.py --project-root . --overwrite
 python code\data_processing\build_section301_2024_review_extension.py --project-root . --overwrite
 
+# M3.1
+python code\data_processing\build_connector_trade_sector_panel.py --project-root . --overwrite
+
 # 审计 PDF
 python code\data_processing\build_data_processing_audit_pdf.py --project-root . --overwrite
+python code\data_processing\build_data_processing_audit_pdf.py `
+  --project-root . `
+  --source docs\variable_construction_catalog.md `
+  --output output\pdf\variable_construction_catalog.pdf `
+  --overwrite
 ```
 
-当前 M0-M2 还没有单一 orchestration entry；它是 M7.1 的必做项。合作者若现在复核，应按上述顺序执行并逐个查看同名 validation JSON/Markdown。完整重跑会处理超过 123 million BACI rows，应将临时目录和缓存显式指向项目 F 盘。
+当前 M0-M3.1 还没有单一 orchestration entry；它是 M7.1 的必做项。合作者若现在复核，应按上述顺序执行并逐个查看同名 validation JSON/Markdown。完整重跑会处理超过 123 million BACI rows，应将临时目录和缓存显式指向项目 F 盘。若只复核 M3.1，可以在确认两个配置 hash 后单独运行 M3.1 builder；其确定性临时输出固定在项目 `tmp/m3_1_determinism/` 并由 builder 在比较后清除。
 
 ## 12. M3-M7 的强制更新协议
 
@@ -701,33 +714,109 @@ Stata 接口影响：
 结论和是否允许下游使用：
 ```
 
-### 12.3 M3 预留记录
+### 12.3 M3.1 实际执行记录
 
-M3.1 将 product-level trade/treatment 聚合到 `connector_iso3 × analysis_sector × year`。完成时必须证明：
+阶段/任务编号：`M3.1 connector-sector-year annual aggregation`。
 
-- 只使用 `is_analysis_sector_eligible=true` 且 weight=1 的 product rows；
-- excluded/outside/residual products 的值单独报告，不静默丢失；
-- 13 × sector × 11 的 output key 唯一；
-- 每个四类贸易金额在 product 和 sector 两层的 included totals 一致；
-- repeated China-USA benchmark 仍不可跨 connector 加总；
-- treatment aggregation 公式明确区分 weighted rate、exposure 和 tariffed share；
-- 完成 M3.1 后立即把正式数字、hash 和 validation 写入本节，而不是等 M3 全部结束。
+执行日期：2026-07-28。
 
-M3.2-M3.6 还必须记录 pre/shock/post aggregation、zero/small base rules、level change 与 growth、ranking component formulas、比较组保留和 sensitivity definitions。
+目的和经济理由：把 M2 的 connector-product-year 四条贸易流和 product-year Section 301 treatment 聚合到共同经验 sector，建立后续窗口、replacement 和 ranking 的唯一年度底表。先形成年度 level 和透明分子/分母，可以在构造增长率前发现总量膨胀、错误 sector join、共同 benchmark 重复加总和 denominator 静默归零。
 
-### 12.4 M4 预留记录
+输入和冻结身份：
+
+| Input | Rows | Grain / key | SHA256 |
+|---|---:|---|---|
+| `data/processed/harmonized/connector_trade_hs6_year.parquet` | 743,886 | `connector_iso3, analysis_hs6, year` | `01fbbe43a8e067ed165d21f72d3b733fe240ec098957e99085fff67b16571fdb` |
+| `data/processed/concordances/product_sector_crosswalk.parquet` | 5,202 | `analysis_hs6` | `201c1d47ee861fe300db1574b6e80288bbeaec17e19fe4d368205b6d84995c09` |
+
+配置和版本：
+
+- `configs/connector_trade_sector_rules.yaml`；
+- config SHA256 `6a313c01d9bfad6e6e6a2cb508bd787f35bdb0eddeb6e4f491a86d61bdd9ee9d`；
+- aggregation version `connector_trade_sector_rules_v1`；
+- schema version `connector_trade_sector_year_v1`；
+- builder `code/data_processing/build_connector_trade_sector_panel.py`。
+
+Join 和 eligibility：
+
+1. 以 `analysis_hs6` 将 743,886 行 M2 panel left join 到 canonical crosswalk，要求 many-to-one；
+2. input key、crosswalk key 和 output key duplicate 均为 0；
+3. unmatched crosswalk rows 为 0；
+4. M2 内嵌 `analysis_sector`、`sector_status`、`first_round_exclusion`、`is_analysis_sector_eligible` 和 `product_mapping_version` 与 canonical crosswalk mismatch 均为 0；
+5. 只有 canonical `is_analysis_sector_eligible=true` 且 `sector_mapping_weight=1` 的 4,237 个产品进入 sector sums；965 个 excluded/outside-manufacturing/residual 产品不进入 sector sums；
+6. eligible product counts 固定为 autos 64、electrical equipment 177、electronics 252、machinery 467、medical devices 32、other manufacturing 2,422、textiles/apparel 823。
+
+贸易转换公式：
+
+- 四条年度金额分别为 `sum_h eligible flow_value_usd`；
+- 每条流的 `source_row_count` 是 eligible HS6 的 M2 row counts 之和；
+- positive-product count 是 sector 内 `flow_value_usd > 0` 的 eligible HS6 数；
+- zero-source-product count 是 sector 内 M2 `flow_row_count = 0` 的 eligible HS6 数，因此 source absence 没有被普通零值掩盖；
+- excluded amount 和 `included / full-universe value` share 对四条流分别计算。因为非 eligible 产品没有可用于 sector allocation 的有效 weight，这些 coverage 字段在 connector-year 计算后跨 sector 重复，并设置 `coverage_repeated_across_sectors=true`。
+
+Policy 转换公式：
+
+1. 先把跨 connector 重复的 treatment 按 `analysis_hs6, year` 去重；
+2. `sector_tariff_exposure_numerator_usd = sum_h(china_import_value_2017_h × tariff_rate_china_weighted_h,t)`；
+3. `sector_tariff_rate_china_weighted = numerator / sum_h(china_import_value_2017_h)`；
+4. `sector_tariff_exposure = numerator / sum_h(total_us_import_value_2017_h)`；
+5. `sector_china_import_share_2017 = sum_h(china_import_value_2017_h) / sum_h(total_us_import_value_2017_h)`；
+6. tariffed-product breadth/value shares由各自 count/value numerator 除以透明 sector denominator 重算，不对 product-level share 取平均；
+7. 17 个 `mapped_hs17_no_2017_import_denominator` eligible products 和 11 个 `no_hs17_baci_weight_mapping` eligible products以独立 count/share 字段保留，不能当作普通零 denominator。
+
+输出：
+
+- path：`data/processed/harmonized/connector_trade_sector_year.parquet`；
+- grain/key：`connector_iso3, analysis_sector, year`；
+- rows/columns：1,001 / 70，等于 13 connectors × 7 sectors × 11 years；
+- output SHA256：`95e547267892c4bc883788542f0e59ba284441b42f4ce1d379aea71a2f978c8c`；
+- `china_to_usa_value_usd` 和 policy fields 跨 connector 重复用于比较；`common_benchmarks_not_additive_across_connectors=true` 与 `treatment_repeated_across_connectors=true` 禁止错误加总；
+- TWN 的 77 个 sector-year rows 全部保留 `connector_is_proxy=true`；
+- 本输出不含 quantity、时间窗口、增长率、small-base、replacement ratio、ranking、production-side 或 structural moments。
+
+贸易 reconciliation：
+
+| Flow | Eligible product total USD | Sector output total USD | Excluded total USD | 最大 eligible/full reconstruction gap USD |
+|---|---:|---:|---:|---:|
+| China→connector | 7,277,654,649,355 | 7,277,654,649,355 | 744,104,054,942 | 0 |
+| East Asia→connector | 11,664,115,552,239 | 11,664,115,552,239 | 1,578,190,645,655 | 0 |
+| connector→USA | 9,871,984,981,362 | 9,871,984,981,362 | 2,498,635,876,723 | 0 |
+| China→USA | 67,908,975,727,203 | 67,908,975,727,203 | 1,554,738,403,231 | 0 |
+
+Validation 和 tolerance：
+
+- report：`data/validation/connector_trade_sector_panel_validation.json` 与 `.md`；
+- status：`PASS`，failure count 0；
+- value tolerance：USD 0.01；四条流的 global、connector-year eligible、excluded 和 full-universe reconstruction gaps 实际均为 0；
+- ratio tolerance：`1e-12`；九个 policy rate/share 字段最大绝对公式误差实际均为 0；
+- China→USA、policy 和 coverage repeated-field inconsistency count 均为 0；
+- required numeric missing count 为 0；zero-source-product diagnostics 在输出中保留；
+- 70 个 canonical 字段均有冻结 Stata alias，alias 缺失、额外和重复均为 0，最长 14 字符；
+- 在项目 `tmp/m3_1_determinism/` 第二次构建，SHA256 与 canonical output 完全一致；随后确认临时目录已清除。
+
+异常/修复：第一次通过的开发构建把 sector eligible count 命名为较含糊的 `included_product_count`。在写入正式合同前将其改为 `sector_eligible_product_count`，重建后 validation 和确定性检查重新 PASS。该开发中间 schema 未登记为正式输出。
+
+Stata 接口影响：M3.1 只冻结 alias 和 32 字符约束，不提前导出 `.dta`。M7 仍需实际 export、`isid conn_iso3 ana_sector year`、storage/label 检查和 batch `.do` 验证。
+
+结论：M3.1 单模块允许作为 M3.2 的输入。它不能用于声称窗口增长、replacement 或排名已经完成。
+
+### 12.4 M3.2-M3.6 预留记录
+
+后续还必须记录 pre/shock/post aggregation、zero/small base rules、level change 与 growth、ranking component formulas、比较组保留和 sensitivity definitions。M3.2 未开始，不得从 M3.1 年度 level 临时计算并当作正式结果。
+
+### 12.5 M4 预留记录
 
 production long table 必须逐源记录：ICIO accounting fields、AMNE allocated fields、BEA aggregate filtering、BEA suppression、BEA FDI direction/stock/flow、Mexico quarterly annualization 和 confidentiality。统一 long schema 不能让不同来源的 `output`、`sales`、`position`、`flow` 因同名而相加。
 
-### 12.5 M5 预留记录
+### 12.6 M5 预留记录
 
 每加入一个 production source，记录 left join 前后 rows、matched/unmatched keys、source totals、many-to-many expansion count、coverage flags 和可用年份。Integrated evidence table 只有在所有 source totals reconciliation 完成后才可打勾。
 
-### 12.6 M6 预留记录
+### 12.7 M6 预留记录
 
 每个 ranking、rerouting indicator、production validation measure 和 structural moment 必须记录公式、unit、sample、winsorization/denominator rule、source、scenario A/B/C 归属，以及能否进入 model input。不得把 FDI 与 output 合成一个无单位指标而不披露标准化方式和权重。
 
-### 12.7 M7 预留记录
+### 12.8 M7 预留记录
 
 最终 release 必须记录单一入口脚本、environment、input/output manifests、deterministic tests、Git commit、release label、Stata exports、variable dictionary、verification `.do` 和日志 success marker。本档案最终版的 Verification Status 只有在 full rebuild 成功、输出 comparison 通过后才能改为 `VERIFIED`。
 
@@ -743,13 +832,15 @@ production long table 必须逐源记录：ICIO accounting fields、AMNE allocat
 | 2026-07-19 | M2.2 | KOR/TWN 在 East Asia source bloc 中会产生 self-trade | 按 canonical ISO3 排除 self-trade；TWN 同时保留 S19 proxy | source-to-connector leg 可解释 |
 | 2026-07-19 | M2.6 | YAML 未加引号的 effective date 被 parser 读为 date object，首次运行失败 | 将 `2024-09-27` 明确引用为字符串后重跑；final validation PASS | 无残留输出错误；记录配置类型风险 |
 | 2026-07-19 | audit | 旧说明写 Mexico detailed quarterly 到 2024Q4，但实际五张 detail Parquet 只到 Q2 | 以实际 Parquet 和 time validation 为准；修正文档为 national Q4 / detail Q2 | 2024 detail 不作 full-year comparison |
+| 2026-07-28 | M3.1 | 开发构建将 sector eligible count 暂命名为 `included_product_count` | 在正式合同前改为 `sector_eligible_product_count`；重新构建、复算和确定性 hash 均 PASS | 最终 70-column schema 无含糊旧字段 |
+| 2026-07-28 | M3.1 | 仅在文档登记 Stata aliases 无法形成机器门槛 | 将完整 70-field alias map 冻结进 config；validation 强制检查覆盖、唯一性和 32-character limit | M7 可按固定 alias export，但本阶段未生成 `.dta` |
 
 ## 14. 当前未解决限制和是否需要补数据
 
-| 限制 | 当前是否阻碍 M3.1 | 可能的后续动作 |
+| 限制 | 是否影响已完成 M3.1 / 下一步 M3.2 | 可能的后续动作 |
 |---|---|---|
-| BACI quantity 缺失 | 否 | 保持 value-based；除非研究明确需要 physical quantity 才找替代 |
-| Census quantity unavailable | 否 | 禁止 quantity analysis；不需为 M3.1 补下载 |
+| BACI quantity 缺失 | 不影响 value-based M3.1/M3.2 | 保持 value-based；除非研究明确需要 physical quantity 才找替代 |
+| Census quantity unavailable | 不影响 | 禁止 quantity analysis；不需为 M3.2 补下载 |
 | Census 只有 15 origins | 否 | 只作 configured-origin timing validation；all-origin denominator 用 BACI |
 | Section 301 historical exclusions 未应用 | 否，但限制 causal interpretation | 若需要 realized-duty measure，单独开 policy extension |
 | 2024 modern HTS 未并入历史面板 | 否 | 需要 modern-HTS concordance 后再单独扩展 |
@@ -760,7 +851,7 @@ production long table 必须逐源记录：ICIO accounting fields、AMNE allocat
 | Mexico confidential cells | 否 | 不补 0；报告 disclosed composition 和 national total 分开 |
 | INEGI/Vietnam GSO/Statistics Canada 未下载 | 否 | M4-M6 若出现关键 output/employment gap，再定向补充 |
 
-结论：这些主要是定义、覆盖和可比性限制，不是“核心下载只完成一半”。进入 M3.1 不需要继续泛化下载，但以后必须根据具体 empirical gap 决定是否补国家统计数据。
+结论：这些主要是定义、覆盖和可比性限制，不是“核心下载只完成一半”。M3.1 已在现有数据上完成；进入 M3.2 不需要继续泛化下载，但以后必须根据具体 empirical gap 决定是否补国家统计数据。
 
 ## 15. Stata 合作者交付合同
 
@@ -773,6 +864,7 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 - row counts、key counts、missing/suppression/confidentiality counts 与 Parquet 对齐；
 - float/double 精度差异有 tolerance，货币总量有 reconciliation；
 - repeated/non-additive fields 有变量标签和 README 警告；
+- M3.1 已冻结 70 个无重复 alias，最长 14 字符；M7 实际导出时仍必须再次对 `.dta` 验证，不能把本次 alias 检查当作 export 已完成；
 - `STATATMP` 指向项目 F 盘目录；
 - 提供 batch `.do`：逐表 `use`、`describe`、`isid`、关键 `assert`、`summarize`，并在 log 写明确 success marker；
 - 提供推荐 merge 顺序，禁止合作者直接把 product-level trade 与 country-sector production 做 many-to-many merge。
@@ -789,6 +881,12 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 - [ ] 重算 M2.1 treatment numerator、M2.2 trade-leg totals、M2.3 merge totals。
 - [ ] 确认 Census annual 858,330 是 15-origin complete grid，不是 all-origin total。
 - [ ] 确认 2024 review 表没有 `analysis_hs6`。
+- [ ] 对 M3.1 两个输入重算 SHA256，确认分别为 `01fbbe...fdb` 与 `201c1d...c09`。
+- [ ] 对 M3.1 输出执行 `isid connector_iso3 analysis_sector year` 等价检查，确认 1,001 行、duplicate 0 和 7 个 sector eligible counts。
+- [ ] 独立重算四条流 eligible/excluded/full-universe reconciliation 与九个 policy ratios，确认金额 gap ≤ USD 0.01、比例 gap ≤ `1e-12`。
+- [ ] 确认 17 个 zero-denominator 与 11 个 no-HS2017-mapping eligible products 通过 count/share 字段显式保留。
+- [ ] 确认 China→USA、policy 和 coverage repeated flags 被遵守，TWN 77 行全部保留 proxy flag。
+- [ ] 确认 70 个 Stata aliases 完整、唯一且不超过 32 字符；不要误认为 `.dta` 已导出。
 - [ ] 确认 PDF build summary 的 Markdown SHA256 与当前文档一致。
 - [ ] M3-M7 每完成一项后复核本档案已同步更新。
 
@@ -812,8 +910,9 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 - `configs/trade_treatment_merge_rules.yaml`
 - `configs/census_harmonization_rules.yaml`
 - `configs/section301_2024_review_rules.yaml`
+- `configs/connector_trade_sector_rules.yaml`
 
-### 17.2 M0-M2 validation
+### 17.2 M0-M3.1 validation
 
 - `data/validation/data_merge_input_manifest.json/.md`
 - `data/validation/data_merge_input_quality_audit.json/.md`
@@ -829,6 +928,7 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 - `data/validation/trade_treatment_merge_validation.json/.md`
 - `data/validation/census_harmonized_panels_validation.json/.md`
 - `data/validation/section301_2024_review_extension_validation.json/.md`
+- `data/validation/connector_trade_sector_panel_validation.json/.md`
 
 ### 17.3 source-specific provenance
 
@@ -844,5 +944,6 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 |---|---|---|---|
 | v0.1.0 | 2026-07-27 | M0-M2 | 建立首次完整内部审计档案；汇总 source-specific 处理、M0-M2 规则、输出 hashes、限制、复核清单和 M3-M7 更新协议；纠正 Mexico national Q4 / detail Q2 口径。 |
 | v0.1.1 | 2026-07-27 | M0-M2 | 将变量构造目录登记为配套正式合同；要求 M3-M7 同步更新两份 Markdown、两份 PDF 和对应 build summary。 |
+| v0.2.0 | 2026-07-28 | M0-M3.1 | 登记 M3.1 冻结输入、canonical crosswalk join、eligibility、四条流和 policy 公式、1,001 × 70 输出、flow reconciliation、17/11 denominator 异常、TWN/repeated flags、Stata aliases、确定性 hash 和开发期字段重命名。 |
 
-下一次更新触发点：M3.1 builder、config、output 和 validation 全部完成时，先同步更新本档案与变量目录并重建两份 PDF，再在 `data/data_merge_checklist.md` 勾选 M3.1。
+下一次更新触发点：M3.2 的 window builder、config、output 和 validation 全部完成时，同步更新本档案与变量目录并重建两份 PDF，再单独勾选 M3.2。

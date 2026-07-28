@@ -32,7 +32,7 @@ The data strategy is now viable for a first structural version plus a separate e
 1. Completed: source-specific builds and summaries for BACI, Census, Section 301, OECD ICIO, OECD AMNE, BEA MNE, BEA direct investment, and Mexico FDI.
 2. Completed: Mexico official FDI reconciliation, BACI HS2017 denominator validation, and the gross Section 301 policy panel. A realized-duty measure remains a separate project and must not be inferred from the gross schedule.
 3. Completed: M0 input freeze, M1 country/time/HS/product-sector/source-sector concordances, and M2 product-level treatment/trade/Census harmonized interfaces. The current audit is `docs/data_processing_audit_trail.md`.
-4. Remaining: M3 sector aggregation, connector rankings, trade-rerouting facts, production-side validation, and the Scenario A/B/C structural moment table.
+4. M3.1 annual sector aggregation is complete. Remaining: M3.2-M3.6 windows/growth/replacement/ranking inputs, connector rankings, trade-rerouting facts, production-side validation, and the Scenario A/B/C structural moment table.
 5. Remaining: verify Mexico x electronics/computers and Mexico x medical devices suppression and the USITC USMCA automotive statistic before manuscript use.
 6. Do not process fDi Markets unless the user opens a separate batch for it.
 

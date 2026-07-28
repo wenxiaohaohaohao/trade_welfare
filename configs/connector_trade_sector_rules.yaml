@@ -1,0 +1,194 @@
+version: connector_trade_sector_rules_v1
+status: frozen_for_m3_1
+frozen_date: 2026-07-28
+schema_version: connector_trade_sector_year_v1
+
+inputs:
+  connector_trade_hs6_year:
+    path: data/processed/harmonized/connector_trade_hs6_year.parquet
+    sha256: 01fbbe43a8e067ed165d21f72d3b733fe240ec098957e99085fff67b16571fdb
+    expected_rows: 743886
+    natural_key: [connector_iso3, analysis_hs6, year]
+  product_sector_crosswalk:
+    path: data/processed/concordances/product_sector_crosswalk.parquet
+    sha256: 201c1d47ee861fe300db1574b6e80288bbeaec17e19fe4d368205b6d84995c09
+    expected_rows: 5202
+    natural_key: [analysis_hs6]
+
+join:
+  keys: [analysis_hs6]
+  type: left
+  cardinality: many_to_one
+  require_all_products_matched: true
+  require_embedded_fields_identical: true
+
+eligibility:
+  flag: is_analysis_sector_eligible
+  required_value: true
+  weight_field: sector_mapping_weight
+  required_weight: 1.0
+  excluded_statuses:
+    - first_round_excluded
+    - outside_manufacturing
+    - residual_product
+
+analysis:
+  connectors:
+    - CAN
+    - IDN
+    - IND
+    - KOR
+    - MAR
+    - MEX
+    - MYS
+    - PHL
+    - POL
+    - THA
+    - TUR
+    - TWN
+    - VNM
+  years:
+    start: 2014
+    end: 2024
+  sectors:
+    autos: 64
+    electrical_equipment: 177
+    electronics: 252
+    machinery: 467
+    medical_devices: 32
+    other_manufacturing: 2422
+    textiles_apparel: 823
+  expected_input_products: 5202
+  expected_eligible_products: 4237
+  expected_excluded_products: 965
+  expected_output_rows: 1001
+  expected_zero_denominator_eligible_products: 17
+  expected_no_hs17_mapping_eligible_products: 11
+
+trade_flows:
+  china_to_connector:
+    value_field: china_to_connector_value_usd
+    source_row_count_field: china_to_connector_value_usd_row_count
+    positive_product_count_field: china_to_connector_positive_product_count
+    zero_source_product_count_field: china_to_connector_zero_source_product_count
+    excluded_value_field: china_to_connector_excluded_value_usd
+    included_share_field: china_to_connector_included_value_share
+  east_asia_to_connector:
+    value_field: east_asia_to_connector_value_usd
+    source_row_count_field: east_asia_to_connector_value_usd_row_count
+    positive_product_count_field: east_asia_to_connector_positive_product_count
+    zero_source_product_count_field: east_asia_to_connector_zero_source_product_count
+    excluded_value_field: east_asia_to_connector_excluded_value_usd
+    included_share_field: east_asia_to_connector_included_value_share
+  connector_to_usa:
+    value_field: connector_to_usa_value_usd
+    source_row_count_field: connector_to_usa_value_usd_row_count
+    positive_product_count_field: connector_to_usa_positive_product_count
+    zero_source_product_count_field: connector_to_usa_zero_source_product_count
+    excluded_value_field: connector_to_usa_excluded_value_usd
+    included_share_field: connector_to_usa_included_value_share
+  china_to_usa:
+    value_field: china_to_usa_value_usd
+    source_row_count_field: china_to_usa_value_usd_row_count
+    positive_product_count_field: china_to_usa_positive_product_count
+    zero_source_product_count_field: china_to_usa_zero_source_product_count
+    excluded_value_field: china_to_usa_excluded_value_usd
+    included_share_field: china_to_usa_included_value_share
+
+treatment:
+  policy_status_field: policy_mapping_status
+  mapped_status: mapped_hs17_import_weighted
+  zero_denominator_status: mapped_hs17_no_2017_import_denominator
+  no_mapping_status: no_hs17_baci_weight_mapping
+  total_import_field: total_us_import_value_2017
+  china_import_field: china_import_value_2017
+  china_weighted_rate_field: tariff_rate_china_weighted
+  tariffed_product_field: tariffed_product
+  primary_exposure_field: sector_tariff_exposure
+  interpretation: gross_statutory_initial_actions_without_historical_exclusions
+
+output:
+  path: data/processed/harmonized/connector_trade_sector_year.parquet
+  natural_key: [connector_iso3, analysis_sector, year]
+  validation_json: data/validation/connector_trade_sector_panel_validation.json
+  validation_md: data/validation/connector_trade_sector_panel_validation.md
+  stata_aliases:
+    connector_iso3: conn_iso3
+    analysis_sector: ana_sector
+    year: year
+    connector_group: conn_group
+    connector_baci_code: conn_baci
+    connector_is_proxy: is_proxy
+    analysis_sector_status: sec_status
+    sector_eligible_product_count: sec_elig_n
+    china_to_connector_value_usd: cn_conn_val
+    china_to_connector_value_usd_row_count: cn_conn_src_n
+    china_to_connector_positive_product_count: cn_conn_pos_n
+    china_to_connector_zero_source_product_count: cn_conn_zsrc_n
+    east_asia_to_connector_value_usd: ea_conn_val
+    east_asia_to_connector_value_usd_row_count: ea_conn_src_n
+    east_asia_to_connector_positive_product_count: ea_conn_pos_n
+    east_asia_to_connector_zero_source_product_count: ea_conn_zsrc_n
+    connector_to_usa_value_usd: conn_us_val
+    connector_to_usa_value_usd_row_count: conn_us_src_n
+    connector_to_usa_positive_product_count: conn_us_pos_n
+    connector_to_usa_zero_source_product_count: conn_us_zsrc_n
+    china_to_usa_value_usd: cn_us_val
+    china_to_usa_value_usd_row_count: cn_us_src_n
+    china_to_usa_positive_product_count: cn_us_pos_n
+    china_to_usa_zero_source_product_count: cn_us_zsrc_n
+    excluded_product_count: excl_prod_n
+    china_to_connector_excluded_value_usd: cn_conn_excl
+    china_to_connector_included_value_share: cn_conn_inclsh
+    east_asia_to_connector_excluded_value_usd: ea_conn_excl
+    east_asia_to_connector_included_value_share: ea_conn_inclsh
+    connector_to_usa_excluded_value_usd: conn_us_excl
+    connector_to_usa_included_value_share: conn_us_inclsh
+    china_to_usa_excluded_value_usd: cn_us_excl
+    china_to_usa_included_value_share: cn_us_inclsh
+    sector_total_us_import_value_2017: sec_usimp17
+    sector_china_import_value_2017: sec_cnimp17
+    sector_tariff_exposure_numerator_usd: sec_trf_num
+    sector_treatment_product_count: sec_trt_n
+    policy_denominator_observed_product_count: pol_denobs_n
+    treatment_missing_denominator_product_count: trt_missden_n
+    treatment_zero_denominator_product_count: trt_zeroden_n
+    treatment_no_hs17_mapping_product_count: trt_nohs17_n
+    tariffed_product_count: trf_prod_n
+    tariffed_china_import_value_2017: trf_cnimp17
+    tariffed_total_us_import_value_2017: trf_usimp17
+    sector_tariff_rate_china_weighted: sec_trf_cw
+    sector_tariff_exposure: sec_expo
+    sector_china_import_share_2017: sec_cnshr17
+    tariffed_product_share_count: trf_psh_n
+    tariffed_product_share_china_value: trf_psh_c
+    tariffed_product_share_us_value: trf_psh_u
+    treatment_missing_denominator_product_share: trt_miss_sh
+    treatment_zero_denominator_product_share: trt_zero_sh
+    treatment_no_hs17_mapping_product_share: trt_nohs17_sh
+    trade_value_unit: val_unit
+    treatment_concept: trt_concept
+    historical_exclusions_applied: hist_excl
+    four_year_review_2024_included: rev24_in
+    review_2024_treatment: rev24_trt
+    treatment_version: trt_ver
+    is_analysis_sector_eligible: ana_ok
+    sector_mapping_weight: sec_wt
+    baci_absence_treated_as_zero: baci_zrule
+    quantity_included: qty_in
+    china_to_usa_common_benchmark: cnus_common
+    treatment_repeated_across_connectors: trt_repeat
+    coverage_repeated_across_sectors: cov_repeat
+    common_benchmarks_not_additive_across_connectors: bm_nonadd
+    product_mapping_version: prod_mapver
+    m3_sector_aggregation_version: m3_aggver
+    schema_version: schema_ver
+
+validation:
+  value_tolerance_usd: 0.01
+  ratio_tolerance: 1.0e-12
+  require_deterministic_parquet_sha256: true
+  determinism_temp_directory: tmp/m3_1_determinism
+  common_benchmarks_not_additive_across_connectors: true
+  treatment_repeated_across_connectors: true
+  coverage_repeated_across_sectors: true
