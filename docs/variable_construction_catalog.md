@@ -4,10 +4,10 @@
 
 - Origin Skill: `stata-latex-research`
 - Origin Date: `2026-07-27`
-- Verification Status: `VERIFIED_THROUGH_M3.5`
-- Version Label: `variable_catalog_v0.6.0`
-- Current Data Stage: `M0-M3.5 completed`
-- Next Construction Stage: `M3.6 not started`
+- Verification Status: `VERIFIED_THROUGH_M3.6`
+- Version Label: `variable_catalog_v0.7.0`
+- Current Data Stage: `M0-M3.6 completed`
+- Next Construction Stage: `M4.1 not started; user authorization required`
 - Canonical Format: Parquet
 - Collaborator Format: Stata `.dta`
 
@@ -24,8 +24,8 @@
 
 本目录同时包含三类变量：
 
-- `EXISTING_VALIDATED`：M2、M3.1、M3.2、M3.3、M3.4 或 M3.5 已存在且 validation PASS；
-- `PLANNED_M3` 至 `PLANNED_M6`：已经定义但尚未构造，必须在对应阶段完成后补充实际 output hash 和 validation；
+- `EXISTING_VALIDATED`：M2 或 M3.1-M3.6 已存在且 validation PASS；
+- `PLANNED_M4` 至 `PLANNED_M6`：已经定义但尚未构造，必须在对应阶段完成后补充实际 output hash 和 validation；
 - `STRUCTURAL_TARGET_ONLY`：只能作为模型校准目标或输入候选，不能直接解释为已经识别的结构参数。
 
 凡是本目录未登记的正式变量，不应直接写入最终 processed data。临时探索变量可以存在于 `tmp/` 或交互式 Stata session，但进入正式输出前必须补齐本目录。
@@ -39,7 +39,6 @@
 | 状态 | 含义 |
 |---|---|
 | `EXISTING_VALIDATED` | 已在 processed Parquet 中存在，主键和 validation 已通过 |
-| `PLANNED_M3` | M3.6 的 sensitivity inputs 尚未构造 |
 | `PLANNED_M4` | production-side standardized long table 时构造 |
 | `PLANNED_M5` | trade 和 production evidence 合并时构造 |
 | `PLANNED_M6` | ranking、rerouting、validation 和 structural moments 时构造 |
@@ -533,7 +532,7 @@ growth_winsorized = min(max(growth_raw, p5_flow), p95_flow)
 
 M3.3 只确定样本诊断与敏感性接口；它没有构造 replacement ratio、ranking、production evidence、structural moments 或 counterfactual inputs。
 
-## 7. M3.4-M3.5 贸易重组与共同面板，以及 M3.6 后续输入
+## 7. M3.4-M3.6 贸易重组、共同面板与 sensitivity inputs
 
 M3.4 已完成并通过 validation。使用三个自然粒度输出，避免把产品字段、部门指标和部门相关系数机械重复到同一张超级宽表：
 
@@ -562,7 +561,7 @@ replacement_ratio = connector_us_gain / china_us_decline
 | `replacement_ratio` | `repl_ratio` | signed connector gain 相对 China decline | `EXISTING_VALIDATED` |
 | `replacement_ratio_defined` | `repl_ok` | denominator 是否严格大于 USD 25 million | `EXISTING_VALIDATED` |
 | `import_replacement_candidate_flag` | `repl_cand` | defined 且 connector gain > 0 | `EXISTING_VALIDATED` |
-| `replacement_capped_for_rank` | `repl_cap` | 仅 ranking 的 capped version | `PLANNED_M3`，M3.4 未构造 |
+| `replacement_capped_for_rank` | `repl_cap` | 仅 ranking 的 capped version | `PLANNED_M6`，M3.4-M3.6 均未构造 |
 
 ### 7.2 Source-to-connector input growth
 
@@ -647,21 +646,141 @@ M3.5 已完成并通过 validation。输出为：
 | `complete_case_filter_applied` | `ccase_sel` | 当前全部 false | `EXISTING_VALIDATED` |
 | `ranking_variables_constructed` | `rank_built` | 当前全部 false；ranking 留到 M6 | `EXISTING_VALIDATED` |
 | `production_variables_included` | `prod_incl` | 当前全部 false；production 留到 M4-M5 | `EXISTING_VALIDATED` |
-| `sensitivity_variables_constructed` | `sens_built` | 当前全部 false；M3.6 尚未执行 | `EXISTING_VALIDATED` |
+| `sensitivity_variables_constructed` | `sens_built` | 在 M3.5 共同面板中全部 false；三张 M3.6 输出中全部 true | `EXISTING_VALIDATED` |
 
 M3.4 的数值和缺失状态全部保留：26 个 `replacement_ratio` defined、65 个 missing、22 个正 connector-gain candidates；四套 China/East Asia 普通/weighted correlations 均为 91/91 defined，low-n 均为 0；TWN 7 行继续标记 proxy。共同面板有 152 个完整、唯一、不超过 Stata 32 字符的 aliases，实际最长 14 字符。它是后续 sensitivity 和 ranking 的共同样本接口，不是已完成 ranking，也不是“胜出 connector”样本；不能据此作因果 rerouting、production relocation 或 structural welfare 解释。
 
-### 7.6 稳定性和规模（M3.6 planned）
+### 7.6 M3.6 sensitivity inputs
 
-| Canonical name | Stata name | 用途 |
+状态：`EXISTING_VALIDATED`。M3.6 只构造 sensitivity inputs，不计算 score、rank、winner、production evidence 或 structural moment。输出采用三张自然粒度长表，避免把不同定义的变量误写成同一宽表中的可互换指标。
+
+| Output | Rows × columns | Natural key | SHA256 |
+|---|---:|---|---|
+| `connector_trade_sector_time_window_sensitivity.parquet` | 1,092 × 56 | `connector_iso3, analysis_sector, flow_id, window_spec_id` | `1594fadeb348f88e07b2ec8f43ca3708f49f9e06a0b78fafe24ffb6417635aad` |
+| `connector_trade_sector_source_bloc_sensitivity.parquet` | 182 × 64 | `connector_iso3, analysis_sector, source_bloc_id` | `67fbf760adb01a18d4e0e4f9ddd44eef9f3d2d2496a0a60d358cf8eab77e1eda` |
+| `connector_trade_sector_exposure_definition_sensitivity.parquet` | 364 × 47 | `connector_iso3, analysis_sector, exposure_definition_id` | `96144e95dd525103b658ed7220a15d2f3c7c7acf79ea3f314314112971dc7cbd` |
+
+冻结 config 为 `configs/connector_trade_sector_sensitivity_rules.yaml`，SHA256 为 `b628a76fc7a5615d5decf9a39810a476b653a81c2d74a68c2d5d35d45af3f11f`。Builder 为 `code/data_processing/build_connector_trade_sector_sensitivity.py`；validation 为 `data/validation/connector_trade_sector_sensitivity_validation.json/.md`，状态 PASS。
+
+#### 7.6.1 Alternative time windows
+
+四条 `flow_id` 为 `china_to_connector`、`east_asia_to_connector`、`connector_to_usa` 和 `china_to_usa`。三个 `window_spec_id` 为：
+
+| Specification | Base | Comparison | 原因 |
+|---|---|---|---|
+| `primary_post` | 2014-2017 | 2020-2024 | 与 M3.2/M3.4 主口径一致 |
+| `exclude_2024` | 2014-2017 | 2020-2023 | 2024 同时是数据边界和 Section 301 review 年，必须排除检查 |
+| `shock_only` | 2014-2017 | 2018-2019 | 判断变化方向是否已在最初 tariff-shock 期出现 |
+
+所有 level 使用窗口内年度值的算术平均：
+
+```text
+pre_trade_scale_usd        = mean(x_t, base years)
+comparison_trade_scale_usd = mean(x_t, comparison years)
+level_change_usd           = comparison_trade_scale_usd - pre_trade_scale_usd
+dh_growth                  = 2 * level_change_usd
+                             / (comparison_trade_scale_usd + pre_trade_scale_usd)
+log_growth                 = ln(comparison_trade_scale_usd)
+                             - ln(pre_trade_scale_usd)
+```
+
+`log_growth` 仅在两个端点严格大于 0 时定义；两端均为 0 时 DH/log 均 missing；仅一端为 0 时 DH 为 `±2`、log missing。当前 1,092 行没有零端点，1,092 个 log growth 全部定义。
+
+Coverage 不平均年度 share：
+
+```text
+included_value_share_window
+  = sum(eligible_value_t)
+    / [sum(eligible_value_t) + sum(excluded_value_t)]
+```
+
+窗口内稳定性变量为：
+
+| Canonical name | Stata name | 定义 |
 |---|---|---|
-| `pre_trade_scale_usd` | `scale_pre` | 排名时防止只由小基数增长驱动 |
-| `post_trade_scale_usd` | `scale_post` | 经济规模 |
-| `annual_growth_sd` | `growth_sd` | 年度增长波动 |
-| `positive_growth_year_share` | `posyr_sh` | post 期间正增长年份比例 |
-| `rank_window_sensitivity` | `rank_sens` | 替代窗口下 rank 变化 |
-| `source_bloc_sensitivity` | `bloc_sens` | China-only 与 East-Asia source 定义差异 |
-| `exposure_definition_sensitivity` | `expo_sens` | rate/exposure/tariffed share 差异 |
+| `pre_trade_scale_usd` | `scale_pre` | 2014-2017 annual mean |
+| `comparison_trade_scale_usd` | `scale_comp` | 当前 specification comparison annual mean |
+| `annual_growth_transition_count` | `ann_tr_n` | comparison 窗口内相邻年份 DH growth 的可用转移数 |
+| `annual_dh_growth_sd` | `ann_dh_sd` | 相邻年份 DH growth 的 sample SD，`ddof=1` |
+| `positive_growth_year_share` | `posyr_sh` | comparison 窗口内正相邻年份 level change 比例 |
+| `primary_level_change_usd` | `prim_dlev` | 同一 flow 的 `primary_post` level change |
+| `level_change_difference_from_primary_usd` | `dlev_dprim` | 当前 specification 减 primary |
+| `dh_growth_difference_from_primary` | `dh_dprim` | 当前 DH 减 primary DH |
+| `log_growth_difference_from_primary` | `log_dprim` | 当前 log growth 减 primary log growth |
+| `same_level_change_direction_as_primary` | `dlev_same` | 三方向 sign 是否一致 |
+| `same_dh_growth_direction_as_primary` | `dh_same` | 三方向 sign 是否一致 |
+
+`shock_only` 只有 2018→2019 一个年际转移，所以 364 行 `annual_dh_growth_sd` 按 sample-SD 定义保持 missing；`positive_growth_year_share` 可由一个转移定义。这个 missing 不能填 0。当前三个 specifications 的负 level-change counts 为：
+
+| Specification | China→connector | East Asia→connector | connector→USA | China→USA |
+|---|---:|---:|---:|---:|
+| `primary_post` | 3 | 5 | 6 | 26 |
+| `exclude_2024` | 3 | 5 | 6 | 26 |
+| `shock_only` | 13 | 12 | 13 | 26 |
+
+`china_to_usa` 是在 connectors 间重复的 common benchmark；`flow_is_common_benchmark` 和 `common_benchmark_not_additive_across_connectors` 均为 true，禁止跨 connector 求和。
+
+#### 7.6.2 Source-bloc definitions
+
+| `source_bloc_id` | Members | Self-trade rule |
+|---|---|---|
+| `china_only` | CHN | 当前 connector 集合不含 CHN，无 self-trade |
+| `extended_east_asia` | CHN, KOR, JPN, TWN | connector 为 KOR/TWN 时排除本国 origin |
+
+Source 表把两种定义映射到同一 generic schema，包括 `input_value_usd_pre/post`、`input_gain_usd`、raw DH/log、small-base/eligibility/abnormal flags、input-to-export ratios、active/weighted product counts、普通/weighted correlations、both-legs shares 和 triple-condition shares。核心 aliases 为：
+
+| Canonical name | Stata name | 说明 |
+|---|---|---|
+| `source_bloc_id` | `src_bloc` | source 定义 |
+| `source_bloc_members_configured` | `src_members` | 分号分隔的配置成员 |
+| `connector_self_trade_excluded` | `self_excl` | KOR/TWN 在 extended East Asia 定义下为 true |
+| `input_value_usd_pre/post` | `input_pre/input_post` | source→connector annual-mean levels |
+| `input_gain_usd` | `input_gain` | post-pre，负值保留 |
+| `input_dh_growth_raw` | `input_dh` | raw DH，不 winsorize |
+| `input_to_export_ratio_change` | `d_sx` | source-input / connector-export ratio 的变化 |
+| `product_change_correlation` | `prod_cor` | source input 与 connector export 的 HS6 change correlation |
+| `input_gain_usd_difference_from_china_only` | `dgain_cn` | 当前 definition 减 China-only |
+| `same_input_gain_direction_as_china_only` | `gain_same` | sign agreement |
+| `source_bloc_comparison_is_nested` | `src_cmpnest` | 当前全部 true |
+
+Extended East Asia 包含 China，因此两定义不是两个独立样本。`extended_east_asia - china_only` 的 level difference 只表示额外 KOR/JPN/TWN origins（并应用 self-trade exclusion）的贡献。当前负 input gains 为 China-only 3 行、extended East Asia 5 行；KOR/TWN self-trade-excluded rows 为 14；两口径在 input gain、DH、input-export-ratio change、product correlation 上方向一致的 connector-sector cells 分别为 89、89、73、89。
+
+#### 7.6.3 Exposure definitions
+
+| `exposure_definition_id` | `exposure_measure_unit` | `exposure_measure_value` |
+|---|---|---|
+| `tariff_overlap` | `share_0_1` | post connector export value 中 tariffed products 的份额 |
+| `exposure_weighted_rate` | `ad_valorem_rate` | observed-exposure products 内，以 connector export value 加权的连续 exposure |
+| `positive_exposure_gain_share` | `share_0_1` | observed-exposure positive export gain 中，exposure > 0 产品的份额 |
+| `top_quartile_exposure_gain_share` | `share_0_1` | observed-exposure positive export gain 中，sector positive-exposure p75 以上产品的份额 |
+
+前两种 definitions 有 `exposure_measure_pre/post/change`；后两种是 gain-based estimands，pre/post/change 三列设计性 missing，正式值写在 `exposure_measure_value`。所有 definition 均保留 `numerator_usd_*`、`denominator_usd_*` 和 observed-value coverage，以便 Stata 独立复算。
+
+| Canonical name | Stata name | 说明 |
+|---|---|---|
+| `exposure_definition_id` | `expo_def` | 四种定义 |
+| `exposure_measure_pre/post` | `expo_pre/expo_post` | 仅 level-based definitions 适用 |
+| `exposure_measure_change` | `d_expo` | post-pre，允许为负 |
+| `exposure_measure_value` | `expo_value` | 当前 definition 的正式 measure |
+| `measure_value_basis` | `value_basis` | `post_level` 或 `positive_export_gain` |
+| `pre_post_missing_by_design` | `pp_na` | gain-based definitions 为 true |
+| `value_coverage_share_pre` | `cov_pre` | pre observed-value coverage |
+| `value_coverage_share_post_or_gain` | `cov_comp` | post 或 positive-gain coverage |
+| `high_exposure_threshold_value` | `expo_thr` | 0、missing continuous threshold 或 sector p75 |
+| `cross_definition_numeric_difference_forbidden` | `cross_forbid` | 当前全部 true |
+
+四种 definitions 虽然正式值都位于 `[0,1]`，但 estimand 和单位不完全相同，不能直接互减或把数值大小解释成同一种 exposure。M3.6 明确不构造 cross-definition numeric difference 或 rank。28 个 exposure-missing products 仍保持 missing；按七个 sectors 求和，每个 connector 都有 28 个，未填 0。`tariff_overlap` 和 `exposure_weighted_rate` 的负 pre-post change 分别为 47 和 32 个 cells。
+
+#### 7.6.4 Validation 与 Stata 接口
+
+- 三张表主键 duplicate 均为 0，13 connectors × 7 sectors 全部保留。
+- 时间表的 annual means、coverage ratio-of-sums、level/DH/log、annual SD、positive-year share 和 primary differences 独立复算；金额最大差额为 0，比例最大差额为 0。
+- Source 表的 M3.5 字段保留、机械 growth、China-only differences、direction flags 和 nested-level inequality 均独立复算；最大差额为 0。
+- Exposure 表的 numerator/denominator ratio 独立复算，最大浮点差额为 `2.22e-16`，小于 `1e-12`。
+- TWN 在 time/source/exposure 表分别有 84/14/28 行，proxy flag 全部保留。
+- 56/64/47 个 Stata aliases 均完整、唯一、不超过 32 字符，实际最长为 13/11/12。
+- 三张 Parquet 在项目 F 盘临时目录第二次构建，SHA256 逐一完全一致；candidate 和 determinism 临时目录均已删除。
+- `sensitivity_variables_constructed=true`、`ranking_variables_constructed=false` 在三张输出中对所有行成立；`.dta` 仍须等到 M7。
 
 ## 8. M4 production-side 标准化变量
 
@@ -968,9 +1087,9 @@ Candidate names：
 | proxy/scope | TWN proxy、BEA autos proxy、medical unsupported |
 | coverage | has source flags、missing/suppression/confidential counts |
 | small base | pre_zero、small_base、log_defined |
-| alternative windows | 2014-2017 vs 2020-2023；exclude 2024；shock-only |
-| source bloc | China-only vs extended East Asia |
-| policy | rate vs exposure vs tariffed share |
+| alternative windows | M3.6 已构造：2014-2017 vs 2020-2024、2020-2023 exclude-2024、2018-2019 shock-only |
+| source bloc | M3.6 已构造：China-only vs nested extended East Asia，KOR/TWN self-trade excluded |
+| policy/exposure | M3.6 已构造四个非等价 estimands：tariff overlap、continuous weighted exposure、positive-exposure gain share、top-quartile-exposure gain share |
 
 2024 可能同时受政策 review 和数据时间边界影响。所有包含 2024 的结果要有 exclude-2024 robustness。
 
@@ -1081,8 +1200,8 @@ Reviewer/date:
 4. M3.3 已固定并构造 zero/small-base、异常增长和 winsorized sensitivity diagnostics，raw levels/growth 全部保留；
 5. M3.4 已构造 replacement、source input、exposure overlap 和 HS6 co-movement，三张自然粒度输出 validation PASS；
 6. M3.5 已在共同面板中保留全部 13 个 connectors/comparators × 7 sectors，并明确不做 outcome/top-rank/complete-case 筛选；
-7. 下一步 M3.6 生成窗口、source bloc 和 exposure sensitivity；
-8. M4 逐来源建立 production long；
+7. M3.6 已生成窗口、source bloc 和 exposure sensitivity 三张自然粒度接口，未构造 ranking；
+8. 下一步 M4 逐来源建立 production long，须等待用户确认；
 9. M5 逐来源 left join 和 coverage；
 10. M6 先 trade ranking，再 production grade，最后 structural moments；
 11. M7 导出 Stata、运行 `.do`、冻结 release。
@@ -1098,5 +1217,6 @@ Reviewer/date:
 | v0.4.0 | 2026-07-28 | 完成 M3.3 变量合同：登记 364 × 64 flow-level diagnostics、USD 25 million absolute threshold、sector-flow nearest-rank p10、China→USA relative-threshold exception、robust-z/MAD 与 mechanical extreme flags、flow-level p5/p95 winsorized sensitivity、64 个 Stata aliases、异常计数和确定性 output hash。 |
 | v0.5.0 | 2026-07-28 | 完成 M3.4 变量合同：登记 55,081 × 56 产品窗口、91 × 92 部门重组指标和 91 × 49 产品共变三表接口；固定 USD 25 million replacement denominator、signed numerator、China/East Asia source ratios、28 个 exposure missing、positive/p75 exposure overlap、产品正增量分母、Pearson/weighted correlations、56/92/49 aliases 和三个确定性 hashes。 |
 | v0.6.0 | 2026-07-28 | 完成 M3.5 变量合同：登记 91 × 152 共同面板、M3.4 两张同粒度表的 one-to-one join、完整 13 × 7 网格、21/49/21 组别行数、角色/稳定排序/source-match/no-selection flags、26/65 replacement defined/missing 状态、152 aliases 和确定性 output hash。 |
+| v0.7.0 | 2026-07-29 | 完成 M3.6 变量合同：登记 1,092 × 56 alternative-window、182 × 64 source-bloc 和 364 × 47 exposure-definition 三表接口；固定 primary/exclude-2024/shock-only、nested China/East-Asia self-trade rule、四种非等价 exposure estimands、annual stability/primary-difference 状态、56/64/47 aliases、独立复算和三个确定性 hashes；明确不构造 ranking。 |
 
-下一次强制更新：M3.6 完成时，补齐 exposure definition、China-only/extended-East-Asia source bloc 和 alternative time-window sensitivity 的实际输出、公式、validation、hash 和 Stata 接口；同时更新审计档案并重建两份 PDF。
+下一次强制更新：M4.1 ICIO production-side 标准化长表完成时，补齐 source-sector join、变量公式、suppression/accounting 状态、输出 hash、validation 和 Stata 接口；同时更新审计档案并重建两份 PDF。

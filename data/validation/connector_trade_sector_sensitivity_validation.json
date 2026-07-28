@@ -1,0 +1,1666 @@
+{
+  "validation_status": "PASS",
+  "failures": [],
+  "input_contracts": {
+    "common_panel": {
+      "path": "data/processed/harmonized/connector_trade_sector_common_panel.parquet",
+      "observed_sha256": "36c58c229f3f43e86f7ff7570fc6a1ffe08ccb8fd3259bb5853abece3171f682",
+      "expected_sha256": "36c58c229f3f43e86f7ff7570fc6a1ffe08ccb8fd3259bb5853abece3171f682",
+      "hash_match": true,
+      "observed_rows": 91,
+      "expected_rows": 91,
+      "row_count_match": true,
+      "observed_columns": 152,
+      "expected_columns": 152,
+      "column_count_match": true,
+      "observed_schema_signature_sha256": "f2b6ead8c4628db0a1a36950cb081137738ebfb6014d5e24285d19321aa83070",
+      "expected_schema_signature_sha256": "f2b6ead8c4628db0a1a36950cb081137738ebfb6014d5e24285d19321aa83070",
+      "schema_signature_match": true,
+      "natural_key": [
+        "connector_iso3",
+        "analysis_sector"
+      ],
+      "duplicate_key_count": 0,
+      "observed_versions": [
+        "connector_trade_sector_common_panel_rules_v1"
+      ],
+      "expected_version": "connector_trade_sector_common_panel_rules_v1",
+      "version_match": true,
+      "schema_version_match": true
+    },
+    "annual_sector_panel": {
+      "path": "data/processed/harmonized/connector_trade_sector_year.parquet",
+      "observed_sha256": "95e547267892c4bc883788542f0e59ba284441b42f4ce1d379aea71a2f978c8c",
+      "expected_sha256": "95e547267892c4bc883788542f0e59ba284441b42f4ce1d379aea71a2f978c8c",
+      "hash_match": true,
+      "observed_rows": 1001,
+      "expected_rows": 1001,
+      "row_count_match": true,
+      "observed_columns": 70,
+      "expected_columns": 70,
+      "column_count_match": true,
+      "observed_schema_signature_sha256": "37fd30c8442cc1aea9045cd6b4904be851187e1b7ace21db26ee65d4de7a6256",
+      "expected_schema_signature_sha256": "37fd30c8442cc1aea9045cd6b4904be851187e1b7ace21db26ee65d4de7a6256",
+      "schema_signature_match": true,
+      "natural_key": [
+        "connector_iso3",
+        "analysis_sector",
+        "year"
+      ],
+      "duplicate_key_count": 0,
+      "observed_versions": [
+        "connector_trade_sector_rules_v1"
+      ],
+      "expected_version": "connector_trade_sector_rules_v1",
+      "version_match": true,
+      "schema_version_match": true
+    },
+    "time_windows": {
+      "path": "configs/time_windows.yaml",
+      "observed_sha256": "d1daeed066db7cf734c15c804f31eaaf66a7c07b335f3c227a6c9effffd6ebb5",
+      "expected_sha256": "d1daeed066db7cf734c15c804f31eaaf66a7c07b335f3c227a6c9effffd6ebb5",
+      "hash_match": true
+    },
+    "country_groups": {
+      "path": "configs/country_groups.yaml",
+      "observed_sha256": "5ff425458023bb9540a4239e2d01973ef467309e0f8a8286661feb5c0a7f8db3",
+      "expected_sha256": "5ff425458023bb9540a4239e2d01973ef467309e0f8a8286661feb5c0a7f8db3",
+      "hash_match": true
+    }
+  },
+  "time_rule_checks": {
+    "base_matches_time_windows_pre": true,
+    "primary_matches_time_windows_post": true,
+    "shock_matches_time_windows_shock": true,
+    "exclude_2024_ends_in_2023": true
+  },
+  "source_rule_checks": {
+    "china_only_members_match": true,
+    "extended_east_asia_members_match": true
+  },
+  "annual_grid_checks": {
+    "connector_sector_cell_count": 91,
+    "all_cells_have_expected_row_count": true,
+    "all_cells_have_expected_unique_year_count": true,
+    "all_cells_cover_expected_bounds": true,
+    "exact_year_set_mismatch_count": 0,
+    "common_key_set_match": true
+  },
+  "annual_common_metadata_mismatch_counts": {
+    "connector_group": 0,
+    "connector_baci_code": 0,
+    "connector_is_proxy": 0,
+    "trade_value_unit": 0,
+    "join_not_both_count": 0
+  },
+  "output_structures": {
+    "time_window": {
+      "observed_rows": 1092,
+      "expected_rows": 1092,
+      "row_count_match": true,
+      "observed_columns": 56,
+      "expected_columns": 56,
+      "column_count_match": true,
+      "natural_key": [
+        "connector_iso3",
+        "analysis_sector",
+        "flow_id",
+        "window_spec_id"
+      ],
+      "duplicate_key_count": 0,
+      "connector_count": 13,
+      "sector_count": 7,
+      "infinite_numeric_count": 0
+    },
+    "source_bloc": {
+      "observed_rows": 182,
+      "expected_rows": 182,
+      "row_count_match": true,
+      "observed_columns": 64,
+      "expected_columns": 64,
+      "column_count_match": true,
+      "natural_key": [
+        "connector_iso3",
+        "analysis_sector",
+        "source_bloc_id"
+      ],
+      "duplicate_key_count": 0,
+      "connector_count": 13,
+      "sector_count": 7,
+      "infinite_numeric_count": 0
+    },
+    "exposure_definition": {
+      "observed_rows": 364,
+      "expected_rows": 364,
+      "row_count_match": true,
+      "observed_columns": 47,
+      "expected_columns": 47,
+      "column_count_match": true,
+      "natural_key": [
+        "connector_iso3",
+        "analysis_sector",
+        "exposure_definition_id"
+      ],
+      "duplicate_key_count": 0,
+      "connector_count": 13,
+      "sector_count": 7,
+      "infinite_numeric_count": 0
+    }
+  },
+  "time_formula_checks": {
+    "numeric_formula_checks": {
+      "observed_base_year_count": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "observed_comparison_year_count": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "pre_trade_scale_usd": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "comparison_trade_scale_usd": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "level_change_usd": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "dh_growth": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "log_growth": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "annual_growth_transition_count": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "annual_dh_growth_sd": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "positive_growth_year_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "included_value_share_pre": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "included_value_share_comparison": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "source_row_count_annual_mean_pre": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "source_row_count_annual_mean_comparison": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "primary_level_change_usd": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "primary_dh_growth": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "primary_log_growth": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "level_change_difference_from_primary_usd": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "dh_growth_difference_from_primary": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "log_growth_difference_from_primary": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    },
+    "boolean_formula_mismatch_counts": {
+      "complete_window_pair": 0,
+      "pre_zero_flag": 0,
+      "comparison_zero_flag": 0,
+      "dh_growth_defined": 0,
+      "log_growth_defined": 0,
+      "same_level_change_direction_as_primary": 0,
+      "same_dh_growth_direction_as_primary": 0
+    },
+    "primary_common_panel_crosschecks": {
+      "china_to_connector": {
+        "pre_trade_scale_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "comparison_trade_scale_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "level_change_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "dh_growth": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "log_growth": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        }
+      },
+      "east_asia_to_connector": {
+        "pre_trade_scale_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "comparison_trade_scale_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "level_change_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "dh_growth": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "log_growth": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        }
+      },
+      "connector_to_usa": {
+        "pre_trade_scale_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "comparison_trade_scale_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "level_change_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "dh_growth": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "log_growth": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        }
+      },
+      "china_to_usa": {
+        "pre_trade_scale_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "comparison_trade_scale_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "china_us_decline_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        }
+      }
+    },
+    "china_to_usa_repeated_mismatch_group_count": 0
+  },
+  "time_state_counts": {
+    "negative_change_counts": {
+      "primary_post": {
+        "china_to_connector": 3,
+        "east_asia_to_connector": 5,
+        "connector_to_usa": 6,
+        "china_to_usa": 26
+      },
+      "exclude_2024": {
+        "china_to_connector": 3,
+        "east_asia_to_connector": 5,
+        "connector_to_usa": 6,
+        "china_to_usa": 26
+      },
+      "shock_only": {
+        "china_to_connector": 13,
+        "east_asia_to_connector": 12,
+        "connector_to_usa": 13,
+        "china_to_usa": 26
+      }
+    },
+    "endpoint_zero_count": 0,
+    "log_growth_defined_count": 1092,
+    "annual_growth_sd_defined_count": 728,
+    "positive_growth_year_share_defined_count": 1092,
+    "complete_window_pair_count": 1092,
+    "dh_out_of_bounds_count": 0
+  },
+  "source_formula_checks": {
+    "preserved_numeric_checks": {
+      "china_only:input_value_usd_pre": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:input_value_usd_post": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:input_gain_usd": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:input_dh_growth_raw": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:input_log_growth_raw": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:input_to_export_ratio_pre": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:input_to_export_ratio_post": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:input_to_export_ratio_change": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:active_product_count": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:positive_weight_product_count": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:product_change_correlation": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:weighted_product_change_correlation": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:both_legs_positive_product_count": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:both_legs_positive_product_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:both_legs_positive_active_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:both_legs_positive_export_gain_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:triple_condition_product_count": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:triple_condition_product_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:triple_condition_active_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "china_only:triple_condition_export_gain_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:input_value_usd_pre": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:input_value_usd_post": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:input_gain_usd": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:input_dh_growth_raw": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:input_log_growth_raw": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:input_to_export_ratio_pre": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:input_to_export_ratio_post": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:input_to_export_ratio_change": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:active_product_count": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:positive_weight_product_count": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:product_change_correlation": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:weighted_product_change_correlation": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:both_legs_positive_product_count": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:both_legs_positive_product_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:both_legs_positive_active_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:both_legs_positive_export_gain_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:triple_condition_product_count": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:triple_condition_product_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:triple_condition_active_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "extended_east_asia:triple_condition_export_gain_share": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    },
+    "preserved_boolean_mismatch_counts": {
+      "china_only:input_small_base_flag": 0,
+      "china_only:input_dh_primary_eligible": 0,
+      "china_only:input_abnormal_growth_flag": 0,
+      "china_only:input_to_export_ratio_pre_defined": 0,
+      "china_only:input_to_export_ratio_post_defined": 0,
+      "china_only:correlation_low_n_flag": 0,
+      "china_only:weighted_correlation_low_n_flag": 0,
+      "extended_east_asia:input_small_base_flag": 0,
+      "extended_east_asia:input_dh_primary_eligible": 0,
+      "extended_east_asia:input_abnormal_growth_flag": 0,
+      "extended_east_asia:input_to_export_ratio_pre_defined": 0,
+      "extended_east_asia:input_to_export_ratio_post_defined": 0,
+      "extended_east_asia:correlation_low_n_flag": 0,
+      "extended_east_asia:weighted_correlation_low_n_flag": 0
+    },
+    "difference_formula_checks": {
+      "input_value_usd_pre_difference_from_china_only": {
+        "east_asia_maximum_absolute_gap": 0.0,
+        "east_asia_missing_mismatch_count": 0,
+        "china_reference_maximum_absolute_gap": 0.0,
+        "china_reference_missing_mismatch_count": 0
+      },
+      "input_value_usd_post_difference_from_china_only": {
+        "east_asia_maximum_absolute_gap": 0.0,
+        "east_asia_missing_mismatch_count": 0,
+        "china_reference_maximum_absolute_gap": 0.0,
+        "china_reference_missing_mismatch_count": 0
+      },
+      "input_gain_usd_difference_from_china_only": {
+        "east_asia_maximum_absolute_gap": 0.0,
+        "east_asia_missing_mismatch_count": 0,
+        "china_reference_maximum_absolute_gap": 0.0,
+        "china_reference_missing_mismatch_count": 0
+      },
+      "input_dh_growth_difference_from_china_only": {
+        "east_asia_maximum_absolute_gap": 0.0,
+        "east_asia_missing_mismatch_count": 0,
+        "china_reference_maximum_absolute_gap": 0.0,
+        "china_reference_missing_mismatch_count": 0
+      },
+      "input_log_growth_difference_from_china_only": {
+        "east_asia_maximum_absolute_gap": 0.0,
+        "east_asia_missing_mismatch_count": 0,
+        "china_reference_maximum_absolute_gap": 0.0,
+        "china_reference_missing_mismatch_count": 0
+      },
+      "input_to_export_ratio_pre_difference_from_china_only": {
+        "east_asia_maximum_absolute_gap": 0.0,
+        "east_asia_missing_mismatch_count": 0,
+        "china_reference_maximum_absolute_gap": 0.0,
+        "china_reference_missing_mismatch_count": 0
+      },
+      "input_to_export_ratio_post_difference_from_china_only": {
+        "east_asia_maximum_absolute_gap": 0.0,
+        "east_asia_missing_mismatch_count": 0,
+        "china_reference_maximum_absolute_gap": 0.0,
+        "china_reference_missing_mismatch_count": 0
+      },
+      "input_to_export_ratio_change_difference_from_china_only": {
+        "east_asia_maximum_absolute_gap": 0.0,
+        "east_asia_missing_mismatch_count": 0,
+        "china_reference_maximum_absolute_gap": 0.0,
+        "china_reference_missing_mismatch_count": 0
+      },
+      "product_correlation_difference_from_china_only": {
+        "east_asia_maximum_absolute_gap": 0.0,
+        "east_asia_missing_mismatch_count": 0,
+        "china_reference_maximum_absolute_gap": 0.0,
+        "china_reference_missing_mismatch_count": 0
+      },
+      "weighted_product_correlation_difference_from_china_only": {
+        "east_asia_maximum_absolute_gap": 0.0,
+        "east_asia_missing_mismatch_count": 0,
+        "china_reference_maximum_absolute_gap": 0.0,
+        "china_reference_missing_mismatch_count": 0
+      },
+      "both_legs_positive_product_share_difference_from_china_only": {
+        "east_asia_maximum_absolute_gap": 0.0,
+        "east_asia_missing_mismatch_count": 0,
+        "china_reference_maximum_absolute_gap": 0.0,
+        "china_reference_missing_mismatch_count": 0
+      },
+      "triple_condition_product_share_difference_from_china_only": {
+        "east_asia_maximum_absolute_gap": 0.0,
+        "east_asia_missing_mismatch_count": 0,
+        "china_reference_maximum_absolute_gap": 0.0,
+        "china_reference_missing_mismatch_count": 0
+      }
+    },
+    "direction_flag_mismatch_counts": {
+      "same_input_gain_direction_as_china_only": 0,
+      "same_input_dh_growth_direction_as_china_only": 0,
+      "same_input_to_export_ratio_change_direction_as_china_only": 0,
+      "same_product_correlation_direction_as_china_only": 0
+    },
+    "nested_level_violation_count": 0,
+    "mechanical_growth_formula_checks": {
+      "china_only": {
+        "input_gain_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "input_dh_growth_raw": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "input_log_growth_raw": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        }
+      },
+      "extended_east_asia": {
+        "input_gain_usd": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "input_dh_growth_raw": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        },
+        "input_log_growth_raw": {
+          "maximum_absolute_gap": 0.0,
+          "missing_mismatch_count": 0
+        }
+      }
+    }
+  },
+  "source_state_counts": {
+    "negative_gain_counts": {
+      "china_only": 3,
+      "extended_east_asia": 5
+    },
+    "self_trade_excluded_rows": 14,
+    "direction_agreement_counts": {
+      "input_gain": 89,
+      "input_dh_growth": 89,
+      "input_to_export_ratio_change": 73,
+      "product_correlation": 89
+    },
+    "pre_ratio_defined_count": 182,
+    "post_ratio_defined_count": 182
+  },
+  "exposure_formula_checks": {
+    "ratio_formula_checks": {
+      "exposure_measure_pre": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "exposure_measure_post": {
+        "maximum_absolute_gap": 2.220446049250313e-16,
+        "missing_mismatch_count": 0
+      },
+      "exposure_measure_change": {
+        "maximum_absolute_gap": 2.220446049250313e-16,
+        "missing_mismatch_count": 0
+      },
+      "exposure_measure_value": {
+        "maximum_absolute_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    },
+    "pre_post_nonmissing_when_not_applicable_count": 0,
+    "measure_unit_interval_violation_count": 0,
+    "coverage_unit_interval_violation_count": 0
+  },
+  "exposure_state_counts": {
+    "measure_defined_count": 364,
+    "pre_post_supported_rows": 182,
+    "pre_post_missing_by_design_rows": 182,
+    "negative_change_counts": {
+      "tariff_overlap": 47,
+      "exposure_weighted_rate": 32
+    },
+    "missing_product_totals_by_connector": {
+      "CAN": 28,
+      "IDN": 28,
+      "IND": 28,
+      "KOR": 28,
+      "MAR": 28,
+      "MEX": 28,
+      "MYS": 28,
+      "PHL": 28,
+      "POL": 28,
+      "THA": 28,
+      "TUR": 28,
+      "TWN": 28,
+      "VNM": 28
+    },
+    "connectors_with_expected_missing_product_total": 13
+  },
+  "twn_rows": {
+    "time_window": 84,
+    "source_bloc": 14,
+    "exposure_definition": 28
+  },
+  "twn_proxy_mismatch_counts": {
+    "time_window": 0,
+    "source_bloc": 0,
+    "exposure_definition": 0
+  },
+  "stata_alias_validation": {
+    "time_window": {
+      "pass": true,
+      "alias_count": 56,
+      "maximum_alias_length": 13,
+      "missing_fields": [],
+      "extra_fields": [],
+      "duplicate_aliases": [],
+      "over_32_characters": {},
+      "invalid_aliases": {}
+    },
+    "source_bloc": {
+      "pass": true,
+      "alias_count": 64,
+      "maximum_alias_length": 11,
+      "missing_fields": [],
+      "extra_fields": [],
+      "duplicate_aliases": [],
+      "over_32_characters": {},
+      "invalid_aliases": {}
+    },
+    "exposure_definition": {
+      "pass": true,
+      "alias_count": 47,
+      "maximum_alias_length": 12,
+      "missing_fields": [],
+      "extra_fields": [],
+      "duplicate_aliases": [],
+      "over_32_characters": {},
+      "invalid_aliases": {}
+    }
+  },
+  "metadata_checks": {
+    "time_window": {
+      "all_sensitivity_constructed": true,
+      "any_ranking_constructed": false,
+      "schema_versions": [
+        "connector_trade_sector_time_window_sensitivity_v1"
+      ],
+      "construction_versions": [
+        "connector_trade_sector_sensitivity_rules_v1"
+      ]
+    },
+    "source_bloc": {
+      "all_sensitivity_constructed": true,
+      "any_ranking_constructed": false,
+      "schema_versions": [
+        "connector_trade_sector_source_bloc_sensitivity_v1"
+      ],
+      "construction_versions": [
+        "connector_trade_sector_sensitivity_rules_v1"
+      ]
+    },
+    "exposure_definition": {
+      "all_sensitivity_constructed": true,
+      "any_ranking_constructed": false,
+      "schema_versions": [
+        "connector_trade_sector_exposure_definition_sensitivity_v1"
+      ],
+      "construction_versions": [
+        "connector_trade_sector_sensitivity_rules_v1"
+      ]
+    }
+  },
+  "determinism_check": {
+    "config_sha256": "b628a76fc7a5615d5decf9a39810a476b653a81c2d74a68c2d5d35d45af3f11f",
+    "outputs": {
+      "time_window": {
+        "candidate_sha256": "1594fadeb348f88e07b2ec8f43ca3708f49f9e06a0b78fafe24ffb6417635aad",
+        "second_build_sha256": "1594fadeb348f88e07b2ec8f43ca3708f49f9e06a0b78fafe24ffb6417635aad",
+        "sha256_match": true
+      },
+      "source_bloc": {
+        "candidate_sha256": "67fbf760adb01a18d4e0e4f9ddd44eef9f3d2d2496a0a60d358cf8eab77e1eda",
+        "second_build_sha256": "67fbf760adb01a18d4e0e4f9ddd44eef9f3d2d2496a0a60d358cf8eab77e1eda",
+        "sha256_match": true
+      },
+      "exposure_definition": {
+        "candidate_sha256": "96144e95dd525103b658ed7220a15d2f3c7c7acf79ea3f314314112971dc7cbd",
+        "second_build_sha256": "96144e95dd525103b658ed7220a15d2f3c7c7acf79ea3f314314112971dc7cbd",
+        "sha256_match": true
+      }
+    },
+    "all_sha256_match": true,
+    "temporary_output_cleaned": true
+  },
+  "validation_version": 1,
+  "generated_at_utc": "2026-07-28T17:11:12.616074+00:00",
+  "config_path": "configs/connector_trade_sector_sensitivity_rules.yaml",
+  "config_sha256": "b628a76fc7a5615d5decf9a39810a476b653a81c2d74a68c2d5d35d45af3f11f",
+  "construction_version": "connector_trade_sector_sensitivity_rules_v1",
+  "outputs": {
+    "time_window": {
+      "path": "data/processed/harmonized/connector_trade_sector_time_window_sensitivity.parquet",
+      "sha256": "1594fadeb348f88e07b2ec8f43ca3708f49f9e06a0b78fafe24ffb6417635aad",
+      "schema": [
+        {
+          "name": "connector_iso3",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "analysis_sector",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_group",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_baci_code",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_is_proxy",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "flow_id",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "flow_order",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "window_spec_id",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "window_spec_order",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "reference_window_spec_id",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "base_start_year",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "base_end_year",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "comparison_start_year",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "comparison_end_year",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "expected_base_year_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "observed_base_year_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "expected_comparison_year_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "observed_comparison_year_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "complete_window_pair",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "pre_trade_scale_usd",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "comparison_trade_scale_usd",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "level_change_usd",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "dh_growth",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "log_growth",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "pre_zero_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "comparison_zero_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "dh_growth_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "log_growth_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "annual_growth_transition_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "annual_dh_growth_sd",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "positive_growth_year_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "included_value_share_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "included_value_share_comparison",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "source_row_count_annual_mean_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "source_row_count_annual_mean_comparison",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "primary_level_change_usd",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "primary_dh_growth",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "primary_log_growth",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "level_change_difference_from_primary_usd",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "dh_growth_difference_from_primary",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "log_growth_difference_from_primary",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "same_level_change_direction_as_primary",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "same_dh_growth_direction_as_primary",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "flow_is_common_benchmark",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "common_benchmark_not_additive_across_connectors",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "trade_value_unit",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "baci_absence_treated_as_zero",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "window_level_is_annual_mean",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "included_value_share_uses_ratio_of_sums",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "sensitivity_variables_constructed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "ranking_variables_constructed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "m3_common_panel_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "m3_sector_aggregation_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "m3_sensitivity_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "rules_config_sha256",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "schema_version",
+          "type": "large_string",
+          "nullable": true
+        }
+      ]
+    },
+    "source_bloc": {
+      "path": "data/processed/harmonized/connector_trade_sector_source_bloc_sensitivity.parquet",
+      "sha256": "67fbf760adb01a18d4e0e4f9ddd44eef9f3d2d2496a0a60d358cf8eab77e1eda",
+      "schema": [
+        {
+          "name": "connector_iso3",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "analysis_sector",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_group",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_baci_code",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_is_proxy",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "source_bloc_id",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "source_bloc_order",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "reference_source_bloc_id",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "source_bloc_members_configured",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "source_bloc_member_count_configured",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "source_bloc_member_count_after_self_exclusion",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "connector_self_trade_excluded",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "source_bloc_definitions_nested",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "input_value_usd_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_value_usd_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_gain_usd",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_dh_growth_raw",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_log_growth_raw",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_small_base_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "input_dh_primary_eligible",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "input_abnormal_growth_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "input_to_export_ratio_pre_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "input_to_export_ratio_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_to_export_ratio_post_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "input_to_export_ratio_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_to_export_ratio_change",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "active_product_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "positive_weight_product_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "correlation_low_n_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "weighted_correlation_low_n_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "product_change_correlation",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "weighted_product_change_correlation",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "both_legs_positive_product_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "both_legs_positive_product_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "both_legs_positive_active_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "both_legs_positive_export_gain_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "triple_condition_product_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "triple_condition_product_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "triple_condition_active_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "triple_condition_export_gain_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_value_usd_pre_difference_from_china_only",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_value_usd_post_difference_from_china_only",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_gain_usd_difference_from_china_only",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_dh_growth_difference_from_china_only",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_log_growth_difference_from_china_only",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_to_export_ratio_pre_difference_from_china_only",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_to_export_ratio_post_difference_from_china_only",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "input_to_export_ratio_change_difference_from_china_only",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "product_correlation_difference_from_china_only",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "weighted_product_correlation_difference_from_china_only",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "both_legs_positive_product_share_difference_from_china_only",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "triple_condition_product_share_difference_from_china_only",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "same_input_gain_direction_as_china_only",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "same_input_dh_growth_direction_as_china_only",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "same_input_to_export_ratio_change_direction_as_china_only",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "same_product_correlation_direction_as_china_only",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "source_bloc_comparison_is_nested",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "trade_value_unit",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "sensitivity_variables_constructed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "ranking_variables_constructed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "m3_common_panel_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "m3_sensitivity_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "rules_config_sha256",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "schema_version",
+          "type": "large_string",
+          "nullable": true
+        }
+      ]
+    },
+    "exposure_definition": {
+      "path": "data/processed/harmonized/connector_trade_sector_exposure_definition_sensitivity.parquet",
+      "sha256": "96144e95dd525103b658ed7220a15d2f3c7c7acf79ea3f314314112971dc7cbd",
+      "schema": [
+        {
+          "name": "connector_iso3",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "analysis_sector",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_group",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_baci_code",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_is_proxy",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "exposure_definition_id",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "exposure_definition_order",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "exposure_definition_label",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "measure_basis",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "threshold_rule",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "supports_pre_post_comparison",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "uses_positive_export_gain_denominator",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "cross_definition_numeric_difference_forbidden",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "exposure_measure_unit",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "exposure_measure_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "exposure_measure_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "exposure_measure_change",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "exposure_measure_value",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "measure_value_basis",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "measure_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "exposure_measure_in_unit_interval",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "pre_post_missing_by_design",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "numerator_usd_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "denominator_usd_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "numerator_usd_post_or_gain",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "denominator_usd_post_or_gain",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "value_coverage_share_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "value_coverage_share_post_or_gain",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "high_exposure_threshold_value",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "post_exposure_observed_product_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "post_exposure_missing_product_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "post_exposure_missing_product_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "positive_exposure_product_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "top_quartile_positive_exposure_product_count",
+          "type": "int64",
+          "nullable": true
+        },
+        {
+          "name": "sector_positive_exposure_p75_cutoff",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "underlying_policy_repeated_across_connectors",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "exposure_measure_not_additive_across_connectors",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "sensitivity_variables_constructed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "ranking_variables_constructed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "trade_value_unit",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "treatment_concept",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "historical_exclusions_applied",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "four_year_review_2024_included",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "m3_common_panel_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "m3_sensitivity_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "rules_config_sha256",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "schema_version",
+          "type": "large_string",
+          "nullable": true
+        }
+      ]
+    }
+  },
+  "candidate_temp_directory": "tmp/m3_6_candidates",
+  "candidate_temporary_output_cleaned": true
+}

@@ -1,20 +1,26 @@
 {
   "validation_status": "PASS",
-  "generated_at_utc": "2026-07-28T15:41:17.847919+00:00",
+  "generated_at_utc": "2026-07-28T17:06:19.776296+00:00",
   "source_path": "F:/working_paper_wenxiao/trade_welfare/docs/variable_construction_catalog.md",
-  "source_sha256": "867feea3d998c41a6023d122952e21130080c5e3ba28ee6724f0c2149ef3d7b7",
-  "source_character_count": 64058,
+  "source_sha256": "0f6ce09d934976347a01044aece42d74b32483aa6571f71e0ea8f22b87cf14b5",
+  "source_character_count": 72324,
   "output_path": "F:/working_paper_wenxiao/trade_welfare/output/pdf/variable_construction_catalog.pdf",
-  "output_sha256": "8a808d05f18b87ed7c9ad8fea546373721b7349a7eb36b1eb0ccd7c2bbc31adc",
-  "output_size_bytes": 465040,
-  "page_count": 27,
-  "extracted_character_count": 66938,
+  "output_sha256": "bd702a3a5b4f62d5abe3033e62087eef36c4d968e54b60525bb0c4037297bb16",
+  "output_size_bytes": 484350,
+  "page_count": 30,
+  "extracted_character_count": 75564,
   "title_check_pass": true,
   "reportlab_version": "4.5.1",
   "font_regular": "C:\\Windows\\Fonts\\msyh.ttc",
   "font_bold": "C:\\Windows\\Fonts\\msyhbd.ttc",
   "rendering_review_status": "PASS",
-  "visual_review_date": "2026-07-28",
-  "visual_review_page_count": 27,
-  "visual_review_notes": "All pages rendered to project-local PNG files and inspected for Chinese fonts, tables, pagination, clipping, overlap, and truncation; no defects found."
+  "rendered_page_count": 30,
+  "reviewed_all_pages": true,
+  "visual_review_checks": {
+    "chinese_font": "PASS",
+    "tables_within_page_bounds": "PASS",
+    "page_breaks": "PASS",
+    "truncation": "PASS",
+    "blank_pages": "PASS"
+  }
 }

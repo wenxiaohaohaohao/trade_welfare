@@ -4,7 +4,7 @@ This directory contains reproducible `data/interim/` to `data/processed/` pipeli
 
 ## Current stage
 
-M0, M1, M2, M3.1, M3.2, M3.3, M3.4, and M3.5 in `data/data_merge_checklist.md` are complete. The next task is M3.6. M3.5 combines the two same-grain M3.4 sector interfaces into a complete 13-connector × 7-sector comparison panel while retaining every connector-sector cell and explicitly recording that no outcome, top-rank, or complete-case selection was applied. It does not contain sensitivity rankings or production-side evidence.
+M0, M1, M2, and M3.1-M3.6 in `data/data_merge_checklist.md` are complete. M3.6 adds separate long interfaces for alternative time windows, source-bloc definitions, and exposure definitions while retaining the full 13-connector × 7-sector comparison sample. It does not construct a connector score or ranking and does not include production-side evidence. M4.1 is the next planned stage, but it is not started by the M3.6 build.
 
 ## Living collaborator audit and variable contract
 
@@ -239,6 +239,36 @@ Registered files:
 The output is 91 × 152 at `connector_iso3 × analysis_sector`. It performs a one-to-one join of the 91-row M3.4 sector indicator and product co-movement tables, validates all common fields, retains all 3 core connectors, 7 Asian comparators, and 3 other candidates over all 7 sectors, and adds explicit sample-role, ordering, source-match, and no-selection fields. It does not construct a score or delete low-ranked, missing-ratio, or otherwise inconvenient observations.
 
 Validation status is PASS. All 91 keys match on both inputs; the group row counts are 21/49/21; all 13 × 7 cells are retained; 26 defined and 65 missing replacement ratios remain unchanged; all four product correlations remain defined for 91 cells; TWN retains seven proxy rows; and all 152 Stata aliases are unique and at most 14 characters. The canonical and second-build SHA256 are both `36c58c229f3f43e86f7ff7570fc6a1ffe08ccb8fd3259bb5853abece3171f682`. Candidate and determinism directories were removed. `.dta` export remains an M7 task.
+
+## M3.6 sensitivity inputs
+
+Run the validated single-module builder from the project root:
+
+```powershell
+python code\data_processing\build_connector_trade_sector_sensitivity.py --project-root . --overwrite
+```
+
+Registered files:
+
+- config: `configs/connector_trade_sector_sensitivity_rules.yaml`;
+- time-window output: `data/processed/harmonized/connector_trade_sector_time_window_sensitivity.parquet`;
+- source-bloc output: `data/processed/harmonized/connector_trade_sector_source_bloc_sensitivity.parquet`;
+- exposure-definition output: `data/processed/harmonized/connector_trade_sector_exposure_definition_sensitivity.parquet`;
+- validation: `data/validation/connector_trade_sector_sensitivity_validation.json` and `.md`.
+
+The time-window table is 1,092 × 56 at `connector_iso3 × analysis_sector × flow_id × window_spec_id`. It compares the 2014-2017 annual-mean baseline with 2020-2024 (`primary_post`), 2020-2023 (`exclude_2024`), and 2018-2019 (`shock_only`) for all four trade flows. It retains level changes, DH/log growth, coverage, within-comparison-window annual DH volatility, positive-growth-year shares, and differences from the primary specification. The two-year shock window has one annual transition, so its sample SD is missing by design.
+
+The source-bloc table is 182 × 64 at `connector_iso3 × analysis_sector × source_bloc_id`. It keeps China-only and extended East Asia separate, reports level/growth/input-export-ratio/product-co-movement fields in a common schema, and records differences and direction agreement relative to China-only. Extended East Asia contains China; its difference from China-only is the incremental KOR/JPN/TWN component after excluding connector self-trade, not an independent sample.
+
+The exposure-definition table is 364 × 47 at `connector_iso3 × analysis_sector × exposure_definition_id`. It retains tariffed-product export overlap, continuous export-weighted exposure, positive-exposure gain share, and sector-top-quartile-exposure gain share. Pre/post fields are missing by design for the two gain-share definitions. Because these definitions have different estimands and units, the builder does not subtract them from one another or turn them into ranks.
+
+Validation status is PASS. All three keys are unique; every time-window pair is complete; all 1,092 log-growth values are defined; the expected negative-change, source-direction, self-trade, exposure-missing, and TWN-proxy states are preserved; and 56/64/47 Stata aliases are complete, unique, and at most 13 characters. Canonical and second-build SHA256 values match exactly:
+
+- time window: `1594fadeb348f88e07b2ec8f43ca3708f49f9e06a0b78fafe24ffb6417635aad`;
+- source bloc: `67fbf760adb01a18d4e0e4f9ddd44eef9f3d2d2496a0a60d358cf8eab77e1eda`;
+- exposure definition: `96144e95dd525103b658ed7220a15d2f3c7c7acf79ea3f314314112971dc7cbd`.
+
+Candidate and determinism directories were removed. `.dta` export remains an M7 task.
 
 ## Stata handoff contract
 
