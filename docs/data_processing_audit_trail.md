@@ -6,12 +6,12 @@
 - Origin Mode: `validate`
 - Origin Date: `2026-07-27`
 - Verification Status: `ANALYZED`
-- Version Label: `data_processing_audit_v0.3.0`
+- Version Label: `data_processing_audit_v0.4.0`
 - Working Branch: `data-processing-variables`
 - Frozen Upstream Commit Recorded by M0: `2df0a0628343c9abca6b3e26d893db351ec22b94`
 - M0-M2 Evidence Snapshot Date: `2026-07-19`
-- Current Completed Processing Stage: `M0-M3.2`
-- Next Stage: `M3.3`，尚未开始
+- Current Completed Processing Stage: `M0-M3.3`
+- Next Stage: `M3.4`，尚未开始
 - Audience: 项目合作者和内部复核人员
 - Publication Status: 内部严格审查材料，不是投稿附件
 
@@ -22,25 +22,26 @@
 本版记录两层流程：
 
 1. `source -> raw -> interim`：主要公开数据的下载、归档、单库清洗和标准化；
-2. `interim -> processed`：M0 输入冻结、M1 concordance、M2 产品冲击与贸易底表、M3.1 connector-sector-year 年度聚合，以及 M3.2 完整窗口和增长变量。
+2. `interim -> processed`：M0 输入冻结、M1 concordance、M2 产品冲击与贸易底表、M3.1 connector-sector-year 年度聚合、M3.2 完整窗口和增长变量，以及 M3.3 small-base/异常增长/敏感性诊断。
 
-M3.1 和 M3.2 已执行并在冻结输入上完成确定性重建；M3.3-M7 尚未执行。本档案已为后续阶段预留固定结构。以后每完成一个 checklist 项目，必须在同一工作批次内更新本档案和 PDF，才允许打勾。仅有代码、仅有输出、仅有口头说明或尚未解释的 many-to-many join，都不构成完成。
+M3.1、M3.2 和 M3.3 已执行并在冻结输入上完成确定性重建；M3.4-M7 尚未执行。本档案已为后续阶段预留固定结构。以后每完成一个 checklist 项目，必须在同一工作批次内更新本档案和 PDF，才允许打勾。仅有代码、仅有输出、仅有口头说明或尚未解释的 many-to-many join，都不构成完成。
 
 本档案与 `docs/variable_construction_catalog.md` 配套使用。前者回答“数据经历了什么处理、凭什么相信处理正确”，后者回答“每个变量怎样构造、用于什么、允许怎样解释以及如何交给 Stata”。两份材料必须使用同一阶段状态和同一输出证据；若不一致，以实际数据、validation 和 build summary 为准，并在当次工作中修正文档。
 
 ### 0.1 本版能够证明什么
 
-- 能证明当前 M0-M3.2 的输入身份、处理规则、输出文件、主键、行数和已执行 validation 均有本地证据。
+- 能证明当前 M0-M3.3 的输入身份、处理规则、输出文件、主键、行数和已执行 validation 均有本地证据。
 - 能证明当前 processed 输出的 SHA256 与对应 validation JSON 记录一致。
 - 能证明已知的 missing、suppressed、confidential、aggregate、allocated、proxy 和 non-additive 字段没有在 M0-M2 中被静默改成普通零值或普通国家记录。
 - 能证明 Section 301 的口径是 gross statutory initial-action exposure，而不是 realized duties。
 - 能证明 M3.1 的 1,001 行 connector-sector-year 输出在两个冻结输入上可确定性重建，四条流总量守恒、policy 公式复算和 Stata alias 合同均通过。
 - 能证明 M3.2 的 273 行 long window 和 91 行 comparison 输出在冻结的 M3.1/时间窗口输入上可确定性重建，4/2/5 年窗口完整，level/coverage/policy/growth 公式和两个 Stata alias 合同均通过。
+- 能证明 M3.3 的 364 行 flow diagnostics 在冻结的 M3.2 comparison 输入上可确定性重建，small-base、robust-z、mechanical extreme、winsorized sensitivity、raw-value preservation 和 Stata alias 合同均通过。
 
 ### 0.2 本版不能证明什么
 
-- 本次没有从 raw 端完整重跑所有 M0-M2 大型 builder，因此整份 Material Passport 继续使用 `ANALYZED`；M3.1 和 M3.2 本身均在各自冻结输入上两次构建并比较输出 SHA256，单模块 validation 为 `VERIFIED`。
-- M3.3-M7 尚未完成。M3.2 已得到机械的 complete-window levels、changes 和 DH/log growth，但不能据此声称 small-base/异常增长处理、replacement ratio、connector ranking、production relocation、structural moments 或 welfare counterfactual 已经完成。
+- 本次没有从 raw 端完整重跑所有 M0-M2 大型 builder，因此整份 Material Passport 继续使用 `ANALYZED`；M3.1、M3.2 和 M3.3 本身均在各自冻结输入上两次构建并比较输出 SHA256，单模块 validation 为 `VERIFIED`。
+- M3.4-M7 尚未完成。M3.3 已得到正式 small-base、异常增长和 winsorized sensitivity diagnostics，但不能据此声称 replacement ratio、connector ranking、production relocation、structural moments 或 welfare counterfactual 已经完成。
 - FDI 只能作为 financial-flow/position evidence，不能单独证明 plant entry 或 production relocation。
 - BACI 和 Census 的贸易模式不能单独证明 connector 本地生产增加。
 
@@ -93,7 +94,8 @@ M3.1 和 M3.2 已执行并在冻结输入上完成确定性重建；M3.3-M7 尚�
     -> M2 product treatment + connector trade + Census timing interface
     -> M3.1 connector-sector-year年度聚合                [已完成]
     -> M3.2完整窗口、变化和机械增长变量                  [已完成]
-    -> M3.3-M3.6 small-base、replacement和ranking inputs [未开始]
+    -> M3.3 small-base、异常增长和敏感性诊断             [已完成]
+    -> M3.4-M3.6 replacement和ranking inputs             [未开始]
     -> M4 production-side long table                    [未开始]
     -> M5 trade-production evidence merge               [未开始]
     -> M6 ranking/rerouting/moments/model decision       [未开始]
@@ -108,7 +110,8 @@ M3.1 和 M3.2 已执行并在冻结输入上完成确定性重建；M3.3-M7 尚�
 | M2 | 已完成 | treatment、trade legs、merged trade、Census 月/年表、2024 exact HTS extension | 所有自然键无重复；金额守恒 |
 | M3.1 | 已完成 | 1,001 行 connector-sector-year annual trade/treatment panel | validation PASS；确定性 hash 一致 |
 | M3.2 | 已完成 | 273 行 long window 与 91 行 comparison/growth panel | validation PASS；两张确定性 hash 一致 |
-| M3.3-M3.6 | 未开始 | small-base、异常增长、replacement、ranking、sensitivity inputs | 下一步仅为 M3.3 |
+| M3.3 | 已完成 | 364 行 flow-level small-base、异常增长与 winsorized sensitivity diagnostics | validation PASS；确定性 hash 一致 |
+| M3.4-M3.6 | 未开始 | replacement、ranking、比较组和 sensitivity inputs | 下一步仅为 M3.4 |
 | M4-M6 | 未开始 | production long、integrated evidence、ranking/moments | 不得提前声称结果 |
 | M7 | 未开始 | full rebuild、release、Stata package | 最终交付门槛 |
 
@@ -675,6 +678,9 @@ python code\data_processing\build_connector_trade_sector_panel.py --project-root
 # M3.2
 python code\data_processing\build_connector_trade_sector_window_panel.py --project-root . --overwrite
 
+# M3.3
+python code\data_processing\build_connector_trade_sector_growth_diagnostics.py --project-root . --overwrite
+
 # 审计 PDF
 python code\data_processing\build_data_processing_audit_pdf.py --project-root . --overwrite
 python code\data_processing\build_data_processing_audit_pdf.py `
@@ -684,7 +690,7 @@ python code\data_processing\build_data_processing_audit_pdf.py `
   --overwrite
 ```
 
-当前 M0-M3.2 还没有单一 orchestration entry；它是 M7.1 的必做项。合作者若现在复核，应按上述顺序执行并逐个查看同名 validation JSON/Markdown。完整重跑会处理超过 123 million BACI rows，应将临时目录和缓存显式指向项目 F 盘。若只复核 M3.2，先确认 M3.1 output 与 `time_windows.yaml` 的 SHA256，再单独运行 M3.2 builder；正式输出先在 `tmp/m3_2_candidates/` 构造和验证，第二次输出写入 `tmp/m3_2_determinism/` 比较，只有全部 PASS 才替换 canonical outputs，两个目录随后由 builder 清除。
+当前 M0-M3.3 还没有单一 orchestration entry；它是 M7.1 的必做项。合作者若现在复核，应按上述顺序执行并逐个查看同名 validation JSON/Markdown。完整重跑会处理超过 123 million BACI rows，应将临时目录和缓存显式指向项目 F 盘。若只复核 M3.3，先确认 M3.2 comparison SHA256，再单独运行 M3.3 builder；正式输出先在 `tmp/m3_3_candidates/` 构造和验证，第二次输出写入 `tmp/m3_3_determinism/` 比较，只有全部 PASS 才替换 canonical output，两个目录随后由 builder 清除。
 
 ## 12. M3-M7 的强制更新协议
 
@@ -923,9 +929,131 @@ Stata 接口影响：M3.2 只冻结 resolved aliases 和 32 字符约束，不�
 
 结论：M3.2 单模块允许作为 M3.3 的输入。它只提供机械窗口和增长变量；不能声称 small-base、异常增长处理、winsorization、replacement、ranking、production evidence 或 structural moments 已完成。
 
-### 12.5 M3.3-M3.6 预留记录
+### 12.5 M3.3 zero/small-base、异常增长与 winsorized sensitivity
 
-后续还必须记录 zero/small-base thresholds、异常增长和 winsorization/capping 规则、replacement/ranking component formulas、比较组保留和 sensitivity definitions。不得在 M3.2 输出上临时设阈值并当作正式 M3.3 结果。
+#### 12.5.1 输入冻结和模块边界
+
+M3.3 只读取：
+
+`data/processed/harmonized/connector_trade_sector_window_comparison.parquet`
+
+- input SHA256：`be5f3a025a81d36d5a9bb1bd137d4bed9325a68ab5f1cb7f4d946a2373fbeb04`；
+- rows/columns：91/142；
+- natural key：`connector_iso3, analysis_sector`；
+- Arrow schema signature：`8121b99f2557548ff0fcb4fb62602c997b4946a7f4fd585df924f4f04311fa3c`；
+- expected schema/construction versions：`connector_trade_sector_window_comparison_v1` / `connector_trade_sector_window_rules_v1`。
+
+冻结规则：
+
+- config：`configs/connector_trade_sector_growth_diagnostic_rules.yaml`；
+- config SHA256：`57fb88dce2632114de692b46dd13cd9ea573cec79709af8ce4231339c53cde56`；
+- builder：`code/data_processing/build_connector_trade_sector_growth_diagnostics.py`；
+- construction version：`connector_trade_sector_growth_diagnostic_rules_v1`；
+- output schema：`connector_trade_sector_growth_diagnostics_v1`。
+
+Builder 不修改 M3.2 comparison、M3.2 long、M3.1、M0-M2、raw/archive/legacy 或 `_staging*`。它只把 91 个 connector-sector observations 重整为四条 flow 的自然长表，形成 364 行；不构造 replacement ratio、ranking、production-side fields 或 structural moments。
+
+#### 12.5.2 输出结构和源值继承
+
+输出：
+
+| Output | Rows/columns | Grain / key | SHA256 |
+|---|---:|---|---|
+| `data/processed/harmonized/connector_trade_sector_growth_diagnostics.parquet` | 364 / 64 | `connector_iso3, analysis_sector, flow_id` | `fe69d953cd84a2acfc64ddb17b1ee57e3d0e44f7b44cad348f9016aee7e0953d` |
+
+`flow_id` 固定为 China→connector、East Asia→connector、connector→USA 和跨 connector 重复的 China→USA benchmark。每个 connector-sector 恰好四行；output key duplicate 0，缺失 flow 的 connector-sector cell 0。
+
+从 M3.2 逐 flow 继承：
+
+- pre/shock/post annual-mean trade levels；
+- post-pre level change；
+- raw DH growth 和 raw positive-base log growth；
+- pre/post zero 与 DH/log defined flags；
+- 4/2/5 observed-year counts；
+- connector group、BACI code、TWN proxy 和 trade unit；
+- M3.2 construction version。
+
+Builder 逐 flow 回接输入并比较上述字段。金额字段容许差额 USD 0.01，growth 容许差额 `1e-12`；所有实际最大差额与 missing mismatch 均为 0。Post-pre change、DH 和 log 又从 pre/post 独立复算，实际公式误差均为 0。负 change 数 3/5/6/26 与 M3.2 完全相同，未截断、未改成缺失。DH 越界数 0，infinite numeric 数 0。
+
+#### 12.5.3 Small-base 规则和原因
+
+规则分为三部分：
+
+1. absolute：`value_usd_pre <= 25,000,000`；
+2. sector-relative：在 `flow_id × analysis_sector` 内对 13 个 connectors 的 pre value 取 nearest-rank p10，rank=`ceil(0.10×13)=2`，小于等于第二小值者 flagged；
+3. combined：`pre_zero OR absolute OR sector-relative`。
+
+USD 25 million 是 extreme-small annual-mean pre level 的透明绝对门槛；sector-relative p10 防止大型 sector 中绝对金额不小但相对极小的 cell 被忽略。两者并列保留，后续可以分别做 absolute-only、relative-only 和 no-threshold robustness，而不是把一个经验阈值伪装为唯一经济定义。Nearest-rank 而非插值 percentile 使 13-cell 小组的 flagged observation 集清楚、可在 Stata 中复算。
+
+China→USA benchmark 在每个 sector 跨 13 个 connectors 机械重复，对重复值做 connector-relative p10 没有统计含义。因此 91 行明确设为 `sector_relative_threshold_applicable=false`，relative cutoff missing、flag false；该 missing 是不适用状态，不是原始数据缺失。
+
+当前 counts：
+
+| Flow | Absolute | Sector-relative | Combined | Primary DH eligible | No-threshold DH eligible |
+|---|---:|---:|---:|---:|---:|
+| China→connector | 0 | 14 | 14 | 77 | 91 |
+| East Asia→connector | 0 | 14 | 14 | 77 | 91 |
+| connector→USA | 4 | 14 | 14 | 77 | 91 |
+| China→USA | 0 | 0 | 0 | 91 | 91 |
+
+四个 absolute-small cells 是 MAR electrical equipment、MAR machinery、MAR medical devices 和 TUR medical devices 的 connector→USA pre levels；均已包含在相对门槛的 14 个 cells 中。`dh_growth_primary_eligible` 和 `log_growth_robustness_eligible` 排除 combined small base；`dh_growth_no_threshold_eligible` 只要求 DH defined，使合作者可以复核阈值敏感性。当前没有 pre/post zero，但 zero rule 仍存在于 schema 中。
+
+#### 12.5.4 异常增长规则和保留方式
+
+每个 `flow_id × analysis_sector` 使用：
+
+```text
+robust_z = 0.6744897501960817 × (DH - median(DH)) / MAD(DH)
+robust_z_outlier = |robust_z| > 3.5
+mechanical_extreme = |DH| >= 1.5
+abnormal_growth = robust_z_outlier OR mechanical_extreme
+```
+
+MAD=0 时不除以 0，robust z missing、defined false。当前 7 个 MAD-zero groups 正好是七个 China→USA sector benchmarks；因为每个 sector 的共同 benchmark 在 13 个 connectors 上重复，共有 91 行预期的 robust-z missing。
+
+当前 robust-z / mechanical / combined counts：
+
+- China→connector：1/0/1；
+- East Asia→connector：1/0/1；
+- connector→USA：1/3/4；
+- China→USA：0/0/0。
+
+六个 combined abnormal cells 为 PHL textiles/apparel 的 China→connector、POL other manufacturing 的 East Asia→connector，以及 IND electronics、MAR medical devices、VNM electrical equipment、VNM other manufacturing 的 connector→USA。`abnormal_growth_is_advisory=true`：这些行不自动删除、不覆盖 raw growth，也不因 flag 本身改变 primary eligibility。这样可以让合作者同时报告含/不含 review flags 的 robustness，避免数据清理规则预先决定结论。
+
+#### 12.5.5 Winsorized sensitivity
+
+Raw DH/log 保持独立字段。另在每个 `flow_id` 的 91-cell pooled sample 内，以 pandas/numpy linear/type-7 quantile 计算 p5/p95，并生成：
+
+```text
+winsorized_growth = min(max(raw_growth, p5_flow), p95_flow)
+```
+
+DH 与 log 在前三条 connector-specific flows 各有 10 行受影响；China→USA 为 0，因为每个 sector 的 13 行重复使 p5/p95 等于实际最小/最大 sector value。Cutoffs、reference count、affected flag 和 scope 均写入每行。`winsorized_values_for_sensitivity_only=true`；后续 ranking 不能静默用 winsorized value 替代 raw value。Level change 不 winsorize，且 `raw_level_change_preserved=true`。
+
+Winsorization 采用 flow-level pooled sample，而不是 13-cell flow-sector group：后者样本太小，p5/p95 会机械影响每个 sector 的边缘 observations，并把 sector 内相对位置误当成跨 sector 可比的异常值。Pooled p5/p95 只提供透明的总体尾部敏感性；sector heterogeneity 仍由 raw values、sector-relative small-base 和后续 sector-specific ranking 分开处理。
+
+#### 12.5.6 Validation、Stata 和确定性
+
+- validation：`data/validation/connector_trade_sector_growth_diagnostics_validation.json/.md`；
+- status/failure count：PASS/0；
+- input/output duplicate keys：0/0；
+- four-flow incomplete cell count：0；
+- connector/sector/flow counts：13/7/4；
+- relative reference/rank：13/2；
+- MAD-zero groups：7；
+- China→USA repeated-field inconsistencies：0；
+- TWN rows/proxy false：28/0；
+- 64 个 Stata aliases 全覆盖、唯一、不超过 32 字符，实际最长 11；
+- required version fields missing count 全部为 0 且各只有一个值；
+- output numeric infinities：0。
+
+Builder 先写入项目 F 盘 `tmp/m3_3_candidates/`；随后重新读取冻结输入，在 `tmp/m3_3_determinism/` 完整构造第二张 Parquet。Candidate 与 second-build SHA256 均为 `fe69d9...953d`，完全一致。只有 validation PASS 后 candidate 才替换 canonical output；两个临时目录均确认不存在。
+
+第一次候选运行的数值和核心 flags 通过，但人工 null audit 发现 `m3_window_construction_version` 直接按原 input index 赋给 concat 后 long table，只有前 91 行有值、其余 273 行 missing。该候选没有进入提交。Builder 改为先验证 input version 唯一，再把唯一值作为常量写入 364 行，并新增 version fields zero-missing/one-unique 强制门槛；重建后的最终 SHA256 为上述 `fe69d9...953d`。这说明公式 PASS 不能替代字段级人工核查。
+
+Stata `.dta` 仍留到 M7。届时本表 aliases 应执行 `isid conn_iso3 ana_sector flow_id`，并复核 91 个 relative-cutoff missing 与 91 个 robust-z missing 均只出现在 China→USA 的不适用/MAD-zero状态。
+
+结论：M3.3 允许作为 M3.4 的诊断输入。它已完成 zero/small-base、异常增长和 winsorized sensitivity 规则，但尚未构造 replacement、ranking、production evidence 或 structural moments。
 
 ### 12.6 M4 预留记录
 
@@ -959,12 +1087,13 @@ production long table 必须逐源记录：ICIO accounting fields、AMNE allocat
 | 2026-07-28 | M3.1 | 仅在文档登记 Stata aliases 无法形成机器门槛 | 将完整 70-field alias map 冻结进 config；validation 强制检查覆盖、唯一性和 32-character limit | M7 可按固定 alias export，但本阶段未生成 `.dta` |
 | 2026-07-28 | M3.2 | long grain 与 post-pre growth 的自然 grain 不一致 | 采用 273-row long window + 91-row comparison 两表接口，避免同一 growth 在三个 window rows 重复 | long 用于窗口水平；comparison 用于一次性 post-pre 比较 |
 | 2026-07-28 | M3.2 | comparison 开发构建出现 pandas fragmentation 性能警告 | 改为一次性 concat derived columns；重新构建无警告，两个 Parquet hash 未变化，validation PASS | 清除运行噪声；数值和 schema 不变 |
+| 2026-07-28 | M3.3 | 首次 long candidate 的 M3.2 version 按原 input index 对齐，造成后 273 行 version missing | 拒绝完成状态；改为验证 source version 唯一后写入常量，并新增 version zero-missing/one-unique gate；重建 PASS | 数值与 flags 未受影响；最终 364 行 provenance 完整，候选错误未提交 |
 
 ## 14. 当前未解决限制和是否需要补数据
 
-| 限制 | 是否影响已完成 M3.1-M3.2 / 下一步 M3.3 | 可能的后续动作 |
+| 限制 | 是否影响已完成 M3.1-M3.3 / 下一步 M3.4 | 可能的后续动作 |
 |---|---|---|
-| BACI quantity 缺失 | 不影响 value-based M3.1/M3.2 | 保持 value-based；除非研究明确需要 physical quantity 才找替代 |
+| BACI quantity 缺失 | 不影响 value-based M3.1-M3.3 | 保持 value-based；除非研究明确需要 physical quantity 才找替代 |
 | Census quantity unavailable | 不影响 | 禁止 quantity analysis；不需为 M3.2 补下载 |
 | Census 只有 15 origins | 否 | 只作 configured-origin timing validation；all-origin denominator 用 BACI |
 | Section 301 historical exclusions 未应用 | 否，但限制 causal interpretation | 若需要 realized-duty measure，单独开 policy extension |
@@ -976,7 +1105,7 @@ production long table 必须逐源记录：ICIO accounting fields、AMNE allocat
 | Mexico confidential cells | 否 | 不补 0；报告 disclosed composition 和 national total 分开 |
 | INEGI/Vietnam GSO/Statistics Canada 未下载 | 否 | M4-M6 若出现关键 output/employment gap，再定向补充 |
 
-结论：这些主要是定义、覆盖和可比性限制，不是“核心下载只完成一半”。M3.1-M3.2 已在现有数据上完成；进入 M3.3 不需要继续泛化下载，但以后必须根据具体 empirical gap 决定是否补国家统计数据。
+结论：这些主要是定义、覆盖和可比性限制，不是“核心下载只完成一半”。M3.1-M3.3 已在现有数据上完成；进入 M3.4 不需要继续泛化下载，但以后必须根据具体 empirical gap 决定是否补国家统计数据。
 
 ## 15. Stata 合作者交付合同
 
@@ -991,6 +1120,7 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 - repeated/non-additive fields 有变量标签和 README 警告；
 - M3.1 已冻结 70 个无重复 alias，最长 14 字符；M7 实际导出时仍必须再次对 `.dta` 验证，不能把本次 alias 检查当作 export 已完成；
 - M3.2 已冻结 long 79 个和 comparison 142 个无重复 alias，最长均为 13 字符；M7 必须分别导出并验证两个 key，不能把 alias 检查当作 `.dta` 已生成；
+- M3.3 已冻结 flow diagnostics 64 个无重复 alias，最长 11 字符；M7 必须验证 `isid conn_iso3 ana_sector flow_id`，并核实 91 个 relative-cutoff missing 和 91 个 robust-z missing 是 China→USA 的设计状态；
 - `STATATMP` 指向项目 F 盘目录；
 - 提供 batch `.do`：逐表 `use`、`describe`、`isid`、关键 `assert`、`summarize`，并在 log 写明确 success marker；
 - 提供推荐 merge 顺序，禁止合作者直接把 product-level trade 与 country-sector production 做 many-to-many merge。
@@ -1020,6 +1150,10 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 - [ ] 确认 17/11 denominator 异常在三个窗口中保留，负变化 3/5/6/26 未截断，policy growth fields 为 0。
 - [ ] 确认 TWN long/comparison rows 为 21/7、所有 required repeated/non-additive flags 为 true。
 - [ ] 确认 long 79 个、comparison 142 个 Stata aliases 完整、唯一且不超过 32 字符；不要误认为两个 `.dta` 已导出。
+- [ ] 确认 M3.3 每个 connector-sector 恰好 4 个 flows，364 行主键唯一，raw level/change/growth 与 M3.2 完全一致。
+- [ ] 独立复算 USD 25 million absolute、nearest-rank p10 relative、robust-z/MAD、`|DH|>=1.5` 和 flow-level p5/p95 winsorized alternatives。
+- [ ] 确认 China→USA 的 91 个 relative-cutoff missing 与 91 个 robust-z missing 有对应 not-applicable/MAD-zero flags，不能填 0。
+- [ ] 确认 64 个 M3.3 Stata aliases 完整唯一，TWN 28 行 proxy 完整，winsorized/abnormal flags 不自动覆盖或删除 raw observations。
 - [ ] 确认 PDF build summary 的 Markdown SHA256 与当前文档一致。
 - [ ] M3-M7 每完成一项后复核本档案已同步更新。
 
@@ -1045,8 +1179,9 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 - `configs/section301_2024_review_rules.yaml`
 - `configs/connector_trade_sector_rules.yaml`
 - `configs/connector_trade_sector_window_rules.yaml`
+- `configs/connector_trade_sector_growth_diagnostic_rules.yaml`
 
-### 17.2 M0-M3.2 validation
+### 17.2 M0-M3.3 validation
 
 - `data/validation/data_merge_input_manifest.json/.md`
 - `data/validation/data_merge_input_quality_audit.json/.md`
@@ -1064,6 +1199,7 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 - `data/validation/section301_2024_review_extension_validation.json/.md`
 - `data/validation/connector_trade_sector_panel_validation.json/.md`
 - `data/validation/connector_trade_sector_window_validation.json/.md`
+- `data/validation/connector_trade_sector_growth_diagnostics_validation.json/.md`
 
 ### 17.3 source-specific provenance
 
@@ -1081,5 +1217,6 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 | v0.1.1 | 2026-07-27 | M0-M2 | 将变量构造目录登记为配套正式合同；要求 M3-M7 同步更新两份 Markdown、两份 PDF 和对应 build summary。 |
 | v0.2.0 | 2026-07-28 | M0-M3.1 | 登记 M3.1 冻结输入、canonical crosswalk join、eligibility、四条流和 policy 公式、1,001 × 70 输出、flow reconciliation、17/11 denominator 异常、TWN/repeated flags、Stata aliases、确定性 hash 和开发期字段重命名。 |
 | v0.3.0 | 2026-07-28 | M0-M3.2 | 登记 M3.2 冻结 M3.1/time-window 输入、两表 grain、4/2/5 年完整窗口、annual-mean/ratio-of-sums/policy/growth 公式、273 × 79 与 91 × 142 输出、17/11 异常、负变化、TWN/repeated flags、79/142 aliases、候选输出规则和两个确定性 hash。 |
+| v0.4.0 | 2026-07-28 | M0-M3.3 | 登记 M3.3 冻结 M3.2 comparison 输入、364 × 64 flow-level diagnostics、USD 25 million/nearest-rank p10 small-base、robust-z/MAD 与 mechanical extreme、p5/p95 winsorized sensitivity、raw preservation、TWN/repeated flags、64 aliases、确定性 hash 和 version-field 修复。 |
 
-下一次更新触发点：M3.3 的 small-base/异常增长规则、builder、config、output 和 validation 全部完成时，同步更新本档案与变量目录并重建两份 PDF，再单独勾选 M3.3。
+下一次更新触发点：M3.4 的 replacement、source input、exposure overlap 和 co-movement rules、builder、config、output 和 validation 全部完成时，同步更新本档案与变量目录并重建两份 PDF，再单独勾选 M3.4。

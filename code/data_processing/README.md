@@ -4,7 +4,7 @@ This directory contains reproducible `data/interim/` to `data/processed/` pipeli
 
 ## Current stage
 
-M0, M1, M2, M3.1, and M3.2 in `data/data_merge_checklist.md` are complete. The next task is M3.3. M3.2 contains complete-window annual means and mechanical post-pre change/DH/log growth only; it does not contain small-base thresholds, abnormal-growth treatment, winsorization, replacement ratios, or rankings.
+M0, M1, M2, M3.1, M3.2, and M3.3 in `data/data_merge_checklist.md` are complete. The next task is M3.4. M3.3 adds a separate flow-level interface for small-base eligibility, advisory abnormal-growth flags, and winsorized sensitivity measures while preserving every M3.2 raw level, change, and growth value. It does not contain replacement ratios or rankings.
 
 ## Living collaborator audit and variable contract
 
@@ -181,6 +181,26 @@ Output SHA256 values:
 - comparison: `be5f3a025a81d36d5a9bb1bd137d4bed9325a68ab5f1cb7f4d946a2373fbeb04`.
 
 Validation status is PASS. Both outputs were rebuilt a second time in `tmp/m3_2_determinism/`; each SHA256 matched exactly, and both the determinism and candidate directories were removed. The 79 long aliases and 142 comparison aliases are complete, unique, and at most 13 characters. `.dta` export remains an M7 task.
+
+## M3.3 growth diagnostics
+
+Run the validated single-module builder from the project root:
+
+```powershell
+python code\data_processing\build_connector_trade_sector_growth_diagnostics.py --project-root . --overwrite
+```
+
+Registered files:
+
+- config: `configs/connector_trade_sector_growth_diagnostic_rules.yaml`;
+- canonical output: `data/processed/harmonized/connector_trade_sector_growth_diagnostics.parquet`;
+- validation: `data/validation/connector_trade_sector_growth_diagnostics_validation.json` and `.md`.
+
+The output has 364 rows and 64 columns at `connector_iso3 × analysis_sector × flow_id`: four flow rows for each of the 91 M3.2 connector-sector comparison cells. It copies and reconciles pre/shock/post levels, post-pre level change, raw DH/log growth, zero/defined flags, and observed-year counts from M3.2.
+
+The frozen small-base rule combines pre zero, an absolute pre annual-mean threshold of USD 25 million, and a nearest-rank 10th-percentile threshold within each connector-specific `flow_id × analysis_sector` group. The repeated China-to-USA benchmark does not receive a connector-relative threshold. Robust-z/MAD and `|DH| >= 1.5` flags are advisory only. Flow-level p5/p95 linear/type-7 winsorized DH/log values are sensitivity variables; they never overwrite raw growth or level change.
+
+Validation status is PASS. The natural key is unique, every connector-sector has four flows, source and formula reconciliation gaps are zero, TWN has 28 proxy rows, and all 64 Stata aliases are unique and at most 11 characters. The output was rebuilt in `tmp/m3_3_determinism/`; its SHA256 matched `fe69d953cd84a2acfc64ddb17b1ee57e3d0e44f7b44cad348f9016aee7e0953d`, and candidate/determinism directories were removed. `.dta` export remains an M7 task.
 
 ## Stata handoff contract
 

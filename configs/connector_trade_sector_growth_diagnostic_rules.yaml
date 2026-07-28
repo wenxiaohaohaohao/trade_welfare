@@ -1,0 +1,241 @@
+version: connector_trade_sector_growth_diagnostic_rules_v1
+status: frozen_for_m3_3
+frozen_date: 2026-07-28
+schema_version: connector_trade_sector_growth_diagnostics_v1
+
+inputs:
+  connector_trade_sector_window_comparison:
+    path: data/processed/harmonized/connector_trade_sector_window_comparison.parquet
+    sha256: be5f3a025a81d36d5a9bb1bd137d4bed9325a68ab5f1cb7f4d946a2373fbeb04
+    expected_rows: 91
+    expected_columns: 142
+    arrow_schema_signature_sha256: 8121b99f2557548ff0fcb4fb62602c997b4946a7f4fd585df924f4f04311fa3c
+    natural_key: [connector_iso3, analysis_sector]
+    expected_schema_version: connector_trade_sector_window_comparison_v1
+    expected_construction_version: connector_trade_sector_window_rules_v1
+
+analysis:
+  connectors:
+    - CAN
+    - IDN
+    - IND
+    - KOR
+    - MAR
+    - MEX
+    - MYS
+    - PHL
+    - POL
+    - THA
+    - TUR
+    - TWN
+    - VNM
+  sectors:
+    - autos
+    - electrical_equipment
+    - electronics
+    - machinery
+    - medical_devices
+    - other_manufacturing
+    - textiles_apparel
+  expected_connector_sector_cells: 91
+  expected_output_rows: 364
+
+trade_flows:
+  china_to_connector:
+    order: 1
+    label: China to connector
+    repeated_across_connectors: false
+    not_additive_across_connectors: false
+    sector_relative_threshold_applicable: true
+  east_asia_to_connector:
+    order: 2
+    label: East Asia to connector
+    repeated_across_connectors: false
+    not_additive_across_connectors: false
+    sector_relative_threshold_applicable: true
+  connector_to_usa:
+    order: 3
+    label: Connector to United States
+    repeated_across_connectors: false
+    not_additive_across_connectors: false
+    sector_relative_threshold_applicable: true
+  china_to_usa:
+    order: 4
+    label: China to United States common benchmark
+    repeated_across_connectors: true
+    not_additive_across_connectors: true
+    sector_relative_threshold_applicable: false
+
+small_base:
+  absolute:
+    threshold_usd: 25000000
+    comparison_operator: less_than_or_equal
+    rationale: extreme_small_annual_mean_pre_trade_value
+  sector_relative:
+    percentile: 0.10
+    quantile_rule: nearest_rank
+    group_fields: [flow_id, analysis_sector]
+    expected_reference_cell_count: 13
+    flag_operator: less_than_or_equal_to_group_cutoff
+    common_repeated_benchmark_applicable: false
+  combined_rule: pre_zero_or_absolute_or_sector_relative
+  zero_values_are_small_base: true
+  changes_raw_values: false
+
+abnormal_growth:
+  robust_z:
+    group_fields: [flow_id, analysis_sector]
+    center: median
+    scale: median_absolute_deviation
+    consistency_constant: 0.6744897501960817
+    absolute_threshold: 3.5
+    undefined_when_mad_zero: true
+  mechanical_extreme:
+    absolute_dh_threshold: 1.5
+    implied_post_pre_ratio_boundary: 7.0
+  combined_rule: robust_z_outlier_or_absolute_dh_at_least_threshold
+  advisory_only: true
+  automatic_exclusion: false
+
+winsorization:
+  lower_percentile: 0.05
+  upper_percentile: 0.95
+  quantile_rule: linear_type_7
+  group_fields: [flow_id]
+  expected_reference_cell_count: 91
+  variables:
+    - value_usd_dh_growth_post_pre_raw
+    - value_usd_log_growth_post_pre_raw
+  sensitivity_only: true
+  overwrite_raw_values: false
+  winsorize_level_change: false
+
+outputs:
+  diagnostics:
+    path: data/processed/harmonized/connector_trade_sector_growth_diagnostics.parquet
+    natural_key: [connector_iso3, analysis_sector, flow_id]
+    expected_rows: 364
+    schema_version: connector_trade_sector_growth_diagnostics_v1
+    stata_aliases:
+      connector_iso3: conn_iso3
+      analysis_sector: ana_sector
+      flow_id: flow_id
+      flow_order: flow_ord
+      flow_label: flow_label
+      connector_group: conn_group
+      connector_baci_code: conn_baci
+      connector_is_proxy: is_proxy
+      trade_value_unit: val_unit
+      value_usd_pre: val_pre
+      value_usd_shock: val_shock
+      value_usd_post: val_post
+      value_usd_change_post_pre: d_value
+      value_usd_dh_growth_post_pre_raw: gdh_raw
+      value_usd_log_growth_post_pre_raw: gln_raw
+      pre_zero_flag: pre_zero
+      post_zero_flag: post_zero
+      dh_growth_defined: dh_defined
+      log_growth_defined: log_defined
+      years_observed_pre: years_pre
+      years_observed_shock: years_shock
+      years_observed_post: years_post
+      absolute_small_base_threshold_usd: sb_abs_cut
+      absolute_small_base_flag: sb_abs
+      sector_relative_threshold_applicable: sb_rel_app
+      sector_relative_percentile: sb_rel_pct
+      sector_relative_reference_cell_count: sb_rel_n
+      sector_relative_nearest_rank: sb_rel_rank
+      sector_relative_pre_value_cutoff_usd: sb_rel_cut
+      sector_relative_small_base_flag: sb_rel
+      small_base_flag: small_base
+      dh_growth_primary_eligible: dh_prim_ok
+      log_growth_robustness_eligible: log_rob_ok
+      dh_growth_no_threshold_eligible: dh_nothr_ok
+      robust_z_group_median_dh: dh_med
+      robust_z_group_mad_dh: dh_mad
+      robust_z_score_dh: dh_rob_z
+      robust_z_defined: dh_rob_ok
+      robust_z_absolute_threshold: dh_rob_cut
+      robust_z_outlier_flag: dh_rob_out
+      mechanical_extreme_abs_dh_threshold: dh_ext_cut
+      mechanical_extreme_dh_flag: dh_extreme
+      abnormal_growth_flag: abn_growth
+      abnormal_growth_is_advisory: abn_advis
+      winsor_lower_percentile: win_p_lo
+      winsor_upper_percentile: win_p_hi
+      winsor_reference_cell_count: win_ref_n
+      dh_winsor_lower_cutoff: dh_win_lo
+      dh_winsor_upper_cutoff: dh_win_hi
+      dh_growth_winsorized: dh_win
+      dh_winsorized_affected_flag: dh_win_chg
+      log_winsor_lower_cutoff: log_win_lo
+      log_winsor_upper_cutoff: log_win_hi
+      log_growth_winsorized: log_win
+      log_winsorized_affected_flag: log_win_chg
+      winsorization_scope: win_scope
+      winsorized_values_for_sensitivity_only: win_sens
+      raw_level_change_preserved: raw_d_keep
+      flow_repeated_across_connectors: flow_repeat
+      flow_not_additive_across_connectors: flow_nonadd
+      m3_window_construction_version: m3_winver
+      m3_growth_diagnostic_version: m3_diagver
+      rules_config_sha256: rules_hash
+      schema_version: schema_ver
+
+validation_outputs:
+  json: data/validation/connector_trade_sector_growth_diagnostics_validation.json
+  markdown: data/validation/connector_trade_sector_growth_diagnostics_validation.md
+
+validation:
+  numeric_tolerance: 1.0e-12
+  value_tolerance_usd: 0.01
+  require_deterministic_parquet_sha256: true
+  candidate_temp_directory: tmp/m3_3_candidates
+  determinism_temp_directory: tmp/m3_3_determinism
+  expected_pre_zero_count_by_flow:
+    china_to_connector: 0
+    east_asia_to_connector: 0
+    connector_to_usa: 0
+    china_to_usa: 0
+  expected_negative_change_count_by_flow:
+    china_to_connector: 3
+    east_asia_to_connector: 5
+    connector_to_usa: 6
+    china_to_usa: 26
+  expected_absolute_small_base_count_by_flow:
+    china_to_connector: 0
+    east_asia_to_connector: 0
+    connector_to_usa: 4
+    china_to_usa: 0
+  expected_sector_relative_small_base_count_by_flow:
+    china_to_connector: 14
+    east_asia_to_connector: 14
+    connector_to_usa: 14
+    china_to_usa: 0
+  expected_combined_small_base_count_by_flow:
+    china_to_connector: 14
+    east_asia_to_connector: 14
+    connector_to_usa: 14
+    china_to_usa: 0
+  expected_robust_z_outlier_count_by_flow:
+    china_to_connector: 1
+    east_asia_to_connector: 1
+    connector_to_usa: 1
+    china_to_usa: 0
+  expected_mechanical_extreme_count_by_flow:
+    china_to_connector: 0
+    east_asia_to_connector: 0
+    connector_to_usa: 3
+    china_to_usa: 0
+  expected_abnormal_growth_count_by_flow:
+    china_to_connector: 1
+    east_asia_to_connector: 1
+    connector_to_usa: 4
+    china_to_usa: 0
+  expected_winsor_affected_count_by_flow:
+    china_to_connector: 10
+    east_asia_to_connector: 10
+    connector_to_usa: 10
+    china_to_usa: 0
+  expected_mad_zero_group_count: 7
+  expected_twn_rows: 28

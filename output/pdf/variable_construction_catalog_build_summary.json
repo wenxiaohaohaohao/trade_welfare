@@ -1,19 +1,24 @@
 {
   "validation_status": "PASS",
-  "generated_at_utc": "2026-07-28T11:13:57.370850+00:00",
+  "generated_at_utc": "2026-07-28T11:42:44.701979+00:00",
   "source_path": "F:/working_paper_wenxiao/trade_welfare/docs/variable_construction_catalog.md",
-  "source_sha256": "7bccd2937d48eb26e713876c2c64ffabaacc3123a6393ca3a2e0208feb0549d5",
-  "source_character_count": 49986,
+  "source_sha256": "3cbec477979a74e86167c61dd5451beae808dba56ef8e6d8b3f46809175ee427",
+  "source_character_count": 56233,
   "output_path": "F:/working_paper_wenxiao/trade_welfare/output/pdf/variable_construction_catalog.pdf",
-  "output_sha256": "433233a6e03c6284b47a0f18b87bf8f28b5f1e003630ff5bcfd707e4c679efe7",
-  "output_size_bytes": 423648,
-  "page_count": 23,
-  "extracted_character_count": 52678,
+  "output_sha256": "d3e29622feaaaa925d34fea09610731b4087691d0dea6a763eb97a96e7175a8f",
+  "output_size_bytes": 442276,
+  "page_count": 25,
+  "extracted_character_count": 59389,
   "title_check_pass": true,
   "reportlab_version": "4.5.1",
   "font_regular": "C:\\Windows\\Fonts\\msyh.ttc",
   "font_bold": "C:\\Windows\\Fonts\\msyhbd.ttc",
-  "rendering_review_status": "PASS_ALL_PAGES_RENDERED_AND_INSPECTED",
-  "rendered_page_count": 23,
-  "visual_defect_count": 0
+  "rendering_review_status": "PASS_ALL_PAGES",
+  "rendering_review_page_count": 25,
+  "rendering_review_checks": [
+    "Chinese font rendering",
+    "table boundaries",
+    "page breaks",
+    "text clipping"
+  ]
 }

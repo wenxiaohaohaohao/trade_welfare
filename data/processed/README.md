@@ -1,6 +1,6 @@
 # Processed Data
 
-This directory contains reproducible harmonized outputs built from the validated source-specific files in `data/interim/`. It now contains completed M1 concordances, M2 product-level treatment/trade interfaces, the M3.1 annual connector-sector panel, and the M3.2 complete-window/growth interfaces. It does not yet contain M3.3-M3.6 small-base, replacement, ranking, or sensitivity variables, or production-integration panels.
+This directory contains reproducible harmonized outputs built from the validated source-specific files in `data/interim/`. It now contains completed M1 concordances, M2 product-level treatment/trade interfaces, the M3.1 annual connector-sector panel, the M3.2 complete-window/growth interfaces, and the M3.3 flow-level growth diagnostics. It does not yet contain M3.4-M3.6 replacement/ranking inputs or production-integration panels.
 
 The complete collaborator audit is `docs/data_processing_audit_trail.md`; the variable-level construction contract is `docs/variable_construction_catalog.md`. Their fixed PDF versions are `output/pdf/data_processing_audit_trail.pdf` and `output/pdf/variable_construction_catalog.pdf`. Starting with M3.1, every completed processed-data step must update both Markdown sources and both PDFs before its checklist item is marked complete.
 
@@ -85,6 +85,12 @@ M2 builders and validation:
 - Builder/config: `code/data_processing/build_connector_trade_sector_window_panel.py` and `configs/connector_trade_sector_window_rules.yaml`.
 - Validation: `data/validation/connector_trade_sector_window_validation.json` and `.md`, status PASS. Formula/reconciliation gaps are zero; deterministic SHA256 values are `310da7f289d8760d3ead34215a294be18275c758a2084cfd9f905988b695e704` and `be5f3a025a81d36d5a9bb1bd137d4bed9325a68ab5f1cb7f4d946a2373fbeb04`.
 
-The next build stage is M3.3 zero/small-base and abnormal-growth rules. Production sources must later use the validated source-sector join eligibility rather than directly matching source labels.
+## Completed M3.3 harmonized output
+
+- `harmonized/connector_trade_sector_growth_diagnostics.parquet`: 364 rows and 64 columns at `connector_iso3, analysis_sector, flow_id`. It preserves the four flows' M3.2 levels, changes, raw DH/log growth, zero/defined flags, and year counts; adds absolute and sector-relative small-base eligibility; adds advisory robust-z/mechanical abnormal-growth flags; and provides flow-level p5/p95 winsorized DH/log alternatives for sensitivity only.
+- Builder/config: `code/data_processing/build_connector_trade_sector_growth_diagnostics.py` and `configs/connector_trade_sector_growth_diagnostic_rules.yaml`.
+- Validation: `data/validation/connector_trade_sector_growth_diagnostics_validation.json` and `.md`, status PASS. The key is unique, source/formula checks have zero gap, all 64 Stata aliases pass, and deterministic SHA256 is `fe69d953cd84a2acfc64ddb17b1ee57e3d0e44f7b44cad348f9016aee7e0953d`.
+
+The next build stage is M3.4 replacement, connector-growth, source-input, and exposure-overlap indicators. Production sources must later use the validated source-sector join eligibility rather than directly matching source labels.
 
 Every processed output must be reproducible from `data/interim/`, documented by a build script, and retain source/provenance fields needed to audit aggregation and suppression.

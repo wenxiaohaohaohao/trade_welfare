@@ -4,10 +4,10 @@
 
 - Origin Skill: `stata-latex-research`
 - Origin Date: `2026-07-27`
-- Verification Status: `VERIFIED_THROUGH_M3.2`
-- Version Label: `variable_catalog_v0.3.0`
-- Current Data Stage: `M0-M3.2 completed`
-- Next Construction Stage: `M3.3 not started`
+- Verification Status: `VERIFIED_THROUGH_M3.3`
+- Version Label: `variable_catalog_v0.4.0`
+- Current Data Stage: `M0-M3.3 completed`
+- Next Construction Stage: `M3.4 not started`
 - Canonical Format: Parquet
 - Collaborator Format: Stata `.dta`
 
@@ -24,7 +24,7 @@
 
 本目录同时包含三类变量：
 
-- `EXISTING_VALIDATED`：M2、M3.1 或 M3.2 已存在且 validation PASS；
+- `EXISTING_VALIDATED`：M2、M3.1、M3.2 或 M3.3 已存在且 validation PASS；
 - `PLANNED_M3` 至 `PLANNED_M6`：已经定义但尚未构造，必须在对应阶段完成后补充实际 output hash 和 validation；
 - `STRUCTURAL_TARGET_ONLY`：只能作为模型校准目标或输入候选，不能直接解释为已经识别的结构参数。
 
@@ -39,7 +39,7 @@
 | 状态 | 含义 |
 |---|---|
 | `EXISTING_VALIDATED` | 已在 processed Parquet 中存在，主键和 validation 已通过 |
-| `PLANNED_M3` | M3.3-M3.6 的 small-base、replacement、ranking 和 sensitivity inputs 尚未构造 |
+| `PLANNED_M3` | M3.4-M3.6 的 replacement、ranking 和 sensitivity inputs 尚未构造 |
 | `PLANNED_M4` | production-side standardized long table 时构造 |
 | `PLANNED_M5` | trade 和 production evidence 合并时构造 |
 | `PLANNED_M6` | ranking、rerouting、validation 和 structural moments 时构造 |
@@ -56,6 +56,7 @@
 | `G_CONN_SECTOR_YEAR` | `connector_iso3, analysis_sector, year` | M3 trade-sector |
 | `G_CONN_SECTOR_WINDOW` | `connector_iso3, analysis_sector, window_id` | M3 window summaries |
 | `G_CONN_SECTOR_COMPARISON` | `connector_iso3, analysis_sector` | M3 pre/shock/post comparison and growth |
+| `G_CONN_SECTOR_FLOW_DIAG` | `connector_iso3, analysis_sector, flow_id` | M3.3 small-base、异常增长和 winsorized sensitivity diagnostics |
 | `G_PROD_LONG` | `country_iso3, analysis_sector, year, source_name, metric_name`，必要时增加 direction/parent | M4 production long |
 | `G_EVIDENCE` | `connector_iso3, analysis_sector, year` | M5 integrated evidence |
 | `G_RANK` | `connector_iso3, analysis_sector, ranking_spec` | M6 ranking |
@@ -422,7 +423,7 @@ Comparison 表对每条贸易腿构造：
 
 当前数据四条流的 pre-zero 和 post-zero 数都为 0，每条流 91 个 log growth 全部定义。负 post-pre change 数分别为 China→connector 3、East Asia→connector 5、connector→USA 6、China→USA 26。DH 全部位于 [-2,2]，没有 infinite。
 
-`small_base_flag` 仍是 `PLANNED_M3`，M3.2 不设阈值、不标异常、不 winsorize。M3.3 必须另行冻结 absolute USD threshold、sector-relative threshold 和 no-threshold/DH-only robustness。推荐主排名继续同时使用 level change 和 DH growth，不依赖单一百分比增长。
+M3.2 本身不设 small-base 阈值、不标异常、不 winsorize；这些规则已经在单独的 M3.3 long diagnostic interface 中实现。推荐主排名继续同时使用 level change 和通过 M3.3 eligibility 的 DH growth，不依赖单一百分比增长；未经阈值筛选的 DH 仍保留为 robustness。
 
 ### 6.6 M3.2 validation 和解释边界
 
@@ -439,7 +440,96 @@ Comparison 表对每条贸易腿构造：
 
 M3.2 可以作为 M3.3 的唯一输入接口之一。它不能用于声称 small-base 处理、异常增长决策、replacement ratio、connector ranking、production relocation 或 structural moments 已完成。
 
-## 7. M3.3-M3.6 贸易重组和排名输入变量
+### 6.7 M3.3 small-base、异常增长与 winsorized sensitivity
+
+M3.3 使用 M3.2 comparison 表作为唯一输入，不改写 M3.2。输出为：
+
+`data/processed/harmonized/connector_trade_sector_growth_diagnostics.parquet`
+
+- grain：`G_CONN_SECTOR_FLOW_DIAG`；
+- 主键：`connector_iso3, analysis_sector, flow_id`；
+- 行列数：364 × 64，即 91 个 connector-sector cells × 4 条 flow；
+- schema version：`connector_trade_sector_growth_diagnostics_v1`；
+- construction version：`connector_trade_sector_growth_diagnostic_rules_v1`；
+- SHA256：`fe69d953cd84a2acfc64ddb17b1ee57e3d0e44f7b44cad348f9016aee7e0953d`；
+- validation：`data/validation/connector_trade_sector_growth_diagnostics_validation.json/.md`，status `PASS`。
+
+四条 `flow_id` 为 `china_to_connector`、`east_asia_to_connector`、`connector_to_usa` 和 `china_to_usa`。每行复制该 flow 的 pre/shock/post annual-mean level、post-pre level change、原始 DH/log growth、zero/defined flags 和 4/2/5 observed-year counts。复制值与 M3.2 逐 flow 对账；level tolerance 为 USD 0.01，growth tolerance 为 `1e-12`，实际最大差额均为 0。
+
+#### 6.7.1 Small-base 合同
+
+```text
+absolute_small_base_flag
+    = 1[value_usd_pre <= USD 25,000,000]
+
+sector_relative_cutoff
+    = nearest-rank p10 of value_usd_pre
+      within flow_id × analysis_sector
+
+sector_relative_small_base_flag
+    = 1[value_usd_pre <= sector_relative_cutoff]
+
+small_base_flag
+    = pre_zero_flag
+      OR absolute_small_base_flag
+      OR sector_relative_small_base_flag
+```
+
+相对门槛的 reference group 是每个 sector 内 13 个 connectors；nearest-rank `ceil(0.10 × 13)=2`，因此 cutoff 是该组第二小的 pre value。China→USA 是跨 connector 重复的共同 benchmark，同一 sector 的 13 行数值相同，做 connector-relative 排名没有含义，所以 `sector_relative_threshold_applicable=false`、cutoff missing、relative flag false；这 91 个 missing 是设计结果，不是数据遗漏。
+
+| Canonical name | Stata alias | 定义/用途 | 状态 |
+|---|---|---|---|
+| `absolute_small_base_threshold_usd` | `sb_abs_cut` | 固定 USD 25 million | `EXISTING_VALIDATED` |
+| `absolute_small_base_flag` | `sb_abs` | pre level 不高于绝对门槛 | `EXISTING_VALIDATED` |
+| `sector_relative_pre_value_cutoff_usd` | `sb_rel_cut` | flow-sector nearest-rank p10 cutoff | `EXISTING_VALIDATED` |
+| `sector_relative_small_base_flag` | `sb_rel` | pre level 不高于相对 cutoff | `EXISTING_VALIDATED` |
+| `small_base_flag` | `small_base` | zero/absolute/relative 的并集 | `EXISTING_VALIDATED` |
+| `dh_growth_primary_eligible` | `dh_prim_ok` | DH defined 且非 small base | `EXISTING_VALIDATED` |
+| `log_growth_robustness_eligible` | `log_rob_ok` | log defined 且非 small base | `EXISTING_VALIDATED` |
+| `dh_growth_no_threshold_eligible` | `dh_nothr_ok` | 只要求 DH defined 的无门槛 robustness | `EXISTING_VALIDATED` |
+
+当前 absolute/relative/combined flag 数分别为：China→connector 0/14/14；East Asia→connector 0/14/14；connector→USA 4/14/14；China→USA 0/0/0。四个 absolute small-base cells 均为 connector→USA，分别是 MAR electrical equipment、MAR machinery、MAR medical devices 和 TUR medical devices。Absolute flags 是 relative flags 的子集，所以 connector→USA combined count 仍为 14。Preferred DH/log sample 对前三条 connector-specific flows 各保留 77 个 cells；no-threshold DH robustness 每条 flow 均保留 91 个。
+
+#### 6.7.2 异常增长合同
+
+在每个 `flow_id × analysis_sector` 组内：
+
+```text
+robust_z = 0.6744897501960817
+           × (DH - median(DH)) / MAD(DH)
+
+robust_z_outlier_flag = 1[|robust_z| > 3.5]
+mechanical_extreme_dh_flag = 1[|DH| >= 1.5]
+abnormal_growth_flag = robust_z_outlier OR mechanical_extreme
+```
+
+`|DH| >= 1.5` 对应 post/pre 至少为 7 或至多为 1/7。MAD=0 时 robust z 明确 missing、`robust_z_defined=false`，不除以 0；当前 7 个 MAD-zero groups 全部是跨 connector 重复的 China→USA sector benchmark，因此共有 91 个预期的 `robust_z_score_dh` missing。
+
+当前 robust-z / mechanical / combined abnormal counts 为 China→connector 1/0/1、East Asia→connector 1/0/1、connector→USA 1/3/4、China→USA 0/0/0。Combined abnormal cells 共 6 个：PHL textiles/apparel 的 China input decline；POL other manufacturing 的 East Asia input growth；IND electronics、MAR medical devices、VNM electrical equipment 的 connector→USA mechanical extremes；VNM other manufacturing 的 connector→USA robust-z outlier。`abnormal_growth_flag` 只是 review flag，不自动删除、不改变 eligibility，也不覆盖原始值。
+
+#### 6.7.3 Winsorized sensitivity 合同
+
+DH 与 log growth 分别在 91 个 observations 的 `flow_id` pooled sample 内使用 linear/type-7 p5 和 p95：
+
+```text
+growth_winsorized = min(max(growth_raw, p5_flow), p95_flow)
+```
+
+对前三条 connector-specific flows，DH 和 log 各有 10 行被边界替代；China→USA 因 7 个 sector values 各重复 13 次，p5/p95 等于实际最小/最大 sector value，affected count 为 0。采用 91-cell flow-level pool 是为了避免在只有 13 个 observations 的 flow-sector group 内用 p5/p95 机械截断每个 sector 的边缘值；sector-specific heterogeneity 继续由 raw values、sector-relative small-base 和后续 ranking 处理。`winsorized_values_for_sensitivity_only=true`，不能替代 raw DH/log；`raw_level_change_preserved=true`，level change 完全不 winsorize。
+
+| Canonical name | Stata alias | 用途 | 状态 |
+|---|---|---|---|
+| `value_usd_dh_growth_post_pre_raw` | `gdh_raw` | 未截断 DH 主值/robustness | `EXISTING_VALIDATED` |
+| `value_usd_log_growth_post_pre_raw` | `gln_raw` | positive-base raw log growth | `EXISTING_VALIDATED` |
+| `dh_growth_winsorized` | `dh_win` | flow-level p5/p95 sensitivity | `EXISTING_VALIDATED` |
+| `log_growth_winsorized` | `log_win` | flow-level p5/p95 sensitivity | `EXISTING_VALIDATED` |
+| `abnormal_growth_flag` | `abn_growth` | advisory review flag | `EXISTING_VALIDATED` |
+
+全部 64 个 canonical fields 有唯一 Stata alias，最长 11 字符。TWN 有 28 行且 proxy flag 全部保留。China→USA levels/growth/cutoffs 在同一 sector 跨 connector 完全一致，并用 `flow_repeated_across_connectors=true` 与 `flow_not_additive_across_connectors=true` 明确禁止跨 connector 求和。Parquet 的第二次项目 F 盘确定性构建 SHA256 完全一致，candidate/determinism 临时目录已清除。本阶段不导出 `.dta`。
+
+M3.3 只确定样本诊断与敏感性接口；它没有构造 replacement ratio、ranking、production evidence、structural moments 或 counterfactual inputs。
+
+## 7. M3.4-M3.6 贸易重组和排名输入变量
 
 ### 7.1 Import replacement
 
@@ -850,6 +940,7 @@ Candidate names：
 | `m3_trade_sector_year.dta` | `isid conn_iso3 ana_sector year` | sector-year trade |
 | `m3_trade_sector_window.dta` | `isid conn_iso3 ana_sector window_id` | pre/shock/post |
 | `m3_trade_sector_window_comparison.dta` | `isid conn_iso3 ana_sector` | pre/shock/post comparison and post-pre growth |
+| `m3_trade_sector_growth_diagnostics.dta` | `isid conn_iso3 ana_sector flow_id` | small-base、异常增长和 winsorized sensitivity diagnostics |
 | `m4_production_long.dta` | source-specific composite key | production evidence |
 | `m5_connector_evidence.dta` | `isid conn_iso3 ana_sector year` | integrated interface |
 | `m6_connector_ranking.dta` | `isid conn_iso3 ana_sector rank_spec` | ranking |
@@ -925,8 +1016,8 @@ Reviewer/date:
 1. M3.1 已构造 connector-sector-year levels、coverage 和 sector treatment；
 2. M3.1 product-to-sector value reconciliation 与确定性检查已通过；
 3. M3.2 已构造 complete-window annual means、coverage/policy summaries、post-pre change、DH/log growth 和 mechanical zero/defined flags；
-4. 下一步 M3.3 固定 small-base、异常增长和 winsorization rules；
-5. M3.4 构造 replacement、source input、exposure overlap 和 co-movement；
+4. M3.3 已固定并构造 zero/small-base、异常增长和 winsorized sensitivity diagnostics，raw levels/growth 全部保留；
+5. 下一步 M3.4 构造 replacement、source input、exposure overlap 和 co-movement；
 6. M3.5 保留所有 connectors/comparators；
 7. M3.6 生成窗口、source bloc 和 exposure sensitivity；
 8. M4 逐来源建立 production long；
@@ -942,5 +1033,6 @@ Reviewer/date:
 | v0.1.1 | 2026-07-27 | 与完整数据处理审计档案建立双向合同；规定 M3-M7 每步必须同步登记实际输出、validation、hash 和 Stata 接口。 |
 | v0.2.0 | 2026-07-28 | 完成 M3.1 变量合同：登记 1,001 行 connector-sector-year 输出、70 个 canonical/Stata aliases、实际公式、flow-specific coverage、17/11 个 treatment denominator 异常、non-additive flags、validation 和确定性输出 hash；M3.2-M3.6 保持 planned。 |
 | v0.3.0 | 2026-07-28 | 完成 M3.2 变量合同：登记 273 × 79 long window 和 91 × 142 comparison 两表接口、complete 4/2/5-year annual means、ratio-of-sums coverage、policy summaries、post-pre change/DH/log growth、zero/defined flags、17/11 denominator 异常、79/142 个 Stata aliases、两张确定性输出 hash 和 M3.3 边界。 |
+| v0.4.0 | 2026-07-28 | 完成 M3.3 变量合同：登记 364 × 64 flow-level diagnostics、USD 25 million absolute threshold、sector-flow nearest-rank p10、China→USA relative-threshold exception、robust-z/MAD 与 mechanical extreme flags、flow-level p5/p95 winsorized sensitivity、64 个 Stata aliases、异常计数和确定性 output hash。 |
 
-下一次强制更新：M3.3 完成时，补齐 small-base threshold、异常增长判定、winsorization/capping 规则、敏感性和实际 output/validation/hash；同时更新审计档案并重建两份 PDF。
+下一次强制更新：M3.4 完成时，补齐 replacement、source-input、exposure-overlap 和 co-movement 的实际 formulas、denominator/defined rules、output/validation/hash；同时更新审计档案并重建两份 PDF。
