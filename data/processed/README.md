@@ -1,6 +1,6 @@
 # Processed Data
 
-This directory contains reproducible harmonized outputs built from the validated source-specific files in `data/interim/`. It now contains completed M1 concordances, M2 product-level treatment/trade interfaces, the M3.1 annual connector-sector panel, the M3.2 complete-window/growth interfaces, and the M3.3 flow-level growth diagnostics. It does not yet contain M3.4-M3.6 replacement/ranking inputs or production-integration panels.
+This directory contains reproducible harmonized outputs built from the validated source-specific files in `data/interim/`. It now contains completed M1 concordances, M2 product-level treatment/trade interfaces, the M3.1 annual connector-sector panel, the M3.2 complete-window/growth interfaces, the M3.3 flow-level growth diagnostics, and the M3.4 trade-reorganization interfaces. It does not yet contain M3.5-M3.6 comparison/sensitivity inputs, connector rankings, or production-integration panels.
 
 The complete collaborator audit is `docs/data_processing_audit_trail.md`; the variable-level construction contract is `docs/variable_construction_catalog.md`. Their fixed PDF versions are `output/pdf/data_processing_audit_trail.pdf` and `output/pdf/variable_construction_catalog.pdf`. Starting with M3.1, every completed processed-data step must update both Markdown sources and both PDFs before its checklist item is marked complete.
 
@@ -91,6 +91,14 @@ M2 builders and validation:
 - Builder/config: `code/data_processing/build_connector_trade_sector_growth_diagnostics.py` and `configs/connector_trade_sector_growth_diagnostic_rules.yaml`.
 - Validation: `data/validation/connector_trade_sector_growth_diagnostics_validation.json` and `.md`, status PASS. The key is unique, source/formula checks have zero gap, all 64 Stata aliases pass, and deterministic SHA256 is `fe69d953cd84a2acfc64ddb17b1ee57e3d0e44f7b44cad348f9016aee7e0953d`.
 
-The next build stage is M3.4 replacement, connector-growth, source-input, and exposure-overlap indicators. Production sources must later use the validated source-sector join eligibility rather than directly matching source labels.
+## Completed M3.4 harmonized outputs
+
+- `harmonized/connector_trade_product_reorganization_window.parquet`: 55,081 rows and 56 columns at `connector_iso3, analysis_hs6`. It contains complete 4/5-year pre/post product means, four flow changes, post policy exposure with nullable missing states, and product condition/weight fields used to reproduce the sector diagnostics.
+- `harmonized/connector_trade_sector_reorganization_indicators.parquet`: 91 rows and 92 columns at `connector_iso3, analysis_sector`. It contains signed replacement, connector/export growth diagnostics inherited from M3.3, separate China/East Asia input-export ratios, and tariff/exposure-overlap measures with denominator coverage.
+- `harmonized/connector_trade_sector_product_comovement.parquet`: 91 rows and 49 columns at `connector_iso3, analysis_sector`. It contains HS6 Pearson/weighted correlations and eligible/active/positive-export-gain shares for two-leg, rerouting, and triple conditions.
+- Builder/config: `code/data_processing/build_connector_trade_reorganization_indicators.py` and `configs/connector_trade_reorganization_indicator_rules.yaml`.
+- Validation: `data/validation/connector_trade_reorganization_indicators_validation.json` and `.md`, status PASS. All three natural keys are unique, 28 exposure-missing products remain missing, 56/92/49 aliases pass, and deterministic SHA256 values are `1c83dc1070656c903d625b2e85c82ea6e7afa18535105351ccef24a405ed2c34`, `f13c5f8aa0c4402d0b467a06a6b99ba8ddc8389d47ede9ba8c8036275c1d74f2`, and `3095cd39a7355ce6968e0e5c29956841fd9e40bc72238d06aafe8d3ef0c3b0f1`.
+
+The next build stage is M3.5's common connector/comparator panel. Production sources must later use the validated source-sector join eligibility rather than directly matching source labels.
 
 Every processed output must be reproducible from `data/interim/`, documented by a build script, and retain source/provenance fields needed to audit aggregation and suppression.

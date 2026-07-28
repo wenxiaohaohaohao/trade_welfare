@@ -4,7 +4,7 @@ This directory contains reproducible `data/interim/` to `data/processed/` pipeli
 
 ## Current stage
 
-M0, M1, M2, M3.1, M3.2, and M3.3 in `data/data_merge_checklist.md` are complete. The next task is M3.4. M3.3 adds a separate flow-level interface for small-base eligibility, advisory abnormal-growth flags, and winsorized sensitivity measures while preserving every M3.2 raw level, change, and growth value. It does not contain replacement ratios or rankings.
+M0, M1, M2, M3.1, M3.2, M3.3, and M3.4 in `data/data_merge_checklist.md` are complete. The next task is M3.5. M3.4 adds separate product-window, sector-indicator, and sector-product-comovement interfaces for descriptive replacement, source-input/export, exposure-overlap, and HS6 co-movement measures. It does not contain connector rankings or production-side evidence.
 
 ## Living collaborator audit and variable contract
 
@@ -201,6 +201,26 @@ The output has 364 rows and 64 columns at `connector_iso3 × analysis_sector × 
 The frozen small-base rule combines pre zero, an absolute pre annual-mean threshold of USD 25 million, and a nearest-rank 10th-percentile threshold within each connector-specific `flow_id × analysis_sector` group. The repeated China-to-USA benchmark does not receive a connector-relative threshold. Robust-z/MAD and `|DH| >= 1.5` flags are advisory only. Flow-level p5/p95 linear/type-7 winsorized DH/log values are sensitivity variables; they never overwrite raw growth or level change.
 
 Validation status is PASS. The natural key is unique, every connector-sector has four flows, source and formula reconciliation gaps are zero, TWN has 28 proxy rows, and all 64 Stata aliases are unique and at most 11 characters. The output was rebuilt in `tmp/m3_3_determinism/`; its SHA256 matched `fe69d953cd84a2acfc64ddb17b1ee57e3d0e44f7b44cad348f9016aee7e0953d`, and candidate/determinism directories were removed. `.dta` export remains an M7 task.
+
+## M3.4 trade reorganization indicators
+
+Run the validated single-module builder from the project root:
+
+```powershell
+python code\data_processing\build_connector_trade_reorganization_indicators.py --project-root . --overwrite
+```
+
+Registered files:
+
+- config: `configs/connector_trade_reorganization_indicator_rules.yaml`;
+- product output: `data/processed/harmonized/connector_trade_product_reorganization_window.parquet`;
+- sector output: `data/processed/harmonized/connector_trade_sector_reorganization_indicators.parquet`;
+- co-movement output: `data/processed/harmonized/connector_trade_sector_product_comovement.parquet`;
+- validation: `data/validation/connector_trade_reorganization_indicators_validation.json` and `.md`.
+
+The outputs are 55,081 × 56 at `connector_iso3 × analysis_hs6`, 91 × 92 at `connector_iso3 × analysis_sector`, and 91 × 49 at `connector_iso3 × analysis_sector`. Replacement ratios use a signed connector-export gain and are defined only for a China-to-USA decline strictly above USD 25 million. China and extended East Asia input/export ratios remain separate. Product exposure missingness is preserved, and exposure-weighted measures report observed-value coverage. Product correlations and condition shares use explicit active-product and sum-positive-product-gain denominators.
+
+Validation status is PASS. All three keys are unique; 28 exposure-missing products remain missing; replacement, source-ratio, exposure, and co-movement formulas pass independent checks; and 56/92/49 Stata aliases are complete and at most 14 characters. Second-build SHA256 values match `1c83dc1070656c903d625b2e85c82ea6e7afa18535105351ccef24a405ed2c34`, `f13c5f8aa0c4402d0b467a06a6b99ba8ddc8389d47ede9ba8c8036275c1d74f2`, and `3095cd39a7355ce6968e0e5c29956841fd9e40bc72238d06aafe8d3ef0c3b0f1`. Candidate and determinism directories were removed. `.dta` export remains an M7 task.
 
 ## Stata handoff contract
 

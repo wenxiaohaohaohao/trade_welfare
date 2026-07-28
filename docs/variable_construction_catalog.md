@@ -4,10 +4,10 @@
 
 - Origin Skill: `stata-latex-research`
 - Origin Date: `2026-07-27`
-- Verification Status: `VERIFIED_THROUGH_M3.3`
-- Version Label: `variable_catalog_v0.4.0`
-- Current Data Stage: `M0-M3.3 completed`
-- Next Construction Stage: `M3.4 not started`
+- Verification Status: `VERIFIED_THROUGH_M3.4`
+- Version Label: `variable_catalog_v0.5.0`
+- Current Data Stage: `M0-M3.4 completed`
+- Next Construction Stage: `M3.5 not started`
 - Canonical Format: Parquet
 - Collaborator Format: Stata `.dta`
 
@@ -24,7 +24,7 @@
 
 本目录同时包含三类变量：
 
-- `EXISTING_VALIDATED`：M2、M3.1、M3.2 或 M3.3 已存在且 validation PASS；
+- `EXISTING_VALIDATED`：M2、M3.1、M3.2、M3.3 或 M3.4 已存在且 validation PASS；
 - `PLANNED_M3` 至 `PLANNED_M6`：已经定义但尚未构造，必须在对应阶段完成后补充实际 output hash 和 validation；
 - `STRUCTURAL_TARGET_ONLY`：只能作为模型校准目标或输入候选，不能直接解释为已经识别的结构参数。
 
@@ -39,7 +39,7 @@
 | 状态 | 含义 |
 |---|---|
 | `EXISTING_VALIDATED` | 已在 processed Parquet 中存在，主键和 validation 已通过 |
-| `PLANNED_M3` | M3.4-M3.6 的 replacement、ranking 和 sensitivity inputs 尚未构造 |
+| `PLANNED_M3` | M3.5-M3.6 的 comparison-panel 和 sensitivity inputs 尚未构造 |
 | `PLANNED_M4` | production-side standardized long table 时构造 |
 | `PLANNED_M5` | trade 和 production evidence 合并时构造 |
 | `PLANNED_M6` | ranking、rerouting、validation 和 structural moments 时构造 |
@@ -57,6 +57,9 @@
 | `G_CONN_SECTOR_WINDOW` | `connector_iso3, analysis_sector, window_id` | M3 window summaries |
 | `G_CONN_SECTOR_COMPARISON` | `connector_iso3, analysis_sector` | M3 pre/shock/post comparison and growth |
 | `G_CONN_SECTOR_FLOW_DIAG` | `connector_iso3, analysis_sector, flow_id` | M3.3 small-base、异常增长和 winsorized sensitivity diagnostics |
+| `G_CONN_PRODUCT_WINDOW` | `connector_iso3, analysis_hs6` | M3.4 产品窗口变化、policy exposure 和共变底表 |
+| `G_CONN_SECTOR_REORG` | `connector_iso3, analysis_sector` | M3.4 replacement、source-input、exposure-overlap 核心指标 |
+| `G_CONN_SECTOR_COMOVE` | `connector_iso3, analysis_sector` | M3.4 HS6 产品共变与 rerouting diagnostics |
 | `G_PROD_LONG` | `country_iso3, analysis_sector, year, source_name, metric_name`，必要时增加 direction/parent | M4 production long |
 | `G_EVIDENCE` | `connector_iso3, analysis_sector, year` | M5 integrated evidence |
 | `G_RANK` | `connector_iso3, analysis_sector, ranking_spec` | M6 ranking |
@@ -529,7 +532,17 @@ growth_winsorized = min(max(growth_raw, p5_flow), p95_flow)
 
 M3.3 只确定样本诊断与敏感性接口；它没有构造 replacement ratio、ranking、production evidence、structural moments 或 counterfactual inputs。
 
-## 7. M3.4-M3.6 贸易重组和排名输入变量
+## 7. M3.4 贸易重组指标与 M3.5-M3.6 后续输入
+
+M3.4 已完成并通过 validation。使用三个自然粒度输出，避免把产品字段、部门指标和部门相关系数机械重复到同一张超级宽表：
+
+| Output | Rows × columns | Natural key | SHA256 |
+|---|---:|---|---|
+| `connector_trade_product_reorganization_window.parquet` | 55,081 × 56 | `connector_iso3, analysis_hs6` | `1c83dc1070656c903d625b2e85c82ea6e7afa18535105351ccef24a405ed2c34` |
+| `connector_trade_sector_reorganization_indicators.parquet` | 91 × 92 | `connector_iso3, analysis_sector` | `f13c5f8aa0c4402d0b467a06a6b99ba8ddc8389d47ede9ba8c8036275c1d74f2` |
+| `connector_trade_sector_product_comovement.parquet` | 91 × 49 | `connector_iso3, analysis_sector` | `3095cd39a7355ce6968e0e5c29956841fd9e40bc72238d06aafe8d3ef0c3b0f1` |
+
+冻结 config 为 `configs/connector_trade_reorganization_indicator_rules.yaml`，SHA256 为 `0305b9a2a0904f9eac9953a89f977565a644fc25167e4be7b04dad9a44a7fe4d`。Builder 为 `code/data_processing/build_connector_trade_reorganization_indicators.py`；validation 为 `data/validation/connector_trade_reorganization_indicators_validation.json/.md`，状态 PASS。三张表的 56/92/49 个 Stata aliases 均完整、唯一且最长分别为 13/14/13 字符。
 
 ### 7.1 Import replacement
 
@@ -539,44 +552,48 @@ connector_us_gain = cnusx_post - cnusx_pre
 replacement_ratio = connector_us_gain / china_us_decline
 ```
 
-`replacement_ratio` 只有在 `china_us_decline` 大于明确的 denominator threshold 时定义；否则 missing。主结果同时保留 level gain 和 decline，不能只报告 ratio。
+`replacement_ratio` 只有在 `china_us_decline` 严格大于 USD 25 million 时定义；否则 missing。connector gain 保留正负符号，不截为 0，不使用 arbitrary epsilon，不在 M3.4 构造 capped ratio。当前 91 个 cells 中有 26 个 ratio defined；其中 22 个 connector gain 为正，4 个为负；其余 65 个 ratio 保持 missing。主结果同时保留 level gain 和 decline，不能只报告 ratio。
 
 | Canonical name | Stata name | 用途 | 状态 |
 |---|---|---|---|
-| `china_us_decline_usd` | `cnus_drop` | China displacement level | planned M3 |
-| `connector_us_gain_usd` | `conn_gain` | connector gain level | planned M3 |
-| `replacement_ratio` | `repl_ratio` | connector gain 相对 China decline | planned M3 |
-| `replacement_ratio_defined` | `repl_ok` | denominator 是否可用 | planned M3 |
-| `replacement_capped_for_rank` | `repl_cap` | 仅 ranking 的 winsorized/capped version | planned M3 |
+| `china_us_decline_usd` | `cnus_drop` | China displacement level | `EXISTING_VALIDATED` |
+| `connector_us_gain_usd` | `conn_gain` | connector gain level，保留负值 | `EXISTING_VALIDATED` |
+| `replacement_ratio` | `repl_ratio` | signed connector gain 相对 China decline | `EXISTING_VALIDATED` |
+| `replacement_ratio_defined` | `repl_ok` | denominator 是否严格大于 USD 25 million | `EXISTING_VALIDATED` |
+| `import_replacement_candidate_flag` | `repl_cand` | defined 且 connector gain > 0 | `EXISTING_VALIDATED` |
+| `replacement_capped_for_rank` | `repl_cap` | 仅 ranking 的 capped version | `PLANNED_M3`，M3.4 未构造 |
 
 ### 7.2 Source-to-connector input growth
 
-| Canonical name | Stata name | 定义 |
+| Canonical name | Stata name | 定义/状态 |
 |---|---|---|
-| `china_input_gain_usd` | `cnin_gain` | China -> connector post-pre level change |
-| `east_asia_input_gain_usd` | `eain_gain` | East Asia -> connector post-pre level change |
-| `china_input_dh_growth` | `gdh_cnin` | China input DH growth |
-| `east_asia_input_dh_growth` | `gdh_eain` | East Asia input DH growth |
-| `source_export_ratio_pre` | `srcx_pre` | source-to-connector / connector-to-USA，pre |
-| `source_export_ratio_post` | `srcx_post` | 同一 ratio，post |
-| `source_export_ratio_change` | `d_srcx` | post-pre |
+| `china_input_gain_usd` | `cnin_gain` | China→connector post-pre level change；`EXISTING_VALIDATED` |
+| `east_asia_input_gain_usd` | `eain_gain` | East Asia→connector post-pre level change；`EXISTING_VALIDATED` |
+| `china_input_dh_growth_raw` | `gdh_cnin` | 从 M3.3 原样继承的 China input DH growth；`EXISTING_VALIDATED` |
+| `east_asia_input_dh_growth_raw` | `gdh_eain` | 从 M3.3 原样继承的 East Asia input DH growth；`EXISTING_VALIDATED` |
+| `connector_export_dh_growth_raw` | `gdh_conn` | 从 M3.3 原样继承的 connector→USA DH growth；`EXISTING_VALIDATED` |
+| `china_input_to_export_ratio_pre/post` | `srcx_cnpre/srcx_cnpost` | China input / connector export，同窗口；`EXISTING_VALIDATED` |
+| `east_asia_input_to_export_ratio_pre/post` | `srcx_eapre/srcx_eapost` | East Asia input / connector export，同窗口；`EXISTING_VALIDATED` |
+| `china_input_to_export_ratio_change` | `d_srcx_cn` | post-pre；`EXISTING_VALIDATED` |
+| `east_asia_input_to_export_ratio_change` | `d_srcx_ea` | post-pre；`EXISTING_VALIDATED` |
 
-ratio denominator 为 0 时保持 missing；不能用 arbitrary epsilon 生成正式值。若 ranking 需要 finite score，先用 percentile of level/growth components，而不是偷偷给 ratio 加常数。
+China-only 与 extended East Asia 是两套独立 source 定义，不能混成一个未标口径的字段。ratio denominator 是同窗口 connector→USA export，只有严格大于 0 时定义；当前两套 pre/post ratios 均为 91/91 defined。不能用 arbitrary epsilon 生成正式值。M3.3 的 small-base、primary eligibility 和 abnormal flags 一并原样带入部门核心表；M3.4 不改写 raw growth。
 
 ### 7.3 Product-level co-movement
 
-在 connector-sector 内先对每个 HS6 计算 pre/post changes，再聚合：
+先在 55,081 行产品窗口表中对每个 connector-HS6 计算四条贸易流的 2014-2017 annual mean、2020-2024 annual mean 和 post-pre change，再在 connector-sector 内聚合。产品 active 规则为 source pre + post + connector export pre + post 严格大于 0。Pearson correlation 至少要求 20 个 active products；weighted correlation 以 source input pre + connector export pre 为权重并至少要求 20 个正权重 products。当前 China/East Asia 的 91 个普通和 91 个 weighted correlations 全部定义；最小 active counts 为 31/32，最小正权重 counts 为 30/31。
 
 | Canonical name | Stata name | 公式/用途 |
 |---|---|---|
-| `both_legs_positive_product_share` | `both_psh` | China/East Asia input gain >0 且 connector-US gain >0 的 HS6 share |
-| `both_legs_positive_value_share` | `both_vsh` | 上述产品按 pre/post trade value 加权 share |
-| `china_decline_connector_gain_share` | `rerout_psh` | China-US decline 且 connector-US gain 的 product share |
-| `triple_condition_product_share` | `triple_psh` | China-US decline、source input gain、connector-US gain 同时成立 |
-| `product_change_correlation` | `prod_corr` | source-input change 与 connector-export change 的 HS6 correlation |
-| `weighted_product_change_correlation` | `wprod_cor` | 以 pre China-US 或 connector trade weights 加权 |
+| `china/east_asia_both_legs_positive_product_share` | `cn/ea_both_psh` | source input gain >0 且 connector-US product gain >0，占全部 eligible HS6 |
+| `china/east_asia_both_legs_positive_active_share` | `cn/ea_both_ash` | 同一 product count，占 source-specific active HS6 |
+| `china/east_asia_both_legs_positive_export_gain_share` | `cn/ea_both_gsh` | 条件产品的正 connector-export gain / 全部正 connector-export gain |
+| `china_decline_connector_gain_product_share` | `rerout_psh` | China-US decline 且 connector-US product gain >0，占 eligible HS6 |
+| `china/east_asia_triple_condition_product_share` | `cn/ea_triple_psh` | China-US decline、source input gain、connector-US gain 同时成立 |
+| `china/east_asia_product_change_correlation` | `cn/ea_prod_cor` | source-input change 与 connector-export change 的 HS6 Pearson correlation |
+| `china/east_asia_weighted_product_change_correlation` | `cn/ea_wprod_cor` | 使用 pre source input + pre connector export 权重 |
 
-相关系数至少要求有效 products 达到 config 中的 minimum count；否则 missing + `corr_low_n_flag=1`。
+eligible-product share、active-product share 和 positive-export-gain share 使用不同分母，不能互相替代。Value share 的分母是逐产品 `max(connector export change, 0)` 之和，不是部门净 change。相关系数和 share 全部通过独立复算，越界数为 0。它们是 descriptive co-movement diagnostics，不是 rerouting 的因果估计。
 
 ### 7.4 Exposure overlap
 
@@ -584,10 +601,12 @@ ratio denominator 为 0 时保持 missing；不能用 arbitrary epsilon 生成�
 |---|---|---|
 | `connector_export_tariff_overlap_pre` | `ovlp_pre` | pre connector-US exports 中 tariffed/exposed product 的 value share |
 | `connector_export_tariff_overlap_post` | `ovlp_post` | post share |
-| `connector_export_exposure_weighted` | `ovlp_expo` | connector export weights 下的 product tariff exposure |
-| `gain_in_high_exposure_products_share` | `gain_hiexp` | export gain 来自 high-exposure products 的份额 |
+| `connector_export_exposure_weighted_pre/post` | `expo_w_pre/expo_w_post` | observed-exposure products 内以 connector export value 加权的 product exposure |
+| `connector_export_exposure_observed_value_share_pre/post` | `expo_cov_pre/expo_cov_post` | exposure-weighted分母相对全部 connector export value 的覆盖 |
+| `gain_in_positive_exposure_products_share` | `gain_pos_sh` | 有 observed exposure 的正 export gain 中，positive-exposure products 的份额 |
+| `gain_in_top_quartile_exposure_products_share` | `gain_top_sh` | 有 observed exposure 的正 export gain 中，sector-positive-exposure p75 以上产品的份额 |
 
-“high exposure” threshold 必须在 config 中固定，例如 top quartile 或 positive exposure；两种定义均应报告。
+产品 exposure 使用 post 五年 tariff exposure 的平均值；tariffed flag 使用 post tariff-status mean > 0。28 个 eligible products 的 exposure 缺失保持 missing，其中 14 个 tariffed，不能当作 exposure=0。Exposure-weighted分母只含 observed-exposure products，同时输出覆盖率。两套 high-exposure 定义均已冻结并报告：`exposure > 0`，以及 analysis-sector 内 positive observed exposure 的 linear/type-7 p75。Tariffed、positive exposure 和 top-quartile exposure 是不同概念，不得互相替代。China→USA 和 policy 产品字段在 connectors 间重复，只作比较，明确 non-additive。
 
 ### 7.5 稳定性和规模
 
@@ -1017,8 +1036,8 @@ Reviewer/date:
 2. M3.1 product-to-sector value reconciliation 与确定性检查已通过；
 3. M3.2 已构造 complete-window annual means、coverage/policy summaries、post-pre change、DH/log growth 和 mechanical zero/defined flags；
 4. M3.3 已固定并构造 zero/small-base、异常增长和 winsorized sensitivity diagnostics，raw levels/growth 全部保留；
-5. 下一步 M3.4 构造 replacement、source input、exposure overlap 和 co-movement；
-6. M3.5 保留所有 connectors/comparators；
+5. M3.4 已构造 replacement、source input、exposure overlap 和 HS6 co-movement，三张自然粒度输出 validation PASS；
+6. 下一步 M3.5 在共同面板中保留所有 connectors/comparators；
 7. M3.6 生成窗口、source bloc 和 exposure sensitivity；
 8. M4 逐来源建立 production long；
 9. M5 逐来源 left join 和 coverage；
@@ -1034,5 +1053,6 @@ Reviewer/date:
 | v0.2.0 | 2026-07-28 | 完成 M3.1 变量合同：登记 1,001 行 connector-sector-year 输出、70 个 canonical/Stata aliases、实际公式、flow-specific coverage、17/11 个 treatment denominator 异常、non-additive flags、validation 和确定性输出 hash；M3.2-M3.6 保持 planned。 |
 | v0.3.0 | 2026-07-28 | 完成 M3.2 变量合同：登记 273 × 79 long window 和 91 × 142 comparison 两表接口、complete 4/2/5-year annual means、ratio-of-sums coverage、policy summaries、post-pre change/DH/log growth、zero/defined flags、17/11 denominator 异常、79/142 个 Stata aliases、两张确定性输出 hash 和 M3.3 边界。 |
 | v0.4.0 | 2026-07-28 | 完成 M3.3 变量合同：登记 364 × 64 flow-level diagnostics、USD 25 million absolute threshold、sector-flow nearest-rank p10、China→USA relative-threshold exception、robust-z/MAD 与 mechanical extreme flags、flow-level p5/p95 winsorized sensitivity、64 个 Stata aliases、异常计数和确定性 output hash。 |
+| v0.5.0 | 2026-07-28 | 完成 M3.4 变量合同：登记 55,081 × 56 产品窗口、91 × 92 部门重组指标和 91 × 49 产品共变三表接口；固定 USD 25 million replacement denominator、signed numerator、China/East Asia source ratios、28 个 exposure missing、positive/p75 exposure overlap、产品正增量分母、Pearson/weighted correlations、56/92/49 aliases 和三个确定性 hashes。 |
 
-下一次强制更新：M3.4 完成时，补齐 replacement、source-input、exposure-overlap 和 co-movement 的实际 formulas、denominator/defined rules、output/validation/hash；同时更新审计档案并重建两份 PDF。
+下一次强制更新：M3.5 完成时，补齐共同 connector/comparator panel 的实际输出、样本保留规则、validation、hash 和 Stata 接口；同时更新审计档案并重建两份 PDF。

@@ -23,8 +23,9 @@ This directory contains the tracked definitions used by the data pipeline:
 | `connector_trade_sector_rules.yaml` | Frozen M3.1 input hashes, keys, eligible sectors, four-flow aggregation/coverage fields, policy formulas, validation tolerances, deterministic rebuild path, and 70 Stata aliases. |
 | `connector_trade_sector_window_rules.yaml` | Frozen M3.2 M3.1-input/time-window hashes, 4/2/5-year complete windows, annual-mean and ratio-of-sums formulas, two output keys, growth edge rules, validation tolerances, deterministic rebuild paths, and resolved Stata alias templates. |
 | `connector_trade_sector_growth_diagnostic_rules.yaml` | Frozen M3.3 comparison-input hash/schema, four-flow long key, USD 25 million and nearest-rank p10 small-base rules, robust-z/mechanical abnormal flags, p5/p95 winsorized sensitivity, deterministic rebuild paths, expected diagnostic counts, and 64 Stata aliases. |
+| `connector_trade_reorganization_indicator_rules.yaml` | Frozen M3.4 M2/M3.2/M3.3 input hashes/schemas, three natural-grain outputs, USD 25 million signed replacement rule, separate China/East Asia source ratios, exposure-missing and positive/p75 overlap rules, HS6 correlation/value-share denominators, deterministic rebuild paths, expected counts, and 56/92/49 Stata aliases. |
 
-Country groups and data versions are active inputs. M1 country, time, product, and source-sector concordances plus M3.1 annual aggregation, M3.2 window/growth construction, and M3.3 growth diagnostics are complete. M3.4-M3.6 replacement/ranking inputs and executable counterfactual scenario files remain pending.
+Country groups and data versions are active inputs. M1 country, time, product, and source-sector concordances plus M3.1 annual aggregation, M3.2 window/growth construction, M3.3 growth diagnostics, and M3.4 trade-reorganization indicators are complete. M3.5-M3.6 comparison/sensitivity inputs, connector rankings, and executable counterfactual scenario files remain pending.
 
 The model implementation must avoid hard-coded country indices in MATLAB. Scenario files should define:
 
