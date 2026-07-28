@@ -5,7 +5,7 @@
 - Origin Skill: `academic-research-suite/experiment-agent`
 - Origin Mode: `plan`
 - Origin Date: `2026-07-19`
-- Verification Status: `ANALYZED`（M0-M3.1 validation 均为 PASS；M3.2-M7 待执行）
+- Verification Status: `ANALYZED`（M0-M3.2 validation 均为 PASS；M3.3-M7 待执行）
 - Version Label: `data_merge_plan_v1`
 - Working Branch: `data-processing-variables`
 
@@ -13,7 +13,7 @@
 
 目标是把已经验证的 source-specific `data/interim/` 数据，转化为可审计、可重复生成的 `data/processed/` 合并数据，并在此基础上构造 connector ranking、rerouting facts、production-side validation 和 structural moments。
 
-当前阶段：`M0-M3.1 已完成并验证；M3.2 尚未开始`。
+当前阶段：`M0-M3.2 已完成并验证；M3.3 尚未开始`。
 
 勾选规则：只有代码、输出、validation 和说明文件同时完成，任务才从 `[ ]` 改为 `[x]`。部分完成、仅生成文件、仅跑通代码或仍有未解释的 many-to-many join，都不能打勾。
 
@@ -110,13 +110,15 @@
 ### M3. 聚合到 connector-country-sector-year 贸易面板
 
 - [x] M3.1 使用带权 product-sector concordance 将产品流量聚合到 `analysis_sector`。
-- [ ] M3.2 构造 pre `2014–2017`、shock `2018–2019`、post `2020–2024` 的 levels、changes、growth 和 shares。
+- [x] M3.2 构造 pre `2014–2017`、shock `2018–2019`、post `2020–2024` 的 levels、changes、growth 和 shares。
 - [ ] M3.3 对极小基期、零贸易和异常增长率建立统一规则；同时保留 level change，避免只靠百分比增长排名。
 - [ ] M3.4 构造四类基础指标：U.S. import replacement、connector export growth、source-to-connector input growth、Section 301 exposure overlap。
 - [ ] M3.5 对 MEX、VNM、CAN 与 comparators 生成共同面板，不只保留排名靠前的观察。
 - [ ] M3.6 验证不同暴露定义、source bloc 和时间窗口下的结果敏感性。
 
-M3.1 门槛已满足：`connector_trade_sector_year.parquet` 为 1,001 行，`connector_iso3, analysis_sector, year` 唯一；四条流的 eligible/full-universe reconciliation、policy 公式复算、17/11 个 denominator 异常、TWN/repeated flags、70 个 Stata aliases 和确定性 Parquet SHA256 均通过。整个 M3 的剩余门槛仍包括 M3.2-M3.6 的窗口、增长、replacement、ranking 公式、单位、样本和缺失处理说明。
+M3.1 门槛已满足：`connector_trade_sector_year.parquet` 为 1,001 行，`connector_iso3, analysis_sector, year` 唯一；四条流的 eligible/full-universe reconciliation、policy 公式复算、17/11 个 denominator 异常、TWN/repeated flags、70 个 Stata aliases 和确定性 Parquet SHA256 均通过。
+
+M3.2 门槛已满足：`connector_trade_sector_window.parquet` 为 273 行、79 列，主键 `connector_iso3, analysis_sector, window_id` 唯一；`connector_trade_sector_window_comparison.parquet` 为 91 行、142 列，主键 `connector_iso3, analysis_sector` 唯一。pre/shock/post 的 4/2/5 年窗口全部完整；年度和乘以年份数与 M3.1 年度总和差额为 0；coverage ratio-of-sums、policy 分子/分母/rates/shares、change、DH 和 log growth 独立复算误差均为 0；四条流均无 pre/post zero，91 个 log growth 均有定义；负 post-pre change 数 3/5/6/26 原样保留；17/11 个 denominator 异常、TWN 和 repeated/non-additive flags 完整；79/142 个 Stata aliases 通过；两张 Parquet 的第二次确定性构建 SHA256 逐一一致。整个 M3 的剩余门槛是 M3.3-M3.6 的 small-base、异常增长、replacement、ranking、比较组和敏感性规则。
 
 ### M4. 构造 production-side 标准化长表
 
@@ -175,4 +177,4 @@ M3.1 门槛已满足：`connector_trade_sector_year.parquet` 为 1,001 行，`co
 
 ## 下一项工作
 
-下一项唯一任务是 `M3.2：在年度 connector-sector panel 上构造 pre/shock/post window summaries`，尚未开始。M3.1 已生成 1,001 × 70 的年度 panel，输出 SHA256 为 `95e547267892c4bc883788542f0e59ba284441b42f4ce1d379aea71a2f978c8c`，validation 与确定性重建均 PASS。当前不构造 growth、small-base、replacement ratio 或 ranking，等待单独确认后再开始 M3.2。
+下一项唯一任务是 `M3.3：对零贸易、small base 和异常增长建立统一规则`，尚未开始。M3.2 已生成 273 × 79 的 long window panel 和 91 × 142 的 comparison panel，输出 SHA256 分别为 `310da7f289d8760d3ead34215a294be18275c758a2084cfd9f905988b695e704` 与 `be5f3a025a81d36d5a9bb1bd137d4bed9325a68ab5f1cb7f4d946a2373fbeb04`，validation 与两个确定性重建均 PASS。当前没有 `small_base_flag`、异常增长处理、winsorization、replacement ratio 或 ranking；这些内容必须等待单独确认后再进入 M3.3。

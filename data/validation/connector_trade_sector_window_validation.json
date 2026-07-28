@@ -1,0 +1,1882 @@
+{
+  "validation_status": "PASS",
+  "failure_count": 0,
+  "failures": [],
+  "input_hash_checks": {
+    "connector_trade_sector_year": true,
+    "time_windows": true
+  },
+  "input_row_count": 1001,
+  "input_column_count": 70,
+  "input_duplicate_key_count": 0,
+  "input_arrow_schema_signature_sha256": "37fd30c8442cc1aea9045cd6b4904be851187e1b7ace21db26ee65d4de7a6256",
+  "long_output_row_count": 273,
+  "long_output_column_count": 79,
+  "long_output_duplicate_key_count": 0,
+  "comparison_output_row_count": 91,
+  "comparison_output_column_count": 142,
+  "comparison_output_duplicate_key_count": 0,
+  "connector_count": 13,
+  "sector_count": 7,
+  "window_count": 3,
+  "window_definition_checks": {
+    "source_window_definition_match": {
+      "pre": true,
+      "shock": true,
+      "post": true
+    },
+    "overlapping_window_years": {},
+    "unassigned_annual_row_count": 0,
+    "incomplete_connector_sector_cells_by_window": {
+      "pre": 0,
+      "shock": 0,
+      "post": 0
+    },
+    "observed_year_count_ranges": {
+      "pre": {
+        "min": 4,
+        "max": 4,
+        "expected": 4
+      },
+      "shock": {
+        "min": 2,
+        "max": 2,
+        "expected": 2
+      },
+      "post": {
+        "min": 5,
+        "max": 5,
+        "expected": 5
+      }
+    }
+  },
+  "window_mean_reconciliation": {
+    "china_to_connector": {
+      "input_window_total_usd": 7277654649355.0,
+      "reconstructed_window_total_usd": 7277654649355.0,
+      "max_abs_window_gap_usd": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "east_asia_to_connector": {
+      "input_window_total_usd": 11664115552239.0,
+      "reconstructed_window_total_usd": 11664115552239.0,
+      "max_abs_window_gap_usd": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "connector_to_usa": {
+      "input_window_total_usd": 9871984981362.0,
+      "reconstructed_window_total_usd": 9871984981362.0,
+      "max_abs_window_gap_usd": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "china_to_usa": {
+      "input_window_total_usd": 67908975727203.0,
+      "reconstructed_window_total_usd": 67908975727203.0,
+      "max_abs_window_gap_usd": 0.0,
+      "missing_mismatch_count": 0
+    }
+  },
+  "window_diagnostic_reconciliation": {
+    "china_to_connector": {
+      "source_row_count_annual_mean": {
+        "max_abs_window_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "positive_product_count_annual_mean": {
+        "max_abs_window_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "zero_source_product_count_annual_mean": {
+        "max_abs_window_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    },
+    "east_asia_to_connector": {
+      "source_row_count_annual_mean": {
+        "max_abs_window_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "positive_product_count_annual_mean": {
+        "max_abs_window_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "zero_source_product_count_annual_mean": {
+        "max_abs_window_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    },
+    "connector_to_usa": {
+      "source_row_count_annual_mean": {
+        "max_abs_window_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "positive_product_count_annual_mean": {
+        "max_abs_window_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "zero_source_product_count_annual_mean": {
+        "max_abs_window_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    },
+    "china_to_usa": {
+      "source_row_count_annual_mean": {
+        "max_abs_window_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "positive_product_count_annual_mean": {
+        "max_abs_window_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "zero_source_product_count_annual_mean": {
+        "max_abs_window_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    }
+  },
+  "long_comparison_level_gaps": {
+    "china_to_connector": {
+      "pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "shock": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "post": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    },
+    "east_asia_to_connector": {
+      "pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "shock": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "post": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    },
+    "connector_to_usa": {
+      "pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "shock": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "post": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    },
+    "china_to_usa": {
+      "pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "shock": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "post": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    }
+  },
+  "growth_formula_checks": {
+    "china_to_connector": {
+      "change_post_pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "dh_growth_post_pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "log_growth_post_pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    },
+    "east_asia_to_connector": {
+      "change_post_pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "dh_growth_post_pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "log_growth_post_pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    },
+    "connector_to_usa": {
+      "change_post_pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "dh_growth_post_pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "log_growth_post_pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    },
+    "china_to_usa": {
+      "change_post_pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "dh_growth_post_pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      },
+      "log_growth_post_pre": {
+        "max_abs_gap": 0.0,
+        "missing_mismatch_count": 0
+      }
+    }
+  },
+  "zero_and_defined_counts": {
+    "china_to_connector": {
+      "pre_zero": 0,
+      "post_zero": 0,
+      "dh_defined": 91,
+      "log_defined": 91
+    },
+    "east_asia_to_connector": {
+      "pre_zero": 0,
+      "post_zero": 0,
+      "dh_defined": 91,
+      "log_defined": 91
+    },
+    "connector_to_usa": {
+      "pre_zero": 0,
+      "post_zero": 0,
+      "dh_defined": 91,
+      "log_defined": 91
+    },
+    "china_to_usa": {
+      "pre_zero": 0,
+      "post_zero": 0,
+      "dh_defined": 91,
+      "log_defined": 91
+    }
+  },
+  "negative_change_counts": {
+    "china_to_connector": 3,
+    "east_asia_to_connector": 5,
+    "connector_to_usa": 6,
+    "china_to_usa": 26
+  },
+  "dh_out_of_bounds_count": 0,
+  "infinite_growth_value_count": 0,
+  "coverage_formula_gaps": {
+    "excluded_product_count": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "china_to_connector_excluded_value_usd_annual_mean": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "china_to_connector_included_value_share": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "east_asia_to_connector_excluded_value_usd_annual_mean": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "east_asia_to_connector_included_value_share": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "connector_to_usa_excluded_value_usd_annual_mean": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "connector_to_usa_included_value_share": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "china_to_usa_excluded_value_usd_annual_mean": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "china_to_usa_included_value_share": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    }
+  },
+  "coverage_merge_mismatch_count": 0,
+  "policy_formula_gaps": {
+    "sector_total_us_import_value_2017": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "sector_china_import_value_2017": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "sector_treatment_product_count": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "policy_denominator_observed_product_count": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "treatment_missing_denominator_product_count": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "treatment_zero_denominator_product_count": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "treatment_no_hs17_mapping_product_count": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "sector_tariff_exposure_numerator_usd_annual_mean": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "tariffed_product_count_annual_mean": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "tariffed_china_import_value_2017_annual_mean": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "tariffed_total_us_import_value_2017_annual_mean": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "sector_tariff_rate_china_weighted": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "sector_tariff_exposure": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "sector_china_import_share_2017": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "tariffed_product_share_count": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "tariffed_product_share_china_value": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "tariffed_product_share_us_value": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "treatment_missing_denominator_product_share": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "treatment_zero_denominator_product_share": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    },
+    "treatment_no_hs17_mapping_product_share": {
+      "max_abs_gap": 0.0,
+      "missing_mismatch_count": 0
+    }
+  },
+  "policy_merge_mismatch_count": 0,
+  "denominator_exception_counts_by_window": {
+    "pre": {
+      "zero_denominator_eligible_products": 17,
+      "no_hs17_mapping_eligible_products": 11
+    },
+    "shock": {
+      "zero_denominator_eligible_products": 17,
+      "no_hs17_mapping_eligible_products": 11
+    },
+    "post": {
+      "zero_denominator_eligible_products": 17,
+      "no_hs17_mapping_eligible_products": 11
+    }
+  },
+  "policy_pre_exposure_nonzero_count": 0,
+  "policy_growth_fields": [],
+  "inconsistent_repeated_fields": {
+    "china_to_usa_value_usd_annual_mean": 0,
+    "china_to_usa_source_row_count_annual_mean": 0,
+    "china_to_usa_positive_product_count_annual_mean": 0,
+    "china_to_usa_zero_source_product_count_annual_mean": 0,
+    "sector_total_us_import_value_2017": 0,
+    "sector_china_import_value_2017": 0,
+    "sector_treatment_product_count": 0,
+    "policy_denominator_observed_product_count": 0,
+    "treatment_missing_denominator_product_count": 0,
+    "treatment_zero_denominator_product_count": 0,
+    "treatment_no_hs17_mapping_product_count": 0,
+    "sector_tariff_exposure_numerator_usd_annual_mean": 0,
+    "tariffed_product_count_annual_mean": 0,
+    "tariffed_china_import_value_2017_annual_mean": 0,
+    "tariffed_total_us_import_value_2017_annual_mean": 0,
+    "sector_tariff_rate_china_weighted": 0,
+    "sector_tariff_exposure": 0,
+    "sector_china_import_share_2017": 0,
+    "tariffed_product_share_count": 0,
+    "tariffed_product_share_china_value": 0,
+    "tariffed_product_share_us_value": 0,
+    "treatment_missing_denominator_product_share": 0,
+    "treatment_zero_denominator_product_share": 0,
+    "treatment_no_hs17_mapping_product_share": 0
+  },
+  "inconsistent_coverage_fields": {
+    "excluded_product_count": 0,
+    "china_to_connector_excluded_value_usd_annual_mean": 0,
+    "china_to_connector_included_value_share": 0,
+    "east_asia_to_connector_excluded_value_usd_annual_mean": 0,
+    "east_asia_to_connector_included_value_share": 0,
+    "connector_to_usa_excluded_value_usd_annual_mean": 0,
+    "connector_to_usa_included_value_share": 0,
+    "china_to_usa_excluded_value_usd_annual_mean": 0,
+    "china_to_usa_included_value_share": 0
+  },
+  "required_true_flag_false_counts": {
+    "long": {
+      "china_to_usa_common_benchmark": 0,
+      "treatment_repeated_across_connectors": 0,
+      "coverage_repeated_across_sectors": 0,
+      "common_benchmarks_not_additive_across_connectors": 0,
+      "window_level_is_annual_mean": 0,
+      "included_value_share_uses_ratio_of_sums": 0
+    },
+    "comparison": {
+      "china_to_usa_common_benchmark": 0,
+      "treatment_repeated_across_connectors": 0,
+      "coverage_repeated_across_sectors": 0,
+      "common_benchmarks_not_additive_across_connectors": 0,
+      "window_level_is_annual_mean": 0,
+      "included_value_share_uses_ratio_of_sums": 0
+    }
+  },
+  "twn_checks": {
+    "long_row_count": 21,
+    "comparison_row_count": 7,
+    "long_proxy_false_count": 0,
+    "comparison_proxy_false_count": 0
+  },
+  "required_numeric_missing_count": {
+    "long": 0,
+    "comparison": 0
+  },
+  "stata_alias_validation": {
+    "long": {
+      "alias_count": 79,
+      "output_column_count": 79,
+      "missing_output_aliases": [],
+      "extra_stata_aliases": [],
+      "duplicate_alias_count": 0,
+      "over_32_character_aliases": [],
+      "maximum_alias_length": 13,
+      "pass": true,
+      "resolved_aliases": {
+        "connector_iso3": "conn_iso3",
+        "analysis_sector": "ana_sector",
+        "window_id": "window_id",
+        "window_order": "win_order",
+        "window_start_year": "win_start",
+        "window_end_year": "win_end",
+        "expected_year_count": "exp_yn",
+        "observed_year_count": "obs_yn",
+        "window_complete": "win_complete",
+        "connector_group": "conn_group",
+        "connector_baci_code": "conn_baci",
+        "connector_is_proxy": "is_proxy",
+        "analysis_sector_status": "sec_status",
+        "sector_eligible_product_count": "sec_elig_n",
+        "excluded_product_count": "excl_prod_n",
+        "sector_total_us_import_value_2017": "sec_usimp17",
+        "sector_china_import_value_2017": "sec_cnimp17",
+        "sector_tariff_exposure_numerator_usd_annual_mean": "sec_trf_num",
+        "sector_treatment_product_count": "sec_trt_n",
+        "policy_denominator_observed_product_count": "pol_denobs_n",
+        "treatment_missing_denominator_product_count": "trt_missden_n",
+        "treatment_zero_denominator_product_count": "trt_zeroden_n",
+        "treatment_no_hs17_mapping_product_count": "trt_nohs17_n",
+        "tariffed_product_count_annual_mean": "trf_prod_n",
+        "tariffed_china_import_value_2017_annual_mean": "trf_cnimp17",
+        "tariffed_total_us_import_value_2017_annual_mean": "trf_usimp17",
+        "sector_tariff_rate_china_weighted": "sec_trf_cw",
+        "sector_tariff_exposure": "sec_expo",
+        "sector_china_import_share_2017": "sec_cnshr17",
+        "tariffed_product_share_count": "trf_psh_n",
+        "tariffed_product_share_china_value": "trf_psh_c",
+        "tariffed_product_share_us_value": "trf_psh_u",
+        "treatment_missing_denominator_product_share": "trt_miss_sh",
+        "treatment_zero_denominator_product_share": "trt_zero_sh",
+        "treatment_no_hs17_mapping_product_share": "trt_nohs17_sh",
+        "trade_value_unit": "val_unit",
+        "treatment_concept": "trt_concept",
+        "historical_exclusions_applied": "hist_excl",
+        "four_year_review_2024_included": "rev24_in",
+        "review_2024_treatment": "rev24_trt",
+        "treatment_version": "trt_ver",
+        "is_analysis_sector_eligible": "ana_ok",
+        "sector_mapping_weight": "sec_wt",
+        "baci_absence_treated_as_zero": "baci_zrule",
+        "quantity_included": "qty_in",
+        "china_to_usa_common_benchmark": "cnus_common",
+        "treatment_repeated_across_connectors": "trt_repeat",
+        "coverage_repeated_across_sectors": "cov_repeat",
+        "common_benchmarks_not_additive_across_connectors": "bm_nonadd",
+        "window_level_is_annual_mean": "win_mean",
+        "included_value_share_uses_ratio_of_sums": "incl_rsum",
+        "product_mapping_version": "prod_mapver",
+        "m3_sector_aggregation_version": "m3_aggver",
+        "m3_window_construction_version": "m3_winver",
+        "schema_version": "schema_ver",
+        "china_to_connector_value_usd_annual_mean": "cncn_val",
+        "china_to_connector_source_row_count_annual_mean": "cncn_src_n",
+        "china_to_connector_positive_product_count_annual_mean": "cncn_pos_n",
+        "china_to_connector_zero_source_product_count_annual_mean": "cncn_zsrc_n",
+        "china_to_connector_excluded_value_usd_annual_mean": "cncn_excl",
+        "china_to_connector_included_value_share": "cncn_inclsh",
+        "east_asia_to_connector_value_usd_annual_mean": "eacn_val",
+        "east_asia_to_connector_source_row_count_annual_mean": "eacn_src_n",
+        "east_asia_to_connector_positive_product_count_annual_mean": "eacn_pos_n",
+        "east_asia_to_connector_zero_source_product_count_annual_mean": "eacn_zsrc_n",
+        "east_asia_to_connector_excluded_value_usd_annual_mean": "eacn_excl",
+        "east_asia_to_connector_included_value_share": "eacn_inclsh",
+        "connector_to_usa_value_usd_annual_mean": "cnusx_val",
+        "connector_to_usa_source_row_count_annual_mean": "cnusx_src_n",
+        "connector_to_usa_positive_product_count_annual_mean": "cnusx_pos_n",
+        "connector_to_usa_zero_source_product_count_annual_mean": "cnusx_zsrc_n",
+        "connector_to_usa_excluded_value_usd_annual_mean": "cnusx_excl",
+        "connector_to_usa_included_value_share": "cnusx_inclsh",
+        "china_to_usa_value_usd_annual_mean": "cnus_val",
+        "china_to_usa_source_row_count_annual_mean": "cnus_src_n",
+        "china_to_usa_positive_product_count_annual_mean": "cnus_pos_n",
+        "china_to_usa_zero_source_product_count_annual_mean": "cnus_zsrc_n",
+        "china_to_usa_excluded_value_usd_annual_mean": "cnus_excl",
+        "china_to_usa_included_value_share": "cnus_inclsh"
+      }
+    },
+    "comparison": {
+      "alias_count": 142,
+      "output_column_count": 142,
+      "missing_output_aliases": [],
+      "extra_stata_aliases": [],
+      "duplicate_alias_count": 0,
+      "over_32_character_aliases": [],
+      "maximum_alias_length": 13,
+      "pass": true,
+      "resolved_aliases": {
+        "connector_iso3": "conn_iso3",
+        "analysis_sector": "ana_sector",
+        "connector_group": "conn_group",
+        "connector_baci_code": "conn_baci",
+        "connector_is_proxy": "is_proxy",
+        "analysis_sector_status": "sec_status",
+        "sector_eligible_product_count": "sec_elig_n",
+        "excluded_product_count": "excl_prod_n",
+        "sector_total_us_import_value_2017": "sec_usimp17",
+        "sector_china_import_value_2017": "sec_cnimp17",
+        "sector_treatment_product_count": "sec_trt_n",
+        "policy_denominator_observed_product_count": "pol_denobs_n",
+        "treatment_missing_denominator_product_count": "trt_missden_n",
+        "treatment_zero_denominator_product_count": "trt_zeroden_n",
+        "treatment_no_hs17_mapping_product_count": "trt_nohs17_n",
+        "sector_china_import_share_2017": "sec_cnshr17",
+        "treatment_missing_denominator_product_share": "trt_miss_sh",
+        "treatment_zero_denominator_product_share": "trt_zero_sh",
+        "treatment_no_hs17_mapping_product_share": "trt_nohs17_sh",
+        "trade_value_unit": "val_unit",
+        "treatment_concept": "trt_concept",
+        "historical_exclusions_applied": "hist_excl",
+        "four_year_review_2024_included": "rev24_in",
+        "review_2024_treatment": "rev24_trt",
+        "treatment_version": "trt_ver",
+        "is_analysis_sector_eligible": "ana_ok",
+        "sector_mapping_weight": "sec_wt",
+        "baci_absence_treated_as_zero": "baci_zrule",
+        "quantity_included": "qty_in",
+        "china_to_usa_common_benchmark": "cnus_common",
+        "treatment_repeated_across_connectors": "trt_repeat",
+        "coverage_repeated_across_sectors": "cov_repeat",
+        "common_benchmarks_not_additive_across_connectors": "bm_nonadd",
+        "window_level_is_annual_mean": "win_mean",
+        "included_value_share_uses_ratio_of_sums": "incl_rsum",
+        "product_mapping_version": "prod_mapver",
+        "m3_sector_aggregation_version": "m3_aggver",
+        "m3_window_construction_version": "m3_winver",
+        "schema_version": "schema_ver",
+        "china_to_connector_value_usd_pre": "cncn_pre",
+        "china_to_connector_value_usd_shock": "cncn_shk",
+        "china_to_connector_value_usd_post": "cncn_post",
+        "china_to_connector_value_usd_change_post_pre": "d_cncn",
+        "china_to_connector_value_usd_dh_growth_post_pre": "gdh_cncn",
+        "china_to_connector_value_usd_log_growth_post_pre": "gln_cncn",
+        "china_to_connector_pre_zero_flag": "cncn_pre0",
+        "china_to_connector_post_zero_flag": "cncn_post0",
+        "china_to_connector_dh_growth_defined": "cncn_dhok",
+        "china_to_connector_log_growth_defined": "cncn_logok",
+        "china_to_connector_years_observed_pre": "cncn_preyn",
+        "china_to_connector_years_observed_shock": "cncn_shkyn",
+        "china_to_connector_years_observed_post": "cncn_postyn",
+        "china_to_connector_excluded_value_usd_pre": "cncn_xpre",
+        "china_to_connector_excluded_value_usd_shock": "cncn_xshk",
+        "china_to_connector_excluded_value_usd_post": "cncn_xpost",
+        "china_to_connector_included_value_share_pre": "cncn_ipre",
+        "china_to_connector_included_value_share_shock": "cncn_ishk",
+        "china_to_connector_included_value_share_post": "cncn_ipost",
+        "east_asia_to_connector_value_usd_pre": "eacn_pre",
+        "east_asia_to_connector_value_usd_shock": "eacn_shk",
+        "east_asia_to_connector_value_usd_post": "eacn_post",
+        "east_asia_to_connector_value_usd_change_post_pre": "d_eacn",
+        "east_asia_to_connector_value_usd_dh_growth_post_pre": "gdh_eacn",
+        "east_asia_to_connector_value_usd_log_growth_post_pre": "gln_eacn",
+        "east_asia_to_connector_pre_zero_flag": "eacn_pre0",
+        "east_asia_to_connector_post_zero_flag": "eacn_post0",
+        "east_asia_to_connector_dh_growth_defined": "eacn_dhok",
+        "east_asia_to_connector_log_growth_defined": "eacn_logok",
+        "east_asia_to_connector_years_observed_pre": "eacn_preyn",
+        "east_asia_to_connector_years_observed_shock": "eacn_shkyn",
+        "east_asia_to_connector_years_observed_post": "eacn_postyn",
+        "east_asia_to_connector_excluded_value_usd_pre": "eacn_xpre",
+        "east_asia_to_connector_excluded_value_usd_shock": "eacn_xshk",
+        "east_asia_to_connector_excluded_value_usd_post": "eacn_xpost",
+        "east_asia_to_connector_included_value_share_pre": "eacn_ipre",
+        "east_asia_to_connector_included_value_share_shock": "eacn_ishk",
+        "east_asia_to_connector_included_value_share_post": "eacn_ipost",
+        "connector_to_usa_value_usd_pre": "cnusx_pre",
+        "connector_to_usa_value_usd_shock": "cnusx_shk",
+        "connector_to_usa_value_usd_post": "cnusx_post",
+        "connector_to_usa_value_usd_change_post_pre": "d_cnusx",
+        "connector_to_usa_value_usd_dh_growth_post_pre": "gdh_cnusx",
+        "connector_to_usa_value_usd_log_growth_post_pre": "gln_cnusx",
+        "connector_to_usa_pre_zero_flag": "cnusx_pre0",
+        "connector_to_usa_post_zero_flag": "cnusx_post0",
+        "connector_to_usa_dh_growth_defined": "cnusx_dhok",
+        "connector_to_usa_log_growth_defined": "cnusx_logok",
+        "connector_to_usa_years_observed_pre": "cnusx_preyn",
+        "connector_to_usa_years_observed_shock": "cnusx_shkyn",
+        "connector_to_usa_years_observed_post": "cnusx_postyn",
+        "connector_to_usa_excluded_value_usd_pre": "cnusx_xpre",
+        "connector_to_usa_excluded_value_usd_shock": "cnusx_xshk",
+        "connector_to_usa_excluded_value_usd_post": "cnusx_xpost",
+        "connector_to_usa_included_value_share_pre": "cnusx_ipre",
+        "connector_to_usa_included_value_share_shock": "cnusx_ishk",
+        "connector_to_usa_included_value_share_post": "cnusx_ipost",
+        "china_to_usa_value_usd_pre": "cnus_pre",
+        "china_to_usa_value_usd_shock": "cnus_shk",
+        "china_to_usa_value_usd_post": "cnus_post",
+        "china_to_usa_value_usd_change_post_pre": "d_cnus",
+        "china_to_usa_value_usd_dh_growth_post_pre": "gdh_cnus",
+        "china_to_usa_value_usd_log_growth_post_pre": "gln_cnus",
+        "china_to_usa_pre_zero_flag": "cnus_pre0",
+        "china_to_usa_post_zero_flag": "cnus_post0",
+        "china_to_usa_dh_growth_defined": "cnus_dhok",
+        "china_to_usa_log_growth_defined": "cnus_logok",
+        "china_to_usa_years_observed_pre": "cnus_preyn",
+        "china_to_usa_years_observed_shock": "cnus_shkyn",
+        "china_to_usa_years_observed_post": "cnus_postyn",
+        "china_to_usa_excluded_value_usd_pre": "cnus_xpre",
+        "china_to_usa_excluded_value_usd_shock": "cnus_xshk",
+        "china_to_usa_excluded_value_usd_post": "cnus_xpost",
+        "china_to_usa_included_value_share_pre": "cnus_ipre",
+        "china_to_usa_included_value_share_shock": "cnus_ishk",
+        "china_to_usa_included_value_share_post": "cnus_ipost",
+        "sector_tariff_exposure_numerator_usd_annual_mean_pre": "trfnum_pre",
+        "sector_tariff_exposure_numerator_usd_annual_mean_shock": "trfnum_shk",
+        "sector_tariff_exposure_numerator_usd_annual_mean_post": "trfnum_post",
+        "tariffed_product_count_annual_mean_pre": "trfprod_pre",
+        "tariffed_product_count_annual_mean_shock": "trfprod_shk",
+        "tariffed_product_count_annual_mean_post": "trfprod_post",
+        "tariffed_china_import_value_2017_annual_mean_pre": "trfcnv_pre",
+        "tariffed_china_import_value_2017_annual_mean_shock": "trfcnv_shk",
+        "tariffed_china_import_value_2017_annual_mean_post": "trfcnv_post",
+        "tariffed_total_us_import_value_2017_annual_mean_pre": "trfusv_pre",
+        "tariffed_total_us_import_value_2017_annual_mean_shock": "trfusv_shk",
+        "tariffed_total_us_import_value_2017_annual_mean_post": "trfusv_post",
+        "sector_tariff_rate_china_weighted_pre": "trfcw_pre",
+        "sector_tariff_rate_china_weighted_shock": "trfcw_shk",
+        "sector_tariff_rate_china_weighted_post": "trfcw_post",
+        "sector_tariff_exposure_pre": "expo_pre",
+        "sector_tariff_exposure_shock": "expo_shk",
+        "sector_tariff_exposure_post": "expo_post",
+        "tariffed_product_share_count_pre": "trfpsn_pre",
+        "tariffed_product_share_count_shock": "trfpsn_shk",
+        "tariffed_product_share_count_post": "trfpsn_post",
+        "tariffed_product_share_china_value_pre": "trfpsc_pre",
+        "tariffed_product_share_china_value_shock": "trfpsc_shk",
+        "tariffed_product_share_china_value_post": "trfpsc_post",
+        "tariffed_product_share_us_value_pre": "trfpsu_pre",
+        "tariffed_product_share_us_value_shock": "trfpsu_shk",
+        "tariffed_product_share_us_value_post": "trfpsu_post"
+      }
+    }
+  },
+  "determinism_check": {
+    "required": true,
+    "long": {
+      "candidate_sha256": "310da7f289d8760d3ead34215a294be18275c758a2084cfd9f905988b695e704",
+      "second_build_sha256": "310da7f289d8760d3ead34215a294be18275c758a2084cfd9f905988b695e704",
+      "sha256_match": true
+    },
+    "comparison": {
+      "candidate_sha256": "be5f3a025a81d36d5a9bb1bd137d4bed9325a68ab5f1cb7f4d946a2373fbeb04",
+      "second_build_sha256": "be5f3a025a81d36d5a9bb1bd137d4bed9325a68ab5f1cb7f4d946a2373fbeb04",
+      "sha256_match": true
+    },
+    "temporary_directory": "tmp/m3_2_determinism",
+    "temporary_output_cleaned": true
+  },
+  "value_tolerance_usd": 0.01,
+  "ratio_tolerance": 1e-12,
+  "validation_version": 1,
+  "generated_at_utc": "2026-07-28T11:07:01.643743+00:00",
+  "config_path": "configs/connector_trade_sector_window_rules.yaml",
+  "config_sha256": "95d42ee146b1e0cf6e98261b46e5db52bf81000770d12d55da3371350d50058b",
+  "construction_version": "connector_trade_sector_window_rules_v1",
+  "long_schema_version": "connector_trade_sector_window_v1",
+  "comparison_schema_version": "connector_trade_sector_window_comparison_v1",
+  "outputs": {
+    "long": {
+      "path": "data/processed/harmonized/connector_trade_sector_window.parquet",
+      "sha256": "310da7f289d8760d3ead34215a294be18275c758a2084cfd9f905988b695e704",
+      "schema": [
+        {
+          "name": "connector_iso3",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "analysis_sector",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "window_id",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "window_order",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "window_start_year",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "window_end_year",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "expected_year_count",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "observed_year_count",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "connector_group",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_baci_code",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_is_proxy",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "analysis_sector_status",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "sector_eligible_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_value_usd_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_source_row_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_positive_product_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_zero_source_product_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_value_usd_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_source_row_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_positive_product_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_zero_source_product_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_value_usd_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_source_row_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_positive_product_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_zero_source_product_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_value_usd_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_source_row_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_positive_product_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_zero_source_product_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "window_complete",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "excluded_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_excluded_value_usd_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_excluded_value_usd_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_excluded_value_usd_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_excluded_value_usd_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_included_value_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_included_value_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_included_value_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_included_value_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_total_us_import_value_2017",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_china_import_value_2017",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_treatment_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "policy_denominator_observed_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "treatment_missing_denominator_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "treatment_zero_denominator_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "treatment_no_hs17_mapping_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "sector_tariff_exposure_numerator_usd_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_count_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_china_import_value_2017_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_total_us_import_value_2017_annual_mean",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_tariff_rate_china_weighted",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_tariff_exposure",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_china_import_share_2017",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_share_count",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_share_china_value",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_share_us_value",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "treatment_missing_denominator_product_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "treatment_zero_denominator_product_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "treatment_no_hs17_mapping_product_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "trade_value_unit",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "treatment_concept",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "historical_exclusions_applied",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "four_year_review_2024_included",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "review_2024_treatment",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "treatment_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "is_analysis_sector_eligible",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "sector_mapping_weight",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "baci_absence_treated_as_zero",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "quantity_included",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_common_benchmark",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "treatment_repeated_across_connectors",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "coverage_repeated_across_sectors",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "common_benchmarks_not_additive_across_connectors",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "product_mapping_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "m3_sector_aggregation_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "window_level_is_annual_mean",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "included_value_share_uses_ratio_of_sums",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "m3_window_construction_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "schema_version",
+          "type": "large_string",
+          "nullable": true
+        }
+      ]
+    },
+    "comparison": {
+      "path": "data/processed/harmonized/connector_trade_sector_window_comparison.parquet",
+      "sha256": "be5f3a025a81d36d5a9bb1bd137d4bed9325a68ab5f1cb7f4d946a2373fbeb04",
+      "schema": [
+        {
+          "name": "connector_iso3",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "analysis_sector",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_group",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_baci_code",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "connector_is_proxy",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "analysis_sector_status",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "sector_eligible_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "excluded_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "sector_total_us_import_value_2017",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_china_import_value_2017",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_treatment_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "policy_denominator_observed_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "treatment_missing_denominator_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "treatment_zero_denominator_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "treatment_no_hs17_mapping_product_count",
+          "type": "int32",
+          "nullable": true
+        },
+        {
+          "name": "sector_china_import_share_2017",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "treatment_missing_denominator_product_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "treatment_zero_denominator_product_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "treatment_no_hs17_mapping_product_share",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "trade_value_unit",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "treatment_concept",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "historical_exclusions_applied",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "four_year_review_2024_included",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "review_2024_treatment",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "treatment_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "is_analysis_sector_eligible",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "sector_mapping_weight",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "baci_absence_treated_as_zero",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "quantity_included",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_common_benchmark",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "treatment_repeated_across_connectors",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "coverage_repeated_across_sectors",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "common_benchmarks_not_additive_across_connectors",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "product_mapping_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "m3_sector_aggregation_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "window_level_is_annual_mean",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "included_value_share_uses_ratio_of_sums",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "m3_window_construction_version",
+          "type": "large_string",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_value_usd_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_years_observed_pre",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_excluded_value_usd_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_included_value_share_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_value_usd_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_years_observed_shock",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_excluded_value_usd_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_included_value_share_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_value_usd_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_years_observed_post",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_excluded_value_usd_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_included_value_share_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_value_usd_change_post_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_value_usd_dh_growth_post_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_value_usd_log_growth_post_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_pre_zero_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_post_zero_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_dh_growth_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "china_to_connector_log_growth_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_value_usd_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_years_observed_pre",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_excluded_value_usd_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_included_value_share_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_value_usd_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_years_observed_shock",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_excluded_value_usd_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_included_value_share_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_value_usd_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_years_observed_post",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_excluded_value_usd_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_included_value_share_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_value_usd_change_post_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_value_usd_dh_growth_post_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_value_usd_log_growth_post_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_pre_zero_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_post_zero_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_dh_growth_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "east_asia_to_connector_log_growth_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_value_usd_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_years_observed_pre",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_excluded_value_usd_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_included_value_share_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_value_usd_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_years_observed_shock",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_excluded_value_usd_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_included_value_share_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_value_usd_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_years_observed_post",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_excluded_value_usd_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_included_value_share_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_value_usd_change_post_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_value_usd_dh_growth_post_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_value_usd_log_growth_post_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_pre_zero_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_post_zero_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_dh_growth_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "connector_to_usa_log_growth_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_value_usd_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_years_observed_pre",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_excluded_value_usd_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_included_value_share_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_value_usd_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_years_observed_shock",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_excluded_value_usd_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_included_value_share_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_value_usd_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_years_observed_post",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_excluded_value_usd_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_included_value_share_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_value_usd_change_post_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_value_usd_dh_growth_post_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_value_usd_log_growth_post_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_pre_zero_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_post_zero_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_dh_growth_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "china_to_usa_log_growth_defined",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "sector_tariff_exposure_numerator_usd_annual_mean_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_tariff_exposure_numerator_usd_annual_mean_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_tariff_exposure_numerator_usd_annual_mean_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_count_annual_mean_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_count_annual_mean_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_count_annual_mean_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_china_import_value_2017_annual_mean_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_china_import_value_2017_annual_mean_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_china_import_value_2017_annual_mean_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_total_us_import_value_2017_annual_mean_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_total_us_import_value_2017_annual_mean_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_total_us_import_value_2017_annual_mean_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_tariff_rate_china_weighted_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_tariff_rate_china_weighted_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_tariff_rate_china_weighted_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_tariff_exposure_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_tariff_exposure_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "sector_tariff_exposure_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_share_count_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_share_count_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_share_count_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_share_china_value_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_share_china_value_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_share_china_value_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_share_us_value_pre",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_share_us_value_shock",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "tariffed_product_share_us_value_post",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "schema_version",
+          "type": "large_string",
+          "nullable": true
+        }
+      ]
+    }
+  },
+  "candidate_temp_directory": "tmp/m3_2_candidates",
+  "candidate_temporary_output_cleaned": true
+}

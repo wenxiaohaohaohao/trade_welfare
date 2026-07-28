@@ -4,7 +4,7 @@ This directory contains reproducible `data/interim/` to `data/processed/` pipeli
 
 ## Current stage
 
-M0, M1, M2, and M3.1 in `data/data_merge_checklist.md` are complete. The next task is M3.2. It has not started; no window, growth, replacement, or ranking variables are present in the M3.1 output.
+M0, M1, M2, M3.1, and M3.2 in `data/data_merge_checklist.md` are complete. The next task is M3.3. M3.2 contains complete-window annual means and mechanical post-pre change/DH/log growth only; it does not contain small-base thresholds, abnormal-growth treatment, winsorization, replacement ratios, or rankings.
 
 ## Living collaborator audit and variable contract
 
@@ -155,6 +155,32 @@ Registered files:
 The output has 1,001 rows at `connector_iso3 × analysis_sector × year`. It sums only the 4,237 canonical eligible products with sector weight 1, reconciles four trade flows to product-level eligible totals, reports the 965 non-eligible products through flow-specific connector-year coverage fields, and recalculates sector policy numerators, denominators, rates, and shares. China-to-USA and policy fields are repeated across connectors; coverage fields are repeated across sectors; explicit flags prohibit treating either as additive. The builder also performs a second build in `tmp/m3_1_determinism/`, requires an identical Parquet SHA256, and removes that project-local temporary output.
 
 M3.1 output SHA256: `95e547267892c4bc883788542f0e59ba284441b42f4ce1d379aea71a2f978c8c`. The 70 frozen Stata aliases pass completeness, uniqueness, and 32-character checks, but `.dta` export remains an M7 task.
+
+## M3.2 trade windows and post-pre growth
+
+Run the validated single-module builder from the project root:
+
+```powershell
+python code\data_processing\build_connector_trade_sector_window_panel.py --project-root . --overwrite
+```
+
+Registered files:
+
+- config: `configs/connector_trade_sector_window_rules.yaml`;
+- long canonical output: `data/processed/harmonized/connector_trade_sector_window.parquet`;
+- comparison canonical output: `data/processed/harmonized/connector_trade_sector_window_comparison.parquet`;
+- validation: `data/validation/connector_trade_sector_window_validation.json` and `.md`.
+
+The long output has 273 rows at `connector_iso3 × analysis_sector × window_id` and 79 columns. It uses annual means for the complete pre 2014-2017, shock 2018-2019, and post 2020-2024 windows. Included-value coverage is recomputed as the ratio of summed eligible value to summed full-universe value; policy rates and shares are recomputed from annual-mean numerators and transparent 2017 denominators.
+
+The comparison output has 91 rows at `connector_iso3 × analysis_sector` and 142 columns. For each of the four trade flows it contains pre/shock/post levels, post-pre level change, Davis-Haltiwanger growth, positive-base log growth, zero/defined flags, and observed-year counts. It also carries pre/shock/post coverage and policy summaries. It contains no policy growth, small-base decision, capping, winsorization, replacement ratio, or ranking.
+
+Output SHA256 values:
+
+- long: `310da7f289d8760d3ead34215a294be18275c758a2084cfd9f905988b695e704`;
+- comparison: `be5f3a025a81d36d5a9bb1bd137d4bed9325a68ab5f1cb7f4d946a2373fbeb04`.
+
+Validation status is PASS. Both outputs were rebuilt a second time in `tmp/m3_2_determinism/`; each SHA256 matched exactly, and both the determinism and candidate directories were removed. The 79 long aliases and 142 comparison aliases are complete, unique, and at most 13 characters. `.dta` export remains an M7 task.
 
 ## Stata handoff contract
 

@@ -4,10 +4,10 @@
 
 - Origin Skill: `stata-latex-research`
 - Origin Date: `2026-07-27`
-- Verification Status: `VERIFIED_THROUGH_M3.1`
-- Version Label: `variable_catalog_v0.2.0`
-- Current Data Stage: `M0-M3.1 completed`
-- Next Construction Stage: `M3.2 not started`
+- Verification Status: `VERIFIED_THROUGH_M3.2`
+- Version Label: `variable_catalog_v0.3.0`
+- Current Data Stage: `M0-M3.2 completed`
+- Next Construction Stage: `M3.3 not started`
 - Canonical Format: Parquet
 - Collaborator Format: Stata `.dta`
 
@@ -24,7 +24,7 @@
 
 本目录同时包含三类变量：
 
-- `EXISTING_VALIDATED`：M2 或 M3.1 已存在且 validation PASS；
+- `EXISTING_VALIDATED`：M2、M3.1 或 M3.2 已存在且 validation PASS；
 - `PLANNED_M3` 至 `PLANNED_M6`：已经定义但尚未构造，必须在对应阶段完成后补充实际 output hash 和 validation；
 - `STRUCTURAL_TARGET_ONLY`：只能作为模型校准目标或输入候选，不能直接解释为已经识别的结构参数。
 
@@ -39,7 +39,7 @@
 | 状态 | 含义 |
 |---|---|
 | `EXISTING_VALIDATED` | 已在 processed Parquet 中存在，主键和 validation 已通过 |
-| `PLANNED_M3` | M3.2-M3.6 的窗口、增长、replacement 和 ranking inputs 尚未构造 |
+| `PLANNED_M3` | M3.3-M3.6 的 small-base、replacement、ranking 和 sensitivity inputs 尚未构造 |
 | `PLANNED_M4` | production-side standardized long table 时构造 |
 | `PLANNED_M5` | trade 和 production evidence 合并时构造 |
 | `PLANNED_M6` | ranking、rerouting、validation 和 structural moments 时构造 |
@@ -55,6 +55,7 @@
 | `G_ORIGIN_PRODUCT_MONTH` | `origin_iso3, analysis_hs6, year, month` | Census monthly |
 | `G_CONN_SECTOR_YEAR` | `connector_iso3, analysis_sector, year` | M3 trade-sector |
 | `G_CONN_SECTOR_WINDOW` | `connector_iso3, analysis_sector, window_id` | M3 window summaries |
+| `G_CONN_SECTOR_COMPARISON` | `connector_iso3, analysis_sector` | M3 pre/shock/post comparison and growth |
 | `G_PROD_LONG` | `country_iso3, analysis_sector, year, source_name, metric_name`，必要时增加 direction/parent | M4 production long |
 | `G_EVIDENCE` | `connector_iso3, analysis_sector, year` | M5 integrated evidence |
 | `G_RANK` | `connector_iso3, analysis_sector, ranking_spec` | M6 ranking |
@@ -84,7 +85,7 @@
 | `analysis_sector` | `ana_sector` | str32 | sector grains | 第一阶段共同经验 sector | existing |
 | `year` | `year` | int | annual grains | calendar year | existing |
 | `month` | `month` | byte | monthly | 1-12 | existing |
-| `window_id` | `window_id` | str8 | window | pre/shock/post | planned M3 |
+| `window_id` | `window_id` | str8 | window | pre/shock/post | existing validated |
 | `source_name` | `source` | str20 | production long | 数据来源区分 | planned M4 |
 | `metric_name` | `metric` | str32 | production long | 指标区分 | planned M4 |
 | `unit` | `unit` | str32 | all long outputs | 单位，禁止跨单位相加 | planned M4 |
@@ -292,7 +293,90 @@ excluded、outside-manufacturing 和 residual products 没有可用于 sector su
 
 ## 6. M3.2 时间窗口变量
 
-不同窗口长度不相等：pre 4 年、shock 2 年、post 5 年。因此 level comparison 使用年度平均值，不使用窗口总和。
+状态：`EXISTING_VALIDATED`。
+
+正式文件：
+
+1. `data/processed/harmonized/connector_trade_sector_window.parquet`：273 行、79 列，粒度 `G_CONN_SECTOR_WINDOW`，唯一键 `connector_iso3, analysis_sector, window_id`；
+2. `data/processed/harmonized/connector_trade_sector_window_comparison.parquet`：91 行、142 列，粒度 `G_CONN_SECTOR_COMPARISON`，唯一键 `connector_iso3, analysis_sector`。
+
+构建证据：
+
+- builder：`code/data_processing/build_connector_trade_sector_window_panel.py`；
+- 冻结配置：`configs/connector_trade_sector_window_rules.yaml`，SHA256 `95d42ee146b1e0cf6e98261b46e5db52bf81000770d12d55da3371350d50058b`；
+- 冻结输入：1,001 × 70 的 M3.1 年度 panel，SHA256 `95e547267892c4bc883788542f0e59ba284441b42f4ce1d379aea71a2f978c8c`；
+- 时间定义：`configs/time_windows.yaml`，SHA256 `d1daeed066db7cf734c15c804f31eaaf66a7c07b335f3c227a6c9effffd6ebb5`；
+- long 输出 SHA256：`310da7f289d8760d3ead34215a294be18275c758a2084cfd9f905988b695e704`；
+- comparison 输出 SHA256：`be5f3a025a81d36d5a9bb1bd137d4bed9325a68ab5f1cb7f4d946a2373fbeb04`；
+- validation：`data/validation/connector_trade_sector_window_validation.json` 与 `.md`，状态 `PASS`；
+- 确定性检查：项目 F 盘第二次构建的两张 Parquet 分别与正式候选逐字节 hash 相同，候选和 determinism 临时目录均已清除；
+- Stata 接口：long 79 个、comparison 142 个 resolved aliases 全部完整、互不重复，最长 13 字符。本阶段仍不生成 `.dta`。
+
+### 6.1 窗口定义和 long annual-mean levels
+
+不同窗口长度不相等：pre 4 年、shock 2 年、post 5 年。因此 level comparison 使用完整年度观察的算术平均值，不使用窗口总和。
+
+| `window_id` | 年份 | `window_order` | expected/observed years | 状态 |
+|---|---|---:|---:|---|
+| `pre` | 2014-2017 | 1 | 4 / 4 | `window_complete=true` |
+| `shock` | 2018-2019 | 2 | 2 / 2 | `window_complete=true` |
+| `post` | 2020-2024 | 3 | 5 / 5 | `window_complete=true` |
+
+所有 91 个 connector-sector cells 在三个窗口都完整，没有 partial-window mean。Long 表的窗口字段为：
+
+| Canonical name | Stata name | 定义 | 状态 |
+|---|---|---|---|
+| `window_id` | `window_id` | pre/shock/post | `EXISTING_VALIDATED` |
+| `window_order` | `win_order` | 1/2/3 | `EXISTING_VALIDATED` |
+| `window_start_year` / `window_end_year` | `win_start` / `win_end` | 冻结端点 | `EXISTING_VALIDATED` |
+| `expected_year_count` / `observed_year_count` | `exp_yn` / `obs_yn` | 预期与实际 distinct years | `EXISTING_VALIDATED` |
+| `window_complete` | `win_complete` | observed=expected | `EXISTING_VALIDATED` |
+| `window_level_is_annual_mean` | `win_mean` | 本输出恒为 1 | `EXISTING_VALIDATED` |
+
+四条流在 long 表使用下列 family。`<flow>`/`<prefix>` 对应 `china_to_connector/cncn`、`east_asia_to_connector/eacn`、`connector_to_usa/cnusx`、`china_to_usa/cnus`。
+
+| Canonical pattern | Stata pattern | 公式/含义 | 状态 |
+|---|---|---|---|
+| `<flow>_value_usd_annual_mean` | `<prefix>_val` | 完整窗口年度金额算术平均 | `EXISTING_VALIDATED` |
+| `<flow>_source_row_count_annual_mean` | `<prefix>_src_n` | M3.1 flow-specific source-row counts 的年度平均 | `EXISTING_VALIDATED` |
+| `<flow>_positive_product_count_annual_mean` | `<prefix>_pos_n` | positive eligible HS6 count 的年度平均 | `EXISTING_VALIDATED` |
+| `<flow>_zero_source_product_count_annual_mean` | `<prefix>_zsrc_n` | source-row count=0 eligible HS6 count 的年度平均；不等同 observed zero | `EXISTING_VALIDATED` |
+
+年度 count 的窗口平均可能为非整数，因此 long 表中这些 annual-mean diagnostics 使用 `double`；底层年度 count 没有被修改。
+
+### 6.2 Coverage 使用 ratio of sums
+
+非 eligible 产品没有 sector weight。Coverage 仍先在 `connector_iso3, year` 计算，再聚合到 `connector_iso3, window_id` 并跨 sector 重复；`coverage_repeated_across_sectors=true` 继续禁止跨 sector 加总。
+
+| Canonical pattern | Stata pattern | 公式 | 可加总性 | 状态 |
+|---|---|---|---|---|
+| `excluded_product_count` | `excl_prod_n` | 窗口内固定的非 eligible 产品数 965 | `NONADDITIVE_REPEAT` | `EXISTING_VALIDATED` |
+| `<flow>_excluded_value_usd_annual_mean` | `<prefix>_excl` | 非 eligible 年度金额的窗口平均 | `NONADDITIVE_REPEAT` across sector | `EXISTING_VALIDATED` |
+| `<flow>_included_value_share` | `<prefix>_inclsh` | `sum_t eligible_value_t / sum_t(eligible_value_t + excluded_value_t)` | `NONADDITIVE_RATE` | `EXISTING_VALIDATED` |
+| `included_value_share_uses_ratio_of_sums` | `incl_rsum` | 本输出恒为 1，禁止误解为 annual shares 的简单平均 | `FLAG` | `EXISTING_VALIDATED` |
+
+### 6.3 Window policy summaries
+
+Policy denominator 仍是透明的 2017 sector denominator。时间变化的 numerator/count/value 先取完整窗口年度平均，再重算 rate/share；不平均年度 rate/share。
+
+| Canonical name | Stata name | 公式 | 状态 |
+|---|---|---|---|
+| `sector_tariff_exposure_numerator_usd_annual_mean` | `sec_trf_num` | `mean_t sector_tariff_exposure_numerator_usd_t` | `EXISTING_VALIDATED` |
+| `sector_total_us_import_value_2017` | `sec_usimp17` | 固定 2017 total-import denominator | `EXISTING_VALIDATED` |
+| `sector_china_import_value_2017` | `sec_cnimp17` | 固定 2017 China-import denominator | `EXISTING_VALIDATED` |
+| `sector_tariff_rate_china_weighted` | `sec_trf_cw` | annual-mean numerator / `sec_cnimp17` | `EXISTING_VALIDATED` |
+| `sector_tariff_exposure` | `sec_expo` | annual-mean numerator / `sec_usimp17` | `EXISTING_VALIDATED` |
+| `sector_china_import_share_2017` | `sec_cnshr17` | `sec_cnimp17 / sec_usimp17` | `EXISTING_VALIDATED` |
+| `tariffed_product_count_annual_mean` | `trf_prod_n` | 年度 tariffed eligible-product count 的窗口平均 | `EXISTING_VALIDATED` |
+| `tariffed_china_import_value_2017_annual_mean` | `trf_cnimp17` | tariffed China-import mass 的年度平均 | `EXISTING_VALIDATED` |
+| `tariffed_total_us_import_value_2017_annual_mean` | `trf_usimp17` | tariffed total-import mass 的年度平均 | `EXISTING_VALIDATED` |
+| `tariffed_product_share_count` | `trf_psh_n` | annual-mean tariffed count / treatment count | `EXISTING_VALIDATED` |
+| `tariffed_product_share_china_value` | `trf_psh_c` | annual-mean tariffed China value / `sec_cnimp17` | `EXISTING_VALIDATED` |
+| `tariffed_product_share_us_value` | `trf_psh_u` | annual-mean tariffed total value / `sec_usimp17` | `EXISTING_VALIDATED` |
+
+Treatment denominator observed/missing/zero/no-HS2017 counts和 shares 保留为窗口字段。每个窗口跨 sector 加总仍为 17 个 zero-denominator eligible products 和 11 个 no-HS2017-mapping eligible products。Pre 的 91 个 connector-sector policy exposure 全部为 0；本模块没有对 policy exposure 构造 change、percentage growth 或 log growth。
+
+### 6.4 Comparison levels、changes 和 growth
 
 对任意非负年度 flow `x_t`：
 
@@ -308,35 +392,52 @@ g_log_x_post_pre = ln(x_post) - ln(x_pre), only if both > 0
 
 `g_dh` 是推荐 primary growth：无量纲、允许一端为 0、范围 [-2,2]。`g_log` 只用于 positive-base robustness。禁止把 undefined log growth 自动设为 0。
 
-每条贸易腿构造：
+Comparison 表对每条贸易腿构造：
 
-| Family | Pre level | Shock level | Post level | Level change | DH growth | Positive-base log growth |
+| Family | Canonical stem | Stata prefix | Pre/shock/post | Change | DH | Log |
 |---|---|---|---|---|---|---|
-| China -> USA | `cnus_pre` | `cnus_shk` | `cnus_post` | `d_cnus` | `gdh_cnus` | `gln_cnus` |
-| China -> connector | `cncn_pre` | `cncn_shk` | `cncn_post` | `d_cncn` | `gdh_cncn` | `gln_cncn` |
-| East Asia -> connector | `eacn_pre` | `eacn_shk` | `eacn_post` | `d_eacn` | `gdh_eacn` | `gln_eacn` |
-| connector -> USA | `cnusx_pre` | `cnusx_shk` | `cnusx_post` | `d_cnusx` | `gdh_cnusx` | `gln_cnusx` |
+| China -> USA | `china_to_usa` | `cnus` | `cnus_pre/shk/post` | `d_cnus` | `gdh_cnus` | `gln_cnus` |
+| China -> connector | `china_to_connector` | `cncn` | `cncn_pre/shk/post` | `d_cncn` | `gdh_cncn` | `gln_cncn` |
+| East Asia -> connector | `east_asia_to_connector` | `eacn` | `eacn_pre/shk/post` | `d_eacn` | `gdh_eacn` | `gln_eacn` |
+| connector -> USA | `connector_to_usa` | `cnusx` | `cnusx_pre/shk/post` | `d_cnusx` | `gdh_cnusx` | `gln_cnusx` |
 
-Stata 名称必须在生成前再次检查不超过 32 characters，并在 variable labels 写出完整方向。
+完整 canonical patterns 是 `<flow>_value_usd_pre/shock/post`、`<flow>_value_usd_change_post_pre`、`<flow>_value_usd_dh_growth_post_pre` 和 `<flow>_value_usd_log_growth_post_pre`。Comparison 表还展开四条流的 excluded annual mean、included-value share，以及九个随窗口变化的 policy summaries；固定 2017 denominators 和 denominator-exception counts/shares只保留一份，避免无意义的 pre/shock/post 复制。
 
-### 6.1 zero 和 small-base flags
+### 6.5 Zero/defined flags 和 M3.3 边界
 
-| Canonical name | Stata name | 定义 | 用途 |
+| Canonical pattern | Stata pattern | 定义 | 状态 |
 |---|---|---|---|
-| `pre_zero_flag` | `pre_zero` | pre annual mean = 0 | 区分新贸易与连续增长 |
-| `post_zero_flag` | `post_zero` | post annual mean = 0 | 区分退出 |
-| `small_base_flag` | `smallbase` | pre level 低于 M3 config 明确阈值 | 防止 ratio/rank 爆炸 |
-| `log_growth_defined` | `logg_ok` | pre>0 and post>0 | log sample |
-| `years_observed_pre` | `pre_yn` | pre 窗口实际 years | coverage |
-| `years_observed_post` | `post_yn` | post 窗口实际 years | coverage |
+| `<flow>_pre_zero_flag` | `<prefix>_pre0` | pre annual mean = 0 | `EXISTING_VALIDATED` |
+| `<flow>_post_zero_flag` | `<prefix>_post0` | post annual mean = 0 | `EXISTING_VALIDATED` |
+| `<flow>_dh_growth_defined` | `<prefix>_dhok` | pre+post != 0 | `EXISTING_VALIDATED` |
+| `<flow>_log_growth_defined` | `<prefix>_logok` | pre>0 and post>0 | `EXISTING_VALIDATED` |
+| `<flow>_years_observed_pre/shock/post` | `<prefix>_preyn/shkyn/postyn` | 实际 distinct years | `EXISTING_VALIDATED` |
 
-small-base threshold 必须写入 M3 config，至少报告：
+边界规则已实现：
 
-- absolute USD threshold；
-- sector-relative percentile threshold；
-- 不使用 threshold、只用 DH growth 的结果。
+- 两端都为 0：DH 和 log 均缺失；
+- 只有一端为 0：DH 为 ±2，log 缺失；
+- 两端都为正：DH 和 log 均定义；
+- 负 level change 和负 growth 原样保留，不截断。
 
-推荐主排名使用 level change + DH growth，不依赖单一百分比增长。
+当前数据四条流的 pre-zero 和 post-zero 数都为 0，每条流 91 个 log growth 全部定义。负 post-pre change 数分别为 China→connector 3、East Asia→connector 5、connector→USA 6、China→USA 26。DH 全部位于 [-2,2]，没有 infinite。
+
+`small_base_flag` 仍是 `PLANNED_M3`，M3.2 不设阈值、不标异常、不 winsorize。M3.3 必须另行冻结 absolute USD threshold、sector-relative threshold 和 no-threshold/DH-only robustness。推荐主排名继续同时使用 level change 和 DH growth，不依赖单一百分比增长。
+
+### 6.6 M3.2 validation 和解释边界
+
+- M3.1 input hash、70-column Arrow schema signature、1,001 行和年度主键全部匹配冻结配置；
+- 每个年度观察恰好属于一个窗口，source window definition 与 frozen definition 完全一致；
+- long/comparison 主键重复均为 0，行数严格为 273/91；
+- 四条流 annual mean × years 与 M3.1 annual sum 的最大金额差额均为 USD 0；source-row、positive-product 和 zero-source diagnostics 的 count reconciliation gap 均为 0；
+- comparison 的 pre/shock/post levels 与 long 完全一致；change、DH 和 log 独立复算最大绝对误差均为 0；
+- coverage ratio-of-sums 和所有 policy numerator/denominator/rate/share 独立复算误差均为 0；
+- China→USA/policy 跨 connector、coverage 跨 sector 的 inconsistency count 均为 0；
+- TWN 有 21 个 long rows、7 个 comparison rows，proxy false count 为 0；
+- long/comparison required numeric missing count 均为 0；
+- 两张 Parquet 的第二次确定性构建 SHA256 分别完全一致，candidate 和 determinism 临时目录已清除。
+
+M3.2 可以作为 M3.3 的唯一输入接口之一。它不能用于声称 small-base 处理、异常增长决策、replacement ratio、connector ranking、production relocation 或 structural moments 已完成。
 
 ## 7. M3.3-M3.6 贸易重组和排名输入变量
 
@@ -748,6 +849,7 @@ Candidate names：
 | `m2_connector_trade.dta` | `isid conn_iso3 hs6 year` | product-level trade |
 | `m3_trade_sector_year.dta` | `isid conn_iso3 ana_sector year` | sector-year trade |
 | `m3_trade_sector_window.dta` | `isid conn_iso3 ana_sector window_id` | pre/shock/post |
+| `m3_trade_sector_window_comparison.dta` | `isid conn_iso3 ana_sector` | pre/shock/post comparison and post-pre growth |
 | `m4_production_long.dta` | source-specific composite key | production evidence |
 | `m5_connector_evidence.dta` | `isid conn_iso3 ana_sector year` | integrated interface |
 | `m6_connector_ranking.dta` | `isid conn_iso3 ana_sector rank_spec` | ranking |
@@ -822,8 +924,8 @@ Reviewer/date:
 
 1. M3.1 已构造 connector-sector-year levels、coverage 和 sector treatment；
 2. M3.1 product-to-sector value reconciliation 与确定性检查已通过；
-3. 下一步 M3.2 构造 window annual means；
-4. M3.3 固定 zero/small-base/growth rules；
+3. M3.2 已构造 complete-window annual means、coverage/policy summaries、post-pre change、DH/log growth 和 mechanical zero/defined flags；
+4. 下一步 M3.3 固定 small-base、异常增长和 winsorization rules；
 5. M3.4 构造 replacement、source input、exposure overlap 和 co-movement；
 6. M3.5 保留所有 connectors/comparators；
 7. M3.6 生成窗口、source bloc 和 exposure sensitivity；
@@ -839,5 +941,6 @@ Reviewer/date:
 | v0.1.0 | 2026-07-27 | 建立 M2 已验证变量、M3-M6 planned variables、公式、用途、缺失规则、排名方案、structural moment 边界和 Stata handoff 合同。 |
 | v0.1.1 | 2026-07-27 | 与完整数据处理审计档案建立双向合同；规定 M3-M7 每步必须同步登记实际输出、validation、hash 和 Stata 接口。 |
 | v0.2.0 | 2026-07-28 | 完成 M3.1 变量合同：登记 1,001 行 connector-sector-year 输出、70 个 canonical/Stata aliases、实际公式、flow-specific coverage、17/11 个 treatment denominator 异常、non-additive flags、validation 和确定性输出 hash；M3.2-M3.6 保持 planned。 |
+| v0.3.0 | 2026-07-28 | 完成 M3.2 变量合同：登记 273 × 79 long window 和 91 × 142 comparison 两表接口、complete 4/2/5-year annual means、ratio-of-sums coverage、policy summaries、post-pre change/DH/log growth、zero/defined flags、17/11 denominator 异常、79/142 个 Stata aliases、两张确定性输出 hash 和 M3.3 边界。 |
 
-下一次强制更新：M3.2 完成时，补齐窗口年度均值、窗口覆盖、缺失规则和实际 output/validation/hash；同时更新审计档案并重建两份 PDF。
+下一次强制更新：M3.3 完成时，补齐 small-base threshold、异常增长判定、winsorization/capping 规则、敏感性和实际 output/validation/hash；同时更新审计档案并重建两份 PDF。

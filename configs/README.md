@@ -21,8 +21,9 @@ This directory contains the tracked definitions used by the data pipeline:
 | `census_harmonization_rules.yaml` | Year-specific Census HS mapping, additive flow fields, 15-origin scope, quantity unavailability, and monthly/annual outputs. |
 | `section301_2024_review_rules.yaml` | Exact HTS8/HTS10 2024 review extension kept separate from the historical HS6 panel. |
 | `connector_trade_sector_rules.yaml` | Frozen M3.1 input hashes, keys, eligible sectors, four-flow aggregation/coverage fields, policy formulas, validation tolerances, deterministic rebuild path, and 70 Stata aliases. |
+| `connector_trade_sector_window_rules.yaml` | Frozen M3.2 M3.1-input/time-window hashes, 4/2/5-year complete windows, annual-mean and ratio-of-sums formulas, two output keys, growth edge rules, validation tolerances, deterministic rebuild paths, and resolved Stata alias templates. |
 
-Country groups and data versions are active inputs. M1 country, time, product, and source-sector concordances and the M3.1 annual connector-sector aggregation are complete. M3.2 window variables and executable counterfactual scenario files remain pending.
+Country groups and data versions are active inputs. M1 country, time, product, and source-sector concordances plus M3.1 annual aggregation and M3.2 window/growth construction are complete. M3.3-M3.6 ranking inputs and executable counterfactual scenario files remain pending.
 
 The model implementation must avoid hard-coded country indices in MATLAB. Scenario files should define:
 
