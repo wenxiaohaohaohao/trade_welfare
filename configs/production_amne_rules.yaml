@@ -1,0 +1,404 @@
+version: production_amne_rules_v1
+status: frozen_for_m4_2
+frozen_date: 2026-08-02
+
+inputs:
+  affiliate_activity:
+    path: data/interim/mne/oecd_amne_affiliate_activity.parquet
+    sha256: ae5f859573e95773274928d0f27a90fe974fca2bd95f22fa78a849d8a2d8f856
+    expected_rows: 1260053
+    expected_columns: 15
+    arrow_schema_signature_sha256: ee72af2a1d5fee2fb11f8d0ebe013fa5558896075caf03fc3708e05e0eccdc10
+    natural_key: [year, host_country_iso3, parent_country_iso3, sector_oecd]
+  mp_shares:
+    path: data/interim/mne/oecd_amne_mp_shares.parquet
+    sha256: a7f312c5a7cf0e87a3ecb6552363dae2c0f2e296685000653087a7d86c524131
+    expected_rows: 4250880
+    expected_columns: 19
+    arrow_schema_signature_sha256: 32a020d630cb370a1f3b9818800ab4dc88f7bc965736fd6aa00179e4337cf508
+    natural_key: [year, host_country_iso3, parent_country_iso3, sector_oecd]
+  source_sector_crosswalk:
+    path: data/processed/concordances/source_sector_crosswalk.parquet
+    sha256: 99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9
+    expected_rows: 517
+    expected_columns: 14
+    arrow_schema_signature_sha256: bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d
+    natural_key: [source_name, source_sector_level, source_sector_code]
+    source_filter: oecd_amne
+    expected_filtered_rows: 39
+  country_crosswalk:
+    path: data/processed/concordances/country_crosswalk.parquet
+    sha256: 29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6
+    expected_rows: 611
+    expected_columns: 22
+    arrow_schema_signature_sha256: 464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5
+    natural_key: [source_name, source_country_id]
+    source_filter: oecd_amne
+    expected_filtered_rows: 81
+  build_summary:
+    path: data/interim/mne/oecd_amne_build_summary.json
+    sha256: f992635705498a2d48a5a6e36721c61c5349d9290ce4a0dc42102f1ca550e8c1
+
+source_contract:
+  source_name: amne
+  source_crosswalk_name: oecd_amne
+  release: OECD Analytical AMNE 2026 release
+  unit: current_million_usd
+  frequency: annual
+  observed_years: [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+  host_country_count_in_source: 81
+  parent_country_count_in_source: 81
+  actual_country_count: 80
+  foreign_parents_per_host: 80
+  row_aggregate_code: ROW
+  parent_detail_universe: positive_affiliate_output_links_only
+  zero_parent_links_materialized_in_parent_detail: false
+  host_totals_use_full_zero_inclusive_mp_share_universe: true
+  bilateral_output_status: direct
+  parent_value_added_exports_imports_status: allocated_by_parent_affiliate_output_share
+  employment_status: unavailable
+  parent_share_denominator: sum_bilateral_affiliate_output_over_all_foreign_parents
+  host_foreign_output_status: direct_xvem_total
+  medical_devices_separate_measure_available: false
+  source_sector_mapping_version: source_sector_rules_v1
+  auxiliary_zero_only_source_sectors:
+    O84:
+      status: outside_manufacturing_auxiliary_zero_only
+      main_join_eligible: false
+    T97T98:
+      status: outside_manufacturing_auxiliary_zero_only
+      main_join_eligible: false
+
+analysis_sectors:
+  - electronics
+  - electrical_equipment
+  - machinery
+  - autos
+  - textiles_apparel
+  - other_manufacturing
+
+parent_metrics:
+  affiliate_output:
+    order: 1
+    source_field: affiliate_output
+    unit: current_million_usd
+    direct_or_allocated: direct_bilateral
+    derivation_status: source_direct
+    formula: OECD_bilateral_affiliate_output
+    use: parent_host_mp_activity
+    allocation_method: none
+    additive_across_parents: true
+    additive_across_source_sectors: true
+  affiliate_value_added:
+    order: 2
+    source_field: affiliate_value_added
+    unit: current_million_usd
+    direct_or_allocated: allocated_to_parent
+    derivation_status: allocated_from_host_sector_foreign_total
+    formula: host_sector_foreign_value_added_times_parent_bilateral_output_share
+    use: parent_host_production_validation_with_allocation_caveat
+    allocation_method: allocated_by_parent_affiliate_output_share
+    additive_across_parents: true
+    additive_across_source_sectors: true
+  affiliate_exports:
+    order: 3
+    source_field: affiliate_exports
+    unit: current_million_usd
+    direct_or_allocated: allocated_to_parent
+    derivation_status: allocated_from_host_sector_foreign_total
+    formula: host_sector_foreign_exports_times_parent_bilateral_output_share
+    use: parent_host_affiliate_trade_with_allocation_caveat
+    allocation_method: allocated_by_parent_affiliate_output_share
+    additive_across_parents: true
+    additive_across_source_sectors: true
+  affiliate_imports:
+    order: 4
+    source_field: affiliate_imports
+    unit: current_million_usd
+    direct_or_allocated: allocated_to_parent
+    derivation_status: allocated_from_host_sector_foreign_total
+    formula: host_sector_foreign_imports_times_parent_bilateral_output_share
+    use: parent_host_affiliate_inputs_with_allocation_caveat
+    allocation_method: allocated_by_parent_affiliate_output_share
+    additive_across_parents: true
+    additive_across_source_sectors: true
+  parent_affiliate_output_share:
+    order: 5
+    source_field: parent_affiliate_output_share
+    unit: fraction
+    direct_or_allocated: derived_from_direct_bilateral_output
+    derivation_status: derived_allocation_weight
+    formula: affiliate_output_divided_by_sum_bilateral_affiliate_output_over_foreign_parents
+    use: allocation_provenance_and_parent_output_composition
+    allocation_method: bilateral_output_share
+    additive_across_parents: false
+    additive_across_source_sectors: false
+  affiliate_employment:
+    order: 6
+    source_field: affiliate_employment
+    unit: unavailable
+    direct_or_allocated: unavailable
+    derivation_status: source_not_available
+    formula: unavailable_in_downloaded_analytical_amne_files
+    use: prohibited_as_zero_or_imputed_value
+    allocation_method: unavailable
+    additive_across_parents: false
+    additive_across_source_sectors: false
+
+host_metrics:
+  bilateral_affiliate_output_sum:
+    order: 1
+    unit: current_million_usd
+    direct_or_allocated: derived_sum_of_direct_bilateral
+    derivation_status: parent_sum_then_analysis_sector_sum
+    formula: sum_affiliate_output_over_all_foreign_parents_and_eligible_source_sectors
+    use: parent_share_denominator_and_source_reconciliation
+    additive_across_source_sectors: true
+  foreign_affiliate_output_total:
+    order: 2
+    unit: current_million_usd
+    direct_or_allocated: direct_host_sector_total
+    derivation_status: source_direct_then_analysis_sector_sum
+    formula: sum_xvem_foreign_affiliate_output_total_over_eligible_source_sectors
+    use: foreign_affiliate_activity_level
+    additive_across_source_sectors: true
+  foreign_affiliate_value_added_total:
+    order: 3
+    unit: current_million_usd
+    direct_or_allocated: reconstructed_from_allocated_parent_cells
+    derivation_status: allocated_parent_sum_then_analysis_sector_sum
+    formula: sum_allocated_parent_affiliate_value_added_over_all_parents_and_eligible_source_sectors
+    use: production_validation_with_allocation_provenance
+    additive_across_source_sectors: true
+  foreign_affiliate_exports_total:
+    order: 4
+    unit: current_million_usd
+    direct_or_allocated: reconstructed_from_allocated_parent_cells
+    derivation_status: allocated_parent_sum_then_analysis_sector_sum
+    formula: sum_allocated_parent_affiliate_exports_over_all_parents_and_eligible_source_sectors
+    use: foreign_affiliate_trade_level_with_allocation_provenance
+    additive_across_source_sectors: true
+  foreign_affiliate_imports_total:
+    order: 5
+    unit: current_million_usd
+    direct_or_allocated: reconstructed_from_allocated_parent_cells
+    derivation_status: allocated_parent_sum_then_analysis_sector_sum
+    formula: sum_allocated_parent_affiliate_imports_over_all_parents_and_eligible_source_sectors
+    use: foreign_affiliate_input_level_with_allocation_provenance
+    additive_across_source_sectors: true
+  gross_output:
+    order: 6
+    unit: current_million_usd
+    direct_or_allocated: direct_host_sector_total
+    derivation_status: source_direct_then_analysis_sector_sum
+    formula: sum_xvem_gross_output_over_eligible_source_sectors
+    use: host_production_denominator
+    additive_across_source_sectors: true
+  foreign_affiliate_output_share:
+    order: 7
+    unit: fraction
+    direct_or_allocated: derived_ratio_of_direct_host_totals
+    derivation_status: ratio_of_analysis_sector_sums
+    formula: foreign_affiliate_output_total_divided_by_gross_output_when_gross_output_positive
+    use: foreign_affiliate_intensity_and_scenario_b_discipline
+    additive_across_source_sectors: false
+
+outputs:
+  parent_long:
+    path: data/processed/harmonized/production_amne_parent_host_sector_long.parquet
+    natural_key: [source_name, source_host_country_id, source_parent_country_id, model_sector, year, metric_name]
+    expected_rows: 7560318
+    expected_columns: 71
+    schema_version: production_amne_parent_host_sector_long_v1
+    stata_aliases:
+      year: year
+      source_name: source
+      source_host_country_id: src_host
+      host_country_iso3: host_iso3
+      host_canonical_country_name: host_name
+      host_mapping_status: host_mapst
+      host_is_country: host_ctry
+      host_is_aggregate: host_agg
+      host_is_residual: host_resid
+      host_is_proxy: host_proxy
+      host_main_analysis_country_flag: host_joinok
+      host_is_core_connector: core_conn
+      host_is_asian_comparator: asia_comp
+      host_is_other_candidate: oth_cand
+      host_comparison_sample_country_flag: comp_ctry
+      source_parent_country_id: src_parent
+      parent_country_iso3: parent_iso3
+      parent_canonical_country_name: parent_name
+      parent_mapping_status: par_mapst
+      parent_is_country: par_ctry
+      parent_is_aggregate: par_agg
+      parent_is_residual: par_resid
+      parent_is_proxy: par_proxy
+      parent_country_join_eligible: par_joinok
+      model_sector: model_sec
+      source_sector_level: src_seclvl
+      source_sector_label: src_seclab
+      analysis_sector: ana_sector
+      sector_mapping_status: sec_mapst
+      sector_mapping_rule: sec_maprule
+      sector_first_round_exclusion: sec_excl
+      sector_proxy_analysis_sector: sec_proxy
+      sector_is_main_join_eligible: sec_joinok
+      sector_mapping_weight: sec_weight
+      source_granularity_note: gran_note
+      source_code_family: code_family
+      source_sector_mapping_version: sec_mapver
+      ownership_type: own_type
+      metric_name: metric
+      metric_order: metric_ord
+      value: value
+      unit: unit
+      frequency: freq
+      direction: direction
+      direct_or_allocated: direct_alloc
+      derivation_status: deriv_stat
+      metric_formula: metric_form
+      metric_use: metric_use
+      allocation_method: alloc_method
+      allocation_weight: alloc_weight
+      value_available_flag: val_avail
+      metric_unavailable_flag: met_unavail
+      suppressed_flag: suppressed
+      confidential_flag: confidentl
+      aggregate_flag: is_agg
+      residual_flag: is_resid
+      proxy_flag: is_proxy
+      main_analysis_join_eligible: main_joinok
+      observed_negative_flag: obs_neg
+      observed_zero_flag: obs_zero
+      metric_additive_across_parents: par_add
+      metric_additive_across_source_sectors: sec_add
+      can_sum_across_metrics: met_add
+      host_total_repeated_across_parents_flag: host_repeat
+      positive_affiliate_output_link_flag: pos_link
+      zero_affiliate_output_links_materialized_flag: zero_links
+      source_file: src_file
+      amne_release: amne_rel
+      m4_amne_version: m4_amnever
+      rules_config_sha256: rules_hash
+      schema_version: schema_ver
+  host_long:
+    path: data/processed/harmonized/production_validation_amne_host_sector_long.parquet
+    natural_key: [country_iso3, analysis_sector, year, source_name, metric_name]
+    expected_rows: 53760
+    expected_columns: 56
+    expected_country_count: 80
+    expected_analysis_sector_count: 6
+    expected_country_sector_year_cells: 7680
+    schema_version: production_validation_amne_host_sector_long_v1
+    stata_aliases:
+      country_iso3: country_iso3
+      canonical_country_name: country_name
+      analysis_sector: ana_sector
+      year: year
+      source_name: source
+      metric_name: metric
+      metric_order: metric_ord
+      value: value
+      unit: unit
+      frequency: freq
+      direction: direction
+      parent_country_iso3: parent_iso3
+      direct_or_allocated: direct_alloc
+      derivation_status: deriv_stat
+      metric_formula: metric_form
+      metric_use: metric_use
+      value_available_flag: val_avail
+      share_defined_flag: share_def
+      denominator_zero_flag: denom_zero
+      suppressed_flag: suppressed
+      confidential_flag: confidentl
+      aggregate_flag: is_agg
+      residual_flag: is_resid
+      proxy_flag: is_proxy
+      source_sector_count: src_sec_n
+      source_sector_codes: src_seccode
+      source_sector_mapping_statuses: src_mapsts
+      source_sector_mapping_rules: src_mapruls
+      source_sector_granularity_note: src_grnote
+      source_sector_mapping_version: src_mapver
+      source_parent_count: src_par_n
+      actual_parent_count: act_par_n
+      aggregate_parent_count: agg_par_n
+      positive_parent_link_count: pospar_n
+      aggregate_parent_included_flag: aggpar_in
+      mapped_parent_output_share: mappar_sh
+      source_negative_cell_count: src_neg_n
+      source_zero_cell_count: src_zero_n
+      source_missing_cell_count: src_miss_n
+      observed_negative_flag: obs_neg
+      observed_zero_flag: obs_zero
+      metric_additive_across_source_sectors: sec_add
+      can_sum_across_metrics: met_add
+      analysis_sector_is_direct_from_one_source_sector: sec_direct
+      analysis_sector_aggregates_multiple_source_sectors: sec_agg
+      bilateral_xvem_output_gap: bil_xvemgap
+      reconciliation_value_repeated_across_metrics_flag: recon_rep
+      is_core_connector: core_conn
+      is_asian_comparator: asia_comp
+      is_other_candidate: oth_cand
+      comparison_sample_country_flag: comp_ctry
+      source_file: src_file
+      amne_release: amne_rel
+      m4_amne_version: m4_amnever
+      rules_config_sha256: rules_hash
+      schema_version: schema_ver
+
+validation_outputs:
+  json: data/validation/production_amne_validation.json
+  markdown: data/validation/production_amne_validation.md
+
+validation:
+  numeric_tolerance: 1.0e-12
+  allocation_tolerance_million_usd: 1.0e-10
+  gap_snapshot_tolerance_million_usd: 1.0e-10
+  monetary_tolerance_million_usd: 1.0e-6
+  require_deterministic_parquet_sha256: true
+  candidate_temp_directory: tmp/m4_2_candidates
+  determinism_temp_directory: tmp/m4_2_determinism
+  parent_row_group_size: 131072
+  expected_year_count: 16
+  expected_activity_source_sector_count: 39
+  expected_mp_source_sector_count: 41
+  expected_activity_positive_link_rows: 1260053
+  expected_mp_zero_link_rows: 2990827
+  expected_activity_eligible_rows: 470199
+  expected_activity_first_round_excluded_rows: 117143
+  expected_activity_outside_manufacturing_rows: 672711
+  expected_activity_negative_value_added_rows: 166
+  expected_activity_employment_missing_rows: 1260053
+  expected_host_analysis_zero_counts:
+    bilateral_affiliate_output_sum: 113
+    foreign_affiliate_output_total: 113
+    foreign_affiliate_value_added_total: 113
+    foreign_affiliate_exports_total: 116
+    foreign_affiliate_imports_total: 114
+    gross_output: 27
+    foreign_affiliate_output_share: 86
+  expected_host_analysis_missing_counts:
+    bilateral_affiliate_output_sum: 0
+    foreign_affiliate_output_total: 0
+    foreign_affiliate_value_added_total: 0
+    foreign_affiliate_exports_total: 0
+    foreign_affiliate_imports_total: 0
+    gross_output: 0
+    foreign_affiliate_output_share: 27
+  expected_host_analysis_negative_counts:
+    bilateral_affiliate_output_sum: 0
+    foreign_affiliate_output_total: 0
+    foreign_affiliate_value_added_total: 0
+    foreign_affiliate_exports_total: 0
+    foreign_affiliate_imports_total: 0
+    gross_output: 0
+    foreign_affiliate_output_share: 0
+  expected_host_positive_parent_denominator_zero_cells: 113
+  expected_max_abs_source_bilateral_xvem_gap: 0.11274325411795871
+  expected_max_abs_analysis_bilateral_xvem_gap: 0.20583257224643603
+  expected_connector_country_count: 13
+  expected_connector_country_sector_year_cells: 1248
+  expected_medical_devices_rows: 0

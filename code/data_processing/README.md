@@ -4,7 +4,7 @@ This directory contains reproducible `data/interim/` to `data/processed/` pipeli
 
 ## Current stage
 
-M0, M1, M2, M3.1-M3.6, and M4.1 in `data/data_merge_checklist.md` are complete. M4.1 adds an ICIO source-sector audit long and a country-analysis-sector production long while retaining ROW, excluded sectors, signed accounting exceptions, and source-file lineage. It does not construct a connector score/ranking or combine AMNE, BEA, and Mexico production evidence. M4.2 is the next planned stage.
+M0, M1, M2, M3.1-M3.6, and M4.1-M4.2 in `data/data_merge_checklist.md` are complete. M4.2 adds an AMNE parent-host source-detail long and a complete host-analysis-sector totals long while distinguishing direct, allocated, derived, and unavailable metrics. It does not construct AMNE growth, combine BEA/FDI sources, create a connector score/ranking, or create the final cross-source production table. M4.3 is the next planned stage.
 
 ## Living collaborator audit and variable contract
 
@@ -293,6 +293,27 @@ Validation status is PASS. All frozen hashes/schemas/keys match; all 81 geograph
 - analysis-sector long: `e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0`.
 
 No 2019 observation is interpolated, and no medical-devices row is fabricated. All 54/43 Stata aliases pass the 32-character contract; `.dta` export remains an M7 task. M4.1 does not create the final cross-source `production_validation_long.parquet`, which remains an M4.6 deliverable.
+
+## M4.2 OECD Analytical AMNE production-side long tables
+
+Run the validated single-module builder from the project root:
+
+```powershell
+python code\data_processing\build_production_amne_long.py --project-root . --overwrite
+```
+
+Registered files:
+
+- config: `configs/production_amne_rules.yaml`;
+- parent-host source-detail output: `data/processed/harmonized/production_amne_parent_host_sector_long.parquet`;
+- host-analysis-sector output: `data/processed/harmonized/production_validation_amne_host_sector_long.parquet`;
+- validation: `data/validation/production_amne_validation.json` and `.md`.
+
+The parent-host table is 7,560,318 × 71 at `source_name × source_host_country_id × source_parent_country_id × model_sector × year × metric_name`. It expands all 1,260,053 positive bilateral affiliate-output links into six metric rows, retains ROW host/parent and excluded source sectors, marks output as direct, VA/exports/imports as allocated, parent share as derived, and employment as unavailable.
+
+The host table is 53,760 × 56 at `country_iso3 × analysis_sector × year × source_name × metric_name`. It preserves a complete 80-country × 6-sector × 16-year grid for seven metrics, including true zero-affiliate cells and ratio-of-sums foreign-affiliate shares. ROW parent contributions remain in totals; ROW host and unsupported medical-devices rows do not enter the country analysis grid.
+
+Validation status is PASS. Frozen input hashes/schemas/keys match; the full MP-share universe is exactly 81 hosts × 80 foreign parents × 41 sectors × 16 years; the activity table exactly matches its 1,260,053 positive-link keys; 166 negative allocated VA rows and all 1,260,053 unavailable employment values are preserved. Bilateral output sums and direct XVEM totals remain separate reconciliation concepts. The deterministic hashes are `6e3d0a77838b9c1d0cbae6445ee9b3f5637114747e51a148162c720d26605bcb` and `b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179`. All 71/56 aliases pass; `.dta` export remains an M7 task.
 
 ## Stata handoff contract
 

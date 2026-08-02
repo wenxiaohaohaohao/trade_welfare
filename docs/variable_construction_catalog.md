@@ -4,10 +4,10 @@
 
 - Origin Skill: `stata-latex-research`
 - Origin Date: `2026-07-27`
-- Verification Status: `VERIFIED_THROUGH_M4.1`
-- Version Label: `variable_catalog_v0.8.0`
-- Current Data Stage: `M0-M4.1 completed`
-- Next Construction Stage: `M4.2 not started; user authorization required`
+- Verification Status: `VERIFIED_THROUGH_M4.2`
+- Version Label: `variable_catalog_v0.9.0`
+- Current Data Stage: `M0-M4.2 completed`
+- Next Construction Stage: `M4.3 not started; user authorization required`
 - Canonical Format: Parquet
 - Collaborator Format: Stata `.dta`
 
@@ -24,7 +24,7 @@
 
 本目录同时包含三类变量：
 
-- `EXISTING_VALIDATED`：M2、M3.1-M3.6 或 M4.1 已存在且 validation PASS；
+- `EXISTING_VALIDATED`：M2、M3.1-M3.6 或 M4.1-M4.2 已存在且 validation PASS；
 - `PLANNED_M4` 至 `PLANNED_M6`：已经定义但尚未构造，必须在对应阶段完成后补充实际 output hash 和 validation；
 - `STRUCTURAL_TARGET_ONLY`：只能作为模型校准目标或输入候选，不能直接解释为已经识别的结构参数。
 
@@ -784,7 +784,7 @@ Extended East Asia 包含 China，因此两定义不是两个独立样本。`ext
 
 ## 8. M4 production-side 标准化变量
 
-M4.1 状态：`EXISTING_VALIDATED`。本阶段先生成 ICIO 专属的 source-sector 审计长表和 analysis-sector 标准化长表。M4.6 才会把 ICIO、AMNE、BEA 和 Mexico 组合为最终 `production_validation_long.parquet`；M4.1 不提前伪造这一跨来源文件。所有 production 表采用 long format 保存来源、指标与单位，禁止把不同 `metric_name` 或不同经济概念直接相加。
+M4.1-M4.2 状态：`EXISTING_VALIDATED`。M4.1 生成 ICIO source-sector 审计长表和 analysis-sector 标准化长表；M4.2 生成 AMNE parent-host source-detail long 和 host-analysis-sector totals long。M4.6 才会把 ICIO、AMNE、BEA 和 Mexico 组合为最终 `production_validation_long.parquet`；当前两模块不提前伪造这一跨来源文件。所有 production 表采用 long format 保存来源、指标与单位，禁止把不同 `metric_name` 或不同经济概念直接相加。
 
 M4.1 实际输出：
 
@@ -794,6 +794,15 @@ M4.1 实际输出：
 | `data/processed/harmonized/production_validation_icio_long.parquet` | `country_iso3, analysis_sector, year, source_name, metric_name` | 10,080 × 43 | `e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0` |
 
 两张表的 config 为 `configs/production_icio_rules.yaml`，builder 为 `code/data_processing/build_production_icio_long.py`，validation 为 `data/validation/production_icio_validation.json/.md`。正式构建与项目 F 盘第二次构建的 Parquet SHA256 逐一完全一致。
+
+M4.2 实际输出：
+
+| Output | Grain / natural key | Rows × columns | SHA256 |
+|---|---|---:|---|
+| `data/processed/harmonized/production_amne_parent_host_sector_long.parquet` | `source_name, source_host_country_id, source_parent_country_id, model_sector, year, metric_name` | 7,560,318 × 71 | `6e3d0a77838b9c1d0cbae6445ee9b3f5637114747e51a148162c720d26605bcb` |
+| `data/processed/harmonized/production_validation_amne_host_sector_long.parquet` | `country_iso3, analysis_sector, year, source_name, metric_name` | 53,760 × 56 | `b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179` |
+
+两张 AMNE 表的 config 为 `configs/production_amne_rules.yaml`，builder 为 `code/data_processing/build_production_amne_long.py`，validation 为 `data/validation/production_amne_validation.json/.md`。两张表都从冻结输入完整构建两次，candidate 与 second-build SHA256 逐一一致。
 
 ### 8.1 通用 long schema
 
@@ -877,17 +886,54 @@ analysis_sector metric value
 
 M4.1 validation 还固定以下门槛：12,150 source cells 分解为 ROW 150、main eligible 3,840、actual-country first-round excluded 2,640、outside manufacturing 5,520；每个 metric 的 `eligible + excluded = full source universe`；source-to-analysis 每个 country-sector-year-metric 的最大误差为 0；accounting residual 的独立复算误差低于 `1e-6` million USD；source/analysis 两表 duplicate key 均为 0；54/43 个 aliases 全部有效。
 
-### 8.3 AMNE metrics（`PLANNED_M4.2`）
+### 8.3 AMNE metrics（`EXISTING_VALIDATED_M4.2`）
 
-| Metric | Unit | Direct/allocated | 用途 |
+M4.2 使用两种互补粒度。Parent-host long 保留 source-detail lineage，只展开 `affiliate_output>0` 的 1,260,053 个 positive links；它不会把 2,990,827 个 zero links 伪装成 missing，因为完整 zero-inclusive universe 仍作为冻结输入并用于 host totals 和 validation。Host long 则保留 80 个实际国家 × 6 个可支持 analysis sectors × 2008-2023 的完整网格。
+
+Parent-host metrics：
+
+| Metric | Unit | Direct/allocated | 可加总性和用途 |
 |---|---|---|---|
-| `affiliate_output` | current million USD | direct bilateral | MP activity 主指标 |
-| `affiliate_value_added` | current million USD | allocated to parent | production validation |
-| `affiliate_exports` | current million USD | allocated | affiliate trade |
-| `affiliate_imports` | current million USD | allocated | affiliate input |
-| `foreign_affiliate_output_total` | current million USD | host-sector total | foreign activity scale |
-| `parent_affiliate_output_share` | fraction | derived direct output share | allocation provenance |
-| `affiliate_employment` | unavailable | unavailable | `PROHIBITED` as zero/imputed |
+| `affiliate_output` | current million USD | `direct_bilateral` | 可跨 parent/source sector 求和；MP activity 主指标 |
+| `affiliate_value_added` | current million USD | `allocated_to_parent` | 可求和，但只能解释为按 parent output share 分配的估计 |
+| `affiliate_exports` | current million USD | `allocated_to_parent` | affiliate-to-world trade；不是 parent-host 双边出口 |
+| `affiliate_imports` | current million USD | `allocated_to_parent` | affiliate-from-world inputs；不是 parent-host 双边进口 |
+| `parent_affiliate_output_share` | fraction | `derived_from_direct_bilateral_output` | allocation provenance；不可跨 source sector 直接求和 |
+| `affiliate_employment` | unavailable | `unavailable` | 1,260,053 行全部 missing；禁止补 0 或用 AMNE 内部插补 |
+
+Parent allocation 的分母固定为：
+
+```text
+parent_affiliate_output_share
+= affiliate_output
+  / sum_parent(affiliate_output)
+```
+
+分母是同一 `host × source sector × year` 下所有 foreign parents 的 bilateral output sum，不是 XVEM `foreign_affiliate_output_total`。Parent-level VA、exports、imports 的构造是 host-sector foreign-owned aggregate × 该 share；最大独立复算误差为 `1.46e-11` million USD。Parent-host long 保留 166 个负 allocated VA observations；这些是来源 accounting/allocation 符号，不截断为 0。
+
+Host-analysis-sector metrics：
+
+| Metric | Unit | 状态 | 用途 |
+|---|---|---|---|
+| `bilateral_affiliate_output_sum` | current million USD | derived sum of direct bilateral | parent-share denominator 和 source reconciliation |
+| `foreign_affiliate_output_total` | current million USD | direct XVEM host total | foreign activity scale；正式 host activity level |
+| `foreign_affiliate_value_added_total` | current million USD | reconstructed from allocated parents | production validation，须保留 allocation provenance |
+| `foreign_affiliate_exports_total` | current million USD | reconstructed from allocated parents | affiliate exports to world |
+| `foreign_affiliate_imports_total` | current million USD | reconstructed from allocated parents | affiliate imports from world |
+| `gross_output` | current million USD | direct XVEM host total | ownership share denominator |
+| `foreign_affiliate_output_share` | fraction | derived ratio of sums | Scenario B ownership/intensity evidence |
+
+```text
+foreign_affiliate_output_share
+= sum_eligible_source_sectors(foreign_affiliate_output_total)
+  / sum_eligible_source_sectors(gross_output)
+```
+
+这个 share 是 ratio of sums，不是 source-sector shares 的简单平均。27 个 analysis cells 的 gross output 为 0，share 保持 missing；另外 86 个 share 为真实 0。ROW parent 的 output 包含在 host totals 中，ROW host 不进入 actual-country grid。`other_manufacturing` 聚合 10 个 AMNE source sectors，其余五个可支持部门各映射一个 source sector；AMNE 无法单列 medical devices，因此不生成 synthetic zero rows。
+
+两种 output concept 不能强制相等：source-sector 层 `bilateral sum - XVEM total` 最大绝对差为 `0.112743254114` million USD，analysis-sector 聚合后为 `0.205832572254`。这是两个 OECD source interfaces 的小幅口径差，不是 merge failure；两者分别保留。Full MP-share universe 额外包含 `O84`、`T97T98` 两个全零 nonmanufacturing codes，M4.2 显式将其登记为 auxiliary zero-only exclusions，不修改 M1 crosswalk hash。
+
+M4.2 validation 还固定：两张输入分别为 1,260,053 × 15 和 4,250,880 × 19；full universe 严格等于 `81 hosts × 80 foreign parents × 41 sectors × 16 years`；positive subset keys 与 activity 完全一致；parent/host output duplicate keys 均为 0；host grid 有 7,680 cells，113 个 bilateral/direct-foreign zero cells，27 个 gross-output zeros；TWN 是 direct AMNE observation，不是 proxy。71/56 个 Stata aliases 完整、唯一、合法且最长 12 字符；本阶段仍不导出 `.dta`，不构造 AMNE growth/MPE expansion、ranking、`hgamma` 或跨来源 production table。
 
 ### 8.4 BEA MNE metrics（`PLANNED_M4.3`）
 
@@ -1258,10 +1304,11 @@ Reviewer/date:
 6. M3.5 已在共同面板中保留全部 13 个 connectors/comparators × 7 sectors，并明确不做 outcome/top-rank/complete-case 筛选；
 7. M3.6 已生成窗口、source bloc 和 exposure sensitivity 三张自然粒度接口，未构造 ranking；
 8. M4.1 已生成完整 ICIO source-sector audit long 和 80-country × 6-sector analysis long；
-9. 下一步 M4.2 构造 AMNE parent-host-sector-year 明细和 host-sector totals，须等待用户确认；
-10. M5 逐来源 left join 和 coverage；
-11. M6 先 trade ranking，再 production grade，最后 structural moments；
-12. M7 导出 Stata、运行 `.do`、冻结 release。
+9. M4.2 已生成 AMNE parent-host source-detail long 和 80-country × 6-sector × 16-year host totals long；
+10. 下一步 M4.3 标准化 BEA MNE activity、suppression 和 aggregate geography，须等待用户确认；
+11. M5 逐来源 left join 和 coverage；
+12. M6 先 trade ranking，再 production grade，最后 structural moments；
+13. M7 导出 Stata、运行 `.do`、冻结 release。
 
 ## 18. 版本记录
 
@@ -1276,5 +1323,6 @@ Reviewer/date:
 | v0.6.0 | 2026-07-28 | 完成 M3.5 变量合同：登记 91 × 152 共同面板、M3.4 两张同粒度表的 one-to-one join、完整 13 × 7 网格、21/49/21 组别行数、角色/稳定排序/source-match/no-selection flags、26/65 replacement defined/missing 状态、152 aliases 和确定性 output hash。 |
 | v0.7.0 | 2026-07-29 | 完成 M3.6 变量合同：登记 1,092 × 56 alternative-window、182 × 64 source-bloc 和 364 × 47 exposure-definition 三表接口；固定 primary/exclude-2024/shock-only、nested China/East-Asia self-trade rule、四种非等价 exposure estimands、annual stability/primary-difference 状态、56/64/47 aliases、独立复算和三个确定性 hashes；明确不构造 ranking。 |
 | v0.8.0 | 2026-08-02 | 完成 M4.1 ICIO 变量合同：登记 85,050 × 54 source-sector audit long 和 10,080 × 43 analysis-sector long、7 个 production/accounting metrics、81 geography/50 source-sector universe、80-country/6-sector/3-year analysis grid、ROW/excluded partition、source/aggregate negative preservation、54/43 aliases、独立复算和两个确定性 hashes；明确不插值 2019、不伪造 medical devices、不提前生成跨来源 production 文件。 |
+| v0.9.0 | 2026-08-02 | 完成 M4.2 AMNE 变量合同：登记 7,560,318 × 71 parent-host source-detail long 和 53,760 × 56 host-analysis-sector long、direct/allocated/derived/unavailable 状态、positive/full-zero universe 边界、ROW parent/host 规则、166 个负 allocated VA、employment 全缺失、ratio-of-sums share、bilateral-XVEM reconciliation、71/56 aliases、独立复算和两个确定性 hashes；明确不构造 growth、ranking、hgamma 或跨来源 production 文件。 |
 
-下一次强制更新：M4.2 AMNE parent-host-sector-year 明细和 host-sector totals 完成时，补齐 direct/allocated 变量、employment unavailable 状态、输出 hash、validation 和 Stata 接口；同时更新审计档案并重建两份 PDF。
+下一次强制更新：M4.3 BEA MNE country-industry-year activity 完成时，补齐 aggregate geography filtering、suppression/small-value、metrics、output hash、validation 和 Stata 接口；同时更新审计档案并重建两份 PDF。

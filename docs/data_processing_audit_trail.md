@@ -6,12 +6,12 @@
 - Origin Mode: `validate`
 - Origin Date: `2026-07-27`
 - Verification Status: `ANALYZED`
-- Version Label: `data_processing_audit_v0.8.0`
+- Version Label: `data_processing_audit_v0.9.0`
 - Working Branch: `data-processing-variables`
 - Frozen Upstream Commit Recorded by M0: `2df0a0628343c9abca6b3e26d893db351ec22b94`
 - M0-M2 Evidence Snapshot Date: `2026-07-19`
-- Current Completed Processing Stage: `M0-M4.1`
-- Next Stage: `M4.2`，尚未开始且须等待用户确认
+- Current Completed Processing Stage: `M0-M4.2`
+- Next Stage: `M4.3`，尚未开始且须等待用户确认
 - Audience: 项目合作者和内部复核人员
 - Publication Status: 内部严格审查材料，不是投稿附件
 
@@ -22,15 +22,15 @@
 本版记录两层流程：
 
 1. `source -> raw -> interim`：主要公开数据的下载、归档、单库清洗和标准化；
-2. `interim -> processed`：M0 输入冻结、M1 concordance、M2 产品冲击与贸易底表、M3.1 connector-sector-year 年度聚合、M3.2 完整窗口和增长变量、M3.3 small-base/异常增长/敏感性诊断、M3.4 replacement/source-input/exposure-overlap/产品共变指标、M3.5 完整 connector/comparator 共同面板、M3.6 alternative-window/source-bloc/exposure-definition sensitivity inputs，以及 M4.1 ICIO source-sector audit/analysis-sector production long。
+2. `interim -> processed`：M0 输入冻结、M1 concordance、M2 产品冲击与贸易底表、M3.1 connector-sector-year 年度聚合、M3.2 完整窗口和增长变量、M3.3 small-base/异常增长/敏感性诊断、M3.4 replacement/source-input/exposure-overlap/产品共变指标、M3.5 完整 connector/comparator 共同面板、M3.6 alternative-window/source-bloc/exposure-definition sensitivity inputs、M4.1 ICIO source/analysis production long，以及 M4.2 AMNE parent-host source detail/host-analysis totals long。
 
-M3.1-M4.1 已执行并在冻结输入上完成确定性重建；M4.2-M7 尚未执行。本档案已为后续阶段预留固定结构。以后每完成一个 checklist 项目，必须在同一工作批次内更新本档案和 PDF，才允许打勾。仅有代码、仅有输出、仅有口头说明或尚未解释的 many-to-many join，都不构成完成。
+M3.1-M4.2 已执行并在冻结输入上完成确定性重建；M4.3-M7 尚未执行。本档案已为后续阶段预留固定结构。以后每完成一个 checklist 项目，必须在同一工作批次内更新本档案和 PDF，才允许打勾。仅有代码、仅有输出、仅有口头说明或尚未解释的 many-to-many join，都不构成完成。
 
 本档案与 `docs/variable_construction_catalog.md` 配套使用。前者回答“数据经历了什么处理、凭什么相信处理正确”，后者回答“每个变量怎样构造、用于什么、允许怎样解释以及如何交给 Stata”。两份材料必须使用同一阶段状态和同一输出证据；若不一致，以实际数据、validation 和 build summary 为准，并在当次工作中修正文档。
 
 ### 0.1 本版能够证明什么
 
-- 能证明当前 M0-M4.1 的输入身份、处理规则、输出文件、主键、行数和已执行 validation 均有本地证据。
+- 能证明当前 M0-M4.2 的输入身份、处理规则、输出文件、主键、行数和已执行 validation 均有本地证据。
 - 能证明当前 processed 输出的 SHA256 与对应 validation JSON 记录一致。
 - 能证明已知的 missing、suppressed、confidential、aggregate、allocated、proxy 和 non-additive 字段没有在 M0-M2 中被静默改成普通零值或普通国家记录。
 - 能证明 Section 301 的口径是 gross statutory initial-action exposure，而不是 realized duties。
@@ -41,11 +41,12 @@ M3.1-M4.1 已执行并在冻结输入上完成确定性重建；M4.2-M7 尚未�
 - 能证明 M3.5 的 91 行完整 connector-sector 共同面板由两张同粒度 M3.4 表 one-to-one 合并，13 × 7 网格、21/49/21 分组、全部原字段、设计性 missing、no-selection flags 和 152 个 Stata aliases 均通过 validation。
 - 能证明 M3.6 的 1,092/182/364 行 sensitivity interfaces 在冻结输入上可确定性重建，window/source-bloc/exposure-definition 的公式、nested/self-trade/missing 状态和 56/64/47 个 Stata aliases 均通过 validation。
 - 能证明 M4.1 的 85,050 行 ICIO source-sector audit long 与 10,080 行 analysis-sector long 在冻结 ICIO/country/sector inputs 上可确定性重建；全部 source cells、负 accounting cells、ROW/excluded partition、source-to-analysis reconciliation、7 个 metrics、54/43 个 Stata aliases 和两个输出 hash 均通过 validation。
+- 能证明 M4.2 的 7,560,318 行 AMNE parent-host source-detail long 与 53,760 行 host-analysis-sector long 在冻结 activity/MP-share/country/sector inputs 上可确定性重建；positive/zero-link universe、direct/allocated/derived/unavailable 状态、ROW parent/host 规则、166 个负 allocated VA、employment unavailable、bilateral-XVEM reconciliation、71/56 个 Stata aliases 和两个输出 hash 均通过 validation。
 
 ### 0.2 本版不能证明什么
 
-- 本次没有从 raw 端完整重跑所有 M0-M2 大型 builder，因此整份 Material Passport 继续使用 `ANALYZED`；M3.1-M4.1 本身均在各自冻结输入上两次构建并比较输出 SHA256，单模块 validation 为 `VERIFIED`。
-- M4.2-M7 尚未完成。M4.1 只提供 ICIO aggregate production benchmarks，尚未构造 AMNE/BEA/Mexico 跨来源 production integration、connector ranking、structural moments 或 welfare counterfactual。
+- 本次没有从 raw 端完整重跑所有 M0-M2 大型 builder，因此整份 Material Passport 继续使用 `ANALYZED`；M3.1-M4.2 本身均在各自冻结输入上两次构建并比较输出 SHA256，单模块 validation 为 `VERIFIED`。
+- M4.3-M7 尚未完成。M4.1-M4.2 只提供 ICIO aggregate 与 AMNE affiliate-activity 专源接口，尚未构造 BEA/Mexico 跨来源 production integration、connector ranking、structural moments 或 welfare counterfactual。
 - FDI 只能作为 financial-flow/position evidence，不能单独证明 plant entry 或 production relocation。
 - BACI 和 Census 的贸易模式不能单独证明 connector 本地生产增加。
 
@@ -103,7 +104,8 @@ M3.1-M4.1 已执行并在冻结输入上完成确定性重建；M4.2-M7 尚未�
     -> M3.5 完整13×7共同connector/comparator面板         [已完成]
     -> M3.6 exposure/source/window sensitivity inputs   [已完成]
     -> M4.1 ICIO source/analysis production long        [已完成]
-    -> M4.2-M4.7 remaining production sources/merge     [未开始]
+    -> M4.2 AMNE parent-host/host production long       [已完成]
+    -> M4.3-M4.7 remaining production sources/merge     [未开始]
     -> M5 trade-production evidence merge               [未开始]
     -> M6 ranking/rerouting/moments/model decision       [未开始]
     -> M7 full rebuild + release + Stata handoff         [未开始]
@@ -122,7 +124,8 @@ M3.1-M4.1 已执行并在冻结输入上完成确定性重建；M4.2-M7 尚未�
 | M3.5 | 已完成 | 91 行、152 列完整 connector/comparator 共同面板 | validation PASS；13 × 7 全保留；确定性 hash 一致 |
 | M3.6 | 已完成 | 1,092 行 time-window、182 行 source-bloc、364 行 exposure-definition sensitivity inputs | validation PASS；三张确定性 hash 一致；未构造 ranking |
 | M4.1 | 已完成 | 85,050 行 ICIO source-sector audit long、10,080 行 analysis-sector long | validation PASS；负 accounting cells/ROW/excluded 状态保留；两张确定性 hash 一致 |
-| M4.2-M6 | 未开始 | remaining production sources、integrated evidence、ranking/moments | 不得提前声称跨来源 production 或 ranking 结果 |
+| M4.2 | 已完成 | 7,560,318 行 AMNE parent-host source detail、53,760 行 host-analysis totals | validation PASS；direct/allocated/unavailable、zero links、ROW 和 reconciliation 状态保留；两张确定性 hash 一致 |
+| M4.3-M6 | 未开始 | remaining production sources、integrated evidence、ranking/moments | 不得提前声称跨来源 production 或 ranking 结果 |
 | M7 | 未开始 | full rebuild、release、Stata package | 最终交付门槛 |
 
 ## 3. source -> raw -> interim：单库数据整理过程
@@ -638,10 +641,11 @@ M2 不是在一张表上原地连续覆盖，而是保留纯 trade legs、独立
 | `connector_trade_sector_common_panel_validation` | PASS | 91 × 152、one-to-one full match、13 × 7 complete grid、21/49/21 groups、no selection、deterministic SHA256 match、152 Stata aliases valid |
 | `connector_trade_sector_sensitivity_validation` | PASS | 1,092/182/364 rows、time/source/exposure formulas 独立复算、complete windows、nested/self-trade/missing states、three deterministic SHA256 matches、56/64/47 Stata aliases valid |
 | `production_icio_validation` | PASS | 85,050/10,080 rows、source/analysis keys duplicate 0、81 geography/50 sectors、80-country × 6-sector × 3-year × 7-metric grid、negative accounting/source partition/reconciliation preserved、two deterministic SHA256 matches、54/43 Stata aliases valid |
+| `production_amne_validation` | PASS | 7,560,318/53,760 rows、parent/host keys duplicate 0、positive/full-zero source universes、80-country × 6-sector × 16-year host grid、direct/allocated/unavailable/ROW/reconciliation states preserved、two deterministic SHA256 matches、71/56 Stata aliases valid |
 
 ## 10. 当前 processed 输出注册表
 
-M0-M2 SHA256 来自 2026-07-19 validation snapshot，并在 2026-07-27 整理本档案时再次读取本地文件核对。M3.1-M3.5 SHA256 来自 2026-07-28、M3.6 SHA256 来自 2026-07-29、M4.1 SHA256 来自 2026-08-02 的正式构建和第二次确定性构建；全部与各自 validation JSON 一致。
+M0-M2 SHA256 来自 2026-07-19 validation snapshot，并在 2026-07-27 整理本档案时再次读取本地文件核对。M3.1-M3.5 SHA256 来自 2026-07-28、M3.6 SHA256 来自 2026-07-29、M4.1-M4.2 SHA256 来自 2026-08-02 的正式构建和第二次确定性构建；全部与各自 validation JSON 一致。
 
 | Output | Rows | Natural key | SHA256 |
 |---|---:|---|---|
@@ -671,6 +675,8 @@ M0-M2 SHA256 来自 2026-07-19 validation snapshot，并在 2026-07-27 整理本
 | `connector_trade_sector_exposure_definition_sensitivity.parquet` | 364 | connector_iso3, analysis_sector, exposure_definition_id | `96144e95dd525103b658ed7220a15d2f3c7c7acf79ea3f314314112971dc7cbd` |
 | `production_icio_source_sector_long.parquet` | 85,050 | source_name, source_country_id, model_sector, year, metric_name | `266ff08c5bd26e00a08cb9f3654b7c83354d02da79cca036d65ccd68d0054110` |
 | `production_validation_icio_long.parquet` | 10,080 | country_iso3, analysis_sector, year, source_name, metric_name | `e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0` |
+| `production_amne_parent_host_sector_long.parquet` | 7,560,318 | source_name, source_host_country_id, source_parent_country_id, model_sector, year, metric_name | `6e3d0a77838b9c1d0cbae6445ee9b3f5637114747e51a148162c720d26605bcb` |
+| `production_validation_amne_host_sector_long.parquet` | 53,760 | country_iso3, analysis_sector, year, source_name, metric_name | `b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179` |
 
 ## 11. 复现入口和执行顺序
 
@@ -718,6 +724,9 @@ python code\data_processing\build_connector_trade_sector_sensitivity.py --projec
 # M4.1
 python code\data_processing\build_production_icio_long.py --project-root . --overwrite
 
+# M4.2
+python code\data_processing\build_production_amne_long.py --project-root . --overwrite
+
 # 审计 PDF
 python code\data_processing\build_data_processing_audit_pdf.py --project-root . --overwrite
 python code\data_processing\build_data_processing_audit_pdf.py `
@@ -727,7 +736,7 @@ python code\data_processing\build_data_processing_audit_pdf.py `
   --overwrite
 ```
 
-当前 M0-M4.1 还没有单一 orchestration entry；它是 M7.1 的必做项。合作者若现在复核，应按上述顺序执行并逐个查看同名 validation JSON/Markdown。完整重跑会处理超过 123 million BACI rows，应将临时目录和缓存显式指向项目 F 盘。若只复核 M4.1，先确认 ICIO interim、country crosswalk 和 source-sector crosswalk 的 SHA256/schema/key 与 frozen config 一致，再运行 M4.1 builder；两张正式输出先在 `tmp/m4_1_candidates/` 构造和验证，第二次输出写入 `tmp/m4_1_determinism/` 比较，只有全部 PASS 才替换 canonical outputs，两个目录随后由 builder 清除。
+当前 M0-M4.2 还没有单一 orchestration entry；它是 M7.1 的必做项。合作者若现在复核，应按上述顺序执行并逐个查看同名 validation JSON/Markdown。完整重跑会处理超过 123 million BACI rows，应将临时目录和缓存显式指向项目 F 盘。若只复核 M4.2，先确认 AMNE activity/MP-share、country crosswalk 和 source-sector crosswalk 的 SHA256/schema/key 与 frozen config 一致，再运行 M4.2 builder；两张正式输出先在 `tmp/m4_2_candidates/` 构造和验证，第二次输出写入 `tmp/m4_2_determinism/` 比较，只有全部 PASS 才替换 canonical outputs，两个目录随后由 builder 清除。
 
 ## 12. M3-M7 的强制更新协议
 
@@ -1437,21 +1446,124 @@ Source production residual 最大绝对值为 `82.0319999998901` million USD，s
 
 ICIO gross output/value added 是 country-sector aggregate production evidence，可用于检查 connector 部门生产规模、增加值和 IO accounting，但不能单独证明 firm entry、ownership-specific relocation 或因果 rerouting。Exports/imports 是 ICIO 同源 accounting measures，不替代 M3 的 BACI trade outcome。2019 及其他缺失 ICIO 年份不插值；medical devices 不从 C26 或 C31T33 拆分。M4.1 没有生成 `.dta`，正式 Stata export 仍在 M7。
 
-结论：M4.1 单模块完成。下一步只能在用户确认后进入 M4.2 AMNE；最终跨来源 production long 必须等 M4.2-M4.6 完成。
+结论：M4.1 单模块完成且其输出未被 M4.2 改写。M4.2 AMNE 已作为独立模块完成；最终跨来源 production long 仍必须等 M4.3-M4.6 完成。
 
-### 12.10 M4.2-M4.7 预留记录
+### 12.10 M4.2 AMNE parent-host 明细和 host-sector totals
 
-后续 production long 必须逐源记录：AMNE allocated fields、BEA aggregate filtering、BEA suppression、BEA FDI direction/stock/flow、Mexico quarterly annualization 和 confidentiality。统一 long schema 不能让不同来源的 `output`、`sales`、`position`、`flow` 因同名而相加。M4.7 继续执行 ICIO 不插值规则。
+#### 12.10.1 目标、范围和完成状态
 
-### 12.11 M5 预留记录
+M4.2 只处理 OECD Analytical AMNE 2026 release。它的目标是同时提供两层接口：一层保留 source `parent × host × sector × year` 的 bilateral ownership/activity lineage；另一层提供 actual host × common analysis sector × year 的 foreign-affiliate totals。M4.2 不构造 AMNE growth、MPE expansion、pre/post window、ranking、`hgamma`、structural moments、welfare inputs、BEA/FDI integration 或最终 `production_validation_long.parquet`。
+
+本模块状态为 `VERIFIED`，validation 为 PASS。Canonical outputs 继续使用 Parquet；`.dta` 留到 M7。
+
+#### 12.10.2 冻结输入与身份
+
+| Input | Rows × columns | Natural key | SHA256 |
+|---|---:|---|---|
+| `oecd_amne_affiliate_activity.parquet` | 1,260,053 × 15 | year, host_country_iso3, parent_country_iso3, sector_oecd | `ae5f859573e95773274928d0f27a90fe974fca2bd95f22fa78a849d8a2d8f856` |
+| `oecd_amne_mp_shares.parquet` | 4,250,880 × 19 | 同上 | `a7f312c5a7cf0e87a3ecb6552363dae2c0f2e296685000653087a7d86c524131` |
+| `country_crosswalk.parquet` | 611 × 22；AMNE subset 81 | source_name, source_country_id | `29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6` |
+| `source_sector_crosswalk.parquet` | 517 × 14；AMNE subset 39 | source_name, source_sector_level, source_sector_code | `99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9` |
+
+Source build summary hash 为 `f992635705498a2d48a5a6e36721c61c5349d9290ce4a0dc42102f1ca550e8c1`。Frozen config `configs/production_amne_rules.yaml` 的 SHA256 为 `a74bd728dc0b4236043a9c68035b28b12e6f02aa9d2a8aeeb8468901721c829d`。Config 同时冻结四个输入的 schema signatures、自然键、行列数、direct/allocated/derived/unavailable 规则、两张 output schemas、Stata aliases、expected counts、tolerances 和两个 F 盘临时目录。
+
+`affiliate_activity` 是 positive-link interface：`affiliate_output` 严格大于 0。`mp_shares` 是完整 zero-inclusive universe：
+
+```text
+81 source hosts × 80 foreign parents × 41 source sectors × 16 years
+= 4,250,880 rows
+```
+
+其中 2,990,827 行 affiliate output 为 0。MP-share 表的 positive-output subset 恰好有 1,260,053 个 keys，与 activity 表完全相同；对应数值最大差为 `1.46e-11` million USD，属于 allocation summation 浮点差。
+
+#### 12.10.3 Country、ROW 和 sector mapping
+
+AMNE country codes 共 81 个，country crosswalk 81/81 匹配：80 个实际国家和一个 `ROW` aggregate。Parent-host source detail 同时保留 ROW host 与 ROW parent，并使用 `source_host_country_id`、`source_parent_country_id` 作为自然键，避免把 aggregate 强行塞入 ISO3。Host-analysis long 只保留 80 个 actual hosts；但 ROW parent 代表未单列来源经济体，仍参与每个 actual host 的 foreign-parent totals。TWN 是 direct OECD observation，`proxy_flag=false`。
+
+Positive activity 的 39 个 source sectors 全部匹配 canonical crosswalk，其中 15 个 eligible manufacturing codes 映射到 6 个 analysis sectors、4 个 first-round excluded、20 个 outside manufacturing。`other_manufacturing` 聚合 10 个 source sectors；electronics、electrical equipment、machinery、autos、textiles/apparel 各映射一个。Full MP-share universe 另有 `O84` 和 `T97T98` 两个全零 nonmanufacturing codes。为了不改变 M1 已冻结的 crosswalk hash，M4.2 config 将其显式登记为 `outside_manufacturing_auxiliary_zero_only`；它们不被当作 join failure，也不进入 analysis sums。AMNE taxonomy 不能单列 medical devices，因此不生成 synthetic rows。
+
+#### 12.10.4 Parent-host source-detail 构造
+
+Activity source row 先分别与 host/parent country crosswalk、source-sector crosswalk 做 many-to-one join。每个 positive link 展开为 6 个 metrics：
+
+| Metric | 状态 | 处理 |
+|---|---|---|
+| affiliate_output | direct bilateral | 原值保留，可跨 parent/source sector 求和 |
+| affiliate_value_added | allocated to parent | host-sector foreign total × parent output share |
+| affiliate_exports | allocated to parent | host-sector foreign total × parent output share |
+| affiliate_imports | allocated to parent | host-sector foreign total × parent output share |
+| parent_affiliate_output_share | derived | direct bilateral output / bilateral parent-output sum |
+| affiliate_employment | unavailable | value 保持 missing，禁止补 0 |
+
+Parent share 的正确分母是同一 `host × source sector × year` 下所有 foreign-parent bilateral outputs 的和，不是 XVEM direct foreign-affiliate total。Row-level `allocation_method` 不能套用到全部 metrics；builder 按 metric 写 `direct_or_allocated`、`derivation_status`、formula、allocation weight 和 additivity flags。Parent long 只 materialize positive links，并显式写 `zero_affiliate_output_links_materialized_flag=false`；完整 zero links 不丢失，因为冻结 MP-share 输入仍用于 host grid 与 validation。
+
+#### 12.10.5 Host-analysis-sector 构造
+
+Host totals 从 full MP-share universe 开始。首先在 `host × source sector × year` 层确认 80 个 parents 的 repeated `gross_output`、`foreign_affiliate_output_total`、`foreign_affiliate_share` 和 source file 各自唯一；再求 bilateral output、allocated VA/exports/imports 的 parent sums。只有 actual host、main-join eligible sector、weight=1 的 source cells进入 analysis-sector aggregation。
+
+Host long 保留 7 个 metrics：bilateral affiliate-output sum、direct XVEM foreign-affiliate output total、reconstructed foreign-affiliate VA/exports/imports totals、direct gross output、foreign-affiliate output share。最后一个 share 按 analysis-sector ratio of sums 重算：
+
+```text
+foreign_affiliate_output_share
+= sum_eligible_source_sectors(foreign_affiliate_output_total)
+  / sum_eligible_source_sectors(gross_output)
+```
+
+当 denominator 为 0 时 share 保持 missing。Source-sector share 不做简单平均。每个 metric row 同时保留 source-sector count/codes/rules、parent counts、positive-parent-link count、ROW-parent-included flag、source negative/zero/missing counts、bilateral-XVEM gap 和可加总限制。
+
+#### 12.10.6 输出、主键和数值状态
+
+| Output | Rows × columns | Natural key | SHA256 |
+|---|---:|---|---|
+| `production_amne_parent_host_sector_long.parquet` | 7,560,318 × 71 | source_name, source_host_country_id, source_parent_country_id, model_sector, year, metric_name | `6e3d0a77838b9c1d0cbae6445ee9b3f5637114747e51a148162c720d26605bcb` |
+| `production_validation_amne_host_sector_long.parquet` | 53,760 × 56 | country_iso3, analysis_sector, year, source_name, metric_name | `b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179` |
+
+Parent output 是 `1,260,053 positive links × 6 metrics`，主键 duplicate 0。它完整保留 166 个负 allocated VA observations；1,260,053 个 employment values 全部 missing 且 `metric_unavailable_flag=true`。Host output 是 `80 countries × 6 sectors × 16 years × 7 metrics`，主键 duplicate 0。它保留 113 个 bilateral/direct-foreign-output zero cells、27 个 gross-output zero cells、27 个 share missing 和 86 个真实 zero shares；没有 infinite values，也没有 medical-devices rows。
+
+#### 12.10.7 Bilateral-XVEM reconciliation
+
+Parent-output sum 与 XVEM foreign-affiliate output total 是两条不同 source interfaces，不能设错误的 equality gate。当前最大绝对差：
+
+- source-sector host cell：`0.112743254114` million USD；
+- analysis-sector host cell：`0.205832572254` million USD。
+
+两者都保留：bilateral sum 用作 parent-share denominator 和 audit；direct XVEM total 用作正式 host foreign-activity level。差异不被填 0、不按比例缩放，也不把某一接口覆盖另一接口。
+
+#### 12.10.8 Validation、确定性和开发期失败
+
+机器报告为 `data/validation/production_amne_validation.json`，合作者报告为同名 `.md`。Validation 同时检查：
+
+- 四个 frozen inputs 和 build summary 的 SHA256、schema、行列数、自然键；
+- 两张 AMNE inputs 的 key 无缺失/重复、无 domestic diagonal、完整 80-parent grid；
+- activity 与 MP positive subset 的 keys 和数值；
+- 39 个 canonical sectors、两个 auxiliary zero-only sectors、81 个 country codes 的 join coverage；
+- parent share 和 allocated VA/exports/imports 的独立公式复算；
+- parent/host outputs 的 schema、行列数、keys、metric grids、zero/missing/negative states；
+- ratio-of-sums share、ROW parent inclusion、ROW host exclusion、TWN direct status、medical-devices absence；
+- 71/56 个 aliases 的完整性、唯一性、Stata 合法性和 32-character limit；
+- candidate/second-build byte-level SHA256 equality 和临时目录清理。
+
+正式候选先写入 `tmp/m4_2_candidates/`，第二次完整构建写入 `tmp/m4_2_determinism/`。两张 candidate/second-build hashes 逐字一致；两目录随后由 builder 清除。
+
+开发期第一次运行已经构造候选，但 failure-report JSON 遇到 YAML date serialization，且异常路径中 Parquet handle 未先关闭；程序没有替换 canonical outputs。修正显式字符串化日期和关闭句柄后重跑，全部实质检查通过，只剩 reconciliation gap 快照因求和顺序相差约 `4e-12/7e-12` million USD。公式 tolerance 继续为 `1e-12`，但 gap 快照使用专门的 `1e-10` million USD tolerance；再次从冻结输入完整重建后 PASS。这个调整处理的是浮点快照，不改变任何数据值或经济公式。
+
+#### 12.10.9 解释边界和下一步
+
+AMNE direct affiliate output 与 ownership share 可用于 Scenario B incumbent MP-intensive evidence；allocated parent VA/trade 只能按有记录的 allocation estimate 解释。它不能单独证明 plant entry、firm relocation 或 causal rerouting。Employment 不可得，后续 M4.3 使用 BEA MNE employment/capex 补充。M4.2 单模块完成；下一步只能在用户确认后进入 M4.3。
+
+### 12.11 M4.3-M4.7 预留记录
+
+后续 production long 必须逐源记录：BEA aggregate filtering、BEA suppression、BEA FDI direction/stock/flow、Mexico quarterly annualization 和 confidentiality。统一 long schema 不能让不同来源的 `output`、`sales`、`position`、`flow` 因同名而相加。M4.7 继续执行 ICIO 不插值规则。
+
+### 12.12 M5 预留记录
 
 每加入一个 production source，记录 left join 前后 rows、matched/unmatched keys、source totals、many-to-many expansion count、coverage flags 和可用年份。Integrated evidence table 只有在所有 source totals reconciliation 完成后才可打勾。
 
-### 12.12 M6 预留记录
+### 12.13 M6 预留记录
 
 每个 ranking、rerouting indicator、production validation measure 和 structural moment 必须记录公式、unit、sample、winsorization/denominator rule、source、scenario A/B/C 归属，以及能否进入 model input。不得把 FDI 与 output 合成一个无单位指标而不披露标准化方式和权重。
 
-### 12.13 M7 预留记录
+### 12.14 M7 预留记录
 
 最终 release 必须记录单一入口脚本、environment、input/output manifests、deterministic tests、Git commit、release label、Stata exports、variable dictionary、verification `.do` 和日志 success marker。本档案最终版的 Verification Status 只有在 full rebuild 成功、输出 comparison 通过后才能改为 `VERIFIED`。
 
@@ -1476,24 +1588,26 @@ ICIO gross output/value added 是 country-sector aggregate production evidence�
 | 2026-07-28 | M3.5 | 首次冻结的两个 input schema signatures 使用了与项目 builder 不同的 serialization | validation 阻止替换 canonical output；用 builder 的 canonical JSON schema serialization 重算两个 expected signatures 后重建 PASS | 输入/数值/join/样本和构造公式未改变；记录 schema hash 必须同时冻结 serialization |
 | 2026-07-29 | M3.6 | shock-only 只有一个年际转移；extended East Asia 包含 China；四种 exposure measures 不是同一 estimand | shock-only sample SD 设计性 missing；source comparison 标记 nested/self-trade；禁止 cross-exposure numeric difference 和 M3.6 rank | 避免把不可定义统计量填 0、把 nested bloc 当独立样本、或把不同 exposure 数值当可互换 ranking component |
 | 2026-08-02 | M4.1 | 首次 validation 将 pandas merge indicator 中值为 0 的 `left_only/right_only` 类别也当成 mismatch | 保留候选失败状态；把门槛改为明确检查 `both=12,150`、`left_only=0`、`right_only=0` 后重跑 | 数据、schema 和两个 candidate hashes 未改变；最终 validation PASS，未用错误状态覆盖 canonical output |
+| 2026-08-02 | M4.2 | 首次 failure-report 将 YAML date object 直接交给 JSON，异常路径中 Parquet handle 未先关闭 | 日期显式转字符串，所有 Parquet handles 在 replace/cleanup 前显式关闭；核实仅有本轮 candidate 文件后清理并重跑 | 未生成 canonical outputs；raw/interim/crosswalk 均未修改 |
+| 2026-08-02 | M4.2 | Bilateral-XVEM gap 快照在不同 groupby 求和顺序下相差约 `4e-12/7e-12` million USD | 经济公式继续用 `1e-12`；只把 gap snapshot tolerance 设为 `1e-10` million USD，再从冻结输入完整重建 | 数据值、schema 和经济定义未改变；最终两张 deterministic hashes 一致、validation PASS |
 
 ## 14. 当前未解决限制和是否需要补数据
 
-| 限制 | 是否影响已完成 M3.1-M4.1 / 下一步 M4.2 | 可能的后续动作 |
+| 限制 | 是否影响已完成 M3.1-M4.2 / 下一步 M4.3 | 可能的后续动作 |
 |---|---|---|
-| BACI quantity 缺失 | 不影响 value-based M3.1-M3.6 或 M4.1 ICIO | 保持 value-based；除非研究明确需要 physical quantity 才找替代 |
+| BACI quantity 缺失 | 不影响 value-based M3.1-M3.6 或 M4.1-M4.2 production levels | 保持 value-based；除非研究明确需要 physical quantity 才找替代 |
 | Census quantity unavailable | 不影响 | 禁止 quantity analysis；不需为 M3.2 补下载 |
 | Census 只有 15 origins | 否 | 只作 configured-origin timing validation；all-origin denominator 用 BACI |
 | Section 301 historical exclusions 未应用 | 否，但限制 causal interpretation | 若需要 realized-duty measure，单独开 policy extension |
 | 2024 modern HTS 未并入历史面板 | 否 | 需要 modern-HTS concordance 后再单独扩展 |
-| AMNE employment 全缺失 | 否 | M4 用 BEA employment；如仍不足再补国家统计 |
-| OECD/BEA medical devices 不可单列 | M4.1 已保持 unsupported | Mexico/产品层可单列，跨源比较披露缺口；不得在 ICIO 中补零行 |
+| AMNE employment 全缺失 | M4.2 已显式保留 unavailable，不妨碍 output/ownership metrics | M4.3 用 BEA employment；如仍不足再补国家统计 |
+| OECD/BEA medical devices 不可单列 | M4.1-M4.2 已保持 unsupported | Mexico/产品层可单列，跨源比较披露缺口；不得在 ICIO/AMNE 中补零行 |
 | BEA Transportation equipment 比 autos 宽 | 否 | 只作 proxy/ambiguous sensitivity，不作 one-to-one |
 | Mexico detail 2024 仅 H1 | 否 | 2024 H1-to-H1 或季度分析；不作 annual total |
 | Mexico confidential cells | 否 | 不补 0；报告 disclosed composition 和 national total 分开 |
 | INEGI/Vietnam GSO/Statistics Canada 未下载 | 否 | M4-M6 若出现关键 output/employment gap，再定向补充 |
 
-结论：这些主要是定义、覆盖和可比性限制，不是“核心下载只完成一半”。M3.1-M4.1 已在现有数据上完成；进入 M4.2 不需要先泛化下载，但以后必须根据具体 production-side empirical gap 决定是否补国家统计数据。
+结论：这些主要是定义、覆盖和可比性限制，不是“核心下载只完成一半”。M3.1-M4.2 已在现有数据上完成；进入 M4.3 不需要先泛化下载，但以后必须根据具体 production-side empirical gap 决定是否补国家统计数据。
 
 ## 15. Stata 合作者交付合同
 
@@ -1513,6 +1627,7 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 - M3.5 共同面板已冻结 152 个无重复 aliases，最长 14 字符；M7 必须验证 `isid conn_iso3 ana_sector`、91 行、13 × 7 完整网格、21/49/21 分组和全部 no-selection flags，不能把 aliases 已验证误写为 `.dta` 已导出；
 - M3.6 三张 sensitivity 表已冻结 56/64/47 个无重复 aliases，最长 13/11/12；M7 必须分别验证 `isid conn_iso3 ana_sector flow_id win_spec`、`isid conn_iso3 ana_sector src_bloc`、`isid conn_iso3 ana_sector expo_def`，并保留 shock-only SD 和 gain-based pre/post 的设计性 missing；不能把 sensitivity inputs 误写为 ranking；
 - M4.1 source/analysis long 已冻结 54/43 个无重复 aliases，最长均为 12；M7 必须分别验证 `isid source src_ctry model_sec year metric` 和 `isid country_iso3 ana_sector year source metric`，保留 ROW aggregate 与 negative accounting flags，不能把不同 metric reshape 后直接求和；
+- M4.2 parent/host long 已冻结 71/56 个无重复 aliases，最长均为 12；M7 必须分别验证 `isid source src_host src_parent model_sec year metric` 和 `isid country_iso3 ana_sector year source metric`，保留 ROW parent/host、allocated/unavailable、zero-link 和 reconciliation flags，不能把 parent share 或 bilateral/XVEM levels 当作可重复相加字段；
 - `STATATMP` 指向项目 F 盘目录；
 - 提供 batch `.do`：逐表 `use`、`describe`、`isid`、关键 `assert`、`summarize`，并在 log 写明确 success marker；
 - 提供推荐 merge 顺序，禁止合作者直接把 product-level trade 与 country-sector production 做 many-to-many merge。
@@ -1567,6 +1682,11 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 - [ ] 对 M4.1 两张输出执行 `isid` 等价检查，确认 85,050 × 54 与 10,080 × 43、duplicate 0、每个 source/analysis cell 恰有 7 metrics。
 - [ ] 复算 M4.1 accounting residual、ROW/eligible/first-round/outside partition、8/365/206 个 source negative cells 和 source-to-analysis reconciliation；确认没有 synthetic 2019 或 medical-devices rows。
 - [ ] 确认 M4.1 54/43 个 Stata aliases 完整唯一，ROW aggregate 只在 source long，analysis long 的 suppression/confidential/proxy flags 全 false；不要误认为跨来源 production merge 或 `.dta` 已完成。
+- [ ] 对 M4.2 两张 AMNE inputs 和两个 crosswalk 重算 SHA256/schema/key；确认 activity 为 1,260,053 positive links，MP share 为 4,250,880 行完整 `81×80×41×16` universe。
+- [ ] 对 M4.2 parent/host outputs 执行 `isid` 等价检查，确认 7,560,318 × 71 与 53,760 × 56、duplicate 0、每个 positive source link 恰有 6 metrics、host grid 为 80 × 6 × 16 × 7。
+- [ ] 独立复算 MP positive subset、parent share denominator、allocated VA/exports/imports、ratio-of-sums host share；确认 166 个负 parent VA 和 1,260,053 个 missing employment values 未被清零。
+- [ ] 确认 ROW parent 进入 host totals、ROW host 不进入 actual-country grid，`O84/T97T98` 只作为全零 auxiliary exclusions，27 个 zero-gross-output shares 保持 missing，TWN 不标 proxy，medical devices 不伪造。
+- [ ] 确认 bilateral parent sum 与 XVEM direct total 分开保留、gap 不被强制为 0；71/56 个 M4.2 Stata aliases 完整唯一且不超过 32 字符，不要误认为 growth、ranking、跨来源 production merge 或 `.dta` 已完成。
 - [ ] 确认 PDF build summary 的 Markdown SHA256 与当前文档一致。
 - [ ] M3-M7 每完成一项后复核本档案已同步更新。
 
@@ -1597,8 +1717,9 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 - `configs/connector_trade_sector_common_panel_rules.yaml`
 - `configs/connector_trade_sector_sensitivity_rules.yaml`
 - `configs/production_icio_rules.yaml`
+- `configs/production_amne_rules.yaml`
 
-### 17.2 M0-M4.1 validation
+### 17.2 M0-M4.2 validation
 
 - `data/validation/data_merge_input_manifest.json/.md`
 - `data/validation/data_merge_input_quality_audit.json/.md`
@@ -1621,6 +1742,7 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 - `data/validation/connector_trade_sector_common_panel_validation.json/.md`
 - `data/validation/connector_trade_sector_sensitivity_validation.json/.md`
 - `data/validation/production_icio_validation.json/.md`
+- `data/validation/production_amne_validation.json/.md`
 
 ### 17.3 source-specific provenance
 
@@ -1643,5 +1765,6 @@ Parquet 是 lossless canonical processed format。最终交给合作者的 `.dta
 | v0.6.0 | 2026-07-28 | M0-M3.5 | 登记 M3.5 两张冻结 M3.4 sector inputs、one-to-one full match、91 × 152 共同面板、13 × 7 完整网格、21/49/21 分组、角色/排序/source-match/no-selection flags、26/65 replacement 状态、152 aliases、确定性 hash、独立复核和首次 schema-signature serialization 修复。 |
 | v0.7.0 | 2026-07-29 | M0-M3.6 | 登记 M3.6 M3.5-common/M3.1-annual/time/country 冻结输入、1,092 × 56 time-window、182 × 64 source-bloc、364 × 47 exposure-definition 三表输出、primary/exclude-2024/shock-only、nested East Asia/self-trade rule、四种非等价 exposure estimands、设计性 missing、56/64/47 aliases、独立复算和三个确定性 hashes；明确不构造 ranking。 |
 | v0.8.0 | 2026-08-02 | M0-M4.1 | 登记 M4.1 三个冻结输入、81 geography/50 sector source universe、85,050 × 54 source-sector audit long、10,080 × 43 analysis-sector long、7 个 production/accounting metrics、ROW/eligible/excluded partition、source/aggregate negative preservation、54/43 aliases、独立复算和两个确定性 hashes；明确不插值 2019、不伪造 medical devices、不提前生成跨来源 production 文件。 |
+| v0.9.0 | 2026-08-02 | M0-M4.2 | 登记 M4.2 activity/MP-share/country/sector 冻结输入、positive/full-zero universes、7,560,318 × 71 parent-host source-detail long、53,760 × 56 host-analysis-sector long、direct/allocated/derived/unavailable 规则、ROW parent/host 边界、166 个负 allocated VA、employment unavailable、ratio-of-sums share、bilateral-XVEM reconciliation、71/56 aliases、独立复算和两个确定性 hashes；明确不构造 growth、ranking、hgamma 或跨来源 production 文件。 |
 
-下一次更新触发点：M4.2 AMNE parent-host-sector-year 明细、host-sector totals、direct/allocated 状态、outputs 和 validation 全部完成时，同步更新本档案与变量目录并重建两份 PDF，再单独勾选 M4.2。
+下一次更新触发点：M4.3 BEA MNE country-industry-year activity、aggregate geography filtering、suppression/metric states、outputs 和 validation 全部完成时，同步更新本档案与变量目录并重建两份 PDF，再单独勾选 M4.3。

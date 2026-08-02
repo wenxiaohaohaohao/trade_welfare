@@ -120,6 +120,15 @@ M2 builders and validation:
 - Builder/config: `code/data_processing/build_production_icio_long.py` and `configs/production_icio_rules.yaml`.
 - Validation: `data/validation/production_icio_validation.json` and `.md`, status PASS. Source negatives, ROW/excluded partitions, metric totals, accounting identities, source files, 54/43 aliases, and both deterministic hashes are validated. SHA256 values are `266ff08c5bd26e00a08cb9f3654b7c83354d02da79cca036d65ccd68d0054110` and `e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0`.
 
-M4.1 does not interpolate 2019, fabricate medical-devices rows, export `.dta`, or create the final cross-source `production_validation_long.parquet`. M4.2 AMNE construction is the next planned stage. All later production sources must use validated source-sector eligibility rather than matching labels directly.
+M4.1 does not interpolate 2019, fabricate medical-devices rows, export `.dta`, or create the final cross-source `production_validation_long.parquet`.
+
+## Completed M4.2 AMNE production-side outputs
+
+- `harmonized/production_amne_parent_host_sector_long.parquet`: 7,560,318 rows and 71 columns at `source_name, source_host_country_id, source_parent_country_id, model_sector, year, metric_name`. It preserves six metric rows for every positive bilateral affiliate-output link, including ROW host/parent and excluded source sectors. Direct output, allocated VA/exports/imports, derived parent share, and unavailable employment are explicitly distinguished.
+- `harmonized/production_validation_amne_host_sector_long.parquet`: 53,760 rows and 56 columns at `country_iso3, analysis_sector, year, source_name, metric_name`. It contains 80 actual hosts, six supported analysis sectors, 2008-2023, and seven host metrics on a complete zero-inclusive grid.
+- Builder/config: `code/data_processing/build_production_amne_long.py` and `configs/production_amne_rules.yaml`.
+- Validation: `data/validation/production_amne_validation.json` and `.md`, status PASS. Positive-link identity, zero-link coverage, direct/allocated formulas, 166 negative parent VA rows, unavailable employment, ROW handling, ratio-of-sums shares, bilateral-XVEM gaps, 71/56 aliases, and deterministic hashes are validated. SHA256 values are `6e3d0a77838b9c1d0cbae6445ee9b3f5637114747e51a148162c720d26605bcb` and `b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179`.
+
+M4.2 does not construct growth/MPE-expansion variables, fabricate medical devices, export `.dta`, or create the final cross-source `production_validation_long.parquet`. M4.3 BEA MNE is the next planned source module. All later production sources must use validated source-sector eligibility rather than matching labels directly.
 
 Every processed output must be reproducible from `data/interim/`, documented by a build script, and retain source/provenance fields needed to audit aggregation and suppression.

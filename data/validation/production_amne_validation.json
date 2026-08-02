@@ -1,0 +1,912 @@
+{
+  "validation_status": "PASS",
+  "failures": [],
+  "checks": [
+    {
+      "check": "affiliate_activity_hash",
+      "pass": true,
+      "observed": "ae5f859573e95773274928d0f27a90fe974fca2bd95f22fa78a849d8a2d8f856",
+      "expected": "ae5f859573e95773274928d0f27a90fe974fca2bd95f22fa78a849d8a2d8f856"
+    },
+    {
+      "check": "affiliate_activity_rows",
+      "pass": true,
+      "observed": 1260053,
+      "expected": 1260053
+    },
+    {
+      "check": "affiliate_activity_columns",
+      "pass": true,
+      "observed": 15,
+      "expected": 15
+    },
+    {
+      "check": "affiliate_activity_schema",
+      "pass": true,
+      "observed": "ee72af2a1d5fee2fb11f8d0ebe013fa5558896075caf03fc3708e05e0eccdc10",
+      "expected": "ee72af2a1d5fee2fb11f8d0ebe013fa5558896075caf03fc3708e05e0eccdc10"
+    },
+    {
+      "check": "affiliate_activity_key_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "affiliate_activity_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "mp_shares_hash",
+      "pass": true,
+      "observed": "a7f312c5a7cf0e87a3ecb6552363dae2c0f2e296685000653087a7d86c524131",
+      "expected": "a7f312c5a7cf0e87a3ecb6552363dae2c0f2e296685000653087a7d86c524131"
+    },
+    {
+      "check": "mp_shares_rows",
+      "pass": true,
+      "observed": 4250880,
+      "expected": 4250880
+    },
+    {
+      "check": "mp_shares_columns",
+      "pass": true,
+      "observed": 19,
+      "expected": 19
+    },
+    {
+      "check": "mp_shares_schema",
+      "pass": true,
+      "observed": "32a020d630cb370a1f3b9818800ab4dc88f7bc965736fd6aa00179e4337cf508",
+      "expected": "32a020d630cb370a1f3b9818800ab4dc88f7bc965736fd6aa00179e4337cf508"
+    },
+    {
+      "check": "mp_shares_key_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "mp_shares_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_sector_crosswalk_hash",
+      "pass": true,
+      "observed": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+      "expected": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9"
+    },
+    {
+      "check": "source_sector_crosswalk_rows",
+      "pass": true,
+      "observed": 517,
+      "expected": 517
+    },
+    {
+      "check": "source_sector_crosswalk_columns",
+      "pass": true,
+      "observed": 14,
+      "expected": 14
+    },
+    {
+      "check": "source_sector_crosswalk_schema",
+      "pass": true,
+      "observed": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+      "expected": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d"
+    },
+    {
+      "check": "source_sector_crosswalk_key_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_sector_crosswalk_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "country_crosswalk_hash",
+      "pass": true,
+      "observed": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+      "expected": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6"
+    },
+    {
+      "check": "country_crosswalk_rows",
+      "pass": true,
+      "observed": 611,
+      "expected": 611
+    },
+    {
+      "check": "country_crosswalk_columns",
+      "pass": true,
+      "observed": 22,
+      "expected": 22
+    },
+    {
+      "check": "country_crosswalk_schema",
+      "pass": true,
+      "observed": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+      "expected": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5"
+    },
+    {
+      "check": "country_crosswalk_key_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "country_crosswalk_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "build_summary_hash",
+      "pass": true,
+      "observed": "f992635705498a2d48a5a6e36721c61c5349d9290ce4a0dc42102f1ca550e8c1",
+      "expected": "f992635705498a2d48a5a6e36721c61c5349d9290ce4a0dc42102f1ca550e8c1"
+    },
+    {
+      "check": "activity_domestic_diagonal",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "mp_domestic_diagonal",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "observed_years",
+      "pass": true,
+      "observed": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "expected": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "check": "host_count",
+      "pass": true,
+      "observed": 81,
+      "expected": 81
+    },
+    {
+      "check": "parent_count",
+      "pass": true,
+      "observed": 81,
+      "expected": 81
+    },
+    {
+      "check": "full_parent_grid",
+      "pass": true,
+      "observed": [
+        80,
+        80
+      ],
+      "expected": [
+        80,
+        80
+      ]
+    },
+    {
+      "check": "positive_subset_rows",
+      "pass": true,
+      "observed": 1260053,
+      "expected": 1260053
+    },
+    {
+      "check": "zero_link_rows",
+      "pass": true,
+      "observed": 2990827,
+      "expected": 2990827
+    },
+    {
+      "check": "positive_subset_keys_equal",
+      "pass": true,
+      "observed": true,
+      "expected": true
+    },
+    {
+      "check": "positive_subset_values",
+      "pass": true,
+      "observed": 1.4551915228366852e-11,
+      "expected": 1e-10
+    },
+    {
+      "check": "parent_share_formula",
+      "pass": true,
+      "observed": 0.0,
+      "expected": 1e-12
+    },
+    {
+      "check": "allocated_metric_formulas",
+      "pass": true,
+      "observed": 1.4551915228366852e-11,
+      "expected": 1e-10
+    },
+    {
+      "check": "source_foreign_share_formula",
+      "pass": true,
+      "observed": 0.0,
+      "expected": 1e-12
+    },
+    {
+      "check": "activity_sector_join",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "activity_eligible_rows",
+      "pass": true,
+      "observed": 470199,
+      "expected": 470199
+    },
+    {
+      "check": "activity_first_round_excluded_rows",
+      "pass": true,
+      "observed": 117143,
+      "expected": 117143
+    },
+    {
+      "check": "activity_outside_manufacturing_rows",
+      "pass": true,
+      "observed": 672711,
+      "expected": 672711
+    },
+    {
+      "check": "activity_negative_value_added_rows",
+      "pass": true,
+      "observed": 166,
+      "expected": 166
+    },
+    {
+      "check": "activity_employment_missing_rows",
+      "pass": true,
+      "observed": 1260053,
+      "expected": 1260053
+    },
+    {
+      "check": "auxiliary_zero_only_codes",
+      "pass": true,
+      "observed": [
+        "O84",
+        "T97T98"
+      ],
+      "expected": [
+        "O84",
+        "T97T98"
+      ]
+    },
+    {
+      "check": "auxiliary_codes_zero_output",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "country_join_coverage",
+      "pass": true,
+      "observed": [],
+      "expected": []
+    },
+    {
+      "check": "activity_positive_output",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "input_infinite_values",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "parent_long_rows",
+      "pass": true,
+      "observed": 7560318,
+      "expected": 7560318
+    },
+    {
+      "check": "parent_long_columns",
+      "pass": true,
+      "observed": 71,
+      "expected": 71
+    },
+    {
+      "check": "parent_long_schema",
+      "pass": true,
+      "observed": "year: int16\nsource_name: string\nsource_host_country_id: string\nhost_country_iso3: string\nhost_canonical_country_name: string\nhost_mapping_status: string\nhost_is_country: bool\nhost_is_aggregate: bool\nhost_is_residual: bool\nhost_is_proxy: bool\nhost_main_analysis_country_flag: bool\nhost_is_core_connector: bool\nhost_is_asian_comparator: bool\nhost_is_other_candidate: bool\nhost_comparison_sample_country_flag: bool\nsource_parent_country_id: string\nparent_country_iso3: string\nparent_canonical_country_name: string\nparent_mapping_status: string\nparent_is_country: bool\nparent_is_aggregate: bool\nparent_is_residual: bool\nparent_is_proxy: bool\nparent_country_join_eligible: bool\nmodel_sector: string\nsource_sector_level: string\nsource_sector_label: string\nanalysis_sector: string\nsector_mapping_status: string\nsector_mapping_rule: string\nsector_first_round_exclusion: string\nsector_proxy_analysis_sector: string\nsector_is_main_join_eligible: bool\nsector_mapping_weight: double\nsource_granularity_note: string\nsource_code_family: string\nsource_sector_mapping_version: string\nownership_type: string\nmetric_name: string\nmetric_order: int8\nvalue: double\nunit: string\nfrequency: string\ndirection: string\ndirect_or_allocated: string\nderivation_status: string\nmetric_formula: string\nmetric_use: string\nallocation_method: string\nallocation_weight: double\nvalue_available_flag: bool\nmetric_unavailable_flag: bool\nsuppressed_flag: bool\nconfidential_flag: bool\naggregate_flag: bool\nresidual_flag: bool\nproxy_flag: bool\nmain_analysis_join_eligible: bool\nobserved_negative_flag: bool\nobserved_zero_flag: bool\nmetric_additive_across_parents: bool\nmetric_additive_across_source_sectors: bool\ncan_sum_across_metrics: bool\nhost_total_repeated_across_parents_flag: bool\npositive_affiliate_output_link_flag: bool\nzero_affiliate_output_links_materialized_flag: bool\nsource_file: string\namne_release: string\nm4_amne_version: string\nrules_config_sha256: string\nschema_version: string",
+      "expected": "year: int16\nsource_name: string\nsource_host_country_id: string\nhost_country_iso3: string\nhost_canonical_country_name: string\nhost_mapping_status: string\nhost_is_country: bool\nhost_is_aggregate: bool\nhost_is_residual: bool\nhost_is_proxy: bool\nhost_main_analysis_country_flag: bool\nhost_is_core_connector: bool\nhost_is_asian_comparator: bool\nhost_is_other_candidate: bool\nhost_comparison_sample_country_flag: bool\nsource_parent_country_id: string\nparent_country_iso3: string\nparent_canonical_country_name: string\nparent_mapping_status: string\nparent_is_country: bool\nparent_is_aggregate: bool\nparent_is_residual: bool\nparent_is_proxy: bool\nparent_country_join_eligible: bool\nmodel_sector: string\nsource_sector_level: string\nsource_sector_label: string\nanalysis_sector: string\nsector_mapping_status: string\nsector_mapping_rule: string\nsector_first_round_exclusion: string\nsector_proxy_analysis_sector: string\nsector_is_main_join_eligible: bool\nsector_mapping_weight: double\nsource_granularity_note: string\nsource_code_family: string\nsource_sector_mapping_version: string\nownership_type: string\nmetric_name: string\nmetric_order: int8\nvalue: double\nunit: string\nfrequency: string\ndirection: string\ndirect_or_allocated: string\nderivation_status: string\nmetric_formula: string\nmetric_use: string\nallocation_method: string\nallocation_weight: double\nvalue_available_flag: bool\nmetric_unavailable_flag: bool\nsuppressed_flag: bool\nconfidential_flag: bool\naggregate_flag: bool\nresidual_flag: bool\nproxy_flag: bool\nmain_analysis_join_eligible: bool\nobserved_negative_flag: bool\nobserved_zero_flag: bool\nmetric_additive_across_parents: bool\nmetric_additive_across_source_sectors: bool\ncan_sum_across_metrics: bool\nhost_total_repeated_across_parents_flag: bool\npositive_affiliate_output_link_flag: bool\nzero_affiliate_output_links_materialized_flag: bool\nsource_file: string\namne_release: string\nm4_amne_version: string\nrules_config_sha256: string\nschema_version: string"
+    },
+    {
+      "check": "parent_metric_row_counts",
+      "pass": true,
+      "observed": {
+        "affiliate_output": 1260053,
+        "affiliate_value_added": 1260053,
+        "affiliate_exports": 1260053,
+        "affiliate_imports": 1260053,
+        "parent_affiliate_output_share": 1260053,
+        "affiliate_employment": 1260053
+      },
+      "expected": {
+        "affiliate_output": 1260053,
+        "affiliate_value_added": 1260053,
+        "affiliate_exports": 1260053,
+        "affiliate_imports": 1260053,
+        "parent_affiliate_output_share": 1260053,
+        "affiliate_employment": 1260053
+      }
+    },
+    {
+      "check": "parent_each_source_row_has_six_metrics",
+      "pass": true,
+      "observed": {
+        "affiliate_output": 1260053,
+        "affiliate_value_added": 1260053,
+        "affiliate_exports": 1260053,
+        "affiliate_imports": 1260053,
+        "parent_affiliate_output_share": 1260053,
+        "affiliate_employment": 1260053
+      },
+      "expected": 1260053
+    },
+    {
+      "check": "parent_stata_aliases",
+      "pass": true,
+      "observed": {
+        "pass": true,
+        "alias_count": 71,
+        "maximum_alias_length": 12,
+        "missing_fields": [],
+        "extra_fields": [],
+        "duplicate_aliases": [],
+        "over_32_characters": {},
+        "invalid_aliases": {}
+      },
+      "expected": "complete_unique_legal_max32"
+    },
+    {
+      "check": "parent_employment_unavailable",
+      "pass": true,
+      "observed": 1260053,
+      "expected": 1260053
+    },
+    {
+      "check": "parent_negative_value_added_preserved",
+      "pass": true,
+      "observed": 166,
+      "expected": 166
+    },
+    {
+      "check": "host_long_rows",
+      "pass": true,
+      "observed": 53760,
+      "expected": 53760
+    },
+    {
+      "check": "host_long_columns",
+      "pass": true,
+      "observed": 56,
+      "expected": 56
+    },
+    {
+      "check": "host_long_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_analysis_country_count",
+      "pass": true,
+      "observed": 80,
+      "expected": 80
+    },
+    {
+      "check": "host_analysis_sector_count",
+      "pass": true,
+      "observed": 6,
+      "expected": 6
+    },
+    {
+      "check": "host_analysis_cells",
+      "pass": true,
+      "observed": 7680,
+      "expected": 7680
+    },
+    {
+      "check": "no_medical_devices_fabrication",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "twn_direct_not_proxy",
+      "pass": true,
+      "observed": true,
+      "expected": true
+    },
+    {
+      "check": "host_bilateral_affiliate_output_sum_zero_count",
+      "pass": true,
+      "observed": 113,
+      "expected": 113
+    },
+    {
+      "check": "host_bilateral_affiliate_output_sum_missing_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_bilateral_affiliate_output_sum_negative_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_foreign_affiliate_output_total_zero_count",
+      "pass": true,
+      "observed": 113,
+      "expected": 113
+    },
+    {
+      "check": "host_foreign_affiliate_output_total_missing_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_foreign_affiliate_output_total_negative_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_foreign_affiliate_value_added_total_zero_count",
+      "pass": true,
+      "observed": 113,
+      "expected": 113
+    },
+    {
+      "check": "host_foreign_affiliate_value_added_total_missing_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_foreign_affiliate_value_added_total_negative_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_foreign_affiliate_exports_total_zero_count",
+      "pass": true,
+      "observed": 116,
+      "expected": 116
+    },
+    {
+      "check": "host_foreign_affiliate_exports_total_missing_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_foreign_affiliate_exports_total_negative_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_foreign_affiliate_imports_total_zero_count",
+      "pass": true,
+      "observed": 114,
+      "expected": 114
+    },
+    {
+      "check": "host_foreign_affiliate_imports_total_missing_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_foreign_affiliate_imports_total_negative_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_gross_output_zero_count",
+      "pass": true,
+      "observed": 27,
+      "expected": 27
+    },
+    {
+      "check": "host_gross_output_missing_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_gross_output_negative_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_foreign_affiliate_output_share_zero_count",
+      "pass": true,
+      "observed": 86,
+      "expected": 86
+    },
+    {
+      "check": "host_foreign_affiliate_output_share_missing_count",
+      "pass": true,
+      "observed": 27,
+      "expected": 27
+    },
+    {
+      "check": "host_foreign_affiliate_output_share_negative_count",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "host_ratio_of_sums_share",
+      "pass": true,
+      "observed": 0.0,
+      "expected": 1e-12
+    },
+    {
+      "check": "host_bilateral_zero_cells",
+      "pass": true,
+      "observed": 113,
+      "expected": 113
+    },
+    {
+      "check": "source_bilateral_xvem_gap_preserved",
+      "pass": true,
+      "observed": 0.11274325411432073,
+      "expected": 0.11274325411795871
+    },
+    {
+      "check": "analysis_bilateral_xvem_gap_preserved",
+      "pass": true,
+      "observed": 0.205832572253712,
+      "expected": 0.20583257224643603
+    },
+    {
+      "check": "host_repeated_direct_values_unique",
+      "pass": true,
+      "observed": {
+        "gross_output": 1,
+        "foreign_affiliate_output_total": 1,
+        "foreign_affiliate_share": 1,
+        "source_file": 1
+      },
+      "expected": {
+        "gross_output": 1,
+        "foreign_affiliate_output_total": 1,
+        "foreign_affiliate_share": 1,
+        "source_file": 1
+      }
+    },
+    {
+      "check": "connector_country_count",
+      "pass": true,
+      "observed": 13,
+      "expected": 13
+    },
+    {
+      "check": "connector_country_sector_year_cells",
+      "pass": true,
+      "observed": 1248,
+      "expected": 1248
+    },
+    {
+      "check": "host_stata_aliases",
+      "pass": true,
+      "observed": {
+        "pass": true,
+        "alias_count": 56,
+        "maximum_alias_length": 12,
+        "missing_fields": [],
+        "extra_fields": [],
+        "duplicate_aliases": [],
+        "over_32_characters": {},
+        "invalid_aliases": {}
+      },
+      "expected": "complete_unique_legal_max32"
+    }
+  ],
+  "input_contract": {
+    "affiliate_activity": {
+      "path": "data/interim/mne/oecd_amne_affiliate_activity.parquet",
+      "sha256": "ae5f859573e95773274928d0f27a90fe974fca2bd95f22fa78a849d8a2d8f856",
+      "expected_sha256": "ae5f859573e95773274928d0f27a90fe974fca2bd95f22fa78a849d8a2d8f856",
+      "hash_match": true,
+      "rows": 1260053,
+      "expected_rows": 1260053,
+      "row_count_match": true,
+      "columns": 15,
+      "expected_columns": 15,
+      "column_count_match": true,
+      "schema_signature": "ee72af2a1d5fee2fb11f8d0ebe013fa5558896075caf03fc3708e05e0eccdc10",
+      "expected_schema_signature": "ee72af2a1d5fee2fb11f8d0ebe013fa5558896075caf03fc3708e05e0eccdc10",
+      "schema_match": true,
+      "filtered_rows": 1260053,
+      "expected_filtered_rows": null,
+      "key_missing_rows": 0,
+      "duplicate_key_rows": 0
+    },
+    "mp_shares": {
+      "path": "data/interim/mne/oecd_amne_mp_shares.parquet",
+      "sha256": "a7f312c5a7cf0e87a3ecb6552363dae2c0f2e296685000653087a7d86c524131",
+      "expected_sha256": "a7f312c5a7cf0e87a3ecb6552363dae2c0f2e296685000653087a7d86c524131",
+      "hash_match": true,
+      "rows": 4250880,
+      "expected_rows": 4250880,
+      "row_count_match": true,
+      "columns": 19,
+      "expected_columns": 19,
+      "column_count_match": true,
+      "schema_signature": "32a020d630cb370a1f3b9818800ab4dc88f7bc965736fd6aa00179e4337cf508",
+      "expected_schema_signature": "32a020d630cb370a1f3b9818800ab4dc88f7bc965736fd6aa00179e4337cf508",
+      "schema_match": true,
+      "filtered_rows": 4250880,
+      "expected_filtered_rows": null,
+      "key_missing_rows": 0,
+      "duplicate_key_rows": 0
+    },
+    "source_sector_crosswalk": {
+      "path": "data/processed/concordances/source_sector_crosswalk.parquet",
+      "sha256": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+      "expected_sha256": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+      "hash_match": true,
+      "rows": 517,
+      "expected_rows": 517,
+      "row_count_match": true,
+      "columns": 14,
+      "expected_columns": 14,
+      "column_count_match": true,
+      "schema_signature": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+      "expected_schema_signature": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+      "schema_match": true,
+      "filtered_rows": 39,
+      "expected_filtered_rows": 39,
+      "key_missing_rows": 0,
+      "duplicate_key_rows": 0
+    },
+    "country_crosswalk": {
+      "path": "data/processed/concordances/country_crosswalk.parquet",
+      "sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+      "expected_sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+      "hash_match": true,
+      "rows": 611,
+      "expected_rows": 611,
+      "row_count_match": true,
+      "columns": 22,
+      "expected_columns": 22,
+      "column_count_match": true,
+      "schema_signature": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+      "expected_schema_signature": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+      "schema_match": true,
+      "filtered_rows": 81,
+      "expected_filtered_rows": 81,
+      "key_missing_rows": 0,
+      "duplicate_key_rows": 0
+    },
+    "build_summary": {
+      "path": "data/interim/mne/oecd_amne_build_summary.json",
+      "sha256": "f992635705498a2d48a5a6e36721c61c5349d9290ce4a0dc42102f1ca550e8c1",
+      "expected_sha256": "f992635705498a2d48a5a6e36721c61c5349d9290ce4a0dc42102f1ca550e8c1",
+      "hash_match": true
+    }
+  },
+  "source_and_formula_checks": {
+    "activity_rows": 1260053,
+    "mp_rows": 4250880,
+    "activity_key_missing_rows": 0,
+    "activity_duplicate_key_rows": 0,
+    "mp_key_missing_rows": 0,
+    "mp_duplicate_key_rows": 0,
+    "activity_domestic_diagonal_rows": 0,
+    "mp_domestic_diagonal_rows": 0,
+    "years": [
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ],
+    "host_count": 81,
+    "parent_count": 81,
+    "activity_source_sector_count": 39,
+    "mp_source_sector_count": 41,
+    "parents_per_host_sector_year_min": 80,
+    "parents_per_host_sector_year_max": 80,
+    "positive_subset_rows": 1260053,
+    "zero_link_rows": 2990827,
+    "positive_keys_equal": true,
+    "positive_value_max_differences": {
+      "affiliate_output": 0.0,
+      "affiliate_value_added": 1.4551915228366852e-11,
+      "affiliate_exports": 1.4551915228366852e-11,
+      "affiliate_imports": 3.637978807091713e-12,
+      "parent_affiliate_output_share": 2.220446049250313e-16,
+      "gross_output": 0.0,
+      "foreign_affiliate_output_total": 0.0
+    },
+    "parent_share_formula_max_error": 0.0,
+    "allocation_formula_max_errors": {
+      "affiliate_value_added": 1.4551915228366852e-11,
+      "affiliate_exports": 1.4551915228366852e-11,
+      "affiliate_imports": 7.275957614183426e-12
+    },
+    "foreign_share_formula_max_error": 0.0,
+    "activity_unmatched_sector_rows": 0,
+    "activity_eligible_rows": 470199,
+    "activity_first_round_excluded_rows": 117143,
+    "activity_outside_manufacturing_rows": 672711,
+    "auxiliary_mp_sector_codes": [
+      "O84",
+      "T97T98"
+    ],
+    "auxiliary_rows": 207360,
+    "auxiliary_nonzero_affiliate_output_rows": 0,
+    "unmatched_country_codes": [],
+    "activity_negative_value_added_rows": 166,
+    "activity_employment_missing_rows": 1260053,
+    "activity_output_nonpositive_rows": 0,
+    "infinite_numeric_values": 0
+  },
+  "parent_long_checks": {
+    "rows": 7560318,
+    "columns": 71,
+    "metric_row_counts": {
+      "affiliate_output": 1260053,
+      "affiliate_value_added": 1260053,
+      "affiliate_exports": 1260053,
+      "affiliate_imports": 1260053,
+      "parent_affiliate_output_share": 1260053,
+      "affiliate_employment": 1260053
+    },
+    "duplicate_key_rows": 0,
+    "employment_missing_rows": 1260053,
+    "negative_value_added_rows": 166,
+    "stata_alias_validation": {
+      "pass": true,
+      "alias_count": 71,
+      "maximum_alias_length": 12,
+      "missing_fields": [],
+      "extra_fields": [],
+      "duplicate_aliases": [],
+      "over_32_characters": {},
+      "invalid_aliases": {}
+    }
+  },
+  "host_long_checks": {
+    "rows": 53760,
+    "columns": 56,
+    "duplicate_key_rows": 0,
+    "country_count": 80,
+    "analysis_sector_count": 6,
+    "country_sector_year_cells": 7680,
+    "host_share_formula_max_error": 0.0,
+    "stata_alias_validation": {
+      "pass": true,
+      "alias_count": 56,
+      "maximum_alias_length": 12,
+      "missing_fields": [],
+      "extra_fields": [],
+      "duplicate_aliases": [],
+      "over_32_characters": {},
+      "invalid_aliases": {}
+    }
+  },
+  "reconciliation": {
+    "source_cell_rows": 53136,
+    "direct_repeat_max_unique": {
+      "gross_output": 1,
+      "foreign_affiliate_output_total": 1,
+      "foreign_affiliate_share": 1,
+      "source_file": 1
+    },
+    "source_max_abs_bilateral_xvem_gap": 0.11274325411432073,
+    "source_negative_va_total_cells": 28,
+    "source_foreign_output_zero_cells": 3221,
+    "source_gross_output_zero_cells": 219,
+    "analysis_cells": 7680,
+    "analysis_max_abs_bilateral_xvem_gap": 0.205832572253712,
+    "analysis_bilateral_denominator_zero_cells": 113,
+    "host_long_rows": 53760,
+    "host_long_columns": 56
+  },
+  "determinism": {
+    "parent_long_candidate_sha256": "6e3d0a77838b9c1d0cbae6445ee9b3f5637114747e51a148162c720d26605bcb",
+    "parent_long_second_build_sha256": "6e3d0a77838b9c1d0cbae6445ee9b3f5637114747e51a148162c720d26605bcb",
+    "parent_long_sha256_match": true,
+    "host_long_candidate_sha256": "b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179",
+    "host_long_second_build_sha256": "b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179",
+    "host_long_sha256_match": true,
+    "temporary_output_cleaned": true
+  },
+  "validation_version": 1,
+  "origin_date": "2026-08-02",
+  "generated_at_utc": "2026-08-02T15:41:55.928458+00:00",
+  "config_path": "configs/production_amne_rules.yaml",
+  "config_sha256": "a74bd728dc0b4236043a9c68035b28b12e6f02aa9d2a8aeeb8468901721c829d",
+  "construction_version": "production_amne_rules_v1",
+  "outputs": {
+    "parent_long": {
+      "path": "data/processed/harmonized/production_amne_parent_host_sector_long.parquet",
+      "sha256": "6e3d0a77838b9c1d0cbae6445ee9b3f5637114747e51a148162c720d26605bcb",
+      "rows": 7560318,
+      "columns": 71,
+      "schema_signature": "96d720f77721cd9e1d1f91a0d31841371b867f4da5430f1c4ce5a740cbf2ab65"
+    },
+    "host_long": {
+      "path": "data/processed/harmonized/production_validation_amne_host_sector_long.parquet",
+      "sha256": "b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179",
+      "rows": 53760,
+      "columns": 56,
+      "schema_signature": "a20528b03f1cef88f3d0446d94959a44a97c74f88153a8f91e03def802c3f197"
+    }
+  },
+  "candidate_temp_directory": "tmp/m4_2_candidates",
+  "candidate_temporary_output_cleaned": true
+}
