@@ -4,10 +4,10 @@
 
 - Origin Skill: `stata-latex-research`
 - Origin Date: `2026-07-27`
-- Verification Status: `VERIFIED_THROUGH_M3.6`
-- Version Label: `variable_catalog_v0.7.0`
-- Current Data Stage: `M0-M3.6 completed`
-- Next Construction Stage: `M4.1 not started; user authorization required`
+- Verification Status: `VERIFIED_THROUGH_M4.1`
+- Version Label: `variable_catalog_v0.8.0`
+- Current Data Stage: `M0-M4.1 completed`
+- Next Construction Stage: `M4.2 not started; user authorization required`
 - Canonical Format: Parquet
 - Collaborator Format: Stata `.dta`
 
@@ -24,7 +24,7 @@
 
 本目录同时包含三类变量：
 
-- `EXISTING_VALIDATED`：M2 或 M3.1-M3.6 已存在且 validation PASS；
+- `EXISTING_VALIDATED`：M2、M3.1-M3.6 或 M4.1 已存在且 validation PASS；
 - `PLANNED_M4` 至 `PLANNED_M6`：已经定义但尚未构造，必须在对应阶段完成后补充实际 output hash 和 validation；
 - `STRUCTURAL_TARGET_ONLY`：只能作为模型校准目标或输入候选，不能直接解释为已经识别的结构参数。
 
@@ -784,7 +784,16 @@ Extended East Asia 包含 China，因此两定义不是两个独立样本。`ext
 
 ## 8. M4 production-side 标准化变量
 
-目标文件：`production_validation_long.parquet`。采用长表保存来源、指标与单位；禁止把不同概念合并相加。
+M4.1 状态：`EXISTING_VALIDATED`。本阶段先生成 ICIO 专属的 source-sector 审计长表和 analysis-sector 标准化长表。M4.6 才会把 ICIO、AMNE、BEA 和 Mexico 组合为最终 `production_validation_long.parquet`；M4.1 不提前伪造这一跨来源文件。所有 production 表采用 long format 保存来源、指标与单位，禁止把不同 `metric_name` 或不同经济概念直接相加。
+
+M4.1 实际输出：
+
+| Output | Grain / natural key | Rows × columns | SHA256 |
+|---|---|---:|---|
+| `data/processed/harmonized/production_icio_source_sector_long.parquet` | `source_name, source_country_id, model_sector, year, metric_name` | 85,050 × 54 | `266ff08c5bd26e00a08cb9f3654b7c83354d02da79cca036d65ccd68d0054110` |
+| `data/processed/harmonized/production_validation_icio_long.parquet` | `country_iso3, analysis_sector, year, source_name, metric_name` | 10,080 × 43 | `e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0` |
+
+两张表的 config 为 `configs/production_icio_rules.yaml`，builder 为 `code/data_processing/build_production_icio_long.py`，validation 为 `data/validation/production_icio_validation.json/.md`。正式构建与项目 F 盘第二次构建的 Parquet SHA256 逐一完全一致。
 
 ### 8.1 通用 long schema
 
@@ -807,6 +816,33 @@ Extended East Asia 包含 China，因此两定义不是两个独立样本。`ext
 | `proxy_flag` | `is_proxy` | coarse source-sector proxy |
 | `source_file` | `src_file` | provenance |
 
+M4.1 的 analysis long 已实际实现以上 16 个核心字段，并增加 metric 顺序、公式、用途、source-sector 构成、source-sector mapping provenance、negative/zero flags、可加总限制、comparison-sample flags、release/config/schema version。其 43 个 Stata aliases 全部在 frozen config 中逐字段登记，validation 检查完整性、唯一性、合法性和 32 字符上限。
+
+### 8.1.1 M4.1 source-sector 审计字段
+
+Source-sector long 不只是 analysis long 的中间文件，而是防止聚合掩盖异常的正式审计接口。每个 12,150 个 `ICIO geography × OECD sector × year` source cells 恰好有 7 个 metric rows。
+
+| Canonical name | Stata name | 定义与使用规则 |
+|---|---|---|
+| `source_country_id` | `src_ctry` | ICIO 原 geography code；ROW 保留在本表，但没有 canonical country ISO3 |
+| `country_is_country` | `ctry_country` | 真实国家标记；只有 true 才可进入 analysis long |
+| `country_is_aggregate` | `ctry_agg` | ROW aggregate 标记；不得当作普通国家合并 |
+| `model_sector` | `model_sec` | 原 OECD ICIO sector code，保留结构模型接口 |
+| `analysis_sector` | `ana_sector` | canonical sector；excluded/outside sectors 为 missing |
+| `sector_mapping_status` | `sec_mapst` | mapped priority、mapped other manufacturing、first-round excluded 或 outside manufacturing |
+| `sector_mapping_weight` | `sec_weight` | 只有 main-join eligible sector 为 1；其他状态保持 missing |
+| `main_analysis_join_eligible` | `main_joinok` | `country_is_country × sector eligible × weight=1 × analysis_sector nonmissing` |
+| `metric_name` | `metric` | 七个正式 metric 之一；不同 metric 不可求和 |
+| `value` | `value` | current million USD；负 accounting 值保留原符号 |
+| `accounting_negative_allowed` | `neg_allow` | 指明该 metric 是否允许 accounting negative |
+| `observed_negative_flag` | `obs_neg` | `value < 0` 的逐 source-cell 标记 |
+| `observed_zero_flag` | `obs_zero` | `value = 0` 的逐 source-cell 标记 |
+| `aggregate_flag` | `is_agg` | 与 geography aggregate 状态一致；ROW 的 1,050 个 metric rows 为 true |
+| `source_file` | `src_file` | 精确回溯到 ICIO archive 内的年度 CSV |
+| `rules_config_sha256` | `rules_hash` | M4.1 frozen config SHA256 |
+
+本表共 54 个字段，全部 Stata aliases 已冻结并通过 validation；最长 alias 为 12 字符。`suppressed_flag` 和 `confidential_flag` 在 ICIO 中全部为 false，但保留通用接口；`proxy_flag` 全部为 false，TWN 是 ICIO direct observation，不使用 BACI proxy。
+
 ### 8.2 ICIO metrics
 
 | Metric | Stata metric label | Unit | Additivity/use |
@@ -819,9 +855,29 @@ Extended East Asia 包含 China，因此两定义不是两个独立样本。`ext
 | `taxes_less_subsidies` | `tax_less_sub` | current million USD | accounting；允许负值 |
 | `accounting_residual` | `acct_resid` | current million USD | quality diagnostic |
 
-ICIO 只有 2017、2018、2022。禁止线性插值得到 2019 或 annual panel。
+实际公式为：
 
-### 8.3 AMNE metrics
+```text
+accounting_residual
+= gross_output
+  - intermediate_inputs
+  - taxes_less_subsidies
+  - value_added
+
+analysis_sector metric value
+= sum(source-sector metric value)
+  where country_is_country = true
+    and sector_is_main_join_eligible = true
+    and sector_mapping_weight = 1
+```
+
+`other_manufacturing` 聚合 11 个 OECD source sectors；electronics、electrical equipment、machinery、autos 和 textiles/apparel 各由一个 source sector 直接映射。ICIO 不能单列 `medical_devices`，因此 analysis long 只有 6 个 sectors，不生成 medical-devices 零行。ICIO 只有 2017、2018、2022，禁止线性插值得到 2019 或伪造连续 annual panel。
+
+负值处理是 accounting-preserving 而不是 data cleaning：source long 保留 8 个负 value-added、365 个负 taxes-less-subsidies 和 206 个负 accounting-residual cells；main eligible source cells 中分别为 3、92、56。部门聚合后分别为 0、30、22，说明部分 source negatives 被同部门正值抵消，因此下游审查不能只看 analysis long 的负值数，也不能把 source long 中的负值截为 0。
+
+M4.1 validation 还固定以下门槛：12,150 source cells 分解为 ROW 150、main eligible 3,840、actual-country first-round excluded 2,640、outside manufacturing 5,520；每个 metric 的 `eligible + excluded = full source universe`；source-to-analysis 每个 country-sector-year-metric 的最大误差为 0；accounting residual 的独立复算误差低于 `1e-6` million USD；source/analysis 两表 duplicate key 均为 0；54/43 个 aliases 全部有效。
+
+### 8.3 AMNE metrics（`PLANNED_M4.2`）
 
 | Metric | Unit | Direct/allocated | 用途 |
 |---|---|---|---|
@@ -833,7 +889,7 @@ ICIO 只有 2017、2018、2022。禁止线性插值得到 2019 或 annual panel�
 | `parent_affiliate_output_share` | fraction | derived direct output share | allocation provenance |
 | `affiliate_employment` | unavailable | unavailable | `PROHIBITED` as zero/imputed |
 
-### 8.4 BEA MNE metrics
+### 8.4 BEA MNE metrics（`PLANNED_M4.3`）
 
 | Metric | Unit | 用途 |
 |---|---|---|
@@ -846,7 +902,7 @@ ICIO 只有 2017、2018、2022。禁止线性插值得到 2019 或 annual panel�
 
 每个 metric 同时保留 suppression 和 small-value flag。aggregate geography 先排除。Transportation equipment 若作为 autos robustness，必须 `proxy_flag=1`。
 
-### 8.5 BEA FDI metrics
+### 8.5 BEA FDI metrics（`PLANNED_M4.4`）
 
 | Metric | Temporal type | Unit | 规则 |
 |---|---|---|---|
@@ -856,7 +912,7 @@ ICIO 只有 2017、2018、2022。禁止线性插值得到 2019 或 annual panel�
 
 必须保留 `direction`。不能构造 `total_fdi = position + flows + income`。
 
-### 8.6 Mexico FDI metrics
+### 8.6 Mexico FDI metrics（`PLANNED_M4.5`）
 
 | Metric | Stata name | 规则 |
 |---|---|---|
@@ -1201,10 +1257,11 @@ Reviewer/date:
 5. M3.4 已构造 replacement、source input、exposure overlap 和 HS6 co-movement，三张自然粒度输出 validation PASS；
 6. M3.5 已在共同面板中保留全部 13 个 connectors/comparators × 7 sectors，并明确不做 outcome/top-rank/complete-case 筛选；
 7. M3.6 已生成窗口、source bloc 和 exposure sensitivity 三张自然粒度接口，未构造 ranking；
-8. 下一步 M4 逐来源建立 production long，须等待用户确认；
-9. M5 逐来源 left join 和 coverage；
-10. M6 先 trade ranking，再 production grade，最后 structural moments；
-11. M7 导出 Stata、运行 `.do`、冻结 release。
+8. M4.1 已生成完整 ICIO source-sector audit long 和 80-country × 6-sector analysis long；
+9. 下一步 M4.2 构造 AMNE parent-host-sector-year 明细和 host-sector totals，须等待用户确认；
+10. M5 逐来源 left join 和 coverage；
+11. M6 先 trade ranking，再 production grade，最后 structural moments；
+12. M7 导出 Stata、运行 `.do`、冻结 release。
 
 ## 18. 版本记录
 
@@ -1218,5 +1275,6 @@ Reviewer/date:
 | v0.5.0 | 2026-07-28 | 完成 M3.4 变量合同：登记 55,081 × 56 产品窗口、91 × 92 部门重组指标和 91 × 49 产品共变三表接口；固定 USD 25 million replacement denominator、signed numerator、China/East Asia source ratios、28 个 exposure missing、positive/p75 exposure overlap、产品正增量分母、Pearson/weighted correlations、56/92/49 aliases 和三个确定性 hashes。 |
 | v0.6.0 | 2026-07-28 | 完成 M3.5 变量合同：登记 91 × 152 共同面板、M3.4 两张同粒度表的 one-to-one join、完整 13 × 7 网格、21/49/21 组别行数、角色/稳定排序/source-match/no-selection flags、26/65 replacement defined/missing 状态、152 aliases 和确定性 output hash。 |
 | v0.7.0 | 2026-07-29 | 完成 M3.6 变量合同：登记 1,092 × 56 alternative-window、182 × 64 source-bloc 和 364 × 47 exposure-definition 三表接口；固定 primary/exclude-2024/shock-only、nested China/East-Asia self-trade rule、四种非等价 exposure estimands、annual stability/primary-difference 状态、56/64/47 aliases、独立复算和三个确定性 hashes；明确不构造 ranking。 |
+| v0.8.0 | 2026-08-02 | 完成 M4.1 ICIO 变量合同：登记 85,050 × 54 source-sector audit long 和 10,080 × 43 analysis-sector long、7 个 production/accounting metrics、81 geography/50 source-sector universe、80-country/6-sector/3-year analysis grid、ROW/excluded partition、source/aggregate negative preservation、54/43 aliases、独立复算和两个确定性 hashes；明确不插值 2019、不伪造 medical devices、不提前生成跨来源 production 文件。 |
 
-下一次强制更新：M4.1 ICIO production-side 标准化长表完成时，补齐 source-sector join、变量公式、suppression/accounting 状态、输出 hash、validation 和 Stata 接口；同时更新审计档案并重建两份 PDF。
+下一次强制更新：M4.2 AMNE parent-host-sector-year 明细和 host-sector totals 完成时，补齐 direct/allocated 变量、employment unavailable 状态、输出 hash、validation 和 Stata 接口；同时更新审计档案并重建两份 PDF。

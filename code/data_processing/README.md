@@ -4,7 +4,7 @@ This directory contains reproducible `data/interim/` to `data/processed/` pipeli
 
 ## Current stage
 
-M0, M1, M2, and M3.1-M3.6 in `data/data_merge_checklist.md` are complete. M3.6 adds separate long interfaces for alternative time windows, source-bloc definitions, and exposure definitions while retaining the full 13-connector × 7-sector comparison sample. It does not construct a connector score or ranking and does not include production-side evidence. M4.1 is the next planned stage, but it is not started by the M3.6 build.
+M0, M1, M2, M3.1-M3.6, and M4.1 in `data/data_merge_checklist.md` are complete. M4.1 adds an ICIO source-sector audit long and a country-analysis-sector production long while retaining ROW, excluded sectors, signed accounting exceptions, and source-file lineage. It does not construct a connector score/ranking or combine AMNE, BEA, and Mexico production evidence. M4.2 is the next planned stage.
 
 ## Living collaborator audit and variable contract
 
@@ -269,6 +269,30 @@ Validation status is PASS. All three keys are unique; every time-window pair is 
 - exposure definition: `96144e95dd525103b658ed7220a15d2f3c7c7acf79ea3f314314112971dc7cbd`.
 
 Candidate and determinism directories were removed. `.dta` export remains an M7 task.
+
+## M4.1 OECD ICIO production-side long tables
+
+Run the validated single-module builder from the project root:
+
+```powershell
+python code\data_processing\build_production_icio_long.py --project-root . --overwrite
+```
+
+Registered files:
+
+- config: `configs/production_icio_rules.yaml`;
+- source-sector audit output: `data/processed/harmonized/production_icio_source_sector_long.parquet`;
+- analysis-sector output: `data/processed/harmonized/production_validation_icio_long.parquet`;
+- validation: `data/validation/production_icio_validation.json` and `.md`.
+
+The source-sector table is 85,050 × 54 at `source_name × source_country_id × model_sector × year × metric_name`. It retains all 12,150 ICIO geography-sector-year source cells, including ROW, first-round exclusions, and outside-manufacturing sectors, for seven metrics. The analysis table is 10,080 × 43 at `country_iso3 × analysis_sector × year × source_name × metric_name`, covering 80 countries, six ICIO-supported analysis sectors, 2017/2018/2022, and the same seven metrics.
+
+Validation status is PASS. All frozen hashes/schemas/keys match; all 81 geography and 50 source-sector codes match their crosswalks; the source universe partitions into 150 ROW, 3,840 main-eligible, 2,640 actual-country first-round-excluded, and 5,520 actual-country outside-manufacturing cells. Negative source values are preserved: 8 value-added, 365 taxes-less-subsidies, and 206 accounting-residual cells. Every metric reconciles from full source universe to eligible/excluded partitions and from source sectors to analysis sectors. Both deterministic second-build SHA256 values match exactly:
+
+- source-sector audit long: `266ff08c5bd26e00a08cb9f3654b7c83354d02da79cca036d65ccd68d0054110`;
+- analysis-sector long: `e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0`.
+
+No 2019 observation is interpolated, and no medical-devices row is fabricated. All 54/43 Stata aliases pass the 32-character contract; `.dta` export remains an M7 task. M4.1 does not create the final cross-source `production_validation_long.parquet`, which remains an M4.6 deliverable.
 
 ## Stata handoff contract
 

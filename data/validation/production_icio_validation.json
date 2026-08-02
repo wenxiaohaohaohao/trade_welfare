@@ -1,0 +1,928 @@
+{
+  "validation_status": "PASS",
+  "failures": [],
+  "input_contracts": {
+    "icio_output": {
+      "path": "F:/working_paper_wenxiao/trade_welfare/data/interim/production/oecd_icio_output_va_fd.parquet",
+      "observed_sha256": "4c3c5b1a11d344e7b13b727a7036230d053312c137871525cb1fb412a4679643",
+      "expected_sha256": "4c3c5b1a11d344e7b13b727a7036230d053312c137871525cb1fb412a4679643",
+      "hash_match": true,
+      "observed_rows": 12150,
+      "expected_rows": 12150,
+      "row_count_match": true,
+      "observed_columns": 14,
+      "expected_columns": 14,
+      "column_count_match": true,
+      "observed_arrow_schema_signature_sha256": "1f235725d6ace3630939d552b5e4b31314aa63f5aafb76542d28506e55a3aca3",
+      "expected_arrow_schema_signature_sha256": "1f235725d6ace3630939d552b5e4b31314aa63f5aafb76542d28506e55a3aca3",
+      "schema_match": true,
+      "duplicate_key_count": 0,
+      "key_null_count": 0
+    },
+    "source_sector_crosswalk": {
+      "path": "F:/working_paper_wenxiao/trade_welfare/data/processed/concordances/source_sector_crosswalk.parquet",
+      "observed_sha256": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+      "expected_sha256": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+      "hash_match": true,
+      "observed_rows": 517,
+      "expected_rows": 517,
+      "row_count_match": true,
+      "observed_columns": 14,
+      "expected_columns": 14,
+      "column_count_match": true,
+      "observed_arrow_schema_signature_sha256": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+      "expected_arrow_schema_signature_sha256": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+      "schema_match": true,
+      "duplicate_key_count": 0,
+      "key_null_count": 0
+    },
+    "country_crosswalk": {
+      "path": "F:/working_paper_wenxiao/trade_welfare/data/processed/concordances/country_crosswalk.parquet",
+      "observed_sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+      "expected_sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+      "hash_match": true,
+      "observed_rows": 611,
+      "expected_rows": 611,
+      "row_count_match": true,
+      "observed_columns": 22,
+      "expected_columns": 22,
+      "column_count_match": true,
+      "observed_arrow_schema_signature_sha256": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+      "expected_arrow_schema_signature_sha256": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+      "schema_match": true,
+      "duplicate_key_count": 0,
+      "key_null_count": 0
+    }
+  },
+  "crosswalk_checks": {
+    "filtered_sector_rows": 50,
+    "expected_filtered_sector_rows": 50,
+    "filtered_sector_key_duplicates": 0,
+    "filtered_country_rows": 81,
+    "expected_filtered_country_rows": 81,
+    "filtered_country_key_duplicates": 0,
+    "sector_mapping_versions": [
+      "source_sector_rules_v1"
+    ],
+    "eligible_sector_count": 16,
+    "eligible_weight_one_count": 16,
+    "source_sector_code_count": 50,
+    "source_country_id_count": 81
+  },
+  "join_status_counts": {
+    "sector_join_status_counts": {
+      "both": 12150,
+      "left_only": 0,
+      "right_only": 0
+    },
+    "country_join_status_counts": {
+      "both": 12150,
+      "left_only": 0,
+      "right_only": 0
+    }
+  },
+  "source_long_checks": {
+    "rows": 85050,
+    "expected_rows": 85050,
+    "columns": 54,
+    "expected_columns": 54,
+    "duplicate_key_count": 0,
+    "key_null_count": 0,
+    "source_cell_count": 12150,
+    "metric_count": 7,
+    "rows_per_source_cell_min": 7,
+    "rows_per_source_cell_max": 7
+  },
+  "analysis_long_checks": {
+    "rows": 10080,
+    "expected_rows": 10080,
+    "columns": 43,
+    "expected_columns": 43,
+    "duplicate_key_count": 0,
+    "key_null_count": 0
+  },
+  "source_preservation": {
+    "gross_output": {
+      "maximum_absolute_error": 0.0,
+      "within_tolerance": true
+    },
+    "value_added": {
+      "maximum_absolute_error": 0.0,
+      "within_tolerance": true
+    },
+    "exports": {
+      "maximum_absolute_error": 0.0,
+      "within_tolerance": true
+    },
+    "imports": {
+      "maximum_absolute_error": 0.0,
+      "within_tolerance": true
+    },
+    "intermediate_inputs": {
+      "maximum_absolute_error": 0.0,
+      "within_tolerance": true
+    },
+    "taxes_less_subsidies": {
+      "maximum_absolute_error": 0.0,
+      "within_tolerance": true
+    },
+    "accounting_residual": {
+      "maximum_absolute_error": 0.0,
+      "within_tolerance": true
+    },
+    "source_file_mismatch_count": 0
+  },
+  "residual_formula_checks": {
+    "max_abs_source_production_formula_error": 0.0,
+    "max_abs_source_production_residual": 82.0319999998901,
+    "expected_max_abs_source_production_residual": 82.0319999998901,
+    "max_abs_source_sales_residual": 238.60580000188202,
+    "expected_max_abs_source_sales_residual": 238.60580000188202,
+    "max_abs_analysis_accounting_formula_error": 4.511093720793724e-10
+  },
+  "classification_counts": {
+    "full_source_rows": 12150,
+    "country_rows": 12000,
+    "aggregate_geography_rows": 150,
+    "sector_join_eligible_rows_all_geographies": 3888,
+    "main_analysis_join_eligible_source_rows": 3840,
+    "main_analysis_excluded_source_rows": 8310,
+    "main_first_round_excluded_source_rows": 2640,
+    "main_outside_manufacturing_source_rows": 5520,
+    "partition_total": 12150
+  },
+  "classification_expected": {
+    "full_source_rows": 12150,
+    "country_rows": 12000,
+    "aggregate_geography_rows": 150,
+    "sector_join_eligible_rows_all_geographies": 3888,
+    "main_analysis_join_eligible_source_rows": 3840,
+    "main_analysis_excluded_source_rows": 8310,
+    "main_first_round_excluded_source_rows": 2640,
+    "main_outside_manufacturing_source_rows": 5520
+  },
+  "source_negative_counts": {
+    "gross_output": 0,
+    "value_added": 8,
+    "exports": 0,
+    "imports": 0,
+    "intermediate_inputs": 0,
+    "taxes_less_subsidies": 365,
+    "accounting_residual": 206,
+    "sales_accounting_residual": 1634
+  },
+  "source_negative_expected": {
+    "value_added": 8,
+    "taxes_less_subsidies": 365,
+    "accounting_residual": 206,
+    "sales_accounting_residual": 1634
+  },
+  "main_eligible_source_negative_counts": {
+    "gross_output": 0,
+    "value_added": 3,
+    "exports": 0,
+    "imports": 0,
+    "intermediate_inputs": 0,
+    "taxes_less_subsidies": 92,
+    "accounting_residual": 56
+  },
+  "main_eligible_source_negative_expected": {
+    "value_added": 3,
+    "taxes_less_subsidies": 92,
+    "accounting_residual": 56
+  },
+  "analysis_long_negative_counts": {
+    "gross_output": 0,
+    "value_added": 0,
+    "exports": 0,
+    "imports": 0,
+    "intermediate_inputs": 0,
+    "taxes_less_subsidies": 30,
+    "accounting_residual": 22
+  },
+  "analysis_long_zero_counts": {
+    "gross_output": 6,
+    "value_added": 6,
+    "exports": 6,
+    "imports": 0,
+    "intermediate_inputs": 6,
+    "taxes_less_subsidies": 6,
+    "accounting_residual": 6
+  },
+  "metric_reconciliation": {
+    "gross_output": {
+      "eligible_source_total": 124825132.68900001,
+      "analysis_total": 124825132.68900001,
+      "absolute_difference": 0.0,
+      "within_tolerance": true
+    },
+    "value_added": {
+      "eligible_source_total": 36473578.086500004,
+      "analysis_total": 36473578.0865,
+      "absolute_difference": 7.450580596923828e-09,
+      "within_tolerance": true
+    },
+    "exports": {
+      "eligible_source_total": 30912361.641400002,
+      "analysis_total": 30912361.641400002,
+      "absolute_difference": 0.0,
+      "within_tolerance": true
+    },
+    "imports": {
+      "eligible_source_total": 29459420.5693,
+      "analysis_total": 29459420.5693,
+      "absolute_difference": 0.0,
+      "within_tolerance": true
+    },
+    "intermediate_inputs": {
+      "eligible_source_total": 86577090.68169999,
+      "analysis_total": 86577090.6817,
+      "absolute_difference": 1.4901161193847656e-08,
+      "within_tolerance": true
+    },
+    "taxes_less_subsidies": {
+      "eligible_source_total": 1774456.2058,
+      "analysis_total": 1774456.2057999999,
+      "absolute_difference": 2.3283064365386963e-10,
+      "within_tolerance": true
+    },
+    "accounting_residual": {
+      "eligible_source_total": 7.715000000990283,
+      "analysis_total": 7.7150000009902815,
+      "absolute_difference": 1.7763568394002505e-15,
+      "within_tolerance": true
+    }
+  },
+  "full_universe_reconciliation": {
+    "gross_output": {
+      "full_source_total": 521392855.3804,
+      "eligible_total": 124825132.68900001,
+      "excluded_total": 396567722.69140005,
+      "absolute_partition_error": 5.960464477539063e-08,
+      "within_tolerance": true
+    },
+    "value_added": {
+      "full_source_total": 249497244.88239998,
+      "eligible_total": 36473578.086500004,
+      "excluded_total": 213023666.7959,
+      "absolute_partition_error": 0.0,
+      "within_tolerance": true
+    },
+    "exports": {
+      "full_source_total": 68584456.1816,
+      "eligible_total": 30912361.641400002,
+      "excluded_total": 37672094.540199995,
+      "absolute_partition_error": 7.450580596923828e-09,
+      "within_tolerance": true
+    },
+    "imports": {
+      "full_source_total": 68584456.18159999,
+      "eligible_total": 29459420.5693,
+      "excluded_total": 39125035.61229999,
+      "absolute_partition_error": 0.0,
+      "within_tolerance": true
+    },
+    "intermediate_inputs": {
+      "full_source_total": 265420194.7839,
+      "eligible_total": 86577090.68169999,
+      "excluded_total": 178843104.10219997,
+      "absolute_partition_error": 2.9802322387695312e-08,
+      "within_tolerance": true
+    },
+    "taxes_less_subsidies": {
+      "full_source_total": 6475226.1381,
+      "eligible_total": 1774456.2058,
+      "excluded_total": 4700769.9323,
+      "absolute_partition_error": 9.313225746154785e-10,
+      "within_tolerance": true
+    },
+    "accounting_residual": {
+      "full_source_total": 189.57600000125413,
+      "eligible_total": 7.715000000990283,
+      "excluded_total": 181.86100000026386,
+      "absolute_partition_error": 0.0,
+      "within_tolerance": true
+    }
+  },
+  "maximum_country_sector_year_reconciliation_error": 0.0,
+  "grid_checks": {
+    "country_count": 80,
+    "analysis_sector_count": 6,
+    "country_sector_year_cell_count": 1440,
+    "metric_count": 7,
+    "observed_years": [
+      2017,
+      2018,
+      2022
+    ],
+    "expected_years": [
+      2017,
+      2018,
+      2022
+    ],
+    "observed_metrics": [
+      "accounting_residual",
+      "exports",
+      "gross_output",
+      "imports",
+      "intermediate_inputs",
+      "taxes_less_subsidies",
+      "value_added"
+    ],
+    "expected_metrics": [
+      "accounting_residual",
+      "exports",
+      "gross_output",
+      "imports",
+      "intermediate_inputs",
+      "taxes_less_subsidies",
+      "value_added"
+    ],
+    "rows_per_cell_min": 7,
+    "rows_per_cell_max": 7,
+    "medical_devices_rows": 0
+  },
+  "sample_checks": {
+    "connector_country_count": 13,
+    "expected_connector_country_count": 13,
+    "connector_long_rows": 1638,
+    "expected_connector_long_rows": 1638,
+    "role_overlap_rows": 0
+  },
+  "source_flag_checks": {
+    "aggregate_rows": 1050,
+    "expected_aggregate_rows": 1050,
+    "residual_rows": 0,
+    "proxy_rows": 0,
+    "main_join_rows": 26880,
+    "expected_main_join_rows": 26880,
+    "observed_negative_flag_mismatches": 0,
+    "observed_zero_flag_mismatches": 0
+  },
+  "analysis_flag_checks": {
+    "suppressed_true_count": 0,
+    "confidential_true_count": 0,
+    "aggregate_true_count": 0,
+    "residual_true_count": 0,
+    "proxy_true_count": 0,
+    "can_sum_across_metrics_true_count": 0,
+    "metric_additive_across_source_sectors_all_true": true,
+    "parent_country_all_missing": true,
+    "direction_values": [
+      "not_applicable"
+    ],
+    "direct_or_allocated_values": [
+      "direct"
+    ],
+    "multi_source_sector_rows": 1680,
+    "direct_source_sector_rows": 8400
+  },
+  "stata_alias_validation": {
+    "source_long": {
+      "pass": true,
+      "alias_count": 54,
+      "maximum_alias_length": 12,
+      "missing_fields": [],
+      "extra_fields": [],
+      "duplicate_aliases": [],
+      "over_32_characters": {},
+      "invalid_aliases": {}
+    },
+    "analysis_long": {
+      "pass": true,
+      "alias_count": 43,
+      "maximum_alias_length": 12,
+      "missing_fields": [],
+      "extra_fields": [],
+      "duplicate_aliases": [],
+      "over_32_characters": {},
+      "invalid_aliases": {}
+    }
+  },
+  "metadata_checks": {
+    "source_version": true,
+    "analysis_version": true,
+    "source_schema": true,
+    "analysis_schema": true,
+    "config_hash_source": true,
+    "config_hash_analysis": true,
+    "finite_values": true
+  },
+  "determinism_check": {
+    "config_sha256": "271340a12200fc15a1694371aa46cdfd084ebc301846938ac98010e291a7a3a0",
+    "source_long_candidate_sha256": "266ff08c5bd26e00a08cb9f3654b7c83354d02da79cca036d65ccd68d0054110",
+    "source_long_second_build_sha256": "266ff08c5bd26e00a08cb9f3654b7c83354d02da79cca036d65ccd68d0054110",
+    "source_long_sha256_match": true,
+    "analysis_long_candidate_sha256": "e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0",
+    "analysis_long_second_build_sha256": "e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0",
+    "analysis_long_sha256_match": true,
+    "temporary_output_cleaned": true
+  },
+  "monetary_tolerance_million_usd": 1e-06,
+  "validation_version": 1,
+  "generated_at_utc": "2026-08-02T14:58:28.799996+00:00",
+  "config_path": "configs/production_icio_rules.yaml",
+  "config_sha256": "271340a12200fc15a1694371aa46cdfd084ebc301846938ac98010e291a7a3a0",
+  "construction_version": "production_icio_rules_v1",
+  "outputs": {
+    "source_long": {
+      "path": "data/processed/harmonized/production_icio_source_sector_long.parquet",
+      "sha256": "266ff08c5bd26e00a08cb9f3654b7c83354d02da79cca036d65ccd68d0054110",
+      "schema": [
+        {
+          "name": "year",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "source_name",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_country_id",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "country_iso3",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "canonical_country_name",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "country_mapping_status",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "country_is_country",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "country_is_aggregate",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "country_is_residual",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "country_is_proxy",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "is_core_connector",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "is_asian_comparator",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "is_other_candidate",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "comparison_sample_country_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "model_sector",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_sector_level",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_sector_label",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "analysis_sector",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "sector_mapping_status",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "sector_mapping_rule",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "sector_first_round_exclusion",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "sector_proxy_analysis_sector",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "sector_is_main_join_eligible",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "sector_mapping_weight",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "source_granularity_note",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_code_family",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_sector_mapping_version",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "metric_name",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "metric_order",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "value",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "unit",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "frequency",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "parent_country_iso3",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "direct_or_allocated",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "derivation_status",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "metric_formula",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "metric_use",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "suppressed_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "confidential_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "aggregate_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "residual_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "proxy_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "main_analysis_join_eligible",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "accounting_negative_allowed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "observed_negative_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "observed_zero_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "metric_additive_across_source_sectors",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "can_sum_across_metrics",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "source_file",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "icio_release",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "m4_icio_version",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "rules_config_sha256",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "schema_version",
+          "type": "string",
+          "nullable": true
+        }
+      ]
+    },
+    "analysis_long": {
+      "path": "data/processed/harmonized/production_validation_icio_long.parquet",
+      "sha256": "e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0",
+      "schema": [
+        {
+          "name": "country_iso3",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "canonical_country_name",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "analysis_sector",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "year",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "source_name",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "metric_name",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "metric_order",
+          "type": "int8",
+          "nullable": true
+        },
+        {
+          "name": "value",
+          "type": "double",
+          "nullable": true
+        },
+        {
+          "name": "unit",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "frequency",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "parent_country_iso3",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "direct_or_allocated",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "derivation_status",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "metric_formula",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "metric_use",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "suppressed_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "confidential_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "aggregate_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "residual_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "proxy_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "source_sector_count",
+          "type": "int16",
+          "nullable": true
+        },
+        {
+          "name": "source_sector_codes",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_sector_mapping_statuses",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_sector_mapping_rules",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_sector_granularity_note",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "source_sector_mapping_version",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "accounting_negative_allowed",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "observed_negative_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "observed_zero_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "metric_additive_across_source_sectors",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "can_sum_across_metrics",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "analysis_sector_is_direct_from_one_source_sector",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "analysis_sector_aggregates_multiple_source_sectors",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "is_core_connector",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "is_asian_comparator",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "is_other_candidate",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "comparison_sample_country_flag",
+          "type": "bool",
+          "nullable": true
+        },
+        {
+          "name": "source_file",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "icio_release",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "m4_icio_version",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "rules_config_sha256",
+          "type": "string",
+          "nullable": true
+        },
+        {
+          "name": "schema_version",
+          "type": "string",
+          "nullable": true
+        }
+      ]
+    }
+  },
+  "candidate_temp_directory": "tmp/m4_1_candidates",
+  "candidate_temporary_output_cleaned": true
+}

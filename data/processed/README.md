@@ -1,6 +1,6 @@
 # Processed Data
 
-This directory contains reproducible harmonized outputs built from the validated source-specific files in `data/interim/`. It now contains completed M1 concordances, M2 product-level treatment/trade interfaces, the M3.1 annual connector-sector panel, the M3.2 complete-window/growth interfaces, the M3.3 flow-level growth diagnostics, the M3.4 trade-reorganization interfaces, the M3.5 complete connector/comparator panel, and the three M3.6 sensitivity interfaces. It does not yet contain connector rankings or production-integration panels.
+This directory contains reproducible harmonized outputs built from the validated source-specific files in `data/interim/`. It now contains completed M1 concordances, M2 product-level treatment/trade interfaces, M3.1-M3.6 trade/reorganization/sensitivity interfaces, and the M4.1 ICIO source-sector/analysis-sector production interfaces. It does not yet contain connector rankings or a cross-source production-integration panel.
 
 The complete collaborator audit is `docs/data_processing_audit_trail.md`; the variable-level construction contract is `docs/variable_construction_catalog.md`. Their fixed PDF versions are `output/pdf/data_processing_audit_trail.pdf` and `output/pdf/variable_construction_catalog.pdf`. Starting with M3.1, every completed processed-data step must update both Markdown sources and both PDFs before its checklist item is marked complete.
 
@@ -113,6 +113,13 @@ M2 builders and validation:
 - Builder/config: `code/data_processing/build_connector_trade_sector_sensitivity.py` and `configs/connector_trade_sector_sensitivity_rules.yaml`.
 - Validation: `data/validation/connector_trade_sector_sensitivity_validation.json` and `.md`, status PASS. All keys are unique, no incomplete window exists, all expected missing/negative/self-trade/proxy states are preserved, 56/64/47 aliases pass, and deterministic SHA256 values are `1594fadeb348f88e07b2ec8f43ca3708f49f9e06a0b78fafe24ffb6417635aad`, `67fbf760adb01a18d4e0e4f9ddd44eef9f3d2d2496a0a60d358cf8eab77e1eda`, and `96144e95dd525103b658ed7220a15d2f3c7c7acf79ea3f314314112971dc7cbd`.
 
-M3 is complete. M4.1 production-side construction is the next planned stage and has not started. Production sources must use the validated source-sector join eligibility rather than directly matching source labels.
+## Completed M4.1 ICIO production-side outputs
+
+- `harmonized/production_icio_source_sector_long.parquet`: 85,050 rows and 54 columns at `source_name, source_country_id, model_sector, year, metric_name`. It retains all 81 ICIO geographies, 50 source sectors, 2017/2018/2022, and seven metrics, including ROW and all excluded/outside-manufacturing source cells.
+- `harmonized/production_validation_icio_long.parquet`: 10,080 rows and 43 columns at `country_iso3, analysis_sector, year, source_name, metric_name`. It contains 80 countries, six supported analysis sectors, three observed years, and seven production/accounting metrics.
+- Builder/config: `code/data_processing/build_production_icio_long.py` and `configs/production_icio_rules.yaml`.
+- Validation: `data/validation/production_icio_validation.json` and `.md`, status PASS. Source negatives, ROW/excluded partitions, metric totals, accounting identities, source files, 54/43 aliases, and both deterministic hashes are validated. SHA256 values are `266ff08c5bd26e00a08cb9f3654b7c83354d02da79cca036d65ccd68d0054110` and `e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0`.
+
+M4.1 does not interpolate 2019, fabricate medical-devices rows, export `.dta`, or create the final cross-source `production_validation_long.parquet`. M4.2 AMNE construction is the next planned stage. All later production sources must use validated source-sector eligibility rather than matching labels directly.
 
 Every processed output must be reproducible from `data/interim/`, documented by a build script, and retain source/provenance fields needed to audit aggregation and suppression.

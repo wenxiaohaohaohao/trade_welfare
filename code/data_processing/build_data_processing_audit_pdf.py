@@ -33,8 +33,8 @@ from reportlab.platypus.tableofcontents import TableOfContents
 
 
 PROJECT_ROOT_DEFAULT = Path(__file__).resolve().parents[2]
-FONT_REGULAR = Path(r"C:\Windows\Fonts\msyh.ttc")
-FONT_BOLD = Path(r"C:\Windows\Fonts\msyhbd.ttc")
+FONT_REGULAR = Path(r"C:\Windows\Fonts\simsun.ttc")
+FONT_BOLD = Path(r"C:\Windows\Fonts\simsun.ttc")
 
 
 def sha256_file(path: Path) -> str:
@@ -48,17 +48,17 @@ def sha256_file(path: Path) -> str:
 def register_fonts() -> None:
     if not FONT_REGULAR.exists() or not FONT_BOLD.exists():
         raise FileNotFoundError(
-            "Microsoft YaHei fonts are required at "
+            "SimSun font is required at "
             f"{FONT_REGULAR} and {FONT_BOLD}."
         )
-    pdfmetrics.registerFont(TTFont("MSYH", str(FONT_REGULAR)))
-    pdfmetrics.registerFont(TTFont("MSYH-Bold", str(FONT_BOLD)))
+    pdfmetrics.registerFont(TTFont("SimSun", str(FONT_REGULAR)))
+    pdfmetrics.registerFont(TTFont("SimSun-Bold", str(FONT_BOLD)))
     pdfmetrics.registerFontFamily(
-        "MSYH",
-        normal="MSYH",
-        bold="MSYH-Bold",
-        italic="MSYH",
-        boldItalic="MSYH-Bold",
+        "SimSun",
+        normal="SimSun",
+        bold="SimSun-Bold",
+        italic="SimSun",
+        boldItalic="SimSun-Bold",
     )
 
 
@@ -72,7 +72,7 @@ def markdown_inline(text: str) -> str:
     escaped = re.sub(r"\*\*([^*]+)\*\*", r"<b>\1</b>", escaped)
     escaped = re.sub(
         r"`([^`]+)`",
-        r'<font name="MSYH" color="#6E3B12">\1</font>',
+        r'<font name="SimSun" color="#6E3B12">\1</font>',
         escaped,
     )
     return escaped
@@ -156,7 +156,7 @@ class ResearchDocTemplate(BaseDocTemplate):
             A4[0] - self.rightMargin,
             A4[1] - 16 * mm,
         )
-        canvas.setFont("MSYH", 7.5)
+        canvas.setFont("SimSun", 7.5)
         canvas.setFillColor(colors.HexColor("#52636D"))
         canvas.drawString(
             self.leftMargin,
@@ -201,7 +201,7 @@ def build_styles():
         "cover_title": ParagraphStyle(
             "CoverTitle",
             parent=base["Title"],
-            fontName="MSYH-Bold",
+            fontName="SimSun-Bold",
             fontSize=24,
             leading=34,
             alignment=TA_CENTER,
@@ -210,7 +210,7 @@ def build_styles():
         ),
         "cover_subtitle": ParagraphStyle(
             "CoverSubtitle",
-            fontName="MSYH",
+            fontName="SimSun",
             fontSize=11,
             leading=18,
             alignment=TA_CENTER,
@@ -218,7 +218,7 @@ def build_styles():
         ),
         "h1": ParagraphStyle(
             "H1",
-            fontName="MSYH-Bold",
+            fontName="SimSun-Bold",
             fontSize=16,
             leading=22,
             textColor=colors.HexColor("#17384C"),
@@ -228,7 +228,7 @@ def build_styles():
         ),
         "h2": ParagraphStyle(
             "H2",
-            fontName="MSYH-Bold",
+            fontName="SimSun-Bold",
             fontSize=13,
             leading=18,
             textColor=colors.HexColor("#1F5A85"),
@@ -238,7 +238,7 @@ def build_styles():
         ),
         "h3": ParagraphStyle(
             "H3",
-            fontName="MSYH-Bold",
+            fontName="SimSun-Bold",
             fontSize=10.5,
             leading=15,
             textColor=colors.HexColor("#2F657D"),
@@ -248,7 +248,7 @@ def build_styles():
         ),
         "body": ParagraphStyle(
             "Body",
-            fontName="MSYH",
+            fontName="SimSun",
             fontSize=8.7,
             leading=14,
             alignment=TA_JUSTIFY,
@@ -258,7 +258,7 @@ def build_styles():
         ),
         "bullet": ParagraphStyle(
             "Bullet",
-            fontName="MSYH",
+            fontName="SimSun",
             fontSize=8.5,
             leading=13,
             leftIndent=13,
@@ -268,7 +268,7 @@ def build_styles():
         ),
         "number": ParagraphStyle(
             "Number",
-            fontName="MSYH",
+            fontName="SimSun",
             fontSize=8.5,
             leading=13,
             leftIndent=15,
@@ -277,7 +277,7 @@ def build_styles():
         ),
         "code": ParagraphStyle(
             "Code",
-            fontName="MSYH",
+            fontName="SimSun",
             fontSize=7.1,
             leading=10,
             leftIndent=6,
@@ -291,7 +291,7 @@ def build_styles():
         ),
         "table_header": ParagraphStyle(
             "TableHeader",
-            fontName="MSYH-Bold",
+            fontName="SimSun-Bold",
             fontSize=6.8,
             leading=9,
             textColor=colors.white,
@@ -299,7 +299,7 @@ def build_styles():
         ),
         "table_cell": ParagraphStyle(
             "TableCell",
-            fontName="MSYH",
+            fontName="SimSun",
             fontSize=6.5,
             leading=9,
             textColor=colors.HexColor("#1F2A30"),
@@ -307,7 +307,7 @@ def build_styles():
         ),
         "toc_title": ParagraphStyle(
             "TOCTitle",
-            fontName="MSYH-Bold",
+            fontName="SimSun-Bold",
             fontSize=18,
             leading=24,
             textColor=colors.HexColor("#17384C"),
@@ -551,7 +551,7 @@ def build_pdf(source: Path, output: Path, *, overwrite: bool) -> dict:
     toc.levelStyles = [
         ParagraphStyle(
             "TOC1",
-            fontName="MSYH",
+            fontName="SimSun",
             fontSize=9,
             leading=14,
             leftIndent=0,
@@ -560,7 +560,7 @@ def build_pdf(source: Path, output: Path, *, overwrite: bool) -> dict:
         ),
         ParagraphStyle(
             "TOC2",
-            fontName="MSYH",
+            fontName="SimSun",
             fontSize=8,
             leading=12,
             leftIndent=12,
@@ -569,7 +569,7 @@ def build_pdf(source: Path, output: Path, *, overwrite: bool) -> dict:
         ),
         ParagraphStyle(
             "TOC3",
-            fontName="MSYH",
+            fontName="SimSun",
             fontSize=7.5,
             leading=11,
             leftIndent=24,

@@ -5,7 +5,7 @@
 - Origin Skill: `academic-research-suite/experiment-agent`
 - Origin Mode: `plan`
 - Origin Date: `2026-07-19`
-- Verification Status: `ANALYZED`（M0-M3.6 validation 均为 PASS；M4-M7 待执行）
+- Verification Status: `ANALYZED`（M0-M4.1 validation 均为 PASS；M4.2-M7 待执行）
 - Version Label: `data_merge_plan_v1`
 - Working Branch: `data-processing-variables`
 
@@ -13,7 +13,7 @@
 
 目标是把已经验证的 source-specific `data/interim/` 数据，转化为可审计、可重复生成的 `data/processed/` 合并数据，并在此基础上构造 connector ranking、rerouting facts、production-side validation 和 structural moments。
 
-当前阶段：`M0-M3.6 已完成并验证；M4-M7 尚未开始`。
+当前阶段：`M0-M4.1 已完成并验证；M4.2-M7 尚未开始`。
 
 勾选规则：只有代码、输出、validation 和说明文件同时完成，任务才从 `[ ]` 改为 `[x]`。部分完成、仅生成文件、仅跑通代码或仍有未解释的 many-to-many join，都不能打勾。
 
@@ -135,9 +135,11 @@ M3.5 门槛已满足：`connector_trade_sector_common_panel.parquet` 为 91 × 1
 
 M3.6 门槛已满足：三张自然粒度 sensitivity 表分别为 1,092 × 56、182 × 64、364 × 47，主键 `connector_iso3, analysis_sector, flow_id, window_spec_id`、`connector_iso3, analysis_sector, source_bloc_id`、`connector_iso3, analysis_sector, exposure_definition_id` 均唯一。时间窗口固定为 2014-2017 对 2020-2024、2020-2023 和 2018-2019，四条流的 annual means、ratio-of-sums coverage、level/DH/log growth、annual DH SD、positive-growth-year share 和相对 primary 差异均通过独立复算；1,092 个窗口组合全部完整，零端点为 0，log growth 1,092/1,092 defined，shock-only 的 364 个 sample SD 因仅有一个年际转移而设计性 missing。China-only 与 extended East Asia 的 182 行 common-schema source 表保留负 input gains 3/5、KOR/TWN self-trade exclusion 14 行和 direction agreement 89/89/73/89；两定义为 nested，差值只解释为额外 East Asian origins 的增量。四种 exposure 定义共 364 行全部 defined，182 行支持 pre/post、182 行 gain-based pre/post 设计性 missing；28 个 exposure-missing products 在每个 connector 的七个 sector 中显式保留。56/64/47 个 Stata aliases 完整唯一且最长 13/11/12 字符；三个正式/第二次构建 SHA256 分别为 `1594fa...5aad`、`67fbf7...1eda`、`96144e...7cbd` 并完全一致，临时目录已清除。M3.6 只生成 sensitivity inputs，ranking/production flags 保持 false。
 
+M4.1 门槛已满足：`production_icio_source_sector_long.parquet` 为 85,050 × 54，主键 `source_name, source_country_id, model_sector, year, metric_name` 唯一，完整保留 81 个 geography（含 ROW）、50 个 OECD sectors、2017/2018/2022 和 7 个 metrics；`production_validation_icio_long.parquet` 为 10,080 × 43，主键 `country_iso3, analysis_sector, year, source_name, metric_name` 唯一，覆盖 80 国、6 个可识别 analysis sectors、3 年和 7 个 metrics。12,150 个 source cells 分解为 ROW 150、main eligible 3,840、actual-country first-round excluded 2,640 和 outside-manufacturing 5,520；每个 metric 的 `eligible + excluded = full source universe`，source-to-analysis 最大 cell 误差为 0，accounting residual 独立复算误差低于 `1e-6` million USD。8 个负 value-added、365 个负 taxes-less-subsidies、206 个负 source residual cells 均保留；其中 eligible source cells 为 3/92/56，聚合后为 0/30/22，未截断为 0。ICIO 不支持单列 medical devices，也没有插值 2019。54/43 个 Stata aliases 均完整唯一且不超过 32 字符；两张正式/第二次构建 SHA256 分别为 `266ff08c5bd26e00a08cb9f3654b7c83354d02da79cca036d65ccd68d0054110` 和 `e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0`，候选与确定性临时目录均已清除。
+
 ### M4. 构造 production-side 标准化长表
 
-- [ ] M4.1 ICIO：保留 country-sector-year 的 gross output、value added、exports、imports 和 accounting residual 信息。
+- [x] M4.1 ICIO：保留 country-sector-year 的 gross output、value added、exports、imports 和 accounting residual 信息。
 - [ ] M4.2 AMNE：保留 parent-host-sector-year 明细，同时构造 host-sector foreign-affiliate totals；allocated variables 必须标记。
 - [ ] M4.3 BEA MNE：先过滤 aggregate geographies，再映射 country 和 industry；保留 employment、sales、value added、capex、affiliate trade 及 suppression flags。
 - [ ] M4.4 BEA FDI：分别保留 outward/inward direction、position、flows 和 income；stock、flow 和 income 不混为同一指标。
@@ -192,4 +194,4 @@ M3.6 门槛已满足：三张自然粒度 sensitivity 表分别为 1,092 × 56�
 
 ## 下一项工作
 
-下一项计划任务是 `M4.1：ICIO production-side 标准化长表`，尚未开始。M3 已完成，但当前仍没有 connector ranking、“赢家”名单、production-side evidence 或结构模型 inputs。M3.6 的三张表只是后续稳健性接口；M4.1 以及其后步骤必须等待用户确认后再开始。
+下一项计划任务是 `M4.2：AMNE parent-host-sector-year 明细和 host-sector totals`，尚未开始。M4.1 已提供 ICIO aggregate production-side benchmark，但当前仍没有跨来源 production integration、connector ranking、“赢家”名单或结构模型 inputs。M4.2 及其后步骤必须等待用户确认后再开始。

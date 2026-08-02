@@ -1,0 +1,283 @@
+version: production_icio_rules_v1
+status: frozen_for_m4_1
+frozen_date: 2026-08-02
+
+inputs:
+  icio_output:
+    path: data/interim/production/oecd_icio_output_va_fd.parquet
+    sha256: 4c3c5b1a11d344e7b13b727a7036230d053312c137871525cb1fb412a4679643
+    expected_rows: 12150
+    expected_columns: 14
+    arrow_schema_signature_sha256: 1f235725d6ace3630939d552b5e4b31314aa63f5aafb76542d28506e55a3aca3
+    natural_key: [year, country_iso3, sector_oecd]
+    expected_years: [2017, 2018, 2022]
+    expected_country_count: 81
+    expected_source_sector_count: 50
+  source_sector_crosswalk:
+    path: data/processed/concordances/source_sector_crosswalk.parquet
+    sha256: 99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9
+    expected_rows: 517
+    expected_columns: 14
+    arrow_schema_signature_sha256: bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d
+    natural_key: [source_name, source_sector_level, source_sector_code]
+    source_filter: oecd_icio
+    expected_filtered_rows: 50
+    expected_mapping_version: source_sector_rules_v1
+  country_crosswalk:
+    path: data/processed/concordances/country_crosswalk.parquet
+    sha256: 29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6
+    expected_rows: 611
+    expected_columns: 22
+    arrow_schema_signature_sha256: 464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5
+    natural_key: [source_name, source_country_id]
+    source_filter: oecd_icio
+    expected_filtered_rows: 81
+
+source_contract:
+  source_name: icio
+  source_crosswalk_name: oecd_icio
+  release: OECD ICIO 2025 edition regular tables
+  unit: current_million_usd
+  frequency: annual
+  direct_or_allocated: direct
+  observed_years: [2017, 2018, 2022]
+  interpolate_missing_years: false
+  country_rule: keep_all_81_geographies_in_source_long_but_only_is_country_true_in_analysis_long
+  row_aggregate_code: ROW
+  row_aggregate_is_not_country: true
+  sector_rule: keep_all_50_sectors_in_source_long_but_only_weight_1_main_join_eligible_manufacturing_in_analysis_long
+  medical_devices_separate_measure_available: false
+  source_sector_mapping_version: source_sector_rules_v1
+
+analysis_sectors:
+  - electronics
+  - electrical_equipment
+  - machinery
+  - autos
+  - textiles_apparel
+  - other_manufacturing
+
+metrics:
+  gross_output:
+    order: 1
+    source_field: gross_output
+    formula: sum_production_side_OUT_over_eligible_source_sectors
+    derivation_status: source_direct_then_sector_sum
+    use: production_level
+    accounting_negative_allowed: false
+  value_added:
+    order: 2
+    source_field: value_added
+    formula: sum_VA_row_over_eligible_source_sectors
+    derivation_status: source_direct_then_sector_sum
+    use: production_validation
+    accounting_negative_allowed: true
+  exports:
+    order: 3
+    source_field: exports
+    formula: sum_intermediate_and_final_demand_absorbed_by_foreign_destinations_over_eligible_source_sectors
+    derivation_status: source_matrix_derived_then_sector_sum
+    use: source_consistent_export_level
+    accounting_negative_allowed: false
+  imports:
+    order: 4
+    source_field: imports
+    formula: sum_absorption_from_foreign_origins_in_same_source_sector_over_eligible_source_sectors
+    derivation_status: source_matrix_derived_then_sector_sum
+    use: source_consistent_import_level
+    accounting_negative_allowed: false
+  intermediate_inputs:
+    order: 5
+    source_field: intermediate_inputs
+    formula: sum_global_intermediate_inputs_used_by_producing_sector_over_eligible_source_sectors
+    derivation_status: source_matrix_derived_then_sector_sum
+    use: input_output_intensity
+    accounting_negative_allowed: false
+  taxes_less_subsidies:
+    order: 6
+    source_field: taxes_less_subsidies
+    formula: sum_TLS_row_over_eligible_source_sectors
+    derivation_status: source_direct_then_sector_sum
+    use: production_accounting_component
+    accounting_negative_allowed: true
+  accounting_residual:
+    order: 7
+    source_field: production_accounting_residual
+    formula: gross_output_minus_intermediate_inputs_minus_taxes_less_subsidies_minus_value_added
+    derivation_status: derived_accounting_diagnostic_then_sector_sum
+    use: quality_diagnostic_not_economic_outcome
+    accounting_negative_allowed: true
+
+formulas:
+  production_accounting_residual: gross_output_minus_intermediate_inputs_minus_taxes_less_subsidies_minus_value_added
+  sales_accounting_residual: gross_output_sales_minus_intermediate_sales_minus_final_demand
+  analysis_sector_value: sum_source_sector_values_where_country_is_country_and_sector_is_main_join_eligible_and_mapping_weight_equals_1
+  prohibited_operations:
+    - interpolate_2019_or_other_missing_icio_years
+    - fabricate_medical_devices_from_C26_or_C31T33
+    - treat_ROW_as_country
+    - sum_different_metric_names
+    - replace_negative_value_added_taxes_or_accounting_residual_with_zero
+
+outputs:
+  source_long:
+    path: data/processed/harmonized/production_icio_source_sector_long.parquet
+    natural_key: [source_name, source_country_id, model_sector, year, metric_name]
+    expected_rows: 85050
+    expected_columns: 54
+    schema_version: production_icio_source_sector_long_v1
+    stata_aliases:
+      year: year
+      source_name: source
+      source_country_id: src_ctry
+      country_iso3: country_iso3
+      canonical_country_name: country_name
+      country_mapping_status: ctry_mapst
+      country_is_country: ctry_country
+      country_is_aggregate: ctry_agg
+      country_is_residual: ctry_resid
+      country_is_proxy: ctry_proxy
+      is_core_connector: core_conn
+      is_asian_comparator: asia_comp
+      is_other_candidate: oth_cand
+      comparison_sample_country_flag: comp_ctry
+      model_sector: model_sec
+      source_sector_level: src_seclvl
+      source_sector_label: src_seclab
+      analysis_sector: ana_sector
+      sector_mapping_status: sec_mapst
+      sector_mapping_rule: sec_maprule
+      sector_first_round_exclusion: sec_excl
+      sector_proxy_analysis_sector: sec_proxy
+      sector_is_main_join_eligible: sec_joinok
+      sector_mapping_weight: sec_weight
+      source_granularity_note: gran_note
+      source_code_family: code_family
+      source_sector_mapping_version: sec_mapver
+      metric_name: metric
+      metric_order: metric_ord
+      value: value
+      unit: unit
+      frequency: freq
+      direction: direction
+      parent_country_iso3: parent_iso3
+      direct_or_allocated: direct_alloc
+      derivation_status: deriv_stat
+      metric_formula: metric_form
+      metric_use: metric_use
+      suppressed_flag: suppressed
+      confidential_flag: confidentl
+      aggregate_flag: is_agg
+      residual_flag: is_resid
+      proxy_flag: is_proxy
+      main_analysis_join_eligible: main_joinok
+      accounting_negative_allowed: neg_allow
+      observed_negative_flag: obs_neg
+      observed_zero_flag: obs_zero
+      metric_additive_across_source_sectors: sec_add
+      can_sum_across_metrics: met_add
+      source_file: src_file
+      icio_release: icio_rel
+      m4_icio_version: m4_iciover
+      rules_config_sha256: rules_hash
+      schema_version: schema_ver
+  analysis_long:
+    path: data/processed/harmonized/production_validation_icio_long.parquet
+    natural_key: [country_iso3, analysis_sector, year, source_name, metric_name]
+    expected_rows: 10080
+    expected_columns: 43
+    expected_country_count: 80
+    expected_analysis_sector_count: 6
+    expected_country_sector_year_cells: 1440
+    schema_version: production_validation_icio_long_v1
+    stata_aliases:
+      country_iso3: country_iso3
+      canonical_country_name: country_name
+      analysis_sector: ana_sector
+      year: year
+      source_name: source
+      metric_name: metric
+      metric_order: metric_ord
+      value: value
+      unit: unit
+      frequency: freq
+      direction: direction
+      parent_country_iso3: parent_iso3
+      direct_or_allocated: direct_alloc
+      derivation_status: deriv_stat
+      metric_formula: metric_form
+      metric_use: metric_use
+      suppressed_flag: suppressed
+      confidential_flag: confidentl
+      aggregate_flag: is_agg
+      residual_flag: is_resid
+      proxy_flag: is_proxy
+      source_sector_count: src_sec_n
+      source_sector_codes: src_seccode
+      source_sector_mapping_statuses: src_mapsts
+      source_sector_mapping_rules: src_mapruls
+      source_sector_granularity_note: src_grnote
+      source_sector_mapping_version: src_mapver
+      accounting_negative_allowed: neg_allow
+      observed_negative_flag: obs_neg
+      observed_zero_flag: obs_zero
+      metric_additive_across_source_sectors: sec_add
+      can_sum_across_metrics: met_add
+      analysis_sector_is_direct_from_one_source_sector: sec_direct
+      analysis_sector_aggregates_multiple_source_sectors: sec_agg
+      is_core_connector: core_conn
+      is_asian_comparator: asia_comp
+      is_other_candidate: oth_cand
+      comparison_sample_country_flag: comp_ctry
+      source_file: src_file
+      icio_release: icio_rel
+      m4_icio_version: m4_iciover
+      rules_config_sha256: rules_hash
+      schema_version: schema_ver
+
+validation_outputs:
+  json: data/validation/production_icio_validation.json
+  markdown: data/validation/production_icio_validation.md
+
+validation:
+  numeric_tolerance: 1.0e-12
+  monetary_tolerance_million_usd: 1.0e-6
+  require_deterministic_parquet_sha256: true
+  candidate_temp_directory: tmp/m4_1_candidates
+  determinism_temp_directory: tmp/m4_1_determinism
+  expected_full_source_rows: 12150
+  expected_country_rows: 12000
+  expected_aggregate_geography_rows: 150
+  expected_sector_join_eligible_rows_all_geographies: 3888
+  expected_main_analysis_join_eligible_source_rows: 3840
+  expected_main_analysis_excluded_source_rows: 8310
+  expected_main_first_round_excluded_source_rows: 2640
+  expected_main_outside_manufacturing_source_rows: 5520
+  expected_source_value_added_negative_count: 8
+  expected_source_taxes_less_subsidies_negative_count: 365
+  expected_source_production_residual_negative_count: 206
+  expected_source_sales_residual_negative_count: 1634
+  expected_main_source_value_added_negative_count: 3
+  expected_main_source_taxes_less_subsidies_negative_count: 92
+  expected_main_source_production_residual_negative_count: 56
+  expected_analysis_long_negative_counts:
+    gross_output: 0
+    value_added: 0
+    exports: 0
+    imports: 0
+    intermediate_inputs: 0
+    taxes_less_subsidies: 30
+    accounting_residual: 22
+  expected_analysis_long_zero_counts:
+    gross_output: 6
+    value_added: 6
+    exports: 6
+    imports: 0
+    intermediate_inputs: 6
+    taxes_less_subsidies: 6
+    accounting_residual: 6
+  expected_max_abs_source_production_residual: 82.0319999998901
+  expected_max_abs_source_sales_residual: 238.60580000188202
+  expected_connector_country_count: 13
+  expected_connector_long_rows: 1638
+  expected_medical_devices_rows: 0
