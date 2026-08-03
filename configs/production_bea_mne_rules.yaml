@@ -1,0 +1,336 @@
+version: 1
+origin_date: "2026-08-03"
+construction_version: production_bea_mne_rules_v1
+source_name: bea_mne
+
+inputs:
+  bea_mne_activity:
+    path: data/interim/mne/bea_us_mne_affiliate_country_industry.parquet
+    sha256: ab2e064459cc9dac8c13eebd7e399e91047133a93e8f35b9821520add7f219e8
+    expected_rows: 8256
+    expected_columns: 38
+    arrow_schema_signature_sha256: 970e0b4e55c521cdb81df6629e12d24ea5254d7a4c218d52ff9d1783f277ed4c
+    natural_key: [year, affiliate_country, industry]
+  country_crosswalk:
+    path: data/processed/concordances/country_crosswalk.parquet
+    sha256: 29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6
+    expected_rows: 611
+    expected_columns: 22
+    arrow_schema_signature_sha256: 464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5
+    filter_source_name: bea_mne
+    expected_filtered_rows: 75
+    natural_key: [source_name, source_country_id]
+  source_sector_crosswalk:
+    path: data/processed/concordances/source_sector_crosswalk.parquet
+    sha256: 99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9
+    expected_rows: 517
+    expected_columns: 14
+    arrow_schema_signature_sha256: bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d
+    filter_source_name: bea_mne
+    expected_filtered_rows: 16
+    natural_key: [source_name, source_sector_level, source_sector_code]
+  build_summary:
+    path: data/interim/mne/bea_us_mne_affiliate_country_industry_build_summary.json
+    sha256: 236b7afa5bd5065f7a6c614f9af33696f43cf8f8186ac50df61554082603b119
+  raw_manifest:
+    path: data/raw/bea_mne/metadata/bea_us_mne_activities_manifest.json
+    sha256: 0ad13fc2337a0f4ce74b5b10dab34666244624af5a429840e878c4e9854b4a59
+    expected_file_count: 35
+
+source_rules:
+  ownership_scope: majority_owned_foreign_affiliates_of_us_mnes
+  parent_country_iso3: USA
+  years: [2017, 2018, 2019, 2020, 2021, 2022, 2023]
+  preliminary_years: [2023]
+  source_geography_field: affiliate_country
+  source_industry_field: industry
+  source_area_type_field: bea_area_type
+  source_parent_area_field: bea_parent_area
+  canonical_aggregate_authority: country_crosswalk
+  suppression_codes: ["(D)", A, F, G, H, I, J, K, L, M]
+  small_value_code: "(*)"
+  small_value_numeric_representation: 0.0
+  suppressed_numeric_representation: missing
+  analysis_strict_value_rule: sum_only_when_every_required_source_industry_is_disclosed
+  disclosed_value_rule: sum_all_available_source_industry_values_for_diagnostics_only
+  missing_country_year_rule: do_not_materialize_or_impute
+  aggregate_geography_rule: retain_in_source_long_exclude_from_analysis_long
+  aggregate_sector_codes: [All industries, Manufacturing total]
+  residual_sector_codes: [Other industries]
+  proxy_source_industry: Transportation equipment
+  proxy_analysis_sector: autos
+  proxy_scope: proxy_robustness
+  unsupported_analysis_sectors: [medical_devices, textiles_apparel]
+  source_area_override_label: United Kingdom Islands, Caribbean
+  source_file_normalization: project_relative_forward_slash
+
+metrics:
+  employment:
+    order: 1
+    source_field: employment
+    raw_code_field: employment_raw_code
+    suppressed_field: employment_suppressed
+    small_value_field: employment_small_value
+    source_file_field: employment_source_file
+    unit: thousand_employees
+    direction: us_parent_owned_affiliate_activity
+    formula: direct_bea_table_ii_g_1
+    use: affiliate_employment_and_labor_validation
+  sales:
+    order: 2
+    source_field: sales
+    raw_code_field: sales_raw_code
+    suppressed_field: sales_suppressed
+    small_value_field: sales_small_value
+    source_file_field: sales_source_file
+    unit: current_million_usd
+    direction: us_parent_owned_affiliate_activity
+    formula: direct_bea_table_ii_d_3
+    use: affiliate_sales_activity_not_icio_gross_output
+  value_added:
+    order: 3
+    source_field: value_added
+    raw_code_field: value_added_raw_code
+    suppressed_field: value_added_suppressed
+    small_value_field: value_added_small_value
+    source_file_field: value_added_source_file
+    unit: current_million_usd
+    direction: us_parent_owned_affiliate_activity
+    formula: direct_bea_table_ii_f_3
+    use: affiliate_value_added_and_production_validation
+  capital_expenditures:
+    order: 4
+    source_field: capital_expenditures
+    raw_code_field: capital_expenditures_raw_code
+    suppressed_field: capital_expenditures_suppressed
+    small_value_field: capital_expenditures_small_value
+    source_file_field: capital_expenditures_source_file
+    unit: current_million_usd
+    direction: us_parent_owned_affiliate_activity
+    formula: direct_bea_table_ii_c_4
+    use: affiliate_investment_and_activity
+  goods_exports_to_us:
+    order: 5
+    source_field: goods_exports_to_us
+    raw_code_field: goods_exports_to_us_raw_code
+    suppressed_field: goods_exports_to_us_suppressed
+    small_value_field: goods_exports_to_us_small_value
+    source_file_field: goods_exports_to_us_source_file
+    unit: current_million_usd
+    direction: affiliate_to_usa
+    formula: direct_bea_table_ii_h_11
+    use: affiliate_goods_exports_to_united_states
+  goods_imports_from_us:
+    order: 6
+    source_field: goods_imports_from_us
+    raw_code_field: goods_imports_from_us_raw_code
+    suppressed_field: goods_imports_from_us_suppressed
+    small_value_field: goods_imports_from_us_small_value
+    source_file_field: goods_imports_from_us_source_file
+    unit: current_million_usd
+    direction: usa_to_affiliate
+    formula: direct_bea_table_ii_h_3
+    use: affiliate_goods_imports_from_united_states
+
+outputs:
+  source_long:
+    path: data/processed/harmonized/production_bea_mne_source_industry_long.parquet
+    natural_key: [source_name, source_country_id, model_sector, year, metric_name]
+    expected_rows: 49536
+    expected_columns: 69
+    schema_version: production_bea_mne_source_industry_long_v1
+    stata_aliases:
+      year: year
+      source_name: source
+      source_country_id: src_ctry
+      source_country_name: src_ctrynm
+      country_iso3: country_iso3
+      country_iso2: country_iso2
+      canonical_country_name: country_name
+      country_mapping_status: ctry_mapst
+      country_mapping_method: ctry_mapmth
+      source_bea_area_type: bea_areatp
+      source_bea_parent_area: bea_pararea
+      country_area_override_flag: area_ovr
+      country_is_country: ctry_country
+      country_is_aggregate: ctry_agg
+      country_is_residual: ctry_resid
+      country_is_proxy: ctry_proxy
+      main_analysis_country_flag: ctry_joinok
+      is_core_connector: core_conn
+      is_asian_comparator: asia_comp
+      is_other_candidate: oth_cand
+      comparison_sample_country_flag: comp_ctry
+      parent_country_iso3: parent_iso3
+      ownership_scope: own_scope
+      model_sector: model_sec
+      source_sector_level: src_seclvl
+      source_sector_label: src_seclab
+      analysis_sector: ana_sector
+      sector_mapping_status: sec_mapst
+      sector_mapping_rule: sec_maprule
+      sector_first_round_exclusion: sec_excl
+      sector_proxy_analysis_sector: sec_proxy
+      sector_is_main_join_eligible: sec_joinok
+      sector_mapping_weight: sec_weight
+      source_granularity_note: gran_note
+      source_code_family: code_family
+      source_sector_mapping_version: sec_mapver
+      metric_name: metric
+      metric_order: metric_ord
+      value: value
+      raw_code: raw_code
+      unit: unit
+      frequency: freq
+      direction: direction
+      direct_or_allocated: direct_alloc
+      derivation_status: deriv_stat
+      metric_formula: metric_form
+      metric_use: metric_use
+      value_available_flag: val_avail
+      suppressed_flag: suppressed
+      small_value_flag: small_val
+      confidential_flag: confidentl
+      aggregate_geography_flag: geo_agg
+      aggregate_sector_flag: sec_agg
+      residual_flag: is_resid
+      proxy_flag: is_proxy
+      main_analysis_join_eligible: main_joinok
+      observed_negative_flag: obs_neg
+      reported_zero_flag: rep_zero
+      exact_zero_flag: exact_zero
+      metric_additive_across_source_industries: sec_add
+      can_sum_across_metrics: met_add
+      source_file: src_file
+      release_vintage: bea_rel
+      download_date: dl_date
+      source_page: src_page
+      preliminary_release_flag: prelim
+      m4_bea_mne_version: m4_beaver
+      rules_config_sha256: rules_hash
+      schema_version: schema_ver
+  analysis_long:
+    path: data/processed/harmonized/production_validation_bea_mne_long.parquet
+    natural_key: [country_iso3, analysis_sector, year, source_name, metric_name]
+    expected_rows: 11910
+    expected_columns: 66
+    expected_country_count: 57
+    expected_analysis_sector_count: 5
+    expected_country_sector_year_cells: 1985
+    schema_version: production_validation_bea_mne_long_v1
+    stata_aliases:
+      country_iso3: country_iso3
+      source_country_id: src_ctry
+      canonical_country_name: country_name
+      analysis_sector: ana_sector
+      analysis_scope: ana_scope
+      year: year
+      source_name: source
+      parent_country_iso3: parent_iso3
+      ownership_scope: own_scope
+      metric_name: metric
+      metric_order: metric_ord
+      value: value
+      source_disclosed_value_sum: disc_sum
+      unit: unit
+      frequency: freq
+      direction: direction
+      direct_or_allocated: direct_alloc
+      derivation_status: deriv_stat
+      metric_formula: metric_form
+      metric_use: metric_use
+      value_available_flag: val_avail
+      disclosed_value_available_flag: disc_avail
+      full_sector_coverage_flag: full_secok
+      suppressed_flag: suppressed
+      partial_disclosure_flag: part_disc
+      all_components_suppressed_flag: all_supp
+      small_value_flag: small_val
+      confidential_flag: confidentl
+      aggregate_flag: is_agg
+      residual_flag: is_resid
+      proxy_flag: is_proxy
+      main_analysis_join_eligible: main_joinok
+      expected_source_industry_count: exp_ind_n
+      source_industry_count: src_ind_n
+      source_disclosed_industry_count: disc_ind_n
+      source_suppressed_cell_count: supp_n
+      source_small_value_cell_count: small_n
+      source_missing_cell_count: miss_n
+      source_negative_cell_count: neg_n
+      source_reported_zero_cell_count: zero_n
+      source_exact_zero_cell_count: exzero_n
+      source_industry_codes: src_indcode
+      source_industry_labels: src_indlab
+      source_mapping_statuses: src_mapsts
+      source_mapping_rules: src_mapruls
+      source_granularity_note: src_grnote
+      source_sector_mapping_version: src_mapver
+      observed_negative_flag: obs_neg
+      reported_zero_flag: rep_zero
+      exact_zero_flag: exact_zero
+      disclosed_value_negative_flag: disc_neg
+      disclosed_value_zero_flag: disc_zero
+      metric_additive_across_source_industries: sec_add
+      can_sum_across_metrics: met_add
+      analysis_sector_is_direct_from_one_source_industry: sec_direct
+      analysis_sector_aggregates_multiple_source_industries: sec_agg
+      is_core_connector: core_conn
+      is_asian_comparator: asia_comp
+      is_other_candidate: oth_cand
+      comparison_sample_country_flag: comp_ctry
+      source_file: src_file
+      release_vintage: bea_rel
+      preliminary_release_flag: prelim
+      m4_bea_mne_version: m4_beaver
+      rules_config_sha256: rules_hash
+      schema_version: schema_ver
+
+validation_outputs:
+  json: data/validation/production_bea_mne_validation.json
+  markdown: data/validation/production_bea_mne_validation.md
+
+validation:
+  numeric_tolerance: 1.0e-9
+  require_deterministic_parquet_sha256: true
+  candidate_temp_directory: tmp/m4_3_candidates
+  determinism_temp_directory: tmp/m4_3_determinism
+  expected_source_geography_labels: 75
+  expected_source_industries: 16
+  expected_source_area_aggregate_rows: 1792
+  expected_country_override_aggregate_rows: 112
+  expected_final_aggregate_rows: 1904
+  expected_actual_country_rows: 6352
+  expected_actual_country_count: 57
+  expected_actual_country_year_cells: 397
+  expected_main_eligible_source_rows: 1985
+  expected_proxy_source_rows: 397
+  expected_full_source_proxy_rows: 516
+  expected_main_analysis_rows: 9528
+  expected_proxy_analysis_rows: 2382
+  expected_comparison_country_count: 12
+  expected_comparison_country_year_cells: 82
+  expected_missing_country_years:
+    VNM: [2017, 2018]
+  expected_absent_country_iso3: [MAR]
+  expected_source_metric_counts:
+    employment: {missing: 740, suppressed: 740, small: 319, zero: 690, negative: 0}
+    sales: {missing: 1344, suppressed: 1344, small: 89, zero: 325, negative: 0}
+    value_added: {missing: 1290, suppressed: 1290, small: 127, zero: 362, negative: 164}
+    capital_expenditures: {missing: 1494, suppressed: 1494, small: 745, zero: 1011, negative: 0}
+    goods_exports_to_us: {missing: 1996, suppressed: 1996, small: 691, zero: 3523, negative: 0}
+    goods_imports_from_us: {missing: 2055, suppressed: 2055, small: 610, zero: 2767, negative: 0}
+  expected_analysis_metric_counts:
+    employment: {nonmissing: 1804, missing: 181, small: 165, zero: 297, exact_zero: 157, negative: 0, partial_suppression: 68, all_suppressed: 113}
+    sales: {nonmissing: 1536, missing: 449, small: 43, zero: 154, exact_zero: 113, negative: 0, partial_suppression: 85, all_suppressed: 364}
+    value_added: {nonmissing: 1593, missing: 392, small: 55, zero: 161, exact_zero: 108, negative: 37, partial_suppression: 70, all_suppressed: 322}
+    capital_expenditures: {nonmissing: 1626, missing: 359, small: 301, zero: 399, exact_zero: 128, negative: 0, partial_suppression: 114, all_suppressed: 245}
+    goods_exports_to_us: {nonmissing: 1390, missing: 595, small: 151, zero: 722, exact_zero: 599, negative: 0, partial_suppression: 156, all_suppressed: 439}
+    goods_imports_from_us: {nonmissing: 1350, missing: 635, small: 169, zero: 628, exact_zero: 503, negative: 0, partial_suppression: 193, all_suppressed: 442}
+  expected_negative_value_added_counts:
+    full_source: 164
+    actual_country_source: 138
+    main_eligible_source: 32
+    strict_main_analysis: 19
+    strict_proxy_analysis: 18
+    strict_main_plus_proxy_analysis: 37

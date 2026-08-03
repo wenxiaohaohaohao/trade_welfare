@@ -5,7 +5,7 @@
 - Origin Skill: `academic-research-suite/experiment-agent`
 - Origin Mode: `plan`
 - Origin Date: `2026-07-19`
-- Verification Status: `ANALYZED`（M0-M4.2 validation 均为 PASS；M4.3-M7 待执行）
+- Verification Status: `ANALYZED`（M0-M4.3 validation 均为 PASS；M4.4-M7 待执行）
 - Version Label: `data_merge_plan_v1`
 - Working Branch: `data-processing-variables`
 
@@ -13,7 +13,7 @@
 
 目标是把已经验证的 source-specific `data/interim/` 数据，转化为可审计、可重复生成的 `data/processed/` 合并数据，并在此基础上构造 connector ranking、rerouting facts、production-side validation 和 structural moments。
 
-当前阶段：`M0-M4.2 已完成并验证；M4.3-M7 尚未开始`。
+当前阶段：`M0-M4.3 已完成并验证；M4.4-M7 尚未开始`。
 
 勾选规则：只有代码、输出、validation 和说明文件同时完成，任务才从 `[ ]` 改为 `[x]`。部分完成、仅生成文件、仅跑通代码或仍有未解释的 many-to-many join，都不能打勾。
 
@@ -143,7 +143,7 @@ M4.2 门槛已满足：`production_amne_parent_host_sector_long.parquet` 为 7,5
 
 - [x] M4.1 ICIO：保留 country-sector-year 的 gross output、value added、exports、imports 和 accounting residual 信息。
 - [x] M4.2 AMNE：保留 parent-host-sector-year 明细，同时构造 host-sector foreign-affiliate totals；allocated variables 必须标记。
-- [ ] M4.3 BEA MNE：先过滤 aggregate geographies，再映射 country 和 industry；保留 employment、sales、value added、capex、affiliate trade 及 suppression flags。
+- [x] M4.3 BEA MNE：先过滤 aggregate geographies，再映射 country 和 industry；保留 employment、sales、value added、capex、affiliate trade 及 suppression flags。
 - [ ] M4.4 BEA FDI：分别保留 outward/inward direction、position、flows 和 income；stock、flow 和 income 不混为同一指标。
 - [ ] M4.5 Mexico FDI：季度 flow 按年求和；保留 parent-country、SCIAN sector、confidential 和 total/residual flags。
 - [ ] M4.6 把各来源转换为统一 long schema：`country, sector, year, source, metric, value, unit, direct_or_allocated, suppressed_or_confidential`。
@@ -196,4 +196,6 @@ M4.2 门槛已满足：`production_amne_parent_host_sector_long.parquet` 为 7,5
 
 ## 下一项工作
 
-下一项计划任务是 `M4.3：BEA MNE activity 标准化`，尚未开始。M4.1-M4.2 已分别提供 ICIO aggregate benchmark 与 AMNE parent-host/host-sector activity，但当前仍没有 BEA/Mexico 跨来源 production integration、connector ranking、“赢家”名单或结构模型 inputs。M4.3 及其后步骤必须等待用户确认后再开始。
+M4.3 门槛已满足：source-detail 为 49,536 × 69，analysis long 为 11,910 × 66；35 个 raw XLS 与 manifest 完全一致，1,904 个 canonical aggregate-geography source rows 未进入 analysis，suppression 没有填 0，`(*)` 与 exact zero 分开，164 个 source negative value-added observations 保留。四个 strict main sectors 共 9,528 行；Transportation equipment 仅作为 2,382 行 autos robustness proxy，强制 `main_analysis_join_eligible=false`。两张 Parquet 第二次构建的 SHA256 分别为 `016c7b10891e3770c14eeb9cf0f489bd9d80281c91bd1e10e2a883f76205b514` 和 `21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade`。
+
+下一项计划任务是 `M4.4：BEA direct investment 标准化`，尚未开始。M4.1-M4.3 已分别提供 ICIO aggregate benchmark、AMNE parent-host/host-sector activity 和 BEA majority-owned affiliate activity，但当前仍没有 BEA FDI/Mexico 跨来源 production integration、connector ranking、“赢家”名单或结构模型 inputs。M4.4 及其后步骤必须等待用户确认后再开始。

@@ -4,10 +4,10 @@
 
 - Origin Skill: `stata-latex-research`
 - Origin Date: `2026-07-27`
-- Verification Status: `VERIFIED_THROUGH_M4.2`
-- Version Label: `variable_catalog_v0.9.0`
-- Current Data Stage: `M0-M4.2 completed`
-- Next Construction Stage: `M4.3 not started; user authorization required`
+- Verification Status: `VERIFIED_THROUGH_M4.3`
+- Version Label: `variable_catalog_v1.0.0`
+- Current Data Stage: `M0-M4.3 completed`
+- Next Construction Stage: `M4.4 not started; user authorization required`
 - Canonical Format: Parquet
 - Collaborator Format: Stata `.dta`
 
@@ -24,7 +24,7 @@
 
 本目录同时包含三类变量：
 
-- `EXISTING_VALIDATED`：M2、M3.1-M3.6 或 M4.1-M4.2 已存在且 validation PASS；
+- `EXISTING_VALIDATED`：M2、M3.1-M3.6 或 M4.1-M4.3 已存在且 validation PASS；
 - `PLANNED_M4` 至 `PLANNED_M6`：已经定义但尚未构造，必须在对应阶段完成后补充实际 output hash 和 validation；
 - `STRUCTURAL_TARGET_ONLY`：只能作为模型校准目标或输入候选，不能直接解释为已经识别的结构参数。
 
@@ -784,7 +784,7 @@ Extended East Asia 包含 China，因此两定义不是两个独立样本。`ext
 
 ## 8. M4 production-side 标准化变量
 
-M4.1-M4.2 状态：`EXISTING_VALIDATED`。M4.1 生成 ICIO source-sector 审计长表和 analysis-sector 标准化长表；M4.2 生成 AMNE parent-host source-detail long 和 host-analysis-sector totals long。M4.6 才会把 ICIO、AMNE、BEA 和 Mexico 组合为最终 `production_validation_long.parquet`；当前两模块不提前伪造这一跨来源文件。所有 production 表采用 long format 保存来源、指标与单位，禁止把不同 `metric_name` 或不同经济概念直接相加。
+M4.1-M4.3 状态：`EXISTING_VALIDATED`。M4.1 生成 ICIO source-sector 审计长表和 analysis-sector 标准化长表；M4.2 生成 AMNE parent-host source-detail long 和 host-analysis-sector totals long；M4.3 生成 BEA MNE country-industry source-detail long 和 suppression-safe country-analysis-sector long。M4.6 才会把 ICIO、AMNE、BEA 和 Mexico 组合为最终 `production_validation_long.parquet`；当前三个模块不提前伪造这一跨来源文件。所有 production 表采用 long format 保存来源、指标与单位，禁止把不同 `metric_name` 或不同经济概念直接相加。
 
 M4.1 实际输出：
 
@@ -804,6 +804,15 @@ M4.2 实际输出：
 
 两张 AMNE 表的 config 为 `configs/production_amne_rules.yaml`，builder 为 `code/data_processing/build_production_amne_long.py`，validation 为 `data/validation/production_amne_validation.json/.md`。两张表都从冻结输入完整构建两次，candidate 与 second-build SHA256 逐一一致。
 
+M4.3 实际输出：
+
+| Output | Grain / natural key | Rows × columns | SHA256 |
+|---|---|---:|---|
+| `data/processed/harmonized/production_bea_mne_source_industry_long.parquet` | `source_name, source_country_id, model_sector, year, metric_name` | 49,536 × 69 | `016c7b10891e3770c14eeb9cf0f489bd9d80281c91bd1e10e2a883f76205b514` |
+| `data/processed/harmonized/production_validation_bea_mne_long.parquet` | `country_iso3, analysis_sector, year, source_name, metric_name` | 11,910 × 66 | `21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade` |
+
+两张 BEA MNE 表的 config 为 `configs/production_bea_mne_rules.yaml`，config SHA256 为 `24db24e60bc70e7646773cf8cdebf80396c0c36c4e4439e9b388a89a4c74265b`；builder 为 `code/data_processing/build_production_bea_mne_long.py`，validation 为 `data/validation/production_bea_mne_validation.json/.md`。两张表分别完整构建两次，candidate 与 second-build SHA256 逐一一致。
+
 ### 8.1 通用 long schema
 
 | Canonical name | Stata name | 定义 |
@@ -817,7 +826,7 @@ M4.2 实际输出：
 | `unit` | `unit` | current USD/current million USD/thousand persons/fraction |
 | `frequency` | `freq` | annual/quarterly/H1 |
 | `direction` | `direction` | FDI inward/outward 或 affiliate trade direction |
-| `parent_country_iso3` | `parent_iso3` | AMNE parent，适用时 |
+| `parent_country_iso3` | `parent_iso3` | AMNE parent；BEA MNE 固定为 USA |
 | `direct_or_allocated` | `direct_alloc` | direct/allocated/unavailable |
 | `suppressed_flag` | `suppressed` | BEA |
 | `confidential_flag` | `confidentl` | Mexico |
@@ -935,18 +944,87 @@ foreign_affiliate_output_share
 
 M4.2 validation 还固定：两张输入分别为 1,260,053 × 15 和 4,250,880 × 19；full universe 严格等于 `81 hosts × 80 foreign parents × 41 sectors × 16 years`；positive subset keys 与 activity 完全一致；parent/host output duplicate keys 均为 0；host grid 有 7,680 cells，113 个 bilateral/direct-foreign zero cells，27 个 gross-output zeros；TWN 是 direct AMNE observation，不是 proxy。71/56 个 Stata aliases 完整、唯一、合法且最长 12 字符；本阶段仍不导出 `.dta`，不构造 AMNE growth/MPE expansion、ranking、`hgamma` 或跨来源 production table。
 
-### 8.4 BEA MNE metrics（`PLANNED_M4.3`）
+### 8.4 BEA MNE metrics（`EXISTING_VALIDATED_M4.3`）
 
-| Metric | Unit | 用途 |
+M4.3 使用两张互补长表。Source-detail 表对 8,256 个 BEA source rows 各展开六个 metric，完整保留 aggregate geography、全部16个 published industries、raw code、suppression、small-value、negative value 和 metric-specific source file。Analysis 表只使用 canonical actual-country rows，并把严格 main mapping 与 Transportation-equipment proxy 放在同一 schema 中，但用 `analysis_scope`、`proxy_flag` 和 `main_analysis_join_eligible` 强制隔离。
+
+| Metric | Unit | Direction / BEA table | 用途和限制 |
+|---|---|---|---|
+| `employment` | thousand employees | U.S.-parent-owned affiliate activity；II.G 1 | labor validation；size-range code 保持 suppressed/missing |
+| `sales` | current million USD | affiliate activity；II.D 3 | affiliate sales；不得当作 ICIO gross output |
+| `value_added` | current million USD | affiliate activity；II.F 3 | production validation；负值保留 |
+| `capital_expenditures` | current million USD | affiliate activity；II.C 4 | affiliate investment/activity |
+| `goods_exports_to_us` | current million USD | `affiliate_to_usa`；II.H 11 | affiliate 向美国出口；不得与 BACI/Census 重复相加 |
+| `goods_imports_from_us` | current million USD | `usa_to_affiliate`；II.H 3 | affiliate 从美国进口；方向不得倒置 |
+
+Source cell 规则：
+
+```text
+(D) or employment size-range code A/F/G/H/I/J/K/L/M
+    -> value = missing
+    -> suppressed_flag = true
+
+(*) -> value = 0.0
+    -> small_value_flag = true
+    -> exact_zero_flag = false
+```
+
+Analysis-sector 严格公式：
+
+```text
+value = sum(source values)
+        only if source_industry_count = expected_source_industry_count
+        and every required source-industry value is disclosed
+        otherwise missing
+
+source_disclosed_value_sum
+      = sum(all currently disclosed components)
+      = diagnostic only; not a complete sector total when full_sector_coverage_flag = false
+```
+
+`other_manufacturing` 在本来源只由 Chemicals 与 Food 两个 published industries 组成，因此是 BEA 可支持组件的合计，不代表完整制造业残差。只要两者之一 suppressed，正式 `value` 保持 missing；可见部分仅记录在 `source_disclosed_value_sum`。三个一对一 main sectors为 electronics、electrical equipment 和 machinery。
+
+Transportation equipment 比 autos 更宽。M4.3 将其保留为可复用的 robustness proxy，而不是 exact mapping：
+
+```text
+analysis_sector = autos
+analysis_scope = proxy_robustness
+proxy_flag = true
+main_analysis_join_eligible = false
+source_industry_codes = Transportation equipment
+```
+
+因此合作者做主分析时必须筛选 `main_analysis_join_eligible==1`；只有明确报告 robustness 时才使用 autos proxy。BEA published industries不能单独识别 medical devices 或 textiles/apparel，M4.3 不生成 synthetic zero rows。
+
+Geography 与 coverage：
+
+- source 自带 `bea_area_type=aggregate` 为1,792行；canonical country crosswalk另外把 `United Kingdom Islands, Caribbean` 的112行强制识别为 aggregate；analysis 最终排除1,904行；
+- source-detail 保留全部 aggregate rows供审计，analysis 中 aggregate rows为0；
+- 6,352个 actual-country source rows对应57个 ISO3国家、397个实际 country-years；
+- KOR 的 source label 从2017年 `Korea, Republic of` 改为2018-2023年 `South Korea`，年份不重叠，标准化后 key duplicate为0；
+- Vietnam仅有2019-2023，2017-2018没有生成零行；Morocco在本来源完全不存在；
+- 13个 comparison countries中有12个可观察，共82个 country-years。
+
+Analysis output共有1,985个 country-sector-year cells ×6 metrics：四个 strict main sectors为1,588 cells / 9,528 rows，autos proxy为397 cells / 2,382 rows。每个 metric 的 strict missing 分别为 employment 181、sales 449、value added 392、capex 359、exports 595、imports 635；这些缺失来自 suppression propagation，不是零贸易或零活动。
+
+Value added 的负值分层保留：full source 164个、actual-country source 138个、strict main source mapping 32个、strict main analysis 19个、autos proxy analysis 18个。聚合或 suppression 会改变可见负值数量，但 builder 不执行截断、winsorization 或清零。
+
+核心 analysis disclosure 字段及 Stata aliases：
+
+| Canonical field | Stata alias | 含义 |
 |---|---|---|
-| `employment` | thousand employees | labor validation |
-| `sales` | million current USD | affiliate activity |
-| `value_added` | million current USD | production |
-| `capital_expenditures` | million current USD | investment/activity |
-| `goods_exports_to_us` | million current USD | affiliate -> U.S. direction |
-| `goods_imports_from_us` | million current USD | U.S. -> affiliate direction |
+| `analysis_scope` | `ana_scope` | `main` 或 `proxy_robustness` |
+| `source_disclosed_value_sum` | `disc_sum` | 可见组件和，仅用于诊断 partial disclosure |
+| `full_sector_coverage_flag` | `full_secok` | 所有必要行业均有数值 |
+| `partial_disclosure_flag` | `part_disc` | 同一 sector 同时存在 disclosed 与 suppressed components |
+| `source_disclosed_industry_count` | `disc_ind_n` | 有数值的组成行业数 |
+| `source_suppressed_cell_count` | `supp_n` | suppressed component 数 |
+| `source_small_value_cell_count` | `small_n` | `(*)` component 数 |
+| `reported_zero_flag` | `rep_zero` | strict value为0，包括可能含small value |
+| `exact_zero_flag` | `exact_zero` | strict value为0且没有small-value component |
+| `preliminary_release_flag` | `prelim` | 2023 preliminary release |
 
-每个 metric 同时保留 suppression 和 small-value flag。aggregate geography 先排除。Transportation equipment 若作为 autos robustness，必须 `proxy_flag=1`。
+M4.3 validation 共137项且 failure为0：35个raw XLS的大小/hash、输入hash/schema/key、75个geography labels、16个industries、canonical aggregate override、source-to-long identity、strict/disclosed聚合、suppression/small/negative snapshots、trade directions、VNM/MAR边界、proxy isolation和69/66个Stata aliases全部通过。当前仍不生成BEA growth、BEA FDI、跨来源 production panel、ranking、structural moments或`.dta`。
 
 ### 8.5 BEA FDI metrics（`PLANNED_M4.4`）
 
@@ -1305,10 +1383,11 @@ Reviewer/date:
 7. M3.6 已生成窗口、source bloc 和 exposure sensitivity 三张自然粒度接口，未构造 ranking；
 8. M4.1 已生成完整 ICIO source-sector audit long 和 80-country × 6-sector analysis long；
 9. M4.2 已生成 AMNE parent-host source-detail long 和 80-country × 6-sector × 16-year host totals long；
-10. 下一步 M4.3 标准化 BEA MNE activity、suppression 和 aggregate geography，须等待用户确认；
-11. M5 逐来源 left join 和 coverage；
-12. M6 先 trade ranking，再 production grade，最后 structural moments；
-13. M7 导出 Stata、运行 `.do`、冻结 release。
+10. M4.3 已生成 BEA MNE source-industry audit long 和 suppression-safe country-sector activity long，并隔离 autos proxy；
+11. 下一步 M4.4 标准化 BEA direct investment 的 stock/flow/income 与 direction，须等待用户确认；
+12. M5 逐来源 left join 和 coverage；
+13. M6 先 trade ranking，再 production grade，最后 structural moments；
+14. M7 导出 Stata、运行 `.do`、冻结 release。
 
 ## 18. 版本记录
 
@@ -1324,5 +1403,6 @@ Reviewer/date:
 | v0.7.0 | 2026-07-29 | 完成 M3.6 变量合同：登记 1,092 × 56 alternative-window、182 × 64 source-bloc 和 364 × 47 exposure-definition 三表接口；固定 primary/exclude-2024/shock-only、nested China/East-Asia self-trade rule、四种非等价 exposure estimands、annual stability/primary-difference 状态、56/64/47 aliases、独立复算和三个确定性 hashes；明确不构造 ranking。 |
 | v0.8.0 | 2026-08-02 | 完成 M4.1 ICIO 变量合同：登记 85,050 × 54 source-sector audit long 和 10,080 × 43 analysis-sector long、7 个 production/accounting metrics、81 geography/50 source-sector universe、80-country/6-sector/3-year analysis grid、ROW/excluded partition、source/aggregate negative preservation、54/43 aliases、独立复算和两个确定性 hashes；明确不插值 2019、不伪造 medical devices、不提前生成跨来源 production 文件。 |
 | v0.9.0 | 2026-08-02 | 完成 M4.2 AMNE 变量合同：登记 7,560,318 × 71 parent-host source-detail long 和 53,760 × 56 host-analysis-sector long、direct/allocated/derived/unavailable 状态、positive/full-zero universe 边界、ROW parent/host 规则、166 个负 allocated VA、employment 全缺失、ratio-of-sums share、bilateral-XVEM reconciliation、71/56 aliases、独立复算和两个确定性 hashes；明确不构造 growth、ranking、hgamma 或跨来源 production 文件。 |
+| v1.0.0 | 2026-08-03 | 完成 M4.3 BEA MNE 变量合同：登记 49,536 × 69 source-industry long 和 11,910 × 66 analysis long、六项 direct affiliate metrics、1,904 aggregate geography过滤、strict/diagnostic disclosure 双值接口、suppression/small/exact-zero规则、164个source负VA、四个main sectors与autos robustness proxy隔离、Vietnam/Morocco coverage边界、69/66 aliases、137项validation和两个确定性hashes。 |
 
-下一次强制更新：M4.3 BEA MNE country-industry-year activity 完成时，补齐 aggregate geography filtering、suppression/small-value、metrics、output hash、validation 和 Stata 接口；同时更新审计档案并重建两份 PDF。
+下一次强制更新：M4.4 BEA direct investment country-industry-year 标准化完成时，补齐 direction、stock/flow/income、aggregate geography、suppression、signed values、output hash、validation 和 Stata 接口；同时更新审计档案并重建两份 PDF。

@@ -1,0 +1,1316 @@
+{
+  "validation_status": "PASS",
+  "failures": [],
+  "checks": [
+    {
+      "check": "bea_mne_activity_hash",
+      "pass": true,
+      "observed": "ab2e064459cc9dac8c13eebd7e399e91047133a93e8f35b9821520add7f219e8",
+      "expected": "ab2e064459cc9dac8c13eebd7e399e91047133a93e8f35b9821520add7f219e8"
+    },
+    {
+      "check": "bea_mne_activity_rows",
+      "pass": true,
+      "observed": 8256,
+      "expected": 8256
+    },
+    {
+      "check": "bea_mne_activity_columns",
+      "pass": true,
+      "observed": 38,
+      "expected": 38
+    },
+    {
+      "check": "bea_mne_activity_schema",
+      "pass": true,
+      "observed": "970e0b4e55c521cdb81df6629e12d24ea5254d7a4c218d52ff9d1783f277ed4c",
+      "expected": "970e0b4e55c521cdb81df6629e12d24ea5254d7a4c218d52ff9d1783f277ed4c"
+    },
+    {
+      "check": "bea_mne_activity_key_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "bea_mne_activity_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "country_crosswalk_hash",
+      "pass": true,
+      "observed": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+      "expected": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6"
+    },
+    {
+      "check": "country_crosswalk_rows",
+      "pass": true,
+      "observed": 611,
+      "expected": 611
+    },
+    {
+      "check": "country_crosswalk_columns",
+      "pass": true,
+      "observed": 22,
+      "expected": 22
+    },
+    {
+      "check": "country_crosswalk_schema",
+      "pass": true,
+      "observed": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+      "expected": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5"
+    },
+    {
+      "check": "country_crosswalk_key_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "country_crosswalk_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_sector_crosswalk_hash",
+      "pass": true,
+      "observed": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+      "expected": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9"
+    },
+    {
+      "check": "source_sector_crosswalk_rows",
+      "pass": true,
+      "observed": 517,
+      "expected": 517
+    },
+    {
+      "check": "source_sector_crosswalk_columns",
+      "pass": true,
+      "observed": 14,
+      "expected": 14
+    },
+    {
+      "check": "source_sector_crosswalk_schema",
+      "pass": true,
+      "observed": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+      "expected": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d"
+    },
+    {
+      "check": "source_sector_crosswalk_key_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_sector_crosswalk_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "build_summary_hash",
+      "pass": true,
+      "observed": "236b7afa5bd5065f7a6c614f9af33696f43cf8f8186ac50df61554082603b119",
+      "expected": "236b7afa5bd5065f7a6c614f9af33696f43cf8f8186ac50df61554082603b119"
+    },
+    {
+      "check": "raw_manifest_hash",
+      "pass": true,
+      "observed": "0ad13fc2337a0f4ce74b5b10dab34666244624af5a429840e878c4e9854b4a59",
+      "expected": "0ad13fc2337a0f4ce74b5b10dab34666244624af5a429840e878c4e9854b4a59"
+    },
+    {
+      "check": "country_crosswalk_filtered_rows",
+      "pass": true,
+      "observed": 75,
+      "expected": 75
+    },
+    {
+      "check": "country_crosswalk_filtered_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_sector_crosswalk_filtered_rows",
+      "pass": true,
+      "observed": 16,
+      "expected": 16
+    },
+    {
+      "check": "source_sector_crosswalk_filtered_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "raw_manifest_file_count",
+      "pass": true,
+      "observed": 35,
+      "expected": 35
+    },
+    {
+      "check": "raw_manifest_file_mismatches",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "observed_years",
+      "pass": true,
+      "observed": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "expected": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "check": "source_geography_labels",
+      "pass": true,
+      "observed": 75,
+      "expected": 75
+    },
+    {
+      "check": "source_industries",
+      "pass": true,
+      "observed": 16,
+      "expected": 16
+    },
+    {
+      "check": "country_join_unmatched",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "sector_join_unmatched",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "join_row_preservation",
+      "pass": true,
+      "observed": 8256,
+      "expected": 8256
+    },
+    {
+      "check": "source_area_aggregate_rows",
+      "pass": true,
+      "observed": 1792,
+      "expected": 1792
+    },
+    {
+      "check": "country_override_aggregate_rows",
+      "pass": true,
+      "observed": 112,
+      "expected": 112
+    },
+    {
+      "check": "final_aggregate_rows",
+      "pass": true,
+      "observed": 1904,
+      "expected": 1904
+    },
+    {
+      "check": "actual_country_rows",
+      "pass": true,
+      "observed": 6352,
+      "expected": 6352
+    },
+    {
+      "check": "actual_country_count",
+      "pass": true,
+      "observed": 57,
+      "expected": 57
+    },
+    {
+      "check": "actual_country_year_cells",
+      "pass": true,
+      "observed": 397,
+      "expected": 397
+    },
+    {
+      "check": "canonical_country_year_industry_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "main_eligible_source_rows",
+      "pass": true,
+      "observed": 1985,
+      "expected": 1985
+    },
+    {
+      "check": "proxy_source_rows",
+      "pass": true,
+      "observed": 397,
+      "expected": 397
+    },
+    {
+      "check": "source_long_rows",
+      "pass": true,
+      "observed": 49536,
+      "expected": 49536
+    },
+    {
+      "check": "source_long_columns",
+      "pass": true,
+      "observed": 69,
+      "expected": 69
+    },
+    {
+      "check": "source_long_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_long_key_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_long_schema_signature",
+      "pass": true,
+      "observed": "f0ac93bcbf5211f9289c2894a21cb82ac26545db0fa3015f1badd5b59a646b72",
+      "expected": "f0ac93bcbf5211f9289c2894a21cb82ac26545db0fa3015f1badd5b59a646b72"
+    },
+    {
+      "check": "source_long_final_aggregate_rows",
+      "pass": true,
+      "observed": 11424,
+      "expected": 11424
+    },
+    {
+      "check": "source_long_transportation_proxy_rows",
+      "pass": true,
+      "observed": 3096,
+      "expected": 3096
+    },
+    {
+      "check": "source_employment_row_count",
+      "pass": true,
+      "observed": 8256,
+      "expected": 8256
+    },
+    {
+      "check": "source_employment_snapshot",
+      "pass": true,
+      "observed": {
+        "missing": 740,
+        "suppressed": 740,
+        "small": 319,
+        "zero": 690,
+        "negative": 0
+      },
+      "expected": {
+        "missing": 740,
+        "suppressed": 740,
+        "small": 319,
+        "zero": 690,
+        "negative": 0
+      }
+    },
+    {
+      "check": "source_employment_suppressed_nonmissing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_employment_unflagged_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_employment_small_nonzero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_employment_value_identity_max_error",
+      "pass": true,
+      "observed": 0.0,
+      "expected": 0.0,
+      "tolerance": 1e-09
+    },
+    {
+      "check": "source_sales_row_count",
+      "pass": true,
+      "observed": 8256,
+      "expected": 8256
+    },
+    {
+      "check": "source_sales_snapshot",
+      "pass": true,
+      "observed": {
+        "missing": 1344,
+        "suppressed": 1344,
+        "small": 89,
+        "zero": 325,
+        "negative": 0
+      },
+      "expected": {
+        "missing": 1344,
+        "suppressed": 1344,
+        "small": 89,
+        "zero": 325,
+        "negative": 0
+      }
+    },
+    {
+      "check": "source_sales_suppressed_nonmissing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_sales_unflagged_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_sales_small_nonzero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_sales_value_identity_max_error",
+      "pass": true,
+      "observed": 0.0,
+      "expected": 0.0,
+      "tolerance": 1e-09
+    },
+    {
+      "check": "source_value_added_row_count",
+      "pass": true,
+      "observed": 8256,
+      "expected": 8256
+    },
+    {
+      "check": "source_value_added_snapshot",
+      "pass": true,
+      "observed": {
+        "missing": 1290,
+        "suppressed": 1290,
+        "small": 127,
+        "zero": 362,
+        "negative": 164
+      },
+      "expected": {
+        "missing": 1290,
+        "suppressed": 1290,
+        "small": 127,
+        "zero": 362,
+        "negative": 164
+      }
+    },
+    {
+      "check": "source_value_added_suppressed_nonmissing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_value_added_unflagged_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_value_added_small_nonzero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_value_added_value_identity_max_error",
+      "pass": true,
+      "observed": 0.0,
+      "expected": 0.0,
+      "tolerance": 1e-09
+    },
+    {
+      "check": "source_capital_expenditures_row_count",
+      "pass": true,
+      "observed": 8256,
+      "expected": 8256
+    },
+    {
+      "check": "source_capital_expenditures_snapshot",
+      "pass": true,
+      "observed": {
+        "missing": 1494,
+        "suppressed": 1494,
+        "small": 745,
+        "zero": 1011,
+        "negative": 0
+      },
+      "expected": {
+        "missing": 1494,
+        "suppressed": 1494,
+        "small": 745,
+        "zero": 1011,
+        "negative": 0
+      }
+    },
+    {
+      "check": "source_capital_expenditures_suppressed_nonmissing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_capital_expenditures_unflagged_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_capital_expenditures_small_nonzero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_capital_expenditures_value_identity_max_error",
+      "pass": true,
+      "observed": 0.0,
+      "expected": 0.0,
+      "tolerance": 1e-09
+    },
+    {
+      "check": "source_goods_exports_to_us_row_count",
+      "pass": true,
+      "observed": 8256,
+      "expected": 8256
+    },
+    {
+      "check": "source_goods_exports_to_us_snapshot",
+      "pass": true,
+      "observed": {
+        "missing": 1996,
+        "suppressed": 1996,
+        "small": 691,
+        "zero": 3523,
+        "negative": 0
+      },
+      "expected": {
+        "missing": 1996,
+        "suppressed": 1996,
+        "small": 691,
+        "zero": 3523,
+        "negative": 0
+      }
+    },
+    {
+      "check": "source_goods_exports_to_us_suppressed_nonmissing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_goods_exports_to_us_unflagged_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_goods_exports_to_us_small_nonzero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_goods_exports_to_us_value_identity_max_error",
+      "pass": true,
+      "observed": 0.0,
+      "expected": 0.0,
+      "tolerance": 1e-09
+    },
+    {
+      "check": "source_goods_imports_from_us_row_count",
+      "pass": true,
+      "observed": 8256,
+      "expected": 8256
+    },
+    {
+      "check": "source_goods_imports_from_us_snapshot",
+      "pass": true,
+      "observed": {
+        "missing": 2055,
+        "suppressed": 2055,
+        "small": 610,
+        "zero": 2767,
+        "negative": 0
+      },
+      "expected": {
+        "missing": 2055,
+        "suppressed": 2055,
+        "small": 610,
+        "zero": 2767,
+        "negative": 0
+      }
+    },
+    {
+      "check": "source_goods_imports_from_us_suppressed_nonmissing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_goods_imports_from_us_unflagged_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_goods_imports_from_us_small_nonzero",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_goods_imports_from_us_value_identity_max_error",
+      "pass": true,
+      "observed": 0.0,
+      "expected": 0.0,
+      "tolerance": 1e-09
+    },
+    {
+      "check": "source_files_project_relative",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "source_numeric_infinite_values",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_long_rows",
+      "pass": true,
+      "observed": 11910,
+      "expected": 11910
+    },
+    {
+      "check": "analysis_long_columns",
+      "pass": true,
+      "observed": 66,
+      "expected": 66
+    },
+    {
+      "check": "analysis_long_duplicate_key",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_long_key_missing",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_long_schema_signature",
+      "pass": true,
+      "observed": "505d6c0d8fe9adb62170f92a36210fb7264fb6b1c37eb4c02a4a77aca8eb7cfc",
+      "expected": "505d6c0d8fe9adb62170f92a36210fb7264fb6b1c37eb4c02a4a77aca8eb7cfc"
+    },
+    {
+      "check": "analysis_country_count",
+      "pass": true,
+      "observed": 57,
+      "expected": 57
+    },
+    {
+      "check": "analysis_sector_count",
+      "pass": true,
+      "observed": 5,
+      "expected": 5
+    },
+    {
+      "check": "analysis_country_sector_year_cells",
+      "pass": true,
+      "observed": 1985,
+      "expected": 1985
+    },
+    {
+      "check": "analysis_main_rows",
+      "pass": true,
+      "observed": 9528,
+      "expected": 9528
+    },
+    {
+      "check": "analysis_proxy_rows",
+      "pass": true,
+      "observed": 2382,
+      "expected": 2382
+    },
+    {
+      "check": "analysis_aggregate_rows",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_proxy_flag_contract",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_proxy_main_join_conflict",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_autos_nonproxy_rows",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_unsupported_sector_rows",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "comparison_country_count",
+      "pass": true,
+      "observed": 12,
+      "expected": 12
+    },
+    {
+      "check": "comparison_country_year_cells",
+      "pass": true,
+      "observed": 82,
+      "expected": 82
+    },
+    {
+      "check": "VNM_observed_years",
+      "pass": true,
+      "observed": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "expected": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ]
+    },
+    {
+      "check": "MAR_analysis_rows",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "twn_proxy_rows",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_employment_snapshot",
+      "pass": true,
+      "observed": {
+        "nonmissing": 1804,
+        "missing": 181,
+        "small": 165,
+        "zero": 297,
+        "exact_zero": 157,
+        "negative": 0,
+        "partial_suppression": 68,
+        "all_suppressed": 113
+      },
+      "expected": {
+        "nonmissing": 1804,
+        "missing": 181,
+        "small": 165,
+        "zero": 297,
+        "exact_zero": 157,
+        "negative": 0,
+        "partial_suppression": 68,
+        "all_suppressed": 113
+      }
+    },
+    {
+      "check": "analysis_sales_snapshot",
+      "pass": true,
+      "observed": {
+        "nonmissing": 1536,
+        "missing": 449,
+        "small": 43,
+        "zero": 154,
+        "exact_zero": 113,
+        "negative": 0,
+        "partial_suppression": 85,
+        "all_suppressed": 364
+      },
+      "expected": {
+        "nonmissing": 1536,
+        "missing": 449,
+        "small": 43,
+        "zero": 154,
+        "exact_zero": 113,
+        "negative": 0,
+        "partial_suppression": 85,
+        "all_suppressed": 364
+      }
+    },
+    {
+      "check": "analysis_value_added_snapshot",
+      "pass": true,
+      "observed": {
+        "nonmissing": 1593,
+        "missing": 392,
+        "small": 55,
+        "zero": 161,
+        "exact_zero": 108,
+        "negative": 37,
+        "partial_suppression": 70,
+        "all_suppressed": 322
+      },
+      "expected": {
+        "nonmissing": 1593,
+        "missing": 392,
+        "small": 55,
+        "zero": 161,
+        "exact_zero": 108,
+        "negative": 37,
+        "partial_suppression": 70,
+        "all_suppressed": 322
+      }
+    },
+    {
+      "check": "analysis_capital_expenditures_snapshot",
+      "pass": true,
+      "observed": {
+        "nonmissing": 1626,
+        "missing": 359,
+        "small": 301,
+        "zero": 399,
+        "exact_zero": 128,
+        "negative": 0,
+        "partial_suppression": 114,
+        "all_suppressed": 245
+      },
+      "expected": {
+        "nonmissing": 1626,
+        "missing": 359,
+        "small": 301,
+        "zero": 399,
+        "exact_zero": 128,
+        "negative": 0,
+        "partial_suppression": 114,
+        "all_suppressed": 245
+      }
+    },
+    {
+      "check": "analysis_goods_exports_to_us_snapshot",
+      "pass": true,
+      "observed": {
+        "nonmissing": 1390,
+        "missing": 595,
+        "small": 151,
+        "zero": 722,
+        "exact_zero": 599,
+        "negative": 0,
+        "partial_suppression": 156,
+        "all_suppressed": 439
+      },
+      "expected": {
+        "nonmissing": 1390,
+        "missing": 595,
+        "small": 151,
+        "zero": 722,
+        "exact_zero": 599,
+        "negative": 0,
+        "partial_suppression": 156,
+        "all_suppressed": 439
+      }
+    },
+    {
+      "check": "analysis_goods_imports_from_us_snapshot",
+      "pass": true,
+      "observed": {
+        "nonmissing": 1350,
+        "missing": 635,
+        "small": 169,
+        "zero": 628,
+        "exact_zero": 503,
+        "negative": 0,
+        "partial_suppression": 193,
+        "all_suppressed": 442
+      },
+      "expected": {
+        "nonmissing": 1350,
+        "missing": 635,
+        "small": 169,
+        "zero": 628,
+        "exact_zero": 503,
+        "negative": 0,
+        "partial_suppression": 193,
+        "all_suppressed": 442
+      }
+    },
+    {
+      "check": "analysis_recompute_key_match",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_strict_value_max_error",
+      "pass": true,
+      "observed": 0.0,
+      "expected": 0.0,
+      "tolerance": 1e-09
+    },
+    {
+      "check": "analysis_disclosed_value_max_error",
+      "pass": true,
+      "observed": 0.0,
+      "expected": 0.0,
+      "tolerance": 1e-09
+    },
+    {
+      "check": "analysis_expected_source_industry_count_recomputed",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_source_industry_count_recomputed",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_source_disclosed_industry_count_recomputed",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_source_suppressed_cell_count_recomputed",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_source_small_value_cell_count_recomputed",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_source_missing_cell_count_recomputed",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_source_negative_cell_count_recomputed",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_source_reported_zero_cell_count_recomputed",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_source_exact_zero_cell_count_recomputed",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_full_sector_coverage_flag_recomputed",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_partial_disclosure_flag_recomputed",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_all_components_suppressed_flag_recomputed",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "other_manufacturing_component_count_values",
+      "pass": true,
+      "observed": [
+        2
+      ],
+      "expected": [
+        2
+      ]
+    },
+    {
+      "check": "other_manufacturing_source_industries",
+      "pass": true,
+      "observed": [
+        "Chemicals | Food"
+      ],
+      "expected": [
+        "Chemicals | Food"
+      ]
+    },
+    {
+      "check": "analysis_source_file_multiple_values",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "analysis_numeric_infinite_values",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "negative_value_added_layers",
+      "pass": true,
+      "observed": {
+        "full_source": 164,
+        "actual_country_source": 138,
+        "main_eligible_source": 32,
+        "strict_main_analysis": 19,
+        "strict_proxy_analysis": 18,
+        "strict_main_plus_proxy_analysis": 37
+      },
+      "expected": {
+        "full_source": 164,
+        "actual_country_source": 138,
+        "main_eligible_source": 32,
+        "strict_main_analysis": 19,
+        "strict_proxy_analysis": 18,
+        "strict_main_plus_proxy_analysis": 37
+      }
+    },
+    {
+      "check": "source_long_stata_aliases",
+      "pass": true,
+      "observed": true,
+      "expected": true
+    },
+    {
+      "check": "analysis_long_stata_aliases",
+      "pass": true,
+      "observed": true,
+      "expected": true
+    },
+    {
+      "check": "source_long_deterministic_sha256",
+      "pass": true,
+      "observed": "016c7b10891e3770c14eeb9cf0f489bd9d80281c91bd1e10e2a883f76205b514",
+      "expected": "016c7b10891e3770c14eeb9cf0f489bd9d80281c91bd1e10e2a883f76205b514"
+    },
+    {
+      "check": "analysis_long_deterministic_sha256",
+      "pass": true,
+      "observed": "21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade",
+      "expected": "21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade"
+    },
+    {
+      "check": "temporary_output_cleaned",
+      "pass": true,
+      "observed": true,
+      "expected": true
+    }
+  ],
+  "validation_version": 1,
+  "origin_date": "2026-08-03",
+  "generated_at_utc": "2026-08-03T00:58:58.904648+00:00",
+  "config_path": "configs/production_bea_mne_rules.yaml",
+  "config_sha256": "24db24e60bc70e7646773cf8cdebf80396c0c36c4e4439e9b388a89a4c74265b",
+  "construction_version": "production_bea_mne_rules_v1",
+  "input_contracts": {
+    "bea_mne_activity": {
+      "path": "data/interim/mne/bea_us_mne_affiliate_country_industry.parquet",
+      "sha256": "ab2e064459cc9dac8c13eebd7e399e91047133a93e8f35b9821520add7f219e8",
+      "expected_sha256": "ab2e064459cc9dac8c13eebd7e399e91047133a93e8f35b9821520add7f219e8",
+      "hash_match": true,
+      "rows": 8256,
+      "expected_rows": 8256,
+      "row_count_match": true,
+      "columns": 38,
+      "expected_columns": 38,
+      "column_count_match": true,
+      "schema_signature": "970e0b4e55c521cdb81df6629e12d24ea5254d7a4c218d52ff9d1783f277ed4c",
+      "expected_schema_signature": "970e0b4e55c521cdb81df6629e12d24ea5254d7a4c218d52ff9d1783f277ed4c",
+      "schema_match": true,
+      "key_missing_rows": 0,
+      "duplicate_key_rows": 0
+    },
+    "country_crosswalk": {
+      "path": "data/processed/concordances/country_crosswalk.parquet",
+      "sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+      "expected_sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+      "hash_match": true,
+      "rows": 611,
+      "expected_rows": 611,
+      "row_count_match": true,
+      "columns": 22,
+      "expected_columns": 22,
+      "column_count_match": true,
+      "schema_signature": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+      "expected_schema_signature": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+      "schema_match": true,
+      "key_missing_rows": 0,
+      "duplicate_key_rows": 0
+    },
+    "source_sector_crosswalk": {
+      "path": "data/processed/concordances/source_sector_crosswalk.parquet",
+      "sha256": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+      "expected_sha256": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+      "hash_match": true,
+      "rows": 517,
+      "expected_rows": 517,
+      "row_count_match": true,
+      "columns": 14,
+      "expected_columns": 14,
+      "column_count_match": true,
+      "schema_signature": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+      "expected_schema_signature": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+      "schema_match": true,
+      "key_missing_rows": 0,
+      "duplicate_key_rows": 0
+    },
+    "build_summary": {
+      "path": "data/interim/mne/bea_us_mne_affiliate_country_industry_build_summary.json",
+      "sha256": "236b7afa5bd5065f7a6c614f9af33696f43cf8f8186ac50df61554082603b119",
+      "expected_sha256": "236b7afa5bd5065f7a6c614f9af33696f43cf8f8186ac50df61554082603b119",
+      "hash_match": true
+    },
+    "raw_manifest": {
+      "path": "data/raw/bea_mne/metadata/bea_us_mne_activities_manifest.json",
+      "sha256": "0ad13fc2337a0f4ce74b5b10dab34666244624af5a429840e878c4e9854b4a59",
+      "expected_sha256": "0ad13fc2337a0f4ce74b5b10dab34666244624af5a429840e878c4e9854b4a59",
+      "hash_match": true
+    }
+  },
+  "raw_manifest_audit": {
+    "file_count": 35,
+    "mismatch_count": 0,
+    "mismatches": []
+  },
+  "source_metric_checks": {
+    "employment": {
+      "missing": 740,
+      "suppressed": 740,
+      "small": 319,
+      "zero": 690,
+      "negative": 0
+    },
+    "sales": {
+      "missing": 1344,
+      "suppressed": 1344,
+      "small": 89,
+      "zero": 325,
+      "negative": 0
+    },
+    "value_added": {
+      "missing": 1290,
+      "suppressed": 1290,
+      "small": 127,
+      "zero": 362,
+      "negative": 164
+    },
+    "capital_expenditures": {
+      "missing": 1494,
+      "suppressed": 1494,
+      "small": 745,
+      "zero": 1011,
+      "negative": 0
+    },
+    "goods_exports_to_us": {
+      "missing": 1996,
+      "suppressed": 1996,
+      "small": 691,
+      "zero": 3523,
+      "negative": 0
+    },
+    "goods_imports_from_us": {
+      "missing": 2055,
+      "suppressed": 2055,
+      "small": 610,
+      "zero": 2767,
+      "negative": 0
+    }
+  },
+  "analysis_metric_checks": {
+    "employment": {
+      "nonmissing": 1804,
+      "missing": 181,
+      "small": 165,
+      "zero": 297,
+      "exact_zero": 157,
+      "negative": 0,
+      "partial_suppression": 68,
+      "all_suppressed": 113
+    },
+    "sales": {
+      "nonmissing": 1536,
+      "missing": 449,
+      "small": 43,
+      "zero": 154,
+      "exact_zero": 113,
+      "negative": 0,
+      "partial_suppression": 85,
+      "all_suppressed": 364
+    },
+    "value_added": {
+      "nonmissing": 1593,
+      "missing": 392,
+      "small": 55,
+      "zero": 161,
+      "exact_zero": 108,
+      "negative": 37,
+      "partial_suppression": 70,
+      "all_suppressed": 322
+    },
+    "capital_expenditures": {
+      "nonmissing": 1626,
+      "missing": 359,
+      "small": 301,
+      "zero": 399,
+      "exact_zero": 128,
+      "negative": 0,
+      "partial_suppression": 114,
+      "all_suppressed": 245
+    },
+    "goods_exports_to_us": {
+      "nonmissing": 1390,
+      "missing": 595,
+      "small": 151,
+      "zero": 722,
+      "exact_zero": 599,
+      "negative": 0,
+      "partial_suppression": 156,
+      "all_suppressed": 439
+    },
+    "goods_imports_from_us": {
+      "nonmissing": 1350,
+      "missing": 635,
+      "small": 169,
+      "zero": 628,
+      "exact_zero": 503,
+      "negative": 0,
+      "partial_suppression": 193,
+      "all_suppressed": 442
+    }
+  },
+  "negative_value_added_counts": {
+    "full_source": 164,
+    "actual_country_source": 138,
+    "main_eligible_source": 32,
+    "strict_main_analysis": 19,
+    "strict_proxy_analysis": 18,
+    "strict_main_plus_proxy_analysis": 37
+  },
+  "stata_alias_validation": {
+    "source_long": {
+      "pass": true,
+      "alias_count": 69,
+      "maximum_alias_length": 12,
+      "missing_fields": [],
+      "extra_fields": [],
+      "duplicate_aliases": [],
+      "over_32_characters": {},
+      "invalid_aliases": {}
+    },
+    "analysis_long": {
+      "pass": true,
+      "alias_count": 66,
+      "maximum_alias_length": 12,
+      "missing_fields": [],
+      "extra_fields": [],
+      "duplicate_aliases": [],
+      "over_32_characters": {},
+      "invalid_aliases": {}
+    }
+  },
+  "coverage_and_mapping": {
+    "source_rows": 8256,
+    "source_geography_labels": 75,
+    "source_industries": 16,
+    "source_area_aggregate_rows": 1792,
+    "country_override_aggregate_rows": 112,
+    "final_aggregate_rows": 1904,
+    "actual_country_rows": 6352,
+    "actual_country_count": 57,
+    "actual_country_year_cells": 397,
+    "main_eligible_source_rows": 1985,
+    "proxy_source_rows": 397
+  },
+  "outputs": {
+    "source_long": {
+      "path": "data/processed/harmonized/production_bea_mne_source_industry_long.parquet",
+      "sha256": "016c7b10891e3770c14eeb9cf0f489bd9d80281c91bd1e10e2a883f76205b514",
+      "rows": 49536,
+      "columns": 69,
+      "schema_signature": "f0ac93bcbf5211f9289c2894a21cb82ac26545db0fa3015f1badd5b59a646b72"
+    },
+    "analysis_long": {
+      "path": "data/processed/harmonized/production_validation_bea_mne_long.parquet",
+      "sha256": "21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade",
+      "rows": 11910,
+      "columns": 66,
+      "schema_signature": "505d6c0d8fe9adb62170f92a36210fb7264fb6b1c37eb4c02a4a77aca8eb7cfc"
+    }
+  },
+  "determinism": {
+    "source_long_candidate_sha256": "016c7b10891e3770c14eeb9cf0f489bd9d80281c91bd1e10e2a883f76205b514",
+    "source_long_second_build_sha256": "016c7b10891e3770c14eeb9cf0f489bd9d80281c91bd1e10e2a883f76205b514",
+    "source_long_sha256_match": true,
+    "analysis_long_candidate_sha256": "21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade",
+    "analysis_long_second_build_sha256": "21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade",
+    "analysis_long_sha256_match": true,
+    "temporary_output_cleaned": true
+  }
+}

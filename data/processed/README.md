@@ -1,6 +1,6 @@
 # Processed Data
 
-This directory contains reproducible harmonized outputs built from the validated source-specific files in `data/interim/`. It now contains completed M1 concordances, M2 product-level treatment/trade interfaces, M3.1-M3.6 trade/reorganization/sensitivity interfaces, and the M4.1 ICIO source-sector/analysis-sector production interfaces. It does not yet contain connector rankings or a cross-source production-integration panel.
+This directory contains reproducible harmonized outputs built from the validated source-specific files in `data/interim/`. It now contains completed M1 concordances, M2 product-level treatment/trade interfaces, M3.1-M3.6 trade/reorganization/sensitivity interfaces, and the M4.1-M4.3 ICIO/AMNE/BEA MNE source-specific production interfaces. It does not yet contain connector rankings or a cross-source production-integration panel.
 
 The complete collaborator audit is `docs/data_processing_audit_trail.md`; the variable-level construction contract is `docs/variable_construction_catalog.md`. Their fixed PDF versions are `output/pdf/data_processing_audit_trail.pdf` and `output/pdf/variable_construction_catalog.pdf`. Starting with M3.1, every completed processed-data step must update both Markdown sources and both PDFs before its checklist item is marked complete.
 
@@ -129,6 +129,15 @@ M4.1 does not interpolate 2019, fabricate medical-devices rows, export `.dta`, o
 - Builder/config: `code/data_processing/build_production_amne_long.py` and `configs/production_amne_rules.yaml`.
 - Validation: `data/validation/production_amne_validation.json` and `.md`, status PASS. Positive-link identity, zero-link coverage, direct/allocated formulas, 166 negative parent VA rows, unavailable employment, ROW handling, ratio-of-sums shares, bilateral-XVEM gaps, 71/56 aliases, and deterministic hashes are validated. SHA256 values are `6e3d0a77838b9c1d0cbae6445ee9b3f5637114747e51a148162c720d26605bcb` and `b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179`.
 
-M4.2 does not construct growth/MPE-expansion variables, fabricate medical devices, export `.dta`, or create the final cross-source `production_validation_long.parquet`. M4.3 BEA MNE is the next planned source module. All later production sources must use validated source-sector eligibility rather than matching labels directly.
+M4.2 does not construct growth/MPE-expansion variables, fabricate medical devices, export `.dta`, or create the final cross-source `production_validation_long.parquet`.
+
+## Completed M4.3 BEA MNE production-side outputs
+
+- `harmonized/production_bea_mne_source_industry_long.parquet`: 49,536 rows and 69 columns at `source_name, source_country_id, model_sector, year, metric_name`. It retains all source geographies and industries for six direct BEA metrics, including canonical aggregate overrides, suppression, small-value, negative-value, raw-code, release, and source-file fields.
+- `harmonized/production_validation_bea_mne_long.parquet`: 11,910 rows and 66 columns at `country_iso3, analysis_sector, year, source_name, metric_name`. It covers 57 actual countries and 397 observed country-years. Four strict main sectors produce 9,528 rows; a separately flagged Transportation-equipment autos proxy produces 2,382 robustness rows.
+- Builder/config: `code/data_processing/build_production_bea_mne_long.py` and `configs/production_bea_mne_rules.yaml`.
+- Validation: `data/validation/production_bea_mne_validation.json` and `.md`, status PASS. All 35 raw XLS hashes, input contracts, aggregate filtering, source/analysis keys, strict disclosure formulas, source-to-analysis reconciliation, negative value added, trade directions, 69/66 aliases, and both deterministic hashes are validated. SHA256 values are `016c7b10891e3770c14eeb9cf0f489bd9d80281c91bd1e10e2a883f76205b514` and `21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade`.
+
+For multi-industry cells, `value` is available only when all required source industries are disclosed. `source_disclosed_value_sum` is a coverage diagnostic, not a complete total. `(*)` remains 0.0 with a small-value flag; suppressed values remain missing. Autos proxy rows must never enter the main join. M4.4 BEA FDI is the next source module.
 
 Every processed output must be reproducible from `data/interim/`, documented by a build script, and retain source/provenance fields needed to audit aggregation and suppression.

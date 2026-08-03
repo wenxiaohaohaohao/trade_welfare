@@ -4,7 +4,7 @@ This directory contains reproducible `data/interim/` to `data/processed/` pipeli
 
 ## Current stage
 
-M0, M1, M2, M3.1-M3.6, and M4.1-M4.2 in `data/data_merge_checklist.md` are complete. M4.2 adds an AMNE parent-host source-detail long and a complete host-analysis-sector totals long while distinguishing direct, allocated, derived, and unavailable metrics. It does not construct AMNE growth, combine BEA/FDI sources, create a connector score/ranking, or create the final cross-source production table. M4.3 is the next planned stage.
+M0, M1, M2, M3.1-M3.6, and M4.1-M4.3 in `data/data_merge_checklist.md` are complete. M4.3 standardizes BEA majority-owned foreign-affiliate employment, sales, value added, capital expenditures, and two affiliate-U.S. trade directions while preserving suppression, small-value, aggregate-geography, and mixed-industry states. It does not combine BEA FDI/Mexico sources, construct growth or rankings, or create the final cross-source production table. M4.4 is the next planned stage.
 
 ## Living collaborator audit and variable contract
 
@@ -314,6 +314,27 @@ The parent-host table is 7,560,318 × 71 at `source_name × source_host_country_
 The host table is 53,760 × 56 at `country_iso3 × analysis_sector × year × source_name × metric_name`. It preserves a complete 80-country × 6-sector × 16-year grid for seven metrics, including true zero-affiliate cells and ratio-of-sums foreign-affiliate shares. ROW parent contributions remain in totals; ROW host and unsupported medical-devices rows do not enter the country analysis grid.
 
 Validation status is PASS. Frozen input hashes/schemas/keys match; the full MP-share universe is exactly 81 hosts × 80 foreign parents × 41 sectors × 16 years; the activity table exactly matches its 1,260,053 positive-link keys; 166 negative allocated VA rows and all 1,260,053 unavailable employment values are preserved. Bilateral output sums and direct XVEM totals remain separate reconciliation concepts. The deterministic hashes are `6e3d0a77838b9c1d0cbae6445ee9b3f5637114747e51a148162c720d26605bcb` and `b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179`. All 71/56 aliases pass; `.dta` export remains an M7 task.
+
+## M4.3 BEA U.S. MNE activity standardization
+
+Run the validated single-module builder from the project root:
+
+```powershell
+python code\data_processing\build_production_bea_mne_long.py --project-root . --overwrite
+```
+
+Registered files:
+
+- config: `configs/production_bea_mne_rules.yaml`;
+- source-detail output: `data/processed/harmonized/production_bea_mne_source_industry_long.parquet`;
+- country-analysis output: `data/processed/harmonized/production_validation_bea_mne_long.parquet`;
+- validation: `data/validation/production_bea_mne_validation.json` and `.md`.
+
+The source-detail table is 49,536 × 69 at `source_name × source_country_id × model_sector × year × metric_name`. It retains all 8,256 source rows and all six metrics, including 1,904 canonical aggregate-geography rows, excluded/residual industries, raw BEA codes, suppression, small-value flags, 164 negative value-added observations, and project-relative source-file provenance.
+
+The country-analysis table is 11,910 × 66 at `country_iso3 × analysis_sector × year × source_name × metric_name`. Its 9,528 main rows cover four strictly mapped sectors; 2,382 additional rows are an explicitly isolated Transportation-equipment `autos` proxy with `analysis_scope=proxy_robustness`, `proxy_flag=true`, and `main_analysis_join_eligible=false`. For a multi-industry sector, formal `value` is missing whenever any required source component is suppressed; `source_disclosed_value_sum` remains diagnostic only. Vietnam 2017-2018 and Morocco are not fabricated as zero rows.
+
+Validation status is PASS with 137 checks and zero failures. The 35 raw XLS files match their manifest, all input hashes/schemas/keys match, source and analysis keys are unique, 57 actual countries and 397 observed country-years are preserved, suppression/small-value/negative snapshots reconcile, and all 69/66 Stata aliases pass. Deterministic SHA256 values are `016c7b10891e3770c14eeb9cf0f489bd9d80281c91bd1e10e2a883f76205b514` and `21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade`. `.dta` export remains an M7 task.
 
 ## Stata handoff contract
 
