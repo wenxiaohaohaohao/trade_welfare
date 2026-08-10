@@ -5,7 +5,7 @@
 - Origin Skill: `academic-research-suite/experiment-agent`
 - Origin Mode: `plan`
 - Origin Date: `2026-07-19`
-- Verification Status: `ANALYZED`（M0-M4.4 validation 均为 PASS；M4.5-M7 待执行）
+- Verification Status: `ANALYZED`（M0-M4.5 validation 均为 PASS；M4.6-M7 待执行）
 - Version Label: `data_merge_plan_v1`
 - Working Branch: `data-processing-variables`
 
@@ -13,7 +13,7 @@
 
 目标是把已经验证的 source-specific `data/interim/` 数据，转化为可审计、可重复生成的 `data/processed/` 合并数据，并在此基础上构造 connector ranking、rerouting facts、production-side validation 和 structural moments。
 
-当前阶段：`M0-M4.4 已完成并验证；M4.5-M7 尚未开始`。
+当前阶段：`M0-M4.5 已完成并验证；M4.6-M7 尚未开始`。
 
 勾选规则：只有代码、输出、validation 和说明文件同时完成，任务才从 `[ ]` 改为 `[x]`。部分完成、仅生成文件、仅跑通代码或仍有未解释的 many-to-many join，都不能打勾。
 
@@ -145,7 +145,7 @@ M4.2 门槛已满足：`production_amne_parent_host_sector_long.parquet` 为 7,5
 - [x] M4.2 AMNE：保留 parent-host-sector-year 明细，同时构造 host-sector foreign-affiliate totals；allocated variables 必须标记。
 - [x] M4.3 BEA MNE：先过滤 aggregate geographies，再映射 country 和 industry；保留 employment、sales、value added、capex、affiliate trade 及 suppression flags。
 - [x] M4.4 BEA FDI：分别保留 outward/inward direction、position、flows 和 income；stock、flow 和 income 不混为同一指标。
-- [ ] M4.5 Mexico FDI：季度 flow 按年求和；保留 parent-country、SCIAN sector、confidential 和 total/residual flags。
+- [x] M4.5 Mexico FDI：季度 flow 按年求和；保留 parent-country、SCIAN sector、confidential 和 total/residual flags。
 - [ ] M4.6 把各来源转换为统一 long schema：`country, sector, year, source, metric, value, unit, direct_or_allocated, suppressed_or_confidential`。
 - [ ] M4.7 不人为补齐 ICIO 缺失年份；ICIO 仅在 2017、2018、2022 作为可观察 benchmark，其他来源保留各自覆盖期。
 
@@ -198,4 +198,6 @@ M4.2 门槛已满足：`production_amne_parent_host_sector_long.parquet` 为 7,5
 
 M4.4 门槛已满足：source-detail 为 34,830 × 73，analysis long 为 7,125 × 72；六个 raw XLSX 与 manifest 完全一致，3,060 个 canonical aggregate-geography source rows 只保留在 audit long，未进入 analysis。Outward 与 inward direction 均进入主键，并明确 foreign country 分别是 affiliate host 与 foreign investor origin。Position、flows、income 分开保存且全部 `can_sum_across_metrics=false`、`can_sum_across_years=false`；4,335 个 source negative observations 保留 BEA 原符号。四个 strict main sectors 共 5,700 行；Transportation equipment 仅作为 1,425 行 autos robustness proxy，强制 `main_analysis_join_eligible=false`。Suppressed 值保持 missing，`(*)` zero、exact zero 和 cancellation-to-zero 分开。两张 Parquet 第二次构建的 SHA256 分别为 `e947317c827f975aab78fc9727594094d540e1b4b27a8a6b166eca3fd28d883a` 和 `8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf`。
 
-下一项计划任务是 `M4.5：Mexico FDI 标准化`，尚未开始。M4.1-M4.4 已分别提供 ICIO aggregate benchmark、AMNE parent-host/host-sector activity、BEA majority-owned affiliate activity 和 BEA outward/inward direct-investment financial evidence，但当前仍没有 Mexico FDI 标准化、跨来源 production integration、connector ranking、“赢家”名单或结构模型 inputs。M4.5 及其后步骤必须等待用户确认后再开始。
+M4.5 门槛已满足：source-period audit、parent-sector period 和 benchmark 三张表分别为 902,608 × 73、28,560 × 68、1,867 × 59，三个自然键 duplicate 均为 0。九个 raw 文件和九张 interim 表与 build summary 的 bytes/hash 全部一致；596,366 行 joint detail 在 74 个季度各有固定 8,059 个结构键。86,123 个 `C` 继续为 missing，19,980 个 residual-country rows 未当作普通国家，7,152 个季度负 flow 原符号保留。Parent-sector 表只使用 78 个 direct eligible industry-group codes、7 个 analysis sectors 和 255 个已发布 parent/residual-sector support cells；quarter/calendar-year/H1 strict available rows 为 11,410/2,099/2,566。2024 joint detail 仅有 Q1-Q2，因此 8,059 个 source annual 和 255 个 parent-sector annual rows 显式保留为 incomplete/missing；全国 2024 full-year 36,872.421204 million USD 独立保留。National total、parent annual margin、sector annual margin 分层保存，不外积、不分配保密值、不强制 reconciliation。100 项 validation failure 为 0，73/68/59 个 Stata aliases 通过；三张 Parquet 的第二次构建 SHA256 分别为 `998b1f3245fe06ade332411421c9933f031081921e0847b14e13fa5707d24542`、`98191b4362b2ff1b7d91733d1f8ba7a25dc24028c97b848fe62f165e12d0b89e` 和 `a65f82ba2960987df8d22bccb883f8eda11db641a3f9528148242341091a4806`，逐一一致。
+
+下一项计划任务是 `M4.6：跨来源 production long schema 与整合`，尚未开始。M4.1-M4.5 已分别提供 ICIO aggregate benchmark、AMNE parent-host/host-sector activity、BEA majority-owned affiliate activity、BEA outward/inward direct-investment evidence 和 Mexico inward-FDI source/benchmark interfaces，但当前仍没有跨来源 production integration、connector ranking、“赢家”名单或结构模型 inputs。M4.6 及其后步骤必须等待用户确认后再开始。

@@ -4,10 +4,10 @@
 
 - Origin Skill: `stata-latex-research`
 - Origin Date: `2026-07-27`
-- Verification Status: `VERIFIED_THROUGH_M4.4`
-- Version Label: `variable_catalog_v1.1.0`
-- Current Data Stage: `M0-M4.4 completed`
-- Next Construction Stage: `M4.5 not started; user authorization required`
+- Verification Status: `VERIFIED_THROUGH_M4.5`
+- Version Label: `variable_catalog_v1.2.0`
+- Current Data Stage: `M0-M4.5 completed`
+- Next Construction Stage: `M4.6 not started; user authorization required`
 - Canonical Format: Parquet
 - Collaborator Format: Stata `.dta`
 
@@ -24,7 +24,7 @@
 
 本目录同时包含三类变量：
 
-- `EXISTING_VALIDATED`：M2、M3.1-M3.6 或 M4.1-M4.4 已存在且 validation PASS；
+- `EXISTING_VALIDATED`：M2、M3.1-M3.6 或 M4.1-M4.5 已存在且 validation PASS；
 - `PLANNED_M4` 至 `PLANNED_M6`：已经定义但尚未构造，必须在对应阶段完成后补充实际 output hash 和 validation；
 - `STRUCTURAL_TARGET_ONLY`：只能作为模型校准目标或输入候选，不能直接解释为已经识别的结构参数。
 
@@ -784,7 +784,7 @@ Extended East Asia 包含 China，因此两定义不是两个独立样本。`ext
 
 ## 8. M4 production-side 标准化变量
 
-M4.1-M4.4 状态：`EXISTING_VALIDATED`。M4.1 生成 ICIO source-sector 审计长表和 analysis-sector 标准化长表；M4.2 生成 AMNE parent-host source-detail long 和 host-analysis-sector totals long；M4.3 生成 BEA MNE country-industry source-detail long 和 suppression-safe country-analysis-sector long；M4.4 生成 BEA direct-investment source-industry audit long 和 direction-safe country-analysis-sector financial-evidence long。M4.6 才会把 ICIO、AMNE、BEA 和 Mexico 组合为最终 `production_validation_long.parquet`；当前四个模块不提前伪造这一跨来源文件。所有 production/investment 表采用 long format 保存来源、指标与单位，禁止把不同 `metric_name` 或不同经济概念直接相加。
+M4.1-M4.5 状态：`EXISTING_VALIDATED`。M4.1 生成 ICIO source-sector 审计长表和 analysis-sector 标准化长表；M4.2 生成 AMNE parent-host source-detail long 和 host-analysis-sector totals long；M4.3 生成 BEA MNE country-industry source-detail long 和 suppression-safe country-analysis-sector long；M4.4 生成 BEA direct-investment source-industry audit long 和 direction-safe country-analysis-sector financial-evidence long；M4.5 生成 Mexico FDI source-period audit、parent-sector period 和 national/marginal benchmark long。M4.6 才会把 ICIO、AMNE、BEA 和 Mexico 组合为最终 `production_validation_long.parquet`；当前五个模块不提前伪造这一跨来源文件。所有 production/investment 表采用 long format 保存来源、指标与单位，禁止把不同 `metric_name` 或不同经济概念直接相加。
 
 M4.1 实际输出：
 
@@ -1130,18 +1130,67 @@ value
 
 M4.4 validation 共92项且 failure为0：输入/manifest/build-summary/country/sector/time-rule hashes、六个raw XLSX bytes/hash、11,610-row source identity、3,060 aggregate过滤、direction roles、metric sign/time语义、suppression/small/negative snapshots、strict/disclosed独立复算、zero分类、MEX/TWN/proxy边界和73/72个Stata aliases全部通过。两张Parquet的第二次构建hash完全一致。本阶段仍不构造FDI growth、Mexico FDI、跨来源production panel、ranking、structural moments或`.dta`。
 
-### 8.6 Mexico FDI metrics（`PLANNED_M4.5`）
+### 8.6 Mexico FDI metrics（`EXISTING_VALIDATED_M4.5`）
 
-| Metric | Stata name | 规则 |
+M4.5 只构造一个经济 metric：`fdi_flow`，单位为 `current_million_usd`。季度值为官方发布的 signed inward financial flow；calendar-year 与 H1 是同一 flow 的期间求和，不是新经济指标。负值保留来源符号，不解释为数据错误；它可能反映撤资、反向交易或其他净金融流。该 metric 不是 output、employment、plant entry 或 causal relocation。
+
+M4.5 实际输出：
+
+| Output | 自然键 | 规模 | SHA256 |
+|---|---|---:|---|
+| `data/processed/harmonized/production_mexico_fdi_source_sector_period_long.parquet` | `source_name, source_parent_country_id, source_sector_level, source_sector_code, year, period_type, period_id, metric_name` | 902,608 × 73 | `998b1f3245fe06ade332411421c9933f031081921e0847b14e13fa5707d24542` |
+| `data/processed/harmonized/production_validation_mexico_fdi_parent_sector_period_long.parquet` | `host_country_iso3, source_parent_country_id, analysis_sector, year, period_type, period_id, source_name, metric_name` | 28,560 × 68 | `98191b4362b2ff1b7d91733d1f8ba7a25dc24028c97b848fe62f165e12d0b89e` |
+| `data/processed/harmonized/production_mexico_fdi_benchmark_period_long.parquet` | `benchmark_scope, benchmark_record_id, year, period_type, period_id, source_name, metric_name` | 1,867 × 59 | `a65f82ba2960987df8d22bccb883f8eda11db641a3f9528148242341091a4806` |
+
+Config 为 `configs/production_mexico_fdi_rules.yaml`，SHA256 为 `0f49c1bb523c8c21d2bbd2e754f68563274619f5491a284bb723535b7052b00b`；builder 为 `code/data_processing/build_production_mexico_fdi_long.py`；validation 为 `data/validation/production_mexico_fdi_validation.json/.md`。三张表在项目 F 盘各完整构建两次，candidate 与 second-build SHA256 逐一一致。
+
+时间公式：
+
+```text
+quarter value = official quarterly fdi_million_usd
+
+calendar_year disclosed_sum = sum(Q1,Q2,Q3,Q4 disclosed values)
+calendar_year value = disclosed_sum
+    only if Q1-Q4 all observed and no required cell is C
+
+h1 disclosed_sum = sum(Q1,Q2 disclosed values)
+h1 value = disclosed_sum
+    only if Q1-Q2 all observed and no required cell is C
+```
+
+`complete_period_flag` 只表示所需季度和已发布 component lattice 是否完整；`value_available_flag` 另外要求没有 confidential component。两者不能合并成同一个 flag。2024 joint detail 只有 Q1-Q2，因此 source 表的 8,059 个 calendar-year rows 和 parent-sector 表的 255 个 calendar-year rows显式 `complete_period_flag=false`、`value` missing；H1 仍可与历史 H1 比较。2024 national full-year 36,872.421204 million USD 只在 benchmark 表中保留，绝不用于补 joint detail 的 Q3-Q4。
+
+Source-period 表保留 SCIAN `sector`、`subsector`、`industry_group` 三层，但它们是重叠层级，不得相加。Parent-sector 表只使用 `industry_group` 中 78 个 direct eligible codes：electronics 5、electrical equipment 4、machinery 7、autos 3、medical devices 1、textiles/apparel 11、other manufacturing 47。SCIAN 3345 继续 ambiguous/unweighted，不拆分。Parent-sector 的 strict `value` 要求该 parent-sector 的全部已发布 SCIAN components 与所需季度均披露；`source_disclosed_value_sum` 只是 diagnostic，不是完整 sector total，也不能称 lower bound，因为被保密值可能为正或负。`theoretical_full_sector_coverage_not_asserted_flag=true` 明确该条件只针对 source-published component universe。
+
+Parent 是官方 reported source/parent jurisdiction，不保证是 ultimate owner；host 和 destination 固定为 MEX。Parent-sector 表全部 `main_cross_source_join_eligible=false`，因为它不能按 `parent_country_iso3` 冒充 host-country production evidence。50 个 actual parents 与 `Otros países` residual 分开；BLZ/IDN 没有 eligible-sector published support，不能补零。Benchmark 表另含 26 行 `XXA/S/N` unknown/residual parent margin，`parent_country_join_eligible=false`。
+
+Benchmark 表使用 `benchmark_scope` 分开三类证据：156 行 `national_total`、1,191 行 `parent_country_annual_margin`、520 行 `sector_annual_margin`。Parent 和 sector margins 是一维边际表，不构造 parent×sector 外积，不按 national-detail gap 分配 `C`，也不强制等于 national total。Parent-margin 与 sector-margin 对 national annual 最大差分别为 464.170370 和 1,152.319723 million USD，作为 non-additive 来源差异登记，不作为失败。
+
+核心字段和 Stata aliases：
+
+| Canonical name | Stata alias | 规则/用途 |
 |---|---|---|
-| `fdi_quarterly_usd` | `fdi_q_usd` | quarterly flow，负值保留 |
-| `fdi_annual_usd` | `fdi_a_usd` | 仅四季度完整且均非 confidential 时求和 |
-| `fdi_h1_usd` | `fdi_h1_usd` | 2024 与历史 H1-to-H1 比较 |
-| `fdi_complete_year_flag` | `fdi_yr_ok` | 2006-2023 full-year；2024 detail false |
-| `fdi_confidential_quarter_count` | `fdi_conf_n` | confidential quarter count |
-| `fdi_disclosed_composition_share` | `fdi_discsh` | 只描述 disclosed cells，不能解释为完整 national share |
+| `metric_name` | `metric` | 固定 `fdi_flow` |
+| `period_type` | `per_type` | `quarter`、`calendar_year` 或 `h1` |
+| `period_id` | `period_id` | `YYYYQq`、`YYYY` 或 `YYYYH1` |
+| `value` | `value` | suppression-safe strict flow；不可用时 missing |
+| `source_disclosed_value_sum` | `disc_sum` | 仅 disclosed components 的 signed sum，诊断用途 |
+| `complete_period_flag` | `full_per` | 所需季度/component lattice 完整 |
+| `value_available_flag` | `val_avail` | 完整且无 `C` |
+| `confidential_flag` | `confidentl` | 任一 required component 为 `C` |
+| `confidential_quarter_count` | `conf_q_n` | source-period 被保密季度数 |
+| `partial_disclosure_flag` | `part_disc` | 有 `C` 但仍有其他 disclosed components |
+| `observed_negative_flag` | `obs_neg` | strict value 为负；保留不截断 |
+| `exact_zero_flag` | `exact_zero` | required disclosed components 全部严格为零 |
+| `cancellation_to_zero_flag` | `zero_cancel` | signed components 抵消为零；与 exact zero 分开 |
+| `source_parent_country_id` | `parent_id` | source-published parent/residual identifier |
+| `parent_country_iso3` | `parent_iso3` | nullable；不能当 host-country key |
+| `host_country_iso3` | `host_iso3` | 固定 MEX |
+| `analysis_sector` | `ana_sector` | 七个 direct sectors；benchmark 可为 all_economy/不适用 |
+| `benchmark_scope` | `bench_scope` | national、parent margin 或 sector margin |
+| `main_cross_source_join_eligible` | `main_joinok` | parent detail固定 false；M4.6 必须按 scope 判断 |
 
-Mexico national total 与 detailed composition 必须存为不同 source/metric，不能用 disclosed detail 替代全国 total。
+Source/parent/benchmark 三表分别冻结 73/68/59 个完整、大小写不敏感唯一、合法且不超过 32 字符的 aliases。正式 `.dta` 仍由 M7 生成。M4.5 validation 共 100 项、failure 0，覆盖九个 raw/interim hashes、schema/key、固定季度结构、crosswalk、confidential/residual/signed/zero states、period formulas、2024 incomplete annual、national benchmark、margin gaps、aliases 和三张确定性 hashes。本阶段不构造 Mexico FDI growth、跨来源 production panel、ranking、structural moments 或 `.dta`。
 
 ## 9. M4-M5 production changes 和覆盖变量
 
@@ -1479,10 +1528,11 @@ Reviewer/date:
 9. M4.2 已生成 AMNE parent-host source-detail long 和 80-country × 6-sector × 16-year host totals long；
 10. M4.3 已生成 BEA MNE source-industry audit long 和 suppression-safe country-sector activity long，并隔离 autos proxy；
 11. M4.4 已生成 BEA FDI source-industry audit long 和 direction-safe country-sector financial-evidence long，并隔离 autos proxy；
-12. 下一步 M4.5 标准化 Mexico quarterly/national/detail FDI，须等待用户确认；
-13. M5 逐来源 left join 和 coverage；
-14. M6 先 trade ranking，再 production grade，最后 structural moments；
-15. M7 导出 Stata、运行 `.do`、冻结 release。
+12. M4.5 已生成 Mexico FDI source-period audit、parent-sector period 与 national/marginal benchmark long，保留 confidentiality、residual、signed flow 和 2024 H1-only 边界；
+13. 下一步 M4.6 构造跨来源 production long schema，须等待用户确认；
+14. M5 逐来源 left join 和 coverage；
+15. M6 先 trade ranking，再 production grade，最后 structural moments；
+16. M7 导出 Stata、运行 `.do`、冻结 release。
 
 ## 18. 版本记录
 
@@ -1500,5 +1550,6 @@ Reviewer/date:
 | v0.9.0 | 2026-08-02 | 完成 M4.2 AMNE 变量合同：登记 7,560,318 × 71 parent-host source-detail long 和 53,760 × 56 host-analysis-sector long、direct/allocated/derived/unavailable 状态、positive/full-zero universe 边界、ROW parent/host 规则、166 个负 allocated VA、employment 全缺失、ratio-of-sums share、bilateral-XVEM reconciliation、71/56 aliases、独立复算和两个确定性 hashes；明确不构造 growth、ranking、hgamma 或跨来源 production 文件。 |
 | v1.0.0 | 2026-08-03 | 完成 M4.3 BEA MNE 变量合同：登记 49,536 × 69 source-industry long 和 11,910 × 66 analysis long、六项 direct affiliate metrics、1,904 aggregate geography过滤、strict/diagnostic disclosure 双值接口、suppression/small/exact-zero规则、164个source负VA、四个main sectors与autos robustness proxy隔离、Vietnam/Morocco coverage边界、69/66 aliases、137项validation和两个确定性hashes。 |
 | v1.1.0 | 2026-08-10 | 完成 M4.4 BEA FDI 变量合同：登记 34,830 × 73 source-industry long 和 7,125 × 72 direction-safe analysis long、position/flows/income 分离、3,060 aggregate geography过滤、outward/inward foreign-country roles、strict/diagnostic disclosure、4,335个source signed negatives、exact/small/cancellation zero拆分、四个main sectors与autos proxy隔离、73/72 aliases、92项validation和两个确定性hashes。 |
+| v1.2.0 | 2026-08-10 | 完成 M4.5 Mexico FDI 变量合同：登记 902,608 × 73 source-period audit、28,560 × 68 parent-sector period 和 1,867 × 59 benchmark long；固定 quarter/calendar-year/H1、2024 detail H1-only、C propagation、residual/unknown parent isolation、SCIAN hierarchy、78个direct industry-group codes、255个published support cells、national/marginal non-additivity、73/68/59 aliases、100项validation、独立复算和三个确定性hashes。 |
 
-下一次强制更新：M4.5 Mexico FDI 标准化完成时，补齐 quarterly/annual/H1、national/detail、parent-country/SCIAN、confidential、residual/total、signed values、output hash、validation 和 Stata 接口；同时更新审计档案并重建两份 PDF。
+下一次强制更新：M4.6 跨来源 production long schema 完成时，登记 source/metric/grain 对齐、host/parent/direction 角色、join cardinality、matched/unmatched、coverage、non-additivity、output hash、validation 和 Stata 接口；同时更新审计档案并重建两份 PDF。

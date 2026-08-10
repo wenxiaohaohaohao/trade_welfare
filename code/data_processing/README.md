@@ -4,7 +4,7 @@ This directory contains reproducible `data/interim/` to `data/processed/` pipeli
 
 ## Current stage
 
-M0, M1, M2, M3.1-M3.6, and M4.1-M4.4 in `data/data_merge_checklist.md` are complete. M4.4 standardizes BEA outward/inward direct-investment position, flows, and income while preserving direction roles, suppression, small values, signed values, aggregate geography, stock/flow semantics, and a separately flagged Transportation-equipment autos proxy. It does not combine Mexico FDI, construct production growth or rankings, or create the final cross-source production table. M4.5 is the next planned stage.
+M0, M1, M2, M3.1-M3.6, and M4.1-M4.5 in `data/data_merge_checklist.md` are complete. M4.5 standardizes Mexico inward FDI at its published quarterly, annual, H1, parent-country, SCIAN, and national/marginal grains while preserving confidentiality, residual countries, signed values, hierarchy, and partial-year status. It does not construct production growth or rankings or create the final cross-source production table. M4.6 is the next planned stage.
 
 ## Living collaborator audit and variable contract
 
@@ -358,6 +358,30 @@ The country-analysis table is 7,125 × 72 at `country_iso3 × investment_directi
 Position is an end-period historical-cost stock. Flows and income are separate annual-flow concepts. None of the three may be added across metrics or mechanically summed across years. Outward rows treat the foreign country as affiliate host; inward rows treat it as foreign investor origin. Flow signs retain BEA's direction-specific convention, while position and income retain source-reported signed values without recoding. Exact zeros, zero-valued `(*)` cells, and signed cancellation-to-zero are stored as distinct states.
 
 Validation status is PASS with 92 checks and zero failures. The six raw XLSX files match their manifest; all input hashes/schemas/keys and country/sector/time rules match; source and analysis keys are unique; strict values and disclosure diagnostics independently recompute from source long; 73/72 Stata aliases pass. Deterministic SHA256 values are `e947317c827f975aab78fc9727594094d540e1b4b27a8a6b166eca3fd28d883a` and `8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf`. `.dta` export remains an M7 task.
+
+## M4.5 Mexico FDI standardization
+
+Run the validated single-module builder from the project root:
+
+```powershell
+python code\data_processing\build_production_mexico_fdi_long.py --project-root . --overwrite
+```
+
+Registered files:
+
+- config: `configs/production_mexico_fdi_rules.yaml`;
+- source-period output: `data/processed/harmonized/production_mexico_fdi_source_sector_period_long.parquet`;
+- parent-sector output: `data/processed/harmonized/production_validation_mexico_fdi_parent_sector_period_long.parquet`;
+- benchmark output: `data/processed/harmonized/production_mexico_fdi_benchmark_period_long.parquet`;
+- validation: `data/validation/production_mexico_fdi_validation.json` and `.md`.
+
+The source-period audit table is 902,608 × 73. It retains every published parent-country × SCIAN row at quarterly grain and derives calendar-year and H1 rows without combining overlapping SCIAN hierarchy levels. Calendar-year values require Q1-Q4 and no confidential quarter; H1 values require Q1-Q2 and no confidential quarter. The 8,059 detail cells for 2024 are retained as explicit incomplete calendar-year rows rather than silently omitted or completed with national Q3-Q4 values.
+
+The parent-sector table is 28,560 × 68 and contains 18,870 quarterly, 4,845 calendar-year, and 4,845 H1 observations over the 255 published parent/residual-country × analysis-sector support cells. Strict values require every published SCIAN component in the cell and every required quarter to be disclosed. This published-component condition does not assert theoretical full SCIAN-sector coverage. Parent is an origin/source jurisdiction, host is always Mexico, and every row has `main_cross_source_join_eligible=false`; M4.6 must not treat parent ISO3 as a host-country production key.
+
+The benchmark table is 1,867 × 59: 156 national quarterly/calendar-year/H1 totals, 1,191 official parent-country annual margins, and 520 official two-digit sector annual margins. The two one-dimensional margins are not outer-producted, allocated, or forced to equal the national total. The 2024 national annual total is 36,872.421204 million USD, while joint detail remains H1-only.
+
+Validation status is PASS with 100 checks and zero failures. All nine raw files and nine interim hashes match the build summary; input schemas and keys, fixed 74-quarter source universe, country/sector/time crosswalks, confidentiality propagation, signed/zero states, quarterly/annual/H1 formulas, 2024 partial-year rule, national benchmark, one-dimensional margin gaps, and 73/68/59 Stata aliases pass. Candidate and second-build SHA256 values are `998b1f3245fe06ade332411421c9933f031081921e0847b14e13fa5707d24542`, `98191b4362b2ff1b7d91733d1f8ba7a25dc24028c97b848fe62f165e12d0b89e`, and `a65f82ba2960987df8d22bccb883f8eda11db641a3f9528148242341091a4806`. `.dta` export remains an M7 task.
 
 ## Stata handoff contract
 

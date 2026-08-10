@@ -1,0 +1,425 @@
+version: production_mexico_fdi_rules_v1
+origin_date: '2026-08-10'
+construction_version: m4_5_mexico_fdi_standardization_v1
+source_name: mexico_fdi
+
+inputs:
+  country_sector_quarterly:
+    path: data/interim/fdi/mexico_fdi_country_sector_quarterly.parquet
+    sha256: fce725b009dc96ae825bd3fed2d2b02ba5cc13501c5a6657bcdf3a09a022261a
+    expected_rows: 596366
+    expected_columns: 15
+    arrow_schema_signature_sha256: 6c3f978d5777bd15ce5c2bf64119519d1897974f5aa117b957f5c7c26d251ba9
+    natural_key: [year, quarter, parent_country_name, sector_level, sector_code]
+  national_quarterly:
+    path: data/interim/fdi/mexico_fdi_national_quarterly.parquet
+    sha256: 1132252eb26380bbecc6926f48b5ee48d0560542ba9bc49d6d0625d167c792f7
+    expected_rows: 104
+    expected_columns: 6
+    arrow_schema_signature_sha256: 927583edc3439e5efb963d150f855ced645089ba3f48ffb97b90a9fd8961c130
+    natural_key: [year, quarter]
+  national_investment_type_quarterly:
+    path: data/interim/fdi/mexico_fdi_national_investment_type_quarterly.parquet
+    sha256: 689ae30c97bf8e2525bf90ec461d33493ba6cbd3d38924f1d0c77b2d59059912
+    expected_rows: 312
+    expected_columns: 8
+    arrow_schema_signature_sha256: 72bb47ac2b01e1110d527f45e7090f4c1868abd86b422a831804094c6afb4ce0
+    natural_key: [year, quarter, investment_type_id]
+  parent_country_annual:
+    path: data/interim/fdi/mexico_fdi_parent_country_annual.parquet
+    sha256: 2e340c6ea247c9de3a4e492b43d21cf553b63126a80b163ce94f5d7bfd33db60
+    expected_rows: 1191
+    expected_columns: 6
+    arrow_schema_signature_sha256: 47ba21af59ba12e7757eaee2736abe96b560f84511bdab2cd78189a4c4d10b6f
+    natural_key: [year, parent_country_iso3]
+  sector_annual:
+    path: data/interim/fdi/mexico_fdi_sector_annual.parquet
+    sha256: dfae18482839f22397bfae63272b9da0a709bb8b50dab26eeb0bb14909613a06
+    expected_rows: 520
+    expected_columns: 7
+    arrow_schema_signature_sha256: 42703cad0b58f18dbc3eccddde0a50cc9b1af9fc44b66f28e7b94c5665fd9373
+    natural_key: [year, sector_level, sector_code]
+  country_investment_type_quarterly:
+    path: data/interim/fdi/mexico_fdi_country_investment_type_quarterly.parquet
+    sha256: f639a495f72b1fd0477c25bbc40fe72f4005f3d599a3d182e44e98835abe1af3
+    expected_rows: 10878
+    expected_columns: 13
+    arrow_schema_signature_sha256: 725405e8657d60bc5674c639e4904e3131a29d4541485b88dd4a3aa481a7d761
+    natural_key: [year, quarter, parent_country_name, investment_type]
+  state_country_quarterly:
+    path: data/interim/fdi/mexico_fdi_state_country_quarterly.parquet
+    sha256: 33facb1d6a52def8b8b47612fe2c539f6dfa3b80c7f3ee589cf68cd166567e3f
+    expected_rows: 96200
+    expected_columns: 13
+    arrow_schema_signature_sha256: 85228b899b4c8f0e7011aa6c9a388e8668e75b0f748c2f944f445ea101085466
+    natural_key: [year, quarter, host_state_name, parent_country_name]
+  state_investment_type_quarterly:
+    path: data/interim/fdi/mexico_fdi_state_investment_type_quarterly.parquet
+    sha256: cd2cd336d9aada35738bb5cb04baf5b559a2a6e0c1522cc3ef041fd68b2ce9e7
+    expected_rows: 7104
+    expected_columns: 10
+    arrow_schema_signature_sha256: 9f4a831e88f5c3c1cfa8cdbd51f05970af0a56f384d7171e45b1cad82b464ae2
+    natural_key: [year, quarter, host_state_name, investment_type]
+  state_sector_quarterly:
+    path: data/interim/fdi/mexico_fdi_state_sector_quarterly.parquet
+    sha256: c85f496e20f627209611be8b041fe789950ce83e773cf24c19b23ed7b648cad0
+    expected_rows: 616420
+    expected_columns: 12
+    arrow_schema_signature_sha256: 13f9b5439dafd376c66edcb315f54adb2c31303753876116392a3346f335ffd4
+    natural_key: [year, quarter, host_state_name, sector_level, sector_code]
+  country_crosswalk:
+    path: data/processed/concordances/country_crosswalk.parquet
+    sha256: 29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6
+    expected_rows: 611
+    expected_columns: 22
+    arrow_schema_signature_sha256: 464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5
+    filter_source_name: mexico_fdi
+    expected_filtered_rows: 51
+    natural_key: [source_name, source_country_id]
+  source_sector_crosswalk:
+    path: data/processed/concordances/source_sector_crosswalk.parquet
+    sha256: 99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9
+    expected_rows: 517
+    expected_columns: 14
+    arrow_schema_signature_sha256: bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d
+    filter_source_name: mexico_fdi
+    expected_filtered_rows: 392
+    natural_key: [source_name, source_sector_level, source_sector_code]
+  time_aggregation_rules:
+    path: data/processed/concordances/time_aggregation_rules.parquet
+    sha256: 94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4
+    expected_rows: 39
+    expected_columns: 18
+    arrow_schema_signature_sha256: 5ecd32dc77a0f9f381befa62b9ade4ad990013d9485cd2dc1070899e1bc39bba
+    filter_input_id: mexico_fdi_country_sector_quarterly
+    expected_filtered_rows: 2
+    natural_key: [input_id, metric_name]
+  build_summary:
+    path: data/interim/fdi/mexico_fdi_build_summary.json
+    sha256: 2f7db50f89044ac1ccda773a38ddf52f951287b51bdb0c06a51b933f19d2681b
+    expected_source_count: 9
+
+metric:
+  metric_name: fdi_flow
+  unit: current_million_usd
+  temporal_type: financial_flow
+  investment_direction: inward_to_mexico
+  direct_or_allocated: direct
+  derivation_status: direct_or_period_sum
+  sign_convention: source_reported_signed_flow_no_recode
+  metric_use: external_financial_investment_evidence_not_production
+  can_sum_across_source_panels: false
+  can_sum_across_years: false
+  can_sum_across_metrics: false
+
+time_scopes:
+  quarter:
+    expected_quarters: 1
+  calendar_year:
+    expected_quarters: 4
+    national_year_start: 1999
+    national_year_end: 2024
+    detail_complete_year_start: 2006
+    detail_complete_year_end: 2023
+    detail_incomplete_year: 2024
+  h1:
+    expected_quarters: 2
+    national_year_start: 1999
+    national_year_end: 2024
+    detail_year_start: 2006
+    detail_year_end: 2024
+
+outputs:
+  source_period_long:
+    path: data/processed/harmonized/production_mexico_fdi_source_sector_period_long.parquet
+    expected_rows: 902608
+    expected_columns: 73
+    schema_version: production_mexico_fdi_source_sector_period_long_v1
+    natural_key: [source_name, source_parent_country_id, source_sector_level, source_sector_code, year, period_type, period_id, metric_name]
+    stata_aliases:
+      source_name: source
+      source_parent_country_id: parent_id
+      source_parent_country_name: par_ctrynm
+      parent_country_iso3: parent_iso3
+      parent_country_iso2: parent_iso2
+      parent_canonical_country_name: parent_name
+      parent_country_mapping_status: par_mapst
+      parent_country_mapping_method: par_mapmth
+      parent_country_is_country: par_country
+      parent_country_is_residual: par_resid
+      parent_country_total_flag: par_total
+      parent_country_residual_flag: par_residf
+      parent_country_join_eligible: par_joinok
+      parent_is_source_core: par_srcore
+      parent_is_source_extended: par_srext
+      parent_is_asian_comparator: par_ascomp
+      parent_is_other_candidate: par_othcand
+      comparison_sample_parent_flag: par_comp
+      host_country_iso3: host_iso3
+      host_country_name: host_name
+      investment_direction: invest_dir
+      origin_country_iso3: origin_iso3
+      destination_country_iso3: dest_iso3
+      source_sector_level: src_seclvl
+      source_sector_code: src_seccode
+      source_sector_label: src_seclab
+      analysis_sector: ana_sector
+      sector_mapping_status: sec_mapst
+      sector_mapping_rule: sec_maprule
+      sector_first_round_exclusion: sec_excl
+      sector_proxy_analysis_sector: sec_proxy
+      sector_is_main_join_eligible: sec_joinok
+      sector_mapping_weight: sec_weight
+      source_granularity_note: gran_note
+      source_code_family: code_family
+      source_sector_mapping_version: sec_mapver
+      year: year
+      quarter: quarter
+      period_type: per_type
+      period_id: period_id
+      period_start_quarter: q_start
+      period_end_quarter: q_end
+      expected_quarter_count: q_exp
+      observed_quarter_count: q_obs
+      complete_period_flag: full_per
+      annual_comparable_flag: ann_comp
+      h1_comparable_flag: h1_comp
+      partial_year_flag: part_year
+      metric_name: metric
+      value: value
+      source_disclosed_value_sum: disc_sum
+      unit: unit
+      temporal_type: temp_type
+      direct_or_allocated: direct_alloc
+      derivation_status: deriv_stat
+      metric_formula: metric_form
+      metric_use: metric_use
+      value_available_flag: val_avail
+      confidential_flag: confidentl
+      confidential_quarter_count: conf_q_n
+      partial_disclosure_flag: part_disc
+      all_components_confidential_flag: all_conf
+      observed_negative_flag: obs_neg
+      reported_zero_flag: rep_zero
+      exact_zero_flag: exact_zero
+      can_sum_across_source_panels: panel_add
+      can_sum_across_years: year_add
+      can_sum_across_metrics: met_add
+      source_file: src_file
+      source_snapshot_date: src_snap
+      m4_mexico_fdi_version: m4_mexver
+      rules_config_sha256: rules_hash
+      schema_version: schema_ver
+  parent_sector_period_long:
+    path: data/processed/harmonized/production_validation_mexico_fdi_parent_sector_period_long.parquet
+    expected_rows: 28560
+    expected_columns: 68
+    schema_version: production_validation_mexico_fdi_parent_sector_period_long_v1
+    natural_key: [host_country_iso3, source_parent_country_id, analysis_sector, year, period_type, period_id, source_name, metric_name]
+    stata_aliases:
+      host_country_iso3: host_iso3
+      host_country_name: host_name
+      source_parent_country_id: parent_id
+      source_parent_country_name: par_ctrynm
+      parent_country_iso3: parent_iso3
+      parent_canonical_country_name: parent_name
+      parent_country_mapping_status: par_mapst
+      parent_country_is_country: par_country
+      parent_country_is_residual: par_resid
+      parent_country_join_eligible: par_joinok
+      parent_is_source_core: par_srcore
+      parent_is_source_extended: par_srext
+      parent_is_asian_comparator: par_ascomp
+      parent_is_other_candidate: par_othcand
+      comparison_sample_parent_flag: par_comp
+      investment_direction: invest_dir
+      origin_country_iso3: origin_iso3
+      destination_country_iso3: dest_iso3
+      analysis_sector: ana_sector
+      source_name: source
+      metric_name: metric
+      year: year
+      quarter: quarter
+      period_type: per_type
+      period_id: period_id
+      period_start_quarter: q_start
+      period_end_quarter: q_end
+      expected_quarter_count: q_exp
+      observed_quarter_count: q_obs
+      complete_period_flag: full_per
+      annual_comparable_flag: ann_comp
+      h1_comparable_flag: h1_comp
+      partial_year_flag: part_year
+      published_source_industry_count: pub_ind_n
+      observed_source_industry_count: obs_ind_n
+      expected_source_row_count: src_rowexp
+      source_row_count: src_row_n
+      published_component_lattice_complete_flag: pub_lattok
+      published_component_scope_flag: pub_scope
+      theoretical_full_sector_coverage_not_asserted_flag: no_fullsec
+      source_disclosed_cell_count: disc_n
+      source_confidential_cell_count: conf_n
+      source_negative_cell_count: neg_n
+      source_exact_zero_cell_count: zero_n
+      value: value
+      source_disclosed_value_sum: disc_sum
+      unit: unit
+      temporal_type: temp_type
+      direct_or_allocated: direct_alloc
+      derivation_status: deriv_stat
+      metric_formula: metric_form
+      metric_use: metric_use
+      value_available_flag: val_avail
+      confidential_flag: confidentl
+      partial_disclosure_flag: part_disc
+      all_components_confidential_flag: all_conf
+      observed_negative_flag: obs_neg
+      reported_zero_flag: rep_zero
+      exact_zero_flag: exact_zero
+      cancellation_to_zero_flag: zero_cancel
+      main_cross_source_join_eligible: main_joinok
+      can_sum_across_source_panels: panel_add
+      can_sum_across_years: year_add
+      can_sum_across_metrics: met_add
+      source_snapshot_date: src_snap
+      m4_mexico_fdi_version: m4_mexver
+      rules_config_sha256: rules_hash
+      schema_version: schema_ver
+  benchmark_period_long:
+    path: data/processed/harmonized/production_mexico_fdi_benchmark_period_long.parquet
+    expected_rows: 1867
+    expected_columns: 59
+    schema_version: production_mexico_fdi_benchmark_period_long_v1
+    natural_key: [benchmark_scope, benchmark_record_id, year, period_type, period_id, source_name, metric_name]
+    stata_aliases:
+      benchmark_scope: bench_scope
+      benchmark_record_id: bench_id
+      source_panel: src_panel
+      host_country_iso3: host_iso3
+      host_country_name: host_name
+      source_parent_country_id: parent_id
+      source_parent_country_name: par_ctrynm
+      parent_country_iso3: parent_iso3
+      parent_canonical_country_name: parent_name
+      parent_country_record_type: par_rectyp
+      parent_country_join_eligible: par_joinok
+      source_sector_level: src_seclvl
+      source_sector_code: src_seccode
+      source_sector_label: src_seclab
+      sector_mapping_status: sec_mapst
+      sector_is_main_join_eligible: sec_joinok
+      analysis_sector: ana_sector
+      investment_direction: invest_dir
+      origin_country_iso3: origin_iso3
+      destination_country_iso3: dest_iso3
+      source_name: source
+      metric_name: metric
+      year: year
+      quarter: quarter
+      period_type: per_type
+      period_id: period_id
+      period_start_quarter: q_start
+      period_end_quarter: q_end
+      expected_quarter_count: q_exp
+      observed_quarter_count: q_obs
+      complete_period_flag: full_per
+      annual_comparable_flag: ann_comp
+      h1_comparable_flag: h1_comp
+      partial_year_flag: part_year
+      value: value
+      source_disclosed_value_sum: disc_sum
+      unit: unit
+      temporal_type: temp_type
+      direct_or_allocated: direct_alloc
+      derivation_status: deriv_stat
+      metric_formula: metric_form
+      metric_use: metric_use
+      value_available_flag: val_avail
+      confidential_flag: confidentl
+      observed_negative_flag: obs_neg
+      reported_zero_flag: rep_zero
+      exact_zero_flag: exact_zero
+      national_total_flag: nat_total
+      one_dimensional_margin_flag: one_dim
+      nonadditive_to_national_flag: nonadd_nat
+      main_cross_source_join_eligible: main_joinok
+      can_sum_across_source_panels: panel_add
+      can_sum_across_years: year_add
+      can_sum_across_metrics: met_add
+      source_file: src_file
+      source_snapshot_date: src_snap
+      m4_mexico_fdi_version: m4_mexver
+      rules_config_sha256: rules_hash
+      schema_version: schema_ver
+
+validation_outputs:
+  json: data/validation/production_mexico_fdi_validation.json
+  markdown: data/validation/production_mexico_fdi_validation.md
+
+validation:
+  numeric_tolerance_million_usd: 1.0e-9
+  usd_scaling_tolerance: 0.01
+  national_type_reconciliation_tolerance_million_usd: 0.001
+  candidate_temp_directory: tmp/m4_5_candidates
+  determinism_temp_directory: tmp/m4_5_determinism
+  expected_raw_source_count: 9
+  expected_detail_quarters: 74
+  expected_detail_rows_per_quarter: 8059
+  expected_detail_structure_key_count: 8059
+  expected_detail_country_count: 50
+  expected_detail_residual_label_count: 1
+  expected_detail_confidential_rows: 86123
+  expected_detail_residual_rows: 19980
+  expected_detail_total_rows: 0
+  expected_detail_negative_rows: 7152
+  expected_detail_zero_rows: 473609
+  expected_sector_level_rows:
+    industry_group: 362526
+    subsector: 176638
+    sector: 57202
+  expected_sector_level_codes:
+    industry_group: 283
+    subsector: 90
+    sector: 19
+  expected_eligible_rows: 96718
+  expected_eligible_actual_rows: 93536
+  expected_eligible_residual_rows: 3182
+  expected_eligible_confidential_rows: 15260
+  expected_eligible_negative_rows: 1314
+  expected_analysis_sector_code_counts:
+    autos: 3
+    electrical_equipment: 4
+    electronics: 5
+    machinery: 7
+    medical_devices: 1
+    other_manufacturing: 47
+    textiles_apparel: 11
+  expected_parent_sector_support_count: 255
+  expected_source_period_rows:
+    quarter: 596366
+    calendar_year: 153121
+    h1: 153121
+  expected_source_period_available:
+    quarter: 510243
+    calendar_year: 100027
+    h1: 119774
+  expected_source_period_incomplete_calendar_rows_2024: 8059
+  expected_parent_sector_period_rows:
+    quarter: 18870
+    calendar_year: 4845
+    h1: 4845
+  expected_parent_sector_available:
+    quarter: 11410
+    calendar_year: 2099
+    h1: 2566
+  expected_benchmark_rows:
+    national_total: 156
+    parent_country_annual_margin: 1191
+    sector_annual_margin: 520
+  expected_national_2024_annual_million_usd: 36872.42120361328
+  expected_national_2024_h1_million_usd: 33133.57080078125
+  expected_national_type_max_gap_million_usd: 0.000885009765625
+  expected_parent_margin_max_gap_million_usd: 464.1703699864447
+  expected_sector_margin_max_gap_million_usd: 1152.319722920016
+  expected_parent_margin_unknown_rows: 26
+  expected_sector_margin_unmapped_codes: ['93']

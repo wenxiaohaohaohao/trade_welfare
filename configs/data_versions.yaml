@@ -223,7 +223,7 @@ mexico_fdi:
     national_investment_type_quarterly: 1999Q1-2024Q4
     parent_country_annual: 1999-2024
     sector_annual: 1999-2024
-    detailed_cross_tables: 2006Q1-2024Q4
+    detailed_cross_tables: 2006Q1-2024Q2
   confidentiality_rule: C is retained as null with confidential_flag=true; disaggregated tables are not additive to national totals
   aggregate_country_rule: exclude parent_country_total_flag=true before summing individual parent countries
   outputs:
