@@ -1,6 +1,6 @@
 # Processed Data
 
-This directory contains reproducible harmonized outputs built from the validated source-specific files in `data/interim/`. It now contains completed M1 concordances, M2 product-level treatment/trade interfaces, M3.1-M3.6 trade/reorganization/sensitivity interfaces, and the M4.1-M4.3 ICIO/AMNE/BEA MNE source-specific production interfaces. It does not yet contain connector rankings or a cross-source production-integration panel.
+This directory contains reproducible harmonized outputs built from the validated source-specific files in `data/interim/`. It now contains completed M1 concordances, M2 product-level treatment/trade interfaces, M3.1-M3.6 trade/reorganization/sensitivity interfaces, and the M4.1-M4.4 ICIO/AMNE/BEA MNE/BEA FDI source-specific production and investment interfaces. It does not yet contain connector rankings or a cross-source production-integration panel.
 
 The complete collaborator audit is `docs/data_processing_audit_trail.md`; the variable-level construction contract is `docs/variable_construction_catalog.md`. Their fixed PDF versions are `output/pdf/data_processing_audit_trail.pdf` and `output/pdf/variable_construction_catalog.pdf`. Starting with M3.1, every completed processed-data step must update both Markdown sources and both PDFs before its checklist item is marked complete.
 
@@ -138,6 +138,15 @@ M4.2 does not construct growth/MPE-expansion variables, fabricate medical device
 - Builder/config: `code/data_processing/build_production_bea_mne_long.py` and `configs/production_bea_mne_rules.yaml`.
 - Validation: `data/validation/production_bea_mne_validation.json` and `.md`, status PASS. All 35 raw XLS hashes, input contracts, aggregate filtering, source/analysis keys, strict disclosure formulas, source-to-analysis reconciliation, negative value added, trade directions, 69/66 aliases, and both deterministic hashes are validated. SHA256 values are `016c7b10891e3770c14eeb9cf0f489bd9d80281c91bd1e10e2a883f76205b514` and `21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade`.
 
-For multi-industry cells, `value` is available only when all required source industries are disclosed. `source_disclosed_value_sum` is a coverage diagnostic, not a complete total. `(*)` remains 0.0 with a small-value flag; suppressed values remain missing. Autos proxy rows must never enter the main join. M4.4 BEA FDI is the next source module.
+For multi-industry cells, `value` is available only when all required source industries are disclosed. `source_disclosed_value_sum` is a coverage diagnostic, not a complete total. `(*)` remains 0.0 with a small-value flag; suppressed values remain missing. Autos proxy rows must never enter the main join. M4.4 BEA FDI is documented below.
+
+## Completed M4.4 BEA direct-investment outputs
+
+- `harmonized/production_bea_fdi_source_industry_long.parquet`: 34,830 rows and 73 columns at `source_name, investment_direction, source_country_id, model_sector, year, metric_name`. It retains all source geographies and industries for position, flows, and income, including 3,060 canonical aggregate-geography source rows, signed values, raw codes, suppression, small-value, direction-role, metric-time, source-URL, and project-relative source-file fields.
+- `harmonized/production_validation_bea_fdi_long.parquet`: 7,125 rows and 72 columns at `country_iso3, investment_direction, analysis_sector, year, source_name, metric_name`. It contains 60 actual countries and 475 observed country-direction-years without filling missing directions. Four strict main sectors produce 5,700 rows; an isolated Transportation-equipment autos proxy produces 1,425 rows.
+- Builder/config: `code/data_processing/build_production_bea_fdi_long.py` and `configs/production_bea_fdi_rules.yaml`.
+- Validation: `data/validation/production_bea_fdi_validation.json` and `.md`, status PASS. Six raw files, frozen inputs, country/sector/time mappings, direction roles, source identity, suppression/small/negative snapshots, strict disclosure formulas, zero classifications, 73/72 aliases, and both deterministic hashes are validated. SHA256 values are `e947317c827f975aab78fc9727594094d540e1b4b27a8a6b166eca3fd28d883a` and `8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf`.
+
+Position, flows, and income remain separate metrics and cannot be added to a `total_fdi`. Outward and inward rows have different foreign-country roles and flow sign conventions. Suppressed values are missing; `(*)` is zero with a small-value flag; negative values retain the BEA sign. The analysis table distinguishes exact zero, small-value zero, and signed cancellation-to-zero. Autos proxy rows must never enter the main join. M4.5 Mexico FDI is the next source module.
 
 Every processed output must be reproducible from `data/interim/`, documented by a build script, and retain source/provenance fields needed to audit aggregation and suppression.

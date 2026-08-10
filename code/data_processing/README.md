@@ -4,7 +4,7 @@ This directory contains reproducible `data/interim/` to `data/processed/` pipeli
 
 ## Current stage
 
-M0, M1, M2, M3.1-M3.6, and M4.1-M4.3 in `data/data_merge_checklist.md` are complete. M4.3 standardizes BEA majority-owned foreign-affiliate employment, sales, value added, capital expenditures, and two affiliate-U.S. trade directions while preserving suppression, small-value, aggregate-geography, and mixed-industry states. It does not combine BEA FDI/Mexico sources, construct growth or rankings, or create the final cross-source production table. M4.4 is the next planned stage.
+M0, M1, M2, M3.1-M3.6, and M4.1-M4.4 in `data/data_merge_checklist.md` are complete. M4.4 standardizes BEA outward/inward direct-investment position, flows, and income while preserving direction roles, suppression, small values, signed values, aggregate geography, stock/flow semantics, and a separately flagged Transportation-equipment autos proxy. It does not combine Mexico FDI, construct production growth or rankings, or create the final cross-source production table. M4.5 is the next planned stage.
 
 ## Living collaborator audit and variable contract
 
@@ -335,6 +335,29 @@ The source-detail table is 49,536 × 69 at `source_name × source_country_id × 
 The country-analysis table is 11,910 × 66 at `country_iso3 × analysis_sector × year × source_name × metric_name`. Its 9,528 main rows cover four strictly mapped sectors; 2,382 additional rows are an explicitly isolated Transportation-equipment `autos` proxy with `analysis_scope=proxy_robustness`, `proxy_flag=true`, and `main_analysis_join_eligible=false`. For a multi-industry sector, formal `value` is missing whenever any required source component is suppressed; `source_disclosed_value_sum` remains diagnostic only. Vietnam 2017-2018 and Morocco are not fabricated as zero rows.
 
 Validation status is PASS with 137 checks and zero failures. The 35 raw XLS files match their manifest, all input hashes/schemas/keys match, source and analysis keys are unique, 57 actual countries and 397 observed country-years are preserved, suppression/small-value/negative snapshots reconcile, and all 69/66 Stata aliases pass. Deterministic SHA256 values are `016c7b10891e3770c14eeb9cf0f489bd9d80281c91bd1e10e2a883f76205b514` and `21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade`. `.dta` export remains an M7 task.
+
+## M4.4 BEA direct-investment standardization
+
+Run the validated single-module builder from the project root:
+
+```powershell
+python code\data_processing\build_production_bea_fdi_long.py --project-root . --overwrite
+```
+
+Registered files:
+
+- config: `configs/production_bea_fdi_rules.yaml`;
+- source-detail output: `data/processed/harmonized/production_bea_fdi_source_industry_long.parquet`;
+- country-analysis output: `data/processed/harmonized/production_validation_bea_fdi_long.parquet`;
+- validation: `data/validation/production_bea_fdi_validation.json` and `.md`.
+
+The source-detail table is 34,830 × 73 at `source_name × investment_direction × source_country_id × model_sector × year × metric_name`. It expands all 11,610 source rows into position, flows, and income while retaining all 80 country/area labels, 20 published industries, 3,060 canonical aggregate-geography rows, raw codes, suppression, small values, 4,335 negative source observations, source URLs, and project-relative raw-file paths.
+
+The country-analysis table is 7,125 × 72 at `country_iso3 × investment_direction × analysis_sector × year × source_name × metric_name`. It preserves the observed non-rectangular direction coverage for 60 actual countries and 475 country-direction-years. Four strict main sectors produce 5,700 rows; 1,425 Transportation-equipment rows are isolated as an `autos` robustness proxy with `main_analysis_join_eligible=false`. `other_manufacturing` requires Chemicals, Food, and Other manufacturing all to be disclosed; otherwise formal `value` is missing and `source_disclosed_value_sum` remains diagnostic only.
+
+Position is an end-period historical-cost stock. Flows and income are separate annual-flow concepts. None of the three may be added across metrics or mechanically summed across years. Outward rows treat the foreign country as affiliate host; inward rows treat it as foreign investor origin. Flow signs retain BEA's direction-specific convention, while position and income retain source-reported signed values without recoding. Exact zeros, zero-valued `(*)` cells, and signed cancellation-to-zero are stored as distinct states.
+
+Validation status is PASS with 92 checks and zero failures. The six raw XLSX files match their manifest; all input hashes/schemas/keys and country/sector/time rules match; source and analysis keys are unique; strict values and disclosure diagnostics independently recompute from source long; 73/72 Stata aliases pass. Deterministic SHA256 values are `e947317c827f975aab78fc9727594094d540e1b4b27a8a6b166eca3fd28d883a` and `8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf`. `.dta` export remains an M7 task.
 
 ## Stata handoff contract
 

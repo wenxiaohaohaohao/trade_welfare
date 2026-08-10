@@ -1,0 +1,1888 @@
+{
+  "validation_status": "PASS",
+  "failures": [],
+  "checks": [
+    {
+      "name": "input_bea_fdi_sha256",
+      "pass": true,
+      "evidence": {
+        "actual": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba",
+        "expected": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba"
+      }
+    },
+    {
+      "name": "input_bea_fdi_shape",
+      "pass": true,
+      "evidence": {
+        "path": "data/interim/fdi/bea_direct_investment_country_industry.parquet",
+        "sha256": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba",
+        "sha256_expected": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba",
+        "rows": 11610,
+        "rows_expected": 11610,
+        "columns": 29,
+        "columns_expected": 29,
+        "schema_signature": "4a31c50f18232c5df9e7e584708f9766afe90c5e340218a101d6200b018c970f",
+        "schema_signature_expected": "4a31c50f18232c5df9e7e584708f9766afe90c5e340218a101d6200b018c970f",
+        "filtered_rows": 11610,
+        "filtered_rows_expected": 11610,
+        "key": [
+          "year",
+          "direction",
+          "country",
+          "industry"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_bea_fdi_schema_signature",
+      "pass": true,
+      "evidence": {
+        "path": "data/interim/fdi/bea_direct_investment_country_industry.parquet",
+        "sha256": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba",
+        "sha256_expected": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba",
+        "rows": 11610,
+        "rows_expected": 11610,
+        "columns": 29,
+        "columns_expected": 29,
+        "schema_signature": "4a31c50f18232c5df9e7e584708f9766afe90c5e340218a101d6200b018c970f",
+        "schema_signature_expected": "4a31c50f18232c5df9e7e584708f9766afe90c5e340218a101d6200b018c970f",
+        "filtered_rows": 11610,
+        "filtered_rows_expected": 11610,
+        "key": [
+          "year",
+          "direction",
+          "country",
+          "industry"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_bea_fdi_key",
+      "pass": true,
+      "evidence": {
+        "path": "data/interim/fdi/bea_direct_investment_country_industry.parquet",
+        "sha256": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba",
+        "sha256_expected": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba",
+        "rows": 11610,
+        "rows_expected": 11610,
+        "columns": 29,
+        "columns_expected": 29,
+        "schema_signature": "4a31c50f18232c5df9e7e584708f9766afe90c5e340218a101d6200b018c970f",
+        "schema_signature_expected": "4a31c50f18232c5df9e7e584708f9766afe90c5e340218a101d6200b018c970f",
+        "filtered_rows": 11610,
+        "filtered_rows_expected": 11610,
+        "key": [
+          "year",
+          "direction",
+          "country",
+          "industry"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_bea_fdi_filtered_rows",
+      "pass": true,
+      "evidence": {
+        "path": "data/interim/fdi/bea_direct_investment_country_industry.parquet",
+        "sha256": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba",
+        "sha256_expected": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba",
+        "rows": 11610,
+        "rows_expected": 11610,
+        "columns": 29,
+        "columns_expected": 29,
+        "schema_signature": "4a31c50f18232c5df9e7e584708f9766afe90c5e340218a101d6200b018c970f",
+        "schema_signature_expected": "4a31c50f18232c5df9e7e584708f9766afe90c5e340218a101d6200b018c970f",
+        "filtered_rows": 11610,
+        "filtered_rows_expected": 11610,
+        "key": [
+          "year",
+          "direction",
+          "country",
+          "industry"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_country_crosswalk_sha256",
+      "pass": true,
+      "evidence": {
+        "actual": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+        "expected": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6"
+      }
+    },
+    {
+      "name": "input_country_crosswalk_shape",
+      "pass": true,
+      "evidence": {
+        "path": "data/processed/concordances/country_crosswalk.parquet",
+        "sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+        "sha256_expected": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+        "rows": 611,
+        "rows_expected": 611,
+        "columns": 22,
+        "columns_expected": 22,
+        "schema_signature": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+        "schema_signature_expected": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+        "filtered_rows": 80,
+        "filtered_rows_expected": 80,
+        "key": [
+          "source_name",
+          "source_country_id"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_country_crosswalk_schema_signature",
+      "pass": true,
+      "evidence": {
+        "path": "data/processed/concordances/country_crosswalk.parquet",
+        "sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+        "sha256_expected": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+        "rows": 611,
+        "rows_expected": 611,
+        "columns": 22,
+        "columns_expected": 22,
+        "schema_signature": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+        "schema_signature_expected": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+        "filtered_rows": 80,
+        "filtered_rows_expected": 80,
+        "key": [
+          "source_name",
+          "source_country_id"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_country_crosswalk_key",
+      "pass": true,
+      "evidence": {
+        "path": "data/processed/concordances/country_crosswalk.parquet",
+        "sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+        "sha256_expected": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+        "rows": 611,
+        "rows_expected": 611,
+        "columns": 22,
+        "columns_expected": 22,
+        "schema_signature": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+        "schema_signature_expected": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+        "filtered_rows": 80,
+        "filtered_rows_expected": 80,
+        "key": [
+          "source_name",
+          "source_country_id"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_country_crosswalk_filtered_rows",
+      "pass": true,
+      "evidence": {
+        "path": "data/processed/concordances/country_crosswalk.parquet",
+        "sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+        "sha256_expected": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+        "rows": 611,
+        "rows_expected": 611,
+        "columns": 22,
+        "columns_expected": 22,
+        "schema_signature": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+        "schema_signature_expected": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+        "filtered_rows": 80,
+        "filtered_rows_expected": 80,
+        "key": [
+          "source_name",
+          "source_country_id"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_source_sector_crosswalk_sha256",
+      "pass": true,
+      "evidence": {
+        "actual": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+        "expected": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9"
+      }
+    },
+    {
+      "name": "input_source_sector_crosswalk_shape",
+      "pass": true,
+      "evidence": {
+        "path": "data/processed/concordances/source_sector_crosswalk.parquet",
+        "sha256": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+        "sha256_expected": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+        "rows": 517,
+        "rows_expected": 517,
+        "columns": 14,
+        "columns_expected": 14,
+        "schema_signature": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+        "schema_signature_expected": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+        "filtered_rows": 20,
+        "filtered_rows_expected": 20,
+        "key": [
+          "source_name",
+          "source_sector_level",
+          "source_sector_code"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_source_sector_crosswalk_schema_signature",
+      "pass": true,
+      "evidence": {
+        "path": "data/processed/concordances/source_sector_crosswalk.parquet",
+        "sha256": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+        "sha256_expected": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+        "rows": 517,
+        "rows_expected": 517,
+        "columns": 14,
+        "columns_expected": 14,
+        "schema_signature": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+        "schema_signature_expected": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+        "filtered_rows": 20,
+        "filtered_rows_expected": 20,
+        "key": [
+          "source_name",
+          "source_sector_level",
+          "source_sector_code"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_source_sector_crosswalk_key",
+      "pass": true,
+      "evidence": {
+        "path": "data/processed/concordances/source_sector_crosswalk.parquet",
+        "sha256": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+        "sha256_expected": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+        "rows": 517,
+        "rows_expected": 517,
+        "columns": 14,
+        "columns_expected": 14,
+        "schema_signature": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+        "schema_signature_expected": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+        "filtered_rows": 20,
+        "filtered_rows_expected": 20,
+        "key": [
+          "source_name",
+          "source_sector_level",
+          "source_sector_code"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_source_sector_crosswalk_filtered_rows",
+      "pass": true,
+      "evidence": {
+        "path": "data/processed/concordances/source_sector_crosswalk.parquet",
+        "sha256": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+        "sha256_expected": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+        "rows": 517,
+        "rows_expected": 517,
+        "columns": 14,
+        "columns_expected": 14,
+        "schema_signature": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+        "schema_signature_expected": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+        "filtered_rows": 20,
+        "filtered_rows_expected": 20,
+        "key": [
+          "source_name",
+          "source_sector_level",
+          "source_sector_code"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_time_aggregation_rules_sha256",
+      "pass": true,
+      "evidence": {
+        "actual": "94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4",
+        "expected": "94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4"
+      }
+    },
+    {
+      "name": "input_time_aggregation_rules_shape",
+      "pass": true,
+      "evidence": {
+        "path": "data/processed/concordances/time_aggregation_rules.parquet",
+        "sha256": "94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4",
+        "sha256_expected": "94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4",
+        "rows": 39,
+        "rows_expected": 39,
+        "columns": 18,
+        "columns_expected": 18,
+        "schema_signature": "5ecd32dc77a0f9f381befa62b9ade4ad990013d9485cd2dc1070899e1bc39bba",
+        "schema_signature_expected": "5ecd32dc77a0f9f381befa62b9ade4ad990013d9485cd2dc1070899e1bc39bba",
+        "filtered_rows": 3,
+        "filtered_rows_expected": 3,
+        "key": [
+          "input_id",
+          "metric_name"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_time_aggregation_rules_schema_signature",
+      "pass": true,
+      "evidence": {
+        "path": "data/processed/concordances/time_aggregation_rules.parquet",
+        "sha256": "94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4",
+        "sha256_expected": "94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4",
+        "rows": 39,
+        "rows_expected": 39,
+        "columns": 18,
+        "columns_expected": 18,
+        "schema_signature": "5ecd32dc77a0f9f381befa62b9ade4ad990013d9485cd2dc1070899e1bc39bba",
+        "schema_signature_expected": "5ecd32dc77a0f9f381befa62b9ade4ad990013d9485cd2dc1070899e1bc39bba",
+        "filtered_rows": 3,
+        "filtered_rows_expected": 3,
+        "key": [
+          "input_id",
+          "metric_name"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_time_aggregation_rules_key",
+      "pass": true,
+      "evidence": {
+        "path": "data/processed/concordances/time_aggregation_rules.parquet",
+        "sha256": "94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4",
+        "sha256_expected": "94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4",
+        "rows": 39,
+        "rows_expected": 39,
+        "columns": 18,
+        "columns_expected": 18,
+        "schema_signature": "5ecd32dc77a0f9f381befa62b9ade4ad990013d9485cd2dc1070899e1bc39bba",
+        "schema_signature_expected": "5ecd32dc77a0f9f381befa62b9ade4ad990013d9485cd2dc1070899e1bc39bba",
+        "filtered_rows": 3,
+        "filtered_rows_expected": 3,
+        "key": [
+          "input_id",
+          "metric_name"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_time_aggregation_rules_filtered_rows",
+      "pass": true,
+      "evidence": {
+        "path": "data/processed/concordances/time_aggregation_rules.parquet",
+        "sha256": "94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4",
+        "sha256_expected": "94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4",
+        "rows": 39,
+        "rows_expected": 39,
+        "columns": 18,
+        "columns_expected": 18,
+        "schema_signature": "5ecd32dc77a0f9f381befa62b9ade4ad990013d9485cd2dc1070899e1bc39bba",
+        "schema_signature_expected": "5ecd32dc77a0f9f381befa62b9ade4ad990013d9485cd2dc1070899e1bc39bba",
+        "filtered_rows": 3,
+        "filtered_rows_expected": 3,
+        "key": [
+          "input_id",
+          "metric_name"
+        ],
+        "key_duplicate_count": 0,
+        "key_missing_count": 0
+      }
+    },
+    {
+      "name": "input_build_summary_sha256",
+      "pass": true,
+      "evidence": {
+        "actual": "acce162b1f795c86bf7cfcf670cbfc0dc8797b4cc5fe0502b051cd6bd9198e39",
+        "expected": "acce162b1f795c86bf7cfcf670cbfc0dc8797b4cc5fe0502b051cd6bd9198e39"
+      }
+    },
+    {
+      "name": "input_raw_manifest_sha256",
+      "pass": true,
+      "evidence": {
+        "actual": "5e1ad6607992c8891cd36880976c145cf552fc7d283ad9cc07d06889f8e8dcc5",
+        "expected": "5e1ad6607992c8891cd36880976c145cf552fc7d283ad9cc07d06889f8e8dcc5"
+      }
+    },
+    {
+      "name": "raw_manifest_file_count",
+      "pass": true,
+      "evidence": {
+        "expected_file_count": 6,
+        "manifest_file_count": 6,
+        "all_files_exist": true,
+        "all_sizes_match": true,
+        "all_hashes_match": true,
+        "records": [
+          {
+            "direction": "us_direct_investment_abroad",
+            "indicator": "flows",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__flows__usdia-ctrybyindfinancialtransactions-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 79262,
+            "actual_bytes": 79262,
+            "bytes_match": true,
+            "expected_sha256": "9ef89cb7eae7ec362b776e28560c7939c09f2e41d5f87250a6e8084437da0bdd",
+            "actual_sha256": "9ef89cb7eae7ec362b776e28560c7939c09f2e41d5f87250a6e8084437da0bdd",
+            "sha256_match": true
+          },
+          {
+            "direction": "us_direct_investment_abroad",
+            "indicator": "income",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__income__usdia-ctrybyindincome-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 70154,
+            "actual_bytes": 70154,
+            "bytes_match": true,
+            "expected_sha256": "c2cf31092899c4d79d906b93c0bb93d91bd9c88888aaf621b64e3d9b7d844897",
+            "actual_sha256": "c2cf31092899c4d79d906b93c0bb93d91bd9c88888aaf621b64e3d9b7d844897",
+            "sha256_match": true
+          },
+          {
+            "direction": "us_direct_investment_abroad",
+            "indicator": "position",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__position__usdia-position-2020-2025.xlsx",
+            "exists": true,
+            "expected_bytes": 86418,
+            "actual_bytes": 86418,
+            "bytes_match": true,
+            "expected_sha256": "fee0d5a9a2f023d74365b99e70722bbdf8cd51feb449609cac75b3a895c2d77f",
+            "actual_sha256": "fee0d5a9a2f023d74365b99e70722bbdf8cd51feb449609cac75b3a895c2d77f",
+            "sha256_match": true
+          },
+          {
+            "direction": "foreign_direct_investment_in_us",
+            "indicator": "flows",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__flows__fdius-ctry-by-ind-financial-transactions-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 68450,
+            "actual_bytes": 68450,
+            "bytes_match": true,
+            "expected_sha256": "219a73783752cd3285baa58430d0ebf100824de4aa6d7671a6d471ed829d6060",
+            "actual_sha256": "219a73783752cd3285baa58430d0ebf100824de4aa6d7671a6d471ed829d6060",
+            "sha256_match": true
+          },
+          {
+            "direction": "foreign_direct_investment_in_us",
+            "indicator": "income",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__income__fdius-ctry-by-ind-income-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 70835,
+            "actual_bytes": 70835,
+            "bytes_match": true,
+            "expected_sha256": "1572de130e192c7c2e3040530d4292c26ff29b0ab12cf5d76688690cd9c695b4",
+            "actual_sha256": "1572de130e192c7c2e3040530d4292c26ff29b0ab12cf5d76688690cd9c695b4",
+            "sha256_match": true
+          },
+          {
+            "direction": "foreign_direct_investment_in_us",
+            "indicator": "position",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__position__fdius-ctry-by-ind-position-2020-2025.xlsx",
+            "exists": true,
+            "expected_bytes": 84223,
+            "actual_bytes": 84223,
+            "bytes_match": true,
+            "expected_sha256": "f82ccf0131e7aa110e3811b368bec976035ac92848787440dbfda91639c7122c",
+            "actual_sha256": "f82ccf0131e7aa110e3811b368bec976035ac92848787440dbfda91639c7122c",
+            "sha256_match": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "raw_manifest_files_exist",
+      "pass": true,
+      "evidence": {
+        "expected_file_count": 6,
+        "manifest_file_count": 6,
+        "all_files_exist": true,
+        "all_sizes_match": true,
+        "all_hashes_match": true,
+        "records": [
+          {
+            "direction": "us_direct_investment_abroad",
+            "indicator": "flows",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__flows__usdia-ctrybyindfinancialtransactions-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 79262,
+            "actual_bytes": 79262,
+            "bytes_match": true,
+            "expected_sha256": "9ef89cb7eae7ec362b776e28560c7939c09f2e41d5f87250a6e8084437da0bdd",
+            "actual_sha256": "9ef89cb7eae7ec362b776e28560c7939c09f2e41d5f87250a6e8084437da0bdd",
+            "sha256_match": true
+          },
+          {
+            "direction": "us_direct_investment_abroad",
+            "indicator": "income",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__income__usdia-ctrybyindincome-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 70154,
+            "actual_bytes": 70154,
+            "bytes_match": true,
+            "expected_sha256": "c2cf31092899c4d79d906b93c0bb93d91bd9c88888aaf621b64e3d9b7d844897",
+            "actual_sha256": "c2cf31092899c4d79d906b93c0bb93d91bd9c88888aaf621b64e3d9b7d844897",
+            "sha256_match": true
+          },
+          {
+            "direction": "us_direct_investment_abroad",
+            "indicator": "position",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__position__usdia-position-2020-2025.xlsx",
+            "exists": true,
+            "expected_bytes": 86418,
+            "actual_bytes": 86418,
+            "bytes_match": true,
+            "expected_sha256": "fee0d5a9a2f023d74365b99e70722bbdf8cd51feb449609cac75b3a895c2d77f",
+            "actual_sha256": "fee0d5a9a2f023d74365b99e70722bbdf8cd51feb449609cac75b3a895c2d77f",
+            "sha256_match": true
+          },
+          {
+            "direction": "foreign_direct_investment_in_us",
+            "indicator": "flows",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__flows__fdius-ctry-by-ind-financial-transactions-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 68450,
+            "actual_bytes": 68450,
+            "bytes_match": true,
+            "expected_sha256": "219a73783752cd3285baa58430d0ebf100824de4aa6d7671a6d471ed829d6060",
+            "actual_sha256": "219a73783752cd3285baa58430d0ebf100824de4aa6d7671a6d471ed829d6060",
+            "sha256_match": true
+          },
+          {
+            "direction": "foreign_direct_investment_in_us",
+            "indicator": "income",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__income__fdius-ctry-by-ind-income-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 70835,
+            "actual_bytes": 70835,
+            "bytes_match": true,
+            "expected_sha256": "1572de130e192c7c2e3040530d4292c26ff29b0ab12cf5d76688690cd9c695b4",
+            "actual_sha256": "1572de130e192c7c2e3040530d4292c26ff29b0ab12cf5d76688690cd9c695b4",
+            "sha256_match": true
+          },
+          {
+            "direction": "foreign_direct_investment_in_us",
+            "indicator": "position",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__position__fdius-ctry-by-ind-position-2020-2025.xlsx",
+            "exists": true,
+            "expected_bytes": 84223,
+            "actual_bytes": 84223,
+            "bytes_match": true,
+            "expected_sha256": "f82ccf0131e7aa110e3811b368bec976035ac92848787440dbfda91639c7122c",
+            "actual_sha256": "f82ccf0131e7aa110e3811b368bec976035ac92848787440dbfda91639c7122c",
+            "sha256_match": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "raw_manifest_sizes_match",
+      "pass": true,
+      "evidence": {
+        "expected_file_count": 6,
+        "manifest_file_count": 6,
+        "all_files_exist": true,
+        "all_sizes_match": true,
+        "all_hashes_match": true,
+        "records": [
+          {
+            "direction": "us_direct_investment_abroad",
+            "indicator": "flows",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__flows__usdia-ctrybyindfinancialtransactions-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 79262,
+            "actual_bytes": 79262,
+            "bytes_match": true,
+            "expected_sha256": "9ef89cb7eae7ec362b776e28560c7939c09f2e41d5f87250a6e8084437da0bdd",
+            "actual_sha256": "9ef89cb7eae7ec362b776e28560c7939c09f2e41d5f87250a6e8084437da0bdd",
+            "sha256_match": true
+          },
+          {
+            "direction": "us_direct_investment_abroad",
+            "indicator": "income",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__income__usdia-ctrybyindincome-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 70154,
+            "actual_bytes": 70154,
+            "bytes_match": true,
+            "expected_sha256": "c2cf31092899c4d79d906b93c0bb93d91bd9c88888aaf621b64e3d9b7d844897",
+            "actual_sha256": "c2cf31092899c4d79d906b93c0bb93d91bd9c88888aaf621b64e3d9b7d844897",
+            "sha256_match": true
+          },
+          {
+            "direction": "us_direct_investment_abroad",
+            "indicator": "position",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__position__usdia-position-2020-2025.xlsx",
+            "exists": true,
+            "expected_bytes": 86418,
+            "actual_bytes": 86418,
+            "bytes_match": true,
+            "expected_sha256": "fee0d5a9a2f023d74365b99e70722bbdf8cd51feb449609cac75b3a895c2d77f",
+            "actual_sha256": "fee0d5a9a2f023d74365b99e70722bbdf8cd51feb449609cac75b3a895c2d77f",
+            "sha256_match": true
+          },
+          {
+            "direction": "foreign_direct_investment_in_us",
+            "indicator": "flows",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__flows__fdius-ctry-by-ind-financial-transactions-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 68450,
+            "actual_bytes": 68450,
+            "bytes_match": true,
+            "expected_sha256": "219a73783752cd3285baa58430d0ebf100824de4aa6d7671a6d471ed829d6060",
+            "actual_sha256": "219a73783752cd3285baa58430d0ebf100824de4aa6d7671a6d471ed829d6060",
+            "sha256_match": true
+          },
+          {
+            "direction": "foreign_direct_investment_in_us",
+            "indicator": "income",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__income__fdius-ctry-by-ind-income-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 70835,
+            "actual_bytes": 70835,
+            "bytes_match": true,
+            "expected_sha256": "1572de130e192c7c2e3040530d4292c26ff29b0ab12cf5d76688690cd9c695b4",
+            "actual_sha256": "1572de130e192c7c2e3040530d4292c26ff29b0ab12cf5d76688690cd9c695b4",
+            "sha256_match": true
+          },
+          {
+            "direction": "foreign_direct_investment_in_us",
+            "indicator": "position",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__position__fdius-ctry-by-ind-position-2020-2025.xlsx",
+            "exists": true,
+            "expected_bytes": 84223,
+            "actual_bytes": 84223,
+            "bytes_match": true,
+            "expected_sha256": "f82ccf0131e7aa110e3811b368bec976035ac92848787440dbfda91639c7122c",
+            "actual_sha256": "f82ccf0131e7aa110e3811b368bec976035ac92848787440dbfda91639c7122c",
+            "sha256_match": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "raw_manifest_hashes_match",
+      "pass": true,
+      "evidence": {
+        "expected_file_count": 6,
+        "manifest_file_count": 6,
+        "all_files_exist": true,
+        "all_sizes_match": true,
+        "all_hashes_match": true,
+        "records": [
+          {
+            "direction": "us_direct_investment_abroad",
+            "indicator": "flows",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__flows__usdia-ctrybyindfinancialtransactions-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 79262,
+            "actual_bytes": 79262,
+            "bytes_match": true,
+            "expected_sha256": "9ef89cb7eae7ec362b776e28560c7939c09f2e41d5f87250a6e8084437da0bdd",
+            "actual_sha256": "9ef89cb7eae7ec362b776e28560c7939c09f2e41d5f87250a6e8084437da0bdd",
+            "sha256_match": true
+          },
+          {
+            "direction": "us_direct_investment_abroad",
+            "indicator": "income",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__income__usdia-ctrybyindincome-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 70154,
+            "actual_bytes": 70154,
+            "bytes_match": true,
+            "expected_sha256": "c2cf31092899c4d79d906b93c0bb93d91bd9c88888aaf621b64e3d9b7d844897",
+            "actual_sha256": "c2cf31092899c4d79d906b93c0bb93d91bd9c88888aaf621b64e3d9b7d844897",
+            "sha256_match": true
+          },
+          {
+            "direction": "us_direct_investment_abroad",
+            "indicator": "position",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__position__usdia-position-2020-2025.xlsx",
+            "exists": true,
+            "expected_bytes": 86418,
+            "actual_bytes": 86418,
+            "bytes_match": true,
+            "expected_sha256": "fee0d5a9a2f023d74365b99e70722bbdf8cd51feb449609cac75b3a895c2d77f",
+            "actual_sha256": "fee0d5a9a2f023d74365b99e70722bbdf8cd51feb449609cac75b3a895c2d77f",
+            "sha256_match": true
+          },
+          {
+            "direction": "foreign_direct_investment_in_us",
+            "indicator": "flows",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__flows__fdius-ctry-by-ind-financial-transactions-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 68450,
+            "actual_bytes": 68450,
+            "bytes_match": true,
+            "expected_sha256": "219a73783752cd3285baa58430d0ebf100824de4aa6d7671a6d471ed829d6060",
+            "actual_sha256": "219a73783752cd3285baa58430d0ebf100824de4aa6d7671a6d471ed829d6060",
+            "sha256_match": true
+          },
+          {
+            "direction": "foreign_direct_investment_in_us",
+            "indicator": "income",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__income__fdius-ctry-by-ind-income-2020-2024.xlsx",
+            "exists": true,
+            "expected_bytes": 70835,
+            "actual_bytes": 70835,
+            "bytes_match": true,
+            "expected_sha256": "1572de130e192c7c2e3040530d4292c26ff29b0ab12cf5d76688690cd9c695b4",
+            "actual_sha256": "1572de130e192c7c2e3040530d4292c26ff29b0ab12cf5d76688690cd9c695b4",
+            "sha256_match": true
+          },
+          {
+            "direction": "foreign_direct_investment_in_us",
+            "indicator": "position",
+            "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__position__fdius-ctry-by-ind-position-2020-2025.xlsx",
+            "exists": true,
+            "expected_bytes": 84223,
+            "actual_bytes": 84223,
+            "bytes_match": true,
+            "expected_sha256": "f82ccf0131e7aa110e3811b368bec976035ac92848787440dbfda91639c7122c",
+            "actual_sha256": "f82ccf0131e7aa110e3811b368bec976035ac92848787440dbfda91639c7122c",
+            "sha256_match": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "input_years",
+      "pass": true,
+      "evidence": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ]
+    },
+    {
+      "name": "input_no_position_only_2025",
+      "pass": true,
+      "evidence": {
+        "min": 2020,
+        "max": 2024
+      }
+    },
+    {
+      "name": "input_rows_per_year",
+      "pass": true,
+      "evidence": {
+        "2020": 2322,
+        "2021": 2322,
+        "2022": 2322,
+        "2023": 2322,
+        "2024": 2322
+      }
+    },
+    {
+      "name": "input_direction_rows",
+      "pass": true,
+      "evidence": {
+        "us_direct_investment_abroad": 6660,
+        "foreign_direct_investment_in_us": 4950
+      }
+    },
+    {
+      "name": "input_direction_industry_counts",
+      "pass": true,
+      "evidence": {
+        "foreign_direct_investment_in_us": 18,
+        "us_direct_investment_abroad": 18
+      }
+    },
+    {
+      "name": "geography_source_geography_labels",
+      "pass": true,
+      "evidence": {
+        "actual": 80,
+        "expected": 80
+      }
+    },
+    {
+      "name": "geography_source_area_aggregate_rows",
+      "pass": true,
+      "evidence": {
+        "actual": 2610,
+        "expected": 2610
+      }
+    },
+    {
+      "name": "geography_country_override_aggregate_rows",
+      "pass": true,
+      "evidence": {
+        "actual": 450,
+        "expected": 450
+      }
+    },
+    {
+      "name": "geography_final_aggregate_rows",
+      "pass": true,
+      "evidence": {
+        "actual": 3060,
+        "expected": 3060
+      }
+    },
+    {
+      "name": "geography_actual_country_rows",
+      "pass": true,
+      "evidence": {
+        "actual": 8550,
+        "expected": 8550
+      }
+    },
+    {
+      "name": "geography_actual_country_count",
+      "pass": true,
+      "evidence": {
+        "actual": 60,
+        "expected": 60
+      }
+    },
+    {
+      "name": "geography_country_direction_year_cells",
+      "pass": true,
+      "evidence": {
+        "actual": 475,
+        "expected": 475
+      }
+    },
+    {
+      "name": "source_industry_labels",
+      "pass": true,
+      "evidence": 20
+    },
+    {
+      "name": "direction_country_counts",
+      "pass": true,
+      "evidence": {
+        "foreign_direct_investment_in_us": 39,
+        "us_direct_investment_abroad": 56
+      }
+    },
+    {
+      "name": "time_rule_position",
+      "pass": true,
+      "evidence": {
+        "temporal_semantics": "end_period_stock",
+        "prohibited_operation": "never_sum_positions_across_time",
+        "config_can_sum_across_years": false
+      }
+    },
+    {
+      "name": "time_rule_flows",
+      "pass": true,
+      "evidence": {
+        "temporal_semantics": "annual_flow",
+        "prohibited_operation": "do_not_sum_across_years",
+        "config_can_sum_across_years": false
+      }
+    },
+    {
+      "name": "time_rule_income",
+      "pass": true,
+      "evidence": {
+        "temporal_semantics": "annual_flow",
+        "prohibited_operation": "do_not_sum_across_years",
+        "config_can_sum_across_years": false
+      }
+    },
+    {
+      "name": "source_output_shape",
+      "pass": true,
+      "evidence": {
+        "rows": 34830,
+        "columns": 73
+      }
+    },
+    {
+      "name": "source_output_key",
+      "pass": true,
+      "evidence": {
+        "duplicates": 0,
+        "missing": 0
+      }
+    },
+    {
+      "name": "source_metric_grid",
+      "pass": true,
+      "evidence": {
+        "flows": 11610,
+        "income": 11610,
+        "position": 11610
+      }
+    },
+    {
+      "name": "source_actual_and_aggregate_rows",
+      "pass": true,
+      "evidence": {
+        "actual_metric_rows": 25650,
+        "aggregate_metric_rows": 9180,
+        "override_metric_rows": 1350
+      }
+    },
+    {
+      "name": "source_direction_rows",
+      "pass": true,
+      "evidence": {
+        "us_direct_investment_abroad": 19980,
+        "foreign_direct_investment_in_us": 14850
+      }
+    },
+    {
+      "name": "source_proxy_rows",
+      "pass": true,
+      "evidence": 1935
+    },
+    {
+      "name": "source_paths_project_relative",
+      "pass": true,
+      "evidence": [
+        "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__flows__fdius-ctry-by-ind-financial-transactions-2020-2024.xlsx",
+        "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__income__fdius-ctry-by-ind-income-2020-2024.xlsx",
+        "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__position__fdius-ctry-by-ind-position-2020-2025.xlsx",
+        "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__flows__usdia-ctrybyindfinancialtransactions-2020-2024.xlsx",
+        "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__income__usdia-ctrybyindincome-2020-2024.xlsx",
+        "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__position__usdia-position-2020-2025.xlsx"
+      ]
+    },
+    {
+      "name": "source_files_match_manifest",
+      "pass": true,
+      "evidence": {
+        "source_paths": [
+          "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__flows__fdius-ctry-by-ind-financial-transactions-2020-2024.xlsx",
+          "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__income__fdius-ctry-by-ind-income-2020-2024.xlsx",
+          "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__position__fdius-ctry-by-ind-position-2020-2025.xlsx",
+          "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__flows__usdia-ctrybyindfinancialtransactions-2020-2024.xlsx",
+          "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__income__usdia-ctrybyindincome-2020-2024.xlsx",
+          "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__position__usdia-position-2020-2025.xlsx"
+        ],
+        "manifest_paths": [
+          "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__flows__fdius-ctry-by-ind-financial-transactions-2020-2024.xlsx",
+          "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__income__fdius-ctry-by-ind-income-2020-2024.xlsx",
+          "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__position__fdius-ctry-by-ind-position-2020-2025.xlsx",
+          "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__flows__usdia-ctrybyindfinancialtransactions-2020-2024.xlsx",
+          "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__income__usdia-ctrybyindincome-2020-2024.xlsx",
+          "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__position__usdia-position-2020-2025.xlsx"
+        ]
+      }
+    },
+    {
+      "name": "source_suppressed_missing_identity",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "source_small_values_are_zero",
+      "pass": true,
+      "evidence": 1503
+    },
+    {
+      "name": "source_no_infinite_values",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "source_metric_snapshot_position",
+      "pass": true,
+      "evidence": {
+        "actual": {
+          "missing": 1549,
+          "suppressed": 1549,
+          "small": 234,
+          "zero": 610,
+          "exact_zero": 376,
+          "negative": 851
+        },
+        "expected": {
+          "missing": 1549,
+          "suppressed": 1549,
+          "small": 234,
+          "zero": 610,
+          "exact_zero": 376,
+          "negative": 851
+        }
+      }
+    },
+    {
+      "name": "source_metric_snapshot_flows",
+      "pass": true,
+      "evidence": {
+        "actual": {
+          "missing": 2919,
+          "suppressed": 2919,
+          "small": 477,
+          "zero": 936,
+          "exact_zero": 459,
+          "negative": 2348
+        },
+        "expected": {
+          "missing": 2919,
+          "suppressed": 2919,
+          "small": 477,
+          "zero": 936,
+          "exact_zero": 459,
+          "negative": 2348
+        }
+      }
+    },
+    {
+      "name": "source_metric_snapshot_income",
+      "pass": true,
+      "evidence": {
+        "actual": {
+          "missing": 2707,
+          "suppressed": 2707,
+          "small": 792,
+          "zero": 1484,
+          "exact_zero": 692,
+          "negative": 1136
+        },
+        "expected": {
+          "missing": 2707,
+          "suppressed": 2707,
+          "small": 792,
+          "zero": 1484,
+          "exact_zero": 692,
+          "negative": 1136
+        }
+      }
+    },
+    {
+      "name": "source_identity_position",
+      "pass": true,
+      "evidence": {
+        "merge_counts": {
+          "both": 11610,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "value_max_abs_error": 0.0,
+        "raw_code_match": true,
+        "flags_match": true,
+        "provenance_match": true
+      }
+    },
+    {
+      "name": "source_identity_flows",
+      "pass": true,
+      "evidence": {
+        "merge_counts": {
+          "both": 11610,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "value_max_abs_error": 0.0,
+        "raw_code_match": true,
+        "flags_match": true,
+        "provenance_match": true
+      }
+    },
+    {
+      "name": "source_identity_income",
+      "pass": true,
+      "evidence": {
+        "merge_counts": {
+          "both": 11610,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "value_max_abs_error": 0.0,
+        "raw_code_match": true,
+        "flags_match": true,
+        "provenance_match": true
+      }
+    },
+    {
+      "name": "actual_mapped_source_negative_counts",
+      "pass": true,
+      "evidence": {
+        "position": 325,
+        "flows": 618,
+        "income": 335
+      }
+    },
+    {
+      "name": "analysis_output_shape",
+      "pass": true,
+      "evidence": {
+        "rows": 7125,
+        "columns": 72
+      }
+    },
+    {
+      "name": "analysis_output_key",
+      "pass": true,
+      "evidence": {
+        "duplicates": 0,
+        "missing": 0
+      }
+    },
+    {
+      "name": "analysis_cell_and_dimension_counts",
+      "pass": true,
+      "evidence": {
+        "cells": 2375,
+        "countries": 60,
+        "sectors": 5
+      }
+    },
+    {
+      "name": "analysis_scope_counts",
+      "pass": true,
+      "evidence": {
+        "main": 5700,
+        "proxy_robustness": 1425
+      }
+    },
+    {
+      "name": "analysis_scope_flags",
+      "pass": true,
+      "evidence": {
+        "main_join_false": 0,
+        "proxy_join_true": 0
+      }
+    },
+    {
+      "name": "analysis_no_aggregate_or_residual",
+      "pass": true,
+      "evidence": {
+        "aggregate": 0,
+        "residual": 0
+      }
+    },
+    {
+      "name": "analysis_direction_rows",
+      "pass": true,
+      "evidence": {
+        "us_direct_investment_abroad": 4200,
+        "foreign_direct_investment_in_us": 2925
+      }
+    },
+    {
+      "name": "analysis_no_synthetic_sectors",
+      "pass": true,
+      "evidence": [
+        "autos",
+        "electrical_equipment",
+        "electronics",
+        "machinery",
+        "other_manufacturing"
+      ]
+    },
+    {
+      "name": "analysis_component_counts_complete",
+      "pass": true,
+      "evidence": {
+        "autos": {
+          "source_industry_count": 1,
+          "expected_source_industry_count": 1
+        },
+        "electrical_equipment": {
+          "source_industry_count": 1,
+          "expected_source_industry_count": 1
+        },
+        "electronics": {
+          "source_industry_count": 1,
+          "expected_source_industry_count": 1
+        },
+        "machinery": {
+          "source_industry_count": 1,
+          "expected_source_industry_count": 1
+        },
+        "other_manufacturing": {
+          "source_industry_count": 3,
+          "expected_source_industry_count": 3
+        }
+      }
+    },
+    {
+      "name": "analysis_component_sets",
+      "pass": true,
+      "evidence": {
+        "electronics": {
+          "actual": [
+            "Computers and electronic products"
+          ],
+          "expected": "Computers and electronic products"
+        },
+        "electrical_equipment": {
+          "actual": [
+            "Electrical equipment, appliances, and components"
+          ],
+          "expected": "Electrical equipment, appliances, and components"
+        },
+        "machinery": {
+          "actual": [
+            "Machinery"
+          ],
+          "expected": "Machinery"
+        },
+        "other_manufacturing": {
+          "actual": [
+            "Chemicals | Food | Other manufacturing"
+          ],
+          "expected": "Chemicals | Food | Other manufacturing"
+        },
+        "autos": {
+          "actual": [
+            "Transportation equipment"
+          ],
+          "expected": "Transportation equipment"
+        }
+      }
+    },
+    {
+      "name": "analysis_recomputed_from_source",
+      "pass": true,
+      "evidence": {
+        "merge_counts": {
+          "both": 7125,
+          "left_only": 0,
+          "right_only": 0
+        },
+        "value_max_abs_error": 0.0,
+        "disclosed_value_max_abs_error": 0.0,
+        "counts_match": true,
+        "flags_match": true
+      }
+    },
+    {
+      "name": "analysis_metric_snapshot_position",
+      "pass": true,
+      "evidence": {
+        "actual": {
+          "nonmissing": 1917,
+          "missing": 458,
+          "small": 100,
+          "zero": 214,
+          "exact_zero": 138,
+          "zero_with_small": 76,
+          "cancellation_zero": 0,
+          "negative": 217,
+          "partial_suppression": 156,
+          "all_suppressed": 302,
+          "disclosed_negative": 228,
+          "disclosed_zero": 223
+        },
+        "expected": {
+          "nonmissing": 1917,
+          "missing": 458,
+          "small": 100,
+          "zero": 214,
+          "exact_zero": 138,
+          "zero_with_small": 76,
+          "cancellation_zero": 0,
+          "negative": 217,
+          "partial_suppression": 156,
+          "all_suppressed": 302,
+          "disclosed_negative": 228,
+          "disclosed_zero": 223
+        }
+      }
+    },
+    {
+      "name": "analysis_metric_snapshot_flows",
+      "pass": true,
+      "evidence": {
+        "actual": {
+          "nonmissing": 1585,
+          "missing": 790,
+          "small": 172,
+          "zero": 300,
+          "exact_zero": 174,
+          "zero_with_small": 126,
+          "cancellation_zero": 0,
+          "negative": 383,
+          "partial_suppression": 293,
+          "all_suppressed": 497,
+          "disclosed_negative": 464,
+          "disclosed_zero": 337
+        },
+        "expected": {
+          "nonmissing": 1585,
+          "missing": 790,
+          "small": 172,
+          "zero": 300,
+          "exact_zero": 174,
+          "zero_with_small": 126,
+          "cancellation_zero": 0,
+          "negative": 383,
+          "partial_suppression": 293,
+          "all_suppressed": 497,
+          "disclosed_negative": 464,
+          "disclosed_zero": 337
+        }
+      }
+    },
+    {
+      "name": "analysis_metric_snapshot_income",
+      "pass": true,
+      "evidence": {
+        "actual": {
+          "nonmissing": 1630,
+          "missing": 745,
+          "small": 295,
+          "zero": 492,
+          "exact_zero": 249,
+          "zero_with_small": 243,
+          "cancellation_zero": 0,
+          "negative": 225,
+          "partial_suppression": 301,
+          "all_suppressed": 444,
+          "disclosed_negative": 262,
+          "disclosed_zero": 525
+        },
+        "expected": {
+          "nonmissing": 1630,
+          "missing": 745,
+          "small": 295,
+          "zero": 492,
+          "exact_zero": 249,
+          "zero_with_small": 243,
+          "cancellation_zero": 0,
+          "negative": 225,
+          "partial_suppression": 301,
+          "all_suppressed": 444,
+          "disclosed_negative": 262,
+          "disclosed_zero": 525
+        }
+      }
+    },
+    {
+      "name": "analysis_strict_negative_counts",
+      "pass": true,
+      "evidence": {
+        "main": {
+          "position": 154,
+          "flows": 272,
+          "income": 152
+        },
+        "proxy_robustness": {
+          "position": 63,
+          "flows": 111,
+          "income": 73
+        }
+      }
+    },
+    {
+      "name": "analysis_no_infinite_values",
+      "pass": true,
+      "evidence": {}
+    },
+    {
+      "name": "analysis_metrics_not_additive",
+      "pass": true,
+      "evidence": {
+        "metric_add_true": 0,
+        "year_add_true": 0
+      }
+    },
+    {
+      "name": "metric_sign_conventions",
+      "pass": true,
+      "evidence": {
+        "actual": {
+          "position": [
+            "source_reported_signed_position_no_recode"
+          ],
+          "income": [
+            "source_reported_signed_income_no_recode"
+          ],
+          "flows_by_direction": {
+            "foreign_direct_investment_in_us": [
+              "inflows_positive_outflows_negative"
+            ],
+            "us_direct_investment_abroad": [
+              "outflows_positive_inflows_negative"
+            ]
+          }
+        },
+        "expected": {
+          "position": [
+            "source_reported_signed_position_no_recode"
+          ],
+          "income": [
+            "source_reported_signed_income_no_recode"
+          ],
+          "flows_by_direction": {
+            "us_direct_investment_abroad": [
+              "outflows_positive_inflows_negative"
+            ],
+            "foreign_direct_investment_in_us": [
+              "inflows_positive_outflows_negative"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "direction_country_roles",
+      "pass": true,
+      "evidence": {
+        "outward_origin_usa": true,
+        "outward_destination_foreign": true,
+        "inward_origin_foreign": true,
+        "inward_destination_usa": true
+      }
+    },
+    {
+      "name": "comparison_country_coverage",
+      "pass": true,
+      "evidence": {
+        "countries": 11,
+        "country_direction_year_cells": 85
+      }
+    },
+    {
+      "name": "absent_country_VNM",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "absent_country_MAR",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "twn_direction_and_proxy_coverage",
+      "pass": true,
+      "evidence": {
+        "rows": 150,
+        "proxy_rows": 30
+      }
+    },
+    {
+      "name": "mexico_autos_proxy_boundary",
+      "pass": true,
+      "evidence": {
+        "proxy_rows": 30,
+        "inward_income_suppressed": 2
+      }
+    },
+    {
+      "name": "source_stata_aliases",
+      "pass": true,
+      "evidence": {
+        "pass": true,
+        "alias_count": 73,
+        "maximum_alias_length": 12,
+        "missing_fields": [],
+        "extra_fields": [],
+        "duplicate_aliases": [],
+        "over_32_characters": {},
+        "invalid_aliases": {}
+      }
+    },
+    {
+      "name": "analysis_stata_aliases",
+      "pass": true,
+      "evidence": {
+        "pass": true,
+        "alias_count": 72,
+        "maximum_alias_length": 12,
+        "missing_fields": [],
+        "extra_fields": [],
+        "duplicate_aliases": [],
+        "over_32_characters": {},
+        "invalid_aliases": {}
+      }
+    },
+    {
+      "name": "deterministic_source_long_sha256",
+      "pass": true,
+      "evidence": {
+        "candidate": "e947317c827f975aab78fc9727594094d540e1b4b27a8a6b166eca3fd28d883a",
+        "second_build": "e947317c827f975aab78fc9727594094d540e1b4b27a8a6b166eca3fd28d883a"
+      }
+    },
+    {
+      "name": "deterministic_analysis_long_sha256",
+      "pass": true,
+      "evidence": {
+        "candidate": "8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf",
+        "second_build": "8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf"
+      }
+    },
+    {
+      "name": "canonical_source_hash_matches_candidate",
+      "pass": true,
+      "evidence": "e947317c827f975aab78fc9727594094d540e1b4b27a8a6b166eca3fd28d883a"
+    },
+    {
+      "name": "canonical_analysis_hash_matches_candidate",
+      "pass": true,
+      "evidence": "8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf"
+    },
+    {
+      "name": "temporary_output_cleaned",
+      "pass": true,
+      "evidence": true
+    }
+  ],
+  "validation_version": "production_bea_fdi_validation_v1",
+  "origin_date": "2026-08-10",
+  "generated_at_utc": "2026-08-10T10:53:58.017818+00:00",
+  "config_path": "configs/production_bea_fdi_rules.yaml",
+  "config_sha256": "934092fe9b6857fb23fc54f5d28e89441b6772f0f2e454c6849c042431670683",
+  "construction_version": "production_bea_fdi_rules_v1",
+  "input_contracts": {
+    "bea_fdi": {
+      "path": "data/interim/fdi/bea_direct_investment_country_industry.parquet",
+      "sha256": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba",
+      "sha256_expected": "a80c567f8d2e966a5f56b1d64f3c3e0005734d5ea9840f6c5d1c43246f01b0ba",
+      "rows": 11610,
+      "rows_expected": 11610,
+      "columns": 29,
+      "columns_expected": 29,
+      "schema_signature": "4a31c50f18232c5df9e7e584708f9766afe90c5e340218a101d6200b018c970f",
+      "schema_signature_expected": "4a31c50f18232c5df9e7e584708f9766afe90c5e340218a101d6200b018c970f",
+      "filtered_rows": 11610,
+      "filtered_rows_expected": 11610,
+      "key": [
+        "year",
+        "direction",
+        "country",
+        "industry"
+      ],
+      "key_duplicate_count": 0,
+      "key_missing_count": 0
+    },
+    "country_crosswalk": {
+      "path": "data/processed/concordances/country_crosswalk.parquet",
+      "sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+      "sha256_expected": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+      "rows": 611,
+      "rows_expected": 611,
+      "columns": 22,
+      "columns_expected": 22,
+      "schema_signature": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+      "schema_signature_expected": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+      "filtered_rows": 80,
+      "filtered_rows_expected": 80,
+      "key": [
+        "source_name",
+        "source_country_id"
+      ],
+      "key_duplicate_count": 0,
+      "key_missing_count": 0
+    },
+    "source_sector_crosswalk": {
+      "path": "data/processed/concordances/source_sector_crosswalk.parquet",
+      "sha256": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+      "sha256_expected": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+      "rows": 517,
+      "rows_expected": 517,
+      "columns": 14,
+      "columns_expected": 14,
+      "schema_signature": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+      "schema_signature_expected": "bdeb6d7157aa0814bc1568757270b160e02c802e88d29f8adf2f0646b701ff4d",
+      "filtered_rows": 20,
+      "filtered_rows_expected": 20,
+      "key": [
+        "source_name",
+        "source_sector_level",
+        "source_sector_code"
+      ],
+      "key_duplicate_count": 0,
+      "key_missing_count": 0
+    },
+    "time_aggregation_rules": {
+      "path": "data/processed/concordances/time_aggregation_rules.parquet",
+      "sha256": "94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4",
+      "sha256_expected": "94c9b5ee7e7f6bc91fcf67a251a0cb39c2aa64b1303fdce7948280039899bfb4",
+      "rows": 39,
+      "rows_expected": 39,
+      "columns": 18,
+      "columns_expected": 18,
+      "schema_signature": "5ecd32dc77a0f9f381befa62b9ade4ad990013d9485cd2dc1070899e1bc39bba",
+      "schema_signature_expected": "5ecd32dc77a0f9f381befa62b9ade4ad990013d9485cd2dc1070899e1bc39bba",
+      "filtered_rows": 3,
+      "filtered_rows_expected": 3,
+      "key": [
+        "input_id",
+        "metric_name"
+      ],
+      "key_duplicate_count": 0,
+      "key_missing_count": 0
+    },
+    "build_summary": {
+      "path": "data/interim/fdi/bea_direct_investment_country_industry_build_summary.json",
+      "sha256": "acce162b1f795c86bf7cfcf670cbfc0dc8797b4cc5fe0502b051cd6bd9198e39",
+      "sha256_expected": "acce162b1f795c86bf7cfcf670cbfc0dc8797b4cc5fe0502b051cd6bd9198e39"
+    },
+    "raw_manifest": {
+      "path": "data/raw/bea_fdi/metadata/bea_direct_investment_country_industry_manifest.json",
+      "sha256": "5e1ad6607992c8891cd36880976c145cf552fc7d283ad9cc07d06889f8e8dcc5",
+      "sha256_expected": "5e1ad6607992c8891cd36880976c145cf552fc7d283ad9cc07d06889f8e8dcc5"
+    }
+  },
+  "raw_manifest_audit": {
+    "expected_file_count": 6,
+    "manifest_file_count": 6,
+    "all_files_exist": true,
+    "all_sizes_match": true,
+    "all_hashes_match": true,
+    "records": [
+      {
+        "direction": "us_direct_investment_abroad",
+        "indicator": "flows",
+        "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__flows__usdia-ctrybyindfinancialtransactions-2020-2024.xlsx",
+        "exists": true,
+        "expected_bytes": 79262,
+        "actual_bytes": 79262,
+        "bytes_match": true,
+        "expected_sha256": "9ef89cb7eae7ec362b776e28560c7939c09f2e41d5f87250a6e8084437da0bdd",
+        "actual_sha256": "9ef89cb7eae7ec362b776e28560c7939c09f2e41d5f87250a6e8084437da0bdd",
+        "sha256_match": true
+      },
+      {
+        "direction": "us_direct_investment_abroad",
+        "indicator": "income",
+        "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__income__usdia-ctrybyindincome-2020-2024.xlsx",
+        "exists": true,
+        "expected_bytes": 70154,
+        "actual_bytes": 70154,
+        "bytes_match": true,
+        "expected_sha256": "c2cf31092899c4d79d906b93c0bb93d91bd9c88888aaf621b64e3d9b7d844897",
+        "actual_sha256": "c2cf31092899c4d79d906b93c0bb93d91bd9c88888aaf621b64e3d9b7d844897",
+        "sha256_match": true
+      },
+      {
+        "direction": "us_direct_investment_abroad",
+        "indicator": "position",
+        "local_path": "data/raw/bea_fdi/direct_investment_country_industry/us_direct_investment_abroad/us_direct_investment_abroad__position__usdia-position-2020-2025.xlsx",
+        "exists": true,
+        "expected_bytes": 86418,
+        "actual_bytes": 86418,
+        "bytes_match": true,
+        "expected_sha256": "fee0d5a9a2f023d74365b99e70722bbdf8cd51feb449609cac75b3a895c2d77f",
+        "actual_sha256": "fee0d5a9a2f023d74365b99e70722bbdf8cd51feb449609cac75b3a895c2d77f",
+        "sha256_match": true
+      },
+      {
+        "direction": "foreign_direct_investment_in_us",
+        "indicator": "flows",
+        "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__flows__fdius-ctry-by-ind-financial-transactions-2020-2024.xlsx",
+        "exists": true,
+        "expected_bytes": 68450,
+        "actual_bytes": 68450,
+        "bytes_match": true,
+        "expected_sha256": "219a73783752cd3285baa58430d0ebf100824de4aa6d7671a6d471ed829d6060",
+        "actual_sha256": "219a73783752cd3285baa58430d0ebf100824de4aa6d7671a6d471ed829d6060",
+        "sha256_match": true
+      },
+      {
+        "direction": "foreign_direct_investment_in_us",
+        "indicator": "income",
+        "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__income__fdius-ctry-by-ind-income-2020-2024.xlsx",
+        "exists": true,
+        "expected_bytes": 70835,
+        "actual_bytes": 70835,
+        "bytes_match": true,
+        "expected_sha256": "1572de130e192c7c2e3040530d4292c26ff29b0ab12cf5d76688690cd9c695b4",
+        "actual_sha256": "1572de130e192c7c2e3040530d4292c26ff29b0ab12cf5d76688690cd9c695b4",
+        "sha256_match": true
+      },
+      {
+        "direction": "foreign_direct_investment_in_us",
+        "indicator": "position",
+        "local_path": "data/raw/bea_fdi/direct_investment_country_industry/foreign_direct_investment_in_us/foreign_direct_investment_in_us__position__fdius-ctry-by-ind-position-2020-2025.xlsx",
+        "exists": true,
+        "expected_bytes": 84223,
+        "actual_bytes": 84223,
+        "bytes_match": true,
+        "expected_sha256": "f82ccf0131e7aa110e3811b368bec976035ac92848787440dbfda91639c7122c",
+        "actual_sha256": "f82ccf0131e7aa110e3811b368bec976035ac92848787440dbfda91639c7122c",
+        "sha256_match": true
+      }
+    ]
+  },
+  "geography_and_mapping": {
+    "source_geography_labels": 80,
+    "source_area_aggregate_rows": 2610,
+    "country_override_aggregate_rows": 450,
+    "final_aggregate_rows": 3060,
+    "actual_country_rows": 8550,
+    "actual_country_count": 60,
+    "country_direction_year_cells": 475
+  },
+  "source_metric_checks": {
+    "position": {
+      "missing": 1549,
+      "suppressed": 1549,
+      "small": 234,
+      "zero": 610,
+      "exact_zero": 376,
+      "negative": 851
+    },
+    "flows": {
+      "missing": 2919,
+      "suppressed": 2919,
+      "small": 477,
+      "zero": 936,
+      "exact_zero": 459,
+      "negative": 2348
+    },
+    "income": {
+      "missing": 2707,
+      "suppressed": 2707,
+      "small": 792,
+      "zero": 1484,
+      "exact_zero": 692,
+      "negative": 1136
+    }
+  },
+  "source_identity_checks": {
+    "position": {
+      "merge_counts": {
+        "both": 11610,
+        "left_only": 0,
+        "right_only": 0
+      },
+      "value_max_abs_error": 0.0,
+      "raw_code_match": true,
+      "flags_match": true,
+      "provenance_match": true
+    },
+    "flows": {
+      "merge_counts": {
+        "both": 11610,
+        "left_only": 0,
+        "right_only": 0
+      },
+      "value_max_abs_error": 0.0,
+      "raw_code_match": true,
+      "flags_match": true,
+      "provenance_match": true
+    },
+    "income": {
+      "merge_counts": {
+        "both": 11610,
+        "left_only": 0,
+        "right_only": 0
+      },
+      "value_max_abs_error": 0.0,
+      "raw_code_match": true,
+      "flags_match": true,
+      "provenance_match": true
+    }
+  },
+  "analysis_metric_checks": {
+    "position": {
+      "nonmissing": 1917,
+      "missing": 458,
+      "small": 100,
+      "zero": 214,
+      "exact_zero": 138,
+      "zero_with_small": 76,
+      "cancellation_zero": 0,
+      "negative": 217,
+      "partial_suppression": 156,
+      "all_suppressed": 302,
+      "disclosed_negative": 228,
+      "disclosed_zero": 223
+    },
+    "flows": {
+      "nonmissing": 1585,
+      "missing": 790,
+      "small": 172,
+      "zero": 300,
+      "exact_zero": 174,
+      "zero_with_small": 126,
+      "cancellation_zero": 0,
+      "negative": 383,
+      "partial_suppression": 293,
+      "all_suppressed": 497,
+      "disclosed_negative": 464,
+      "disclosed_zero": 337
+    },
+    "income": {
+      "nonmissing": 1630,
+      "missing": 745,
+      "small": 295,
+      "zero": 492,
+      "exact_zero": 249,
+      "zero_with_small": 243,
+      "cancellation_zero": 0,
+      "negative": 225,
+      "partial_suppression": 301,
+      "all_suppressed": 444,
+      "disclosed_negative": 262,
+      "disclosed_zero": 525
+    }
+  },
+  "stata_alias_validation": {
+    "source_long": {
+      "pass": true,
+      "alias_count": 73,
+      "maximum_alias_length": 12,
+      "missing_fields": [],
+      "extra_fields": [],
+      "duplicate_aliases": [],
+      "over_32_characters": {},
+      "invalid_aliases": {}
+    },
+    "analysis_long": {
+      "pass": true,
+      "alias_count": 72,
+      "maximum_alias_length": 12,
+      "missing_fields": [],
+      "extra_fields": [],
+      "duplicate_aliases": [],
+      "over_32_characters": {},
+      "invalid_aliases": {}
+    }
+  },
+  "outputs": {
+    "source_long": {
+      "path": "data/processed/harmonized/production_bea_fdi_source_industry_long.parquet",
+      "sha256": "e947317c827f975aab78fc9727594094d540e1b4b27a8a6b166eca3fd28d883a",
+      "rows": 34830,
+      "columns": 73,
+      "schema_signature": "e89f5b8f8f87af672842ff93a8c37459e1836ba8853efe18f382f8b69d3ed33a"
+    },
+    "analysis_long": {
+      "path": "data/processed/harmonized/production_validation_bea_fdi_long.parquet",
+      "sha256": "8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf",
+      "rows": 7125,
+      "columns": 72,
+      "schema_signature": "e17167ade70b76b9b55aba896afa1c598a401f216262363f466b2f0d4d98935d"
+    }
+  },
+  "determinism": {
+    "source_long_candidate_sha256": "e947317c827f975aab78fc9727594094d540e1b4b27a8a6b166eca3fd28d883a",
+    "source_long_second_build_sha256": "e947317c827f975aab78fc9727594094d540e1b4b27a8a6b166eca3fd28d883a",
+    "source_long_sha256_match": true,
+    "analysis_long_candidate_sha256": "8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf",
+    "analysis_long_second_build_sha256": "8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf",
+    "analysis_long_sha256_match": true,
+    "temporary_output_cleaned": true
+  }
+}
