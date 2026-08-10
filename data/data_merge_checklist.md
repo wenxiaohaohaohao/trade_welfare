@@ -5,7 +5,7 @@
 - Origin Skill: `academic-research-suite/experiment-agent`
 - Origin Mode: `plan`
 - Origin Date: `2026-07-19`
-- Verification Status: `ANALYZED`（M0-M4.5 validation 均为 PASS；M4.6-M7 待执行）
+- Verification Status: `ANALYZED`（M0-M4.6 validation 均为 PASS；M4.7-M7 待执行）
 - Version Label: `data_merge_plan_v1`
 - Working Branch: `data-processing-variables`
 
@@ -13,7 +13,7 @@
 
 目标是把已经验证的 source-specific `data/interim/` 数据，转化为可审计、可重复生成的 `data/processed/` 合并数据，并在此基础上构造 connector ranking、rerouting facts、production-side validation 和 structural moments。
 
-当前阶段：`M0-M4.5 已完成并验证；M4.6-M7 尚未开始`。
+当前阶段：`M0-M4.6 已完成并验证；M4.7-M7 尚未开始`。
 
 勾选规则：只有代码、输出、validation 和说明文件同时完成，任务才从 `[ ]` 改为 `[x]`。部分完成、仅生成文件、仅跑通代码或仍有未解释的 many-to-many join，都不能打勾。
 
@@ -66,7 +66,8 @@
 | Sector reorganization | `data/processed/harmonized/connector_trade_sector_reorganization_indicators.parquet` | `connector_iso3, analysis_sector` | replacement、source-input/export、growth flags 和 exposure overlap |
 | Product co-movement | `data/processed/harmonized/connector_trade_sector_product_comovement.parquet` | `connector_iso3, analysis_sector` | HS6 correlation、双腿正增长、rerouting/triple-condition shares |
 | Common comparison panel | `data/processed/harmonized/connector_trade_sector_common_panel.parquet` | `connector_iso3, analysis_sector` | MEX、VNM、CAN、Asian comparators 和 other candidates 的完整 13 × 7 同口径面板；不含排名筛选 |
-| Production-side | `data/processed/harmonized/production_validation_long.parquet` | `country_iso3, analysis_sector, year, source_name, metric_name` | 产出、增加值、affiliate activity、employment、capex、FDI 等长表 |
+| Production evidence registry | `data/processed/harmonized/production_validation_long.parquet` | `source_table, source_observation_id` | 逐行保留 production、affiliate activity、FDI、country role、period、proxy 和 benchmark scope |
+| Main host activity | `data/processed/harmonized/production_validation_main_host_sector_year_long.parquet` | `country_iso3, analysis_sector, year, source_name, metric_name` | ICIO、AMNE 与 BEA MNE main-sector 的严格 host-country activity 接口 |
 | Integrated evidence | `data/processed/harmonized/connector_evidence_country_sector_year.parquet` | `connector_iso3, analysis_sector, year` | 贸易与生产侧证据的最终研究接口 |
 | Moments | `data/processed/moments/structural_moments.parquet` | `moment_id, scenario` | `h_tau`、`h_gamma` 和 Scenario A/B/C 输入 |
 | Stata handoff | `data/processed/stata/*.dta` | 与对应 canonical Parquet 相同 | 合作者后续实证分析；配套变量字典和验证 `.do` 文件 |
@@ -146,10 +147,12 @@ M4.2 门槛已满足：`production_amne_parent_host_sector_long.parquet` 为 7,5
 - [x] M4.3 BEA MNE：先过滤 aggregate geographies，再映射 country 和 industry；保留 employment、sales、value added、capex、affiliate trade 及 suppression flags。
 - [x] M4.4 BEA FDI：分别保留 outward/inward direction、position、flows 和 income；stock、flow 和 income 不混为同一指标。
 - [x] M4.5 Mexico FDI：季度 flow 按年求和；保留 parent-country、SCIAN sector、confidential 和 total/residual flags。
-- [ ] M4.6 把各来源转换为统一 long schema：`country, sector, year, source, metric, value, unit, direct_or_allocated, suppressed_or_confidential`。
+- [x] M4.6 把各来源转换为统一 long schema；分别保留 `suppressed_flag` 与 `confidential_flag`，并增加 country role、direction、period、proxy、financial-only、join-role 和逐行 provenance。
 - [ ] M4.7 不人为补齐 ICIO 缺失年份；ICIO 仅在 2017、2018、2022 作为可观察 benchmark，其他来源保留各自覆盖期。
 
-完成门槛：生成 `production_validation_long.parquet`；所有值都能回溯到 source file；missing、suppressed、confidential 和 allocated 状态不会在聚合中丢失。
+M4.6 门槛已满足：`production_validation_long.parquet` 为 113,302 × 83，物理主键 `source_table, source_observation_id` 唯一；`production_validation_main_host_sector_year_long.parquet` 为 73,368 × 83，严格主键 `country_iso3, analysis_sector, year, source_name, metric_name` 唯一。六张输入逐行一对一进入 registry，没有数值聚合、单位转换、补齐年份或跨来源 reconciliation；17,116 个 missing、4,604 个 suppressed、12,344 个 confidential、1,224 个 observed negative、18,886 个 numeric zero 和 3,807 个 proxy rows 全部保留。五类 `join_role` 互斥且覆盖 113,302 行；BEA FDI inward 和 Mexico parent 始终作为 origin-side financial evidence，financial-only 和 proxy rows 不进入严格 activity 表。137 项 validation 全部 PASS，83 个 Stata aliases 有效唯一，两张 Parquet 的第二次构建 SHA256 分别与正式输出完全一致。
+
+完成门槛：已生成完整 registry 和严格 main subset；所有值均能通过 source table、source-specific natural key、source file 和 upstream schema/version 回溯；missing、suppressed、confidential、allocated、proxy、country-role 和 period 状态均未丢失。
 
 ### M5. 合并贸易与生产侧证据
 
@@ -200,4 +203,6 @@ M4.4 门槛已满足：source-detail 为 34,830 × 73，analysis long 为 7,125 
 
 M4.5 门槛已满足：source-period audit、parent-sector period 和 benchmark 三张表分别为 902,608 × 73、28,560 × 68、1,867 × 59，三个自然键 duplicate 均为 0。九个 raw 文件和九张 interim 表与 build summary 的 bytes/hash 全部一致；596,366 行 joint detail 在 74 个季度各有固定 8,059 个结构键。86,123 个 `C` 继续为 missing，19,980 个 residual-country rows 未当作普通国家，7,152 个季度负 flow 原符号保留。Parent-sector 表只使用 78 个 direct eligible industry-group codes、7 个 analysis sectors 和 255 个已发布 parent/residual-sector support cells；quarter/calendar-year/H1 strict available rows 为 11,410/2,099/2,566。2024 joint detail 仅有 Q1-Q2，因此 8,059 个 source annual 和 255 个 parent-sector annual rows 显式保留为 incomplete/missing；全国 2024 full-year 36,872.421204 million USD 独立保留。National total、parent annual margin、sector annual margin 分层保存，不外积、不分配保密值、不强制 reconciliation。100 项 validation failure 为 0，73/68/59 个 Stata aliases 通过；三张 Parquet 的第二次构建 SHA256 分别为 `998b1f3245fe06ade332411421c9933f031081921e0847b14e13fa5707d24542`、`98191b4362b2ff1b7d91733d1f8ba7a25dc24028c97b848fe62f165e12d0b89e` 和 `a65f82ba2960987df8d22bccb883f8eda11db641a3f9528148242341091a4806`，逐一一致。
 
-下一项计划任务是 `M4.6：跨来源 production long schema 与整合`，尚未开始。M4.1-M4.5 已分别提供 ICIO aggregate benchmark、AMNE parent-host/host-sector activity、BEA majority-owned affiliate activity、BEA outward/inward direct-investment evidence 和 Mexico inward-FDI source/benchmark interfaces，但当前仍没有跨来源 production integration、connector ranking、“赢家”名单或结构模型 inputs。M4.6 及其后步骤必须等待用户确认后再开始。
+M4.6 门槛已满足：完整 registry 和严格 host-country activity subset 分别为 113,302 × 83 与 73,368 × 83；两个主键 duplicate 均为 0。六张冻结输入和五份 upstream validation 的 hash/status 全部匹配，逐行 value、missing、suppressed、confidential 和 country-role 回勾通过；五类 join roles 为 76,728/3,222/2,925/26/30,401 行并穷尽全部 observations。完整表 value available 96,186，严格 activity 表 value available 71,254；ICIO 仍只有 2017/2018/2022，Mexico 2024 parent-sector calendar-year 的 255 行仍为 incomplete。137 项 validation failure 为 0，83 个 Stata aliases 通过；正式/第二次 hashes 分别为 `4b27154fe00c75b44f23724f7940799363be4212b72c83757a5a389111a6c69a` 和 `2ca54343f0d5bef9c42532a1c79c0d4864f32764f35f4d5a7751170b6c44a27d`。
+
+下一项计划任务是 `M4.7：来源年份覆盖与 ICIO 不插值规则的最终接口确认`，尚未开始。当前没有构造 production growth、connector ranking、“赢家”名单、structural moments、welfare inputs 或 Stata `.dta`；M4.7 及其后步骤必须等待用户确认后再开始。

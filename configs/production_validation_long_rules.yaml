@@ -1,0 +1,261 @@
+version: 1
+origin_date: "2026-08-11"
+construction_version: m4_6_cross_source_production_integration_v1
+
+inputs:
+  icio_analysis:
+    path: data/processed/harmonized/production_validation_icio_long.parquet
+    sha256: e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0
+    expected_rows: 10080
+    expected_columns: 43
+    arrow_schema_signature_sha256: 9e5b36ff7e3ca807f4e8f55f6b7e666ced100677b053b887a579802787c56eb5
+    natural_key: [country_iso3, analysis_sector, year, source_name, metric_name]
+  amne_host_sector:
+    path: data/processed/harmonized/production_validation_amne_host_sector_long.parquet
+    sha256: b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179
+    expected_rows: 53760
+    expected_columns: 56
+    arrow_schema_signature_sha256: a20528b03f1cef88f3d0446d94959a44a97c74f88153a8f91e03def802c3f197
+    natural_key: [country_iso3, analysis_sector, year, source_name, metric_name]
+  bea_mne_analysis:
+    path: data/processed/harmonized/production_validation_bea_mne_long.parquet
+    sha256: 21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade
+    expected_rows: 11910
+    expected_columns: 66
+    arrow_schema_signature_sha256: 505d6c0d8fe9adb62170f92a36210fb7264fb6b1c37eb4c02a4a77aca8eb7cfc
+    natural_key: [country_iso3, analysis_sector, year, source_name, metric_name]
+  bea_fdi_analysis:
+    path: data/processed/harmonized/production_validation_bea_fdi_long.parquet
+    sha256: 8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf
+    expected_rows: 7125
+    expected_columns: 72
+    arrow_schema_signature_sha256: e17167ade70b76b9b55aba896afa1c598a401f216262363f466b2f0d4d98935d
+    natural_key: [country_iso3, investment_direction, analysis_sector, year, source_name, metric_name]
+  mexico_parent_sector_period:
+    path: data/processed/harmonized/production_validation_mexico_fdi_parent_sector_period_long.parquet
+    sha256: 98191b4362b2ff1b7d91733d1f8ba7a25dc24028c97b848fe62f165e12d0b89e
+    expected_rows: 28560
+    expected_columns: 68
+    arrow_schema_signature_sha256: d9f6517fcd75726468c3d88f8af3ccb3327ef834497eabe3be4821348e807181
+    natural_key: [host_country_iso3, source_parent_country_id, analysis_sector, year, period_type, period_id, source_name, metric_name]
+    source_file_override: data/raw/mexico_fdi/ied_pais_de_origen_sector.csv
+  mexico_benchmark_period:
+    path: data/processed/harmonized/production_mexico_fdi_benchmark_period_long.parquet
+    sha256: a65f82ba2960987df8d22bccb883f8eda11db641a3f9528148242341091a4806
+    expected_rows: 1867
+    expected_columns: 59
+    arrow_schema_signature_sha256: 82030eb8390f0258219cd46870cda216a33450ce2ff1376671a64944b2636dd2
+    natural_key: [benchmark_scope, benchmark_record_id, year, period_type, period_id, source_name, metric_name]
+  country_crosswalk:
+    path: data/processed/concordances/country_crosswalk.parquet
+    sha256: 29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6
+    expected_rows: 611
+    expected_columns: 22
+    arrow_schema_signature_sha256: 464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5
+    natural_key: [source_name, source_country_id]
+
+upstream_validations:
+  icio:
+    path: data/validation/production_icio_validation.json
+    sha256: 4aac7864e14a070fb2054644da9119cc8e40fb58b6c8a4f077ac83d5caab9625
+  amne:
+    path: data/validation/production_amne_validation.json
+    sha256: fb10403474888c1b5a38a0257afd1d8c0f94fd8452b36a5c9128ab505fcfffbb
+  bea_mne:
+    path: data/validation/production_bea_mne_validation.json
+    sha256: d5f5bf9eff4be79e917ae3aa1ab25b9f4ef8bfbee84cd0786f937d396c082a98
+  bea_fdi:
+    path: data/validation/production_bea_fdi_validation.json
+    sha256: 8ca6c7358ae3e0f72e19f560285e6b111253e4a5cb14820d26f28b754d84b9ac
+  mexico_fdi:
+    path: data/validation/production_mexico_fdi_validation.json
+    sha256: c08c1bc354ddd50b69da1714cf20476e5db96d2a907fd5e3d53f48d8d89dc862
+
+integration_rules:
+  preserve_every_input_observation_once: true
+  source_observation_id_algorithm: sha256_of_source_table_and_canonical_natural_key_json
+  country_role_required: true
+  never_sum_across_sources: true
+  never_sum_across_metrics: true
+  never_impute_missing_or_suppressed_or_confidential: true
+  never_interpolate_icio_years: true
+  source_audit_tables_excluded_from_concat: true
+  main_host_activity_sources: [icio_analysis, amne_host_sector, bea_mne_analysis]
+  financial_sources: [bea_fdi_analysis, mexico_parent_sector_period, mexico_benchmark_period]
+  main_host_activity_rule: icio_and_amne_all_rows_plus_bea_mne_main_scope_only
+  bea_fdi_rule: retain_as_financial_evidence_and_preserve_direction_and_country_role
+  mexico_parent_rule: retain_parent_origin_dimension_and_never_treat_parent_as_host
+  mexico_benchmark_rule: national_totals_are_country_period_benchmarks_not_sector_rows
+  proxy_rule: retain_in_full_registry_and_exclude_from_main_host_activity_output
+
+metric_families:
+  icio:
+    gross_output: production_output
+    value_added: value_added
+    exports: trade_flow
+    imports: trade_flow
+    intermediate_inputs: accounting_input
+    taxes_less_subsidies: accounting_component
+    accounting_residual: accounting_diagnostic
+  amne:
+    bilateral_affiliate_output_sum: affiliate_output
+    foreign_affiliate_output_total: affiliate_output
+    foreign_affiliate_value_added_total: affiliate_value_added
+    foreign_affiliate_exports_total: affiliate_trade_flow
+    foreign_affiliate_imports_total: affiliate_trade_flow
+    gross_output: production_output
+    foreign_affiliate_output_share: ratio
+  bea_mne:
+    employment: employment
+    sales: affiliate_sales
+    value_added: affiliate_value_added
+    capital_expenditures: capital_expenditure
+    goods_exports_to_us: affiliate_trade_flow
+    goods_imports_from_us: affiliate_trade_flow
+  bea_fdi:
+    position: direct_investment_stock
+    flows: direct_investment_flow
+    income: direct_investment_income
+  mexico_fdi:
+    fdi_flow: direct_investment_flow
+
+outputs:
+  full_registry:
+    path: data/processed/harmonized/production_validation_long.parquet
+    natural_key: [source_table, source_observation_id]
+    expected_rows: 113302
+    expected_columns: 83
+    schema_version: production_validation_cross_source_long_v1
+  main_host_activity:
+    path: data/processed/harmonized/production_validation_main_host_sector_year_long.parquet
+    natural_key: [country_iso3, analysis_sector, year, source_name, metric_name]
+    expected_rows: 73368
+    expected_columns: 83
+    schema_version: production_validation_cross_source_long_v1
+
+stata_aliases:
+  source_table: src_table
+  source_observation_id: src_obsid
+  source_natural_key: src_key
+  source_input_path: input_path
+  evidence_family: evid_family
+  evidence_scope: evid_scope
+  country_iso3: country_iso3
+  canonical_country_name: country_name
+  country_role: ctry_role
+  host_country_iso3: host_iso3
+  parent_country_iso3: parent_iso3
+  source_parent_country_id: parent_id
+  origin_country_iso3: origin_iso3
+  destination_country_iso3: dest_iso3
+  foreign_country_role: foreign_role
+  investment_direction: invest_dir
+  analysis_sector: ana_sector
+  analysis_scope: ana_scope
+  year: year
+  quarter: quarter
+  period_type: per_type
+  period_id: period_id
+  period_start_quarter: q_start
+  period_end_quarter: q_end
+  expected_period_count: per_exp
+  observed_period_count: per_obs
+  complete_period_flag: full_per
+  annual_comparable_flag: ann_comp
+  partial_year_flag: part_year
+  frequency: freq
+  temporal_type: temp_type
+  source_name: source
+  metric_name: metric
+  metric_order: metric_ord
+  metric_family: met_family
+  value: value
+  source_disclosed_value_sum: disc_sum
+  unit: unit
+  direction: direction
+  direct_or_allocated: direct_alloc
+  derivation_status: deriv_stat
+  metric_formula: metric_form
+  metric_use: metric_use
+  value_available_flag: val_avail
+  missing_reason: miss_reason
+  suppressed_flag: suppressed
+  confidential_flag: confidentl
+  suppressed_or_confidential_flag: supp_conf
+  partial_disclosure_flag: part_disc
+  small_value_flag: small_val
+  aggregate_flag: is_agg
+  residual_flag: is_resid
+  parent_residual_flag: par_resid
+  proxy_flag: is_proxy
+  observed_negative_flag: obs_neg
+  reported_zero_flag: rep_zero
+  exact_zero_flag: exact_zero
+  cancellation_to_zero_flag: zero_cancel
+  national_total_flag: nat_total
+  one_dimensional_margin_flag: one_dim
+  source_native_join_eligible_flag: src_joinok
+  join_role: join_role
+  host_country_sector_year_evidence_eligible_flag: hcsy_joinok
+  main_host_activity_join_eligible_flag: main_joinok
+  country_year_benchmark_eligible_flag: cy_benchok
+  country_period_benchmark_eligible_flag: cp_benchok
+  diagnostic_only_flag: diag_only
+  nonadditive_flag: nonadd
+  can_sum_across_source_records: src_add
+  can_sum_across_years: year_add
+  can_sum_across_metrics: met_add
+  financial_evidence_only_flag: fin_only
+  is_core_connector: core_conn
+  is_asian_comparator: asia_comp
+  is_other_candidate: oth_cand
+  comparison_sample_country_flag: comp_ctry
+  source_file: src_file
+  source_release: src_release
+  upstream_rules_config_sha256: up_rules
+  upstream_schema_version: up_schema
+  m4_6_version: m4_6_ver
+  rules_config_sha256: rules_hash
+  schema_version: schema_ver
+
+validation_outputs:
+  json: data/validation/production_validation_long_validation.json
+  markdown: data/validation/production_validation_long_validation.md
+
+validation:
+  candidate_temp_directory: tmp/m4_6_candidates
+  determinism_temp_directory: tmp/m4_6_determinism
+  numeric_tolerance: 1.0e-12
+  expected_source_rows:
+    icio_analysis: 10080
+    amne_host_sector: 53760
+    bea_mne_analysis: 11910
+    bea_fdi_analysis: 7125
+    mexico_parent_sector_period: 28560
+    mexico_benchmark_period: 1867
+  expected_period_rows:
+    calendar_year: 89457
+    quarter: 18974
+    h1: 4871
+  expected_missing_value_rows: 17116
+  expected_suppressed_rows: 4604
+  expected_confidential_rows: 12344
+  expected_observed_negative_rows: 1224
+  expected_exact_numeric_zero_rows: 18886
+  expected_proxy_rows: 3807
+  expected_source_native_join_eligible_rows: 79224
+  expected_host_country_sector_year_evidence_eligible_rows: 76728
+  expected_main_host_activity_rows: 73368
+  expected_main_host_activity_available_rows: 71254
+  expected_main_host_activity_country_count: 87
+  expected_main_host_activity_sector_count: 6
+  expected_mexico_parent_main_join_rows: 0
+  expected_mexico_national_period_benchmark_rows: 156
+  expected_mexico_national_calendar_year_benchmark_rows: 26
+  expected_icio_years: [2017, 2018, 2022]
+  expected_join_role_rows:
+    host_country_sector_year_main: 76728
+    host_country_sector_year_proxy: 3222
+    origin_country_sector_year_financial: 2925
+    country_year_benchmark: 26
+    source_native_only: 30401

@@ -1,0 +1,1436 @@
+{
+  "validation_status": "PASS",
+  "failures": [],
+  "checks": [
+    {
+      "name": "input_icio_analysis_exists",
+      "status": "PASS",
+      "observed": "F:\\working_paper_wenxiao\\trade_welfare\\data\\processed\\harmonized\\production_validation_icio_long.parquet",
+      "expected": "file exists"
+    },
+    {
+      "name": "input_icio_analysis_sha256",
+      "status": "PASS",
+      "observed": "e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0",
+      "expected": "e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0"
+    },
+    {
+      "name": "input_icio_analysis_rows",
+      "status": "PASS",
+      "observed": 10080,
+      "expected": 10080
+    },
+    {
+      "name": "input_icio_analysis_columns",
+      "status": "PASS",
+      "observed": 43,
+      "expected": 43
+    },
+    {
+      "name": "input_icio_analysis_schema",
+      "status": "PASS",
+      "observed": "9e5b36ff7e3ca807f4e8f55f6b7e666ced100677b053b887a579802787c56eb5",
+      "expected": "9e5b36ff7e3ca807f4e8f55f6b7e666ced100677b053b887a579802787c56eb5"
+    },
+    {
+      "name": "input_icio_analysis_key_columns",
+      "status": "PASS",
+      "observed": [
+        "country_iso3",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ],
+      "expected": [
+        "country_iso3",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ]
+    },
+    {
+      "name": "input_icio_analysis_key_nonmissing",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_icio_analysis_key_unique",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_amne_host_sector_exists",
+      "status": "PASS",
+      "observed": "F:\\working_paper_wenxiao\\trade_welfare\\data\\processed\\harmonized\\production_validation_amne_host_sector_long.parquet",
+      "expected": "file exists"
+    },
+    {
+      "name": "input_amne_host_sector_sha256",
+      "status": "PASS",
+      "observed": "b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179",
+      "expected": "b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179"
+    },
+    {
+      "name": "input_amne_host_sector_rows",
+      "status": "PASS",
+      "observed": 53760,
+      "expected": 53760
+    },
+    {
+      "name": "input_amne_host_sector_columns",
+      "status": "PASS",
+      "observed": 56,
+      "expected": 56
+    },
+    {
+      "name": "input_amne_host_sector_schema",
+      "status": "PASS",
+      "observed": "a20528b03f1cef88f3d0446d94959a44a97c74f88153a8f91e03def802c3f197",
+      "expected": "a20528b03f1cef88f3d0446d94959a44a97c74f88153a8f91e03def802c3f197"
+    },
+    {
+      "name": "input_amne_host_sector_key_columns",
+      "status": "PASS",
+      "observed": [
+        "country_iso3",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ],
+      "expected": [
+        "country_iso3",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ]
+    },
+    {
+      "name": "input_amne_host_sector_key_nonmissing",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_amne_host_sector_key_unique",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_bea_mne_analysis_exists",
+      "status": "PASS",
+      "observed": "F:\\working_paper_wenxiao\\trade_welfare\\data\\processed\\harmonized\\production_validation_bea_mne_long.parquet",
+      "expected": "file exists"
+    },
+    {
+      "name": "input_bea_mne_analysis_sha256",
+      "status": "PASS",
+      "observed": "21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade",
+      "expected": "21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade"
+    },
+    {
+      "name": "input_bea_mne_analysis_rows",
+      "status": "PASS",
+      "observed": 11910,
+      "expected": 11910
+    },
+    {
+      "name": "input_bea_mne_analysis_columns",
+      "status": "PASS",
+      "observed": 66,
+      "expected": 66
+    },
+    {
+      "name": "input_bea_mne_analysis_schema",
+      "status": "PASS",
+      "observed": "505d6c0d8fe9adb62170f92a36210fb7264fb6b1c37eb4c02a4a77aca8eb7cfc",
+      "expected": "505d6c0d8fe9adb62170f92a36210fb7264fb6b1c37eb4c02a4a77aca8eb7cfc"
+    },
+    {
+      "name": "input_bea_mne_analysis_key_columns",
+      "status": "PASS",
+      "observed": [
+        "country_iso3",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ],
+      "expected": [
+        "country_iso3",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ]
+    },
+    {
+      "name": "input_bea_mne_analysis_key_nonmissing",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_bea_mne_analysis_key_unique",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_bea_fdi_analysis_exists",
+      "status": "PASS",
+      "observed": "F:\\working_paper_wenxiao\\trade_welfare\\data\\processed\\harmonized\\production_validation_bea_fdi_long.parquet",
+      "expected": "file exists"
+    },
+    {
+      "name": "input_bea_fdi_analysis_sha256",
+      "status": "PASS",
+      "observed": "8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf",
+      "expected": "8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf"
+    },
+    {
+      "name": "input_bea_fdi_analysis_rows",
+      "status": "PASS",
+      "observed": 7125,
+      "expected": 7125
+    },
+    {
+      "name": "input_bea_fdi_analysis_columns",
+      "status": "PASS",
+      "observed": 72,
+      "expected": 72
+    },
+    {
+      "name": "input_bea_fdi_analysis_schema",
+      "status": "PASS",
+      "observed": "e17167ade70b76b9b55aba896afa1c598a401f216262363f466b2f0d4d98935d",
+      "expected": "e17167ade70b76b9b55aba896afa1c598a401f216262363f466b2f0d4d98935d"
+    },
+    {
+      "name": "input_bea_fdi_analysis_key_columns",
+      "status": "PASS",
+      "observed": [
+        "country_iso3",
+        "investment_direction",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ],
+      "expected": [
+        "country_iso3",
+        "investment_direction",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ]
+    },
+    {
+      "name": "input_bea_fdi_analysis_key_nonmissing",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_bea_fdi_analysis_key_unique",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_mexico_parent_sector_period_exists",
+      "status": "PASS",
+      "observed": "F:\\working_paper_wenxiao\\trade_welfare\\data\\processed\\harmonized\\production_validation_mexico_fdi_parent_sector_period_long.parquet",
+      "expected": "file exists"
+    },
+    {
+      "name": "input_mexico_parent_sector_period_sha256",
+      "status": "PASS",
+      "observed": "98191b4362b2ff1b7d91733d1f8ba7a25dc24028c97b848fe62f165e12d0b89e",
+      "expected": "98191b4362b2ff1b7d91733d1f8ba7a25dc24028c97b848fe62f165e12d0b89e"
+    },
+    {
+      "name": "input_mexico_parent_sector_period_rows",
+      "status": "PASS",
+      "observed": 28560,
+      "expected": 28560
+    },
+    {
+      "name": "input_mexico_parent_sector_period_columns",
+      "status": "PASS",
+      "observed": 68,
+      "expected": 68
+    },
+    {
+      "name": "input_mexico_parent_sector_period_schema",
+      "status": "PASS",
+      "observed": "d9f6517fcd75726468c3d88f8af3ccb3327ef834497eabe3be4821348e807181",
+      "expected": "d9f6517fcd75726468c3d88f8af3ccb3327ef834497eabe3be4821348e807181"
+    },
+    {
+      "name": "input_mexico_parent_sector_period_key_columns",
+      "status": "PASS",
+      "observed": [
+        "host_country_iso3",
+        "source_parent_country_id",
+        "analysis_sector",
+        "year",
+        "period_type",
+        "period_id",
+        "source_name",
+        "metric_name"
+      ],
+      "expected": [
+        "host_country_iso3",
+        "source_parent_country_id",
+        "analysis_sector",
+        "year",
+        "period_type",
+        "period_id",
+        "source_name",
+        "metric_name"
+      ]
+    },
+    {
+      "name": "input_mexico_parent_sector_period_key_nonmissing",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_mexico_parent_sector_period_key_unique",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_mexico_benchmark_period_exists",
+      "status": "PASS",
+      "observed": "F:\\working_paper_wenxiao\\trade_welfare\\data\\processed\\harmonized\\production_mexico_fdi_benchmark_period_long.parquet",
+      "expected": "file exists"
+    },
+    {
+      "name": "input_mexico_benchmark_period_sha256",
+      "status": "PASS",
+      "observed": "a65f82ba2960987df8d22bccb883f8eda11db641a3f9528148242341091a4806",
+      "expected": "a65f82ba2960987df8d22bccb883f8eda11db641a3f9528148242341091a4806"
+    },
+    {
+      "name": "input_mexico_benchmark_period_rows",
+      "status": "PASS",
+      "observed": 1867,
+      "expected": 1867
+    },
+    {
+      "name": "input_mexico_benchmark_period_columns",
+      "status": "PASS",
+      "observed": 59,
+      "expected": 59
+    },
+    {
+      "name": "input_mexico_benchmark_period_schema",
+      "status": "PASS",
+      "observed": "82030eb8390f0258219cd46870cda216a33450ce2ff1376671a64944b2636dd2",
+      "expected": "82030eb8390f0258219cd46870cda216a33450ce2ff1376671a64944b2636dd2"
+    },
+    {
+      "name": "input_mexico_benchmark_period_key_columns",
+      "status": "PASS",
+      "observed": [
+        "benchmark_scope",
+        "benchmark_record_id",
+        "year",
+        "period_type",
+        "period_id",
+        "source_name",
+        "metric_name"
+      ],
+      "expected": [
+        "benchmark_scope",
+        "benchmark_record_id",
+        "year",
+        "period_type",
+        "period_id",
+        "source_name",
+        "metric_name"
+      ]
+    },
+    {
+      "name": "input_mexico_benchmark_period_key_nonmissing",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_mexico_benchmark_period_key_unique",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_country_crosswalk_exists",
+      "status": "PASS",
+      "observed": "F:\\working_paper_wenxiao\\trade_welfare\\data\\processed\\concordances\\country_crosswalk.parquet",
+      "expected": "file exists"
+    },
+    {
+      "name": "input_country_crosswalk_sha256",
+      "status": "PASS",
+      "observed": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+      "expected": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6"
+    },
+    {
+      "name": "input_country_crosswalk_rows",
+      "status": "PASS",
+      "observed": 611,
+      "expected": 611
+    },
+    {
+      "name": "input_country_crosswalk_columns",
+      "status": "PASS",
+      "observed": 22,
+      "expected": 22
+    },
+    {
+      "name": "input_country_crosswalk_schema",
+      "status": "PASS",
+      "observed": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+      "expected": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5"
+    },
+    {
+      "name": "input_country_crosswalk_key_columns",
+      "status": "PASS",
+      "observed": [
+        "source_name",
+        "source_country_id"
+      ],
+      "expected": [
+        "source_name",
+        "source_country_id"
+      ]
+    },
+    {
+      "name": "input_country_crosswalk_key_nonmissing",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "input_country_crosswalk_key_unique",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "upstream_validation_icio_exists",
+      "status": "PASS",
+      "observed": "F:\\working_paper_wenxiao\\trade_welfare\\data\\validation\\production_icio_validation.json",
+      "expected": "file exists"
+    },
+    {
+      "name": "upstream_validation_icio_sha256",
+      "status": "PASS",
+      "observed": "4aac7864e14a070fb2054644da9119cc8e40fb58b6c8a4f077ac83d5caab9625",
+      "expected": "4aac7864e14a070fb2054644da9119cc8e40fb58b6c8a4f077ac83d5caab9625"
+    },
+    {
+      "name": "upstream_validation_icio_status",
+      "status": "PASS",
+      "observed": "PASS",
+      "expected": "PASS"
+    },
+    {
+      "name": "upstream_validation_icio_failures",
+      "status": "PASS",
+      "observed": [],
+      "expected": []
+    },
+    {
+      "name": "upstream_validation_amne_exists",
+      "status": "PASS",
+      "observed": "F:\\working_paper_wenxiao\\trade_welfare\\data\\validation\\production_amne_validation.json",
+      "expected": "file exists"
+    },
+    {
+      "name": "upstream_validation_amne_sha256",
+      "status": "PASS",
+      "observed": "fb10403474888c1b5a38a0257afd1d8c0f94fd8452b36a5c9128ab505fcfffbb",
+      "expected": "fb10403474888c1b5a38a0257afd1d8c0f94fd8452b36a5c9128ab505fcfffbb"
+    },
+    {
+      "name": "upstream_validation_amne_status",
+      "status": "PASS",
+      "observed": "PASS",
+      "expected": "PASS"
+    },
+    {
+      "name": "upstream_validation_amne_failures",
+      "status": "PASS",
+      "observed": [],
+      "expected": []
+    },
+    {
+      "name": "upstream_validation_bea_mne_exists",
+      "status": "PASS",
+      "observed": "F:\\working_paper_wenxiao\\trade_welfare\\data\\validation\\production_bea_mne_validation.json",
+      "expected": "file exists"
+    },
+    {
+      "name": "upstream_validation_bea_mne_sha256",
+      "status": "PASS",
+      "observed": "d5f5bf9eff4be79e917ae3aa1ab25b9f4ef8bfbee84cd0786f937d396c082a98",
+      "expected": "d5f5bf9eff4be79e917ae3aa1ab25b9f4ef8bfbee84cd0786f937d396c082a98"
+    },
+    {
+      "name": "upstream_validation_bea_mne_status",
+      "status": "PASS",
+      "observed": "PASS",
+      "expected": "PASS"
+    },
+    {
+      "name": "upstream_validation_bea_mne_failures",
+      "status": "PASS",
+      "observed": [],
+      "expected": []
+    },
+    {
+      "name": "upstream_validation_bea_fdi_exists",
+      "status": "PASS",
+      "observed": "F:\\working_paper_wenxiao\\trade_welfare\\data\\validation\\production_bea_fdi_validation.json",
+      "expected": "file exists"
+    },
+    {
+      "name": "upstream_validation_bea_fdi_sha256",
+      "status": "PASS",
+      "observed": "8ca6c7358ae3e0f72e19f560285e6b111253e4a5cb14820d26f28b754d84b9ac",
+      "expected": "8ca6c7358ae3e0f72e19f560285e6b111253e4a5cb14820d26f28b754d84b9ac"
+    },
+    {
+      "name": "upstream_validation_bea_fdi_status",
+      "status": "PASS",
+      "observed": "PASS",
+      "expected": "PASS"
+    },
+    {
+      "name": "upstream_validation_bea_fdi_failures",
+      "status": "PASS",
+      "observed": [],
+      "expected": []
+    },
+    {
+      "name": "upstream_validation_mexico_fdi_exists",
+      "status": "PASS",
+      "observed": "F:\\working_paper_wenxiao\\trade_welfare\\data\\validation\\production_mexico_fdi_validation.json",
+      "expected": "file exists"
+    },
+    {
+      "name": "upstream_validation_mexico_fdi_sha256",
+      "status": "PASS",
+      "observed": "c08c1bc354ddd50b69da1714cf20476e5db96d2a907fd5e3d53f48d8d89dc862",
+      "expected": "c08c1bc354ddd50b69da1714cf20476e5db96d2a907fd5e3d53f48d8d89dc862"
+    },
+    {
+      "name": "upstream_validation_mexico_fdi_status",
+      "status": "PASS",
+      "observed": "PASS",
+      "expected": "PASS"
+    },
+    {
+      "name": "upstream_validation_mexico_fdi_failures",
+      "status": "PASS",
+      "observed": [],
+      "expected": []
+    },
+    {
+      "name": "full_rows",
+      "status": "PASS",
+      "observed": 113302,
+      "expected": 113302
+    },
+    {
+      "name": "full_columns",
+      "status": "PASS",
+      "observed": 83,
+      "expected": 83
+    },
+    {
+      "name": "full_key_nonmissing",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "full_key_unique",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "main_rows",
+      "status": "PASS",
+      "observed": 73368,
+      "expected": 73368
+    },
+    {
+      "name": "main_columns",
+      "status": "PASS",
+      "observed": 83,
+      "expected": 83
+    },
+    {
+      "name": "main_key_unique",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "main_exact_subset",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "source_partition_rows",
+      "status": "PASS",
+      "observed": {
+        "amne_host_sector": 53760,
+        "bea_fdi_analysis": 7125,
+        "bea_mne_analysis": 11910,
+        "icio_analysis": 10080,
+        "mexico_benchmark_period": 1867,
+        "mexico_parent_sector_period": 28560
+      },
+      "expected": {
+        "icio_analysis": 10080,
+        "amne_host_sector": 53760,
+        "bea_mne_analysis": 11910,
+        "bea_fdi_analysis": 7125,
+        "mexico_parent_sector_period": 28560,
+        "mexico_benchmark_period": 1867
+      }
+    },
+    {
+      "name": "period_rows",
+      "status": "PASS",
+      "observed": {
+        "calendar_year": 89457,
+        "quarter": 18974,
+        "h1": 4871
+      },
+      "expected": {
+        "calendar_year": 89457,
+        "quarter": 18974,
+        "h1": 4871
+      }
+    },
+    {
+      "name": "missing_value_rows",
+      "status": "PASS",
+      "observed": 17116,
+      "expected": 17116
+    },
+    {
+      "name": "suppressed_rows",
+      "status": "PASS",
+      "observed": 4604,
+      "expected": 4604
+    },
+    {
+      "name": "confidential_rows",
+      "status": "PASS",
+      "observed": 12344,
+      "expected": 12344
+    },
+    {
+      "name": "observed_negative_rows",
+      "status": "PASS",
+      "observed": 1224,
+      "expected": 1224
+    },
+    {
+      "name": "exact_numeric_zero_rows",
+      "status": "PASS",
+      "observed": 18886,
+      "expected": 18886
+    },
+    {
+      "name": "proxy_rows",
+      "status": "PASS",
+      "observed": 3807,
+      "expected": 3807
+    },
+    {
+      "name": "source_native_join_eligible_rows",
+      "status": "PASS",
+      "observed": 79224,
+      "expected": 79224
+    },
+    {
+      "name": "host_country_sector_year_evidence_eligible_rows",
+      "status": "PASS",
+      "observed": 76728,
+      "expected": 76728
+    },
+    {
+      "name": "main_host_activity_rows",
+      "status": "PASS",
+      "observed": 73368,
+      "expected": 73368
+    },
+    {
+      "name": "main_host_activity_available_rows",
+      "status": "PASS",
+      "observed": 71254,
+      "expected": 71254
+    },
+    {
+      "name": "main_host_activity_country_count",
+      "status": "PASS",
+      "observed": 87,
+      "expected": 87
+    },
+    {
+      "name": "main_host_activity_sector_count",
+      "status": "PASS",
+      "observed": 6,
+      "expected": 6
+    },
+    {
+      "name": "mexico_parent_main_join_rows",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "mexico_national_period_benchmark_rows",
+      "status": "PASS",
+      "observed": 156,
+      "expected": 156
+    },
+    {
+      "name": "mexico_national_calendar_year_benchmark_rows",
+      "status": "PASS",
+      "observed": 26,
+      "expected": 26
+    },
+    {
+      "name": "join_role_rows",
+      "status": "PASS",
+      "observed": {
+        "host_country_sector_year_main": 76728,
+        "source_native_only": 30401,
+        "host_country_sector_year_proxy": 3222,
+        "origin_country_sector_year_financial": 2925,
+        "country_year_benchmark": 26
+      },
+      "expected": {
+        "host_country_sector_year_main": 76728,
+        "host_country_sector_year_proxy": 3222,
+        "origin_country_sector_year_financial": 2925,
+        "country_year_benchmark": 26,
+        "source_native_only": 30401
+      }
+    },
+    {
+      "name": "join_role_complete",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "all_rows_nonadditive_across_sources",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "financial_excluded_from_main_activity",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "proxy_excluded_from_main_activity",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "icio_years_no_interpolation",
+      "status": "PASS",
+      "observed": [
+        2017,
+        2018,
+        2022
+      ],
+      "expected": [
+        2017,
+        2018,
+        2022
+      ]
+    },
+    {
+      "name": "mexico_2024_incomplete_calendar_year_rows",
+      "status": "PASS",
+      "observed": 255,
+      "expected": 255
+    },
+    {
+      "name": "stata_alias_columns_complete",
+      "status": "PASS",
+      "observed": true,
+      "expected": true
+    },
+    {
+      "name": "stata_aliases_valid",
+      "status": "PASS",
+      "observed": true,
+      "expected": true
+    },
+    {
+      "name": "stata_aliases_unique",
+      "status": "PASS",
+      "observed": true,
+      "expected": true
+    },
+    {
+      "name": "passthrough_icio_analysis_id_set",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_icio_analysis_value",
+      "status": "PASS",
+      "observed": true,
+      "expected": true
+    },
+    {
+      "name": "passthrough_icio_analysis_suppressed",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_icio_analysis_confidential",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_amne_host_sector_id_set",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_amne_host_sector_value",
+      "status": "PASS",
+      "observed": true,
+      "expected": true
+    },
+    {
+      "name": "passthrough_amne_host_sector_suppressed",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_amne_host_sector_confidential",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_bea_mne_analysis_id_set",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_bea_mne_analysis_value",
+      "status": "PASS",
+      "observed": true,
+      "expected": true
+    },
+    {
+      "name": "passthrough_bea_mne_analysis_suppressed",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_bea_mne_analysis_confidential",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_bea_fdi_analysis_id_set",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_bea_fdi_analysis_value",
+      "status": "PASS",
+      "observed": true,
+      "expected": true
+    },
+    {
+      "name": "passthrough_bea_fdi_analysis_suppressed",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_bea_fdi_analysis_confidential",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_mexico_parent_sector_period_id_set",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_mexico_parent_sector_period_value",
+      "status": "PASS",
+      "observed": true,
+      "expected": true
+    },
+    {
+      "name": "passthrough_mexico_parent_sector_period_suppressed",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_mexico_parent_sector_period_confidential",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_mexico_benchmark_period_id_set",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_mexico_benchmark_period_value",
+      "status": "PASS",
+      "observed": true,
+      "expected": true
+    },
+    {
+      "name": "passthrough_mexico_benchmark_period_suppressed",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "passthrough_mexico_benchmark_period_confidential",
+      "status": "PASS",
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "name": "deterministic_full_registry_hash",
+      "status": "PASS",
+      "observed": "4b27154fe00c75b44f23724f7940799363be4212b72c83757a5a389111a6c69a",
+      "expected": "4b27154fe00c75b44f23724f7940799363be4212b72c83757a5a389111a6c69a"
+    },
+    {
+      "name": "deterministic_main_host_activity_hash",
+      "status": "PASS",
+      "observed": "2ca54343f0d5bef9c42532a1c79c0d4864f32764f35f4d5a7751170b6c44a27d",
+      "expected": "2ca54343f0d5bef9c42532a1c79c0d4864f32764f35f4d5a7751170b6c44a27d"
+    }
+  ],
+  "check_count": 137,
+  "pass_count": 137,
+  "validation_version": "production_validation_long_validation_v1",
+  "origin_date": "2026-08-11",
+  "generated_at_utc": "2026-08-10T16:22:40.864410+00:00",
+  "config_path": "configs/production_validation_long_rules.yaml",
+  "config_sha256": "19a4e25adc76529882ddb8a296275a14b9572ee74c5c98bec0b8dcef363accb6",
+  "construction_version": "m4_6_cross_source_production_integration_v1",
+  "input_contracts": {
+    "icio_analysis": {
+      "path": "data/processed/harmonized/production_validation_icio_long.parquet",
+      "sha256": "e8bdc6070581f5a1697adba605ef8eac3e7c40a5946779a627ec08ea673315f0",
+      "expected_rows": 10080,
+      "expected_columns": 43,
+      "arrow_schema_signature_sha256": "9e5b36ff7e3ca807f4e8f55f6b7e666ced100677b053b887a579802787c56eb5",
+      "natural_key": [
+        "country_iso3",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ]
+    },
+    "amne_host_sector": {
+      "path": "data/processed/harmonized/production_validation_amne_host_sector_long.parquet",
+      "sha256": "b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179",
+      "expected_rows": 53760,
+      "expected_columns": 56,
+      "arrow_schema_signature_sha256": "a20528b03f1cef88f3d0446d94959a44a97c74f88153a8f91e03def802c3f197",
+      "natural_key": [
+        "country_iso3",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ]
+    },
+    "bea_mne_analysis": {
+      "path": "data/processed/harmonized/production_validation_bea_mne_long.parquet",
+      "sha256": "21d9998c77e9fa8b458af288a36746567d4ade49c3a50360a0f684b329691ade",
+      "expected_rows": 11910,
+      "expected_columns": 66,
+      "arrow_schema_signature_sha256": "505d6c0d8fe9adb62170f92a36210fb7264fb6b1c37eb4c02a4a77aca8eb7cfc",
+      "natural_key": [
+        "country_iso3",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ]
+    },
+    "bea_fdi_analysis": {
+      "path": "data/processed/harmonized/production_validation_bea_fdi_long.parquet",
+      "sha256": "8f296d59d58ad08078c9792f862c503f371537ccc84395d5bffdb00e343b6fcf",
+      "expected_rows": 7125,
+      "expected_columns": 72,
+      "arrow_schema_signature_sha256": "e17167ade70b76b9b55aba896afa1c598a401f216262363f466b2f0d4d98935d",
+      "natural_key": [
+        "country_iso3",
+        "investment_direction",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ]
+    },
+    "mexico_parent_sector_period": {
+      "path": "data/processed/harmonized/production_validation_mexico_fdi_parent_sector_period_long.parquet",
+      "sha256": "98191b4362b2ff1b7d91733d1f8ba7a25dc24028c97b848fe62f165e12d0b89e",
+      "expected_rows": 28560,
+      "expected_columns": 68,
+      "arrow_schema_signature_sha256": "d9f6517fcd75726468c3d88f8af3ccb3327ef834497eabe3be4821348e807181",
+      "natural_key": [
+        "host_country_iso3",
+        "source_parent_country_id",
+        "analysis_sector",
+        "year",
+        "period_type",
+        "period_id",
+        "source_name",
+        "metric_name"
+      ]
+    },
+    "mexico_benchmark_period": {
+      "path": "data/processed/harmonized/production_mexico_fdi_benchmark_period_long.parquet",
+      "sha256": "a65f82ba2960987df8d22bccb883f8eda11db641a3f9528148242341091a4806",
+      "expected_rows": 1867,
+      "expected_columns": 59,
+      "arrow_schema_signature_sha256": "82030eb8390f0258219cd46870cda216a33450ce2ff1376671a64944b2636dd2",
+      "natural_key": [
+        "benchmark_scope",
+        "benchmark_record_id",
+        "year",
+        "period_type",
+        "period_id",
+        "source_name",
+        "metric_name"
+      ]
+    },
+    "country_crosswalk": {
+      "path": "data/processed/concordances/country_crosswalk.parquet",
+      "sha256": "29b4b4b936d8c974c2b9f9d9eaa37b9c5d67e170e94c39ccdbd5088be3adc4c6",
+      "expected_rows": 611,
+      "expected_columns": 22,
+      "arrow_schema_signature_sha256": "464544f8c48ec14efe9fc3f865b59c758cae3ac36fecd88033bab8994a5462e5",
+      "natural_key": [
+        "source_name",
+        "source_country_id"
+      ]
+    }
+  },
+  "source_partition_rows": {
+    "amne_host_sector": 53760,
+    "bea_fdi_analysis": 7125,
+    "bea_mne_analysis": 11910,
+    "icio_analysis": 10080,
+    "mexico_benchmark_period": 1867,
+    "mexico_parent_sector_period": 28560
+  },
+  "join_role_rows": {
+    "host_country_sector_year_main": 76728,
+    "source_native_only": 30401,
+    "host_country_sector_year_proxy": 3222,
+    "origin_country_sector_year_financial": 2925,
+    "country_year_benchmark": 26
+  },
+  "period_rows": {
+    "calendar_year": 89457,
+    "quarter": 18974,
+    "h1": 4871
+  },
+  "unit_rows": {
+    "current_million_usd": 103637,
+    "fraction": 7680,
+    "thousand_employees": 1985
+  },
+  "metric_registry": [
+    {
+      "source_table": "amne_host_sector",
+      "source_name": "amne",
+      "metric_name": "bilateral_affiliate_output_sum",
+      "metric_family": "affiliate_output",
+      "unit": "current_million_usd",
+      "rows": 7680
+    },
+    {
+      "source_table": "amne_host_sector",
+      "source_name": "amne",
+      "metric_name": "foreign_affiliate_exports_total",
+      "metric_family": "affiliate_trade_flow",
+      "unit": "current_million_usd",
+      "rows": 7680
+    },
+    {
+      "source_table": "amne_host_sector",
+      "source_name": "amne",
+      "metric_name": "foreign_affiliate_imports_total",
+      "metric_family": "affiliate_trade_flow",
+      "unit": "current_million_usd",
+      "rows": 7680
+    },
+    {
+      "source_table": "amne_host_sector",
+      "source_name": "amne",
+      "metric_name": "foreign_affiliate_output_share",
+      "metric_family": "ratio",
+      "unit": "fraction",
+      "rows": 7680
+    },
+    {
+      "source_table": "amne_host_sector",
+      "source_name": "amne",
+      "metric_name": "foreign_affiliate_output_total",
+      "metric_family": "affiliate_output",
+      "unit": "current_million_usd",
+      "rows": 7680
+    },
+    {
+      "source_table": "amne_host_sector",
+      "source_name": "amne",
+      "metric_name": "foreign_affiliate_value_added_total",
+      "metric_family": "affiliate_value_added",
+      "unit": "current_million_usd",
+      "rows": 7680
+    },
+    {
+      "source_table": "amne_host_sector",
+      "source_name": "amne",
+      "metric_name": "gross_output",
+      "metric_family": "production_output",
+      "unit": "current_million_usd",
+      "rows": 7680
+    },
+    {
+      "source_table": "bea_fdi_analysis",
+      "source_name": "bea_fdi",
+      "metric_name": "flows",
+      "metric_family": "direct_investment_flow",
+      "unit": "current_million_usd",
+      "rows": 2375
+    },
+    {
+      "source_table": "bea_fdi_analysis",
+      "source_name": "bea_fdi",
+      "metric_name": "income",
+      "metric_family": "direct_investment_income",
+      "unit": "current_million_usd",
+      "rows": 2375
+    },
+    {
+      "source_table": "bea_fdi_analysis",
+      "source_name": "bea_fdi",
+      "metric_name": "position",
+      "metric_family": "direct_investment_stock",
+      "unit": "current_million_usd",
+      "rows": 2375
+    },
+    {
+      "source_table": "bea_mne_analysis",
+      "source_name": "bea_mne",
+      "metric_name": "capital_expenditures",
+      "metric_family": "capital_expenditure",
+      "unit": "current_million_usd",
+      "rows": 1985
+    },
+    {
+      "source_table": "bea_mne_analysis",
+      "source_name": "bea_mne",
+      "metric_name": "employment",
+      "metric_family": "employment",
+      "unit": "thousand_employees",
+      "rows": 1985
+    },
+    {
+      "source_table": "bea_mne_analysis",
+      "source_name": "bea_mne",
+      "metric_name": "goods_exports_to_us",
+      "metric_family": "affiliate_trade_flow",
+      "unit": "current_million_usd",
+      "rows": 1985
+    },
+    {
+      "source_table": "bea_mne_analysis",
+      "source_name": "bea_mne",
+      "metric_name": "goods_imports_from_us",
+      "metric_family": "affiliate_trade_flow",
+      "unit": "current_million_usd",
+      "rows": 1985
+    },
+    {
+      "source_table": "bea_mne_analysis",
+      "source_name": "bea_mne",
+      "metric_name": "sales",
+      "metric_family": "affiliate_sales",
+      "unit": "current_million_usd",
+      "rows": 1985
+    },
+    {
+      "source_table": "bea_mne_analysis",
+      "source_name": "bea_mne",
+      "metric_name": "value_added",
+      "metric_family": "affiliate_value_added",
+      "unit": "current_million_usd",
+      "rows": 1985
+    },
+    {
+      "source_table": "icio_analysis",
+      "source_name": "icio",
+      "metric_name": "accounting_residual",
+      "metric_family": "accounting_diagnostic",
+      "unit": "current_million_usd",
+      "rows": 1440
+    },
+    {
+      "source_table": "icio_analysis",
+      "source_name": "icio",
+      "metric_name": "exports",
+      "metric_family": "trade_flow",
+      "unit": "current_million_usd",
+      "rows": 1440
+    },
+    {
+      "source_table": "icio_analysis",
+      "source_name": "icio",
+      "metric_name": "gross_output",
+      "metric_family": "production_output",
+      "unit": "current_million_usd",
+      "rows": 1440
+    },
+    {
+      "source_table": "icio_analysis",
+      "source_name": "icio",
+      "metric_name": "imports",
+      "metric_family": "trade_flow",
+      "unit": "current_million_usd",
+      "rows": 1440
+    },
+    {
+      "source_table": "icio_analysis",
+      "source_name": "icio",
+      "metric_name": "intermediate_inputs",
+      "metric_family": "accounting_input",
+      "unit": "current_million_usd",
+      "rows": 1440
+    },
+    {
+      "source_table": "icio_analysis",
+      "source_name": "icio",
+      "metric_name": "taxes_less_subsidies",
+      "metric_family": "accounting_component",
+      "unit": "current_million_usd",
+      "rows": 1440
+    },
+    {
+      "source_table": "icio_analysis",
+      "source_name": "icio",
+      "metric_name": "value_added",
+      "metric_family": "value_added",
+      "unit": "current_million_usd",
+      "rows": 1440
+    },
+    {
+      "source_table": "mexico_benchmark_period",
+      "source_name": "mexico_fdi",
+      "metric_name": "fdi_flow",
+      "metric_family": "direct_investment_flow",
+      "unit": "current_million_usd",
+      "rows": 1867
+    },
+    {
+      "source_table": "mexico_parent_sector_period",
+      "source_name": "mexico_fdi",
+      "metric_name": "fdi_flow",
+      "metric_family": "direct_investment_flow",
+      "unit": "current_million_usd",
+      "rows": 28560
+    }
+  ],
+  "snapshots": {
+    "完整 registry 行数": 113302,
+    "严格 main host activity 行数": 73368,
+    "value 可用行": 96186,
+    "value 缺失行": 17116,
+    "suppressed 行": 4604,
+    "confidential 行": 12344,
+    "observed negative 行": 1224,
+    "numeric zero 行": 18886,
+    "proxy 行": 3807,
+    "financial-only 行": 37552,
+    "国家数（main union）": 87,
+    "sector 数（main union）": 6
+  },
+  "stata_alias_validation": {
+    "column_count": 83,
+    "aliases": {
+      "source_table": "src_table",
+      "source_observation_id": "src_obsid",
+      "source_natural_key": "src_key",
+      "source_input_path": "input_path",
+      "evidence_family": "evid_family",
+      "evidence_scope": "evid_scope",
+      "country_iso3": "country_iso3",
+      "canonical_country_name": "country_name",
+      "country_role": "ctry_role",
+      "host_country_iso3": "host_iso3",
+      "parent_country_iso3": "parent_iso3",
+      "source_parent_country_id": "parent_id",
+      "origin_country_iso3": "origin_iso3",
+      "destination_country_iso3": "dest_iso3",
+      "foreign_country_role": "foreign_role",
+      "investment_direction": "invest_dir",
+      "analysis_sector": "ana_sector",
+      "analysis_scope": "ana_scope",
+      "year": "year",
+      "quarter": "quarter",
+      "period_type": "per_type",
+      "period_id": "period_id",
+      "period_start_quarter": "q_start",
+      "period_end_quarter": "q_end",
+      "expected_period_count": "per_exp",
+      "observed_period_count": "per_obs",
+      "complete_period_flag": "full_per",
+      "annual_comparable_flag": "ann_comp",
+      "partial_year_flag": "part_year",
+      "frequency": "freq",
+      "temporal_type": "temp_type",
+      "source_name": "source",
+      "metric_name": "metric",
+      "metric_order": "metric_ord",
+      "metric_family": "met_family",
+      "value": "value",
+      "source_disclosed_value_sum": "disc_sum",
+      "unit": "unit",
+      "direction": "direction",
+      "direct_or_allocated": "direct_alloc",
+      "derivation_status": "deriv_stat",
+      "metric_formula": "metric_form",
+      "metric_use": "metric_use",
+      "value_available_flag": "val_avail",
+      "missing_reason": "miss_reason",
+      "suppressed_flag": "suppressed",
+      "confidential_flag": "confidentl",
+      "suppressed_or_confidential_flag": "supp_conf",
+      "partial_disclosure_flag": "part_disc",
+      "small_value_flag": "small_val",
+      "aggregate_flag": "is_agg",
+      "residual_flag": "is_resid",
+      "parent_residual_flag": "par_resid",
+      "proxy_flag": "is_proxy",
+      "observed_negative_flag": "obs_neg",
+      "reported_zero_flag": "rep_zero",
+      "exact_zero_flag": "exact_zero",
+      "cancellation_to_zero_flag": "zero_cancel",
+      "national_total_flag": "nat_total",
+      "one_dimensional_margin_flag": "one_dim",
+      "source_native_join_eligible_flag": "src_joinok",
+      "join_role": "join_role",
+      "host_country_sector_year_evidence_eligible_flag": "hcsy_joinok",
+      "main_host_activity_join_eligible_flag": "main_joinok",
+      "country_year_benchmark_eligible_flag": "cy_benchok",
+      "country_period_benchmark_eligible_flag": "cp_benchok",
+      "diagnostic_only_flag": "diag_only",
+      "nonadditive_flag": "nonadd",
+      "can_sum_across_source_records": "src_add",
+      "can_sum_across_years": "year_add",
+      "can_sum_across_metrics": "met_add",
+      "financial_evidence_only_flag": "fin_only",
+      "is_core_connector": "core_conn",
+      "is_asian_comparator": "asia_comp",
+      "is_other_candidate": "oth_cand",
+      "comparison_sample_country_flag": "comp_ctry",
+      "source_file": "src_file",
+      "source_release": "src_release",
+      "upstream_rules_config_sha256": "up_rules",
+      "upstream_schema_version": "up_schema",
+      "m4_6_version": "m4_6_ver",
+      "rules_config_sha256": "rules_hash",
+      "schema_version": "schema_ver"
+    }
+  },
+  "outputs": {
+    "full_registry": {
+      "path": "data/processed/harmonized/production_validation_long.parquet",
+      "rows": 113302,
+      "columns": 83,
+      "sha256": "4b27154fe00c75b44f23724f7940799363be4212b72c83757a5a389111a6c69a",
+      "schema_signature": "7d6d660c36786acb8aa9b2dd8c958265760a8526970157b1d3676b32dcb2bbda",
+      "natural_key": [
+        "source_table",
+        "source_observation_id"
+      ]
+    },
+    "main_host_activity": {
+      "path": "data/processed/harmonized/production_validation_main_host_sector_year_long.parquet",
+      "rows": 73368,
+      "columns": 83,
+      "sha256": "2ca54343f0d5bef9c42532a1c79c0d4864f32764f35f4d5a7751170b6c44a27d",
+      "schema_signature": "7d6d660c36786acb8aa9b2dd8c958265760a8526970157b1d3676b32dcb2bbda",
+      "natural_key": [
+        "country_iso3",
+        "analysis_sector",
+        "year",
+        "source_name",
+        "metric_name"
+      ]
+    }
+  },
+  "determinism": {
+    "full_registry_first_sha256": "4b27154fe00c75b44f23724f7940799363be4212b72c83757a5a389111a6c69a",
+    "full_registry_second_sha256": "4b27154fe00c75b44f23724f7940799363be4212b72c83757a5a389111a6c69a",
+    "full_registry_hash_match": true,
+    "main_host_activity_first_sha256": "2ca54343f0d5bef9c42532a1c79c0d4864f32764f35f4d5a7751170b6c44a27d",
+    "main_host_activity_second_sha256": "2ca54343f0d5bef9c42532a1c79c0d4864f32764f35f4d5a7751170b6c44a27d",
+    "main_host_activity_hash_match": true
+  },
+  "temporary_directories_cleaned": true
+}

@@ -4,7 +4,7 @@ This directory contains reproducible `data/interim/` to `data/processed/` pipeli
 
 ## Current stage
 
-M0, M1, M2, M3.1-M3.6, and M4.1-M4.5 in `data/data_merge_checklist.md` are complete. M4.5 standardizes Mexico inward FDI at its published quarterly, annual, H1, parent-country, SCIAN, and national/marginal grains while preserving confidentiality, residual countries, signed values, hierarchy, and partial-year status. It does not construct production growth or rankings or create the final cross-source production table. M4.6 is the next planned stage.
+M0, M1, M2, M3.1-M3.6, and M4.1-M4.6 in `data/data_merge_checklist.md` are complete. M4.6 creates a one-to-one cross-source evidence registry and a strict host-country production/activity subset while preserving country roles, direction, period, disclosure states, proxy scope, financial-only scope, and upstream lineage. It does not construct production growth, rankings, structural moments, welfare inputs, or Stata exports. M4.7 is the next planned stage.
 
 ## Living collaborator audit and variable contract
 
@@ -382,6 +382,29 @@ The parent-sector table is 28,560 × 68 and contains 18,870 quarterly, 4,845 cal
 The benchmark table is 1,867 × 59: 156 national quarterly/calendar-year/H1 totals, 1,191 official parent-country annual margins, and 520 official two-digit sector annual margins. The two one-dimensional margins are not outer-producted, allocated, or forced to equal the national total. The 2024 national annual total is 36,872.421204 million USD, while joint detail remains H1-only.
 
 Validation status is PASS with 100 checks and zero failures. All nine raw files and nine interim hashes match the build summary; input schemas and keys, fixed 74-quarter source universe, country/sector/time crosswalks, confidentiality propagation, signed/zero states, quarterly/annual/H1 formulas, 2024 partial-year rule, national benchmark, one-dimensional margin gaps, and 73/68/59 Stata aliases pass. Candidate and second-build SHA256 values are `998b1f3245fe06ade332411421c9933f031081921e0847b14e13fa5707d24542`, `98191b4362b2ff1b7d91733d1f8ba7a25dc24028c97b848fe62f165e12d0b89e`, and `a65f82ba2960987df8d22bccb883f8eda11db641a3f9528148242341091a4806`. `.dta` export remains an M7 task.
+
+## M4.6 cross-source production evidence integration
+
+Run the validated single-module builder from the project root:
+
+```powershell
+python code\data_processing\build_production_validation_long.py
+```
+
+Registered files:
+
+- config: `configs/production_validation_long_rules.yaml`;
+- complete evidence registry: `data/processed/harmonized/production_validation_long.parquet`;
+- strict host-country activity interface: `data/processed/harmonized/production_validation_main_host_sector_year_long.parquet`;
+- validation: `data/validation/production_validation_long_validation.json` and `.md`.
+
+The complete registry is 113,302 × 83. It includes each row from six validated M4.1-M4.5 analysis/financial/benchmark tables exactly once. Its physical key is `source_table × source_observation_id`, where the observation ID is a deterministic SHA256 of the source-specific natural key. This expanded key is required because BEA FDI has two investment directions and Mexico records retain parent, benchmark scope, quarter/H1/calendar-year, and period identifiers. The old five-field country-sector-year key is not valid for the complete registry.
+
+The strict host-country activity table is 73,368 × 83 and is an exact subset of the registry. It contains all ICIO and AMNE host-sector rows plus only BEA MNE main-sector rows. Its key `country_iso3 × analysis_sector × year × source_name × metric_name` is unique. Financial-only rows, Transportation-equipment autos proxies, Mexico parent-origin details, and Mexico national/marginal benchmarks are excluded from this strict activity interface but remain available in the complete registry.
+
+`join_role` partitions every registry row into 76,728 host-country-sector-year main evidence rows, 3,222 host proxy rows, 2,925 origin-country financial rows, 26 country-year national benchmarks, and 30,401 source-native-only rows. BEA FDI outward host evidence is financial rather than production; BEA FDI inward countries are investor origins; Mexico parent countries are reported funding origins while the host remains MEX. These roles must not be collapsed in later joins.
+
+Validation status is PASS with 137 checks and zero failures. The union preserves 17,116 missing values, 4,604 suppressed rows, 12,344 confidential rows, 1,224 observed negative rows, 18,886 numeric zeros, and 3,807 proxy rows. Every row retains separate suppression/confidentiality flags, immediate input path, source file, upstream natural key hash, metric/unit/scope, and non-additivity flags. All 83 Stata aliases are valid and unique. Candidate and second-build SHA256 values are identical: `4b27154fe00c75b44f23724f7940799363be4212b72c83757a5a389111a6c69a` for the registry and `2ca54343f0d5bef9c42532a1c79c0d4864f32764f35f4d5a7751170b6c44a27d` for the strict activity subset.
 
 ## Stata handoff contract
 
