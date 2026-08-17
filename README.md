@@ -1,8 +1,20 @@
 # Connector Economies and the Hidden Cost of Geoeconomic Fragmentation
 
-This repository starts a JMP-oriented international trade project on the welfare value of connector economies: countries that expand as intermediaries or production locations when direct economic links between geopolitical blocs weaken.
+This repository develops an international-trade paper whose primary publication target is the *Journal of International Economics*. It studies the welfare value of connector economies: countries that expand as intermediaries or production locations when direct economic links between geopolitical blocs weaken.
 
-The project is built from an existing structural reference package but is not a replication project. The reference package gives the core trade + multinational production + input-output model. Recent empirical work has already studied whether connector countries reflect trade reallocation or trade rerouting. This project therefore should not claim that distinction as its main novelty. The intended contribution is to move from connector-country facts to structural welfare accounting: how much connectors mitigate fragmentation losses, and through which channels.
+The project is built from an existing structural reference package but is not a replication project. The reference package gives the core trade + multinational production + input-output model. Recent work already studies connector-country trade, production reallocation, FDI diversion, and trade-versus-MP welfare in broader forms. The intended contribution is therefore narrower: use observable ownership-linked affiliate adjustment to quantify how a trade-only model mismeasures connector economies' fragmentation insurance.
+
+## JIE Project Standard / JIE 项目标准
+
+The binding research-design standard is `docs/JIE_PROJECT_GOAL.md`, and the current-frontier claim boundary is `docs/JIE_GAP_AUDIT_2026_08_13.md`; both are tracked in `data-processing-variables@c46c671` and are not yet present in the current `codex/model` checkout. The organizing question is:
+
+> **Among connector country-sector cells with comparable gross-trade rerouting, how much additional insurance is supplied by ownership-linked incumbent MP adjustment, and when does a trade-only model overstate or understate connector mitigation?**
+
+All subsequent data, empirical, model, calibration, and welfare work must pass four gates: a unique frontier-level intellectual object; a new and auditable empirical fact or object; an MP mechanism disciplined by observable moments; and a first-order welfare result or informative disciplined zero. Additional datasets, countries, sectors, parameters, robustness checks, or model complexity do not count as progress unless they improve the estimand, discipline a first-order margin, or change the welfare conclusion.
+
+Gate 1's **JIE Gap Audit** was completed on 2026-08-13. Gate 2/3 now require a bounded ownership-and-mapping pilot, not automatic full model migration after M6.4. The existing Du–Wang intensive-margin model and Scenario A/B/C design remain candidate testing architectures. They must be retained, redesigned, or replaced according to the JIE Gates rather than protected because of prior investment.
+
+本项目的强制研究设计标准见 `docs/JIE_PROJECT_GOAL.md`，2026-08-13 的前沿对照和唯一 claim boundary 见 `docs/JIE_GAP_AUDIT_2026_08_13.md`；两者均已记录在 `data-processing-variables@c46c671`，但尚未进入当前 `codex/model` checkout。Gate 1 已完成；后续数据、经验识别、模型、calibration 和福利反事实必须服务于 trade-only connector-welfare prediction error，并通过其余 Gates。M6.4 之后不能机械迁移完整模型；下一步是 ownership-conditioned affiliate adjustment 与 parent-host-destination network 的 Gate 2/3 pilot。
 
 ## Current Data Notes / 当前数据说明
 
@@ -17,17 +29,21 @@ The project is built from an existing structural reference package but is not a 
 - fDi Markets 虽然可得，但使用者明确要求本批不处理。本批完成状态不包含 fDi 下载或变量构造。
 - 当前数据策略是：已用 regular OECD ICIO 构造并验证 IO 基准，Extended ICIO 归档留待后续 China/Mexico ownership-split 构建；用 OECD Analytical AMNE 与 BEA U.S. MNE 构造 multinational-production moments；用 Mexico 官方 FDI 衔接 2021-2024 年金融流量证据；用 BACI 和 Section 301 构造产品层面贸易冲击。fDi Markets 留作以后单独处理的项目级证据。
 
-## Current Project Progress / 当前项目进度（2026-07-19）
+## Current Project Progress / 当前项目进度（updated 2026-08-16）
 
 | Workstream | Status | Current result / next gate |
 |---|---|---|
 | Public-data archive and source-specific builds | Complete for the current scope | BACI, U.S. Census imports, Section 301, OECD ICIO, OECD Analytical AMNE, BEA MNE, BEA direct investment, and Mexico official FDI have reproducible interim outputs and build summaries. fDi Markets is excluded from the current scope. |
 | OECD ICIO model baselines | Complete for 2017, 2018, and 2022 | MATLAB-ready baseline CSVs exist under `data/model_inputs/icio_baseline_*/`. |
-| Cross-source harmonization | Pending | A common country-sector-product concordance is still needed across HS, OECD, BEA, and SCIAN classifications. |
-| Empirical connector and relocation evidence | Pending | The data needed for trade rerouting and production-side validation exist, but connector rankings and the combined relocation test have not yet been estimated. |
-| Structural moments and counterfactual model | Pending | Scenario A/B/C `htau` and `hgamma` moment tables, migrated MATLAB model functions, and welfare counterfactuals are not yet built. |
+| Cross-source harmonization | Complete through M5.5 for the frozen scope | The validated country-sector-year trade/evidence interface and source-specific production contracts exist; their coverage and comparability limits remain explicit. |
+| Empirical connector and production evidence | Complete through M6.3 as descriptive evidence | M6.1 ranking, M6.2 rerouting facts, and M6.3 source-specific production/activity validation are built and validated. They do not by themselves establish causality or pass JIE Gate 2. |
+| Structural moments | Complete through M6.4 as observable targets | The Scenario A/B/C registry and value table exist, but all observations remain distinct from final `h_tau`/`h_gamma` parameters. JIE Gate 3 is not yet passed. |
+| JIE Gate Audit, model migration, and welfare counterfactuals | Gate 1 complete; M6.5 otherwise pending | The 2026-08-13 audit fixes one headline and two supports. Gate 2 empirical construction, Gate 3 mapping/network discipline, model decision, solver, and Gate 4 welfare comparisons remain pending. |
+| Reproducible processed-data release and collaborator handoff | M7 pending | The single full-rebuild entrypoint, final release manifest, Stata `.dta` exports and validation `.do`, collaborator handoff, and final `VERIFIED` audit package have not been completed. |
 
-The detailed collaborator-facing data and project update is in `docs/data_and_project_progress_2026_07_19.md`.
+The historical collaborator-facing update is in `docs/data_and_project_progress_2026_07_19.md`. Current processing status is governed by `data/data_merge_checklist.md` and `docs/data_processing_audit_trail.md`; the research-design standard is `docs/JIE_PROJECT_GOAL.md`.
+
+**Version boundary as of 2026-08-16:** the authoritative M0-M6.4 data-processing and JIE Gate 1 record is `data-processing-variables@c46c671`. The current `codex/model@2df0a06` checkout predates those 24 commits. Before further model work, create the model-pilot line from `c46c671` or integrate that history explicitly; the presence of generated Parquet files in the shared working directory is not a substitute for tracked code, validation, and manifests.
 
 ### OECD ICIO Batch 3 Baseline Outputs / OECD ICIO 第三批基准输出
 
@@ -74,11 +90,11 @@ Validation checks passed after the build. `oecd_icio_output_va_fd.parquet` has 1
 
 ## 1. Project In One Paragraph
 
-When direct trade and multinational production links between geopolitical blocs weaken, third countries can appear to "connect" the blocs. Existing empirical work already shows that this can mean real production reallocation in some cases and trade rerouting or transshipment in others. This project asks the next question: conditional on these connector channels existing, how much do they mitigate the welfare costs of geoeconomic fragmentation? The empirical layer will be used for validation, calibration, country scope, and shock discipline. The core contribution should come from a multi-country, multi-sector general-equilibrium model with trade, multinational production, and input-output linkages, reported as a scenario-bound exercise: Scenario A is trade-only connector access, Scenario B is the incumbent MP-intensive baseline, and Scenario C is an upper-bound proxy disciplined by total FDI and production-side expansion evidence.
+When direct trade and multinational-production links between geopolitical blocs weaken, third countries can appear to "connect" the blocs. Existing work already shows trade rerouting, domestic production reallocation, affiliate/FDI diversion, and welfare effects from both trade and MP. This project therefore asks whether connector country-sector cells with similar gross-trade adjustment supply different amounts of insurance because their ownership-linked incumbent MP adjustment differs. The empirical layer must discipline the missing MP margin and the model must quantify the prediction error of trade-only connector welfare inference. Scenario A remains the trade-only lower bound, Scenario B the observable-moment-disciplined incumbent-MP comparison, and Scenario C only a separately labeled broad-production upper bound; financial FDI cannot directly calibrate `hgamma`.
 
 ## 2. Main Research Question
 
-How much do connector economies mitigate the welfare costs of geoeconomic fragmentation, and how much of that mitigation comes from trade rerouting, incumbent multinational-production reallocation, upper-bound total MP adjustment, and input-output propagation?
+Among connector country-sector cells with comparable gross-trade rerouting, how much additional insurance against bloc fragmentation is supplied by ownership-linked incumbent multinational-production adjustment, and when does a trade-only model consequently overstate or understate connector mitigation?
 
 The core distinction is:
 
@@ -86,14 +102,14 @@ The core distinction is:
 - **rerouting**: connector countries expand gross exports or imports but do not show comparable production-side expansion;
 - **hidden dependence**: the final destination imports from a connector, but the connector remains highly dependent on inputs from the original source bloc.
 
-## 3. Why This Can Be A JMP
+## 3. Why This Can Be Competitive For JIE
 
-The project is not just about documenting trade diversion. After Schulze and Xin (2025), documenting and empirically disentangling trade reallocation from trade rerouting is no longer enough as the main contribution. The intended contribution must combine three different elements:
+The project is not just about documenting trade diversion. Schulze and Xin (2025), Shen (2026), Du and Wang (2022), and Xue (2026) jointly make the earlier broad positioning insufficient. The intended contribution must combine four elements:
 
-1. a structural welfare accounting framework for connector economies;
-2. a decomposition of connector mitigation into trade rerouting, multinational production relocation, and input-output propagation;
-3. a disciplined empirical validation and calibration layer that uses existing connector facts without treating them as the paper's main novelty;
-4. a transparent A/B/C welfare-bound design rather than a single point estimate that overclaims what the model can identify.
+1. a common country-sector empirical object showing when gross trade and ownership-linked affiliate adjustment diverge;
+2. observable-moment discipline of the incumbent MP margin and explicit treatment of the parent-host-destination network;
+3. a common-shock comparison that measures the prediction error of trade-only connector welfare inference;
+4. transparent bounds, interaction treatment, and a willingness to report a disciplined zero.
 
 This matters for policy because friend-shoring and decoupling can look successful in gross trade data while still preserving hidden dependence or raising real resource costs. For a top-field international trade audience, the project must now show more than a new fact: it needs a credible counterfactual that quantifies the welfare value and residual cost of connector economies.
 
@@ -132,6 +148,14 @@ The reference paper studies sanctions against Russia using a 44-economy, 34-sect
 
 The reference folder is treated as read-only source material. New project code should live under `code/`, not inside `reference/`.
 
+### 4.0 Model Decision Before The Meeting With Professor Yu
+
+**Decision status as of 2026-07-27: historically frozen until the discussion with Professor Yu; as of 2026-08-13 it remains the first candidate implementation, subject to the higher-order JIE Gate 3 test.**
+
+Before that meeting, the first structural version will use **Du-Wang (2022) as the direct model and computational backbone**. Its theoretical lineage combines the trade-and-multinational-production framework of **Arkolakis, Ramondo, Rodríguez-Clare, and Yeaple (2018)** with a multisector input-output structure **à la Caliendo and Parro (2015)**. The first version will endogenize reallocation along already represented trade and MP links, including input-output propagation, but will **not** endogenize fixed-cost entry of new affiliates or plants.
+
+Accordingly, the Du-Wang-based intensive-margin baseline, the A/B/C scenario design, model inputs, and welfare accounting remain the first implementation candidate. Extensive-margin evidence remains outside the structural model, and Scenario C remains a total MP-adjustment upper-bound proxy rather than an endogenous entry result. A **Tintelnot (2017)-style fixed-cost plant-location block** is not added merely for sophistication. Under the 2026-08-13 JIE contract, full Du-Wang migration now requires an observable-moment-to-MP mapping and a small quantitative pilot. If Du-Wang fails that test, the model boundary must be reopened; if affiliate or plant entry is both empirically supportable and central to the headline welfare result, a later version may augment or restructure the framework using Tintelnot's entry and export-platform mechanism.
+
 ### 4.1 Technical Check: How Du-Wang Models The MP Margin
 
 The core model risk is whether Du-Wang can be used directly for this project's MP channel. The check is clear: Du-Wang models MP through an **iceberg MP cost**, not through a Tintelnot-style fixed-cost entry margin.
@@ -145,7 +169,7 @@ The implication for this project is:
 | Possible route | Assessment |
 |---|---|
 | Use Du-Wang with project-specific scenario/config refactoring | Recommended first version. It already has trade, MP, IO linkages, and welfare decomposition. |
-| Add a project-specific scenario layer that disciplines `hgamma` with AMNE, BEA MNE, FDI, and production-side moments | Needed. The size of MP-cost shocks must be disciplined by evidence rather than chosen arbitrarily. AMNE/affiliate evidence anchors Scenario B; total FDI and production expansion discipline Scenario C. fDi Markets is an optional later extension. |
+| Add a project-specific scenario layer that disciplines the MP margin with AMNE, BEA MNE, and production-side moments | Needed. Direct affiliate evidence anchors Scenario B; ICIO and direct activity can bound Scenario C. Financial FDI is context only and cannot directly calibrate `hgamma`. Any source-host-destination allocation must be observed, restricted, or bounded. |
 | Switch immediately to a BHLP/Bonadio-style framework with a new MP layer | Not recommended for the first version unless the project abandons the Du-Wang sufficient-statistics structure. It would increase model-building burden sharply. |
 | Build a Tintelnot-style fixed-cost entry model | Only appropriate if the paper's core question becomes affiliate entry or plant-count relocation, which requires stronger micro or firm-level evidence. |
 
@@ -170,11 +194,11 @@ The first welfare table should therefore use three named connector scenarios:
 |---|---|---|
 | **Scenario A: trade-only connector lower bound** | Connector-related `htau` remains open or improves, while `hgamma = 1` for the MP margin. | Lower bound for connector value when third countries only reroute trade and MP costs do not improve. |
 | **Scenario B: incumbent MP-intensive baseline** | `hgamma` is disciplined by AMNE, BEA MNE, or ownership/affiliate activity moments that mostly reflect already represented MP links. | Preferred baseline for intensive reallocation across existing MP links. |
-| **Scenario C: total MP-adjustment upper-bound proxy** | `hgamma` is currently disciplined by total FDI inflow, affiliate expansion, and production-side expansion; fDi Markets may be added only in a separate later batch. | Upper-bound proxy that allows observed total production expansion to affect welfare accounting without claiming a fixed-cost entry model. |
+| **Scenario C: broad production-adjustment upper-bound proxy** | ICIO production and direct affiliate expansion bound a stronger production response; financial FDI and future project evidence remain model-external context. | Upper-bound proxy for broad production adjustment; it does not directly calibrate `hgamma` or identify fixed-cost entry. |
 
 The B-to-C gap can be reported as an extensive-margin-related upper-bound increment. It should not be described as an identified entry-margin welfare contribution, because the model has no fixed-cost entry block.
 
-For a JIE-level paper, this boundary is acceptable only if the empirical and counterfactual discipline is strong. The first version should therefore add an explicit **extensive-margin evidence section outside the model**. The current section should use BEA MNE, AMNE, FDI, value added, employment, and investment data to show whether Mexico and other connector economies experienced affiliate or production expansion in the relevant sectors. fDi Markets can be added later as separate project-level evidence. These data should motivate and discipline the `hgamma` scenarios, especially Scenario C, not imply that Du-Wang endogenously generates entry.
+For a JIE-level paper, this boundary is acceptable only if the empirical and counterfactual discipline is strong. The first version should therefore add an explicit **extensive-margin evidence section outside the model**. Direct BEA MNE/AMNE activity and ICIO production can validate or bound production adjustment; financial FDI and any future project evidence remain narrative/extensive-margin support. They must not be converted directly into `hgamma` or described as entry generated by Du-Wang.
 
 The recommended wording is:
 
@@ -291,11 +315,11 @@ For the new connector-economy project, these scripts should be treated as a scen
 | New scenario | Shock object | Purpose |
 |---|---|---|
 | Baseline | `htau = 1`, `hgamma = 1`, `tTar = baseline tariffs` | Coherent pre-shock model equilibrium. |
-| Direct fragmentation, no connectors | Increase `htau` and possibly `hgamma` on source-bloc to destination-bloc links. | Measures the welfare cost of direct decoupling. |
+| `NoConnector`: direct fragmentation with connector adjustment disabled | Increase `htau` and possibly `hgamma` on source-bloc to destination-bloc links while disabling connector-specific trade and MP adjustment. | Unique core fragmentation counterfactual for measuring the loss before connector insurance. |
 | Scenario A: trade-only connector lower bound | Keep or reduce connector-related `htau` while direct bloc links remain costly; set connector MP margin to `hgamma = 1`. | Isolates gross trade rerouting through third countries and gives the lower bound for connector welfare value. |
 | Scenario B: incumbent MP-intensive baseline | Use AMNE, BEA MNE, and ownership/affiliate activity moments to discipline connector-related `hgamma`. | Preferred baseline for intensive reallocation across existing MP links. |
-| Scenario C: total MP-adjustment upper-bound proxy | Use total FDI inflow, affiliate expansion, and production-side expansion to discipline a stronger connector-related `hgamma` adjustment. Treat fDi Markets as an optional later extension. | Upper-bound proxy for total MP adjustment; approximates extensive-margin-related gains without claiming a structural entry model. |
-| No-connector stress test | Raise both direct-bloc and connector-bloc barriers. | Shows residual welfare cost when third-country adjustment is unavailable. |
+| Scenario C: broad production-adjustment upper-bound proxy | Use ICIO production and direct affiliate expansion to bound a stronger production response. Financial FDI remains context; fDi Markets is outside the active batch. | Broad-production upper bound; not a calibrated `hgamma` or structural entry model. |
+| Extreme connector-barrier robustness | Raise both direct-bloc and connector-bloc barriers beyond the core `NoConnector` contract. | More severe barrier robustness; not a second no-connector baseline. |
 
 The first structural version should report welfare changes for each scenario and decompose them into direct fragmentation losses, connector mitigation, MP-intensive reallocation, the Scenario C upper-bound increment, and input-output propagation. The reference package can already compute welfare decomposition after a shock; what it cannot do is define connector countries, validate whether the connector channel is real rather than pure rerouting, or structurally identify fixed-cost entry.
 
@@ -358,7 +382,7 @@ This project needs production-side evidence, such as:
 - domestic production or employment by sector where available;
 - possibly FDI, firm-level, or plant-level data if public aggregate data are too weak.
 
-Without this layer, the project would risk becoming a gross-trade rerouting exercise rather than a JMP-level contribution.
+Without this layer, the project would risk becoming a gross-trade rerouting exercise rather than a JIE-level contribution.
 
 ### 6.4 The Data Vintage Is Not Enough
 
@@ -508,7 +532,7 @@ The table should include:
 - FDI, employment, value added, or investment indicators in the same sectors;
 - a flag for whether the evidence supports an MP-intensive scenario, a trade-only scenario, or only a narrative motivation.
 
-The model-facing output is not an entry equation. It is a documented choice of `hgamma` scenarios and sensitivity bounds. Scenario B should be tied to incumbent or already represented MP activity; Scenario C should use total FDI and production-side expansion as an upper-bound proxy and be labeled as such in every table.
+The model-facing output is not an entry equation. It is a documented mapping or bound with explicit failure conditions. Scenario B should be tied to incumbent or already represented MP activity; Scenario C should use ICIO production and direct affiliate expansion only as a broad-production upper bound. Financial FDI remains separate scenario context and must not directly determine `hgamma`.
 
 ## 8. Data Plan
 
@@ -689,6 +713,7 @@ The project should not copy reference data into the new pipeline as final data. 
 | Path | Purpose |
 |---|---|
 | `README.md` | This collaborator-facing overview. |
+| `docs/JIE_PROJECT_GOAL.md` | Binding JIE publication standard, four Gates, referee tests, and decision contract. |
 | `docs/research_design.md` | Research question, mechanism, feasibility tests, and risks. |
 | `docs/reference_model_map.md` | Detailed map from reference code to future model-core code. |
 | `docs/data_source_log.md` | Data-source registry and download log. |
@@ -705,32 +730,22 @@ The project should not copy reference data into the new pipeline as final data. 
 
 The current public-data engineering stage is substantially complete. Reproducible Python builders and validated interim outputs now exist for BACI, U.S. Census imports, Section 301, OECD ICIO, OECD Analytical AMNE, BEA U.S. MNE activity, BEA direct investment, and Mexico official FDI. OECD ICIO baseline CSVs are available for 2017, 2018, and 2022.
 
-The project has not yet completed the empirical or structural stages. `data/processed/` has no harmonized analysis-ready panel; connector rankings and production-side relocation tests have not been estimated; Scenario A/B/C shock files and structural moments do not yet exist; and the MATLAB equilibrium and welfare-decomposition code has not been migrated. fDi Markets is explicitly outside the current batch.
+The validated data workflow is complete through M6.4. Gate 1 was completed in `docs/JIE_GAP_AUDIT_2026_08_13.md`; the surviving headline is the observable-MP-disciplined prediction error of trade-only connector welfare models. Gate 2, Gate 3, Gate 4, the remainder of M6.5, final moment-to-MP mapping, trilateral-network treatment, model decision, shock arrays, MATLAB equilibrium/welfare code, and counterfactual results remain unfinished. M7 reproducible release and handoff are also pending. Therefore, the accurate status is: **core data engineering and the empirical moment bank are complete and validated; the end-to-end data stage is not yet complete or model-ready**. fDi Markets is explicitly outside the current batch.
 
 ## 11. Immediate Next Steps
 
-1. Build one auditable country-sector-product concordance across HS6/HS10, OECD sectors, BEA industries, and Mexico SCIAN sectors.
-2. Generate connector rankings and two-leg rerouting facts from BACI and Census, starting with Mexico, Vietnam, and Canada in autos, electronics, machinery, and medical devices.
-3. Combine OECD AMNE, BEA MNE, Mexico FDI, BEA direct investment, and ICIO production measures into a production-side validation table.
-4. Check BEA suppression for Mexico x electronics/computers and Mexico x medical devices and verify the USITC USMCA automotive statistic before manuscript use.
-5. Construct the structural moment table linking observed trade, value added, affiliate activity, and investment changes to Scenario A/B/C `htau` and `hgamma` inputs.
-6. Build a small MATLAB-ready scenario sample, verify country-sector ordering, and then migrate `eqm_iter.m`, `eqm_update.m`, `wel_decomp.m`, and related model functions.
-7. Run the first welfare-bound matrix comparing direct fragmentation, Scenario A, Scenario B, and Scenario C. Keep fDi Markets outside this work until a separate batch is explicitly opened.
+1. Canonicalize the Gate 2 same-window trade/AMNE affiliate-share-and-level object and its measurement uncertainties.
+2. Add the targeted ownership-conditioned incumbent parent-host AMNE transformation; keep entry/exit separate.
+3. Complete the Gate 3 mapping from admissible moments to `hgamma`, an MP elasticity, or a transparent bound, and observe/restrict/bound the parent-host-destination network when the mechanism requires it.
+4. Freeze one core `NoConnector` shock contract and the comparable `TradeConnector`, `Trade+MPConnector`, and conditional `FullNetworkAdjustment` contracts.
+5. Only after Gates 1-3 support it, build a small model pilot to test mechanism relevance, numerical validity, and the potential Gate 4 welfare separation. Do not begin full Du-Wang migration mechanically.
+6. After the M6.5 decision, complete M7 full-rebuild, version-freeze, Stata handoff, and final audit artifacts before declaring the data stage complete or beginning full model migration.
 
 ## 12. Decision Rule For Moving To Structural Counterfactuals
 
-Move to full model migration only if the first-stage evidence shows:
+Move beyond a small model pilot only after M6.5 records explicit evidence for Gate 1 (frontier-level intellectual object), Gate 2 (new auditable empirical fact/object), and Gate 3 (observable-moment discipline of the first-order MP margin), and after the Gate 4 pilot design has unique, comparable shock contracts and numerical acceptance tests. M6.1-M6.4 validation PASS does not satisfy these Gates by itself.
 
-- the project can clearly state what Schulze and Xin (2025) already did and what this project adds;
-- connector rankings and value-added moments are stable enough to discipline model shocks;
-- direct bloc-to-bloc decline and third-country expansion are economically meaningful;
-- at least one production-side source supports real relocation for key connectors, or the model explicitly treats relocation as a scenario rather than a proven fact;
-- extensive-margin evidence is kept separate from model-implied outcomes and used only as validation or scenario discipline, with Scenario C labeled as an upper-bound proxy rather than an entry model;
-- country-sector concordances are transparent;
-- model inputs can be generated without hard-coded country indices;
-- welfare channels can be reported separately for direct fragmentation, connector mitigation, MP, and IO propagation.
-
-If these conditions fail, the project should either narrow to a specific country-sector episode, focus on a Mexico/North America extension, or remain at the validation stage without claiming a full JMP contribution.
+At that decision, answer the Novelty, Discipline, and Quantitative-payoff referee tests in `docs/JIE_PROJECT_GOAL.md`. If any answer is missing, choose a targeted missing input, pause, model switch, or narrower claim—not unrelated data expansion or arbitrary `hgamma` calibration.
 
 ---
 
@@ -742,7 +757,7 @@ If these conditions fail, the project should either narrow to a specific country
 
 ## 1. 项目一句话
 
-本项目研究 geoeconomic fragmentation 背景下 connector economies 的福利价值：当两个地缘政治集团之间的直接贸易和跨国生产联系变弱时，一些第三方国家可能成为新的中间人、出口平台或生产地点。已有实证文献已经研究了这些国家到底是真实生产转移，还是贸易绕行和转口。本项目现在应进一步问：这些 connector countries 到底在一般均衡中缓解了多少 fragmentation 的福利损失。福利结果应写成 A/B/C 情景区间：Scenario A 是 trade-only connector 下界，Scenario B 是 incumbent MP-intensive 基准，Scenario C 是由 total FDI 和生产侧扩张证据约束的 total MP-adjustment 上界 proxy。
+本项目研究 geoeconomic fragmentation 背景下 trade-only connector welfare inference 的误差：当两个地缘政治集团之间的直接贸易和跨国生产联系变弱时，具有相似 gross-trade rerouting 的第三方 country-sector cells，是否因为 ownership-linked incumbent MP adjustment 不同而提供不同的 fragmentation insurance。Scenario A 是 trade-only 下界，Scenario B 是由 direct affiliate activity 约束的 incumbent-MP 比较，Scenario C 只能是单独标记的 broad-production 上界；financial FDI 不能直接校准 `hgamma`。
 
 本项目不是对现有文献的简单复现。`reference/` 中的 Du and Wang (2022) 复现包提供了一个非常有用的结构模型框架：多国、多部门、同时包含 trade、multinational production 和 input-output linkages。但最新的 IMF Working Paper 已经覆盖了相当一部分 connector economies 的实证识别。因此，本项目不能把“区分生产转移和贸易绕行”作为主贡献，而应把它作为模型校准和验证的事实基础。
 
@@ -750,7 +765,7 @@ If these conditions fail, the project should either narrow to a specific country
 
 本项目的主问题是：
 
-> connector economies 在多大程度上缓解了 geoeconomic fragmentation 的福利成本？这种缓解分别来自 trade rerouting、incumbent MP intensive reallocation、total MP-adjustment upper-bound proxy 和 input-output propagation 的哪一部分？
+> 在 gross-trade rerouting 相近的 connector country-sector cells 中，ownership-linked incumbent MP adjustment 额外提供多少 bloc-fragmentation insurance？忽略这一 margin 的 trade-only model 会在什么条件下高估或低估 connector mitigation？
 
 这里需要严格区分三种现象：
 
@@ -760,14 +775,14 @@ If these conditions fail, the project should either narrow to a specific country
 
 如果不能区分这三类现象，项目很容易退化为一个 gross trade diversion 的描述性研究。更重要的是，Schulze and Xin (2025) 已经系统做了这一区分，所以本项目必须把贡献推进到结构福利反事实。
 
-## 3. 为什么这个题目有 JMP 潜力
+## 3. 为什么这个题目有 JIE 潜力
 
-这个题目不是简单地问“贸易是否转移到第三国”。在 Schulze and Xin (2025) 之后，单独证明 connector economies 存在，或者区分 production relocation 和 trade rerouting，已经不足以作为 JMP 主贡献。本项目的潜在贡献应转为把三个层面结合起来：
+这个题目不是简单地问“贸易是否转移到第三国”。Schulze and Xin (2025)、Shen (2026)、Du and Wang (2022) 和 Xue (2026) 共同使原来的宽定位不再充分。本项目的潜在贡献必须同时包含四个层面：
 
-1. **结构福利核算**：量化 connector economies 到底降低了多少 fragmentation 的福利损失。
-2. **机制分解**：把 connector mitigation 分解为 trade rerouting、MP relocation 和 IO propagation。
-3. **经验校准与验证**：利用已有实证事实和新数据约束模型冲击，而不是把实证识别本身作为主贡献。
-4. **福利区间而非单点估计**：用 Scenario A/B/C 同时报告下界、基准和上界 proxy，避免把模型不能识别的 entry margin 写成结构结果。
+1. **同单位经验事实**：在同一 country-sector 和同一窗口比较 gross trade 与 ownership-linked affiliate adjustment。
+2. **MP discipline**：用 direct affiliate activity 约束 incumbent MP margin，并明确处理 parent-host-destination network。
+3. **预测误差**：在共同 shock 和 closure 下量化 trade-only connector welfare inference 的方向和大小。
+4. **可信边界**：报告参数、网络和 interaction bounds，并接受 data-disciplined zero。
 
 政策上，friend-shoring、near-shoring 和 decoupling 常常会根据 gross trade flows 判断是否成功。但即使我们知道第三国是真实生产转移还是贸易绕行，仍然不知道它在一般均衡中到底节省了多少福利成本。本项目的目标就是把这个 welfare value 讲清楚。
 
@@ -813,6 +828,14 @@ If these conditions fail, the project should either narrow to a specific country
 
 因此，本项目将 `reference/` 视为只读上游材料。新代码、数据构建、配置文件和输出都应放在当前项目自己的目录中，不应直接修改 `reference/` 中的复现包。
 
+### 4.0 与俞老师讨论前的模型决定
+
+**截至 2026-07-27，本决定曾作为与俞老师讨论前的模型冻结点；自 2026-08-13 起，它仍是第一候选实现，但必须服从更高层级的 JIE Gate 3 检验。**
+
+见俞老师之前，第一版结构模型确定为：以 **Du-Wang（2022）作为直接模型和计算骨架**。其理论来源是 **Arkolakis、Ramondo、Rodríguez-Clare and Yeaple（2018）**的 trade–multinational-production 框架，以及 **Caliendo and Parro（2015）**式的多部门投入产出结构。第一版内生计算已有 trade 和 MP links 上的重新配置及 IO propagation，但**不内生化新 affiliate 或新 plant 的 fixed-cost entry**。
+
+因此，Du-Wang-based intensive-margin baseline、A/B/C 情景、模型输入和福利核算仍是第一候选实现。Extensive-margin evidence 继续放在结构模型之外，Scenario C 仍是 total MP-adjustment upper-bound proxy，不解释为 endogenous entry result。不能仅为提高复杂度而加入 **Tintelnot（2017）式 fixed-cost plant-location block**。根据 2026-08-13 生效的 JIE contract，完整迁移 Du-Wang 前必须完成 observable-moment-to-MP mapping 和小型 quantitative pilot；如果 Du-Wang 无法通过该检验，就必须重新讨论模型边界。只有 affiliate 或 plant entry 同时有经验支持且决定 headline welfare result 时，后续版本才考虑用 Tintelnot 的 entry 与 export-platform mechanism 扩展或重构。
+
 ### 4.1 Du-Wang 的 MP margin 到底是什么
 
 当前最关键的模型风险，是 Du-Wang 能不能直接承担本项目的 MP channel。核验结果很明确：Du-Wang 的 MP margin 是 **iceberg MP cost**，不是 Tintelnot 式的 fixed-cost entry margin。
@@ -826,7 +849,7 @@ If these conditions fail, the project should either narrow to a specific country
 | 路线 | 判断 |
 |---|---|
 | 在 Du-Wang 上重构情景配置和数据接口 | 推荐作为第一版。它已经包含 trade、MP、IO linkages 和 welfare decomposition。 |
-| 用 AMNE、BEA MNE、FDI 和生产侧 moments 约束 `hgamma` 情景 | 必须做。MP-cost shock 的大小不能任意设定。AMNE / affiliate activity 主要约束 Scenario B；total FDI 和 production expansion 主要约束 Scenario C。fDi Markets 是以后可选扩展。 |
+| 用 AMNE、BEA MNE 和生产侧 moments 约束 MP margin | 必须做。Direct affiliate activity 主要约束 Scenario B；ICIO 与 direct production activity 可界定 Scenario C。Financial FDI 只作 context，不能直接校准 `hgamma`；三边网络必须被观测、限制或界定。 |
 | 直接转向 BHLP / Bonadio 风格框架并自行加入 MP 层 | 第一版不推荐。除非放弃 Du-Wang 的 sufficient-statistics 结构，否则建模负担会明显上升。 |
 | 改成 Tintelnot 式 fixed-cost entry model | 只有当论文核心变成 affiliate entry 或 plant-count relocation 时才需要，而且需要更强的微观或企业层面证据。 |
 
@@ -851,11 +874,11 @@ If these conditions fail, the project should either narrow to a specific country
 |---|---|---|
 | **Scenario A: trade-only connector lower bound** | connector 相关 `htau` 保持开放或下降，但 MP margin 保持 `hgamma = 1`。 | 只允许贸易绕行，给出 connector welfare value 的下界。 |
 | **Scenario B: incumbent MP-intensive baseline** | 用 AMNE、BEA MNE、ownership / affiliate activity moments 约束 connector 相关 `hgamma`。 | 基准情景，解释已有或模型中已表示的 MP links 上的 intensive reallocation。 |
-| **Scenario C: total MP-adjustment upper-bound proxy** | 当前用 total FDI inflow、affiliate expansion 和 production-side expansion 约束更强的 `hgamma` 调整；fDi Markets 只能以后另开批次。 | 上界 proxy，让观测到的总生产扩张进入福利核算，但不声称模型内生 fixed-cost entry。 |
+| **Scenario C: broad production-adjustment upper-bound proxy** | 用 ICIO production 和 direct affiliate expansion 界定更强的 production response；financial FDI 和以后可能的 project evidence 只作模型外 context。 | Broad-production 上界；不直接校准 `hgamma`，也不声称模型内生 fixed-cost entry。 |
 
 B 到 C 的差值可以报告为 extensive-margin-related upper-bound increment，但不能称为识别出来的 entry-margin welfare contribution，因为模型没有 fixed-cost entry block。
 
-因此，第一版应增加一个模型外的 **extensive-margin evidence section**。当前使用 BEA MNE、AMNE、FDI、value added、employment 和 investment 数据，说明 Mexico 或其他 connector economies 是否在相关部门出现 affiliate activity 或生产侧扩张；fDi Markets 留作以后单独增加的项目级证据。它的作用是验证故事、约束 `hgamma`、设定 Scenario C 的 upper-bound proxy，而不是把新进入当作 Du-Wang 模型的内生结果。
+因此，第一版应增加一个模型外的 **extensive-margin evidence section**。BEA MNE、AMNE、value added、employment 和 capex 用于核对 direct activity；FDI 与以后可能的 project evidence 只作金融或 entry-context 证据。Scenario C 由 ICIO 与 direct affiliate activity 界定 broad-production 上界，不能把 FDI 直接变成 `hgamma`，也不能把新进入写成 Du-Wang 的内生结果。
 
 推荐表述是：
 
@@ -974,11 +997,11 @@ B 到 C 的差值可以报告为 extensive-margin-related upper-bound increment�
 | 新项目场景 | shock 对象 | 目的 |
 |---|---|---|
 | Baseline | `htau = 1`、`hgamma = 1`、`tTar = baseline tariffs` | 得到一致的冲击前均衡。 |
-| Direct fragmentation, no connectors | 提高 source bloc 与 destination bloc 之间的 `htau`，必要时同时提高 `hgamma`。 | 衡量直接脱钩的福利成本。 |
+| `NoConnector`：direct fragmentation 且关闭 connector adjustment | 提高 source bloc 与 destination bloc 之间的 `htau`，必要时同时提高 `hgamma`，并关闭 connector-specific trade/MP adjustment。 | 唯一核心碎片化基准，衡量连接机制介入前的直接脱钩福利成本。 |
 | Scenario A: trade-only connector lower bound | 直接 bloc-to-bloc link 仍然变贵，但 connector 相关 `htau` 保持开放或成本较低，connector MP margin 设为 `hgamma = 1`。 | 单独识别 gross trade rerouting，并给出 connector welfare value 的下界。 |
 | Scenario B: incumbent MP-intensive baseline | 用 AMNE、BEA MNE 和 ownership / affiliate activity moments 约束 connector 相关 `hgamma`。 | 基准情景，衡量已有 MP links 上的 intensive production reallocation。 |
-| Scenario C: total MP-adjustment upper-bound proxy | 用 total FDI inflow、affiliate expansion 和 production-side expansion 约束更强的 connector `hgamma` 调整；fDi Markets 留作以后可选扩展。 | total MP adjustment 的上界 proxy；近似反映 extensive-margin-related gains，但不声称有结构 entry model。 |
-| No-connector stress test | 同时提高 direct bloc links 和 connector links 的 trade/MP barriers。 | 衡量没有第三方调整时的剩余福利成本。 |
+| Scenario C: broad production-adjustment upper-bound proxy | 用 ICIO production 和 direct affiliate expansion 界定更强的 production response；financial FDI 与 fDi Markets 不直接校准 `hgamma`。 | Broad-production 上界；不声称有结构 entry model。 |
+| Extreme connector-barrier robustness | 在核心 `NoConnector` contract 之外，进一步提高 direct bloc links 和 connector links 的 trade/MP barriers。 | 更严重的 barrier robustness，不作为第二个 no-connector 基准。 |
 
 因此，本项目后续的 counterfactual 不应再写成“Russia = 38、China = 8”。所有 source bloc、destination bloc、connector countries、sector list、shock intensity 和年份都应从 `configs/` 读取。结构模型输出也应明确分解为 direct fragmentation、Scenario A trade-only mitigation、Scenario B incumbent MP-intensive reallocation、Scenario C upper-bound increment 和 IO propagation。
 
@@ -1134,7 +1157,7 @@ Schulze and Xin (2025) 已经做了相当完整的 connector economies 经验识
 5. **extensive-margin evidence table**：当前整理 BEA MNE、AMNE、FDI 或其他生产侧资料中的 affiliate、投资和就业证据，明确它们是模型外验证，不是 Du-Wang 的内生结果。fDi Markets 本批不进入该表。
 6. **small MATLAB-ready sample**：构造一个小样本，测试新数据能否进入 reference 模型接口。
 
-此外，还需要增加一张 **structural moment table**，把经验事实转成模型输入：direct bloc-to-bloc trade decline、connector exports、connector imports、production-side expansion、FDI 或 foreign-affiliate activity，以及这些事实对应的 Scenario A/B/C `htau` 和 `hgamma` 情景设定。如果这些 moments 不能清楚支持结构反事实，就不应急于迁移完整 MATLAB 模型。
+此外，还需要一张 **structural moment table** 区分 observed moments 与模型参数：direct bloc-to-bloc trade decline、connector exports/imports、direct production/foreign-affiliate activity 可以成为 calibration 或 validation targets；FDI 只能作为 financial scenario support。只有明确的 moment-to-`htau`/MP-object mapping、网络边界和失败条件存在时，才可以进入小型 MATLAB pilot。
 
 ## 8. 数据计划
 
@@ -1306,43 +1329,42 @@ BEA suppression 已显式处理。`(D)` 不是 0，而是缺失值；employment 
 
 当前公开数据工程阶段已经基本完成。BACI、U.S. Census imports、Section 301、OECD ICIO、OECD Analytical AMNE、BEA U.S. MNE、BEA direct investment 和 Mexico 官方 FDI 都已有可重复运行的 Python 构建脚本、interim 输出和 build summary。OECD ICIO 还已经生成 2017、2018、2022 三套 MATLAB-ready baseline CSV。
 
-尚未完成的是跨数据库统一和正式研究结果。`data/processed/` 目前没有 harmonized analysis-ready panel；connector ranking、trade rerouting 与 production relocation 的联合检验还未估计；Scenario A/B/C 的 structural moment 和 shock files 尚未构造；MATLAB equilibrium / welfare decomposition model core 尚未迁移。fDi Markets 明确不在当前批次范围内。
+当前 validated data workflow 已完成到 M6.4。Gate 1 已在 `docs/JIE_GAP_AUDIT_2026_08_13.md` 中完成；唯一保留的 headline 是用 observable MP discipline 量化 trade-only connector welfare model 的预测误差。Gate 2、Gate 3、Gate 4、M6.5 其余部分、最终 moment-to-MP mapping、三边网络处理、模型选择、shock arrays、MATLAB equilibrium/welfare code 和 counterfactual results 尚未完成。M7 的全流程重建、版本冻结、Stata handoff 和最终审计交付也尚未完成。因此，准确状态是：**核心数据工程和 empirical moment bank 已完成并验证，但端到端数据阶段尚未全部完成，也还不是 model-ready release**。fDi Markets 明确不在当前批次范围内。
+
+截至 2026-08-16，权威的 M0-M6.4 数据处理与 JIE Gate 1 记录位于 `data-processing-variables@c46c671`；当前 `codex/model@2df0a06` checkout 比它少 24 个 commits。后续模型工作应从 `c46c671` 建立 model-pilot line，或明确整合该段历史，不能只依赖共享工作目录中已经生成但缺少当前分支代码与 validation 对应关系的 Parquet 文件。
 
 ## 10. 近期下一步
 
-1. 建立可审计的 country-sector-product concordance，统一 HS6/HS10、OECD sectors、BEA industries 和 Mexico SCIAN sectors。
-2. 用 BACI 和 Census 生成 connector ranking 与两段式 rerouting facts，优先检查 Mexico、Vietnam、Canada 以及汽车、电子、机械、医疗器械。
-3. 合并 OECD AMNE、BEA MNE、Mexico FDI、BEA direct investment 和 ICIO production 指标，构造 production-side validation table。
-4. 补查 BEA Mexico x electronics/computers 与 medical devices suppression，并在论文引用前核实 USITC USMCA automotive statistic。
-5. 构造 structural moment table，把贸易、增加值、affiliate activity 和 investment 变化映射到 Scenario A/B/C 的 `htau` 与 `hgamma`。
-6. 构造小型 MATLAB-ready scenario sample，核对 country-sector ordering 后再迁移 `eqm_iter.m`、`eqm_update.m`、`wel_decomp.m` 等模型核心函数。
-7. 运行 direct fragmentation 与 Scenario A/B/C 的第一组 welfare-bound matrix。fDi Markets 继续不处理，除非以后单独开启新的数据批次。
+1. 将 Gate 2 的同窗口 trade/AMNE affiliate share-and-level object 写成 canonical code 和 validation，并冻结 measurement uncertainty。
+2. 增加定向的 ownership-conditioned incumbent parent-host AMNE transformation；entry/exit 单独报告。
+3. 完成 Gate 3 的 observable moments 到 `hgamma`、MP elasticity 或透明 bounds 的 mapping；机制需要时，必须观测、限制或界定 parent-host-destination network。
+4. 固定唯一核心 `NoConnector` shock contract，以及可比较的 `TradeConnector`、`Trade+MPConnector` 和有条件的 `FullNetworkAdjustment` contracts。
+5. 只有 Gate 1-3 有支持时，才构造小型 model pilot，检验机制 relevance、数值有效性和 Gate 4 welfare separation；不能机械开始完整 Du-Wang 迁移。
+6. M6.5 作出决定后，完成 M7 的 full rebuild、版本冻结、Stata handoff 和最终审计交付；在此之前不能宣布整个数据阶段完成，也不能开始完整模型迁移。
 
 ## 11. 进入结构模型的判断标准
 
-只有在以下条件满足后，才进入完整 structural counterfactual 阶段：
+只有 M6.5 对 Gate 1（frontier-level intellectual object）、Gate 2（新的可审计 empirical fact/object）和 Gate 3（observable moments 对 first-order MP margin 的可信约束）给出明确支持，而且 Gate 4 pilot 已有唯一、可比较的 shock contracts 和数值验收标准，才进入小型结构试验。M6.1-M6.4 的 validation PASS 本身不能替代这些判断。
 
-- 项目能清楚说明 Schulze and Xin (2025) 已经做了什么，以及本项目新增什么；
-- connector rankings 和 value-added moments 足以约束模型 shock；
-- direct bloc-to-bloc decline 与 third-country expansion 具有经济意义；
-- 至少一个生产侧数据源支持关键 connector countries 存在真实 relocation，或者模型明确把 relocation 作为 scenario 而不是既定事实；
-- extensive-margin evidence 与模型内生结果保持分开，只用于验证 nearshoring 叙事和约束 `hgamma`，其中 Scenario C 必须标为 upper-bound proxy，而不是 entry model；
-- country-sector concordance 透明且可复查；
-- 模型输入可以在不硬编码国家 index 的情况下生成；
-- welfare channels 可以区分 direct fragmentation、connector mitigation、MP channel 和 IO propagation。
-
-如果这些条件不满足，项目应缩小到特定国家-部门案例，优先考虑 Mexico/North America extension，或者暂时停留在 validation 阶段，不应宣称完整 JMP 贡献。
+作出决定时必须书面回答 `docs/JIE_PROJECT_GOAL.md` 中的 Novelty、Discipline 和 Quantitative-payoff referee tests。任何一项答不出来，就选择定向补一个关键输入、pause、model switch 或收窄主张，不能以增加无关数据或任意设定 `hgamma` 代替。
 
 ## 12. References
 
 This project should not cite only broad geoeconomic-fragmentation reports. The working reference stack has four roles: empirical connector facts, structural welfare accounting, MP-margin architecture, and data/policy-shock measurement.
 
 1. Du, Xiayi, and Zi Wang. 2022. "Multinationals, Global Value Chains, and the Welfare Impacts of Economic Sanctions." Economics Letters. Direct source for the first structural model and welfare decomposition.
-2. Ramondo, Natalia, and Andres Rodriguez-Clare. 2013. "Trade, Multinational Production, and the Gains from Openness." Journal of Political Economy. Key reference for iceberg MP costs and multinational-production share adjustment.
-3. Tintelnot, Felix. 2017. "Global Production with Export Platforms." Quarterly Journal of Economics. Key reference for fixed-cost foreign investment and affiliate-entry models.
-4. Bonadio, Barthelemy, Zhen Huo, Andrei A. Levchenko, and Nitya Pandalai-Nayar. 2021. "Global Supply Chains in the Pandemic." Journal of International Economics. Reference point for BHLP-style global supply-chain / IO counterfactual frameworks.
-5. Schulze, Tatjana, and Weining Xin. 2025. "Demystifying Trade Patterns in a Fragmenting World." IMF Working Paper WP/25/129. Closest empirical benchmark for connector countries, trade reallocation, and trade rerouting.
-6. Freund, Caroline, Aaditya Mattoo, Alen Mulabdic, and Michele Ruta. IMF-CEPR geoeconomic-fragmentation work on U.S.-China tariffs and connector economies. Background evidence on trade diversion, hidden dependence, and third-country export growth.
-7. International Monetary Fund and CEPR. Geoeconomic Fragmentation: The Economic Risks from a Fractured World Economy. Policy background and fragmentation framing.
-8. Bown, Chad P., plus PIIE / USTR / USITC Section 301 tariff files. Product-level tariff-shock source for `htau` scenarios.
-9. OECD ICIO, OECD Analytical AMNE / MNE-GVC, BEA U.S. MNE Activity, CEPII BACI, fDi Markets, Mexico Secretaria de Economia / DataMexico FDI, and USITC USMCA automotive rules-of-origin reports. Data and calibration sources; final citations should record exact release versions, years, and table identifiers.
+2. Arkolakis, Costas, Natalia Ramondo, Andrés Rodríguez-Clare, and Stephen Yeaple. 2018. "Innovation and Production in the Global Economy." American Economic Review 108 (8): 2128–2173. DOI: 10.1257/aer.20141743. Core trade-and-multinational-production foundation.
+3. Caliendo, Lorenzo, and Fernando Parro. 2015. "Estimates of the Trade and Welfare Effects of NAFTA." Review of Economic Studies 82 (1): 1–44. DOI: 10.1093/restud/rdu035. Core multisector, intermediate-input, and input-output-linkage foundation.
+4. Ramondo, Natalia, and Andres Rodriguez-Clare. 2013. "Trade, Multinational Production, and the Gains from Openness." Journal of Political Economy. Key reference for iceberg MP costs and multinational-production share adjustment.
+5. Tintelnot, Felix. 2017. "Global Production with Export Platforms." Quarterly Journal of Economics. Key reference for a possible second-version fixed-cost foreign-investment and affiliate-entry model.
+6. Bonadio, Barthelemy, Zhen Huo, Andrei A. Levchenko, and Nitya Pandalai-Nayar. 2021. "Global Supply Chains in the Pandemic." Journal of International Economics. Reference point for BHLP-style global supply-chain / IO counterfactual frameworks.
+7. Schulze, Tatjana, and Weining Xin. 2025. "Demystifying Trade Patterns in a Fragmenting World." IMF Working Paper WP/25/129. Closest empirical benchmark for connector countries, trade reallocation, and trade rerouting.
+8. Freund, Caroline, Aaditya Mattoo, Alen Mulabdic, and Michele Ruta. 2024. "Is US Trade Policy Reshaping Global Supply Chains?" Journal of International Economics 152: 104011. DOI: 10.1016/j.jinteco.2024.104011. Connector trade and supply-chain benchmark.
+9. Shen, Lu. 2026. Journal of International Economics 161: 104264. DOI: 10.1016/j.jinteco.2026.104264. China-connector-U.S. GVC paths and fragmentation-welfare mitigation.
+10. Wang, Zi. 2021. "Headquarters Gravity: How Multinationals Shape International Trade." Journal of International Economics 131: 103477. DOI: 10.1016/j.jinteco.2021.103477. Identification boundary for the parent-host-destination network.
+11. Xue, Sifan. 2026. "Trade Wars with FDI Diversion." January working paper. Closest current threat to a broad trade-versus-MP welfare claim; version-dependent results require re-verification.
+12. International Monetary Fund and CEPR. Geoeconomic-fragmentation policy and quantitative background.
+13. Bown, Chad P., plus PIIE / USTR / USITC Section 301 tariff files. Product-level tariff-shock source for `htau` scenarios.
+14. OECD ICIO, OECD Analytical AMNE / MNE-GVC, BEA U.S. MNE Activity, CEPII BACI, Mexico Secretaria de Economia / DataMexico FDI, and USITC USMCA automotive rules-of-origin reports. Current data and calibration sources; fDi Markets remains outside the active batch. Final citations should record exact release versions, years, and table identifiers.
+
+The full current-frontier matrix and source links are in `docs/JIE_GAP_AUDIT_2026_08_13.md`.
