@@ -1,0 +1,325 @@
+﻿country,year,project_type,source_group,records
+Mexico,2014,New,China,5
+Mexico,2014,New,Other East Asia,21
+Mexico,2014,New,United States,23
+Mexico,2014,New,Other parents,44
+Mexico,2014,Expansion,China,0
+Mexico,2014,Expansion,Other East Asia,4
+Mexico,2014,Expansion,United States,20
+Mexico,2014,Expansion,Other parents,31
+Mexico,2014,Co-Location,China,0
+Mexico,2014,Co-Location,Other East Asia,1
+Mexico,2014,Co-Location,United States,2
+Mexico,2014,Co-Location,Other parents,0
+Mexico,2015,New,China,5
+Mexico,2015,New,Other East Asia,40
+Mexico,2015,New,United States,23
+Mexico,2015,New,Other parents,52
+Mexico,2015,Expansion,China,0
+Mexico,2015,Expansion,Other East Asia,13
+Mexico,2015,Expansion,United States,21
+Mexico,2015,Expansion,Other parents,33
+Mexico,2015,Co-Location,China,0
+Mexico,2015,Co-Location,Other East Asia,0
+Mexico,2015,Co-Location,United States,1
+Mexico,2015,Co-Location,Other parents,3
+Mexico,2016,New,China,3
+Mexico,2016,New,Other East Asia,37
+Mexico,2016,New,United States,26
+Mexico,2016,New,Other parents,60
+Mexico,2016,Expansion,China,3
+Mexico,2016,Expansion,Other East Asia,12
+Mexico,2016,Expansion,United States,22
+Mexico,2016,Expansion,Other parents,33
+Mexico,2016,Co-Location,China,0
+Mexico,2016,Co-Location,Other East Asia,0
+Mexico,2016,Co-Location,United States,0
+Mexico,2016,Co-Location,Other parents,2
+Mexico,2017,New,China,10
+Mexico,2017,New,Other East Asia,22
+Mexico,2017,New,United States,25
+Mexico,2017,New,Other parents,57
+Mexico,2017,Expansion,China,4
+Mexico,2017,Expansion,Other East Asia,10
+Mexico,2017,Expansion,United States,23
+Mexico,2017,Expansion,Other parents,47
+Mexico,2017,Co-Location,China,0
+Mexico,2017,Co-Location,Other East Asia,0
+Mexico,2017,Co-Location,United States,0
+Mexico,2017,Co-Location,Other parents,1
+Mexico,2018,New,China,4
+Mexico,2018,New,Other East Asia,17
+Mexico,2018,New,United States,18
+Mexico,2018,New,Other parents,40
+Mexico,2018,Expansion,China,3
+Mexico,2018,Expansion,Other East Asia,12
+Mexico,2018,Expansion,United States,21
+Mexico,2018,Expansion,Other parents,38
+Mexico,2018,Co-Location,China,0
+Mexico,2018,Co-Location,Other East Asia,2
+Mexico,2018,Co-Location,United States,1
+Mexico,2018,Co-Location,Other parents,2
+Mexico,2019,New,China,13
+Mexico,2019,New,Other East Asia,9
+Mexico,2019,New,United States,29
+Mexico,2019,New,Other parents,41
+Mexico,2019,Expansion,China,3
+Mexico,2019,Expansion,Other East Asia,16
+Mexico,2019,Expansion,United States,33
+Mexico,2019,Expansion,Other parents,40
+Mexico,2019,Co-Location,China,0
+Mexico,2019,Co-Location,Other East Asia,0
+Mexico,2019,Co-Location,United States,0
+Mexico,2019,Co-Location,Other parents,2
+Mexico,2020,New,China,6
+Mexico,2020,New,Other East Asia,10
+Mexico,2020,New,United States,11
+Mexico,2020,New,Other parents,14
+Mexico,2020,Expansion,China,5
+Mexico,2020,Expansion,Other East Asia,8
+Mexico,2020,Expansion,United States,14
+Mexico,2020,Expansion,Other parents,16
+Mexico,2020,Co-Location,China,0
+Mexico,2020,Co-Location,Other East Asia,0
+Mexico,2020,Co-Location,United States,0
+Mexico,2020,Co-Location,Other parents,1
+Mexico,2021,New,China,2
+Mexico,2021,New,Other East Asia,2
+Mexico,2021,New,United States,24
+Mexico,2021,New,Other parents,22
+Mexico,2021,Expansion,China,2
+Mexico,2021,Expansion,Other East Asia,9
+Mexico,2021,Expansion,United States,22
+Mexico,2021,Expansion,Other parents,22
+Mexico,2021,Co-Location,China,0
+Mexico,2021,Co-Location,Other East Asia,0
+Mexico,2021,Co-Location,United States,0
+Mexico,2021,Co-Location,Other parents,1
+Mexico,2022,New,China,11
+Mexico,2022,New,Other East Asia,11
+Mexico,2022,New,United States,24
+Mexico,2022,New,Other parents,29
+Mexico,2022,Expansion,China,1
+Mexico,2022,Expansion,Other East Asia,8
+Mexico,2022,Expansion,United States,24
+Mexico,2022,Expansion,Other parents,45
+Mexico,2022,Co-Location,China,0
+Mexico,2022,Co-Location,Other East Asia,0
+Mexico,2022,Co-Location,United States,0
+Mexico,2022,Co-Location,Other parents,1
+Vietnam,2014,New,China,5
+Vietnam,2014,New,Other East Asia,41
+Vietnam,2014,New,United States,5
+Vietnam,2014,New,Other parents,29
+Vietnam,2014,Expansion,China,0
+Vietnam,2014,Expansion,Other East Asia,6
+Vietnam,2014,Expansion,United States,4
+Vietnam,2014,Expansion,Other parents,5
+Vietnam,2014,Co-Location,China,0
+Vietnam,2014,Co-Location,Other East Asia,3
+Vietnam,2014,Co-Location,United States,0
+Vietnam,2014,Co-Location,Other parents,0
+Vietnam,2015,New,China,3
+Vietnam,2015,New,Other East Asia,48
+Vietnam,2015,New,United States,3
+Vietnam,2015,New,Other parents,18
+Vietnam,2015,Expansion,China,1
+Vietnam,2015,Expansion,Other East Asia,17
+Vietnam,2015,Expansion,United States,2
+Vietnam,2015,Expansion,Other parents,6
+Vietnam,2015,Co-Location,China,0
+Vietnam,2015,Co-Location,Other East Asia,0
+Vietnam,2015,Co-Location,United States,0
+Vietnam,2015,Co-Location,Other parents,1
+Vietnam,2016,New,China,3
+Vietnam,2016,New,Other East Asia,46
+Vietnam,2016,New,United States,5
+Vietnam,2016,New,Other parents,25
+Vietnam,2016,Expansion,China,1
+Vietnam,2016,Expansion,Other East Asia,9
+Vietnam,2016,Expansion,United States,0
+Vietnam,2016,Expansion,Other parents,3
+Vietnam,2016,Co-Location,China,0
+Vietnam,2016,Co-Location,Other East Asia,2
+Vietnam,2016,Co-Location,United States,0
+Vietnam,2016,Co-Location,Other parents,0
+Vietnam,2017,New,China,5
+Vietnam,2017,New,Other East Asia,26
+Vietnam,2017,New,United States,1
+Vietnam,2017,New,Other parents,19
+Vietnam,2017,Expansion,China,0
+Vietnam,2017,Expansion,Other East Asia,4
+Vietnam,2017,Expansion,United States,4
+Vietnam,2017,Expansion,Other parents,5
+Vietnam,2017,Co-Location,China,0
+Vietnam,2017,Co-Location,Other East Asia,0
+Vietnam,2017,Co-Location,United States,1
+Vietnam,2017,Co-Location,Other parents,0
+Vietnam,2018,New,China,8
+Vietnam,2018,New,Other East Asia,26
+Vietnam,2018,New,United States,5
+Vietnam,2018,New,Other parents,21
+Vietnam,2018,Expansion,China,1
+Vietnam,2018,Expansion,Other East Asia,8
+Vietnam,2018,Expansion,United States,1
+Vietnam,2018,Expansion,Other parents,9
+Vietnam,2018,Co-Location,China,0
+Vietnam,2018,Co-Location,Other East Asia,0
+Vietnam,2018,Co-Location,United States,0
+Vietnam,2018,Co-Location,Other parents,0
+Vietnam,2019,New,China,16
+Vietnam,2019,New,Other East Asia,29
+Vietnam,2019,New,United States,10
+Vietnam,2019,New,Other parents,17
+Vietnam,2019,Expansion,China,1
+Vietnam,2019,Expansion,Other East Asia,16
+Vietnam,2019,Expansion,United States,2
+Vietnam,2019,Expansion,Other parents,5
+Vietnam,2019,Co-Location,China,0
+Vietnam,2019,Co-Location,Other East Asia,0
+Vietnam,2019,Co-Location,United States,0
+Vietnam,2019,Co-Location,Other parents,0
+Vietnam,2020,New,China,4
+Vietnam,2020,New,Other East Asia,11
+Vietnam,2020,New,United States,1
+Vietnam,2020,New,Other parents,8
+Vietnam,2020,Expansion,China,0
+Vietnam,2020,Expansion,Other East Asia,3
+Vietnam,2020,Expansion,United States,0
+Vietnam,2020,Expansion,Other parents,0
+Vietnam,2020,Co-Location,China,0
+Vietnam,2020,Co-Location,Other East Asia,0
+Vietnam,2020,Co-Location,United States,0
+Vietnam,2020,Co-Location,Other parents,0
+Vietnam,2021,New,China,0
+Vietnam,2021,New,Other East Asia,6
+Vietnam,2021,New,United States,2
+Vietnam,2021,New,Other parents,9
+Vietnam,2021,Expansion,China,3
+Vietnam,2021,Expansion,Other East Asia,6
+Vietnam,2021,Expansion,United States,4
+Vietnam,2021,Expansion,Other parents,2
+Vietnam,2021,Co-Location,China,0
+Vietnam,2021,Co-Location,Other East Asia,0
+Vietnam,2021,Co-Location,United States,0
+Vietnam,2021,Co-Location,Other parents,0
+Vietnam,2022,New,China,1
+Vietnam,2022,New,Other East Asia,2
+Vietnam,2022,New,United States,3
+Vietnam,2022,New,Other parents,6
+Vietnam,2022,Expansion,China,0
+Vietnam,2022,Expansion,Other East Asia,4
+Vietnam,2022,Expansion,United States,1
+Vietnam,2022,Expansion,Other parents,1
+Vietnam,2022,Co-Location,China,0
+Vietnam,2022,Co-Location,Other East Asia,0
+Vietnam,2022,Co-Location,United States,0
+Vietnam,2022,Co-Location,Other parents,0
+Thailand,2014,New,China,1
+Thailand,2014,New,Other East Asia,13
+Thailand,2014,New,United States,1
+Thailand,2014,New,Other parents,12
+Thailand,2014,Expansion,China,0
+Thailand,2014,Expansion,Other East Asia,10
+Thailand,2014,Expansion,United States,3
+Thailand,2014,Expansion,Other parents,6
+Thailand,2014,Co-Location,China,0
+Thailand,2014,Co-Location,Other East Asia,1
+Thailand,2014,Co-Location,United States,0
+Thailand,2014,Co-Location,Other parents,1
+Thailand,2015,New,China,6
+Thailand,2015,New,Other East Asia,10
+Thailand,2015,New,United States,0
+Thailand,2015,New,Other parents,5
+Thailand,2015,Expansion,China,0
+Thailand,2015,Expansion,Other East Asia,16
+Thailand,2015,Expansion,United States,1
+Thailand,2015,Expansion,Other parents,7
+Thailand,2015,Co-Location,China,0
+Thailand,2015,Co-Location,Other East Asia,2
+Thailand,2015,Co-Location,United States,0
+Thailand,2015,Co-Location,Other parents,1
+Thailand,2016,New,China,5
+Thailand,2016,New,Other East Asia,9
+Thailand,2016,New,United States,3
+Thailand,2016,New,Other parents,6
+Thailand,2016,Expansion,China,2
+Thailand,2016,Expansion,Other East Asia,12
+Thailand,2016,Expansion,United States,2
+Thailand,2016,Expansion,Other parents,6
+Thailand,2016,Co-Location,China,0
+Thailand,2016,Co-Location,Other East Asia,2
+Thailand,2016,Co-Location,United States,0
+Thailand,2016,Co-Location,Other parents,1
+Thailand,2017,New,China,2
+Thailand,2017,New,Other East Asia,7
+Thailand,2017,New,United States,1
+Thailand,2017,New,Other parents,14
+Thailand,2017,Expansion,China,1
+Thailand,2017,Expansion,Other East Asia,4
+Thailand,2017,Expansion,United States,0
+Thailand,2017,Expansion,Other parents,3
+Thailand,2017,Co-Location,China,0
+Thailand,2017,Co-Location,Other East Asia,0
+Thailand,2017,Co-Location,United States,0
+Thailand,2017,Co-Location,Other parents,1
+Thailand,2018,New,China,1
+Thailand,2018,New,Other East Asia,11
+Thailand,2018,New,United States,6
+Thailand,2018,New,Other parents,9
+Thailand,2018,Expansion,China,0
+Thailand,2018,Expansion,Other East Asia,5
+Thailand,2018,Expansion,United States,4
+Thailand,2018,Expansion,Other parents,11
+Thailand,2018,Co-Location,China,0
+Thailand,2018,Co-Location,Other East Asia,2
+Thailand,2018,Co-Location,United States,0
+Thailand,2018,Co-Location,Other parents,0
+Thailand,2019,New,China,3
+Thailand,2019,New,Other East Asia,5
+Thailand,2019,New,United States,4
+Thailand,2019,New,Other parents,4
+Thailand,2019,Expansion,China,2
+Thailand,2019,Expansion,Other East Asia,6
+Thailand,2019,Expansion,United States,1
+Thailand,2019,Expansion,Other parents,9
+Thailand,2019,Co-Location,China,0
+Thailand,2019,Co-Location,Other East Asia,0
+Thailand,2019,Co-Location,United States,0
+Thailand,2019,Co-Location,Other parents,0
+Thailand,2020,New,China,1
+Thailand,2020,New,Other East Asia,3
+Thailand,2020,New,United States,4
+Thailand,2020,New,Other parents,6
+Thailand,2020,Expansion,China,0
+Thailand,2020,Expansion,Other East Asia,4
+Thailand,2020,Expansion,United States,1
+Thailand,2020,Expansion,Other parents,3
+Thailand,2020,Co-Location,China,0
+Thailand,2020,Co-Location,Other East Asia,0
+Thailand,2020,Co-Location,United States,0
+Thailand,2020,Co-Location,Other parents,0
+Thailand,2021,New,China,0
+Thailand,2021,New,Other East Asia,4
+Thailand,2021,New,United States,4
+Thailand,2021,New,Other parents,4
+Thailand,2021,Expansion,China,0
+Thailand,2021,Expansion,Other East Asia,5
+Thailand,2021,Expansion,United States,0
+Thailand,2021,Expansion,Other parents,3
+Thailand,2021,Co-Location,China,0
+Thailand,2021,Co-Location,Other East Asia,0
+Thailand,2021,Co-Location,United States,0
+Thailand,2021,Co-Location,Other parents,0
+Thailand,2022,New,China,3
+Thailand,2022,New,Other East Asia,1
+Thailand,2022,New,United States,0
+Thailand,2022,New,Other parents,2
+Thailand,2022,Expansion,China,1
+Thailand,2022,Expansion,Other East Asia,1
+Thailand,2022,Expansion,United States,1
+Thailand,2022,Expansion,Other parents,2
+Thailand,2022,Co-Location,China,0
+Thailand,2022,Co-Location,Other East Asia,0
+Thailand,2022,Co-Location,United States,0
+Thailand,2022,Co-Location,Other parents,0

@@ -1,0 +1,50 @@
+{
+  "warning": "Mechanical sensitivity only; identical visible records are not proven duplicate projects. Original rows are retained. Currency and capex units not independently verified.",
+  "countries": [
+    {
+      "country": "Mexico",
+      "raw_rows": 477,
+      "identical_groups": 17,
+      "rows_in_identical_groups": 43,
+      "hypothetical_excess_rows_if_one_per_group": 26,
+      "raw_rows_minus_excess": 451,
+      "excess_rows_fraction": 0.05450733752620545,
+      "raw_recorded_capex": 28650.32,
+      "hypothetical_excess_recorded_capex": 3407.11,
+      "excess_capex_fraction": 0.11892048675198044,
+      "raw_recorded_jobs": 128321,
+      "hypothetical_excess_recorded_jobs": 6325,
+      "excess_jobs_fraction": 0.049290451290123986
+    },
+    {
+      "country": "Vietnam",
+      "raw_rows": 309,
+      "identical_groups": 5,
+      "rows_in_identical_groups": 11,
+      "hypothetical_excess_rows_if_one_per_group": 6,
+      "raw_rows_minus_excess": 303,
+      "excess_rows_fraction": 0.019417475728155338,
+      "raw_recorded_capex": 19800.780000000002,
+      "hypothetical_excess_recorded_capex": 347.9,
+      "excess_capex_fraction": 0.017570014918604212,
+      "raw_recorded_jobs": 154462,
+      "hypothetical_excess_recorded_jobs": 1636,
+      "excess_jobs_fraction": 0.010591601817922855
+    },
+    {
+      "country": "Thailand",
+      "raw_rows": 179,
+      "identical_groups": 3,
+      "rows_in_identical_groups": 8,
+      "hypothetical_excess_rows_if_one_per_group": 5,
+      "raw_rows_minus_excess": 174,
+      "excess_rows_fraction": 0.027932960893854747,
+      "raw_recorded_capex": 9258.599999999999,
+      "hypothetical_excess_recorded_capex": 888.38,
+      "excess_capex_fraction": 0.09595187177327028,
+      "raw_recorded_jobs": 46935,
+      "hypothetical_excess_recorded_jobs": 5536,
+      "excess_jobs_fraction": 0.11795035687653137
+    }
+  ]
+}

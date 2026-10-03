@@ -1,0 +1,110 @@
+{
+  "review_date": "2026-10-02",
+  "input": "data/raw/fDi_Markets .xlsx",
+  "read_only": true,
+  "gate": "Gate 2 evidence suitability; Gate 3 interpretation boundary",
+  "verdict": "分段可用，尚不能作为完整2014-2024项目样本直接使用或验收。",
+  "recommended_primary_period": "2014-2022 after candidate-duplicate review; 6120 raw rows; sector/activity mapping required",
+  "coverage_warning": {
+    "period": "2023-10 through 2023-11",
+    "excel_range": "2014-2023!A6712:AR6768",
+    "rows": 57,
+    "observed_source_countries": [
+      "Australia",
+      "Austria",
+      "Belgium",
+      "Canada",
+      "China",
+      "Ecuador",
+      "Estonia",
+      "France",
+      "Germany"
+    ],
+    "interpretation": "来源国全部A-G，强烈疑似分批导出遗漏。不能将未出现来源国解释为零投资，须对照原库导出计数。",
+    "external_cases": [
+      {
+        "company": "Kewpie",
+        "announcement_date": "2023-10-05",
+        "host": "Thailand",
+        "url": "https://www.kewpie.com/newsrelease/2023/3132/",
+        "kind": "new building at existing factory; capacity expansion announced for future operation",
+        "matches": []
+      },
+      {
+        "company": "Doosan Bobcat",
+        "announcement_date": "2023-11-08",
+        "host": "Mexico",
+        "url": "https://www.doosanbobcat.com/en/mediacenter/news/detail?id=252&page=7&pageSize=10",
+        "kind": "new manufacturing facility announced for future operation",
+        "matches": []
+      }
+    ],
+    "evidence_boundary": "公开公告不证明该项目必然被fDi原库按同月份收录；不能由此计算漏行数或自行补成fDi记录。"
+  },
+  "field_breaks": [
+    {
+      "period": "2014-01 through 2023-09",
+      "rows": 6710,
+      "core_fields": "observed nonmissing"
+    },
+    {
+      "period": "2023-10 through 2023-11",
+      "rows": 57,
+      "missing": [
+        "Parent_Company"
+      ],
+      "additional_risk": "source coverage"
+    },
+    {
+      "period": "2023-12",
+      "rows": 61,
+      "missing": [
+        "Parent_Company",
+        "Project_Type",
+        "Project_Status",
+        "Estimated1",
+        "Estimated2",
+        "Inf_Source"
+      ]
+    },
+    {
+      "period": "2024",
+      "rows": 965,
+      "columns": 8,
+      "missing": [
+        "Parent_Company",
+        "Project_Type",
+        "Project_Status",
+        "Estimated1",
+        "Estimated2",
+        "Inf_Source",
+        "Sub-sector",
+        "project_id",
+        "location"
+      ]
+    }
+  ],
+  "estimate_flags": {
+    "known_flag_rows": 6767,
+    "Estimated1_Yes": 5528,
+    "Estimated2_Yes": 4956,
+    "Estimated1_Yes_pct": 81.69055711541303,
+    "Estimated2_Yes_pct": 73.23777153834787,
+    "note": "Estimated1邻接Jobs_Created，Estimated2邻接Capital_Investment；交付字典仍需确认映射。"
+  },
+  "unresolved": [
+    "原库同筛选条件逐年/逐月项目总数",
+    "币种与金额单位",
+    "2024公司和来源国定义与历史是否一致",
+    "稳定项目ID或地点/来源以判别重复候选",
+    "行业版本及Sub-sector缺失",
+    "导出时间与不同年份是否同一vintage"
+  ],
+  "scope_limits": [
+    "所有日期均月首，只能按月/年解释",
+    "New不是企业首次进入，Expansion不是实际年度产出",
+    "不可直接代替AMNE产出、实际目的地销售、MP弹性或福利",
+    "全行业全活动不等于制造业生产样本"
+  ],
+  "formal_facts_unchanged": true
+}

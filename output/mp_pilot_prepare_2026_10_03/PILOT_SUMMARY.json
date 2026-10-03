@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-03",
+  "recommended_object": "USA parent -> MEX host -> C28 machinery",
+  "selection": "Existing mapping plus 18/18 disclosed BEA endpoint cells; growth signs not used",
+  "target_name": "us_share_host_gross_output",
+  "target_definition": "Direct USA-parent affiliate output divided by AMNE host gross output, MEX C28 in the same year",
+  "denominator": "All-origin Mexican C28 gross output, domestic and foreign; AMNE XVEM host total taken once",
+  "denominator_source": "data/processed/harmonized/production_validation_amne_host_sector_long.parquet",
+  "numerator_source": "data/processed/harmonized/production_amne_parent_host_sector_long.parquet",
+  "series": [
+    {
+      "year": 2017,
+      "target_fraction": 0.20825766420583394,
+      "numerator_us_affiliate_output_musd": 6698.19385707304,
+      "denominator_host_gross_output_musd": 32163.0125,
+      "bea_sales_musd": 7971.0,
+      "bea_goods_exports_to_us_musd": 3749.0
+    },
+    {
+      "year": 2019,
+      "target_fraction": 0.19058680996481547,
+      "numerator_us_affiliate_output_musd": 6201.22841127243,
+      "denominator_host_gross_output_musd": 32537.5529,
+      "bea_sales_musd": 6480.0,
+      "bea_goods_exports_to_us_musd": 3077.0
+    },
+    {
+      "year": 2022,
+      "target_fraction": 0.207181452517757,
+      "numerator_us_affiliate_output_musd": 8397.58831531069,
+      "denominator_host_gross_output_musd": 40532.5294,
+      "bea_sales_musd": 9699.0,
+      "bea_goods_exports_to_us_musd": 5628.0
+    }
+  ],
+  "executed_checks": 750,
+  "computed": [
+    "source-native levels",
+    "AMNE explicitly defined same-source shares",
+    "2017 to 2019 and 2022 same-source changes",
+    "disclosure and denominator audits",
+    "mechanical BEA ratio diagnostics, never network probabilities"
+  ],
+  "not_computed": [
+    "hgamma",
+    "MP elasticity",
+    "causal effect",
+    "welfare",
+    "trilateral network imputation",
+    "pandemic model"
+  ],
+  "major_findings": [
+    "Automotive BEA Transportation equipment is broader than AMNE C29 and has suppressed US-export endpoints",
+    "Electronics BEA capex is suppressed in all 2017-2023 years and is retained missing",
+    "Electronics 2018 BEA exports-to-US 4426 / sales 4254 exceeds one; cause not verified; no sales probability imposed",
+    "ICIO 2019 is not built; no interpolation or endpoint change fabricated",
+    "AMNE direct bilateral sum and XVEM foreign total kept separate; no cross-source division or pooling"
+  ],
+  "next_test_ready": false,
+  "Gate3_passed": false,
+  "next_test_ready_conditions": [
+    "Define model aggregation corresponding to US-parent share of host output; reconcile sales/output valuation, tariffs and domestic-origin denominator",
+    "Freeze source-verified elasticity/curvature values and other shocks; do not freely fit elasticity with one MP-cost parameter",
+    "Choose a defended trilateral-network restriction or range; do not directly use BEA exports/sales as probability",
+    "Verify BEA Machinery Table II.D 3/II.H 11 definitions and population against intended validation role",
+    "Audit common underlying source information before treating AMNE and BEA as statistically independent targets",
+    "Only then execute a one-direction MP-cost sensitivity test, followed by fit to one AMNE share and held-out levels/BEA diagnostics"
+  ],
+  "suggested_parameter_not_estimated": "One log effective MP cost change for USA->MEX C28 per tested endpoint; no value assigned",
+  "primary_fit_target": "AMNE us_share_host_gross_output only",
+  "extra_diagnostics": "AMNE output level and foreign-parent share, BEA native Machinery activity, ICIO broad production",
+  "warning": "Observed output or share changes are not hgamma; no log-share-ratio inversion performed"
+}

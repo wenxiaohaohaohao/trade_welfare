@@ -1,0 +1,702 @@
+{
+  "status": "PASS",
+  "method": "Independent openpyxl read_only parse of both raw sheets; native-schema checks, stdlib Counter/Fraction; no producer import.",
+  "raw_sha256": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+  "raw_unchanged": true,
+  "staged_tables_unchanged": {
+    "staged_annual_full_year.csv": true,
+    "staged_period_full_year.csv": true,
+    "staged_annual_jan_sep.csv": true,
+    "staged_period_jan_sep.csv": true,
+    "staged_period_changes_full_year.csv": true,
+    "staged_parent_history.csv": true
+  },
+  "table_rows_checked": {
+    "exploratory_annual_full_year.csv": 33,
+    "exploratory_annual_jan_sep.csv": 33,
+    "exploratory_monthly_2023_2024.csv": 72,
+    "exploratory_monthly_source_country_2023_2024.csv": 369,
+    "exploratory_manufacturing_records.csv": 2982
+  },
+  "checks_by_table": {
+    "exploratory_annual_full_year.csv": 957,
+    "staged_reconciliation_exploratory_annual_full_year.csv": 243,
+    "exploratory_annual_jan_sep.csv": 957,
+    "staged_reconciliation_exploratory_annual_jan_sep.csv": 270,
+    "exploratory_monthly_2023_2024.csv": 2088,
+    "exploratory_monthly_source_country_2023_2024.csv": 1107,
+    "exploratory_manufacturing_records.csv": 11394
+  },
+  "total_value_checks": 17016,
+  "errors": [],
+  "all_2982_selected_raw_rows_retained_by_exact_sheet_row_provenance": true,
+  "manufacturing_2024_rows": 325,
+  "manufacturing_2024_duplicate_candidate_rows": 16,
+  "manufacturing_2024_duplicate_excess_retained": 9,
+  "2024_type_and_parent_absent_in_raw_schema": true,
+  "2024_unknown_type_counts_and_shares_remain_null": true,
+  "observed_empty_manufacturing_months": [
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 2,
+      "records": 0
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 7,
+      "records": 0
+    }
+  ],
+  "annual_2023_2024_independent_results": [
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "months_per_year": 12,
+      "records": 185,
+      "observed_months": 12,
+      "requested_months": "1,2,3,4,5,6,7,8,9,10,11,12",
+      "coverage_status": "supplier_followup_required",
+      "china_records": 32,
+      "china_share_pct": 17.2972972972973,
+      "other_east_asia_records": 28,
+      "other_east_asia_share_pct": 15.135135135135135,
+      "united_states_records": 41,
+      "united_states_share_pct": 22.16216216216216,
+      "other_parents_records": 84,
+      "other_parents_share_pct": 45.4054054054054,
+      "project_type_field_present": true,
+      "project_type_available_records": 173,
+      "project_type_missing_records": 12,
+      "project_type_available_pct": 93.51351351351352,
+      "parent_field_present": true,
+      "parent_available_records": 162,
+      "parent_missing_records": 23,
+      "parent_available_pct": 87.56756756756756,
+      "new_records_in_known_types": 87,
+      "new_share_pct_of_known_types": 50.28901734104046,
+      "expansion_records_in_known_types": 85,
+      "expansion_share_pct_of_known_types": 49.13294797687861,
+      "co_location_records_in_known_types": 1,
+      "co_location_share_pct_of_known_types": 0.5780346820809249,
+      "exact_visible_field_duplicate_rows": 0,
+      "exact_visible_field_duplicate_excess": 0
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "months_per_year": 12,
+      "records": 161,
+      "observed_months": 12,
+      "requested_months": "1,2,3,4,5,6,7,8,9,10,11,12",
+      "coverage_status": "supplier_followup_required",
+      "china_records": 26,
+      "china_share_pct": 16.149068322981368,
+      "other_east_asia_records": 31,
+      "other_east_asia_share_pct": 19.25465838509317,
+      "united_states_records": 33,
+      "united_states_share_pct": 20.496894409937887,
+      "other_parents_records": 71,
+      "other_parents_share_pct": 44.099378881987576,
+      "project_type_field_present": false,
+      "project_type_available_records": 0,
+      "project_type_missing_records": 161,
+      "project_type_available_pct": 0.0,
+      "parent_field_present": false,
+      "parent_available_records": 0,
+      "parent_missing_records": 161,
+      "parent_available_pct": 0.0,
+      "new_records_in_known_types": null,
+      "new_share_pct_of_known_types": null,
+      "expansion_records_in_known_types": null,
+      "expansion_share_pct_of_known_types": null,
+      "co_location_records_in_known_types": null,
+      "co_location_share_pct_of_known_types": null,
+      "exact_visible_field_duplicate_rows": 12,
+      "exact_visible_field_duplicate_excess": 7
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "months_per_year": 12,
+      "records": 87,
+      "observed_months": 12,
+      "requested_months": "1,2,3,4,5,6,7,8,9,10,11,12",
+      "coverage_status": "supplier_followup_required",
+      "china_records": 33,
+      "china_share_pct": 37.93103448275862,
+      "other_east_asia_records": 24,
+      "other_east_asia_share_pct": 27.586206896551722,
+      "united_states_records": 5,
+      "united_states_share_pct": 5.747126436781609,
+      "other_parents_records": 25,
+      "other_parents_share_pct": 28.735632183908045,
+      "project_type_field_present": true,
+      "project_type_available_records": 75,
+      "project_type_missing_records": 12,
+      "project_type_available_pct": 86.20689655172414,
+      "parent_field_present": true,
+      "parent_available_records": 66,
+      "parent_missing_records": 21,
+      "parent_available_pct": 75.86206896551724,
+      "new_records_in_known_types": 59,
+      "new_share_pct_of_known_types": 78.66666666666667,
+      "expansion_records_in_known_types": 16,
+      "expansion_share_pct_of_known_types": 21.333333333333332,
+      "co_location_records_in_known_types": 0,
+      "co_location_share_pct_of_known_types": 0.0,
+      "exact_visible_field_duplicate_rows": 0,
+      "exact_visible_field_duplicate_excess": 0
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "months_per_year": 12,
+      "records": 118,
+      "observed_months": 12,
+      "requested_months": "1,2,3,4,5,6,7,8,9,10,11,12",
+      "coverage_status": "supplier_followup_required",
+      "china_records": 23,
+      "china_share_pct": 19.491525423728813,
+      "other_east_asia_records": 55,
+      "other_east_asia_share_pct": 46.610169491525426,
+      "united_states_records": 8,
+      "united_states_share_pct": 6.779661016949152,
+      "other_parents_records": 32,
+      "other_parents_share_pct": 27.11864406779661,
+      "project_type_field_present": false,
+      "project_type_available_records": 0,
+      "project_type_missing_records": 118,
+      "project_type_available_pct": 0.0,
+      "parent_field_present": false,
+      "parent_available_records": 0,
+      "parent_missing_records": 118,
+      "parent_available_pct": 0.0,
+      "new_records_in_known_types": null,
+      "new_share_pct_of_known_types": null,
+      "expansion_records_in_known_types": null,
+      "expansion_share_pct_of_known_types": null,
+      "co_location_records_in_known_types": null,
+      "co_location_share_pct_of_known_types": null,
+      "exact_visible_field_duplicate_rows": 2,
+      "exact_visible_field_duplicate_excess": 1
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "months_per_year": 12,
+      "records": 36,
+      "observed_months": 11,
+      "requested_months": "1,2,3,4,5,6,7,8,9,10,11,12",
+      "coverage_status": "supplier_followup_required",
+      "china_records": 16,
+      "china_share_pct": 44.44444444444444,
+      "other_east_asia_records": 6,
+      "other_east_asia_share_pct": 16.666666666666668,
+      "united_states_records": 4,
+      "united_states_share_pct": 11.11111111111111,
+      "other_parents_records": 10,
+      "other_parents_share_pct": 27.77777777777778,
+      "project_type_field_present": true,
+      "project_type_available_records": 35,
+      "project_type_missing_records": 1,
+      "project_type_available_pct": 97.22222222222223,
+      "parent_field_present": true,
+      "parent_available_records": 26,
+      "parent_missing_records": 10,
+      "parent_available_pct": 72.22222222222223,
+      "new_records_in_known_types": 32,
+      "new_share_pct_of_known_types": 91.42857142857143,
+      "expansion_records_in_known_types": 3,
+      "expansion_share_pct_of_known_types": 8.571428571428571,
+      "co_location_records_in_known_types": 0,
+      "co_location_share_pct_of_known_types": 0.0,
+      "exact_visible_field_duplicate_rows": 0,
+      "exact_visible_field_duplicate_excess": 0
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "months_per_year": 12,
+      "records": 46,
+      "observed_months": 11,
+      "requested_months": "1,2,3,4,5,6,7,8,9,10,11,12",
+      "coverage_status": "supplier_followup_required",
+      "china_records": 15,
+      "china_share_pct": 32.608695652173914,
+      "other_east_asia_records": 12,
+      "other_east_asia_share_pct": 26.08695652173913,
+      "united_states_records": 5,
+      "united_states_share_pct": 10.869565217391305,
+      "other_parents_records": 14,
+      "other_parents_share_pct": 30.434782608695652,
+      "project_type_field_present": false,
+      "project_type_available_records": 0,
+      "project_type_missing_records": 46,
+      "project_type_available_pct": 0.0,
+      "parent_field_present": false,
+      "parent_available_records": 0,
+      "parent_missing_records": 46,
+      "parent_available_pct": 0.0,
+      "new_records_in_known_types": null,
+      "new_share_pct_of_known_types": null,
+      "expansion_records_in_known_types": null,
+      "expansion_share_pct_of_known_types": null,
+      "co_location_records_in_known_types": null,
+      "co_location_share_pct_of_known_types": null,
+      "exact_visible_field_duplicate_rows": 2,
+      "exact_visible_field_duplicate_excess": 1
+    }
+  ],
+  "monthly_2023_2024_independent_counts": [
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "month": 1,
+      "records": 17
+    },
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "month": 2,
+      "records": 17
+    },
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "month": 3,
+      "records": 20
+    },
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "month": 4,
+      "records": 13
+    },
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "month": 5,
+      "records": 25
+    },
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "month": 6,
+      "records": 21
+    },
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "month": 7,
+      "records": 17
+    },
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "month": 8,
+      "records": 18
+    },
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "month": 9,
+      "records": 14
+    },
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "month": 10,
+      "records": 4
+    },
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "month": 11,
+      "records": 7
+    },
+    {
+      "country": "Mexico",
+      "year": 2023,
+      "month": 12,
+      "records": 12
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "month": 1,
+      "records": 25
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "month": 2,
+      "records": 20
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "month": 3,
+      "records": 22
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "month": 4,
+      "records": 16
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "month": 5,
+      "records": 9
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "month": 6,
+      "records": 14
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "month": 7,
+      "records": 12
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "month": 8,
+      "records": 8
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "month": 9,
+      "records": 9
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "month": 10,
+      "records": 9
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "month": 11,
+      "records": 11
+    },
+    {
+      "country": "Mexico",
+      "year": 2024,
+      "month": 12,
+      "records": 6
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "month": 1,
+      "records": 3
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "month": 2,
+      "records": 4
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "month": 3,
+      "records": 8
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "month": 4,
+      "records": 5
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "month": 5,
+      "records": 7
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "month": 6,
+      "records": 7
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "month": 7,
+      "records": 10
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "month": 8,
+      "records": 12
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "month": 9,
+      "records": 10
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "month": 10,
+      "records": 4
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "month": 11,
+      "records": 5
+    },
+    {
+      "country": "Vietnam",
+      "year": 2023,
+      "month": 12,
+      "records": 12
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "month": 1,
+      "records": 16
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "month": 2,
+      "records": 10
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "month": 3,
+      "records": 17
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "month": 4,
+      "records": 11
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "month": 5,
+      "records": 8
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "month": 6,
+      "records": 8
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "month": 7,
+      "records": 7
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "month": 8,
+      "records": 8
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "month": 9,
+      "records": 11
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "month": 10,
+      "records": 5
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "month": 11,
+      "records": 12
+    },
+    {
+      "country": "Vietnam",
+      "year": 2024,
+      "month": 12,
+      "records": 5
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 1,
+      "records": 1
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 2,
+      "records": 0
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 3,
+      "records": 2
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 4,
+      "records": 4
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 5,
+      "records": 3
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 6,
+      "records": 4
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 7,
+      "records": 8
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 8,
+      "records": 3
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 9,
+      "records": 1
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 10,
+      "records": 4
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 11,
+      "records": 5
+    },
+    {
+      "country": "Thailand",
+      "year": 2023,
+      "month": 12,
+      "records": 1
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 1,
+      "records": 7
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 2,
+      "records": 2
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 3,
+      "records": 4
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 4,
+      "records": 7
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 5,
+      "records": 7
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 6,
+      "records": 3
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 7,
+      "records": 0
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 8,
+      "records": 4
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 9,
+      "records": 3
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 10,
+      "records": 1
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 11,
+      "records": 3
+    },
+    {
+      "country": "Thailand",
+      "year": 2024,
+      "month": 12,
+      "records": 5
+    }
+  ],
+  "monthly_source_counter_cells_checked": 369,
+  "limitations": [
+    "The verification establishes delivered-record arithmetic and preservation, not coverage of all economic projects.",
+    "2023 full-year type shares are explicitly shares among known-type records; missing December types are not classified as zero.",
+    "2024 company is never substituted for Parent_Company; missing fields do not become zero projects of any type.",
+    "No observed records in a Manufacturing month is not proof of zero population activity.",
+    "Exact duplicates of the eight visible 2024 fields are retained; site information may distinguish projects.",
+    "All Jan-Sep comparisons use the same month range; no extrapolation to annual totals."
+  ],
+  "checked_exploratory_sha256": {
+    "exploratory_annual_full_year.csv": "2ba88a02be71d4f37590e8b655a90a6dc14738ab8f0481f2f170a1c87bcd3f34",
+    "exploratory_annual_jan_sep.csv": "431685eab76ae46e6da7d9e4ecc4a3b0bd6c12c47db05ade8357a3a65690153e",
+    "exploratory_monthly_2023_2024.csv": "efc1703c69993f068c3176d217cfab1bb877e2e8e1567f46a76358e5bac2eac3",
+    "exploratory_monthly_source_country_2023_2024.csv": "4498b48cc69e1783edbe1b715d60d56e19df31ae20207aaecb11ee9b67a76e4b",
+    "exploratory_manufacturing_records.csv": "47343dc3186ca891a1d252698d2f15be228c11e0f1773beb8a9ad0b7d7d7e768"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "surface": "Local HTML report in Codex in-app browser",
+  "preview_url": "http://127.0.0.1:8766/",
+  "narrow_viewport_client_width": 674,
+  "narrow_document_scroll_width": 674,
+  "wide_viewport_client_width": 1185,
+  "wide_document_scroll_width": 1185,
+  "all_nine_tables_fit_wide_content_width": true,
+  "wide_table_content_width": 1071,
+  "all_six_embedded_images_loaded": true,
+  "all_six_sections_order": ["tables", "figure", "notes", "interpretation"],
+  "visually_inspected": [
+    "Report introduction and annual table in narrow default viewport",
+    "Project-type figure with readable Chinese labels in wide viewport",
+    "Notes block and interpretation paragraphs immediately following the figure"
+  ],
+  "figure_level_QA": "All six PNG and Python-rendered PDF figures reviewed separately; see FIGURE_VALIDATION.json",
+  "navigation_checked": ["project types", "annual trends"],
+  "temporary_viewport_override_reset": true,
+  "scope": "Static academic report layout and reading sequence; no external source or publication claim"
+}

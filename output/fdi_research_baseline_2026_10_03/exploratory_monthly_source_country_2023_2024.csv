@@ -1,0 +1,370 @@
+﻿country,year,month,source_country,source_group,records,all_source_month_records
+Mexico,2023,1,Canada,Other parents,1,17
+Mexico,2023,1,China,China,2,17
+Mexico,2023,1,Finland,Other parents,1,17
+Mexico,2023,1,France,Other parents,1,17
+Mexico,2023,1,Germany,Other parents,6,17
+Mexico,2023,1,India,Other parents,1,17
+Mexico,2023,1,Japan,Other East Asia,1,17
+Mexico,2023,1,Netherlands,Other parents,1,17
+Mexico,2023,1,United States,United States,3,17
+Mexico,2023,2,China,China,1,17
+Mexico,2023,2,Denmark,Other parents,1,17
+Mexico,2023,2,Germany,Other parents,6,17
+Mexico,2023,2,Italy,Other parents,1,17
+Mexico,2023,2,South Korea,Other East Asia,1,17
+Mexico,2023,2,Sweden,Other parents,2,17
+Mexico,2023,2,United Kingdom,Other parents,2,17
+Mexico,2023,2,United States,United States,3,17
+Mexico,2023,3,Canada,Other parents,1,20
+Mexico,2023,3,China,China,3,20
+Mexico,2023,3,France,Other parents,1,20
+Mexico,2023,3,Germany,Other parents,10,20
+Mexico,2023,3,South Korea,Other East Asia,1,20
+Mexico,2023,3,United States,United States,4,20
+Mexico,2023,4,Canada,Other parents,1,13
+Mexico,2023,4,China,China,3,13
+Mexico,2023,4,Germany,Other parents,3,13
+Mexico,2023,4,India,Other parents,1,13
+Mexico,2023,4,Spain,Other parents,1,13
+Mexico,2023,4,United States,United States,4,13
+Mexico,2023,5,Austria,Other parents,1,25
+Mexico,2023,5,Brazil,Other parents,2,25
+Mexico,2023,5,China,China,2,25
+Mexico,2023,5,Germany,Other parents,1,25
+Mexico,2023,5,Japan,Other East Asia,1,25
+Mexico,2023,5,Netherlands,Other parents,1,25
+Mexico,2023,5,Singapore,Other parents,1,25
+Mexico,2023,5,South Korea,Other East Asia,2,25
+Mexico,2023,5,Spain,Other parents,1,25
+Mexico,2023,5,Sweden,Other parents,1,25
+Mexico,2023,5,Taiwan,Other East Asia,1,25
+Mexico,2023,5,United States,United States,11,25
+Mexico,2023,6,China,China,3,21
+Mexico,2023,6,Germany,Other parents,1,21
+Mexico,2023,6,Japan,Other East Asia,8,21
+Mexico,2023,6,South Korea,Other East Asia,2,21
+Mexico,2023,6,Spain,Other parents,1,21
+Mexico,2023,6,Switzerland,Other parents,1,21
+Mexico,2023,6,Turkey,Other parents,1,21
+Mexico,2023,6,United States,United States,4,21
+Mexico,2023,7,Canada,Other parents,2,17
+Mexico,2023,7,China,China,4,17
+Mexico,2023,7,Germany,Other parents,2,17
+Mexico,2023,7,Japan,Other East Asia,2,17
+Mexico,2023,7,South Korea,Other East Asia,1,17
+Mexico,2023,7,Sweden,Other parents,1,17
+Mexico,2023,7,United Kingdom,Other parents,1,17
+Mexico,2023,7,United States,United States,4,17
+Mexico,2023,8,Belgium,Other parents,1,18
+Mexico,2023,8,Canada,Other parents,1,18
+Mexico,2023,8,China,China,4,18
+Mexico,2023,8,Denmark,Other parents,1,18
+Mexico,2023,8,Germany,Other parents,3,18
+Mexico,2023,8,Japan,Other East Asia,1,18
+Mexico,2023,8,Malaysia,Other parents,1,18
+Mexico,2023,8,Netherlands,Other parents,1,18
+Mexico,2023,8,South Korea,Other East Asia,1,18
+Mexico,2023,8,United States,United States,4,18
+Mexico,2023,9,Canada,Other parents,1,14
+Mexico,2023,9,China,China,1,14
+Mexico,2023,9,France,Other parents,1,14
+Mexico,2023,9,Germany,Other parents,1,14
+Mexico,2023,9,Japan,Other East Asia,3,14
+Mexico,2023,9,Netherlands,Other parents,2,14
+Mexico,2023,9,Spain,Other parents,1,14
+Mexico,2023,9,Switzerland,Other parents,1,14
+Mexico,2023,9,Taiwan,Other East Asia,1,14
+Mexico,2023,9,United States,United States,2,14
+Mexico,2023,10,Austria,Other parents,1,4
+Mexico,2023,10,China,China,2,4
+Mexico,2023,10,Germany,Other parents,1,4
+Mexico,2023,11,Austria,Other parents,1,7
+Mexico,2023,11,Canada,Other parents,1,7
+Mexico,2023,11,China,China,3,7
+Mexico,2023,11,Germany,Other parents,2,7
+Mexico,2023,12,Austria,Other parents,1,12
+Mexico,2023,12,China,China,4,12
+Mexico,2023,12,Germany,Other parents,1,12
+Mexico,2023,12,Ireland,Other parents,1,12
+Mexico,2023,12,Japan,Other East Asia,1,12
+Mexico,2023,12,South Korea,Other East Asia,1,12
+Mexico,2023,12,Spain,Other parents,1,12
+Mexico,2023,12,United States,United States,2,12
+Mexico,2024,1,Canada,Other parents,1,25
+Mexico,2024,1,China,China,6,25
+Mexico,2024,1,Finland,Other parents,1,25
+Mexico,2024,1,Germany,Other parents,3,25
+Mexico,2024,1,India,Other parents,1,25
+Mexico,2024,1,Italy,Other parents,1,25
+Mexico,2024,1,Japan,Other East Asia,3,25
+Mexico,2024,1,South Korea,Other East Asia,3,25
+Mexico,2024,1,Switzerland,Other parents,4,25
+Mexico,2024,1,United States,United States,2,25
+Mexico,2024,2,Canada,Other parents,1,20
+Mexico,2024,2,China,China,2,20
+Mexico,2024,2,France,Other parents,1,20
+Mexico,2024,2,Germany,Other parents,2,20
+Mexico,2024,2,Malaysia,Other parents,1,20
+Mexico,2024,2,South Korea,Other East Asia,2,20
+Mexico,2024,2,Switzerland,Other parents,2,20
+Mexico,2024,2,United Kingdom,Other parents,1,20
+Mexico,2024,2,United States,United States,8,20
+Mexico,2024,3,Brazil,Other parents,1,22
+Mexico,2024,3,Canada,Other parents,1,22
+Mexico,2024,3,China,China,5,22
+Mexico,2024,3,France,Other parents,1,22
+Mexico,2024,3,Germany,Other parents,2,22
+Mexico,2024,3,India,Other parents,2,22
+Mexico,2024,3,Japan,Other East Asia,2,22
+Mexico,2024,3,Netherlands,Other parents,1,22
+Mexico,2024,3,South Korea,Other East Asia,1,22
+Mexico,2024,3,Spain,Other parents,1,22
+Mexico,2024,3,Switzerland,Other parents,1,22
+Mexico,2024,3,Taiwan,Other East Asia,1,22
+Mexico,2024,3,United States,United States,3,22
+Mexico,2024,4,Austria,Other parents,2,16
+Mexico,2024,4,China,China,3,16
+Mexico,2024,4,Germany,Other parents,3,16
+Mexico,2024,4,India,Other parents,2,16
+Mexico,2024,4,Japan,Other East Asia,1,16
+Mexico,2024,4,Norway,Other parents,1,16
+Mexico,2024,4,Spain,Other parents,1,16
+Mexico,2024,4,Sweden,Other parents,1,16
+Mexico,2024,4,Taiwan,Other East Asia,1,16
+Mexico,2024,4,United States,United States,1,16
+Mexico,2024,5,Argentina,Other parents,1,9
+Mexico,2024,5,Austria,Other parents,1,9
+Mexico,2024,5,Germany,Other parents,1,9
+Mexico,2024,5,Japan,Other East Asia,2,9
+Mexico,2024,5,Switzerland,Other parents,1,9
+Mexico,2024,5,Taiwan,Other East Asia,1,9
+Mexico,2024,5,United States,United States,2,9
+Mexico,2024,6,Canada,Other parents,2,14
+Mexico,2024,6,China,China,2,14
+Mexico,2024,6,France,Other parents,1,14
+Mexico,2024,6,Germany,Other parents,2,14
+Mexico,2024,6,Netherlands,Other parents,1,14
+Mexico,2024,6,Spain,Other parents,1,14
+Mexico,2024,6,Turkey,Other parents,1,14
+Mexico,2024,6,United States,United States,4,14
+Mexico,2024,7,Austria,Other parents,1,12
+Mexico,2024,7,China,China,2,12
+Mexico,2024,7,France,Other parents,1,12
+Mexico,2024,7,Japan,Other East Asia,2,12
+Mexico,2024,7,Netherlands,Other parents,1,12
+Mexico,2024,7,Singapore,Other parents,1,12
+Mexico,2024,7,South Korea,Other East Asia,1,12
+Mexico,2024,7,Taiwan,Other East Asia,1,12
+Mexico,2024,7,United Kingdom,Other parents,1,12
+Mexico,2024,7,United States,United States,1,12
+Mexico,2024,8,China,China,2,8
+Mexico,2024,8,Hong Kong,Other parents,1,8
+Mexico,2024,8,South Korea,Other East Asia,1,8
+Mexico,2024,8,Switzerland,Other parents,1,8
+Mexico,2024,8,United States,United States,3,8
+Mexico,2024,9,China,China,2,9
+Mexico,2024,9,Japan,Other East Asia,2,9
+Mexico,2024,9,Netherlands,Other parents,1,9
+Mexico,2024,9,Spain,Other parents,1,9
+Mexico,2024,9,Taiwan,Other East Asia,1,9
+Mexico,2024,9,United States,United States,2,9
+Mexico,2024,10,China,China,1,9
+Mexico,2024,10,France,Other parents,1,9
+Mexico,2024,10,Germany,Other parents,1,9
+Mexico,2024,10,South Korea,Other East Asia,1,9
+Mexico,2024,10,Sweden,Other parents,1,9
+Mexico,2024,10,Taiwan,Other East Asia,1,9
+Mexico,2024,10,United Kingdom,Other parents,1,9
+Mexico,2024,10,United States,United States,2,9
+Mexico,2024,11,Canada,Other parents,2,11
+Mexico,2024,11,France,Other parents,1,11
+Mexico,2024,11,Japan,Other East Asia,3,11
+Mexico,2024,11,Netherlands,Other parents,1,11
+Mexico,2024,11,United States,United States,4,11
+Mexico,2024,12,China,China,1,6
+Mexico,2024,12,Germany,Other parents,2,6
+Mexico,2024,12,South Korea,Other East Asia,1,6
+Mexico,2024,12,Spain,Other parents,1,6
+Mexico,2024,12,United States,United States,1,6
+Vietnam,2023,1,China,China,1,3
+Vietnam,2023,1,Germany,Other parents,1,3
+Vietnam,2023,1,Taiwan,Other East Asia,1,3
+Vietnam,2023,2,China,China,1,4
+Vietnam,2023,2,Germany,Other parents,1,4
+Vietnam,2023,2,South Korea,Other East Asia,1,4
+Vietnam,2023,2,Taiwan,Other East Asia,1,4
+Vietnam,2023,3,China,China,3,8
+Vietnam,2023,3,Germany,Other parents,1,8
+Vietnam,2023,3,Hong Kong,Other parents,1,8
+Vietnam,2023,3,Japan,Other East Asia,1,8
+Vietnam,2023,3,Netherlands,Other parents,1,8
+Vietnam,2023,3,Taiwan,Other East Asia,1,8
+Vietnam,2023,4,China,China,2,5
+Vietnam,2023,4,Sweden,Other parents,1,5
+Vietnam,2023,4,Taiwan,Other East Asia,1,5
+Vietnam,2023,4,United States,United States,1,5
+Vietnam,2023,5,Belgium,Other parents,2,7
+Vietnam,2023,5,China,China,2,7
+Vietnam,2023,5,Singapore,Other parents,1,7
+Vietnam,2023,5,Taiwan,Other East Asia,1,7
+Vietnam,2023,5,United States,United States,1,7
+Vietnam,2023,6,China,China,1,7
+Vietnam,2023,6,Germany,Other parents,1,7
+Vietnam,2023,6,Japan,Other East Asia,2,7
+Vietnam,2023,6,Singapore,Other parents,1,7
+Vietnam,2023,6,South Korea,Other East Asia,2,7
+Vietnam,2023,7,China,China,3,10
+Vietnam,2023,7,Germany,Other parents,2,10
+Vietnam,2023,7,Hong Kong,Other parents,1,10
+Vietnam,2023,7,South Korea,Other East Asia,2,10
+Vietnam,2023,7,Taiwan,Other East Asia,1,10
+Vietnam,2023,7,United States,United States,1,10
+Vietnam,2023,8,China,China,7,12
+Vietnam,2023,8,Hong Kong,Other parents,1,12
+Vietnam,2023,8,Japan,Other East Asia,1,12
+Vietnam,2023,8,Singapore,Other parents,1,12
+Vietnam,2023,8,Taiwan,Other East Asia,1,12
+Vietnam,2023,8,United States,United States,1,12
+Vietnam,2023,9,China,China,3,10
+Vietnam,2023,9,Germany,Other parents,1,10
+Vietnam,2023,9,Japan,Other East Asia,1,10
+Vietnam,2023,9,Netherlands,Other parents,1,10
+Vietnam,2023,9,South Korea,Other East Asia,2,10
+Vietnam,2023,9,Sweden,Other parents,1,10
+Vietnam,2023,9,Taiwan,Other East Asia,1,10
+Vietnam,2023,10,China,China,4,4
+Vietnam,2023,11,China,China,2,5
+Vietnam,2023,11,Germany,Other parents,3,5
+Vietnam,2023,12,Australia,Other parents,1,12
+Vietnam,2023,12,China,China,4,12
+Vietnam,2023,12,Hong Kong,Other parents,2,12
+Vietnam,2023,12,South Korea,Other East Asia,1,12
+Vietnam,2023,12,Taiwan,Other East Asia,3,12
+Vietnam,2023,12,United States,United States,1,12
+Vietnam,2024,1,China,China,1,16
+Vietnam,2024,1,Germany,Other parents,3,16
+Vietnam,2024,1,Hong Kong,Other parents,2,16
+Vietnam,2024,1,Japan,Other East Asia,2,16
+Vietnam,2024,1,Malaysia,Other parents,1,16
+Vietnam,2024,1,Netherlands,Other parents,2,16
+Vietnam,2024,1,South Korea,Other East Asia,1,16
+Vietnam,2024,1,Switzerland,Other parents,2,16
+Vietnam,2024,1,United States,United States,2,16
+Vietnam,2024,2,Hong Kong,Other parents,4,10
+Vietnam,2024,2,Japan,Other East Asia,2,10
+Vietnam,2024,2,South Korea,Other East Asia,1,10
+Vietnam,2024,2,Taiwan,Other East Asia,3,10
+Vietnam,2024,3,China,China,7,17
+Vietnam,2024,3,Japan,Other East Asia,3,17
+Vietnam,2024,3,Netherlands,Other parents,2,17
+Vietnam,2024,3,South Korea,Other East Asia,1,17
+Vietnam,2024,3,Taiwan,Other East Asia,2,17
+Vietnam,2024,3,United States,United States,2,17
+Vietnam,2024,4,China,China,4,11
+Vietnam,2024,4,Japan,Other East Asia,2,11
+Vietnam,2024,4,South Korea,Other East Asia,1,11
+Vietnam,2024,4,Taiwan,Other East Asia,4,11
+Vietnam,2024,5,China,China,3,8
+Vietnam,2024,5,Hong Kong,Other parents,1,8
+Vietnam,2024,5,South Korea,Other East Asia,1,8
+Vietnam,2024,5,Switzerland,Other parents,1,8
+Vietnam,2024,5,Taiwan,Other East Asia,1,8
+Vietnam,2024,5,Thailand,Other parents,1,8
+Vietnam,2024,6,China,China,1,8
+Vietnam,2024,6,Japan,Other East Asia,1,8
+Vietnam,2024,6,Singapore,Other parents,1,8
+Vietnam,2024,6,Taiwan,Other East Asia,4,8
+Vietnam,2024,6,United States,United States,1,8
+Vietnam,2024,7,China,China,1,7
+Vietnam,2024,7,Germany,Other parents,1,7
+Vietnam,2024,7,Hong Kong,Other parents,2,7
+Vietnam,2024,7,Japan,Other East Asia,2,7
+Vietnam,2024,7,South Korea,Other East Asia,1,7
+Vietnam,2024,8,China,China,1,8
+Vietnam,2024,8,Hong Kong,Other parents,1,8
+Vietnam,2024,8,Samoa,Other parents,1,8
+Vietnam,2024,8,South Korea,Other East Asia,2,8
+Vietnam,2024,8,Taiwan,Other East Asia,2,8
+Vietnam,2024,8,United States,United States,1,8
+Vietnam,2024,9,China,China,3,11
+Vietnam,2024,9,Hong Kong,Other parents,1,11
+Vietnam,2024,9,Japan,Other East Asia,1,11
+Vietnam,2024,9,South Korea,Other East Asia,1,11
+Vietnam,2024,9,Taiwan,Other East Asia,2,11
+Vietnam,2024,9,United Kingdom,Other parents,1,11
+Vietnam,2024,9,United States,United States,2,11
+Vietnam,2024,10,Japan,Other East Asia,1,5
+Vietnam,2024,10,South Korea,Other East Asia,2,5
+Vietnam,2024,10,Taiwan,Other East Asia,1,5
+Vietnam,2024,10,UAE,Other parents,1,5
+Vietnam,2024,11,China,China,2,12
+Vietnam,2024,11,Germany,Other parents,1,12
+Vietnam,2024,11,Hong Kong,Other parents,1,12
+Vietnam,2024,11,Japan,Other East Asia,3,12
+Vietnam,2024,11,Singapore,Other parents,1,12
+Vietnam,2024,11,South Korea,Other East Asia,1,12
+Vietnam,2024,11,Taiwan,Other East Asia,3,12
+Vietnam,2024,12,Japan,Other East Asia,2,5
+Vietnam,2024,12,Spain,Other parents,1,5
+Vietnam,2024,12,Taiwan,Other East Asia,2,5
+Thailand,2023,1,China,China,1,1
+Thailand,2023,3,China,China,1,2
+Thailand,2023,3,Norway,Other parents,1,2
+Thailand,2023,4,China,China,2,4
+Thailand,2023,4,Switzerland,Other parents,1,4
+Thailand,2023,4,United States,United States,1,4
+Thailand,2023,5,China,China,2,3
+Thailand,2023,5,Taiwan,Other East Asia,1,3
+Thailand,2023,6,China,China,1,4
+Thailand,2023,6,Germany,Other parents,1,4
+Thailand,2023,6,Singapore,Other parents,1,4
+Thailand,2023,6,Taiwan,Other East Asia,1,4
+Thailand,2023,7,China,China,3,8
+Thailand,2023,7,France,Other parents,1,8
+Thailand,2023,7,Netherlands,Other parents,1,8
+Thailand,2023,7,United States,United States,3,8
+Thailand,2023,8,China,China,1,3
+Thailand,2023,8,Japan,Other East Asia,1,3
+Thailand,2023,8,Taiwan,Other East Asia,1,3
+Thailand,2023,9,South Korea,Other East Asia,1,1
+Thailand,2023,10,China,China,2,4
+Thailand,2023,10,France,Other parents,1,4
+Thailand,2023,10,Germany,Other parents,1,4
+Thailand,2023,11,Canada,Other parents,1,5
+Thailand,2023,11,China,China,3,5
+Thailand,2023,11,Germany,Other parents,1,5
+Thailand,2023,12,Taiwan,Other East Asia,1,1
+Thailand,2024,1,China,China,3,7
+Thailand,2024,1,France,Other parents,1,7
+Thailand,2024,1,India,Other parents,2,7
+Thailand,2024,1,Taiwan,Other East Asia,1,7
+Thailand,2024,2,Germany,Other parents,1,2
+Thailand,2024,2,Italy,Other parents,1,2
+Thailand,2024,3,China,China,2,4
+Thailand,2024,3,Japan,Other East Asia,1,4
+Thailand,2024,3,Taiwan,Other East Asia,1,4
+Thailand,2024,4,Austria,Other parents,1,7
+Thailand,2024,4,China,China,1,7
+Thailand,2024,4,Japan,Other East Asia,2,7
+Thailand,2024,4,Taiwan,Other East Asia,1,7
+Thailand,2024,4,United Kingdom,Other parents,1,7
+Thailand,2024,4,United States,United States,1,7
+Thailand,2024,5,China,China,4,7
+Thailand,2024,5,Denmark,Other parents,1,7
+Thailand,2024,5,Spain,Other parents,1,7
+Thailand,2024,5,United States,United States,1,7
+Thailand,2024,6,China,China,1,3
+Thailand,2024,6,Japan,Other East Asia,1,3
+Thailand,2024,6,South Korea,Other East Asia,1,3
+Thailand,2024,8,Singapore,Other parents,2,4
+Thailand,2024,8,United States,United States,2,4
+Thailand,2024,9,China,China,1,3
+Thailand,2024,9,Japan,Other East Asia,1,3
+Thailand,2024,9,United States,United States,1,3
+Thailand,2024,10,Germany,Other parents,1,1
+Thailand,2024,11,China,China,2,3
+Thailand,2024,11,Japan,Other East Asia,1,3
+Thailand,2024,12,China,China,1,5
+Thailand,2024,12,India,Other parents,2,5
+Thailand,2024,12,Taiwan,Other East Asia,2,5

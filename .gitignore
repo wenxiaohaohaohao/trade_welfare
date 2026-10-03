@@ -44,3 +44,14 @@ Thumbs.db
 .DS_Store
 *.tmp
 *.bak
+
+# fDi purchased record-level extracts and diagnostic examples remain local.
+/output/fdi_facts_2026_10_02/manufacturing_records_with_audit_flags.csv
+/output/fdi_facts_2026_10_02/FDI03_positive_match_records.csv
+/output/fdi_facts_2026_10_02/build_log.txt
+/output/fdi_research_baseline_2026_10_03/exploratory_manufacturing_records.csv
+/output/audits/fdi_markets_2026_10_02/exact_duplicate_candidates.csv
+/output/audits/fdi_markets_2026_10_02/core_collision_nonpersonal_details.json
+/output/audits/fdi_markets_2026_10_02/nonpersonal_duplicate_candidates.json
+/output/audits/fdi_markets_2026_10_02/numeric_structure_details.json
+/output/audits/fdi_markets_2026_10_02/audit_summary.json

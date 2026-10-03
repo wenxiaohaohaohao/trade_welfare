@@ -1,0 +1,7 @@
+﻿candidate_sector,baseline_year,end_year,amne_us_output_growth_pct,bea_native_sales_growth_pct,same_sign,same_estimand,native_sector_mapping_eligible,cross_source_division_or_pooling_performed,interpretation
+autos,2017,2019,17.529373402048943,10.792000108326217,True,False,False,False,"descriptive sign comparison, not equality validation; transport reference broader than autos"
+autos,2017,2022,24.196686578775271,29.472857510392547,True,False,False,False,"descriptive sign comparison, not equality validation; transport reference broader than autos"
+electronics,2017,2019,-33.10392117706553,-32.613868116927257,True,False,True,False,descriptive sign comparison; sales vs output and affiliate populations differ; agreement does not establish equivalence
+electronics,2017,2022,-20.869849458813118,-20.598232494901424,True,False,True,False,descriptive sign comparison; sales vs output and affiliate populations differ; agreement does not establish equivalence
+machinery,2017,2019,-7.4193947861905034,-18.705306736921333,True,False,True,False,descriptive sign comparison; sales vs output and affiliate populations differ; agreement does not establish equivalence
+machinery,2017,2022,25.370935725354581,21.678584870154303,True,False,True,False,descriptive sign comparison; sales vs output and affiliate populations differ; agreement does not establish equivalence

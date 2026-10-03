@@ -1,0 +1,433 @@
+﻿window,variant,country,source_group,project_type,pre_n,post_n,pre_annual_mean,post_annual_mean,contribution_to_total_count_change_pp
+main_2014_17_vs_2020_22,raw_records,Mexico,China,New,23,19,5.75,6.333333333333333,0.31574199368515993
+main_2014_17_vs_2020_22,raw_records,Mexico,China,Expansion,7,8,1.75,2.6666666666666665,0.49616599007668016
+main_2014_17_vs_2020_22,raw_records,Mexico,China,Co-Location,0,0,0,0,0
+main_2014_17_vs_2020_22,raw_records,Mexico,Other East Asia,New,120,23,30,7.666666666666667,-12.088407758231844
+main_2014_17_vs_2020_22,raw_records,Mexico,Other East Asia,Expansion,39,25,9.75,8.3333333333333339,-0.76680198466395999
+main_2014_17_vs_2020_22,raw_records,Mexico,Other East Asia,Co-Location,1,0,0.25,0,-0.13531799729364005
+main_2014_17_vs_2020_22,raw_records,Mexico,United States,New,97,59,24.25,19.666666666666668,-2.4808299503834004
+main_2014_17_vs_2020_22,raw_records,Mexico,United States,Expansion,86,60,21.5,20,-0.81190798376184037
+main_2014_17_vs_2020_22,raw_records,Mexico,United States,Co-Location,3,0,0.75,0,-0.40595399188092018
+main_2014_17_vs_2020_22,raw_records,Mexico,Other parents,New,213,65,53.25,21.666666666666668,-17.095173658096524
+main_2014_17_vs_2020_22,raw_records,Mexico,Other parents,Expansion,144,83,36,27.666666666666668,-4.5105999097880014
+main_2014_17_vs_2020_22,raw_records,Mexico,Other parents,Co-Location,6,3,1.5,1,-0.2706359945872801
+main_2014_17_vs_2020_22,raw_records,Vietnam,China,New,16,5,4,1.6666666666666667,-2.6217228464419473
+main_2014_17_vs_2020_22,raw_records,Vietnam,China,Expansion,2,3,0.5,1,0.5617977528089888
+main_2014_17_vs_2020_22,raw_records,Vietnam,China,Co-Location,0,0,0,0,0
+main_2014_17_vs_2020_22,raw_records,Vietnam,Other East Asia,New,161,19,40.25,6.333333333333333,-38.108614232209739
+main_2014_17_vs_2020_22,raw_records,Vietnam,Other East Asia,Expansion,36,13,9,4.333333333333333,-5.2434456928838955
+main_2014_17_vs_2020_22,raw_records,Vietnam,Other East Asia,Co-Location,5,0,1.25,0,-1.404494382022472
+main_2014_17_vs_2020_22,raw_records,Vietnam,United States,New,14,6,3.5,2,-1.6853932584269662
+main_2014_17_vs_2020_22,raw_records,Vietnam,United States,Expansion,10,5,2.5,1.6666666666666667,-0.93632958801498123
+main_2014_17_vs_2020_22,raw_records,Vietnam,United States,Co-Location,1,0,0.25,0,-0.2808988764044944
+main_2014_17_vs_2020_22,raw_records,Vietnam,Other parents,New,91,23,22.75,7.666666666666667,-16.94756554307116
+main_2014_17_vs_2020_22,raw_records,Vietnam,Other parents,Expansion,19,3,4.75,1,-4.213483146067416
+main_2014_17_vs_2020_22,raw_records,Vietnam,Other parents,Co-Location,1,0,0.25,0,-0.2808988764044944
+main_2014_17_vs_2020_22,raw_records,Thailand,China,New,14,4,3.5,1.3333333333333333,-4.8964218455743884
+main_2014_17_vs_2020_22,raw_records,Thailand,China,Expansion,3,1,0.75,0.33333333333333331,-0.94161958568738235
+main_2014_17_vs_2020_22,raw_records,Thailand,China,Co-Location,0,0,0,0,0
+main_2014_17_vs_2020_22,raw_records,Thailand,Other East Asia,New,39,8,9.75,2.6666666666666665,-16.007532956685498
+main_2014_17_vs_2020_22,raw_records,Thailand,Other East Asia,Expansion,42,10,10.5,3.3333333333333335,-16.195856873822976
+main_2014_17_vs_2020_22,raw_records,Thailand,Other East Asia,Co-Location,5,0,1.25,0,-2.8248587570621471
+main_2014_17_vs_2020_22,raw_records,Thailand,United States,New,5,8,1.25,2.6666666666666665,3.2015065913370995
+main_2014_17_vs_2020_22,raw_records,Thailand,United States,Expansion,6,2,1.5,0.66666666666666663,-1.8832391713747647
+main_2014_17_vs_2020_22,raw_records,Thailand,United States,Co-Location,0,0,0,0,0
+main_2014_17_vs_2020_22,raw_records,Thailand,Other parents,New,37,12,9.25,4,-11.864406779661017
+main_2014_17_vs_2020_22,raw_records,Thailand,Other parents,Expansion,22,8,5.5,2.6666666666666665,-6.4030131826742007
+main_2014_17_vs_2020_22,raw_records,Thailand,Other parents,Co-Location,4,0,1,0,-2.2598870056497176
+equal_2015_17_vs_2020_22,raw_records,Mexico,China,New,18,19,6,6.333333333333333,0.17006802721088418
+equal_2015_17_vs_2020_22,raw_records,Mexico,China,Expansion,7,8,2.3333333333333335,2.6666666666666665,0.17006802721088418
+equal_2015_17_vs_2020_22,raw_records,Mexico,China,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,raw_records,Mexico,Other East Asia,New,99,23,33,7.666666666666667,-12.92517006802721
+equal_2015_17_vs_2020_22,raw_records,Mexico,Other East Asia,Expansion,35,25,11.666666666666666,8.3333333333333339,-1.7006802721088428
+equal_2015_17_vs_2020_22,raw_records,Mexico,Other East Asia,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,raw_records,Mexico,United States,New,74,59,24.666666666666668,19.666666666666668,-2.5510204081632653
+equal_2015_17_vs_2020_22,raw_records,Mexico,United States,Expansion,66,60,22,20,-1.0204081632653061
+equal_2015_17_vs_2020_22,raw_records,Mexico,United States,Co-Location,1,0,0.33333333333333331,0,-0.17006802721088432
+equal_2015_17_vs_2020_22,raw_records,Mexico,Other parents,New,169,65,56.333333333333336,21.666666666666668,-17.687074829931973
+equal_2015_17_vs_2020_22,raw_records,Mexico,Other parents,Expansion,113,83,37.666666666666664,27.666666666666668,-5.1020408163265287
+equal_2015_17_vs_2020_22,raw_records,Mexico,Other parents,Co-Location,6,3,2,1,-0.51020408163265307
+equal_2015_17_vs_2020_22,raw_records,Vietnam,China,New,11,5,3.6666666666666665,1.6666666666666667,-2.3255813953488369
+equal_2015_17_vs_2020_22,raw_records,Vietnam,China,Expansion,2,3,0.66666666666666663,1,0.38759689922480622
+equal_2015_17_vs_2020_22,raw_records,Vietnam,China,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,raw_records,Vietnam,Other East Asia,New,120,19,40,6.333333333333333,-39.147286821705421
+equal_2015_17_vs_2020_22,raw_records,Vietnam,Other East Asia,Expansion,30,13,10,4.333333333333333,-6.5891472868217065
+equal_2015_17_vs_2020_22,raw_records,Vietnam,Other East Asia,Co-Location,2,0,0.66666666666666663,0,-0.77519379844961234
+equal_2015_17_vs_2020_22,raw_records,Vietnam,United States,New,9,6,3,2,-1.1627906976744187
+equal_2015_17_vs_2020_22,raw_records,Vietnam,United States,Expansion,6,5,2,1.6666666666666667,-0.38759689922480617
+equal_2015_17_vs_2020_22,raw_records,Vietnam,United States,Co-Location,1,0,0.33333333333333331,0,-0.38759689922480617
+equal_2015_17_vs_2020_22,raw_records,Vietnam,Other parents,New,62,23,20.666666666666668,7.666666666666667,-15.116279069767442
+equal_2015_17_vs_2020_22,raw_records,Vietnam,Other parents,Expansion,14,3,4.666666666666667,1,-4.2635658914728687
+equal_2015_17_vs_2020_22,raw_records,Vietnam,Other parents,Co-Location,1,0,0.33333333333333331,0,-0.38759689922480617
+equal_2015_17_vs_2020_22,raw_records,Thailand,China,New,13,4,4.333333333333333,1.3333333333333333,-6.9767441860465116
+equal_2015_17_vs_2020_22,raw_records,Thailand,China,Expansion,3,1,1,0.33333333333333331,-1.5503875968992249
+equal_2015_17_vs_2020_22,raw_records,Thailand,China,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,raw_records,Thailand,Other East Asia,New,26,8,8.6666666666666661,2.6666666666666665,-13.953488372093023
+equal_2015_17_vs_2020_22,raw_records,Thailand,Other East Asia,Expansion,32,10,10.666666666666666,3.3333333333333335,-17.054263565891471
+equal_2015_17_vs_2020_22,raw_records,Thailand,Other East Asia,Co-Location,4,0,1.3333333333333333,0,-3.1007751937984493
+equal_2015_17_vs_2020_22,raw_records,Thailand,United States,New,4,8,1.3333333333333333,2.6666666666666665,3.1007751937984493
+equal_2015_17_vs_2020_22,raw_records,Thailand,United States,Expansion,3,2,1,0.66666666666666663,-0.77519379844961245
+equal_2015_17_vs_2020_22,raw_records,Thailand,United States,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,raw_records,Thailand,Other parents,New,25,12,8.3333333333333339,4,-10.077519379844961
+equal_2015_17_vs_2020_22,raw_records,Thailand,Other parents,Expansion,16,8,5.333333333333333,2.6666666666666665,-6.2015503875968987
+equal_2015_17_vs_2020_22,raw_records,Thailand,Other parents,Co-Location,3,0,1,0,-2.3255813953488373
+without_2020_2014_17_vs_2021_22,raw_records,Mexico,China,New,23,13,5.75,6.5,0.40595399188092018
+without_2020_2014_17_vs_2021_22,raw_records,Mexico,China,Expansion,7,3,1.75,1.5,-0.13531799729364005
+without_2020_2014_17_vs_2021_22,raw_records,Mexico,China,Co-Location,0,0,0,0,0
+without_2020_2014_17_vs_2021_22,raw_records,Mexico,Other East Asia,New,120,13,30,6.5,-12.719891745602165
+without_2020_2014_17_vs_2021_22,raw_records,Mexico,Other East Asia,Expansion,39,17,9.75,8.5,-0.67658998646820023
+without_2020_2014_17_vs_2021_22,raw_records,Mexico,Other East Asia,Co-Location,1,0,0.25,0,-0.13531799729364005
+without_2020_2014_17_vs_2021_22,raw_records,Mexico,United States,New,97,48,24.25,24,-0.13531799729364005
+without_2020_2014_17_vs_2021_22,raw_records,Mexico,United States,Expansion,86,46,21.5,23,0.81190798376184037
+without_2020_2014_17_vs_2021_22,raw_records,Mexico,United States,Co-Location,3,0,0.75,0,-0.40595399188092018
+without_2020_2014_17_vs_2021_22,raw_records,Mexico,Other parents,New,213,51,53.25,25.5,-15.020297699594046
+without_2020_2014_17_vs_2021_22,raw_records,Mexico,Other parents,Expansion,144,67,36,33.5,-1.3531799729364005
+without_2020_2014_17_vs_2021_22,raw_records,Mexico,Other parents,Co-Location,6,2,1.5,1,-0.2706359945872801
+without_2020_2014_17_vs_2021_22,raw_records,Vietnam,China,New,16,1,4,0.5,-3.9325842696629212
+without_2020_2014_17_vs_2021_22,raw_records,Vietnam,China,Expansion,2,3,0.5,1.5,1.1235955056179776
+without_2020_2014_17_vs_2021_22,raw_records,Vietnam,China,Co-Location,0,0,0,0,0
+without_2020_2014_17_vs_2021_22,raw_records,Vietnam,Other East Asia,New,161,8,40.25,4,-40.730337078651687
+without_2020_2014_17_vs_2021_22,raw_records,Vietnam,Other East Asia,Expansion,36,10,9,5,-4.4943820224719104
+without_2020_2014_17_vs_2021_22,raw_records,Vietnam,Other East Asia,Co-Location,5,0,1.25,0,-1.404494382022472
+without_2020_2014_17_vs_2021_22,raw_records,Vietnam,United States,New,14,5,3.5,2.5,-1.1235955056179776
+without_2020_2014_17_vs_2021_22,raw_records,Vietnam,United States,Expansion,10,5,2.5,2.5,0
+without_2020_2014_17_vs_2021_22,raw_records,Vietnam,United States,Co-Location,1,0,0.25,0,-0.2808988764044944
+without_2020_2014_17_vs_2021_22,raw_records,Vietnam,Other parents,New,91,15,22.75,7.5,-17.134831460674157
+without_2020_2014_17_vs_2021_22,raw_records,Vietnam,Other parents,Expansion,19,3,4.75,1.5,-3.6516853932584268
+without_2020_2014_17_vs_2021_22,raw_records,Vietnam,Other parents,Co-Location,1,0,0.25,0,-0.2808988764044944
+without_2020_2014_17_vs_2021_22,raw_records,Thailand,China,New,14,3,3.5,1.5,-4.5197740112994351
+without_2020_2014_17_vs_2021_22,raw_records,Thailand,China,Expansion,3,1,0.75,0.5,-0.56497175141242939
+without_2020_2014_17_vs_2021_22,raw_records,Thailand,China,Co-Location,0,0,0,0,0
+without_2020_2014_17_vs_2021_22,raw_records,Thailand,Other East Asia,New,39,5,9.75,2.5,-16.384180790960453
+without_2020_2014_17_vs_2021_22,raw_records,Thailand,Other East Asia,Expansion,42,6,10.5,3,-16.949152542372882
+without_2020_2014_17_vs_2021_22,raw_records,Thailand,Other East Asia,Co-Location,5,0,1.25,0,-2.8248587570621471
+without_2020_2014_17_vs_2021_22,raw_records,Thailand,United States,New,5,4,1.25,2,1.6949152542372881
+without_2020_2014_17_vs_2021_22,raw_records,Thailand,United States,Expansion,6,1,1.5,0.5,-2.2598870056497176
+without_2020_2014_17_vs_2021_22,raw_records,Thailand,United States,Co-Location,0,0,0,0,0
+without_2020_2014_17_vs_2021_22,raw_records,Thailand,Other parents,New,37,6,9.25,3,-14.124293785310735
+without_2020_2014_17_vs_2021_22,raw_records,Thailand,Other parents,Expansion,22,5,5.5,2.5,-6.7796610169491522
+without_2020_2014_17_vs_2021_22,raw_records,Thailand,Other parents,Co-Location,4,0,1,0,-2.2598870056497176
+jan_sep_2014_17_vs_2020_23,raw_records,Mexico,China,New,17,33,4.25,8.25,2.8828828828828827
+jan_sep_2014_17_vs_2020_23,raw_records,Mexico,China,Expansion,5,9,1.25,2.25,0.72072072072072069
+jan_sep_2014_17_vs_2020_23,raw_records,Mexico,China,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,raw_records,Mexico,Other East Asia,New,92,30,23,7.5,-11.171171171171171
+jan_sep_2014_17_vs_2020_23,raw_records,Mexico,Other East Asia,Expansion,29,38,7.25,9.5,1.6216216216216217
+jan_sep_2014_17_vs_2020_23,raw_records,Mexico,Other East Asia,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,raw_records,Mexico,United States,New,81,60,20.25,15,-3.7837837837837838
+jan_sep_2014_17_vs_2020_23,raw_records,Mexico,United States,Expansion,71,62,17.75,15.5,-1.6216216216216217
+jan_sep_2014_17_vs_2020_23,raw_records,Mexico,United States,Co-Location,3,0,0.75,0,-0.54054054054054057
+jan_sep_2014_17_vs_2020_23,raw_records,Mexico,Other parents,New,151,79,37.75,19.75,-12.972972972972974
+jan_sep_2014_17_vs_2020_23,raw_records,Mexico,Other parents,Expansion,101,102,25.25,25.5,0.18018018018018017
+jan_sep_2014_17_vs_2020_23,raw_records,Mexico,Other parents,Co-Location,5,3,1.25,0.75,-0.36036036036036034
+jan_sep_2014_17_vs_2020_23,raw_records,Vietnam,China,New,15,22,3.75,5.5,2.5
+jan_sep_2014_17_vs_2020_23,raw_records,Vietnam,China,Expansion,1,6,0.25,1.5,1.7857142857142858
+jan_sep_2014_17_vs_2020_23,raw_records,Vietnam,China,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,raw_records,Vietnam,Other East Asia,New,130,29,32.5,7.25,-36.071428571428569
+jan_sep_2014_17_vs_2020_23,raw_records,Vietnam,Other East Asia,Expansion,28,17,7,4.25,-3.9285714285714284
+jan_sep_2014_17_vs_2020_23,raw_records,Vietnam,Other East Asia,Co-Location,5,0,1.25,0,-1.7857142857142858
+jan_sep_2014_17_vs_2020_23,raw_records,Vietnam,United States,New,9,4,2.25,1,-1.7857142857142858
+jan_sep_2014_17_vs_2020_23,raw_records,Vietnam,United States,Expansion,7,8,1.75,2,0.35714285714285715
+jan_sep_2014_17_vs_2020_23,raw_records,Vietnam,United States,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,raw_records,Vietnam,Other parents,New,71,36,17.75,9,-12.5
+jan_sep_2014_17_vs_2020_23,raw_records,Vietnam,Other parents,Expansion,13,5,3.25,1.25,-2.8571428571428572
+jan_sep_2014_17_vs_2020_23,raw_records,Vietnam,Other parents,Co-Location,1,0,0.25,0,-0.35714285714285715
+jan_sep_2014_17_vs_2020_23,raw_records,Thailand,China,New,11,14,2.75,3.5,2.3076923076923075
+jan_sep_2014_17_vs_2020_23,raw_records,Thailand,China,Expansion,2,1,0.5,0.25,-0.76923076923076927
+jan_sep_2014_17_vs_2020_23,raw_records,Thailand,China,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,raw_records,Thailand,Other East Asia,New,30,11,7.5,2.75,-14.615384615384615
+jan_sep_2014_17_vs_2020_23,raw_records,Thailand,Other East Asia,Expansion,34,9,8.5,2.25,-19.23076923076923
+jan_sep_2014_17_vs_2020_23,raw_records,Thailand,Other East Asia,Co-Location,2,0,0.5,0,-1.5384615384615385
+jan_sep_2014_17_vs_2020_23,raw_records,Thailand,United States,New,3,9,0.75,2.25,4.615384615384615
+jan_sep_2014_17_vs_2020_23,raw_records,Thailand,United States,Expansion,3,2,0.75,0.5,-0.76923076923076927
+jan_sep_2014_17_vs_2020_23,raw_records,Thailand,United States,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,raw_records,Thailand,Other parents,New,28,13,7,3.25,-11.538461538461538
+jan_sep_2014_17_vs_2020_23,raw_records,Thailand,Other parents,Expansion,15,7,3.75,1.75,-6.1538461538461542
+jan_sep_2014_17_vs_2020_23,raw_records,Thailand,Other parents,Co-Location,2,0,0.5,0,-1.5384615384615385
+main_2014_17_vs_2020_22,noncontact_collapsed,Mexico,China,New,23,19,5.75,6.333333333333333,0.31574199368515993
+main_2014_17_vs_2020_22,noncontact_collapsed,Mexico,China,Expansion,7,8,1.75,2.6666666666666665,0.49616599007668016
+main_2014_17_vs_2020_22,noncontact_collapsed,Mexico,China,Co-Location,0,0,0,0,0
+main_2014_17_vs_2020_22,noncontact_collapsed,Mexico,Other East Asia,New,120,23,30,7.666666666666667,-12.088407758231844
+main_2014_17_vs_2020_22,noncontact_collapsed,Mexico,Other East Asia,Expansion,39,25,9.75,8.3333333333333339,-0.76680198466395999
+main_2014_17_vs_2020_22,noncontact_collapsed,Mexico,Other East Asia,Co-Location,1,0,0.25,0,-0.13531799729364005
+main_2014_17_vs_2020_22,noncontact_collapsed,Mexico,United States,New,97,59,24.25,19.666666666666668,-2.4808299503834004
+main_2014_17_vs_2020_22,noncontact_collapsed,Mexico,United States,Expansion,86,60,21.5,20,-0.81190798376184037
+main_2014_17_vs_2020_22,noncontact_collapsed,Mexico,United States,Co-Location,3,0,0.75,0,-0.40595399188092018
+main_2014_17_vs_2020_22,noncontact_collapsed,Mexico,Other parents,New,213,65,53.25,21.666666666666668,-17.095173658096524
+main_2014_17_vs_2020_22,noncontact_collapsed,Mexico,Other parents,Expansion,144,83,36,27.666666666666668,-4.5105999097880014
+main_2014_17_vs_2020_22,noncontact_collapsed,Mexico,Other parents,Co-Location,6,3,1.5,1,-0.2706359945872801
+main_2014_17_vs_2020_22,noncontact_collapsed,Vietnam,China,New,16,5,4,1.6666666666666667,-2.6217228464419473
+main_2014_17_vs_2020_22,noncontact_collapsed,Vietnam,China,Expansion,2,3,0.5,1,0.5617977528089888
+main_2014_17_vs_2020_22,noncontact_collapsed,Vietnam,China,Co-Location,0,0,0,0,0
+main_2014_17_vs_2020_22,noncontact_collapsed,Vietnam,Other East Asia,New,161,19,40.25,6.333333333333333,-38.108614232209739
+main_2014_17_vs_2020_22,noncontact_collapsed,Vietnam,Other East Asia,Expansion,36,13,9,4.333333333333333,-5.2434456928838955
+main_2014_17_vs_2020_22,noncontact_collapsed,Vietnam,Other East Asia,Co-Location,5,0,1.25,0,-1.404494382022472
+main_2014_17_vs_2020_22,noncontact_collapsed,Vietnam,United States,New,14,6,3.5,2,-1.6853932584269662
+main_2014_17_vs_2020_22,noncontact_collapsed,Vietnam,United States,Expansion,10,5,2.5,1.6666666666666667,-0.93632958801498123
+main_2014_17_vs_2020_22,noncontact_collapsed,Vietnam,United States,Co-Location,1,0,0.25,0,-0.2808988764044944
+main_2014_17_vs_2020_22,noncontact_collapsed,Vietnam,Other parents,New,91,23,22.75,7.666666666666667,-16.94756554307116
+main_2014_17_vs_2020_22,noncontact_collapsed,Vietnam,Other parents,Expansion,19,3,4.75,1,-4.213483146067416
+main_2014_17_vs_2020_22,noncontact_collapsed,Vietnam,Other parents,Co-Location,1,0,0.25,0,-0.2808988764044944
+main_2014_17_vs_2020_22,noncontact_collapsed,Thailand,China,New,14,4,3.5,1.3333333333333333,-4.8964218455743884
+main_2014_17_vs_2020_22,noncontact_collapsed,Thailand,China,Expansion,3,1,0.75,0.33333333333333331,-0.94161958568738235
+main_2014_17_vs_2020_22,noncontact_collapsed,Thailand,China,Co-Location,0,0,0,0,0
+main_2014_17_vs_2020_22,noncontact_collapsed,Thailand,Other East Asia,New,39,8,9.75,2.6666666666666665,-16.007532956685498
+main_2014_17_vs_2020_22,noncontact_collapsed,Thailand,Other East Asia,Expansion,42,10,10.5,3.3333333333333335,-16.195856873822976
+main_2014_17_vs_2020_22,noncontact_collapsed,Thailand,Other East Asia,Co-Location,5,0,1.25,0,-2.8248587570621471
+main_2014_17_vs_2020_22,noncontact_collapsed,Thailand,United States,New,5,8,1.25,2.6666666666666665,3.2015065913370995
+main_2014_17_vs_2020_22,noncontact_collapsed,Thailand,United States,Expansion,6,2,1.5,0.66666666666666663,-1.8832391713747647
+main_2014_17_vs_2020_22,noncontact_collapsed,Thailand,United States,Co-Location,0,0,0,0,0
+main_2014_17_vs_2020_22,noncontact_collapsed,Thailand,Other parents,New,37,12,9.25,4,-11.864406779661017
+main_2014_17_vs_2020_22,noncontact_collapsed,Thailand,Other parents,Expansion,22,8,5.5,2.6666666666666665,-6.4030131826742007
+main_2014_17_vs_2020_22,noncontact_collapsed,Thailand,Other parents,Co-Location,4,0,1,0,-2.2598870056497176
+equal_2015_17_vs_2020_22,noncontact_collapsed,Mexico,China,New,18,19,6,6.333333333333333,0.17006802721088418
+equal_2015_17_vs_2020_22,noncontact_collapsed,Mexico,China,Expansion,7,8,2.3333333333333335,2.6666666666666665,0.17006802721088418
+equal_2015_17_vs_2020_22,noncontact_collapsed,Mexico,China,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,noncontact_collapsed,Mexico,Other East Asia,New,99,23,33,7.666666666666667,-12.92517006802721
+equal_2015_17_vs_2020_22,noncontact_collapsed,Mexico,Other East Asia,Expansion,35,25,11.666666666666666,8.3333333333333339,-1.7006802721088428
+equal_2015_17_vs_2020_22,noncontact_collapsed,Mexico,Other East Asia,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,noncontact_collapsed,Mexico,United States,New,74,59,24.666666666666668,19.666666666666668,-2.5510204081632653
+equal_2015_17_vs_2020_22,noncontact_collapsed,Mexico,United States,Expansion,66,60,22,20,-1.0204081632653061
+equal_2015_17_vs_2020_22,noncontact_collapsed,Mexico,United States,Co-Location,1,0,0.33333333333333331,0,-0.17006802721088432
+equal_2015_17_vs_2020_22,noncontact_collapsed,Mexico,Other parents,New,169,65,56.333333333333336,21.666666666666668,-17.687074829931973
+equal_2015_17_vs_2020_22,noncontact_collapsed,Mexico,Other parents,Expansion,113,83,37.666666666666664,27.666666666666668,-5.1020408163265287
+equal_2015_17_vs_2020_22,noncontact_collapsed,Mexico,Other parents,Co-Location,6,3,2,1,-0.51020408163265307
+equal_2015_17_vs_2020_22,noncontact_collapsed,Vietnam,China,New,11,5,3.6666666666666665,1.6666666666666667,-2.3255813953488369
+equal_2015_17_vs_2020_22,noncontact_collapsed,Vietnam,China,Expansion,2,3,0.66666666666666663,1,0.38759689922480622
+equal_2015_17_vs_2020_22,noncontact_collapsed,Vietnam,China,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,noncontact_collapsed,Vietnam,Other East Asia,New,120,19,40,6.333333333333333,-39.147286821705421
+equal_2015_17_vs_2020_22,noncontact_collapsed,Vietnam,Other East Asia,Expansion,30,13,10,4.333333333333333,-6.5891472868217065
+equal_2015_17_vs_2020_22,noncontact_collapsed,Vietnam,Other East Asia,Co-Location,2,0,0.66666666666666663,0,-0.77519379844961234
+equal_2015_17_vs_2020_22,noncontact_collapsed,Vietnam,United States,New,9,6,3,2,-1.1627906976744187
+equal_2015_17_vs_2020_22,noncontact_collapsed,Vietnam,United States,Expansion,6,5,2,1.6666666666666667,-0.38759689922480617
+equal_2015_17_vs_2020_22,noncontact_collapsed,Vietnam,United States,Co-Location,1,0,0.33333333333333331,0,-0.38759689922480617
+equal_2015_17_vs_2020_22,noncontact_collapsed,Vietnam,Other parents,New,62,23,20.666666666666668,7.666666666666667,-15.116279069767442
+equal_2015_17_vs_2020_22,noncontact_collapsed,Vietnam,Other parents,Expansion,14,3,4.666666666666667,1,-4.2635658914728687
+equal_2015_17_vs_2020_22,noncontact_collapsed,Vietnam,Other parents,Co-Location,1,0,0.33333333333333331,0,-0.38759689922480617
+equal_2015_17_vs_2020_22,noncontact_collapsed,Thailand,China,New,13,4,4.333333333333333,1.3333333333333333,-6.9767441860465116
+equal_2015_17_vs_2020_22,noncontact_collapsed,Thailand,China,Expansion,3,1,1,0.33333333333333331,-1.5503875968992249
+equal_2015_17_vs_2020_22,noncontact_collapsed,Thailand,China,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,noncontact_collapsed,Thailand,Other East Asia,New,26,8,8.6666666666666661,2.6666666666666665,-13.953488372093023
+equal_2015_17_vs_2020_22,noncontact_collapsed,Thailand,Other East Asia,Expansion,32,10,10.666666666666666,3.3333333333333335,-17.054263565891471
+equal_2015_17_vs_2020_22,noncontact_collapsed,Thailand,Other East Asia,Co-Location,4,0,1.3333333333333333,0,-3.1007751937984493
+equal_2015_17_vs_2020_22,noncontact_collapsed,Thailand,United States,New,4,8,1.3333333333333333,2.6666666666666665,3.1007751937984493
+equal_2015_17_vs_2020_22,noncontact_collapsed,Thailand,United States,Expansion,3,2,1,0.66666666666666663,-0.77519379844961245
+equal_2015_17_vs_2020_22,noncontact_collapsed,Thailand,United States,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,noncontact_collapsed,Thailand,Other parents,New,25,12,8.3333333333333339,4,-10.077519379844961
+equal_2015_17_vs_2020_22,noncontact_collapsed,Thailand,Other parents,Expansion,16,8,5.333333333333333,2.6666666666666665,-6.2015503875968987
+equal_2015_17_vs_2020_22,noncontact_collapsed,Thailand,Other parents,Co-Location,3,0,1,0,-2.3255813953488373
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Mexico,China,New,23,13,5.75,6.5,0.40595399188092018
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Mexico,China,Expansion,7,3,1.75,1.5,-0.13531799729364005
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Mexico,China,Co-Location,0,0,0,0,0
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Mexico,Other East Asia,New,120,13,30,6.5,-12.719891745602165
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Mexico,Other East Asia,Expansion,39,17,9.75,8.5,-0.67658998646820023
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Mexico,Other East Asia,Co-Location,1,0,0.25,0,-0.13531799729364005
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Mexico,United States,New,97,48,24.25,24,-0.13531799729364005
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Mexico,United States,Expansion,86,46,21.5,23,0.81190798376184037
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Mexico,United States,Co-Location,3,0,0.75,0,-0.40595399188092018
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Mexico,Other parents,New,213,51,53.25,25.5,-15.020297699594046
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Mexico,Other parents,Expansion,144,67,36,33.5,-1.3531799729364005
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Mexico,Other parents,Co-Location,6,2,1.5,1,-0.2706359945872801
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Vietnam,China,New,16,1,4,0.5,-3.9325842696629212
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Vietnam,China,Expansion,2,3,0.5,1.5,1.1235955056179776
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Vietnam,China,Co-Location,0,0,0,0,0
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Vietnam,Other East Asia,New,161,8,40.25,4,-40.730337078651687
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Vietnam,Other East Asia,Expansion,36,10,9,5,-4.4943820224719104
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Vietnam,Other East Asia,Co-Location,5,0,1.25,0,-1.404494382022472
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Vietnam,United States,New,14,5,3.5,2.5,-1.1235955056179776
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Vietnam,United States,Expansion,10,5,2.5,2.5,0
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Vietnam,United States,Co-Location,1,0,0.25,0,-0.2808988764044944
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Vietnam,Other parents,New,91,15,22.75,7.5,-17.134831460674157
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Vietnam,Other parents,Expansion,19,3,4.75,1.5,-3.6516853932584268
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Vietnam,Other parents,Co-Location,1,0,0.25,0,-0.2808988764044944
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Thailand,China,New,14,3,3.5,1.5,-4.5197740112994351
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Thailand,China,Expansion,3,1,0.75,0.5,-0.56497175141242939
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Thailand,China,Co-Location,0,0,0,0,0
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Thailand,Other East Asia,New,39,5,9.75,2.5,-16.384180790960453
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Thailand,Other East Asia,Expansion,42,6,10.5,3,-16.949152542372882
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Thailand,Other East Asia,Co-Location,5,0,1.25,0,-2.8248587570621471
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Thailand,United States,New,5,4,1.25,2,1.6949152542372881
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Thailand,United States,Expansion,6,1,1.5,0.5,-2.2598870056497176
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Thailand,United States,Co-Location,0,0,0,0,0
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Thailand,Other parents,New,37,6,9.25,3,-14.124293785310735
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Thailand,Other parents,Expansion,22,5,5.5,2.5,-6.7796610169491522
+without_2020_2014_17_vs_2021_22,noncontact_collapsed,Thailand,Other parents,Co-Location,4,0,1,0,-2.2598870056497176
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Mexico,China,New,17,33,4.25,8.25,2.8828828828828827
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Mexico,China,Expansion,5,9,1.25,2.25,0.72072072072072069
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Mexico,China,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Mexico,Other East Asia,New,92,30,23,7.5,-11.171171171171171
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Mexico,Other East Asia,Expansion,29,38,7.25,9.5,1.6216216216216217
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Mexico,Other East Asia,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Mexico,United States,New,81,60,20.25,15,-3.7837837837837838
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Mexico,United States,Expansion,71,62,17.75,15.5,-1.6216216216216217
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Mexico,United States,Co-Location,3,0,0.75,0,-0.54054054054054057
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Mexico,Other parents,New,151,79,37.75,19.75,-12.972972972972974
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Mexico,Other parents,Expansion,101,102,25.25,25.5,0.18018018018018017
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Mexico,Other parents,Co-Location,5,3,1.25,0.75,-0.36036036036036034
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Vietnam,China,New,15,22,3.75,5.5,2.5
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Vietnam,China,Expansion,1,6,0.25,1.5,1.7857142857142858
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Vietnam,China,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Vietnam,Other East Asia,New,130,29,32.5,7.25,-36.071428571428569
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Vietnam,Other East Asia,Expansion,28,17,7,4.25,-3.9285714285714284
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Vietnam,Other East Asia,Co-Location,5,0,1.25,0,-1.7857142857142858
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Vietnam,United States,New,9,4,2.25,1,-1.7857142857142858
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Vietnam,United States,Expansion,7,8,1.75,2,0.35714285714285715
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Vietnam,United States,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Vietnam,Other parents,New,71,36,17.75,9,-12.5
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Vietnam,Other parents,Expansion,13,5,3.25,1.25,-2.8571428571428572
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Vietnam,Other parents,Co-Location,1,0,0.25,0,-0.35714285714285715
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Thailand,China,New,11,14,2.75,3.5,2.3076923076923075
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Thailand,China,Expansion,2,1,0.5,0.25,-0.76923076923076927
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Thailand,China,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Thailand,Other East Asia,New,30,11,7.5,2.75,-14.615384615384615
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Thailand,Other East Asia,Expansion,34,9,8.5,2.25,-19.23076923076923
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Thailand,Other East Asia,Co-Location,2,0,0.5,0,-1.5384615384615385
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Thailand,United States,New,3,9,0.75,2.25,4.615384615384615
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Thailand,United States,Expansion,3,2,0.75,0.5,-0.76923076923076927
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Thailand,United States,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Thailand,Other parents,New,28,13,7,3.25,-11.538461538461538
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Thailand,Other parents,Expansion,15,7,3.75,1.75,-6.1538461538461542
+jan_sep_2014_17_vs_2020_23,noncontact_collapsed,Thailand,Other parents,Co-Location,2,0,0.5,0,-1.5384615384615385
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,China,New,23,19,5.75,6.333333333333333,0.32095369096744597
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,China,Expansion,7,8,1.75,2.6666666666666665,0.504355800091701
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,China,Co-Location,0,0,0,0,0
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,Other East Asia,New,119,20,29.75,6.666666666666667,-12.700596056854652
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,Other East Asia,Expansion,39,24,9.75,8,-0.96286107290233836
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,Other East Asia,Co-Location,1,0,0.25,0,-0.13755158184319119
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,United States,New,97,59,24.25,19.666666666666668,-2.5217790004585043
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,United States,Expansion,84,60,21,20,-0.55020632737276476
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,United States,Co-Location,3,0,0.75,0,-0.4126547455295736
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,Other parents,New,211,65,52.75,21.666666666666668,-17.102246675836771
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,Other parents,Expansion,138,81,34.5,27,-4.1265474552957357
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,Other parents,Co-Location,5,3,1.25,1,-0.13755158184319119
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,China,New,16,5,4,1.6666666666666667,-2.6515151515151514
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,China,Expansion,2,3,0.5,1,0.56818181818181823
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,China,Co-Location,0,0,0,0,0
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,Other East Asia,New,161,18,40.25,6,-38.920454545454547
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,Other East Asia,Expansion,36,13,9,4.333333333333333,-5.3030303030303036
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,Other East Asia,Co-Location,5,0,1.25,0,-1.4204545454545454
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,United States,New,13,6,3.25,2,-1.4204545454545454
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,United States,Expansion,10,5,2.5,1.6666666666666667,-0.94696969696969691
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,United States,Co-Location,1,0,0.25,0,-0.28409090909090912
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,Other parents,New,89,23,22.25,7.666666666666667,-16.571969696969695
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,Other parents,Expansion,18,3,4.5,1,-3.9772727272727271
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,Other parents,Co-Location,1,0,0.25,0,-0.28409090909090912
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,China,New,14,4,3.5,1.3333333333333333,-4.9523809523809526
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,China,Expansion,3,1,0.75,0.33333333333333331,-0.95238095238095244
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,China,Co-Location,0,0,0,0,0
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,Other East Asia,New,39,8,9.75,2.6666666666666665,-16.19047619047619
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,Other East Asia,Expansion,41,10,10.25,3.3333333333333335,-15.809523809523808
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,Other East Asia,Co-Location,5,0,1.25,0,-2.8571428571428572
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,United States,New,5,8,1.25,2.6666666666666665,3.2380952380952377
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,United States,Expansion,6,2,1.5,0.66666666666666663,-1.9047619047619049
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,United States,Co-Location,0,0,0,0,0
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,Other parents,New,37,12,9.25,4,-12
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,Other parents,Expansion,21,8,5.25,2.6666666666666665,-5.904761904761906
+main_2014_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,Other parents,Co-Location,4,0,1,0,-2.2857142857142856
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,China,New,18,19,6,6.333333333333333,0.17241379310344809
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,China,Expansion,7,8,2.3333333333333335,2.6666666666666665,0.17241379310344809
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,China,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,Other East Asia,New,98,20,32.666666666666664,6.666666666666667,-13.448275862068963
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,Other East Asia,Expansion,35,24,11.666666666666666,8,-1.8965517241379308
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,Other East Asia,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,United States,New,74,59,24.666666666666668,19.666666666666668,-2.5862068965517242
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,United States,Expansion,66,60,22,20,-1.0344827586206895
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,United States,Co-Location,1,0,0.33333333333333331,0,-0.17241379310344823
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,Other parents,New,167,65,55.666666666666664,21.666666666666668,-17.586206896551722
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,Other parents,Expansion,109,81,36.333333333333336,27,-4.8275862068965525
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Mexico,Other parents,Co-Location,5,3,1.6666666666666667,1,-0.34482758620689657
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,China,New,11,5,3.6666666666666665,1.6666666666666667,-2.3529411764705879
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,China,Expansion,2,3,0.66666666666666663,1,0.39215686274509809
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,China,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,Other East Asia,New,120,18,40,6,-40
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,Other East Asia,Expansion,30,13,10,4.333333333333333,-6.6666666666666679
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,Other East Asia,Co-Location,2,0,0.66666666666666663,0,-0.78431372549019596
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,United States,New,8,6,2.6666666666666665,2,-0.78431372549019596
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,United States,Expansion,6,5,2,1.6666666666666667,-0.39215686274509798
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,United States,Co-Location,1,0,0.33333333333333331,0,-0.39215686274509798
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,Other parents,New,61,23,20.333333333333332,7.666666666666667,-14.901960784313724
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,Other parents,Expansion,13,3,4.333333333333333,1,-3.9215686274509802
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Vietnam,Other parents,Co-Location,1,0,0.33333333333333331,0,-0.39215686274509798
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,China,New,13,4,4.333333333333333,1.3333333333333333,-7.03125
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,China,Expansion,3,1,1,0.33333333333333331,-1.5625000000000002
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,China,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,Other East Asia,New,26,8,8.6666666666666661,2.6666666666666665,-14.0625
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,Other East Asia,Expansion,32,10,10.666666666666666,3.3333333333333335,-17.1875
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,Other East Asia,Co-Location,4,0,1.3333333333333333,0,-3.1249999999999996
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,United States,New,4,8,1.3333333333333333,2.6666666666666665,3.1249999999999996
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,United States,Expansion,3,2,1,0.66666666666666663,-0.78125000000000011
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,United States,Co-Location,0,0,0,0,0
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,Other parents,New,25,12,8.3333333333333339,4,-10.156250000000002
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,Other parents,Expansion,15,8,5,2.6666666666666665,-5.4687500000000009
+equal_2015_17_vs_2020_22,core_type_parent_collapsed_stress,Thailand,Other parents,Co-Location,3,0,1,0,-2.34375
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Mexico,China,New,23,13,5.75,6.5,0.4126547455295736
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Mexico,China,Expansion,7,3,1.75,1.5,-0.13755158184319119
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Mexico,China,Co-Location,0,0,0,0,0
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Mexico,Other East Asia,New,119,12,29.75,6,-13.067400275103164
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Mexico,Other East Asia,Expansion,39,17,9.75,8.5,-0.68775790921595603
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Mexico,Other East Asia,Co-Location,1,0,0.25,0,-0.13755158184319119
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Mexico,United States,New,97,48,24.25,24,-0.13755158184319119
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Mexico,United States,Expansion,84,46,21,23,1.1004126547455295
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Mexico,United States,Co-Location,3,0,0.75,0,-0.4126547455295736
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Mexico,Other parents,New,211,51,52.75,25.5,-14.99312242090784
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Mexico,Other parents,Expansion,138,65,34.5,32.5,-1.1004126547455295
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Mexico,Other parents,Co-Location,5,2,1.25,1,-0.13755158184319119
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Vietnam,China,New,16,1,4,0.5,-3.9772727272727271
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Vietnam,China,Expansion,2,3,0.5,1.5,1.1363636363636365
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Vietnam,China,Co-Location,0,0,0,0,0
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Vietnam,Other East Asia,New,161,8,40.25,4,-41.19318181818182
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Vietnam,Other East Asia,Expansion,36,10,9,5,-4.5454545454545459
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Vietnam,Other East Asia,Co-Location,5,0,1.25,0,-1.4204545454545454
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Vietnam,United States,New,13,5,3.25,2.5,-0.85227272727272729
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Vietnam,United States,Expansion,10,5,2.5,2.5,0
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Vietnam,United States,Co-Location,1,0,0.25,0,-0.28409090909090912
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Vietnam,Other parents,New,89,15,22.25,7.5,-16.761363636363637
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Vietnam,Other parents,Expansion,18,3,4.5,1.5,-3.4090909090909092
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Vietnam,Other parents,Co-Location,1,0,0.25,0,-0.28409090909090912
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Thailand,China,New,14,3,3.5,1.5,-4.5714285714285712
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Thailand,China,Expansion,3,1,0.75,0.5,-0.5714285714285714
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Thailand,China,Co-Location,0,0,0,0,0
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Thailand,Other East Asia,New,39,5,9.75,2.5,-16.571428571428573
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Thailand,Other East Asia,Expansion,41,6,10.25,3,-16.571428571428573
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Thailand,Other East Asia,Co-Location,5,0,1.25,0,-2.8571428571428572
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Thailand,United States,New,5,4,1.25,2,1.7142857142857142
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Thailand,United States,Expansion,6,1,1.5,0.5,-2.2857142857142856
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Thailand,United States,Co-Location,0,0,0,0,0
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Thailand,Other parents,New,37,6,9.25,3,-14.285714285714286
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Thailand,Other parents,Expansion,21,5,5.25,2.5,-6.2857142857142856
+without_2020_2014_17_vs_2021_22,core_type_parent_collapsed_stress,Thailand,Other parents,Co-Location,4,0,1,0,-2.2857142857142856
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Mexico,China,New,17,33,4.25,8.25,2.9304029304029302
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Mexico,China,Expansion,5,9,1.25,2.25,0.73260073260073255
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Mexico,China,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Mexico,Other East Asia,New,91,27,22.75,6.75,-11.721611721611721
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Mexico,Other East Asia,Expansion,29,37,7.25,9.25,1.4652014652014651
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Mexico,Other East Asia,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Mexico,United States,New,81,60,20.25,15,-3.8461538461538463
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Mexico,United States,Expansion,71,62,17.75,15.5,-1.6483516483516483
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Mexico,United States,Co-Location,3,0,0.75,0,-0.5494505494505495
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Mexico,Other parents,New,150,79,37.5,19.75,-13.003663003663004
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Mexico,Other parents,Expansion,95,100,23.75,25,0.91575091575091572
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Mexico,Other parents,Co-Location,4,3,1,0.75,-0.18315018315018314
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Vietnam,China,New,15,22,3.75,5.5,2.5270758122743682
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Vietnam,China,Expansion,1,6,0.25,1.5,1.8050541516245486
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Vietnam,China,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Vietnam,Other East Asia,New,130,28,32.5,7,-36.823104693140792
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Vietnam,Other East Asia,Expansion,28,17,7,4.25,-3.9711191335740073
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Vietnam,Other East Asia,Co-Location,5,0,1.25,0,-1.8050541516245486
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Vietnam,United States,New,8,4,2,1,-1.4440433212996391
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Vietnam,United States,Expansion,7,8,1.75,2,0.36101083032490977
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Vietnam,United States,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Vietnam,Other parents,New,69,35,17.25,8.75,-12.274368231046932
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Vietnam,Other parents,Expansion,13,5,3.25,1.25,-2.8880866425992782
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Vietnam,Other parents,Co-Location,1,0,0.25,0,-0.36101083032490977
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Thailand,China,New,11,14,2.75,3.5,2.3255813953488373
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Thailand,China,Expansion,2,1,0.5,0.25,-0.77519379844961245
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Thailand,China,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Thailand,Other East Asia,New,30,11,7.5,2.75,-14.728682170542635
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Thailand,Other East Asia,Expansion,34,9,8.5,2.25,-19.379844961240309
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Thailand,Other East Asia,Co-Location,2,0,0.5,0,-1.5503875968992249
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Thailand,United States,New,3,9,0.75,2.25,4.6511627906976747
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Thailand,United States,Expansion,3,2,0.75,0.5,-0.77519379844961245
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Thailand,United States,Co-Location,0,0,0,0,0
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Thailand,Other parents,New,28,13,7,3.25,-11.627906976744185
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Thailand,Other parents,Expansion,14,7,3.5,1.75,-5.4263565891472867
+jan_sep_2014_17_vs_2020_23,core_type_parent_collapsed_stress,Thailand,Other parents,Co-Location,2,0,0.5,0,-1.5503875968992249

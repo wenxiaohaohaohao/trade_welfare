@@ -1,0 +1,243 @@
+{
+  "backend": "Python / matplotlib",
+  "versions": {
+    "python": "3.14.2",
+    "matplotlib": "3.10.8"
+  },
+  "figures": [
+    {
+      "id": "FDI01",
+      "title": "Expansion shares rise in Mexico and Vietnam, without a common three-country rise",
+      "contract": {
+        "core_conclusion": "Expansion shares rise in Mexico and Vietnam, without a common three-country rise",
+        "evidence_chain": "Six stacked bars compare pooled type shares; adjacent counts expose every numerator and denominator.",
+        "archetype": "quantitative grid",
+        "backend": "Python / matplotlib",
+        "dimensions_mm": [
+          183,
+          116.0
+        ],
+        "export": [
+          "300-dpi PNG",
+          "editable-text SVG",
+          "vector PDF with TrueType text"
+        ]
+      },
+      "caption": "Composition of delivered Manufacturing records, 2014-2017 and 2020-2022. New, Expansion and Co-location sum to each row's n. Mexico's expansion share rises from 37.35% to 51.01%; Vietnam's rises from 18.82% to 31.17%. Thailand moves from 41.24% to 39.62% in this window and the direction is window-sensitive. No inferential tests are shown.",
+      "source_tables": [
+        {
+          "filename": "FDI01_type_composition.csv",
+          "sha256": "a64bade09a462e311bcee0a0e32091cbbbc3f7b58c119ba046d71deefee22a86"
+        },
+        {
+          "filename": "window_type_comparisons.csv",
+          "sha256": "e5e7d213018027b464915b8c31130b6889885acf0bd2b72812d29f99b36d7391"
+        }
+      ],
+      "unit": "Delivered project record; uniqueness is unverified",
+      "sample": "Activity exactly Manufacturing; all sources, sectors, project types and statuses retained",
+      "periods": {
+        "pre": "2014-2017",
+        "post": "2020-2022"
+      },
+      "statistics": {
+        "n_definition": "Number of delivered records in the stated country, period and subgroup",
+        "center": "Pooled record-count shares; annual count = pooled count / number of calendar years",
+        "intervals": "None: descriptive accounting, no sampling model",
+        "tests": "None",
+        "correction": "Not applicable",
+        "p_values": "Not applicable"
+      },
+      "review_risks": [
+        "Record counts are not verified unique projects",
+        "New is not first enterprise entry",
+        "Shares do not measure production growth",
+        "Period comparison is not causal",
+        "Thailand direction varies by window"
+      ],
+      "qa": {
+        "all_visible_text_inside_fixed_canvas": true,
+        "editable_svg_text": true,
+        "no_raster_objects_in_svg": true,
+        "png_dpi": 300,
+        "manual_visual_review": "See FIGURE_REVIEW.json; valid only when output hashes match"
+      },
+      "outputs": [
+        {
+          "filename": "FDI01_type_composition.png",
+          "sha256": "84aaec8d31de2f7f87f1641b99c640f9bae3b6dc0dd8486cebf810632299669f",
+          "bytes": 225880
+        },
+        {
+          "filename": "FDI01_type_composition.svg",
+          "sha256": "3617af4916e331f2c669bc4a72defbd9f4dd6c6514e636ca90215b42d6ade2d2",
+          "bytes": 18943
+        },
+        {
+          "filename": "FDI01_type_composition.pdf",
+          "sha256": "1ce003a49a90cb9786aabaa2e4866e780a5923bc87ae484c09f76b6d06c93474",
+          "bytes": 49088
+        }
+      ]
+    },
+    {
+      "id": "FDI02",
+      "title": "China's share rises in Mexico and Vietnam, but annual record counts rise only in Mexico in this window",
+      "contract": {
+        "core_conclusion": "China's share rises in Mexico and Vietnam, but annual record counts rise only in Mexico in this window",
+        "evidence_chain": "Panel a uses China records / all-source Manufacturing records. Panel b annualizes the same China counts to separate composition from volume.",
+        "archetype": "quantitative grid",
+        "backend": "Python / matplotlib",
+        "dimensions_mm": [
+          183,
+          113.0
+        ],
+        "export": [
+          "300-dpi PNG",
+          "editable-text SVG",
+          "vector PDF with TrueType text"
+        ]
+      },
+      "caption": "China-sourced Manufacturing records by destination. Shares use all-source records in the same destination and period as denominators. Annual means divide pooled China counts by four pre-period years and three post-period years. Vietnam's China share rises while its annual China record count falls. Thailand's direction of share change is not stable across windows. The descriptive counts do not establish actual capital inflows, production or trade diversion.",
+      "source_tables": [
+        {
+          "filename": "FDI02_source_composition.csv",
+          "sha256": "e97dfe6034d0451f51d0a9390312d9a9b9712c6512ee147ece78b77ba7296620"
+        },
+        {
+          "filename": "FDI01_type_composition.csv",
+          "sha256": "a64bade09a462e311bcee0a0e32091cbbbc3f7b58c119ba046d71deefee22a86"
+        },
+        {
+          "filename": "window_source_comparisons.csv",
+          "sha256": "da4e4b8e80b19bf85c68cf9bbbb1d3ce863b5a9bab8086f1947abd1f5a7e67bb"
+        }
+      ],
+      "unit": "Delivered project record; uniqueness is unverified",
+      "sample": "Activity exactly Manufacturing; all sources, sectors, project types and statuses retained",
+      "periods": {
+        "pre": "2014-2017",
+        "post": "2020-2022"
+      },
+      "statistics": {
+        "n_definition": "Number of delivered records in the stated country, period and subgroup",
+        "center": "Pooled record-count shares; annual count = pooled count / number of calendar years",
+        "intervals": "None: descriptive accounting, no sampling model",
+        "tests": "None",
+        "correction": "Not applicable",
+        "p_values": "Not applicable"
+      },
+      "review_risks": [
+        "Denominator contraction can raise shares",
+        "Unequal window lengths require annualized counts",
+        "Thailand share is window-sensitive",
+        "Delivery coverage is not independently proven",
+        "No causal or welfare interpretation"
+      ],
+      "qa": {
+        "all_visible_text_inside_fixed_canvas": true,
+        "editable_svg_text": true,
+        "no_raster_objects_in_svg": true,
+        "png_dpi": 300,
+        "manual_visual_review": "See FIGURE_REVIEW.json; valid only when output hashes match"
+      },
+      "outputs": [
+        {
+          "filename": "FDI02_china_share_and_count.png",
+          "sha256": "d733e4a3d417d0f73c68c0aae39b982f69d59fbdcf55e41d6db918a5b3ce6665",
+          "bytes": 197558
+        },
+        {
+          "filename": "FDI02_china_share_and_count.svg",
+          "sha256": "fafc3285ebef88735a37933509be97c87a800a330760e327320534a3c08d10b0",
+          "bytes": 19719
+        },
+        {
+          "filename": "FDI02_china_share_and_count.pdf",
+          "sha256": "e3c682cb8c50888589536c61fd360f7b754fb9b6968378dcde865d17433a5c1b",
+          "bytes": 50576
+        }
+      ]
+    },
+    {
+      "id": "FDI03",
+      "title": "New records coexist with Expansion records among previously observed parent-host names",
+      "contract": {
+        "core_conclusion": "New records coexist with Expansion records among previously observed parent-host names",
+        "evidence_chain": "Three stacked bars condition on a positive normalized source-parent-host match in the pre period. New counts are 28/107, 13/25 and 4/11.",
+        "archetype": "quantitative grid",
+        "backend": "Python / matplotlib",
+        "dimensions_mm": [
+          183,
+          101.0
+        ],
+        "export": [
+          "300-dpi PNG",
+          "editable-text SVG",
+          "vector PDF with TrueType text"
+        ]
+      },
+      "caption": "Type composition of 2020-2022 Manufacturing records whose normalized source-country, Parent_Company and destination-country combination appears in 2014-2017 Manufacturing records. Normalization uses Unicode NFKC, whitespace and case only, without fuzzy name matching. The matched subgroups contain 107, 25 and 11 records for Mexico, Vietnam and Thailand, respectively; 28, 13 and 4 are New. Exact positive name-history matches do not verify enterprise identity, operation, or first entry. The unmatched group is intentionally omitted because absence of observed project history is not entry evidence. Also requiring the same native sector gives New counts of 21/96, 9/20 and 3/9 in this window. Thailand has zero New records in at least one alternative window; this is not a universal three-country result.",
+      "source_tables": [
+        {
+          "filename": "FDI03_parent_history.csv",
+          "sha256": "954b8aa950b72e2aa326517f3cc824bc44893419cf51ddbfa387888b7a1f569b"
+        },
+        {
+          "filename": "window_parent_history_comparisons.csv",
+          "sha256": "ab303a9ca1b6833642b08b2cd8099cf9d4349fdfb6e3df59cc9eb84894edf7d1"
+        },
+        {
+          "filename": "window_parent_sector_history_comparisons.csv",
+          "sha256": "41475caf45e104f7738d3ad559463abf5cf0cdc446f0d69e22f699d0bef6961b"
+        }
+      ],
+      "unit": "Delivered project record; uniqueness is unverified",
+      "sample": "Activity exactly Manufacturing; all sources, sectors, project types and statuses retained",
+      "periods": {
+        "pre": "2014-2017",
+        "post": "2020-2022"
+      },
+      "statistics": {
+        "n_definition": "Number of delivered records in the stated country, period and subgroup",
+        "center": "Pooled record-count shares; annual count = pooled count / number of calendar years",
+        "intervals": "None: descriptive accounting, no sampling model",
+        "tests": "None",
+        "correction": "Not applicable",
+        "p_values": "Not applicable"
+      },
+      "review_risks": [
+        "Observed name history is not verified operating presence",
+        "No fuzzy alias consolidation",
+        "Small subgroup n, especially Thailand",
+        "Unmatched does not mean new entrant",
+        "New facility is not necessarily first enterprise entry",
+        "Thailand has zero New records in an alternative window"
+      ],
+      "qa": {
+        "all_visible_text_inside_fixed_canvas": true,
+        "editable_svg_text": true,
+        "no_raster_objects_in_svg": true,
+        "png_dpi": 300,
+        "manual_visual_review": "See FIGURE_REVIEW.json; valid only when output hashes match"
+      },
+      "outputs": [
+        {
+          "filename": "FDI03_previously_observed_parents.png",
+          "sha256": "7fd680035393ef12daf345cf6d5e35e1bc78253071120c5ff43edb07fa6b9dc4",
+          "bytes": 194775
+        },
+        {
+          "filename": "FDI03_previously_observed_parents.svg",
+          "sha256": "0f76d255fd46d94c4e9f1b270499bdc92d65df639c4569b48168486bff580e21",
+          "bytes": 14149
+        },
+        {
+          "filename": "FDI03_previously_observed_parents.pdf",
+          "sha256": "0ed7757a587382fb4b4140f20441827c7baf8e7abaefc475269b08885028282c",
+          "bytes": 50719
+        }
+      ]
+    }
+  ]
+}

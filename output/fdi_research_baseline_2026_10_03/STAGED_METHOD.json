@@ -1,0 +1,148 @@
+{
+  "status": "computed; figure QA passed; independent numerical review recorded separately",
+  "scope": "Gate 2 descriptive project evidence; no causal or welfare identification",
+  "sample": "Activity exactly Manufacturing; Mexico, Vietnam, Thailand; all origins, types and statuses; delivered records retained without deduplication",
+  "unit": "Delivered project record, not verified unique firm, plant or realized project",
+  "input": {
+    "raw_workbook_sha256": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+    "row_addressable_extract": "output\\fdi_facts_2026_10_02\\manufacturing_records_with_audit_flags.csv",
+    "extract_sha256": "10c9cf5910c61086f85c83319ea0df87b899e243de450d6a3aa8eaa36718e1c1",
+    "original_sheet": "2014-2023",
+    "original_row_column": "excel_row",
+    "extract_records": 2603
+  },
+  "full_year_periods": {
+    "2014-2017": [
+      2014,
+      2015,
+      2016,
+      2017
+    ],
+    "2018-2019": [
+      2018,
+      2019
+    ],
+    "2020-2022": [
+      2020,
+      2021,
+      2022
+    ]
+  },
+  "jan_sep_periods": {
+    "2014-2017": [
+      2014,
+      2015,
+      2016,
+      2017
+    ],
+    "2018-2019": [
+      2018,
+      2019
+    ],
+    "2020-2022": [
+      2020,
+      2021,
+      2022
+    ],
+    "2023": [
+      2023
+    ]
+  },
+  "period_means": "Period total divided by the fixed number of calendar years. January-September means are 9-month record counts per calendar year, never multiplied by 4/3 and never called full-year annualized totals.",
+  "shares": "Pooled within destination and period, count numerator divided by all Manufacturing records in that destination-period. Period shares are not unweighted averages of annual percentages.",
+  "zero_cells": "A category absent from the delivered sample is counted as zero; this does not verify zero economic activity or full database coverage. A wholly empty denominator would yield null share.",
+  "source_groups": {
+    "China": [
+      "China"
+    ],
+    "Other East Asia": [
+      "Japan",
+      "South Korea",
+      "Taiwan"
+    ],
+    "United States": [
+      "United States"
+    ],
+    "Other parents": "All others, including Hong Kong and Singapore"
+  },
+  "sector_scope": "All native sectors with Manufacturing activity; no equivalence to existing F03 ISIC sectors asserted",
+  "quality_boundary": "2023 Q4 and 2024 excluded. No deduplication, missing-value imputation, amount or employment weighting, first-entry inference or operating-presence inference. Known prior data-delivery concerns remain unresolved.",
+  "pandemic_boundary": "2020-2022 is a descriptive period. No pandemic adjustment, policy attribution or identification model is estimated.",
+  "statistics": "Descriptive counts and shares; no tests or confidence intervals",
+  "checks": {
+    "annual_counts_match_prior_joint_table": true,
+    "full_year_total_records": 2349,
+    "full_year_periods_reconcile": true,
+    "jan_sep_periods_reconcile": true,
+    "all_type_and_source_partitions_exact": true,
+    "row_provenance_unique": true,
+    "raw_fingerprint_matches_prior_audit": true,
+    "extract_fingerprint_matches_prior_manifest": true,
+    "parent_subgroup_partitions_exact": true,
+    "previous_output_directory_unchanged": true,
+    "raw_workbook_unchanged": true
+  },
+  "versions": {
+    "python": "3.14.2"
+  },
+  "parent_history": {
+    "baseline": "Fixed 2014-2017 Manufacturing records",
+    "post_stages": [
+      "2018-2019",
+      "2020-2022"
+    ],
+    "match": "Exact Source_Country + NFKC/whitespace/case-normalized Parent_Company + Destination_Country; second version also requires same native Sector",
+    "meaning": "Positive match is recorded project history, not proven operation or verified firm identity. No prior match is not entry. New is not first enterprise entry.",
+    "unit": "Post-period records in matched subgroup, not number of unique parents or continuing plants"
+  },
+  "figure": {
+    "contract": {
+      "core_conclusion": "Annual record counts and composition vary across the three destinations and over time; staged comparisons should preserve these paths.",
+      "evidence_chain": "Columns identify destinations; rows show count, Expansion share and China share from the same annual record universe.",
+      "archetype": "quantitative grid",
+      "backend": "Python / matplotlib",
+      "size_mm": [
+        183,
+        163
+      ],
+      "body_font_pt": 9,
+      "png_dpi": 300,
+      "editable_vector_text": true
+    },
+    "caption": "Annual Manufacturing records for Mexico, Vietnam and Thailand, 2014-2022. Every source country, project type and project status is retained. Each percentage uses the destination-year record count as denominator; amounts and jobs are not weights. The pale grey region marks 2020-2022 descriptively and estimates no policy or pandemic effect. Counts refer to delivered records, with unverified uniqueness and coverage. The January-September-only extension through 2023 is tabulated separately.",
+    "source_table": {
+      "file": "staged_annual_full_year.csv",
+      "sha256": "28c8441e4469431fcf03c57ed93eca777589e7221fd956bfcf885731c55d98ed"
+    },
+    "outputs": [
+      {
+        "file": "staged_annual_paths.png",
+        "sha256": "258b04246f49408b5ba5ba239955e6e79c078c4ee812e5d7c17c77dbf49e8175"
+      },
+      {
+        "file": "staged_annual_paths.svg",
+        "sha256": "3a18bee7981fa982b023b9c5a8472395712de589be37aec444f6d8f7c0abb310"
+      },
+      {
+        "file": "staged_annual_paths.pdf",
+        "sha256": "2a770dc34a3c37bdf655f07d896542101f258306f29048ff19d5a090763ae002"
+      }
+    ],
+    "qa": {
+      "all_visible_text_inside_canvas": true,
+      "svg_text_editable": true,
+      "no_svg_raster_images": true,
+      "manual_visual_review": "passed: PNG and Python-rendered PDF inspected; see STAGED_FIGURE_REVIEW.json",
+      "review_sha256": "cc0f8cca2b67223c48bb1264fe9b3a8042832351d8e67915042c05e2108fd1e7"
+    },
+    "matplotlib_version": "3.10.8"
+  },
+  "output_tables": {
+    "staged_annual_full_year.csv": "28c8441e4469431fcf03c57ed93eca777589e7221fd956bfcf885731c55d98ed",
+    "staged_annual_jan_sep.csv": "21e0a731872713b08f7246507ab4271c4645853510ff78d07ee450ae7dfaa10c",
+    "staged_parent_history.csv": "b137427ed51bbca494beaa20f873b851d8aab8bea1abe7ef6f3189a807c8a46b",
+    "staged_period_changes_full_year.csv": "37d00bfb52304057b47c13d9ce9263880066cdfdad3f0d24b8689e7603124e83",
+    "staged_period_full_year.csv": "a1d332094ee1d947ab6db0eee930e6bf5b0a434d4f327f6f1a05a43bb7020efe",
+    "staged_period_jan_sep.csv": "4f514d0c1430ce95f97737d1c36d5108990570aaba76dd3efd67ff364c206df9"
+  }
+}

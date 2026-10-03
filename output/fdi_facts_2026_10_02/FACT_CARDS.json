@@ -1,0 +1,732 @@
+[
+  {
+    "id": "FDI01",
+    "title_cn": "墨西哥和越南扩建记录份额上升，年均扩建记录数下降",
+    "status": "descriptive_computation_verified_coverage_pending",
+    "gate": "Gate 2 supplementary project evidence; Gate 3 claim boundary only",
+    "raw_sha256": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+    "method": {
+      "status": "descriptive_computation_independently_verified_coverage_pending",
+      "gate": "Gate 2 supplementary project evidence; Gate 3 claim boundary only",
+      "raw_sha256": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+      "unit": "project record, not verified unique plant or enterprise",
+      "primary_sample": "Activity exactly Manufacturing; destinations Mexico/Vietnam/Thailand; 2014-2022; all origins/types/statuses retained",
+      "windows": {
+        "main_2014_17_vs_2020_22": {
+          "pre": [
+            2014,
+            2015,
+            2016,
+            2017
+          ],
+          "post": [
+            2020,
+            2021,
+            2022
+          ],
+          "max_month": 12
+        },
+        "equal_2015_17_vs_2020_22": {
+          "pre": [
+            2015,
+            2016,
+            2017
+          ],
+          "post": [
+            2020,
+            2021,
+            2022
+          ],
+          "max_month": 12
+        },
+        "without_2020_2014_17_vs_2021_22": {
+          "pre": [
+            2014,
+            2015,
+            2016,
+            2017
+          ],
+          "post": [
+            2021,
+            2022
+          ],
+          "max_month": 12
+        },
+        "jan_sep_2014_17_vs_2020_23": {
+          "pre": [
+            2014,
+            2015,
+            2016,
+            2017
+          ],
+          "post": [
+            2020,
+            2021,
+            2022,
+            2023
+          ],
+          "max_month": 9
+        }
+      },
+      "counts": "annual means use all fixed calendar years, including zero-count years; shares are pooled record-count shares within each period",
+      "deduplication": "All records retained in primary. Noncontact exact collapse is sensitivity; type-and-parent-preserving core collapse is deliberately aggressive stress, not a true deduplicated series or bound.",
+      "parent_matching": "NFKC plus whitespace and case normalization; exact Source_Country + Parent_Company + Destination_Country; no fuzzy aliases; positive history is observed project history, not proof of operation. Unmatched is not entry.",
+      "sector_scope": "All native fDi sectors with Manufacturing activity. No claim of matching F03 six-sector ISIC universe.",
+      "source_groups": {
+        "China": [
+          "China"
+        ],
+        "Other East Asia": [
+          "Japan",
+          "South Korea",
+          "Taiwan"
+        ],
+        "United States": [
+          "United States"
+        ],
+        "Other parents": "all others, including Hong Kong and Singapore"
+      },
+      "amount_and_jobs": "Not headline weights or production proxies. Vendor units unconfirmed; estimates frequent.",
+      "stats": "Descriptive delivered-sample accounting, no tests, confidence intervals, causality or welfare estimates.",
+      "protected_hashes": {
+        "data\\raw\\fDi_Markets .xlsx": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+        "output\\stylized_facts_2026_09_12\\F03\\fact.json": "c9e5d0bb30126604ea457cf09d47373629fdf6dbf08863a8dbd0fd6aca83f163",
+        "output\\stylized_facts_2026_09_12\\F04\\fact.json": "28ef6693a3fe6f7f13bc6cd8f89ea77903a558d8a5a4ebb2f83b4d093b9c83b7",
+        "output\\stylized_facts_2026_09_12\\F03\\parent_contributions.csv": "1af20a63e36eb3f2e38dec4e58d6484b4f118c6f498e3e949408c90b30d00550",
+        "output\\stylized_facts_2026_09_12\\F04\\country_components.csv": "ad5267e9e8a26f5ab3b337a2e668d13fee96a08dab54272b2067395044b70557"
+      },
+      "checks": {
+        "source_contributions_add_to_total_change": true,
+        "source_shares_sum_to_100": true,
+        "type_counts_add_to_total": true,
+        "parent_history_partition_exact": true,
+        "annual_grid_includes_observed_zero_cells": true,
+        "annual_grid_reconciles": true,
+        "all_protected_files_unchanged": true
+      },
+      "versions": {
+        "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+        "pandas": "3.0.1",
+        "numpy": "2.3.5",
+        "openpyxl": "3.1.5"
+      },
+      "independent_review": "INDEPENDENT_REVIEW.json",
+      "figure_review": "FIGURE_REVIEW.json"
+    },
+    "values": [
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Mexico",
+        "months_per_year": 12,
+        "pre_years": 4,
+        "post_years": 3,
+        "pre_n": 739,
+        "post_n": 345,
+        "pre_annual_mean": 184.75,
+        "post_annual_mean": 115.0,
+        "annual_count_change_percent": -37.75372124492557,
+        "pre_new_n": 453,
+        "post_new_n": 166,
+        "pre_new_share_pct": 61.299052774018946,
+        "post_new_share_pct": 48.11594202898551,
+        "new_share_change_pp": -13.183110745033439,
+        "pre_expansion_n": 276,
+        "post_expansion_n": 176,
+        "pre_expansion_share_pct": 37.34776725304466,
+        "post_expansion_share_pct": 51.01449275362319,
+        "expansion_share_change_pp": 13.666725500578531,
+        "pre_co_location_n": 10,
+        "post_co_location_n": 3,
+        "pre_co_location_share_pct": 1.3531799729364005,
+        "post_co_location_share_pct": 0.8695652173913043,
+        "co_location_share_change_pp": -0.4836147555450962
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Vietnam",
+        "months_per_year": 12,
+        "pre_years": 4,
+        "post_years": 3,
+        "pre_n": 356,
+        "post_n": 77,
+        "pre_annual_mean": 89.0,
+        "post_annual_mean": 25.666666666666668,
+        "annual_count_change_percent": -71.16104868913857,
+        "pre_new_n": 282,
+        "post_new_n": 53,
+        "pre_new_share_pct": 79.21348314606742,
+        "post_new_share_pct": 68.83116883116882,
+        "new_share_change_pp": -10.382314314898588,
+        "pre_expansion_n": 67,
+        "post_expansion_n": 24,
+        "pre_expansion_share_pct": 18.820224719101123,
+        "post_expansion_share_pct": 31.16883116883117,
+        "expansion_share_change_pp": 12.348606449730045,
+        "pre_co_location_n": 7,
+        "post_co_location_n": 0,
+        "pre_co_location_share_pct": 1.9662921348314606,
+        "post_co_location_share_pct": 0.0,
+        "co_location_share_change_pp": -1.9662921348314606
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Thailand",
+        "months_per_year": 12,
+        "pre_years": 4,
+        "post_years": 3,
+        "pre_n": 177,
+        "post_n": 53,
+        "pre_annual_mean": 44.25,
+        "post_annual_mean": 17.666666666666668,
+        "annual_count_change_percent": -60.075329566855,
+        "pre_new_n": 95,
+        "post_new_n": 32,
+        "pre_new_share_pct": 53.67231638418079,
+        "post_new_share_pct": 60.37735849056604,
+        "new_share_change_pp": 6.705042106385239,
+        "pre_expansion_n": 73,
+        "post_expansion_n": 21,
+        "pre_expansion_share_pct": 41.24293785310734,
+        "post_expansion_share_pct": 39.62264150943396,
+        "expansion_share_change_pp": -1.6202963436733775,
+        "pre_co_location_n": 9,
+        "post_co_location_n": 0,
+        "pre_co_location_share_pct": 5.084745762711864,
+        "post_co_location_share_pct": 0.0,
+        "co_location_share_change_pp": -5.084745762711865
+      }
+    ],
+    "tables": [
+      "FDI01_type_composition.csv",
+      "window_type_comparisons.csv"
+    ],
+    "limitations": [
+      "样本构成变化，不等于扩建投资或产出增长",
+      "泰国方向不稳健"
+    ],
+    "figure_metadata": "FIGURE_METADATA.json"
+  },
+  {
+    "id": "FDI02",
+    "title_cn": "中国来源份额在墨西哥与越南上升，数量变化不同",
+    "status": "descriptive_computation_verified_coverage_pending",
+    "gate": "Gate 2 supplementary project evidence; Gate 3 claim boundary only",
+    "raw_sha256": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+    "method": {
+      "status": "descriptive_computation_independently_verified_coverage_pending",
+      "gate": "Gate 2 supplementary project evidence; Gate 3 claim boundary only",
+      "raw_sha256": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+      "unit": "project record, not verified unique plant or enterprise",
+      "primary_sample": "Activity exactly Manufacturing; destinations Mexico/Vietnam/Thailand; 2014-2022; all origins/types/statuses retained",
+      "windows": {
+        "main_2014_17_vs_2020_22": {
+          "pre": [
+            2014,
+            2015,
+            2016,
+            2017
+          ],
+          "post": [
+            2020,
+            2021,
+            2022
+          ],
+          "max_month": 12
+        },
+        "equal_2015_17_vs_2020_22": {
+          "pre": [
+            2015,
+            2016,
+            2017
+          ],
+          "post": [
+            2020,
+            2021,
+            2022
+          ],
+          "max_month": 12
+        },
+        "without_2020_2014_17_vs_2021_22": {
+          "pre": [
+            2014,
+            2015,
+            2016,
+            2017
+          ],
+          "post": [
+            2021,
+            2022
+          ],
+          "max_month": 12
+        },
+        "jan_sep_2014_17_vs_2020_23": {
+          "pre": [
+            2014,
+            2015,
+            2016,
+            2017
+          ],
+          "post": [
+            2020,
+            2021,
+            2022,
+            2023
+          ],
+          "max_month": 9
+        }
+      },
+      "counts": "annual means use all fixed calendar years, including zero-count years; shares are pooled record-count shares within each period",
+      "deduplication": "All records retained in primary. Noncontact exact collapse is sensitivity; type-and-parent-preserving core collapse is deliberately aggressive stress, not a true deduplicated series or bound.",
+      "parent_matching": "NFKC plus whitespace and case normalization; exact Source_Country + Parent_Company + Destination_Country; no fuzzy aliases; positive history is observed project history, not proof of operation. Unmatched is not entry.",
+      "sector_scope": "All native fDi sectors with Manufacturing activity. No claim of matching F03 six-sector ISIC universe.",
+      "source_groups": {
+        "China": [
+          "China"
+        ],
+        "Other East Asia": [
+          "Japan",
+          "South Korea",
+          "Taiwan"
+        ],
+        "United States": [
+          "United States"
+        ],
+        "Other parents": "all others, including Hong Kong and Singapore"
+      },
+      "amount_and_jobs": "Not headline weights or production proxies. Vendor units unconfirmed; estimates frequent.",
+      "stats": "Descriptive delivered-sample accounting, no tests, confidence intervals, causality or welfare estimates.",
+      "protected_hashes": {
+        "data\\raw\\fDi_Markets .xlsx": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+        "output\\stylized_facts_2026_09_12\\F03\\fact.json": "c9e5d0bb30126604ea457cf09d47373629fdf6dbf08863a8dbd0fd6aca83f163",
+        "output\\stylized_facts_2026_09_12\\F04\\fact.json": "28ef6693a3fe6f7f13bc6cd8f89ea77903a558d8a5a4ebb2f83b4d093b9c83b7",
+        "output\\stylized_facts_2026_09_12\\F03\\parent_contributions.csv": "1af20a63e36eb3f2e38dec4e58d6484b4f118c6f498e3e949408c90b30d00550",
+        "output\\stylized_facts_2026_09_12\\F04\\country_components.csv": "ad5267e9e8a26f5ab3b337a2e668d13fee96a08dab54272b2067395044b70557"
+      },
+      "checks": {
+        "source_contributions_add_to_total_change": true,
+        "source_shares_sum_to_100": true,
+        "type_counts_add_to_total": true,
+        "parent_history_partition_exact": true,
+        "annual_grid_includes_observed_zero_cells": true,
+        "annual_grid_reconciles": true,
+        "all_protected_files_unchanged": true
+      },
+      "versions": {
+        "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+        "pandas": "3.0.1",
+        "numpy": "2.3.5",
+        "openpyxl": "3.1.5"
+      },
+      "independent_review": "INDEPENDENT_REVIEW.json",
+      "figure_review": "FIGURE_REVIEW.json"
+    },
+    "values": [
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Mexico",
+        "source_group": "China",
+        "pre_n": 30,
+        "post_n": 27,
+        "pre_annual_mean": 7.5,
+        "post_annual_mean": 9.0,
+        "pre_share_pct": 4.059539918809202,
+        "post_share_pct": 7.826086956521739,
+        "share_change_pp": 3.766547037712537,
+        "contribution_to_total_count_change_pp": 0.8119079837618404
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Mexico",
+        "source_group": "Other East Asia",
+        "pre_n": 160,
+        "post_n": 48,
+        "pre_annual_mean": 40.0,
+        "post_annual_mean": 16.0,
+        "pre_share_pct": 21.650879566982407,
+        "post_share_pct": 13.91304347826087,
+        "share_change_pp": -7.737836088721538,
+        "contribution_to_total_count_change_pp": -12.990527740189446
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Mexico",
+        "source_group": "United States",
+        "pre_n": 186,
+        "post_n": 119,
+        "pre_annual_mean": 46.5,
+        "post_annual_mean": 39.666666666666664,
+        "pre_share_pct": 25.16914749661705,
+        "post_share_pct": 34.492753623188406,
+        "share_change_pp": 9.323606126571356,
+        "contribution_to_total_count_change_pp": -3.698691926026163
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Mexico",
+        "source_group": "Other parents",
+        "pre_n": 363,
+        "post_n": 151,
+        "pre_annual_mean": 90.75,
+        "post_annual_mean": 50.333333333333336,
+        "pre_share_pct": 49.12043301759134,
+        "post_share_pct": 43.768115942028984,
+        "share_change_pp": -5.352317075562354,
+        "contribution_to_total_count_change_pp": -21.876409562471807
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Vietnam",
+        "source_group": "China",
+        "pre_n": 18,
+        "post_n": 8,
+        "pre_annual_mean": 4.5,
+        "post_annual_mean": 2.6666666666666665,
+        "pre_share_pct": 5.056179775280899,
+        "post_share_pct": 10.38961038961039,
+        "share_change_pp": 5.33343061432949,
+        "contribution_to_total_count_change_pp": -2.059925093632959
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Vietnam",
+        "source_group": "Other East Asia",
+        "pre_n": 202,
+        "post_n": 32,
+        "pre_annual_mean": 50.5,
+        "post_annual_mean": 10.666666666666666,
+        "pre_share_pct": 56.741573033707866,
+        "post_share_pct": 41.55844155844156,
+        "share_change_pp": -15.183131475266308,
+        "contribution_to_total_count_change_pp": -44.756554307116104
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Vietnam",
+        "source_group": "United States",
+        "pre_n": 25,
+        "post_n": 11,
+        "pre_annual_mean": 6.25,
+        "post_annual_mean": 3.6666666666666665,
+        "pre_share_pct": 7.022471910112359,
+        "post_share_pct": 14.285714285714286,
+        "share_change_pp": 7.263242375601927,
+        "contribution_to_total_count_change_pp": -2.902621722846442
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Vietnam",
+        "source_group": "Other parents",
+        "pre_n": 111,
+        "post_n": 26,
+        "pre_annual_mean": 27.75,
+        "post_annual_mean": 8.666666666666666,
+        "pre_share_pct": 31.179775280898877,
+        "post_share_pct": 33.76623376623377,
+        "share_change_pp": 2.586458485334891,
+        "contribution_to_total_count_change_pp": -21.441947565543074
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Thailand",
+        "source_group": "China",
+        "pre_n": 17,
+        "post_n": 5,
+        "pre_annual_mean": 4.25,
+        "post_annual_mean": 1.6666666666666667,
+        "pre_share_pct": 9.6045197740113,
+        "post_share_pct": 9.433962264150944,
+        "share_change_pp": -0.17055750986035534,
+        "contribution_to_total_count_change_pp": -5.83804143126177
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Thailand",
+        "source_group": "Other East Asia",
+        "pre_n": 86,
+        "post_n": 18,
+        "pre_annual_mean": 21.5,
+        "post_annual_mean": 6.0,
+        "pre_share_pct": 48.58757062146893,
+        "post_share_pct": 33.9622641509434,
+        "share_change_pp": -14.62530647052553,
+        "contribution_to_total_count_change_pp": -35.02824858757062
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Thailand",
+        "source_group": "United States",
+        "pre_n": 11,
+        "post_n": 10,
+        "pre_annual_mean": 2.75,
+        "post_annual_mean": 3.3333333333333335,
+        "pre_share_pct": 6.214689265536723,
+        "post_share_pct": 18.867924528301888,
+        "share_change_pp": 12.653235262765165,
+        "contribution_to_total_count_change_pp": 1.3182674199623357
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Thailand",
+        "source_group": "Other parents",
+        "pre_n": 63,
+        "post_n": 20,
+        "pre_annual_mean": 15.75,
+        "post_annual_mean": 6.666666666666667,
+        "pre_share_pct": 35.59322033898305,
+        "post_share_pct": 37.735849056603776,
+        "share_change_pp": 2.142628717620724,
+        "contribution_to_total_count_change_pp": -20.52730696798493
+      }
+    ],
+    "tables": [
+      "FDI02_source_composition.csv",
+      "FDI02_source_type_contributions.csv",
+      "window_source_comparisons.csv"
+    ],
+    "limitations": [
+      "来源份额不是产出或资本份额",
+      "越南数量变化依赖窗口，泰国份额方向不稳健"
+    ],
+    "figure_metadata": "FIGURE_METADATA.json"
+  },
+  {
+    "id": "FDI03",
+    "title_cn": "已有母公司名称组合中仍观察到 New 项目",
+    "status": "descriptive_computation_verified_coverage_pending",
+    "gate": "Gate 2 supplementary project evidence; Gate 3 claim boundary only",
+    "raw_sha256": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+    "method": {
+      "status": "descriptive_computation_independently_verified_coverage_pending",
+      "gate": "Gate 2 supplementary project evidence; Gate 3 claim boundary only",
+      "raw_sha256": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+      "unit": "project record, not verified unique plant or enterprise",
+      "primary_sample": "Activity exactly Manufacturing; destinations Mexico/Vietnam/Thailand; 2014-2022; all origins/types/statuses retained",
+      "windows": {
+        "main_2014_17_vs_2020_22": {
+          "pre": [
+            2014,
+            2015,
+            2016,
+            2017
+          ],
+          "post": [
+            2020,
+            2021,
+            2022
+          ],
+          "max_month": 12
+        },
+        "equal_2015_17_vs_2020_22": {
+          "pre": [
+            2015,
+            2016,
+            2017
+          ],
+          "post": [
+            2020,
+            2021,
+            2022
+          ],
+          "max_month": 12
+        },
+        "without_2020_2014_17_vs_2021_22": {
+          "pre": [
+            2014,
+            2015,
+            2016,
+            2017
+          ],
+          "post": [
+            2021,
+            2022
+          ],
+          "max_month": 12
+        },
+        "jan_sep_2014_17_vs_2020_23": {
+          "pre": [
+            2014,
+            2015,
+            2016,
+            2017
+          ],
+          "post": [
+            2020,
+            2021,
+            2022,
+            2023
+          ],
+          "max_month": 9
+        }
+      },
+      "counts": "annual means use all fixed calendar years, including zero-count years; shares are pooled record-count shares within each period",
+      "deduplication": "All records retained in primary. Noncontact exact collapse is sensitivity; type-and-parent-preserving core collapse is deliberately aggressive stress, not a true deduplicated series or bound.",
+      "parent_matching": "NFKC plus whitespace and case normalization; exact Source_Country + Parent_Company + Destination_Country; no fuzzy aliases; positive history is observed project history, not proof of operation. Unmatched is not entry.",
+      "sector_scope": "All native fDi sectors with Manufacturing activity. No claim of matching F03 six-sector ISIC universe.",
+      "source_groups": {
+        "China": [
+          "China"
+        ],
+        "Other East Asia": [
+          "Japan",
+          "South Korea",
+          "Taiwan"
+        ],
+        "United States": [
+          "United States"
+        ],
+        "Other parents": "all others, including Hong Kong and Singapore"
+      },
+      "amount_and_jobs": "Not headline weights or production proxies. Vendor units unconfirmed; estimates frequent.",
+      "stats": "Descriptive delivered-sample accounting, no tests, confidence intervals, causality or welfare estimates.",
+      "protected_hashes": {
+        "data\\raw\\fDi_Markets .xlsx": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+        "output\\stylized_facts_2026_09_12\\F03\\fact.json": "c9e5d0bb30126604ea457cf09d47373629fdf6dbf08863a8dbd0fd6aca83f163",
+        "output\\stylized_facts_2026_09_12\\F04\\fact.json": "28ef6693a3fe6f7f13bc6cd8f89ea77903a558d8a5a4ebb2f83b4d093b9c83b7",
+        "output\\stylized_facts_2026_09_12\\F03\\parent_contributions.csv": "1af20a63e36eb3f2e38dec4e58d6484b4f118c6f498e3e949408c90b30d00550",
+        "output\\stylized_facts_2026_09_12\\F04\\country_components.csv": "ad5267e9e8a26f5ab3b337a2e668d13fee96a08dab54272b2067395044b70557"
+      },
+      "checks": {
+        "source_contributions_add_to_total_change": true,
+        "source_shares_sum_to_100": true,
+        "type_counts_add_to_total": true,
+        "parent_history_partition_exact": true,
+        "annual_grid_includes_observed_zero_cells": true,
+        "annual_grid_reconciles": true,
+        "all_protected_files_unchanged": true
+      },
+      "versions": {
+        "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+        "pandas": "3.0.1",
+        "numpy": "2.3.5",
+        "openpyxl": "3.1.5"
+      },
+      "independent_review": "INDEPENDENT_REVIEW.json",
+      "figure_review": "FIGURE_REVIEW.json"
+    },
+    "values": [
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Mexico",
+        "parent_history": "observed_in_pre",
+        "post_n": 107,
+        "post_parent_host_names": 74,
+        "all_post_n": 345,
+        "share_of_post_records_pct": 31.014492753623188,
+        "new_n": 28,
+        "new_share_pct": 26.16822429906542,
+        "expansion_n": 78,
+        "expansion_share_pct": 72.89719626168224,
+        "co_location_n": 1,
+        "co_location_share_pct": 0.9345794392523364
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Mexico",
+        "parent_history": "not_matched_in_pre",
+        "post_n": 238,
+        "post_parent_host_names": 209,
+        "all_post_n": 345,
+        "share_of_post_records_pct": 68.98550724637681,
+        "new_n": 138,
+        "new_share_pct": 57.983193277310924,
+        "expansion_n": 98,
+        "expansion_share_pct": 41.1764705882353,
+        "co_location_n": 2,
+        "co_location_share_pct": 0.8403361344537815
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Vietnam",
+        "parent_history": "observed_in_pre",
+        "post_n": 25,
+        "post_parent_host_names": 16,
+        "all_post_n": 77,
+        "share_of_post_records_pct": 32.467532467532465,
+        "new_n": 13,
+        "new_share_pct": 52.0,
+        "expansion_n": 12,
+        "expansion_share_pct": 48.0,
+        "co_location_n": 0,
+        "co_location_share_pct": 0.0
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Vietnam",
+        "parent_history": "not_matched_in_pre",
+        "post_n": 52,
+        "post_parent_host_names": 48,
+        "all_post_n": 77,
+        "share_of_post_records_pct": 67.53246753246754,
+        "new_n": 40,
+        "new_share_pct": 76.92307692307692,
+        "expansion_n": 12,
+        "expansion_share_pct": 23.076923076923077,
+        "co_location_n": 0,
+        "co_location_share_pct": 0.0
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Thailand",
+        "parent_history": "observed_in_pre",
+        "post_n": 11,
+        "post_parent_host_names": 9,
+        "all_post_n": 53,
+        "share_of_post_records_pct": 20.754716981132077,
+        "new_n": 4,
+        "new_share_pct": 36.36363636363637,
+        "expansion_n": 7,
+        "expansion_share_pct": 63.63636363636363,
+        "co_location_n": 0,
+        "co_location_share_pct": 0.0
+      },
+      {
+        "window": "main_2014_17_vs_2020_22",
+        "variant": "raw_records",
+        "country": "Thailand",
+        "parent_history": "not_matched_in_pre",
+        "post_n": 42,
+        "post_parent_host_names": 42,
+        "all_post_n": 53,
+        "share_of_post_records_pct": 79.24528301886792,
+        "new_n": 28,
+        "new_share_pct": 66.66666666666667,
+        "expansion_n": 14,
+        "expansion_share_pct": 33.333333333333336,
+        "co_location_n": 0,
+        "co_location_share_pct": 0.0
+      }
+    ],
+    "tables": [
+      "FDI03_parent_history.csv",
+      "FDI03_positive_match_records.csv",
+      "window_parent_sector_history_comparisons.csv"
+    ],
+    "limitations": [
+      "New 不等于首次进入",
+      "正向历史匹配不证明在营或唯一实体",
+      "基期未匹配不等于新企业",
+      "泰国小样本不稳健"
+    ],
+    "figure_metadata": "FIGURE_METADATA.json"
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "pdf_one_page": true,
+  "dimensions_mm": [
+    183.00000559488933,
+    137.00000330607094
+  ],
+  "pdf_selectable_text_chars": 841,
+  "fonts": [
+    "ELUGPM+ArialMT",
+    "ELUGPM+Arial-BoldMT"
+  ],
+  "png_pixels": [
+    2161,
+    1618
+  ],
+  "png_dpi": [
+    299.9994,
+    299.9994
+  ],
+  "output_hashes": [
+    {
+      "file": "exploratory_annual_paths_2014_2024.png",
+      "sha256": "7fbd132808b80693a481a04849763988d1cd0d41d95c6f88bdd7f3b74d423b30"
+    },
+    {
+      "file": "exploratory_annual_paths_2014_2024.svg",
+      "sha256": "6a32a3a5a1566f9039b41216d6d6795ea6bdbd009cfd4806513adf73a17b0b6c"
+    },
+    {
+      "file": "exploratory_annual_paths_2014_2024.pdf",
+      "sha256": "1ce5bc4388fdb8bd631c8f7bf960eff740b851b5d71c5bcbc08e22fab25c9c86"
+    }
+  ],
+  "source_table_sha256": "2ba88a02be71d4f37590e8b655a90a6dc14738ab8f0481f2f170a1c87bcd3f34",
+  "visual_review": {
+    "PNG_and_Python_rendered_PDF_inspected": true,
+    "no_cropped_or_overlapping_labels": true,
+    "same_zero_based_scale_within_rows": true,
+    "open_markers_and_dashes_for_2023_2024": true,
+    "unresolved_coverage_and_duplicate_risk_in_footnotes": true,
+    "year_axis_extends_through_2024": true,
+    "notes": "The six panels are legible at 183 mm width. 2023 and 2024 use hollow markers with dashed connecting segments and a light grey background. All supplied rows are shown; no project-type line incorrectly extrapolates into 2024."
+  }
+}

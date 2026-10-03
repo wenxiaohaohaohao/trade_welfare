@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-03",
+  "script": "code\\analysis\\mp_pilot_prepare_2026_10_03.py",
+  "scope": "Mexico, US parent, autos/electronics/machinery; observed targets only",
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "baseline_year": 2017,
+  "endpoint_years": [
+    2019,
+    2022
+  ],
+  "versions": {
+    "python": "3.14.2",
+    "pandas": "3.0.0",
+    "numpy": "2.4.1",
+    "pyarrow": "24.0.0"
+  },
+  "source_files": {
+    "amne_parent": "data/processed/harmonized/production_amne_parent_host_sector_long.parquet",
+    "amne_host": "data/processed/harmonized/production_validation_amne_host_sector_long.parquet",
+    "amne_interim": "data/interim/mne/oecd_amne_mp_shares.parquet",
+    "bea": "data/processed/harmonized/production_bea_mne_source_industry_long.parquet",
+    "bea_interim": "data/interim/mne/bea_us_mne_affiliate_country_industry.parquet",
+    "icio": "data/processed/harmonized/production_icio_source_sector_long.parquet",
+    "crosswalk": "data/processed/concordances/source_sector_crosswalk.parquet",
+    "momentbank": "data/processed/moments/structural_moments.parquet",
+    "F03": "output/stylized_facts_2026_09_12/F03/parent_group_year.csv",
+    "F04": "output/stylized_facts_2026_09_12/F04/native_link_windows.csv"
+  },
+  "input_sha256": {
+    "amne_parent": "6e3d0a77838b9c1d0cbae6445ee9b3f5637114747e51a148162c720d26605bcb",
+    "amne_host": "b9219fbfe2852f5ca7088bcedf290526479147a57c3b63cc0a693194cc499179",
+    "amne_interim": "a7f312c5a7cf0e87a3ecb6552363dae2c0f2e296685000653087a7d86c524131",
+    "bea": "016c7b10891e3770c14eeb9cf0f489bd9d80281c91bd1e10e2a883f76205b514",
+    "bea_interim": "ab2e064459cc9dac8c13eebd7e399e91047133a93e8f35b9821520add7f219e8",
+    "icio": "266ff08c5bd26e00a08cb9f3654b7c83354d02da79cca036d65ccd68d0054110",
+    "crosswalk": "99ab34b27a5a37ec4db4cb2fd65d35c48732d92f5363a04e7565d5b852142fe9",
+    "momentbank": "4ac0a37be357b2e8c4a09bd4410177ec464a693fcb52e450a2674bbec9ee944a",
+    "F03": "4e3f516e8e7fec95d61d2086019ee2573fa08a62c0280c2f954006a1be886487",
+    "F04": "dafd60e8fe48170b850c21c3ced17f2294ccfde24e766a9f389d315858282c73",
+    "data/model_inputs/icio_baseline_2017/X_baseline.csv": "5b364957f6f37f797fb4a33d1119fc23a807d16fd6d8c27f503b4d540177a716",
+    "data/model_inputs/icio_baseline_2017/va_baseline.csv": "a34079aa254941bb3eabe472f0b3dcdee5059d2168d5ccaa6ac73db4f359994a",
+    "data/model_inputs/icio_baseline_2018/X_baseline.csv": "9ed10971e406660075c98b454056615a925710e8795d65b283475256d8d84f0c",
+    "data/model_inputs/icio_baseline_2018/va_baseline.csv": "7517c5a42f5543d0ea14c5cb3bd7c8832be5c58089bb676d8fbe010857d3f481",
+    "data/model_inputs/icio_baseline_2022/X_baseline.csv": "a58661d6f0293101079b0160091fbe03e3be46d0a7528d85540a7aac56bdad31",
+    "data/model_inputs/icio_baseline_2022/va_baseline.csv": "f0bced71bf7643d9af6cc75eae81c85146165d868db377ce7a0ec1dd73b936ef"
+  },
+  "rows": {
+    "observable_targets": 315,
+    "endpoint_changes": 90,
+    "retained_suppressed_observations": 16,
+    "retained_icio_year_not_built": 24,
+    "existing_momentbank_context": 24
+  },
+  "computed": [
+    "source-native levels",
+    "AMNE explicitly defined same-source shares",
+    "2017 to 2019 and 2022 same-source changes",
+    "disclosure and denominator audits",
+    "mechanical BEA ratio diagnostics, never network probabilities"
+  ],
+  "not_computed": [
+    "hgamma",
+    "MP elasticity",
+    "causal effect",
+    "welfare",
+    "trilateral network imputation",
+    "pandemic model"
+  ],
+  "selection_rule": "retain all 3 candidates; recommend first data pilot by mapping eligibility and all 18 BEA endpoint cells available, not change direction",
+  "data_preparation_passed": true,
+  "Gate3_passed": false,
+  "cross_source_measurement_contract_complete": false,
+  "material_passport": {
+    "mode": "run and validate",
+    "data_access": "read existing interim/harmonized; write new outputs only",
+    "verification": "source-native extraction and arithmetic reconciled; economic identification not claimed"
+  }
+}

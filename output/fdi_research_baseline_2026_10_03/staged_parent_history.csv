@@ -1,0 +1,7 @@
+﻿country,baseline_stage,post_stage,all_post_records,matched_parent_host_records,matched_new_records,matched_expansion_records,matched_co_location_records,matched_new_share_pct,same_sector_matched_records,same_sector_new_records,same_sector_new_share_pct
+Mexico,2014-2017,2018-2019,344,116,38,76,2,32.758620689655174,108,36,33.333333333333336
+Mexico,2014-2017,2020-2022,345,107,28,78,1,26.16822429906542,96,21,21.875
+Vietnam,2014-2017,2018-2019,175,44,23,21,0,52.27272727272727,28,14,50.0
+Vietnam,2014-2017,2020-2022,77,25,13,12,0,52.0,20,9,45.0
+Thailand,2014-2017,2018-2019,83,20,6,14,0,30.0,16,5,31.25
+Thailand,2014-2017,2020-2022,53,11,4,7,0,36.36363636363637,9,3,33.333333333333336

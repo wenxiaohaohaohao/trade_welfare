@@ -7,3 +7,10 @@
 *.txt text eol=lf
 .gitignore text eol=lf
 .gitattributes text eol=lf
+
+# Preserve reviewed artifact bytes so recorded SHA-256 values survive checkout.
+/output/audits/fdi_markets_2026_10_02/** -text
+/output/fdi_facts_2026_10_02/** -text
+/output/fdi_research_baseline_2026_10_03/** -text
+/output/fdi_facts_reader_2026_10_03/** -text
+/output/mp_pilot_prepare_2026_10_03/** -text

@@ -1,0 +1,4 @@
+﻿candidate_sector,label_cn,amne_native_sector,bea_native_sector,existing_mapping_eligible,required_bea_endpoint_cells,available_bea_endpoint_cells,suppressed_bea_endpoint_cells,bea_ratio_above_one_year_count,recommended_first_data_pilot,selection_uses_outcome_sign,decision,reason
+autos,汽车,C29,Transportation equipment,False,18,16,2,0,False,False,retain_comparator_with_specific_limits,Transportation equipment cannot be equated with C29; US export endpoint suppressed
+electronics,电子,C26,Computers and electronic products,True,18,13,5,1,False,False,retain_comparator_with_specific_limits,Capital expenditure suppressed at every year; exports/sales diagnostic exceeds one in 2018; do not fill zeros
+machinery,机械,C28,Machinery,True,18,18,0,0,True,False,first_data_pilot_not_calibration_ready,All six native BEA metrics disclosed at selected endpoints; project mapping eligible. Cross-source measurement contract still required

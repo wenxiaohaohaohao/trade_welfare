@@ -1,0 +1,158 @@
+{
+  "status": "PASS",
+  "review_type": "Independent summary-to-presentation audit; no repeated raw-workbook audit or model estimation.",
+  "checks_completed": 1054,
+  "errors": [],
+  "display_tables": {
+    "table_01a_annual_counts": 11,
+    "table_01b_annual_china": 11,
+    "table_02_source_composition": 15,
+    "table_03a_project_types": 9,
+    "table_03b_known_types_2023": 3,
+    "table_04_parent_history": 6,
+    "table_05a_month_windows": 3,
+    "table_05b_field_coverage": 6,
+    "table_06_mp_machinery": 3
+  },
+  "all_nine_display_tables_match_reviewed_sources": true,
+  "figure_data_checks": {
+    "figure_01": 100,
+    "figure_02": 151,
+    "figure_03": 82,
+    "figure_04": 49,
+    "figure_05": 37,
+    "figure_06": 25
+  },
+  "six_HTML_sections_table_figure_notes_interpretation": [
+    {
+      "section": "fact1",
+      "order": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "tables": 2,
+      "figure": "figure_01_trends",
+      "notes": 4,
+      "interpretation_paragraphs": 3
+    },
+    {
+      "section": "fact2",
+      "order": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "tables": 1,
+      "figure": "figure_02_sources",
+      "notes": 4,
+      "interpretation_paragraphs": 3
+    },
+    {
+      "section": "fact3",
+      "order": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "tables": 2,
+      "figure": "figure_03_types",
+      "notes": 4,
+      "interpretation_paragraphs": 3
+    },
+    {
+      "section": "fact4",
+      "order": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "tables": 1,
+      "figure": "figure_04_parent_history",
+      "notes": 4,
+      "interpretation_paragraphs": 3
+    },
+    {
+      "section": "fact5",
+      "order": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "tables": 2,
+      "figure": "figure_05_windows",
+      "notes": 4,
+      "interpretation_paragraphs": 3
+    },
+    {
+      "section": "mp",
+      "order": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "tables": 1,
+      "figure": "figure_06_mp",
+      "notes": 4,
+      "interpretation_paragraphs": 3
+    }
+  ],
+  "narrative_boundaries": {
+    "Mexico_window_reversal_explicit": true,
+    "2023_known_type_denominator_explicit": true,
+    "2023_known_types_are_Jan_Nov_not_Jan_Sep": true,
+    "2024_missing_type_not_zero_filled": true,
+    "2024_parent_field_not_supplied": true,
+    "source_not_unverified_ultimate_control": true,
+    "parent_denominator_records_not_unique_parents": true,
+    "parent_matching_neither_operation_nor_entry": true,
+    "same_native_sector_not_AMNE_crosswalk": true,
+    "MP_denominator_C28_all_origin_output": true,
+    "MP_nominal_million_USD_table_units": true,
+    "no_direct_export_sales_probability": true,
+    "no_claimed_hgamma_estimate": true,
+    "equal_month_comparison_no_annualization": true
+  },
+  "manual_numeric_and_interpretation_review": "All six explanation blocks reviewed; no causal, entry, realized-production or hgamma inference asserted from fDi counts. Mexico month-window reversal, 2023 known-type subsample and 2024 absent fields explicitly distinguished.",
+  "resolved_issue": "AMNE table denominator and text now explicitly refer to Mexico machinery-sector total output, not all industries.",
+  "recommendations": [],
+  "source_hash_matches": {
+    "output\\fdi_research_baseline_2026_10_03\\exploratory_annual_full_year.csv": true,
+    "output\\fdi_research_baseline_2026_10_03\\exploratory_annual_jan_sep.csv": true,
+    "output\\fdi_research_baseline_2026_10_03\\staged_period_full_year.csv": true,
+    "output\\fdi_research_baseline_2026_10_03\\staged_parent_history.csv": true,
+    "output\\mp_pilot_prepare_2026_10_03\\PILOT_SUMMARY.json": true,
+    "output\\fdi_research_baseline_2026_10_03\\EXPLORATORY_INDEPENDENT_REVIEW.json": true,
+    "output\\fdi_research_baseline_2026_10_03\\STAGED_INDEPENDENT_REVIEW.json": true,
+    "output\\mp_pilot_prepare_2026_10_03\\VALIDATION.json": true
+  },
+  "reviewed_report_sha256": {
+    "index.html": "7b11da745a8ea35ab908d187f2ee97bf50bd1752b676d6be1bdb0b5db6b4997c",
+    "FACTS_READER.md": "1b246693b8e2cfb09c1d4e7bddd4eb1dc8c8ffbf9c89a30034fd62f16da27418",
+    "REPORT_MANIFEST.json": "a6e7b5b6d2987ddd5ff3a041a54b88f532a894cbba6780a008ae26ed079f4230"
+  },
+  "checked_display_and_figure_sha256": {
+    "table_01a_annual_counts.csv": "7ed52dbaaefe5cff4fa7731879b3343976f68949134bf7a8eaa94bc603c9034a",
+    "table_01b_annual_china.csv": "b42b5cb03e6bf40143cc881c20d255cfaff72bdac8b84910a00a442a95cd8448",
+    "table_02_source_composition.csv": "a0e9cb6f4cb10ef35fb295afa6143f70ccb4eeafca574b05aadb8ad7ff2fefaf",
+    "table_03a_project_types.csv": "9dd42e7cd08b2f3e9762559ed3778e290403dfec29bad62a7d147ec2b0be1a4e",
+    "table_03b_known_types_2023.csv": "5e71bd4b441c71d495623202f59ac6ffb6c9b5295912ffb41a837b8842f47eb4",
+    "table_04_parent_history.csv": "b62ff6aa0940a4ea04892540d58d1394f686d2464fc4f44c8ac005259975e466",
+    "table_05a_month_windows.csv": "0525122996a4062c3e47188345d5846967dc6caf8dfbbe892775aeca03f6728f",
+    "table_05b_field_coverage.csv": "a5a9c4755747a198c42b4a2255488cd6209ec684e2d6e5e266257bb730a324ff",
+    "table_06_mp_machinery.csv": "64a183dfce20890a8283bfafbc7059ddd45ef08a122882d846d73cf92e7a3bd9",
+    "figure_01_trends_plot_data.csv": "2ba88a02be71d4f37590e8b655a90a6dc14738ab8f0481f2f170a1c87bcd3f34",
+    "figure_02_sources_plot_data.csv": "2877fefe49e65011db45da028df2b65fd809543ab286384ad0076314b1fd1bcd",
+    "figure_03_types_plot_data.csv": "75a0f7eb9d56a937ebae8237c9216bb19d0193d71eced117303b61e081b6c876",
+    "figure_04_parent_history_plot_data.csv": "19a97b02cbe7eb1e2cd63f24b5eed968bd6eda7c45820a04808805f0dd8f747a",
+    "figure_05_windows_plot_data.csv": "1fd1f7ae5e94d62c6216702a26c69274c8cd4fbae13e6ba6b3c5d01d8da7e431",
+    "figure_06_mp_plot_data.csv": "7b24c2a972a4f4c587f7baf6eced43bad8a3c3fbfba1b8e2aafb55fc0aa22003"
+  },
+  "scope_limit": "Numerical and semantic display consistency plus HTML DOM/order and image-byte checks. Browser layout QA remains in the separate visual review."
+}

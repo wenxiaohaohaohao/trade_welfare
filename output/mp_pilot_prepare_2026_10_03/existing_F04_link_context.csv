@@ -1,0 +1,4 @@
+﻿connector_iso3,analysis_sector,sector_oecd,parent_country_iso3,pre_musd,post_musd,change_musd,interpretation
+MEX,autos,C29,USA,30043.360657267574,40112.654336616353,10069.293679348775,aggregate parent-host-native-sector link; not incumbent firms
+MEX,electronics,C26,USA,6128.373637312322,4425.6844623029319,-1702.689175009391,aggregate parent-host-native-sector link; not incumbent firms
+MEX,machinery,C28,USA,6187.5866153108345,7630.0818063309598,1442.4951910201253,aggregate parent-host-native-sector link; not incumbent firms

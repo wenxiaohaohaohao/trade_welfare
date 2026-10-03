@@ -1,0 +1,7 @@
+﻿window,variant,country,parent_history,post_n,post_parent_host_names,all_post_n,share_of_post_records_pct,new_n,new_share_pct,expansion_n,expansion_share_pct,co_location_n,co_location_share_pct
+main_2014_17_vs_2020_22,raw_records,Mexico,observed_in_pre,107,74,345,31.014492753623188,28,26.168224299065422,78,72.89719626168224,1,0.93457943925233644
+main_2014_17_vs_2020_22,raw_records,Mexico,not_matched_in_pre,238,209,345,68.985507246376812,138,57.983193277310924,98,41.176470588235297,2,0.84033613445378152
+main_2014_17_vs_2020_22,raw_records,Vietnam,observed_in_pre,25,16,77,32.467532467532465,13,52,12,48,0,0
+main_2014_17_vs_2020_22,raw_records,Vietnam,not_matched_in_pre,52,48,77,67.532467532467535,40,76.92307692307692,12,23.076923076923077,0,0
+main_2014_17_vs_2020_22,raw_records,Thailand,observed_in_pre,11,9,53,20.754716981132077,4,36.363636363636367,7,63.636363636363633,0,0
+main_2014_17_vs_2020_22,raw_records,Thailand,not_matched_in_pre,42,42,53,79.245283018867923,28,66.666666666666671,14,33.333333333333336,0,0

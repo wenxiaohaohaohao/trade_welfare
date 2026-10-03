@@ -1,0 +1,250 @@
+{
+  "backend": "Python / matplotlib",
+  "font": "Microsoft YaHei",
+  "source_hashes": {
+    "output\\fdi_research_baseline_2026_10_03\\exploratory_annual_full_year.csv": "2ba88a02be71d4f37590e8b655a90a6dc14738ab8f0481f2f170a1c87bcd3f34",
+    "output\\fdi_research_baseline_2026_10_03\\exploratory_annual_jan_sep.csv": "431685eab76ae46e6da7d9e4ecc4a3b0bd6c12c47db05ade8357a3a65690153e",
+    "output\\fdi_research_baseline_2026_10_03\\staged_period_full_year.csv": "a1d332094ee1d947ab6db0eee930e6bf5b0a434d4f327f6f1a05a43bb7020efe",
+    "output\\fdi_research_baseline_2026_10_03\\staged_parent_history.csv": "b137427ed51bbca494beaa20f873b851d8aab8bea1abe7ef6f3189a807c8a46b",
+    "output\\mp_pilot_prepare_2026_10_03\\PILOT_SUMMARY.json": "eec7786a23d8e7ebcf4a3e408a4343fc66fa3c870d4918eea45055a5003f821c"
+  },
+  "figures": [
+    {
+      "figure": "figure_01_trends",
+      "core_conclusion": "三国项目记录数与中国来源份额的年度轨迹不同；2023—2024年暂定数据单独标记。",
+      "evidence_chain": "三列为国家，两行为项目数和中国份额，数据范围完整延伸到2024年。",
+      "archetype": "quantitative grid",
+      "backend": "Python / matplotlib",
+      "dimensions_mm": [
+        183,
+        117.0
+      ],
+      "sources": [
+        "exploratory_annual_full_year.csv"
+      ],
+      "plot_data": {
+        "file": "figure_01_trends_plot_data.csv",
+        "sha256": "2ba88a02be71d4f37590e8b655a90a6dc14738ab8f0481f2f170a1c87bcd3f34",
+        "rows": 33
+      },
+      "notes_for_report": [
+        "全部为Manufacturing活动记录，保留所有来源和项目状态。",
+        "中国份额分母为当年该国全部交付Manufacturing记录。",
+        "2023—2024年空心点/虚线为待补核记录，不能视为已确认总体变化；潜在重复不删除。"
+      ],
+      "statistics": "Descriptive accounting only; no tests, confidence intervals, causal attribution or welfare calculation",
+      "exports": [
+        {
+          "file": "figure_01_trends.png",
+          "sha256": "d3f887e4d410d4d63afa246eff5e761a952ef22ef11c21f76629ba8d9e326150"
+        },
+        {
+          "file": "figure_01_trends.svg",
+          "sha256": "43c89640e553e33b69e6fc1e411c5adf31ddbcf5167c26d999275f430a187946"
+        },
+        {
+          "file": "figure_01_trends.pdf",
+          "sha256": "f8673726a909befb56205acb246c4695598b0ffb602f2acd3672e4d62670ad81"
+        }
+      ]
+    },
+    {
+      "figure": "figure_02_sources",
+      "core_conclusion": "来源构成显示中国、其他东亚、美国和其他来源的不同变化路径。",
+      "evidence_chain": "三国五阶段100%堆叠条形，右侧n为全部来源记录总数。",
+      "archetype": "quantitative grid",
+      "backend": "Python / matplotlib",
+      "dimensions_mm": [
+        183,
+        110.0
+      ],
+      "sources": [
+        "staged_period_full_year.csv",
+        "exploratory_annual_full_year.csv"
+      ],
+      "plot_data": {
+        "file": "figure_02_sources_plot_data.csv",
+        "sha256": "2877fefe49e65011db45da028df2b65fd809543ab286384ad0076314b1fd1bcd",
+        "rows": 15
+      },
+      "notes_for_report": [
+        "前三期按阶段记录数合并计算，不是年度份额简单平均。",
+        "Other East Asia仅包括Japan、South Korea、Taiwan，Hong Kong和Singapore在其他来源。",
+        "2023与2024为待补核全年交付记录，后期来源份额受覆盖和重复风险影响。"
+      ],
+      "statistics": "Descriptive accounting only; no tests, confidence intervals, causal attribution or welfare calculation",
+      "exports": [
+        {
+          "file": "figure_02_sources.png",
+          "sha256": "43e114d99e4fc8ed551841d2a1589f96e8f6be3665881b2911037fabeb571058"
+        },
+        {
+          "file": "figure_02_sources.svg",
+          "sha256": "f2d24c951319c048d34b0d1e2c6f711390123619be1118cfb8447d7868f8e743"
+        },
+        {
+          "file": "figure_02_sources.pdf",
+          "sha256": "1d7056d4c487d57efd98681aa0edef0984c35ab05a748ef4e4f91e1aec11fbac"
+        }
+      ]
+    },
+    {
+      "figure": "figure_03_types",
+      "core_conclusion": "扩建份额上升不等于扩建记录数量持续增加。",
+      "evidence_chain": "上排显示新建/扩建/增设活动份额，下排将同一扩建记录数除以阶段年数，分开显示结构与数量。",
+      "archetype": "quantitative grid",
+      "backend": "Python / matplotlib",
+      "dimensions_mm": [
+        183,
+        133.0
+      ],
+      "sources": [
+        "staged_period_full_year.csv"
+      ],
+      "plot_data": {
+        "file": "figure_03_types_plot_data.csv",
+        "sha256": "75a0f7eb9d56a937ebae8237c9216bb19d0193d71eced117303b61e081b6c876",
+        "rows": 9
+      },
+      "notes_for_report": [
+        "只比较2014—17、2018—19、2020—22三个完整年度阶段。",
+        "2023类型已知子样本与全年口径不同，未混入此图；2024类型缺失，不能画成零。",
+        "New不是首次企业进入，Expansion也不是实际产出增长。"
+      ],
+      "statistics": "Descriptive accounting only; no tests, confidence intervals, causal attribution or welfare calculation",
+      "exports": [
+        {
+          "file": "figure_03_types.png",
+          "sha256": "ccd3099b59e98bffc37f9c45c05bf5c080f3f36ee58e321df43fdea14706456e"
+        },
+        {
+          "file": "figure_03_types.svg",
+          "sha256": "fc2ae47f3fc1a3c4a47190746ea83eeb14ae6630c8b8e324a5e8bd947e53cd20"
+        },
+        {
+          "file": "figure_03_types.pdf",
+          "sha256": "efdc1eed105af01e17a25646ffdd5846016bd8783401b9b295618c849d81accd"
+        }
+      ]
+    },
+    {
+      "figure": "figure_04_parent_history",
+      "core_conclusion": "既往项目历史与后期新建项目可以共存，不能把既有联系直接等同于原有工厂扩张。",
+      "evidence_chain": "两行分别使用母国+规范母公司名称+目的国、再加同一原生行业匹配。柱上显示New数/匹配组总数。",
+      "archetype": "quantitative grid",
+      "backend": "Python / matplotlib",
+      "dimensions_mm": [
+        183,
+        136.0
+      ],
+      "sources": [
+        "staged_parent_history.csv"
+      ],
+      "plot_data": {
+        "file": "figure_04_parent_history_plot_data.csv",
+        "sha256": "19a97b02cbe7eb1e2cd63f24b5eed968bd6eda7c45820a04808805f0dd8f747a",
+        "rows": 12
+      },
+      "notes_for_report": [
+        "固定基期2014—2017年，分别查看两个后期。",
+        "母公司名称作NFKC、空格、大小写标准化，不模糊匹配。",
+        "正向历史匹配不证明实际在营；未匹配不等于新进入；泰国分母尤其小。"
+      ],
+      "statistics": "Descriptive accounting only; no tests, confidence intervals, causal attribution or welfare calculation",
+      "exports": [
+        {
+          "file": "figure_04_parent_history.png",
+          "sha256": "499e4836a0d691ab1c534b41cec0f336eb88f8db376d35f360ae25eeb03198ac"
+        },
+        {
+          "file": "figure_04_parent_history.svg",
+          "sha256": "0b7c85cf5678243618083c8eee1f61a8f78d36edb43a27f62e17fb7be6e17256"
+        },
+        {
+          "file": "figure_04_parent_history.pdf",
+          "sha256": "1bd0fbd39de27dc8f5f3ef1ca3afec3d96c843c980a599f6695d4a0d9e440f0f"
+        }
+      ]
+    },
+    {
+      "figure": "figure_05_windows",
+      "core_conclusion": "墨西哥2023—2024中国份额的变化方向依赖全年还是同1—9月窗口。",
+      "evidence_chain": "两个窗口都使用对应时期中国记录/所有来源记录，并列画出两年变化。",
+      "archetype": "quantitative grid",
+      "backend": "Python / matplotlib",
+      "dimensions_mm": [
+        183,
+        95.0
+      ],
+      "sources": [
+        "exploratory_annual_full_year.csv",
+        "exploratory_annual_jan_sep.csv"
+      ],
+      "plot_data": {
+        "file": "figure_05_windows_plot_data.csv",
+        "sha256": "1fd1f7ae5e94d62c6216702a26c69274c8cd4fbae13e6ba6b3c5d01d8da7e431",
+        "rows": 12
+      },
+      "notes_for_report": [
+        "不是稳健性识别检验，只是相同月份口径核查。",
+        "两个窗口仍有2024字段/重复及覆盖问题；同1—9月没有证明完整总体变化。",
+        "没有将九个月乘4/3，也没有把九个月直接与全年比较。"
+      ],
+      "statistics": "Descriptive accounting only; no tests, confidence intervals, causal attribution or welfare calculation",
+      "exports": [
+        {
+          "file": "figure_05_windows.png",
+          "sha256": "31b69027006fcd54be3efbdcbad1d5a0f102d66f5f59fbeea1675e5ca18fa6f1"
+        },
+        {
+          "file": "figure_05_windows.svg",
+          "sha256": "f85e0e3fb16741fff8fa2634d604276d4622825c221c54edb473f316a14d5077"
+        },
+        {
+          "file": "figure_05_windows.pdf",
+          "sha256": "386451fd785d22ba9cc714d47dbade04b45bc1de14eb12d02799223937f0810d"
+        }
+      ]
+    },
+    {
+      "figure": "figure_06_mp",
+      "core_conclusion": "美国母公司机械业产出水平与其占东道国总产出份额呈现不同幅度的变化。",
+      "evidence_chain": "两个独立坐标面板分别展示AMNE产出及同源分子/分母份额，只画2017、2019、2022三个实际端点。",
+      "archetype": "quantitative grid",
+      "backend": "Python / matplotlib",
+      "dimensions_mm": [
+        183,
+        99.0
+      ],
+      "sources": [
+        "mp_pilot_prepare_2026_10_03/PILOT_SUMMARY.json"
+      ],
+      "plot_data": {
+        "file": "figure_06_mp_plot_data.csv",
+        "sha256": "7b24c2a972a4f4c587f7baf6eced43bad8a3c3fbfba1b8e2aafb55fc0aa22003",
+        "rows": 3
+      },
+      "notes_for_report": [
+        "产出为当年价百万美元除100转换为亿美元，未作价格调整。",
+        "分母为墨西哥C28全部母国及本土产出，不是仅外资企业总产出。",
+        "未插值年份、未双轴、未把观察到的份额变化反推hgamma或福利。"
+      ],
+      "statistics": "Descriptive accounting only; no tests, confidence intervals, causal attribution or welfare calculation",
+      "exports": [
+        {
+          "file": "figure_06_mp.png",
+          "sha256": "582cf4bb03339a5e6481588d472a0ebc3a749dc068f8ea07128a01de554adef8"
+        },
+        {
+          "file": "figure_06_mp.svg",
+          "sha256": "f01ce50ca962146b1340ac426e16e353cf15eb2d071bd95d75bea8e527a2933f"
+        },
+        {
+          "file": "figure_06_mp.pdf",
+          "sha256": "53436225b6fe7152e5b2ff3887b39c30edc88d6c64b427bd61b24d8549290f7d"
+        }
+      ]
+    }
+  ],
+  "previous_sources_unchanged": true
+}

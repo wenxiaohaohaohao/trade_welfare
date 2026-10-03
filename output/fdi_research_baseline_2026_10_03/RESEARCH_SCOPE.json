@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-03",
+  "user_direction": "Continue useful research with the available data while the supplier supplies corrections; retain pandemic timing as descriptive context and defer detailed identification. The user subsequently explicitly requested exploratory trend extension through 2023 and 2024 despite incomplete delivery.",
+  "gate_served": ["Gate 2 descriptive baseline", "Gate 3 observed-moment preparation"],
+  "authorized_work": [
+    "Build annual and staged Manufacturing project-record facts for Mexico, Vietnam and Thailand using the audited delivery.",
+    "Keep complete-year and matched January-September series separate.",
+    "Extend available common-field count and source-composition trends through 2024 using every delivered Manufacturing record, with explicit incomplete-coverage markers; keep unavailable type and parent information missing.",
+    "Keep positive parent-history evidence distinct from first enterprise entry.",
+    "Extract comparable candidate MP moments from existing AMNE, BEA and ICIO sources, preserving native classifications and disclosure flags.",
+    "Specify a small next calibration test and its acceptance conditions without inventing parameter estimates."
+  ],
+  "not_part_of_this_stage": [
+    "A dedicated pandemic causal-identification model or a new robustness search.",
+    "New-country procurement or reconstruction of a full enterprise-history database.",
+    "A completed MP elasticity estimate, hgamma calibration, solver migration, or welfare estimate."
+  ],
+  "decision_tests": {
+    "novelty": "The new descriptions are supporting evidence. The eventual claim must explain differences in ownership-linked production adjustment beyond gross trade rerouting.",
+    "discipline": "Candidate targets must carry an economic definition, denominator, source, unit, industry mapping and disclosure condition. Project counts are not production or cost parameters.",
+    "quantitative_payoff": "Not tested at this preparation stage. The next model test must determine whether an observed-moment-constrained MP change affects the stated equilibrium channel."
+  },
+  "statistical_interpretation_scan": {
+    "coverage": "11/11 reviewed for the descriptive baseline and proposed use",
+    "simpson_paradox": "Keep country, source and project type disaggregated; do not claim a uniform within-industry change from a pooled fact. The previous restricted common-sector check is supplementary, not proof against every aggregation effect.",
+    "ecological_fallacy": "Country-industry MP persistence and project New are not enterprise survival or first entry.",
+    "berkson_selection": "Limit claims to delivered Manufacturing records and separately flag disclosure-selected MP targets; coverage completeness is not established by successful arithmetic.",
+    "collider_bias": "No causal regression or new conditioning on successful opening; all project statuses remain in the descriptive sample.",
+    "base_rate_neglect": "Present counts and period denominators alongside shares; show level and share responses separately.",
+    "regression_to_mean": "Stages are fixed by calendar periods, not chosen for extreme outcome values; no causal improvement claim.",
+    "survivorship": "Do not condition project facts on eventual opening; do not interpret suppressed BEA observations as zeros.",
+    "look_elsewhere": "Retain all three destination countries and all three proposed pilot industries, including incompatible or suppressed cells; no significance selection.",
+    "forking_paths": "Archive the prior facts unchanged, record the new stage definitions and keep January-September comparisons separate from full years.",
+    "correlation_causation": "Stages describe timing; neither pre/post differences nor stable signs identify trade-policy or pandemic effects.",
+    "reverse_causality": "No causal direction is assigned to project activity, trade changes or production changes at this stage."
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "pdf_one_page": true,
+  "pdf_width_mm": 183.00000559488933,
+  "pdf_height_mm": 162.99999898274737,
+  "pdf_selectable_text_chars": 665,
+  "font_names": [
+    "ELUGPM+ArialMT",
+    "ELUGPM+Arial-BoldMT"
+  ],
+  "png_pixels": [
+    2161,
+    1925
+  ],
+  "png_dpi": [
+    299.9994,
+    299.9994
+  ],
+  "output_hashes_match": true,
+  "all_text_inside_canvas": true,
+  "visual_review": {
+    "PNG_and_Python_rendered_PDF_inspected": true,
+    "no_cropped_or_overlapping_text": true,
+    "common_scale_within_each_metric_row": true,
+    "all_axes_zero_based": true,
+    "only_2020_2022_light_grey_marker": true,
+    "no_causal_title_or_pandemic_estimate": true,
+    "full_years_only_no_2023_mixture": true,
+    "notes": "Nine panels readable at the 183 mm print width. Annual scales and zero origins are common within metric rows. Grey region only denotes a period. The separate January-September extension is clearly described in the footnote."
+  },
+  "figure_output_hashes": [
+    {
+      "file": "staged_annual_paths.png",
+      "sha256": "258b04246f49408b5ba5ba239955e6e79c078c4ee812e5d7c17c77dbf49e8175"
+    },
+    {
+      "file": "staged_annual_paths.svg",
+      "sha256": "3a18bee7981fa982b023b9c5a8472395712de589be37aec444f6d8f7c0abb310"
+    },
+    {
+      "file": "staged_annual_paths.pdf",
+      "sha256": "2a770dc34a3c37bdf655f07d896542101f258306f29048ff19d5a090763ae002"
+    }
+  ]
+}

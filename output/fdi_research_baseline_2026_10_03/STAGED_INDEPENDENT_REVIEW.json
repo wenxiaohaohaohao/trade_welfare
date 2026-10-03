@@ -1,0 +1,133 @@
+{
+  "status": "PASS",
+  "method": "Independent openpyxl read_only parse of original workbook; stdlib counts, exact Fraction shares and year denominators; no producer import.",
+  "raw_sha256": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+  "raw_unchanged": true,
+  "protected_hash_matches": {
+    "data\\raw\\fDi_Markets .xlsx": true,
+    "output\\stylized_facts_2026_09_12\\F03\\fact.json": true,
+    "output\\stylized_facts_2026_09_12\\F04\\fact.json": true,
+    "output\\stylized_facts_2026_09_12\\F03\\parent_contributions.csv": true,
+    "output\\stylized_facts_2026_09_12\\F04\\country_components.csv": true
+  },
+  "existing_csv_manifest_mismatches": [],
+  "existing_annual_grid_cells_checked": 324,
+  "staged_table_row_counts": {
+    "staged_annual_full_year.csv": 27,
+    "staged_period_full_year.csv": 9,
+    "staged_annual_jan_sep.csv": 30,
+    "staged_period_jan_sep.csv": 12,
+    "staged_period_changes_full_year.csv": 9,
+    "staged_parent_history.csv": 6
+  },
+  "numeric_checks_by_table": {
+    "existing_annual_country_type_source.csv": 324,
+    "staged_annual_full_year.csv": 567,
+    "staged_period_full_year.csv": 180,
+    "staged_annual_jan_sep.csv": 630,
+    "staged_period_jan_sep.csv": 240,
+    "staged_period_changes_full_year.csv": 90,
+    "staged_parent_history.csv": 54
+  },
+  "total_numeric_checks": 2085,
+  "staged_numeric_checks": 1761,
+  "errors": [],
+  "parent_history_independent_results": [
+    {
+      "country": "Mexico",
+      "post_stage": "2018-2019",
+      "all_post_records": 344,
+      "matched_parent_host_records": 116,
+      "matched_new_records": 38,
+      "matched_expansion_records": 76,
+      "matched_co_location_records": 2,
+      "matched_new_share_pct": 32.758620689655174,
+      "same_sector_matched_records": 108,
+      "same_sector_new_records": 36,
+      "same_sector_new_share_pct": 33.333333333333336
+    },
+    {
+      "country": "Mexico",
+      "post_stage": "2020-2022",
+      "all_post_records": 345,
+      "matched_parent_host_records": 107,
+      "matched_new_records": 28,
+      "matched_expansion_records": 78,
+      "matched_co_location_records": 1,
+      "matched_new_share_pct": 26.16822429906542,
+      "same_sector_matched_records": 96,
+      "same_sector_new_records": 21,
+      "same_sector_new_share_pct": 21.875
+    },
+    {
+      "country": "Vietnam",
+      "post_stage": "2018-2019",
+      "all_post_records": 175,
+      "matched_parent_host_records": 44,
+      "matched_new_records": 23,
+      "matched_expansion_records": 21,
+      "matched_co_location_records": 0,
+      "matched_new_share_pct": 52.27272727272727,
+      "same_sector_matched_records": 28,
+      "same_sector_new_records": 14,
+      "same_sector_new_share_pct": 50.0
+    },
+    {
+      "country": "Vietnam",
+      "post_stage": "2020-2022",
+      "all_post_records": 77,
+      "matched_parent_host_records": 25,
+      "matched_new_records": 13,
+      "matched_expansion_records": 12,
+      "matched_co_location_records": 0,
+      "matched_new_share_pct": 52.0,
+      "same_sector_matched_records": 20,
+      "same_sector_new_records": 9,
+      "same_sector_new_share_pct": 45.0
+    },
+    {
+      "country": "Thailand",
+      "post_stage": "2018-2019",
+      "all_post_records": 83,
+      "matched_parent_host_records": 20,
+      "matched_new_records": 6,
+      "matched_expansion_records": 14,
+      "matched_co_location_records": 0,
+      "matched_new_share_pct": 30.0,
+      "same_sector_matched_records": 16,
+      "same_sector_new_records": 5,
+      "same_sector_new_share_pct": 31.25
+    },
+    {
+      "country": "Thailand",
+      "post_stage": "2020-2022",
+      "all_post_records": 53,
+      "matched_parent_host_records": 11,
+      "matched_new_records": 4,
+      "matched_expansion_records": 7,
+      "matched_co_location_records": 0,
+      "matched_new_share_pct": 36.36363636363637,
+      "same_sector_matched_records": 9,
+      "same_sector_new_records": 3,
+      "same_sector_new_share_pct": 33.333333333333336
+    }
+  ],
+  "full_year_sample_records_2014_2022": 2349,
+  "source_country_missing_records": 0,
+  "delivered_record_scope": "Raw project records; Manufacturing activity; all types and statuses. Full-year results stop in 2022; 2023 only appears in consistently Jan-Sep comparisons.",
+  "interpretation_boundaries": [
+    "Mean denominators are the complete fixed calendar-year count for the named month window; no Jan-Sep annualization.",
+    "Shares pool records within each period; they are not unweighted averages of annual shares.",
+    "Parent matches refer to observed announcement history only; unmatched is not new entry.",
+    "2018-2019 is a descriptive early-trade-conflict period; 2020-2022 is not a causal post-treatment estimand and excluding 2020 does not remove pandemic exposure.",
+    "Existing sample_quality.csv source_missing_pct means Inf_Source missingness, not Source_Country."
+  ],
+  "checked_staged_sha256": {
+    "staged_annual_full_year.csv": "28c8441e4469431fcf03c57ed93eca777589e7221fd956bfcf885731c55d98ed",
+    "staged_period_full_year.csv": "a1d332094ee1d947ab6db0eee930e6bf5b0a434d4f327f6f1a05a43bb7020efe",
+    "staged_annual_jan_sep.csv": "21e0a731872713b08f7246507ab4271c4645853510ff78d07ee450ae7dfaa10c",
+    "staged_period_jan_sep.csv": "4f514d0c1430ce95f97737d1c36d5108990570aaba76dd3efd67ff364c206df9",
+    "staged_period_changes_full_year.csv": "37d00bfb52304057b47c13d9ce9263880066cdfdad3f0d24b8689e7603124e83",
+    "staged_parent_history.csv": "b137427ed51bbca494beaa20f873b851d8aab8bea1abe7ef6f3189a807c8a46b"
+  }
+}

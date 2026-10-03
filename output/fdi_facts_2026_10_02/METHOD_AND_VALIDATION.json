@@ -1,0 +1,108 @@
+{
+  "status": "descriptive_computation_independently_verified_coverage_pending",
+  "gate": "Gate 2 supplementary project evidence; Gate 3 claim boundary only",
+  "raw_sha256": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+  "unit": "project record, not verified unique plant or enterprise",
+  "primary_sample": "Activity exactly Manufacturing; destinations Mexico/Vietnam/Thailand; 2014-2022; all origins/types/statuses retained",
+  "windows": {
+    "main_2014_17_vs_2020_22": {
+      "pre": [
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "post": [
+        2020,
+        2021,
+        2022
+      ],
+      "max_month": 12
+    },
+    "equal_2015_17_vs_2020_22": {
+      "pre": [
+        2015,
+        2016,
+        2017
+      ],
+      "post": [
+        2020,
+        2021,
+        2022
+      ],
+      "max_month": 12
+    },
+    "without_2020_2014_17_vs_2021_22": {
+      "pre": [
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "post": [
+        2021,
+        2022
+      ],
+      "max_month": 12
+    },
+    "jan_sep_2014_17_vs_2020_23": {
+      "pre": [
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "post": [
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "max_month": 9
+    }
+  },
+  "counts": "annual means use all fixed calendar years, including zero-count years; shares are pooled record-count shares within each period",
+  "deduplication": "All records retained in primary. Noncontact exact collapse is sensitivity; type-and-parent-preserving core collapse is deliberately aggressive stress, not a true deduplicated series or bound.",
+  "parent_matching": "NFKC plus whitespace and case normalization; exact Source_Country + Parent_Company + Destination_Country; no fuzzy aliases; positive history is observed project history, not proof of operation. Unmatched is not entry.",
+  "sector_scope": "All native fDi sectors with Manufacturing activity. No claim of matching F03 six-sector ISIC universe.",
+  "source_groups": {
+    "China": [
+      "China"
+    ],
+    "Other East Asia": [
+      "Japan",
+      "South Korea",
+      "Taiwan"
+    ],
+    "United States": [
+      "United States"
+    ],
+    "Other parents": "all others, including Hong Kong and Singapore"
+  },
+  "amount_and_jobs": "Not headline weights or production proxies. Vendor units unconfirmed; estimates frequent.",
+  "stats": "Descriptive delivered-sample accounting, no tests, confidence intervals, causality or welfare estimates.",
+  "protected_hashes": {
+    "data\\raw\\fDi_Markets .xlsx": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+    "output\\stylized_facts_2026_09_12\\F03\\fact.json": "c9e5d0bb30126604ea457cf09d47373629fdf6dbf08863a8dbd0fd6aca83f163",
+    "output\\stylized_facts_2026_09_12\\F04\\fact.json": "28ef6693a3fe6f7f13bc6cd8f89ea77903a558d8a5a4ebb2f83b4d093b9c83b7",
+    "output\\stylized_facts_2026_09_12\\F03\\parent_contributions.csv": "1af20a63e36eb3f2e38dec4e58d6484b4f118c6f498e3e949408c90b30d00550",
+    "output\\stylized_facts_2026_09_12\\F04\\country_components.csv": "ad5267e9e8a26f5ab3b337a2e668d13fee96a08dab54272b2067395044b70557"
+  },
+  "checks": {
+    "source_contributions_add_to_total_change": true,
+    "source_shares_sum_to_100": true,
+    "type_counts_add_to_total": true,
+    "parent_history_partition_exact": true,
+    "annual_grid_includes_observed_zero_cells": true,
+    "annual_grid_reconciles": true,
+    "all_protected_files_unchanged": true
+  },
+  "versions": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "pandas": "3.0.1",
+    "numpy": "2.3.5",
+    "openpyxl": "3.1.5"
+  },
+  "independent_review": "INDEPENDENT_REVIEW.json",
+  "figure_review": "FIGURE_REVIEW.json"
+}

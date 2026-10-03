@@ -1,0 +1,111 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "id": "FDI01",
+      "pdf_one_page": true,
+      "pdf_width_mm": 183.00000559488933,
+      "selectable_text_chars": 711,
+      "pdf_fonts": [
+        "ELUGPM+ArialMT",
+        "ELUGPM+Arial-BoldMT"
+      ],
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "all_output_hashes_match": true
+    },
+    {
+      "id": "FDI02",
+      "pdf_one_page": true,
+      "pdf_width_mm": 183.00000559488933,
+      "selectable_text_chars": 667,
+      "pdf_fonts": [
+        "ELUGPM+ArialMT",
+        "ELUGPM+Arial-BoldMT"
+      ],
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "all_output_hashes_match": true
+    },
+    {
+      "id": "FDI03",
+      "pdf_one_page": true,
+      "pdf_width_mm": 183.00000559488933,
+      "selectable_text_chars": 742,
+      "pdf_fonts": [
+        "ELUGPM+ArialMT",
+        "ELUGPM+Arial-BoldMT"
+      ],
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "all_output_hashes_match": true
+    }
+  ],
+  "pdf_preview": "F:\\working_paper_wenxiao\\trade_welfare\\tmp\\fdi_facts_matplotlib\\pdf_review.png",
+  "figure_outputs": [
+    {
+      "filename": "FDI01_type_composition.png",
+      "sha256": "84aaec8d31de2f7f87f1641b99c640f9bae3b6dc0dd8486cebf810632299669f",
+      "bytes": 225880
+    },
+    {
+      "filename": "FDI01_type_composition.svg",
+      "sha256": "3617af4916e331f2c669bc4a72defbd9f4dd6c6514e636ca90215b42d6ade2d2",
+      "bytes": 18943
+    },
+    {
+      "filename": "FDI01_type_composition.pdf",
+      "sha256": "1ce003a49a90cb9786aabaa2e4866e780a5923bc87ae484c09f76b6d06c93474",
+      "bytes": 49088
+    },
+    {
+      "filename": "FDI02_china_share_and_count.png",
+      "sha256": "d733e4a3d417d0f73c68c0aae39b982f69d59fbdcf55e41d6db918a5b3ce6665",
+      "bytes": 197558
+    },
+    {
+      "filename": "FDI02_china_share_and_count.svg",
+      "sha256": "fafc3285ebef88735a37933509be97c87a800a330760e327320534a3c08d10b0",
+      "bytes": 19719
+    },
+    {
+      "filename": "FDI02_china_share_and_count.pdf",
+      "sha256": "e3c682cb8c50888589536c61fd360f7b754fb9b6968378dcde865d17433a5c1b",
+      "bytes": 50576
+    },
+    {
+      "filename": "FDI03_previously_observed_parents.png",
+      "sha256": "7fd680035393ef12daf345cf6d5e35e1bc78253071120c5ff43edb07fa6b9dc4",
+      "bytes": 194775
+    },
+    {
+      "filename": "FDI03_previously_observed_parents.svg",
+      "sha256": "0f76d255fd46d94c4e9f1b270499bdc92d65df639c4569b48168486bff580e21",
+      "bytes": 14149
+    },
+    {
+      "filename": "FDI03_previously_observed_parents.pdf",
+      "sha256": "0ed7757a587382fb4b4140f20441827c7baf8e7abaefc475269b08885028282c",
+      "bytes": 50719
+    }
+  ],
+  "manual_visual_review": {
+    "png_and_python_rendered_pdf_inspected": true,
+    "labels_clear_and_not_clipped": true,
+    "denominators_and_count_units_visible": true,
+    "shares_and_counts_agree_with_source_tables": true,
+    "color_and_marker_redundancy": true,
+    "white_background": true,
+    "no_claim_of_verified_unique_projects": true,
+    "Thailand_not_presented_as_robust_common_pattern": true,
+    "figure_03_positive_history_not_operating_presence": true,
+    "notes": "Reviewed all three PNG previews and Python-rendered PDF pages. No cropped labels, overlapping values or visually misleading axes. Figures 1 and 3 start share axes at zero and show every category; figure 2 uses zero-based scales, distinct marker shapes and separately annualized counts. Footnotes remain legible at 183 mm width."
+  },
+  "metadata_sha256": "d878ce01719ab0c76339e95ebaac11d147d2881753acf7836ae4714bb521925a"
+}

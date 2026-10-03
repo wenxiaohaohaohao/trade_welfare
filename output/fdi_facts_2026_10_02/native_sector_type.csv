@@ -1,0 +1,153 @@
+﻿country,sector,period,n,annual_mean,New,Expansion,Co-Location,expansion_share_pct
+Mexico,Aerospace,pre,34,8.5,13,21,0,61.764705882352942
+Mexico,Aerospace,post,10,3.3333333333333335,2,8,0,80
+Mexico,Automotive OEM,pre,27,6.75,12,15,0,55.555555555555557
+Mexico,Automotive OEM,post,21,7,7,14,0,66.666666666666657
+Mexico,Automotive components,pre,254,63.5,171,82,1,32.283464566929133
+Mexico,Automotive components,post,79,26.333333333333332,30,49,0,62.025316455696199
+Mexico,Building materials,pre,3,0.75,3,0,0,0
+Mexico,Building materials,post,0,0,0,0,0,
+Mexico,Business machines & equipment,pre,1,0.25,0,1,0,100
+Mexico,Business machines & equipment,post,1,0.33333333333333331,0,1,0,100
+Mexico,Ceramics & glass,pre,8,2,2,6,0,75
+Mexico,Ceramics & glass,post,1,0.33333333333333331,0,1,0,100
+Mexico,Chemicals,pre,32,8,17,13,2,40.625
+Mexico,Chemicals,post,14,4.666666666666667,9,4,1,28.571428571428569
+Mexico,"Coal, oil & gas",pre,1,0.25,1,0,0,0
+Mexico,"Coal, oil & gas",post,2,0.66666666666666663,2,0,0,0
+Mexico,Communications,pre,7,1.75,3,4,0,57.142857142857139
+Mexico,Communications,post,3,1,2,1,0,33.333333333333329
+Mexico,Consumer electronics,pre,9,2.25,5,4,0,44.444444444444443
+Mexico,Consumer electronics,post,9,3,5,4,0,44.444444444444443
+Mexico,Consumer products,pre,14,3.5,8,5,1,35.714285714285715
+Mexico,Consumer products,post,18,6,10,8,0,44.444444444444443
+Mexico,Electronic components,pre,43,10.75,28,14,1,32.558139534883722
+Mexico,Electronic components,post,36,12,19,17,0,47.222222222222221
+Mexico,Engines & turbines,pre,4,1,1,3,0,75
+Mexico,Engines & turbines,post,0,0,0,0,0,
+Mexico,Food & Beverages,pre,48,12,24,24,0,50
+Mexico,Food & Beverages,post,21,7,8,13,0,61.904761904761905
+Mexico,Industrial equipment,pre,41,10.25,25,16,0,39.024390243902438
+Mexico,Industrial equipment,post,32,10.666666666666666,22,10,0,31.25
+Mexico,Medical devices,pre,17,4.25,9,8,0,47.058823529411761
+Mexico,Medical devices,post,13,4.333333333333333,9,4,0,30.76923076923077
+Mexico,Metals,pre,77,19.25,54,21,2,27.27272727272727
+Mexico,Metals,post,27,9,15,11,1,40.74074074074074
+Mexico,Non-automotive transport OEM,pre,5,1.25,3,2,0,40
+Mexico,Non-automotive transport OEM,post,9,3,3,5,1,55.555555555555557
+Mexico,"Paper, printing & packaging",pre,12,3,5,5,2,41.666666666666671
+Mexico,"Paper, printing & packaging",post,5,1.6666666666666667,1,4,0,80
+Mexico,Pharmaceuticals,pre,10,2.5,5,5,0,50
+Mexico,Pharmaceuticals,post,1,0.33333333333333331,0,1,0,100
+Mexico,Plastics,pre,64,16,46,17,1,26.5625
+Mexico,Plastics,post,18,6,11,7,0,38.888888888888893
+Mexico,Rubber,pre,15,3.75,7,8,0,53.333333333333336
+Mexico,Rubber,post,10,3.3333333333333335,4,6,0,60
+Mexico,Semiconductors,pre,1,0.25,1,0,0,0
+Mexico,Semiconductors,post,2,0.66666666666666663,1,1,0,50
+Mexico,Textiles,pre,12,3,10,2,0,16.666666666666664
+Mexico,Textiles,post,10,3.3333333333333335,4,6,0,60
+Mexico,Wood products,pre,0,0,0,0,0,
+Mexico,Wood products,post,3,1,2,1,0,33.333333333333329
+Thailand,Aerospace,pre,1,0.25,1,0,0,0
+Thailand,Aerospace,post,0,0,0,0,0,
+Thailand,Automotive OEM,pre,12,3,5,7,0,58.333333333333336
+Thailand,Automotive OEM,post,4,1.3333333333333333,3,1,0,25
+Thailand,Automotive components,pre,26,6.5,14,10,2,38.461538461538467
+Thailand,Automotive components,post,3,1,1,2,0,66.666666666666657
+Thailand,Building materials,pre,2,0.5,1,1,0,50
+Thailand,Building materials,post,1,0.33333333333333331,1,0,0,0
+Thailand,Business machines & equipment,pre,4,1,2,2,0,50
+Thailand,Business machines & equipment,post,2,0.66666666666666663,1,1,0,50
+Thailand,Ceramics & glass,pre,3,0.75,0,3,0,100
+Thailand,Ceramics & glass,post,1,0.33333333333333331,1,0,0,0
+Thailand,Chemicals,pre,15,3.75,5,8,2,53.333333333333336
+Thailand,Chemicals,post,6,2,3,3,0,50
+Thailand,"Coal, oil & gas",pre,1,0.25,0,1,0,100
+Thailand,"Coal, oil & gas",post,0,0,0,0,0,
+Thailand,Communications,pre,3,0.75,1,1,1,33.333333333333329
+Thailand,Communications,post,0,0,0,0,0,
+Thailand,Consumer electronics,pre,2,0.5,1,1,0,50
+Thailand,Consumer electronics,post,0,0,0,0,0,
+Thailand,Consumer products,pre,7,1.75,4,3,0,42.857142857142854
+Thailand,Consumer products,post,3,1,1,2,0,66.666666666666657
+Thailand,Electronic components,pre,14,3.5,12,2,0,14.285714285714285
+Thailand,Electronic components,post,7,2.3333333333333335,6,1,0,14.285714285714285
+Thailand,Food & Beverages,pre,11,2.75,5,6,0,54.54545454545454
+Thailand,Food & Beverages,post,7,2.3333333333333335,6,1,0,14.285714285714285
+Thailand,Industrial equipment,pre,11,2.75,6,5,0,45.454545454545453
+Thailand,Industrial equipment,post,1,0.33333333333333331,1,0,0,0
+Thailand,Medical devices,pre,1,0.25,0,1,0,100
+Thailand,Medical devices,post,1,0.33333333333333331,0,1,0,100
+Thailand,Metals,pre,20,5,12,7,1,35
+Thailand,Metals,post,5,1.6666666666666667,2,3,0,60
+Thailand,Non-automotive transport OEM,pre,2,0.5,1,1,0,50
+Thailand,Non-automotive transport OEM,post,1,0.33333333333333331,0,1,0,100
+Thailand,"Paper, printing & packaging",pre,4,1,2,2,0,50
+Thailand,"Paper, printing & packaging",post,1,0.33333333333333331,1,0,0,0
+Thailand,Pharmaceuticals,pre,3,0.75,2,1,0,33.333333333333329
+Thailand,Pharmaceuticals,post,1,0.33333333333333331,1,0,0,0
+Thailand,Plastics,pre,14,3.5,6,6,2,42.857142857142854
+Thailand,Plastics,post,3,1,0,3,0,100
+Thailand,Renewable energy,pre,2,0.5,2,0,0,0
+Thailand,Renewable energy,post,1,0.33333333333333331,1,0,0,0
+Thailand,Rubber,pre,15,3.75,11,4,0,26.666666666666668
+Thailand,Rubber,post,3,1,1,2,0,66.666666666666657
+Thailand,Semiconductors,pre,2,0.5,1,0,1,0
+Thailand,Semiconductors,post,0,0,0,0,0,
+Thailand,Textiles,pre,2,0.5,1,1,0,50
+Thailand,Textiles,post,0,0,0,0,0,
+Thailand,Wood products,pre,0,0,0,0,0,
+Thailand,Wood products,post,2,0.66666666666666663,2,0,0,0
+Vietnam,Aerospace,pre,0,0,0,0,0,
+Vietnam,Aerospace,post,0,0,0,0,0,
+Vietnam,Automotive OEM,pre,15,3.75,12,3,0,20
+Vietnam,Automotive OEM,post,1,0.33333333333333331,1,0,0,0
+Vietnam,Automotive components,pre,14,3.5,10,4,0,28.571428571428569
+Vietnam,Automotive components,post,0,0,0,0,0,
+Vietnam,Biotechnology,pre,1,0.25,1,0,0,0
+Vietnam,Biotechnology,post,2,0.66666666666666663,2,0,0,0
+Vietnam,Building materials,pre,6,1.5,5,1,0,16.666666666666664
+Vietnam,Building materials,post,0,0,0,0,0,
+Vietnam,Business machines & equipment,pre,3,0.75,2,1,0,33.333333333333329
+Vietnam,Business machines & equipment,post,4,1.3333333333333333,2,2,0,50
+Vietnam,Ceramics & glass,pre,3,0.75,3,0,0,0
+Vietnam,Ceramics & glass,post,0,0,0,0,0,
+Vietnam,Chemicals,pre,11,2.75,7,4,0,36.363636363636367
+Vietnam,Chemicals,post,6,2,5,1,0,16.666666666666664
+Vietnam,"Coal, oil & gas",pre,1,0.25,1,0,0,0
+Vietnam,"Coal, oil & gas",post,0,0,0,0,0,
+Vietnam,Communications,pre,8,2,6,2,0,25
+Vietnam,Communications,post,4,1.3333333333333333,3,1,0,25
+Vietnam,Consumer electronics,pre,4,1,3,1,0,25
+Vietnam,Consumer electronics,post,2,0.66666666666666663,2,0,0,0
+Vietnam,Consumer products,pre,12,3,11,1,0,8.3333333333333321
+Vietnam,Consumer products,post,5,1.6666666666666667,4,1,0,20
+Vietnam,Electronic components,pre,62,15.5,47,12,3,19.35483870967742
+Vietnam,Electronic components,post,13,4.333333333333333,6,7,0,53.846153846153847
+Vietnam,Food & Beverages,pre,53,13.25,44,9,0,16.981132075471699
+Vietnam,Food & Beverages,post,12,4,11,1,0,8.3333333333333321
+Vietnam,Industrial equipment,pre,17,4.25,14,3,0,17.647058823529413
+Vietnam,Industrial equipment,post,2,0.66666666666666663,2,0,0,0
+Vietnam,Medical devices,pre,9,2.25,7,2,0,22.222222222222221
+Vietnam,Medical devices,post,1,0.33333333333333331,1,0,0,0
+Vietnam,Metals,pre,26,6.5,18,6,2,23.076923076923077
+Vietnam,Metals,post,1,0.33333333333333331,0,1,0,100
+Vietnam,Non-automotive transport OEM,pre,8,2,6,2,0,25
+Vietnam,Non-automotive transport OEM,post,0,0,0,0,0,
+Vietnam,"Paper, printing & packaging",pre,8,2,7,1,0,12.5
+Vietnam,"Paper, printing & packaging",post,4,1.3333333333333333,2,2,0,50
+Vietnam,Pharmaceuticals,pre,3,0.75,3,0,0,0
+Vietnam,Pharmaceuticals,post,1,0.33333333333333331,1,0,0,0
+Vietnam,Plastics,pre,21,5.25,14,6,1,28.571428571428569
+Vietnam,Plastics,post,6,2,6,0,0,0
+Vietnam,Renewable energy,pre,1,0.25,1,0,0,0
+Vietnam,Renewable energy,post,0,0,0,0,0,
+Vietnam,Rubber,pre,5,1.25,4,1,0,20
+Vietnam,Rubber,post,4,1.3333333333333333,1,3,0,75
+Vietnam,Semiconductors,pre,1,0.25,0,1,0,100
+Vietnam,Semiconductors,post,3,1,1,2,0,66.666666666666657
+Vietnam,Textiles,pre,61,15.25,54,6,1,9.8360655737704921
+Vietnam,Textiles,post,5,1.6666666666666667,2,3,0,60
+Vietnam,Wood products,pre,3,0.75,2,1,0,33.333333333333329
+Vietnam,Wood products,post,1,0.33333333333333331,1,0,0,0

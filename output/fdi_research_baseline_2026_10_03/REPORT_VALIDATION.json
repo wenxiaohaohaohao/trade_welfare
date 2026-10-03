@@ -1,0 +1,28 @@
+{
+  "generated_at_utc": "2026-10-03T03:54:03.710903+00:00",
+  "report_links_exist": true,
+  "report_encoding_valid": true,
+  "review_status": {
+    "STAGED_INDEPENDENT_REVIEW.json": "PASS",
+    "STAGED_FIGURE_REVIEW.json": "passed",
+    "EXPLORATORY_INDEPENDENT_REVIEW.json": "PASS",
+    "EXPLORATORY_FIGURE_REVIEW.json": "passed"
+  },
+  "source_files": {
+    "staged_annual_full_year.csv": "28c8441e4469431fcf03c57ed93eca777589e7221fd956bfcf885731c55d98ed",
+    "staged_annual_jan_sep.csv": "21e0a731872713b08f7246507ab4271c4645853510ff78d07ee450ae7dfaa10c",
+    "staged_parent_history.csv": "b137427ed51bbca494beaa20f873b851d8aab8bea1abe7ef6f3189a807c8a46b",
+    "staged_period_changes_full_year.csv": "37d00bfb52304057b47c13d9ce9263880066cdfdad3f0d24b8689e7603124e83",
+    "staged_period_full_year.csv": "a1d332094ee1d947ab6db0eee930e6bf5b0a434d4f327f6f1a05a43bb7020efe",
+    "staged_period_jan_sep.csv": "4f514d0c1430ce95f97737d1c36d5108990570aaba76dd3efd67ff364c206df9",
+    "exploratory_annual_full_year.csv": "2ba88a02be71d4f37590e8b655a90a6dc14738ab8f0481f2f170a1c87bcd3f34",
+    "exploratory_annual_jan_sep.csv": "431685eab76ae46e6da7d9e4ecc4a3b0bd6c12c47db05ade8357a3a65690153e",
+    "exploratory_manufacturing_records.csv": "47343dc3186ca891a1d252698d2f15be228c11e0f1773beb8a9ad0b7d7d7e768",
+    "exploratory_monthly_2023_2024.csv": "efc1703c69993f068c3176d217cfab1bb877e2e8e1567f46a76358e5bac2eac3",
+    "exploratory_monthly_source_country_2023_2024.csv": "4498b48cc69e1783edbe1b715d60d56e19df31ae20207aaecb11ee9b67a76e4b"
+  },
+  "mp_summary_sha256": "eec7786a23d8e7ebcf4a3e408a4343fc66fa3c870d4918eea45055a5003f821c",
+  "report_sha256": "f72cca62616167bef37b1d70c35fa86cb435ed222ae1b60953af52eb2f52a78f",
+  "html_sha256": "d46b30b067313055ce7569ce898ea0befde33b2fa38fc527eafff40406076b23",
+  "scope": "Descriptive staged facts, exploratory common-field trends through 2024, and MP observable-target preparation; not causal estimation or completed calibration."
+}

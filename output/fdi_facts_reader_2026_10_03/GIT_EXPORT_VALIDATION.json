@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "stage": "Pre-commit index export; excludes this validation record itself and later documentation-only edits",
+  "staged_file_count": 140,
+  "aggregate_artifact_bytes_preserved": 124,
+  "excluded_private_record_files_absent": true,
+  "only_task_specific_paths": true,
+  "snapshot_root": "tmp\\fdi_git_snapshot_20261003_144528",
+  "reader_verified_before_and_after_rebuild": true,
+  "source_data_not_needed_for_reader_rebuild": true,
+  "checks": [
+    {
+      "command": "python code/analysis/fdi_facts/validate_reader_report.py",
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"checks_completed\": 1054,\n  \"errors\": [],\n  \"table_rows\": {\n    \"table_01a_annual_counts\": 11,\n    \"table_01b_annual_china\": 11,\n    \"table_02_source_composition\": 15,\n    \"table_03a_project_types\": 9,\n    \"table_03b_known_types_2023\": 3,\n    \"table_04_parent_history\": 6,\n    \"table_05a_month_windows\": 3,\n    \"table_05b_field_coverage\": 6,\n    \"table_06_mp_machinery\": 3\n  },\n  \"recommendations\": []\n}"
+    },
+    {
+      "command": "python code/analysis/fdi_facts/build_reader_report.py",
+      "returncode": 0,
+      "stdout": "{\"tables\": 9, \"figures\": 6, \"html_bytes\": 1218905, \"all_figures_embedded\": true, \"source_hashes_unchanged\": true}"
+    },
+    {
+      "command": "python code/analysis/fdi_facts/validate_reader_report.py",
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"checks_completed\": 1054,\n  \"errors\": [],\n  \"table_rows\": {\n    \"table_01a_annual_counts\": 11,\n    \"table_01b_annual_china\": 11,\n    \"table_02_source_composition\": 15,\n    \"table_03a_project_types\": 9,\n    \"table_03b_known_types_2023\": 3,\n    \"table_04_parent_history\": 6,\n    \"table_05a_month_windows\": 3,\n    \"table_05b_field_coverage\": 6,\n    \"table_06_mp_machinery\": 3\n  },\n  \"recommendations\": []\n}"
+    }
+  ],
+  "created_at_utc": "2026-10-03T06:45:28.847416+00:00"
+}

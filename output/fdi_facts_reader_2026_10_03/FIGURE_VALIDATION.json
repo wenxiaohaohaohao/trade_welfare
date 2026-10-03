@@ -1,0 +1,285 @@
+{
+  "status": "passed",
+  "versions": {
+    "python": "3.14.2",
+    "matplotlib": "3.10.8"
+  },
+  "font_family": "Microsoft YaHei",
+  "font_file": "C:\\Windows\\Fonts\\msyh.ttc",
+  "figures": [
+    {
+      "figure": "figure_01_trends",
+      "all_visible_text_inside_canvas": true,
+      "svg_text_editable": true,
+      "svg_no_raster_objects": true,
+      "font_family": "Microsoft YaHei",
+      "font_file": "C:\\Windows\\Fonts\\msyh.ttc",
+      "outputs": [
+        {
+          "file": "figure_01_trends.png",
+          "sha256": "d3f887e4d410d4d63afa246eff5e761a952ef22ef11c21f76629ba8d9e326150"
+        },
+        {
+          "file": "figure_01_trends.svg",
+          "sha256": "43c89640e553e33b69e6fc1e411c5adf31ddbcf5167c26d999275f430a187946"
+        },
+        {
+          "file": "figure_01_trends.pdf",
+          "sha256": "f8673726a909befb56205acb246c4695598b0ffb602f2acd3672e4d62670ad81"
+        }
+      ],
+      "manual_visual_review": "passed: full PNG and Python-rendered PDF inspected",
+      "pdf_page_count": 1,
+      "pdf_width_mm": 183.00000559488933,
+      "pdf_selectable_text_chars": 212,
+      "pdf_chinese_text_extractable": true,
+      "pdf_fonts": [
+        "DFIMHP+MicrosoftYaHei",
+        "HBGWOI+MicrosoftYaHei-Bold"
+      ],
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "png_pixels": [
+        2161,
+        1381
+      ],
+      "output_hashes_match": true,
+      "plot_data_hash_matches": true,
+      "no_cropped_or_overlapping_labels": true,
+      "axes_and_periods_match_plot_data": true,
+      "chinese_labels_render_correctly": true
+    },
+    {
+      "figure": "figure_02_sources",
+      "all_visible_text_inside_canvas": true,
+      "svg_text_editable": true,
+      "svg_no_raster_objects": true,
+      "font_family": "Microsoft YaHei",
+      "font_file": "C:\\Windows\\Fonts\\msyh.ttc",
+      "outputs": [
+        {
+          "file": "figure_02_sources.png",
+          "sha256": "43e114d99e4fc8ed551841d2a1589f96e8f6be3665881b2911037fabeb571058"
+        },
+        {
+          "file": "figure_02_sources.svg",
+          "sha256": "f2d24c951319c048d34b0d1e2c6f711390123619be1118cfb8447d7868f8e743"
+        },
+        {
+          "file": "figure_02_sources.pdf",
+          "sha256": "1d7056d4c487d57efd98681aa0edef0984c35ab05a748ef4e4f91e1aec11fbac"
+        }
+      ],
+      "manual_visual_review": "passed: full PNG and Python-rendered PDF inspected",
+      "pdf_page_count": 1,
+      "pdf_width_mm": 183.00000559488933,
+      "pdf_selectable_text_chars": 382,
+      "pdf_chinese_text_extractable": true,
+      "pdf_fonts": [
+        "DFIMHP+MicrosoftYaHei",
+        "HBGWOI+MicrosoftYaHei-Bold"
+      ],
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "png_pixels": [
+        2161,
+        1299
+      ],
+      "output_hashes_match": true,
+      "plot_data_hash_matches": true,
+      "no_cropped_or_overlapping_labels": true,
+      "axes_and_periods_match_plot_data": true,
+      "chinese_labels_render_correctly": true
+    },
+    {
+      "figure": "figure_03_types",
+      "all_visible_text_inside_canvas": true,
+      "svg_text_editable": true,
+      "svg_no_raster_objects": true,
+      "font_family": "Microsoft YaHei",
+      "font_file": "C:\\Windows\\Fonts\\msyh.ttc",
+      "outputs": [
+        {
+          "file": "figure_03_types.png",
+          "sha256": "ccd3099b59e98bffc37f9c45c05bf5c080f3f36ee58e321df43fdea14706456e"
+        },
+        {
+          "file": "figure_03_types.svg",
+          "sha256": "fc2ae47f3fc1a3c4a47190746ea83eeb14ae6630c8b8e324a5e8bd947e53cd20"
+        },
+        {
+          "file": "figure_03_types.pdf",
+          "sha256": "efdc1eed105af01e17a25646ffdd5846016bd8783401b9b295618c849d81accd"
+        }
+      ],
+      "manual_visual_review": "passed: updated legend PNG inspected and PDF text verified",
+      "pdf_page_count": 1,
+      "pdf_width_mm": 183.00000559488933,
+      "pdf_selectable_text_chars": 394,
+      "pdf_chinese_text_extractable": true,
+      "pdf_fonts": [
+        "DFIMHP+MicrosoftYaHei",
+        "HBGWOI+MicrosoftYaHei-Bold"
+      ],
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "png_pixels": [
+        2161,
+        1570
+      ],
+      "output_hashes_match": true,
+      "plot_data_hash_matches": true,
+      "no_cropped_or_overlapping_labels": true,
+      "axes_and_periods_match_plot_data": true,
+      "chinese_labels_render_correctly": true
+    },
+    {
+      "figure": "figure_04_parent_history",
+      "all_visible_text_inside_canvas": true,
+      "svg_text_editable": true,
+      "svg_no_raster_objects": true,
+      "font_family": "Microsoft YaHei",
+      "font_file": "C:\\Windows\\Fonts\\msyh.ttc",
+      "outputs": [
+        {
+          "file": "figure_04_parent_history.png",
+          "sha256": "499e4836a0d691ab1c534b41cec0f336eb88f8db376d35f360ae25eeb03198ac"
+        },
+        {
+          "file": "figure_04_parent_history.svg",
+          "sha256": "0b7c85cf5678243618083c8eee1f61a8f78d36edb43a27f62e17fb7be6e17256"
+        },
+        {
+          "file": "figure_04_parent_history.pdf",
+          "sha256": "1bd0fbd39de27dc8f5f3ef1ca3afec3d96c843c980a599f6695d4a0d9e440f0f"
+        }
+      ],
+      "manual_visual_review": "passed: full PNG and Python-rendered PDF inspected",
+      "pdf_page_count": 1,
+      "pdf_width_mm": 183.00000559488933,
+      "pdf_selectable_text_chars": 332,
+      "pdf_chinese_text_extractable": true,
+      "pdf_fonts": [
+        "DFIMHP+MicrosoftYaHei",
+        "HBGWOI+MicrosoftYaHei-Bold"
+      ],
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "png_pixels": [
+        2161,
+        1606
+      ],
+      "output_hashes_match": true,
+      "plot_data_hash_matches": true,
+      "no_cropped_or_overlapping_labels": true,
+      "axes_and_periods_match_plot_data": true,
+      "chinese_labels_render_correctly": true
+    },
+    {
+      "figure": "figure_05_windows",
+      "all_visible_text_inside_canvas": true,
+      "svg_text_editable": true,
+      "svg_no_raster_objects": true,
+      "font_family": "Microsoft YaHei",
+      "font_file": "C:\\Windows\\Fonts\\msyh.ttc",
+      "outputs": [
+        {
+          "file": "figure_05_windows.png",
+          "sha256": "31b69027006fcd54be3efbdcbad1d5a0f102d66f5f59fbeea1675e5ca18fa6f1"
+        },
+        {
+          "file": "figure_05_windows.svg",
+          "sha256": "f85e0e3fb16741fff8fa2634d604276d4622825c221c54edb473f316a14d5077"
+        },
+        {
+          "file": "figure_05_windows.pdf",
+          "sha256": "386451fd785d22ba9cc714d47dbade04b45bc1de14eb12d02799223937f0810d"
+        }
+      ],
+      "manual_visual_review": "passed: full PNG and Python-rendered PDF inspected",
+      "pdf_page_count": 1,
+      "pdf_width_mm": 183.00000559488933,
+      "pdf_selectable_text_chars": 193,
+      "pdf_chinese_text_extractable": true,
+      "pdf_fonts": [
+        "DFIMHP+MicrosoftYaHei",
+        "HBGWOI+MicrosoftYaHei-Bold"
+      ],
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "png_pixels": [
+        2161,
+        1122
+      ],
+      "output_hashes_match": true,
+      "plot_data_hash_matches": true,
+      "no_cropped_or_overlapping_labels": true,
+      "axes_and_periods_match_plot_data": true,
+      "chinese_labels_render_correctly": true
+    },
+    {
+      "figure": "figure_06_mp",
+      "all_visible_text_inside_canvas": true,
+      "svg_text_editable": true,
+      "svg_no_raster_objects": true,
+      "font_family": "Microsoft YaHei",
+      "font_file": "C:\\Windows\\Fonts\\msyh.ttc",
+      "outputs": [
+        {
+          "file": "figure_06_mp.png",
+          "sha256": "582cf4bb03339a5e6481588d472a0ebc3a749dc068f8ea07128a01de554adef8"
+        },
+        {
+          "file": "figure_06_mp.svg",
+          "sha256": "f01ce50ca962146b1340ac426e16e353cf15eb2d071bd95d75bea8e527a2933f"
+        },
+        {
+          "file": "figure_06_mp.pdf",
+          "sha256": "53436225b6fe7152e5b2ff3887b39c30edc88d6c64b427bd61b24d8549290f7d"
+        }
+      ],
+      "manual_visual_review": "passed: full PNG and Python-rendered PDF inspected",
+      "pdf_page_count": 1,
+      "pdf_width_mm": 183.00000559488933,
+      "pdf_selectable_text_chars": 160,
+      "pdf_chinese_text_extractable": true,
+      "pdf_fonts": [
+        "DFIMHP+MicrosoftYaHei",
+        "HBGWOI+MicrosoftYaHei-Bold"
+      ],
+      "png_dpi": [
+        299.9994,
+        299.9994
+      ],
+      "png_pixels": [
+        2161,
+        1169
+      ],
+      "output_hashes_match": true,
+      "plot_data_hash_matches": true,
+      "no_cropped_or_overlapping_labels": true,
+      "axes_and_periods_match_plot_data": true,
+      "chinese_labels_render_correctly": true
+    }
+  ],
+  "source_files_unchanged": true,
+  "plot_contract_sha256": "f1d365ad80c4407e38eddd93f6f0fa280232c5ee029f9f0bdfb42f656ea80af6",
+  "visual_review_notes": [
+    "Six figures inspected as full PNGs and Python-rendered PDF previews. Chinese text is legible and selectable in PDFs.",
+    "Figure 1 distinguishes 2023-2024 using hollow markers and dashes. Figure 2 marks those periods as provisional.",
+    "Figure 3 uses only the three complete-year stages and plots annual Expansion counts separately from shares. Figure 4 shows numerator/denominator labels.",
+    "Figure 5 labels the higher/lower endpoint above/below to avoid confusing nearby points; Mexico window reversal is visible.",
+    "Figure 6 has separate level/share panels, no double axis and no annual interpolation. Detailed methodological notes are kept outside images in PLOT_CONTRACT.json."
+  ],
+  "legend_revision": "Only figure 03 Co-location Chinese gloss removed; all plot data and five other figure exports unchanged."
+}

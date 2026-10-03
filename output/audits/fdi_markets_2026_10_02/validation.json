@@ -1,0 +1,23 @@
+{
+  "artifact_vs_native_cells_compared": 305051,
+  "artifact_vs_native_difference_count": 0,
+  "raw_hash_unchanged": true,
+  "raw_sha256": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+  "period_counts_reconcile": true,
+  "country_year_counts_reconcile": true,
+  "monthly_counts_reconcile": true,
+  "observed_host_month_cells": 396,
+  "expected_host_month_cells": 396,
+  "sheets": [
+    {
+      "sheet": "2014-2023",
+      "rows": 6828,
+      "columns": 44
+    },
+    {
+      "sheet": "2024",
+      "rows": 965,
+      "columns": 8
+    }
+  ]
+}

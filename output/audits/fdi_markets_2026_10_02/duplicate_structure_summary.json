@@ -1,0 +1,128 @@
+[
+  {
+    "sheet": "2014-2023",
+    "data_rows": 6828,
+    "exact_duplicate_groups": 0,
+    "exact_duplicate_rows_in_groups": 0,
+    "exact_duplicate_excess_rows": 0,
+    "core_collision_groups": 208,
+    "core_collision_rows_in_groups": 528,
+    "core_collision_excess_rows": 320,
+    "core_collision_groups_with_nonpersonal_differences": 205,
+    "loose_collision_groups": 280,
+    "numeric_ranges": {
+      "capex": {
+        "numeric_n": 6828,
+        "missing_n": 0,
+        "invalid_nonmissing_n": 0,
+        "negative_n": 0,
+        "zero_n": 0,
+        "min": 0.06,
+        "max": 13000,
+        "noninteger_n": 5293
+      },
+      "jobs": {
+        "numeric_n": 6828,
+        "missing_n": 0,
+        "invalid_nonmissing_n": 0,
+        "negative_n": 0,
+        "zero_n": 4,
+        "min": 0,
+        "max": 33000,
+        "noninteger_n": 0
+      }
+    },
+    "essential_structure_flags": [],
+    "activities": {
+      "Sales, Marketing & Support": 1472,
+      "Business Services": 933,
+      "Manufacturing": 2657,
+      "Logistics, Distribution & Transportation": 472,
+      "Research & Development": 330,
+      "Headquarters": 109,
+      "Electricity": 188,
+      "Construction": 338,
+      "Recycling": 37,
+      "Maintenance & Servicing": 81,
+      "Shared Services Centre": 15,
+      "Education & Training": 70,
+      "Extraction": 28,
+      "ICT & Internet Infrastructure": 68,
+      "Technical Support Centre": 14,
+      "Customer Contact Centre": 16
+    },
+    "project_type": {
+      "New": 5232,
+      "Expansion": 1429,
+      "Co-Location": 106,
+      "null": 61
+    },
+    "project_status": {
+      "Announced": 3291,
+      "Opened": 3475,
+      "Closed": 1,
+      "null": 61
+    },
+    "date_min": "2014-01-01",
+    "date_max": "2023-12-01",
+    "non_monthstart_rows": 0
+  },
+  {
+    "sheet": "2024",
+    "data_rows": 965,
+    "exact_duplicate_groups": 25,
+    "exact_duplicate_rows_in_groups": 62,
+    "exact_duplicate_excess_rows": 37,
+    "core_collision_groups": 25,
+    "core_collision_rows_in_groups": 62,
+    "core_collision_excess_rows": 37,
+    "core_collision_groups_with_nonpersonal_differences": 0,
+    "loose_collision_groups": 27,
+    "numeric_ranges": {
+      "capex": {
+        "numeric_n": 965,
+        "missing_n": 0,
+        "invalid_nonmissing_n": 0,
+        "negative_n": 0,
+        "zero_n": 0,
+        "min": 0.08,
+        "max": 1800,
+        "noninteger_n": 719
+      },
+      "jobs": {
+        "numeric_n": 965,
+        "missing_n": 0,
+        "invalid_nonmissing_n": 0,
+        "negative_n": 0,
+        "zero_n": 0,
+        "min": 1,
+        "max": 9000,
+        "noninteger_n": 0
+      }
+    },
+    "essential_structure_flags": [],
+    "activities": {
+      "Business Services": 197,
+      "Manufacturing": 325,
+      "ICT & Internet Infrastructure": 27,
+      "Construction": 21,
+      "Maintenance & Servicing": 6,
+      "Research & Development": 57,
+      "Sales, Marketing & Support": 245,
+      "Education & Training": 5,
+      "Logistics, Distribution & Transportation": 48,
+      "Headquarters": 20,
+      "Electricity": 4,
+      "Customer Contact Centre": 2,
+      "Technical Support Centre": 2,
+      "Extraction": 2,
+      "Shared Services Centre": 2,
+      "Recycling": 2
+    },
+    "project_type": null,
+    "project_status": null,
+    "date_min": "2024-01-01",
+    "date_max": "2024-12-01",
+    "non_monthstart_rows": 0
+  }
+]

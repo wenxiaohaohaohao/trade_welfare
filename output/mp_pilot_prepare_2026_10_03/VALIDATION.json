@@ -1,0 +1,3757 @@
+{
+  "passed": true,
+  "number_of_checks": 750,
+  "checks": [
+    {
+      "check": "amne_three_sectors_seven_years",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_foreign_parents_only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_native_keys_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_three_sectors_six_metrics_seven_years",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_parent_is_USA",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "no_geographic_aggregates",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_vs_interim_autos_2017",
+      "passed": true,
+      "detail": "actual=33918.8743416443; expected=33918.8743416443"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_autos_2017",
+      "passed": true,
+      "detail": "actual=78488.92795352853; expected=78488.92795352852"
+    },
+    {
+      "check": "amne_vs_existing_F03_autos_2017",
+      "passed": true,
+      "detail": "actual=33918.8743416443; expected=33918.8743416443"
+    },
+    {
+      "check": "amne_foreign_share_identity_autos_2017",
+      "passed": true,
+      "detail": "actual=0.4334778968545034; expected=0.4334778968545034"
+    },
+    {
+      "check": "amne_parent_share_interim_autos_2017",
+      "passed": true,
+      "detail": "actual=0.4321485236965764; expected=0.43214852369657647"
+    },
+    {
+      "check": "amne_valid_denominators_autos_2017",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_autos_2017",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2017_sales",
+      "passed": true,
+      "detail": "actual=73851.0; expected=73851.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2017_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2017_value_added",
+      "passed": true,
+      "detail": "actual=9011.0; expected=9011.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2017_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2017_employment",
+      "passed": true,
+      "detail": "actual=322.2; expected=322.2"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2017_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2017_capital_expenditures",
+      "passed": true,
+      "detail": "actual=2813.0; expected=2813.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2017_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2017_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=45854.0; expected=45854.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2017_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2017_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=17909.0; expected=17909.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2017_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2017_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_autos_2017_gross_output",
+      "passed": true,
+      "detail": "actual=181067.8977; expected=181067.8977"
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2017_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_autos_2017_value_added",
+      "passed": true,
+      "detail": "actual=50267.1818; expected=50267.1818"
+    },
+    {
+      "check": "amne_direct_vs_interim_autos_2018",
+      "passed": true,
+      "detail": "actual=36515.1549066316; expected=36515.1549066316"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_autos_2018",
+      "passed": true,
+      "detail": "actual=83881.56562571341; expected=83881.56562571344"
+    },
+    {
+      "check": "amne_vs_existing_F03_autos_2018",
+      "passed": true,
+      "detail": "actual=36515.1549066316; expected=36515.1549066316"
+    },
+    {
+      "check": "amne_foreign_share_identity_autos_2018",
+      "passed": true,
+      "detail": "actual=0.44567817887171496; expected=0.44567817887171496"
+    },
+    {
+      "check": "amne_parent_share_interim_autos_2018",
+      "passed": true,
+      "detail": "actual=0.4353179942964499; expected=0.4353179942964498"
+    },
+    {
+      "check": "amne_valid_denominators_autos_2018",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_autos_2018",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2018_sales",
+      "passed": true,
+      "detail": "actual=78770.0; expected=78770.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2018_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2018_value_added",
+      "passed": true,
+      "detail": "actual=9487.0; expected=9487.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2018_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2018_employment",
+      "passed": true,
+      "detail": "actual=330.9; expected=330.9"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2018_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2018_capital_expenditures",
+      "passed": true,
+      "detail": "actual=3232.0; expected=3232.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2018_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2018_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=47609.0; expected=47609.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2018_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2018_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=18345.0; expected=18345.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2018_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2018_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_autos_2018_gross_output",
+      "passed": true,
+      "detail": "actual=188211.0767; expected=188211.0767"
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2018_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_autos_2018_value_added",
+      "passed": true,
+      "detail": "actual=53606.8601; expected=53606.8601"
+    },
+    {
+      "check": "amne_direct_vs_interim_autos_2019",
+      "passed": true,
+      "detail": "actual=39864.6404787629; expected=39864.6404787629"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_autos_2019",
+      "passed": true,
+      "detail": "actual=86794.60209030008; expected=86794.60209030009"
+    },
+    {
+      "check": "amne_vs_existing_F03_autos_2019",
+      "passed": true,
+      "detail": "actual=39864.6404787629; expected=39864.6404787629"
+    },
+    {
+      "check": "amne_foreign_share_identity_autos_2019",
+      "passed": true,
+      "detail": "actual=0.45733368111474865; expected=0.45733368111474865"
+    },
+    {
+      "check": "amne_parent_share_interim_autos_2019",
+      "passed": true,
+      "detail": "actual=0.45929861441484804; expected=0.459298614414848"
+    },
+    {
+      "check": "amne_valid_denominators_autos_2019",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_autos_2019",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2019_sales",
+      "passed": true,
+      "detail": "actual=81821.0; expected=81821.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2019_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2019_value_added",
+      "passed": true,
+      "detail": "actual=8849.0; expected=8849.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2019_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2019_employment",
+      "passed": true,
+      "detail": "actual=354.7; expected=354.7"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2019_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2019_capital_expenditures",
+      "passed": true,
+      "detail": "actual=1270.0; expected=1270.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2019_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2019_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2019_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2019_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=27211.0; expected=27211.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2019_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2019_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2019_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_vs_interim_autos_2020",
+      "passed": true,
+      "detail": "actual=30832.9672174063; expected=30832.9672174063"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_autos_2020",
+      "passed": true,
+      "detail": "actual=69056.4054724738; expected=69056.40547247381"
+    },
+    {
+      "check": "amne_vs_existing_F03_autos_2020",
+      "passed": true,
+      "detail": "actual=30832.9672174063; expected=30832.967217406305"
+    },
+    {
+      "check": "amne_foreign_share_identity_autos_2020",
+      "passed": true,
+      "detail": "actual=0.45736628649029726; expected=0.45736628649029726"
+    },
+    {
+      "check": "amne_parent_share_interim_autos_2020",
+      "passed": true,
+      "detail": "actual=0.4464896052212921; expected=0.44648960522129205"
+    },
+    {
+      "check": "amne_valid_denominators_autos_2020",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_autos_2020",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2020_sales",
+      "passed": true,
+      "detail": "actual=65192.0; expected=65192.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2020_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2020_value_added",
+      "passed": true,
+      "detail": "actual=8247.0; expected=8247.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2020_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2020_employment",
+      "passed": true,
+      "detail": "actual=353.8; expected=353.8"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2020_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2020_capital_expenditures",
+      "passed": true,
+      "detail": "actual=1556.0; expected=1556.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2020_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2020_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2020_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2020_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=22198.0; expected=22198.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2020_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2020_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2020_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_vs_interim_autos_2021",
+      "passed": true,
+      "detail": "actual=41215.5897524971; expected=41215.5897524971"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_autos_2021",
+      "passed": true,
+      "detail": "actual=85976.9296840032; expected=85976.9296840032"
+    },
+    {
+      "check": "amne_vs_existing_F03_autos_2021",
+      "passed": true,
+      "detail": "actual=41215.5897524971; expected=41215.5897524971"
+    },
+    {
+      "check": "amne_foreign_share_identity_autos_2021",
+      "passed": true,
+      "detail": "actual=0.4855850146390456; expected=0.4855850146390456"
+    },
+    {
+      "check": "amne_parent_share_interim_autos_2021",
+      "passed": true,
+      "detail": "actual=0.47937964177110687; expected=0.47937964177110687"
+    },
+    {
+      "check": "amne_valid_denominators_autos_2021",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_autos_2021",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2021_sales",
+      "passed": true,
+      "detail": "actual=81052.0; expected=81052.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2021_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2021_value_added",
+      "passed": true,
+      "detail": "actual=11000.0; expected=11000.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2021_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2021_employment",
+      "passed": true,
+      "detail": "actual=364.3; expected=364.3"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2021_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2021_capital_expenditures",
+      "passed": true,
+      "detail": "actual=2454.0; expected=2454.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2021_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2021_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2021_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2021_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=23621.0; expected=23621.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2021_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2021_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2021_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_vs_interim_autos_2022",
+      "passed": true,
+      "detail": "actual=42126.1180571406; expected=42126.1180571406"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_autos_2022",
+      "passed": true,
+      "detail": "actual=101428.63015414882; expected=101428.63015414882"
+    },
+    {
+      "check": "amne_vs_existing_F03_autos_2022",
+      "passed": true,
+      "detail": "actual=42126.1180571406; expected=42126.1180571406"
+    },
+    {
+      "check": "amne_foreign_share_identity_autos_2022",
+      "passed": true,
+      "detail": "actual=0.48895571344199684; expected=0.48895571344199684"
+    },
+    {
+      "check": "amne_parent_share_interim_autos_2022",
+      "passed": true,
+      "detail": "actual=0.4153276840387012; expected=0.4153276840387012"
+    },
+    {
+      "check": "amne_valid_denominators_autos_2022",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_autos_2022",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2022_sales",
+      "passed": true,
+      "detail": "actual=95617.0; expected=95617.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2022_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2022_value_added",
+      "passed": true,
+      "detail": "actual=12588.0; expected=12588.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2022_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2022_employment",
+      "passed": true,
+      "detail": "actual=406.4; expected=406.4"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2022_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2022_capital_expenditures",
+      "passed": true,
+      "detail": "actual=3400.0; expected=3400.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2022_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2022_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2022_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2022_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=29594.0; expected=29594.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2022_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2022_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_autos_2022_gross_output",
+      "passed": true,
+      "detail": "actual=207439.3087; expected=207439.3087"
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2022_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_autos_2022_value_added",
+      "passed": true,
+      "detail": "actual=59800.8026; expected=59800.8026"
+    },
+    {
+      "check": "amne_direct_vs_interim_autos_2023",
+      "passed": true,
+      "detail": "actual=46275.9423194214; expected=46275.9423194214"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_autos_2023",
+      "passed": true,
+      "detail": "actual=114202.46279291846; expected=114202.46279291846"
+    },
+    {
+      "check": "amne_vs_existing_F03_autos_2023",
+      "passed": true,
+      "detail": "actual=46275.9423194214; expected=46275.9423194214"
+    },
+    {
+      "check": "amne_foreign_share_identity_autos_2023",
+      "passed": true,
+      "detail": "actual=0.45891547874073957; expected=0.45891547874073957"
+    },
+    {
+      "check": "amne_parent_share_interim_autos_2023",
+      "passed": true,
+      "detail": "actual=0.4052096705071312; expected=0.4052096705071312"
+    },
+    {
+      "check": "amne_valid_denominators_autos_2023",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_autos_2023",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2023_sales",
+      "passed": true,
+      "detail": "actual=107564.0; expected=107564.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2023_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2023_value_added",
+      "passed": true,
+      "detail": "actual=15183.0; expected=15183.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2023_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2023_employment",
+      "passed": true,
+      "detail": "actual=411.3; expected=411.3"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2023_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2023_capital_expenditures",
+      "passed": true,
+      "detail": "actual=4208.0; expected=4208.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2023_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2023_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2023_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_autos_2023_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=32089.0; expected=32089.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_autos_2023_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2023_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_autos_2023_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_vs_interim_electronics_2017",
+      "passed": true,
+      "detail": "actual=6043.77937897997; expected=6043.77937897997"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_electronics_2017",
+      "passed": true,
+      "detail": "actual=26121.94854925557; expected=26121.948549255572"
+    },
+    {
+      "check": "amne_vs_existing_F03_electronics_2017",
+      "passed": true,
+      "detail": "actual=6043.77937897997; expected=6043.77937897997"
+    },
+    {
+      "check": "amne_foreign_share_identity_electronics_2017",
+      "passed": true,
+      "detail": "actual=0.27356413573594973; expected=0.27356413573594973"
+    },
+    {
+      "check": "amne_parent_share_interim_electronics_2017",
+      "passed": true,
+      "detail": "actual=0.23136786168856485; expected=0.23136786168856482"
+    },
+    {
+      "check": "amne_valid_denominators_electronics_2017",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_electronics_2017",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2017_sales",
+      "passed": true,
+      "detail": "actual=5884.0; expected=5884.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2017_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2017_value_added",
+      "passed": true,
+      "detail": "actual=1929.0; expected=1929.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2017_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2017_employment",
+      "passed": true,
+      "detail": "actual=75.7; expected=75.7"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2017_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2017_capital_expenditures",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2017_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2017_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=4468.0; expected=4468.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2017_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2017_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2017_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2017_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_electronics_2017_gross_output",
+      "passed": true,
+      "detail": "actual=95487.4625; expected=95487.4625"
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2017_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_electronics_2017_value_added",
+      "passed": true,
+      "detail": "actual=19739.21; expected=19739.21"
+    },
+    {
+      "check": "amne_direct_vs_interim_electronics_2018",
+      "passed": true,
+      "detail": "actual=4347.01035481402; expected=4347.01035481402"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_electronics_2018",
+      "passed": true,
+      "detail": "actual=25844.144330451527; expected=25844.144330451527"
+    },
+    {
+      "check": "amne_vs_existing_F03_electronics_2018",
+      "passed": true,
+      "detail": "actual=4347.01035481402; expected=4347.01035481402"
+    },
+    {
+      "check": "amne_foreign_share_identity_electronics_2018",
+      "passed": true,
+      "detail": "actual=0.26598615229756434; expected=0.26598615229756434"
+    },
+    {
+      "check": "amne_parent_share_interim_electronics_2018",
+      "passed": true,
+      "detail": "actual=0.16820097811062149; expected=0.16820097811062149"
+    },
+    {
+      "check": "amne_valid_denominators_electronics_2018",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_electronics_2018",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2018_sales",
+      "passed": true,
+      "detail": "actual=4254.0; expected=4254.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2018_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2018_value_added",
+      "passed": true,
+      "detail": "actual=1842.0; expected=1842.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2018_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2018_employment",
+      "passed": true,
+      "detail": "actual=83.2; expected=83.2"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2018_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2018_capital_expenditures",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2018_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2018_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=4426.0; expected=4426.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2018_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2018_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2018_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2018_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_electronics_2018_gross_output",
+      "passed": true,
+      "detail": "actual=97163.4788; expected=97163.4788"
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2018_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_electronics_2018_value_added",
+      "passed": true,
+      "detail": "actual=20557.9994; expected=20557.9994"
+    },
+    {
+      "check": "amne_direct_vs_interim_electronics_2019",
+      "passed": true,
+      "detail": "actual=4043.0514172467; expected=4043.0514172467"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_electronics_2019",
+      "passed": true,
+      "detail": "actual=28890.739633715224; expected=28890.739633715228"
+    },
+    {
+      "check": "amne_vs_existing_F03_electronics_2019",
+      "passed": true,
+      "detail": "actual=4043.0514172467; expected=4043.0514172467"
+    },
+    {
+      "check": "amne_foreign_share_identity_electronics_2019",
+      "passed": true,
+      "detail": "actual=0.28530566029297466; expected=0.28530566029297466"
+    },
+    {
+      "check": "amne_parent_share_interim_electronics_2019",
+      "passed": true,
+      "detail": "actual=0.139942814497158; expected=0.13994281449715798"
+    },
+    {
+      "check": "amne_valid_denominators_electronics_2019",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_electronics_2019",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2019_sales",
+      "passed": true,
+      "detail": "actual=3965.0; expected=3965.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2019_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2019_value_added",
+      "passed": true,
+      "detail": "actual=1792.0; expected=1792.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2019_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2019_employment",
+      "passed": true,
+      "detail": "actual=76.3; expected=76.3"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2019_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2019_capital_expenditures",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2019_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2019_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=3923.0; expected=3923.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2019_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2019_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2019_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2019_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2019_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_vs_interim_electronics_2020",
+      "passed": true,
+      "detail": "actual=3674.92978949439; expected=3674.92978949439"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_electronics_2020",
+      "passed": true,
+      "detail": "actual=25542.929226189382; expected=25542.929226189382"
+    },
+    {
+      "check": "amne_vs_existing_F03_electronics_2020",
+      "passed": true,
+      "detail": "actual=3674.92978949439; expected=3674.92978949439"
+    },
+    {
+      "check": "amne_foreign_share_identity_electronics_2020",
+      "passed": true,
+      "detail": "actual=0.2793559352407228; expected=0.2793559352407228"
+    },
+    {
+      "check": "amne_parent_share_interim_electronics_2020",
+      "passed": true,
+      "detail": "actual=0.1438726841761928; expected=0.1438726841761928"
+    },
+    {
+      "check": "amne_valid_denominators_electronics_2020",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_electronics_2020",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2020_sales",
+      "passed": true,
+      "detail": "actual=3604.0; expected=3604.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2020_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2020_value_added",
+      "passed": true,
+      "detail": "actual=1754.0; expected=1754.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2020_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2020_employment",
+      "passed": true,
+      "detail": "actual=73.8; expected=73.8"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2020_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2020_capital_expenditures",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2020_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2020_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=3449.0; expected=3449.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2020_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2020_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=792.0; expected=792.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2020_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2020_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2020_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_vs_interim_electronics_2021",
+      "passed": true,
+      "detail": "actual=4174.7175619176; expected=4174.7175619176"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_electronics_2021",
+      "passed": true,
+      "detail": "actual=28771.592517054563; expected=28771.592517054563"
+    },
+    {
+      "check": "amne_vs_existing_F03_electronics_2021",
+      "passed": true,
+      "detail": "actual=4174.7175619176; expected=4174.7175619176"
+    },
+    {
+      "check": "amne_foreign_share_identity_electronics_2021",
+      "passed": true,
+      "detail": "actual=0.28445217319928495; expected=0.28445217319928495"
+    },
+    {
+      "check": "amne_parent_share_interim_electronics_2021",
+      "passed": true,
+      "detail": "actual=0.14509859193379743; expected=0.14509859193379743"
+    },
+    {
+      "check": "amne_valid_denominators_electronics_2021",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_electronics_2021",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2021_sales",
+      "passed": true,
+      "detail": "actual=4081.0; expected=4081.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2021_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2021_value_added",
+      "passed": true,
+      "detail": "actual=1653.0; expected=1653.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2021_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2021_employment",
+      "passed": true,
+      "detail": "actual=73.4; expected=73.4"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2021_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2021_capital_expenditures",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2021_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2021_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=3899.0; expected=3899.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2021_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2021_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2021_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2021_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2021_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_vs_interim_electronics_2022",
+      "passed": true,
+      "detail": "actual=4782.45172096406; expected=4782.45172096406"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_electronics_2022",
+      "passed": true,
+      "detail": "actual=35929.30172752664; expected=35929.30172752664"
+    },
+    {
+      "check": "amne_vs_existing_F03_electronics_2022",
+      "passed": true,
+      "detail": "actual=4782.45172096406; expected=4782.45172096406"
+    },
+    {
+      "check": "amne_foreign_share_identity_electronics_2022",
+      "passed": true,
+      "detail": "actual=0.31412433798460276; expected=0.31412433798460276"
+    },
+    {
+      "check": "amne_parent_share_interim_electronics_2022",
+      "passed": true,
+      "detail": "actual=0.13310728266394511; expected=0.13310728266394511"
+    },
+    {
+      "check": "amne_valid_denominators_electronics_2022",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_electronics_2022",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2022_sales",
+      "passed": true,
+      "detail": "actual=4672.0; expected=4672.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2022_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2022_value_added",
+      "passed": true,
+      "detail": "actual=1978.0; expected=1978.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2022_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2022_employment",
+      "passed": true,
+      "detail": "actual=79.9; expected=79.9"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2022_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2022_capital_expenditures",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2022_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2022_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=4555.0; expected=4555.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2022_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2022_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=924.0; expected=924.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2022_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2022_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_electronics_2022_gross_output",
+      "passed": true,
+      "detail": "actual=114379.232; expected=114379.232"
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2022_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_electronics_2022_value_added",
+      "passed": true,
+      "detail": "actual=25557.3566; expected=25557.3566"
+    },
+    {
+      "check": "amne_direct_vs_interim_electronics_2023",
+      "passed": true,
+      "detail": "actual=5070.63877683568; expected=5070.63877683568"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_electronics_2023",
+      "passed": true,
+      "detail": "actual=37633.60930606859; expected=37633.60930606859"
+    },
+    {
+      "check": "amne_vs_existing_F03_electronics_2023",
+      "passed": true,
+      "detail": "actual=5070.63877683568; expected=5070.63877683568"
+    },
+    {
+      "check": "amne_foreign_share_identity_electronics_2023",
+      "passed": true,
+      "detail": "actual=0.28874082964727665; expected=0.28874082964727665"
+    },
+    {
+      "check": "amne_parent_share_interim_electronics_2023",
+      "passed": true,
+      "detail": "actual=0.13473697767325274; expected=0.13473697767325274"
+    },
+    {
+      "check": "amne_valid_denominators_electronics_2023",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_electronics_2023",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2023_sales",
+      "passed": true,
+      "detail": "actual=4937.0; expected=4937.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2023_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2023_value_added",
+      "passed": true,
+      "detail": "actual=2072.0; expected=2072.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2023_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2023_employment",
+      "passed": true,
+      "detail": "actual=77.6; expected=77.6"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2023_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2023_capital_expenditures",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2023_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2023_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=4635.0; expected=4635.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2023_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_electronics_2023_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=920.0; expected=920.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_electronics_2023_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2023_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_electronics_2023_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_vs_interim_machinery_2017",
+      "passed": true,
+      "detail": "actual=6698.19385707304; expected=6698.19385707304"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_machinery_2017",
+      "passed": true,
+      "detail": "actual=10053.900786865872; expected=10053.900786865872"
+    },
+    {
+      "check": "amne_vs_existing_F03_machinery_2017",
+      "passed": true,
+      "detail": "actual=6698.19385707304; expected=6698.19385707304"
+    },
+    {
+      "check": "amne_foreign_share_identity_machinery_2017",
+      "passed": true,
+      "detail": "actual=0.31259196258435057; expected=0.31259196258435057"
+    },
+    {
+      "check": "amne_parent_share_interim_machinery_2017",
+      "passed": true,
+      "detail": "actual=0.6662283624106743; expected=0.6662283624106743"
+    },
+    {
+      "check": "amne_valid_denominators_machinery_2017",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_machinery_2017",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2017_sales",
+      "passed": true,
+      "detail": "actual=7971.0; expected=7971.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2017_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2017_value_added",
+      "passed": true,
+      "detail": "actual=1663.0; expected=1663.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2017_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2017_employment",
+      "passed": true,
+      "detail": "actual=44.6; expected=44.6"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2017_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2017_capital_expenditures",
+      "passed": true,
+      "detail": "actual=249.0; expected=249.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2017_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2017_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=3749.0; expected=3749.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2017_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2017_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=1923.0; expected=1923.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2017_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2017_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_machinery_2017_gross_output",
+      "passed": true,
+      "detail": "actual=32163.0292; expected=32163.0292"
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2017_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_machinery_2017_value_added",
+      "passed": true,
+      "detail": "actual=10711.3851; expected=10711.3851"
+    },
+    {
+      "check": "amne_direct_vs_interim_machinery_2018",
+      "passed": true,
+      "detail": "actual=6985.13136774893; expected=6985.13136774893"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_machinery_2018",
+      "passed": true,
+      "detail": "actual=10228.902020911706; expected=10228.902020911706"
+    },
+    {
+      "check": "amne_vs_existing_F03_machinery_2018",
+      "passed": true,
+      "detail": "actual=6985.13136774893; expected=6985.13136774893"
+    },
+    {
+      "check": "amne_foreign_share_identity_machinery_2018",
+      "passed": true,
+      "detail": "actual=0.3067134372778532; expected=0.3067134372778532"
+    },
+    {
+      "check": "amne_parent_share_interim_machinery_2018",
+      "passed": true,
+      "detail": "actual=0.6828818335994132; expected=0.6828818335994132"
+    },
+    {
+      "check": "amne_valid_denominators_machinery_2018",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_machinery_2018",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2018_sales",
+      "passed": true,
+      "detail": "actual=8560.0; expected=8560.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2018_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2018_value_added",
+      "passed": true,
+      "detail": "actual=1742.0; expected=1742.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2018_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2018_employment",
+      "passed": true,
+      "detail": "actual=54.7; expected=54.7"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2018_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2018_capital_expenditures",
+      "passed": true,
+      "detail": "actual=295.0; expected=295.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2018_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2018_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=4164.0; expected=4164.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2018_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2018_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=2060.0; expected=2060.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2018_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2018_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_machinery_2018_gross_output",
+      "passed": true,
+      "detail": "actual=33350.0324; expected=33350.0324"
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2018_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_machinery_2018_value_added",
+      "passed": true,
+      "detail": "actual=11344.3779; expected=11344.3779"
+    },
+    {
+      "check": "amne_direct_vs_interim_machinery_2019",
+      "passed": true,
+      "detail": "actual=6201.22841127243; expected=6201.22841127243"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_machinery_2019",
+      "passed": true,
+      "detail": "actual=10523.487131947668; expected=10523.48713194767"
+    },
+    {
+      "check": "amne_vs_existing_F03_machinery_2019",
+      "passed": true,
+      "detail": "actual=6201.22841127243; expected=6201.22841127243"
+    },
+    {
+      "check": "amne_foreign_share_identity_machinery_2019",
+      "passed": true,
+      "detail": "actual=0.3234257392478953; expected=0.3234257392478953"
+    },
+    {
+      "check": "amne_parent_share_interim_machinery_2019",
+      "passed": true,
+      "detail": "actual=0.5892750505150015; expected=0.5892750505150014"
+    },
+    {
+      "check": "amne_valid_denominators_machinery_2019",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_machinery_2019",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2019_sales",
+      "passed": true,
+      "detail": "actual=6480.0; expected=6480.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2019_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2019_value_added",
+      "passed": true,
+      "detail": "actual=1729.0; expected=1729.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2019_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2019_employment",
+      "passed": true,
+      "detail": "actual=52.5; expected=52.5"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2019_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2019_capital_expenditures",
+      "passed": true,
+      "detail": "actual=258.0; expected=258.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2019_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2019_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=3077.0; expected=3077.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2019_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2019_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=1205.0; expected=1205.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2019_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2019_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2019_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_vs_interim_machinery_2020",
+      "passed": true,
+      "detail": "actual=5966.588680158; expected=5966.588680158"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_machinery_2020",
+      "passed": true,
+      "detail": "actual=8812.812912021463; expected=8812.812912021463"
+    },
+    {
+      "check": "amne_vs_existing_F03_machinery_2020",
+      "passed": true,
+      "detail": "actual=5966.588680158; expected=5966.588680158"
+    },
+    {
+      "check": "amne_foreign_share_identity_machinery_2020",
+      "passed": true,
+      "detail": "actual=0.3233475060278014; expected=0.3233475060278014"
+    },
+    {
+      "check": "amne_parent_share_interim_machinery_2020",
+      "passed": true,
+      "detail": "actual=0.677035668375422; expected=0.677035668375422"
+    },
+    {
+      "check": "amne_valid_denominators_machinery_2020",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_machinery_2020",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2020_sales",
+      "passed": true,
+      "detail": "actual=6959.0; expected=6959.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2020_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2020_value_added",
+      "passed": true,
+      "detail": "actual=1602.0; expected=1602.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2020_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2020_employment",
+      "passed": true,
+      "detail": "actual=48.7; expected=48.7"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2020_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2020_capital_expenditures",
+      "passed": true,
+      "detail": "actual=254.0; expected=254.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2020_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2020_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=4243.0; expected=4243.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2020_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2020_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=745.0; expected=745.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2020_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2020_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2020_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_vs_interim_machinery_2021",
+      "passed": true,
+      "detail": "actual=6852.06199392576; expected=6852.06199392576"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_machinery_2021",
+      "passed": true,
+      "detail": "actual=10665.797626634063; expected=10665.797626634063"
+    },
+    {
+      "check": "amne_vs_existing_F03_machinery_2021",
+      "passed": true,
+      "detail": "actual=6852.06199392576; expected=6852.06199392576"
+    },
+    {
+      "check": "amne_foreign_share_identity_machinery_2021",
+      "passed": true,
+      "detail": "actual=0.31104217115021576; expected=0.31104217115021576"
+    },
+    {
+      "check": "amne_parent_share_interim_machinery_2021",
+      "passed": true,
+      "detail": "actual=0.6424331525675262; expected=0.6424331525675262"
+    },
+    {
+      "check": "amne_valid_denominators_machinery_2021",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_machinery_2021",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2021_sales",
+      "passed": true,
+      "detail": "actual=7851.0; expected=7851.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2021_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2021_value_added",
+      "passed": true,
+      "detail": "actual=1588.0; expected=1588.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2021_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2021_employment",
+      "passed": true,
+      "detail": "actual=55.5; expected=55.5"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2021_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2021_capital_expenditures",
+      "passed": true,
+      "detail": "actual=277.0; expected=277.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2021_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2021_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=4778.0; expected=4778.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2021_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2021_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=707.0; expected=707.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2021_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2021_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2021_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_direct_vs_interim_machinery_2022",
+      "passed": true,
+      "detail": "actual=8397.58831531069; expected=8397.58831531069"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_machinery_2022",
+      "passed": true,
+      "detail": "actual=15085.737403283276; expected=15085.737403283276"
+    },
+    {
+      "check": "amne_vs_existing_F03_machinery_2022",
+      "passed": true,
+      "detail": "actual=8397.58831531069; expected=8397.58831531069"
+    },
+    {
+      "check": "amne_foreign_share_identity_machinery_2022",
+      "passed": true,
+      "detail": "actual=0.3721883959208329; expected=0.3721883959208329"
+    },
+    {
+      "check": "amne_parent_share_interim_machinery_2022",
+      "passed": true,
+      "detail": "actual=0.556657463325792; expected=0.556657463325792"
+    },
+    {
+      "check": "amne_valid_denominators_machinery_2022",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_machinery_2022",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2022_sales",
+      "passed": true,
+      "detail": "actual=9699.0; expected=9699.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2022_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2022_value_added",
+      "passed": true,
+      "detail": "actual=2042.0; expected=2042.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2022_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2022_employment",
+      "passed": true,
+      "detail": "actual=56.0; expected=56.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2022_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2022_capital_expenditures",
+      "passed": true,
+      "detail": "actual=284.0; expected=284.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2022_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2022_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=5628.0; expected=5628.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2022_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2022_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=769.0; expected=769.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2022_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2022_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_machinery_2022_gross_output",
+      "passed": true,
+      "detail": "actual=40532.5498; expected=40532.5498"
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2022_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_vs_model_input_machinery_2022_value_added",
+      "passed": true,
+      "detail": "actual=14117.657; expected=14117.657"
+    },
+    {
+      "check": "amne_direct_vs_interim_machinery_2023",
+      "passed": true,
+      "detail": "actual=9304.08823592939; expected=9304.08823592939"
+    },
+    {
+      "check": "amne_parent_sum_vs_canonical_machinery_2023",
+      "passed": true,
+      "detail": "actual=16500.926573657107; expected=16500.926573657107"
+    },
+    {
+      "check": "amne_vs_existing_F03_machinery_2023",
+      "passed": true,
+      "detail": "actual=9304.08823592939; expected=9304.08823592939"
+    },
+    {
+      "check": "amne_foreign_share_identity_machinery_2023",
+      "passed": true,
+      "detail": "actual=0.36398432540902104; expected=0.36398432540902104"
+    },
+    {
+      "check": "amne_parent_share_interim_machinery_2023",
+      "passed": true,
+      "detail": "actual=0.5638524718231821; expected=0.5638524718231821"
+    },
+    {
+      "check": "amne_valid_denominators_machinery_2023",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "amne_repeated_host_total_constant_machinery_2023",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2023_sales",
+      "passed": true,
+      "detail": "actual=10807.0; expected=10807.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2023_sales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2023_value_added",
+      "passed": true,
+      "detail": "actual=2310.0; expected=2310.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2023_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2023_employment",
+      "passed": true,
+      "detail": "actual=56.8; expected=56.8"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2023_employment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2023_capital_expenditures",
+      "passed": true,
+      "detail": "actual=325.0; expected=325.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2023_capital_expenditures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2023_goods_exports_to_us",
+      "passed": true,
+      "detail": "actual=6190.0; expected=6190.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2023_goods_exports_to_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "bea_vs_interim_machinery_2023_goods_imports_from_us",
+      "passed": true,
+      "detail": "actual=828.0; expected=828.0"
+    },
+    {
+      "check": "bea_disclosure_vs_interim_machinery_2023_goods_imports_from_us",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2023_gross_output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "icio_unique_or_missing_machinery_2023_value_added",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target_ids_unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "all_candidate_source_metric_year_cells_retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "no_model_parameters_reported",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "suppressed_targets_are_missing_not_zero",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "all_nonmissing_values_finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "three_candidates_preserved",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "exactly_one_primary_metric_for_one_sector_all_seven_years",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_all_foreign_bilateral_output_sum_2019",
+      "passed": true,
+      "detail": "actual=78488.92795352853; expected=78488.92795352852"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_all_foreign_bilateral_output_sum_2019",
+      "passed": true,
+      "detail": "actual=86794.60209030008; expected=86794.60209030009"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_all_foreign_bilateral_output_sum_2019",
+      "passed": true,
+      "detail": "actual=10.581969143073454; expected=10.581969143073493"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_all_foreign_bilateral_output_sum_2022",
+      "passed": true,
+      "detail": "actual=78488.92795352853; expected=78488.92795352852"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_all_foreign_bilateral_output_sum_2022",
+      "passed": true,
+      "detail": "actual=101428.63015414882; expected=101428.63015414882"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_all_foreign_bilateral_output_sum_2022",
+      "passed": true,
+      "detail": "actual=29.22667285531324; expected=29.226672855313264"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_foreign_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=0.4334778968545034; expected=0.4334778968545034"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_foreign_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=0.45733368111474865; expected=0.45733368111474865"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_foreign_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=2.385578426024526; expected=2.385578426024526"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_foreign_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=0.4334778968545034; expected=0.4334778968545034"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_foreign_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=0.48895571344199684; expected=0.48895571344199684"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_foreign_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=5.547781658749345; expected=5.547781658749345"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_foreign_xvem_output_total_2019",
+      "passed": true,
+      "detail": "actual=78488.9229; expected=78488.9229"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_foreign_xvem_output_total_2019",
+      "passed": true,
+      "detail": "actual=86794.5959; expected=86794.5959"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_foreign_xvem_output_total_2019",
+      "passed": true,
+      "detail": "actual=10.581968376075146; expected=10.581968376075135"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_foreign_xvem_output_total_2022",
+      "passed": true,
+      "detail": "actual=78488.9229; expected=78488.9229"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_foreign_xvem_output_total_2022",
+      "passed": true,
+      "detail": "actual=101428.6255; expected=101428.6255"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_foreign_xvem_output_total_2022",
+      "passed": true,
+      "detail": "actual=29.22667524591549; expected=29.22667524591548"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=181067.8779; expected=181067.8779"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=189783.9575; expected=189783.9575"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=4.813708373394476; expected=4.8137083733944825"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=181067.8779; expected=181067.8779"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=207439.28889999999; expected=207439.28889999999"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=14.56437845621872; expected=14.564378456218707"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_us_affiliate_output_2019",
+      "passed": true,
+      "detail": "actual=33918.8743416443; expected=33918.8743416443"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_us_affiliate_output_2019",
+      "passed": true,
+      "detail": "actual=39864.6404787629; expected=39864.6404787629"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_us_affiliate_output_2019",
+      "passed": true,
+      "detail": "actual=17.529373402048943; expected=17.529373402048932"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_us_affiliate_output_2022",
+      "passed": true,
+      "detail": "actual=33918.8743416443; expected=33918.8743416443"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_us_affiliate_output_2022",
+      "passed": true,
+      "detail": "actual=42126.1180571406; expected=42126.1180571406"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_us_affiliate_output_2022",
+      "passed": true,
+      "detail": "actual=24.19668657877527; expected=24.196686578775275"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_us_share_all_foreign_output_2019",
+      "passed": true,
+      "detail": "actual=0.4321485236965764; expected=0.43214852369657647"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_us_share_all_foreign_output_2019",
+      "passed": true,
+      "detail": "actual=0.45929861441484804; expected=0.459298614414848"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_us_share_all_foreign_output_2019",
+      "passed": true,
+      "detail": "actual=2.7150090718271622; expected=2.7150090718271516"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_us_share_all_foreign_output_2022",
+      "passed": true,
+      "detail": "actual=0.4321485236965764; expected=0.43214852369657647"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_us_share_all_foreign_output_2022",
+      "passed": true,
+      "detail": "actual=0.4153276840387012; expected=0.4153276840387012"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_us_share_all_foreign_output_2022",
+      "passed": true,
+      "detail": "actual=-1.682083965787523; expected=-1.6820839657875286"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_us_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=0.1873268452418545; expected=0.1873268452418545"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_us_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=0.21005274104247143; expected=0.21005274104247143"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_us_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=2.272589580061693; expected=2.272589580061693"
+    },
+    {
+      "check": "change_source_baseline_AMNE_autos_us_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=0.1873268452418545; expected=0.1873268452418545"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_autos_us_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=0.20307685337972928; expected=0.20307685337972928"
+    },
+    {
+      "check": "change_arithmetic_AMNE_autos_us_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=1.5750008137874776; expected=1.5750008137874776"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_all_foreign_bilateral_output_sum_2019",
+      "passed": true,
+      "detail": "actual=26121.94854925557; expected=26121.948549255572"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_all_foreign_bilateral_output_sum_2019",
+      "passed": true,
+      "detail": "actual=28890.739633715224; expected=28890.739633715228"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_all_foreign_bilateral_output_sum_2019",
+      "passed": true,
+      "detail": "actual=10.599481425510128; expected=10.599481425510124"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_all_foreign_bilateral_output_sum_2022",
+      "passed": true,
+      "detail": "actual=26121.94854925557; expected=26121.948549255572"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_all_foreign_bilateral_output_sum_2022",
+      "passed": true,
+      "detail": "actual=35929.30172752664; expected=35929.30172752664"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_all_foreign_bilateral_output_sum_2022",
+      "passed": true,
+      "detail": "actual=37.54449312913359; expected=37.54449312913358"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_foreign_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=0.27356413573594973; expected=0.27356413573594973"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_foreign_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=0.28530566029297466; expected=0.28530566029297466"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_foreign_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=1.174152455702493; expected=1.174152455702493"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_foreign_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=0.27356413573594973; expected=0.27356413573594973"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_foreign_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=0.31412433798460276; expected=0.31412433798460276"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_foreign_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=4.0560202248653034; expected=4.0560202248653034"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_foreign_xvem_output_total_2019",
+      "passed": true,
+      "detail": "actual=26121.9399; expected=26121.9399"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_foreign_xvem_output_total_2019",
+      "passed": true,
+      "detail": "actual=28890.7323; expected=28890.7323"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_foreign_xvem_output_total_2019",
+      "passed": true,
+      "detail": "actual=10.599489971263566; expected=10.599489971263576"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_foreign_xvem_output_total_2022",
+      "passed": true,
+      "detail": "actual=26121.9399; expected=26121.9399"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_foreign_xvem_output_total_2022",
+      "passed": true,
+      "detail": "actual=35929.2945; expected=35929.2945"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_foreign_xvem_output_total_2022",
+      "passed": true,
+      "detail": "actual=37.544511003181654; expected=37.54451100318166"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=95487.4433; expected=95487.4433"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=101262.3874; expected=101262.3874"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=6.0478570798638165; expected=6.047857079863828"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=95487.4433; expected=95487.4433"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=114379.21280000001; expected=114379.21280000001"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=19.784558940013007; expected=19.784558940013014"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_us_affiliate_output_2019",
+      "passed": true,
+      "detail": "actual=6043.77937897997; expected=6043.77937897997"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_us_affiliate_output_2019",
+      "passed": true,
+      "detail": "actual=4043.0514172467; expected=4043.0514172467"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_us_affiliate_output_2019",
+      "passed": true,
+      "detail": "actual=-33.10392117706553; expected=-33.10392117706553"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_us_affiliate_output_2022",
+      "passed": true,
+      "detail": "actual=6043.77937897997; expected=6043.77937897997"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_us_affiliate_output_2022",
+      "passed": true,
+      "detail": "actual=4782.45172096406; expected=4782.45172096406"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_us_affiliate_output_2022",
+      "passed": true,
+      "detail": "actual=-20.869849458813118; expected=-20.869849458813118"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_us_share_all_foreign_output_2019",
+      "passed": true,
+      "detail": "actual=0.23136786168856485; expected=0.23136786168856482"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_us_share_all_foreign_output_2019",
+      "passed": true,
+      "detail": "actual=0.139942814497158; expected=0.13994281449715798"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_us_share_all_foreign_output_2019",
+      "passed": true,
+      "detail": "actual=-9.142504719140684; expected=-9.142504719140684"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_us_share_all_foreign_output_2022",
+      "passed": true,
+      "detail": "actual=0.23136786168856485; expected=0.23136786168856482"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_us_share_all_foreign_output_2022",
+      "passed": true,
+      "detail": "actual=0.13310728266394511; expected=0.13310728266394511"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_us_share_all_foreign_output_2022",
+      "passed": true,
+      "detail": "actual=-9.826057902461974; expected=-9.82605790246197"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_us_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=0.06329397007721506; expected=0.06329397007721506"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_us_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=0.03992648722843266; expected=0.03992648722843266"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_us_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=-2.33674828487824; expected=-2.33674828487824"
+    },
+    {
+      "check": "change_source_baseline_AMNE_electronics_us_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=0.06329397007721506; expected=0.06329397007721506"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_electronics_us_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=0.04181224545867883; expected=0.04181224545867883"
+    },
+    {
+      "check": "change_arithmetic_AMNE_electronics_us_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=-2.148172461853623; expected=-2.148172461853623"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_all_foreign_bilateral_output_sum_2019",
+      "passed": true,
+      "detail": "actual=10053.900786865872; expected=10053.900786865872"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_all_foreign_bilateral_output_sum_2019",
+      "passed": true,
+      "detail": "actual=10523.487131947668; expected=10523.48713194767"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_all_foreign_bilateral_output_sum_2019",
+      "passed": true,
+      "detail": "actual=4.670688074575491; expected=4.670688074575512"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_all_foreign_bilateral_output_sum_2022",
+      "passed": true,
+      "detail": "actual=10053.900786865872; expected=10053.900786865872"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_all_foreign_bilateral_output_sum_2022",
+      "passed": true,
+      "detail": "actual=15085.737403283276; expected=15085.737403283276"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_all_foreign_bilateral_output_sum_2022",
+      "passed": true,
+      "detail": "actual=50.04860027056217; expected=50.04860027056216"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_foreign_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=0.31259196258435057; expected=0.31259196258435057"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_foreign_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=0.3234257392478953; expected=0.3234257392478953"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_foreign_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=1.0833776663544736; expected=1.0833776663544736"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_foreign_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=0.31259196258435057; expected=0.31259196258435057"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_foreign_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=0.3721883959208329; expected=0.3721883959208329"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_foreign_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=5.959643333648234; expected=5.959643333648234"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_foreign_xvem_output_total_2019",
+      "passed": true,
+      "detail": "actual=10053.8992; expected=10053.8992"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_foreign_xvem_output_total_2019",
+      "passed": true,
+      "detail": "actual=10523.4821; expected=10523.4821"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_foreign_xvem_output_total_2019",
+      "passed": true,
+      "detail": "actual=4.670654545651298; expected=4.670654545651297"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_foreign_xvem_output_total_2022",
+      "passed": true,
+      "detail": "actual=10053.8992; expected=10053.8992"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_foreign_xvem_output_total_2022",
+      "passed": true,
+      "detail": "actual=15085.7371; expected=15085.7371"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_foreign_xvem_output_total_2022",
+      "passed": true,
+      "detail": "actual=50.04862093703903; expected=50.04862093703904"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=32163.0125; expected=32163.0125"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=32537.5529; expected=32537.5529"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=1.164506589673464; expected=1.164506589673458"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=32163.0125; expected=32163.0125"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=40532.5294; expected=40532.5294"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=26.02217966989255; expected=26.022179669892544"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_us_affiliate_output_2019",
+      "passed": true,
+      "detail": "actual=6698.19385707304; expected=6698.19385707304"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_us_affiliate_output_2019",
+      "passed": true,
+      "detail": "actual=6201.22841127243; expected=6201.22841127243"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_us_affiliate_output_2019",
+      "passed": true,
+      "detail": "actual=-7.419394786190503; expected=-7.419394786190505"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_us_affiliate_output_2022",
+      "passed": true,
+      "detail": "actual=6698.19385707304; expected=6698.19385707304"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_us_affiliate_output_2022",
+      "passed": true,
+      "detail": "actual=8397.58831531069; expected=8397.58831531069"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_us_affiliate_output_2022",
+      "passed": true,
+      "detail": "actual=25.37093572535458; expected=25.37093572535458"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_us_share_all_foreign_output_2019",
+      "passed": true,
+      "detail": "actual=0.6662283624106743; expected=0.6662283624106743"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_us_share_all_foreign_output_2019",
+      "passed": true,
+      "detail": "actual=0.5892750505150015; expected=0.5892750505150014"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_us_share_all_foreign_output_2019",
+      "passed": true,
+      "detail": "actual=-7.695331189567279; expected=-7.695331189567289"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_us_share_all_foreign_output_2022",
+      "passed": true,
+      "detail": "actual=0.6662283624106743; expected=0.6662283624106743"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_us_share_all_foreign_output_2022",
+      "passed": true,
+      "detail": "actual=0.556657463325792; expected=0.556657463325792"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_us_share_all_foreign_output_2022",
+      "passed": true,
+      "detail": "actual=-10.957089908488227; expected=-10.957089908488227"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_us_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=0.20825766420583394; expected=0.20825766420583394"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_us_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=0.19058680996481547; expected=0.19058680996481547"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_us_share_host_gross_output_2019",
+      "passed": true,
+      "detail": "actual=-1.7670854241018468; expected=-1.7670854241018468"
+    },
+    {
+      "check": "change_source_baseline_AMNE_machinery_us_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=0.20825766420583394; expected=0.20825766420583394"
+    },
+    {
+      "check": "change_source_endpoint_AMNE_machinery_us_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=0.207181452517757; expected=0.207181452517757"
+    },
+    {
+      "check": "change_arithmetic_AMNE_machinery_us_share_host_gross_output_2022",
+      "passed": true,
+      "detail": "actual=-0.10762116880769501; expected=-0.10762116880769501"
+    },
+    {
+      "check": "change_source_baseline_BEA_autos_capital_expenditures_2019",
+      "passed": true,
+      "detail": "actual=2813.0; expected=2813.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_autos_capital_expenditures_2019",
+      "passed": true,
+      "detail": "actual=1270.0; expected=1270.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_autos_capital_expenditures_2019",
+      "passed": true,
+      "detail": "actual=-54.852470671880546; expected=-54.85247067188055"
+    },
+    {
+      "check": "change_source_baseline_BEA_autos_capital_expenditures_2022",
+      "passed": true,
+      "detail": "actual=2813.0; expected=2813.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_autos_capital_expenditures_2022",
+      "passed": true,
+      "detail": "actual=3400.0; expected=3400.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_autos_capital_expenditures_2022",
+      "passed": true,
+      "detail": "actual=20.86740135087095; expected=20.867401350870956"
+    },
+    {
+      "check": "change_source_baseline_BEA_autos_employment_2019",
+      "passed": true,
+      "detail": "actual=322.2; expected=322.2"
+    },
+    {
+      "check": "change_source_endpoint_BEA_autos_employment_2019",
+      "passed": true,
+      "detail": "actual=354.7; expected=354.7"
+    },
+    {
+      "check": "change_arithmetic_BEA_autos_employment_2019",
+      "passed": true,
+      "detail": "actual=10.086902545003106; expected=10.086902545003104"
+    },
+    {
+      "check": "change_source_baseline_BEA_autos_employment_2022",
+      "passed": true,
+      "detail": "actual=322.2; expected=322.2"
+    },
+    {
+      "check": "change_source_endpoint_BEA_autos_employment_2022",
+      "passed": true,
+      "detail": "actual=406.4; expected=406.4"
+    },
+    {
+      "check": "change_arithmetic_BEA_autos_employment_2022",
+      "passed": true,
+      "detail": "actual=26.132836747361885; expected=26.132836747361882"
+    },
+    {
+      "check": "change_source_baseline_BEA_autos_goods_exports_to_us_2019",
+      "passed": true,
+      "detail": "actual=45854.0; expected=45854.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_autos_goods_exports_to_us_2019",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_baseline_BEA_autos_goods_exports_to_us_2022",
+      "passed": true,
+      "detail": "actual=45854.0; expected=45854.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_autos_goods_exports_to_us_2022",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_baseline_BEA_autos_goods_imports_from_us_2019",
+      "passed": true,
+      "detail": "actual=17909.0; expected=17909.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_autos_goods_imports_from_us_2019",
+      "passed": true,
+      "detail": "actual=27211.0; expected=27211.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_autos_goods_imports_from_us_2019",
+      "passed": true,
+      "detail": "actual=51.94036517951868; expected=51.94036517951868"
+    },
+    {
+      "check": "change_source_baseline_BEA_autos_goods_imports_from_us_2022",
+      "passed": true,
+      "detail": "actual=17909.0; expected=17909.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_autos_goods_imports_from_us_2022",
+      "passed": true,
+      "detail": "actual=29594.0; expected=29594.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_autos_goods_imports_from_us_2022",
+      "passed": true,
+      "detail": "actual=65.24652409403093; expected=65.24652409403093"
+    },
+    {
+      "check": "change_source_baseline_BEA_autos_sales_2019",
+      "passed": true,
+      "detail": "actual=73851.0; expected=73851.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_autos_sales_2019",
+      "passed": true,
+      "detail": "actual=81821.0; expected=81821.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_autos_sales_2019",
+      "passed": true,
+      "detail": "actual=10.792000108326217; expected=10.792000108326224"
+    },
+    {
+      "check": "change_source_baseline_BEA_autos_sales_2022",
+      "passed": true,
+      "detail": "actual=73851.0; expected=73851.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_autos_sales_2022",
+      "passed": true,
+      "detail": "actual=95617.0; expected=95617.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_autos_sales_2022",
+      "passed": true,
+      "detail": "actual=29.472857510392547; expected=29.472857510392547"
+    },
+    {
+      "check": "change_source_baseline_BEA_autos_value_added_2019",
+      "passed": true,
+      "detail": "actual=9011.0; expected=9011.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_autos_value_added_2019",
+      "passed": true,
+      "detail": "actual=8849.0; expected=8849.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_autos_value_added_2019",
+      "passed": true,
+      "detail": "actual=-1.7978026856064755; expected=-1.797802685606481"
+    },
+    {
+      "check": "change_source_baseline_BEA_autos_value_added_2022",
+      "passed": true,
+      "detail": "actual=9011.0; expected=9011.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_autos_value_added_2022",
+      "passed": true,
+      "detail": "actual=12588.0; expected=12588.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_autos_value_added_2022",
+      "passed": true,
+      "detail": "actual=39.69592720008879; expected=39.69592720008878"
+    },
+    {
+      "check": "change_source_baseline_BEA_electronics_capital_expenditures_2019",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_endpoint_BEA_electronics_capital_expenditures_2019",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_baseline_BEA_electronics_capital_expenditures_2022",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_endpoint_BEA_electronics_capital_expenditures_2022",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_baseline_BEA_electronics_employment_2019",
+      "passed": true,
+      "detail": "actual=75.7; expected=75.7"
+    },
+    {
+      "check": "change_source_endpoint_BEA_electronics_employment_2019",
+      "passed": true,
+      "detail": "actual=76.3; expected=76.3"
+    },
+    {
+      "check": "change_arithmetic_BEA_electronics_employment_2019",
+      "passed": true,
+      "detail": "actual=0.7926023778071167; expected=0.7926023778071258"
+    },
+    {
+      "check": "change_source_baseline_BEA_electronics_employment_2022",
+      "passed": true,
+      "detail": "actual=75.7; expected=75.7"
+    },
+    {
+      "check": "change_source_endpoint_BEA_electronics_employment_2022",
+      "passed": true,
+      "detail": "actual=79.9; expected=79.9"
+    },
+    {
+      "check": "change_arithmetic_BEA_electronics_employment_2022",
+      "passed": true,
+      "detail": "actual=5.548216644649928; expected=5.548216644649938"
+    },
+    {
+      "check": "change_source_baseline_BEA_electronics_goods_exports_to_us_2019",
+      "passed": true,
+      "detail": "actual=4468.0; expected=4468.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_electronics_goods_exports_to_us_2019",
+      "passed": true,
+      "detail": "actual=3923.0; expected=3923.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_electronics_goods_exports_to_us_2019",
+      "passed": true,
+      "detail": "actual=-12.197851387645475; expected=-12.197851387645478"
+    },
+    {
+      "check": "change_source_baseline_BEA_electronics_goods_exports_to_us_2022",
+      "passed": true,
+      "detail": "actual=4468.0; expected=4468.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_electronics_goods_exports_to_us_2022",
+      "passed": true,
+      "detail": "actual=4555.0; expected=4555.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_electronics_goods_exports_to_us_2022",
+      "passed": true,
+      "detail": "actual=1.9471799462846828; expected=1.947179946284691"
+    },
+    {
+      "check": "change_source_baseline_BEA_electronics_goods_imports_from_us_2019",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_endpoint_BEA_electronics_goods_imports_from_us_2019",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_baseline_BEA_electronics_goods_imports_from_us_2022",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_endpoint_BEA_electronics_goods_imports_from_us_2022",
+      "passed": true,
+      "detail": "actual=924.0; expected=924.0"
+    },
+    {
+      "check": "change_source_baseline_BEA_electronics_sales_2019",
+      "passed": true,
+      "detail": "actual=5884.0; expected=5884.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_electronics_sales_2019",
+      "passed": true,
+      "detail": "actual=3965.0; expected=3965.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_electronics_sales_2019",
+      "passed": true,
+      "detail": "actual=-32.61386811692726; expected=-32.61386811692726"
+    },
+    {
+      "check": "change_source_baseline_BEA_electronics_sales_2022",
+      "passed": true,
+      "detail": "actual=5884.0; expected=5884.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_electronics_sales_2022",
+      "passed": true,
+      "detail": "actual=4672.0; expected=4672.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_electronics_sales_2022",
+      "passed": true,
+      "detail": "actual=-20.598232494901424; expected=-20.598232494901428"
+    },
+    {
+      "check": "change_source_baseline_BEA_electronics_value_added_2019",
+      "passed": true,
+      "detail": "actual=1929.0; expected=1929.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_electronics_value_added_2019",
+      "passed": true,
+      "detail": "actual=1792.0; expected=1792.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_electronics_value_added_2019",
+      "passed": true,
+      "detail": "actual=-7.102125453602904; expected=-7.102125453602903"
+    },
+    {
+      "check": "change_source_baseline_BEA_electronics_value_added_2022",
+      "passed": true,
+      "detail": "actual=1929.0; expected=1929.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_electronics_value_added_2022",
+      "passed": true,
+      "detail": "actual=1978.0; expected=1978.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_electronics_value_added_2022",
+      "passed": true,
+      "detail": "actual=2.540176257128035; expected=2.5401762571280457"
+    },
+    {
+      "check": "change_source_baseline_BEA_machinery_capital_expenditures_2019",
+      "passed": true,
+      "detail": "actual=249.0; expected=249.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_machinery_capital_expenditures_2019",
+      "passed": true,
+      "detail": "actual=258.0; expected=258.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_machinery_capital_expenditures_2019",
+      "passed": true,
+      "detail": "actual=3.6144578313253017; expected=3.6144578313253013"
+    },
+    {
+      "check": "change_source_baseline_BEA_machinery_capital_expenditures_2022",
+      "passed": true,
+      "detail": "actual=249.0; expected=249.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_machinery_capital_expenditures_2022",
+      "passed": true,
+      "detail": "actual=284.0; expected=284.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_machinery_capital_expenditures_2022",
+      "passed": true,
+      "detail": "actual=14.05622489959839; expected=14.056224899598394"
+    },
+    {
+      "check": "change_source_baseline_BEA_machinery_employment_2019",
+      "passed": true,
+      "detail": "actual=44.6; expected=44.6"
+    },
+    {
+      "check": "change_source_endpoint_BEA_machinery_employment_2019",
+      "passed": true,
+      "detail": "actual=52.5; expected=52.5"
+    },
+    {
+      "check": "change_arithmetic_BEA_machinery_employment_2019",
+      "passed": true,
+      "detail": "actual=17.71300448430493; expected=17.71300448430493"
+    },
+    {
+      "check": "change_source_baseline_BEA_machinery_employment_2022",
+      "passed": true,
+      "detail": "actual=44.6; expected=44.6"
+    },
+    {
+      "check": "change_source_endpoint_BEA_machinery_employment_2022",
+      "passed": true,
+      "detail": "actual=56.0; expected=56.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_machinery_employment_2022",
+      "passed": true,
+      "detail": "actual=25.560538116591914; expected=25.56053811659192"
+    },
+    {
+      "check": "change_source_baseline_BEA_machinery_goods_exports_to_us_2019",
+      "passed": true,
+      "detail": "actual=3749.0; expected=3749.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_machinery_goods_exports_to_us_2019",
+      "passed": true,
+      "detail": "actual=3077.0; expected=3077.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_machinery_goods_exports_to_us_2019",
+      "passed": true,
+      "detail": "actual=-17.92477994131768; expected=-17.924779941317684"
+    },
+    {
+      "check": "change_source_baseline_BEA_machinery_goods_exports_to_us_2022",
+      "passed": true,
+      "detail": "actual=3749.0; expected=3749.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_machinery_goods_exports_to_us_2022",
+      "passed": true,
+      "detail": "actual=5628.0; expected=5628.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_machinery_goods_exports_to_us_2022",
+      "passed": true,
+      "detail": "actual=50.12003200853561; expected=50.12003200853561"
+    },
+    {
+      "check": "change_source_baseline_BEA_machinery_goods_imports_from_us_2019",
+      "passed": true,
+      "detail": "actual=1923.0; expected=1923.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_machinery_goods_imports_from_us_2019",
+      "passed": true,
+      "detail": "actual=1205.0; expected=1205.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_machinery_goods_imports_from_us_2019",
+      "passed": true,
+      "detail": "actual=-37.33749349973999; expected=-37.33749349973999"
+    },
+    {
+      "check": "change_source_baseline_BEA_machinery_goods_imports_from_us_2022",
+      "passed": true,
+      "detail": "actual=1923.0; expected=1923.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_machinery_goods_imports_from_us_2022",
+      "passed": true,
+      "detail": "actual=769.0; expected=769.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_machinery_goods_imports_from_us_2022",
+      "passed": true,
+      "detail": "actual=-60.01040041601664; expected=-60.010400416016644"
+    },
+    {
+      "check": "change_source_baseline_BEA_machinery_sales_2019",
+      "passed": true,
+      "detail": "actual=7971.0; expected=7971.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_machinery_sales_2019",
+      "passed": true,
+      "detail": "actual=6480.0; expected=6480.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_machinery_sales_2019",
+      "passed": true,
+      "detail": "actual=-18.705306736921333; expected=-18.70530673692134"
+    },
+    {
+      "check": "change_source_baseline_BEA_machinery_sales_2022",
+      "passed": true,
+      "detail": "actual=7971.0; expected=7971.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_machinery_sales_2022",
+      "passed": true,
+      "detail": "actual=9699.0; expected=9699.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_machinery_sales_2022",
+      "passed": true,
+      "detail": "actual=21.678584870154303; expected=21.67858487015431"
+    },
+    {
+      "check": "change_source_baseline_BEA_machinery_value_added_2019",
+      "passed": true,
+      "detail": "actual=1663.0; expected=1663.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_machinery_value_added_2019",
+      "passed": true,
+      "detail": "actual=1729.0; expected=1729.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_machinery_value_added_2019",
+      "passed": true,
+      "detail": "actual=3.96873120865906; expected=3.96873120865905"
+    },
+    {
+      "check": "change_source_baseline_BEA_machinery_value_added_2022",
+      "passed": true,
+      "detail": "actual=1663.0; expected=1663.0"
+    },
+    {
+      "check": "change_source_endpoint_BEA_machinery_value_added_2022",
+      "passed": true,
+      "detail": "actual=2042.0; expected=2042.0"
+    },
+    {
+      "check": "change_arithmetic_BEA_machinery_value_added_2022",
+      "passed": true,
+      "detail": "actual=22.79013830426939; expected=22.790138304269394"
+    },
+    {
+      "check": "change_source_baseline_ICIO_autos_gross_output_2019",
+      "passed": true,
+      "detail": "actual=181067.8977; expected=181067.8977"
+    },
+    {
+      "check": "change_source_endpoint_ICIO_autos_gross_output_2019",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_baseline_ICIO_autos_gross_output_2022",
+      "passed": true,
+      "detail": "actual=181067.8977; expected=181067.8977"
+    },
+    {
+      "check": "change_source_endpoint_ICIO_autos_gross_output_2022",
+      "passed": true,
+      "detail": "actual=207439.3087; expected=207439.3087"
+    },
+    {
+      "check": "change_arithmetic_ICIO_autos_gross_output_2022",
+      "passed": true,
+      "detail": "actual=14.564376863585803; expected=14.564376863585792"
+    },
+    {
+      "check": "change_source_baseline_ICIO_autos_value_added_2019",
+      "passed": true,
+      "detail": "actual=50267.1818; expected=50267.1818"
+    },
+    {
+      "check": "change_source_endpoint_ICIO_autos_value_added_2019",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_baseline_ICIO_autos_value_added_2022",
+      "passed": true,
+      "detail": "actual=50267.1818; expected=50267.1818"
+    },
+    {
+      "check": "change_source_endpoint_ICIO_autos_value_added_2022",
+      "passed": true,
+      "detail": "actual=59800.8026; expected=59800.8026"
+    },
+    {
+      "check": "change_arithmetic_ICIO_autos_value_added_2022",
+      "passed": true,
+      "detail": "actual=18.965894761977697; expected=18.965894761977694"
+    },
+    {
+      "check": "change_source_baseline_ICIO_electronics_gross_output_2019",
+      "passed": true,
+      "detail": "actual=95487.4625; expected=95487.4625"
+    },
+    {
+      "check": "change_source_endpoint_ICIO_electronics_gross_output_2019",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_baseline_ICIO_electronics_gross_output_2022",
+      "passed": true,
+      "detail": "actual=95487.4625; expected=95487.4625"
+    },
+    {
+      "check": "change_source_endpoint_ICIO_electronics_gross_output_2022",
+      "passed": true,
+      "detail": "actual=114379.232; expected=114379.232"
+    },
+    {
+      "check": "change_arithmetic_ICIO_electronics_gross_output_2022",
+      "passed": true,
+      "detail": "actual=19.784554961862156; expected=19.78455496186215"
+    },
+    {
+      "check": "change_source_baseline_ICIO_electronics_value_added_2019",
+      "passed": true,
+      "detail": "actual=19739.21; expected=19739.21"
+    },
+    {
+      "check": "change_source_endpoint_ICIO_electronics_value_added_2019",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_baseline_ICIO_electronics_value_added_2022",
+      "passed": true,
+      "detail": "actual=19739.21; expected=19739.21"
+    },
+    {
+      "check": "change_source_endpoint_ICIO_electronics_value_added_2022",
+      "passed": true,
+      "detail": "actual=25557.3566; expected=25557.3566"
+    },
+    {
+      "check": "change_arithmetic_ICIO_electronics_value_added_2022",
+      "passed": true,
+      "detail": "actual=29.475073217215897; expected=29.47507321721589"
+    },
+    {
+      "check": "change_source_baseline_ICIO_machinery_gross_output_2019",
+      "passed": true,
+      "detail": "actual=32163.0292; expected=32163.0292"
+    },
+    {
+      "check": "change_source_endpoint_ICIO_machinery_gross_output_2019",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_baseline_ICIO_machinery_gross_output_2022",
+      "passed": true,
+      "detail": "actual=32163.0292; expected=32163.0292"
+    },
+    {
+      "check": "change_source_endpoint_ICIO_machinery_gross_output_2022",
+      "passed": true,
+      "detail": "actual=40532.5498; expected=40532.5498"
+    },
+    {
+      "check": "change_arithmetic_ICIO_machinery_gross_output_2022",
+      "passed": true,
+      "detail": "actual=26.022177662295555; expected=26.02217766229556"
+    },
+    {
+      "check": "change_source_baseline_ICIO_machinery_value_added_2019",
+      "passed": true,
+      "detail": "actual=10711.3851; expected=10711.3851"
+    },
+    {
+      "check": "change_source_endpoint_ICIO_machinery_value_added_2019",
+      "passed": true,
+      "detail": "actual=nan; expected=nan"
+    },
+    {
+      "check": "change_source_baseline_ICIO_machinery_value_added_2022",
+      "passed": true,
+      "detail": "actual=10711.3851; expected=10711.3851"
+    },
+    {
+      "check": "change_source_endpoint_ICIO_machinery_value_added_2022",
+      "passed": true,
+      "detail": "actual=14117.657; expected=14117.657"
+    },
+    {
+      "check": "change_arithmetic_ICIO_machinery_value_added_2022",
+      "passed": true,
+      "detail": "actual=31.800480219873716; expected=31.80048021987371"
+    },
+    {
+      "check": "mechanical_support_rule_selects_one_candidate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "support_rule_selects_machinery",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "existing_momentbank_not_parameter_file",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_amne_parent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_amne_host",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_amne_interim",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_bea",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_bea_interim",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_icio",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_crosswalk",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_momentbank",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_F03",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_F04",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_data/model_inputs/icio_baseline_2017/X_baseline.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_data/model_inputs/icio_baseline_2017/va_baseline.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_data/model_inputs/icio_baseline_2018/X_baseline.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_data/model_inputs/icio_baseline_2018/va_baseline.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_data/model_inputs/icio_baseline_2022/X_baseline.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "protected_input_hash_unchanged_data/model_inputs/icio_baseline_2022/va_baseline.csv",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "meaning": "numerical provenance and accounting validation, not independent source coverage or identification"
+}

@@ -1,0 +1,19 @@
+{
+  "annual_country_type_source.csv": "de821715d5db4505c0092469b8407125d895e3b5514adda6a5c450f8adfb31d4",
+  "common_sector_weights.csv": "59addf6ca1d4b712051c46029347102429951e5925a728517eda9b2133044e89",
+  "common_sector_weight_sensitivity.csv": "34fa43f146ceeb4f7264f0c9b2116a512f0d342830f61b35cd0f709f0533d0e2",
+  "FDI01_type_composition.csv": "a64bade09a462e311bcee0a0e32091cbbbc3f7b58c119ba046d71deefee22a86",
+  "FDI02_source_composition.csv": "e97dfe6034d0451f51d0a9390312d9a9b9712c6512ee147ece78b77ba7296620",
+  "FDI02_source_type_contributions.csv": "774604ff15a053e9a2c5e763d3acf2531f25845102395e9ff0c4af09bd5580df",
+  "FDI03_parent_history.csv": "954b8aa950b72e2aa326517f3cc824bc44893419cf51ddbfa387888b7a1f569b",
+  "FDI03_positive_match_records.csv": "64d42673d3702fd350c82985e849a34fad74c50801da9990fdbf6586792b9616",
+  "manufacturing_records_with_audit_flags.csv": "10c9cf5910c61086f85c83319ea0df87b899e243de450d6a3aa8eaa36718e1c1",
+  "native_sector_type.csv": "22cebedb6f39f2c5b37ebbcd6d5fa750599b869cc250f4d52c0b344ad5c4ab3f",
+  "pooled_type_2014_2022.csv": "9a5abb97a13f9a4937bfa0c632a9c83a73fab96b3a4e6ae06f2d6e6f5e699606",
+  "sample_quality.csv": "60cc2de2b70b2367503eaa44e6634e10bb2c227881443906ca8960872604d21d",
+  "window_parent_history_comparisons.csv": "ab303a9ca1b6833642b08b2cd8099cf9d4349fdfb6e3df59cc9eb84894edf7d1",
+  "window_parent_sector_history_comparisons.csv": "41475caf45e104f7738d3ad559463abf5cf0cdc446f0d69e22f699d0bef6961b",
+  "window_source_comparisons.csv": "da4e4b8e80b19bf85c68cf9bbbb1d3ce863b5a9bab8086f1947abd1f5a7e67bb",
+  "window_source_type_contributions.csv": "d62f3c92923c041fd6bee4421cba319258c14ed041a2a5175c67e962d787f483",
+  "window_type_comparisons.csv": "e5e7d213018027b464915b8c31130b6889885acf0bd2b72812d29f99b36d7391"
+}

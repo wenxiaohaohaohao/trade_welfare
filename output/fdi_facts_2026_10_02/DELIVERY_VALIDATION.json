@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "generated_at_utc": "2026-10-02T16:03:07.139746+00:00",
+  "scope": "Current delivered sample; descriptive facts only. Coverage completeness remains unverified.",
+  "checks": {
+    "tables_hashes_match": true,
+    "protected_files_unchanged": true,
+    "independent_numeric_review_passed": true,
+    "figure_review_passed": true,
+    "all_report_links_exist": true,
+    "three_figures_in_report": true,
+    "utf8_has_no_replacement_character": true,
+    "parent_history_values_rendered": true
+  },
+  "numeric_review_sha256": "17f0b2794a6e579afbbd44c0ae49143c178945c617161f67cecb0045bf72509c",
+  "figure_review_sha256": "0b48b833ccabd7182be0668e3a9a8838cbd820c987e78cff41c97a0282ffcd14",
+  "report_sha256": "044254666392e183f74c94c1233f07bfa540737faa5c0c186244a655cd8a02e7",
+  "html_sha256": "002c1f5a8219f4cd73b212a3ab1e2035fe193aebde0410665faa698831bd8c17",
+  "fact_cards_sha256": "5679d300148907e455de28afd439264c823b4aa46446bbf41581060cb1e3f883",
+  "raw_sha256": "d6c262779e9b7db8e60e42887613d8894cbeb08244c969c4937408621854175e",
+  "files_checked": 31
+}
